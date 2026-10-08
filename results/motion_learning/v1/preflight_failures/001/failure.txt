@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/yukaiyan/Documents/Codex/2026-10-08/华为AIInfra_作品集与简历工作区/me5412-sign-robot/scripts/train_motion_model.py", line 51, in main
+    lower = np.asarray([model.joint(str(names[i])).range[0, 0] for i in active])
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+IndexError: too many indices for array: array is 1-dimensional, but 2 were indexed

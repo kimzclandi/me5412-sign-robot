@@ -1,0 +1,6 @@
+{
+  "stage": "before fitting",
+  "cause": "MuJoCo named joint range is one-dimensional; replace indexed accessor with model.jnt_range[joint.id].",
+  "protocol_changed": false,
+  "fit_executed": false
+}

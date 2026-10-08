@@ -8,3 +8,5 @@ results/previews/
 results/session_logs/
 config/local_runtime.json
 .DS_Store
+deliverables/.build/
+.chart-data-*/

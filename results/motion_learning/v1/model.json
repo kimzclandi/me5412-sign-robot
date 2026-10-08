@@ -1,0 +1,178 @@
+{
+  "model_type": "learned_text_phase_tensor_ridge",
+  "parameter_shape": [
+    385,
+    40,
+    26
+  ],
+  "parameter_count": 400400,
+  "active_joint_names": [
+    "left_shoulder_pitch_joint",
+    "left_shoulder_roll_joint",
+    "left_shoulder_yaw_joint",
+    "left_elbow_joint",
+    "left_wrist_roll_joint",
+    "left_wrist_pitch_joint",
+    "left_wrist_yaw_joint",
+    "L_thumb_proximal_yaw_joint",
+    "L_thumb_proximal_pitch_joint",
+    "L_index_proximal_joint",
+    "L_middle_proximal_joint",
+    "L_ring_proximal_joint",
+    "L_pinky_proximal_joint",
+    "right_shoulder_pitch_joint",
+    "right_shoulder_roll_joint",
+    "right_shoulder_yaw_joint",
+    "right_elbow_joint",
+    "right_wrist_roll_joint",
+    "right_wrist_pitch_joint",
+    "right_wrist_yaw_joint",
+    "R_thumb_proximal_yaw_joint",
+    "R_thumb_proximal_pitch_joint",
+    "R_index_proximal_joint",
+    "R_middle_proximal_joint",
+    "R_ring_proximal_joint",
+    "R_pinky_proximal_joint"
+  ],
+  "durations_s": {
+    "HELLO": 7.8,
+    "THANK_YOU": 8.0,
+    "PLEASE_WAIT": 8.5
+  },
+  "independent_demonstrations": 3,
+  "frames": 732,
+  "train_frames": 367,
+  "validation_frames": 365,
+  "protocol": {
+    "version": "v1",
+    "created_utc": "2026-10-08T15:01:50.362101+00:00",
+    "status": "protocol_frozen_before_training",
+    "seed": 5412,
+    "algorithm": "text-phase tensor-product Gaussian RBF ridge regression, deterministic closed-form dual solve",
+    "embedding": "frozen all-MiniLM-L6-v2 CPU, normalized 384-vector",
+    "text_features": "384 embedding coordinates plus constant 1, divided by sqrt(2)",
+    "phase_features": "40 Gaussian RBFs, centers uniformly spaced on [0,1], width=1.5/39, multiplied by 4*u*(1-u)",
+    "rbf_count": 40,
+    "rbf_width": 0.038461538461538464,
+    "ridge_lambda": 1e-06,
+    "ridge_objective": "mean squared training error + lambda * squared Frobenius weight norm",
+    "training_texts": {
+      "HELLO": "Hello",
+      "THANK_YOU": "Thank you",
+      "PLEASE_WAIT": "Please wait"
+    },
+    "paraphrase_probes": {
+      "HELLO": "Hi there",
+      "THANK_YOU": "Thanks a lot",
+      "PLEASE_WAIT": "Wait a moment"
+    },
+    "split": "zero-based even frames train, odd frames validation within each same demonstration",
+    "expected_frames": {
+      "HELLO": 235,
+      "THANK_YOU": 241,
+      "PLEASE_WAIT": 256
+    },
+    "independent_demonstrations": 3,
+    "total_frames": 732,
+    "learned_joint_count": 26,
+    "full_coordinate_count": 53,
+    "mimic_count": 12,
+    "reconstruction": "15 non-upper-body coordinates stay neutral; 12 mimic coordinates reconstructed algebraically",
+    "projection": "clip learned active positions to effective hardware limits accounting for mimic children; report raw violations and maximum projection, never hide corrections",
+    "acceptance": {
+      "heldout_active_rmse_rad_max": 0.035,
+      "heldout_active_max_error_rad_max": 0.12,
+      "joint_limit_tolerance_rad": 1e-06,
+      "mimic_tolerance_rad": 1e-07,
+      "speed": "all named joints at or below existing URDF velocity limit + 1e-8",
+      "penetration_below_minus_0_001_m_events_max": 0,
+      "max_projection_rad_max": 0.02
+    },
+    "generation": {
+      "fps": 30,
+      "duration_scales": [
+        1.0,
+        1.2
+      ],
+      "time_rule": "continuous u=t/duration, recompute neural features at each new timestamp; never read old trajectory files during inference"
+    },
+    "input_policy": "existing exact-selector shared guard and complete aliases only; unsupported input returns no positions; learned parameters still depend on actual text embedding, not selected action ID",
+    "accepted_scope": "same-demonstration temporal interpolation only; paraphrase probes exploratory and separate",
+    "limitations": [
+      "Agent-authored 3 trajectories, not 732 independent demonstrations",
+      "No learning from videos or independent human ASL examples",
+      "No new-sign generalization, ASL comprehensibility or clinical validation",
+      "Only kinematic sampled-frame checks; no dynamics or continuous collision proof"
+    ],
+    "input_sha256": {
+      "motions/HELLO.npz": "c02b49e31be5eb03f2db124ea37d1ff124e875ccdeb911a0615ac3f160f757f2",
+      "motions/HELLO.json": "5d0bde4ebc67c6e61aa47b03b048d62cf4166b65cf699d9290ff9c69dfda9161",
+      "motions/THANK_YOU.npz": "a7d80630c96b68c0579f60351c3302c059960811fe94cbb5862b91190976bcbf",
+      "motions/THANK_YOU.json": "4605f417bdf707166f7e58242d1bb53cb4ea8d2d15cf6ad502a86f979b04abca",
+      "motions/PLEASE_WAIT.npz": "88a5c2abb1cd1c37fe10c159ea65fd2b8db812ee26ec2bbf1affc07cce3b590d",
+      "motions/PLEASE_WAIT.json": "65e639abf9be274176dc2fefa7c28738a825eafff345ea75a133a3e7ff0a5ca9",
+      "assets/robot/scene.xml": "42fa55e694045a561e0b804de40a4312f27f0576a58f93ecc87101863a214e95",
+      "assets/robot/model_info.json": "755e980ffca68fedb70b08f4fdfe7c2254a325e35b09393a54c5b5e52a1f91fa",
+      "assets/robot/upstream_manifest.json": "b019827b94d1663a0d23c2c6e7ffac5e61b3cf5d1be00d42c742cc657a14f89d",
+      "config/embedding.json": "80a121725fa803c8eab2b1866cfda134c38c78fa545adfc2a437fa4dc5ad3230",
+      "config/embedding_download_manifest.json": "bf2a0a3e87e40e27154bcae9eddac6ed3c3051760ee062467e53b8e5b7ee26fd",
+      "data/catalog.json": "024fda8da4b8409a3bee4100e4f4ff1c6a3eec027100775fceba15cb95a71523"
+    }
+  },
+  "default_enabled": false,
+  "asl_reviewed": false,
+  "fit_accepted": true,
+  "heldout_metrics": {
+    "HELLO": {
+      "projection": {
+        "max_projection_rad": 0.00017100278252056239,
+        "raw_out_of_bound_coordinates": 932
+      },
+      "train_indices": {
+        "active_rmse_rad": 0.0004240754480559257,
+        "active_max_error_rad": 0.004850746232552883,
+        "frames": 118
+      },
+      "validation_indices": {
+        "active_rmse_rad": 0.00042974241013478,
+        "active_max_error_rad": 0.004277902519654264,
+        "frames": 117
+      },
+      "heldout_accepted": true
+    },
+    "THANK_YOU": {
+      "projection": {
+        "max_projection_rad": 0.00017396164959441709,
+        "raw_out_of_bound_coordinates": 958
+      },
+      "train_indices": {
+        "active_rmse_rad": 0.0026422391655839986,
+        "active_max_error_rad": 0.046647246452662626,
+        "frames": 121
+      },
+      "validation_indices": {
+        "active_rmse_rad": 0.0025277728584274075,
+        "active_max_error_rad": 0.046328774827806174,
+        "frames": 120
+      },
+      "heldout_accepted": true
+    },
+    "PLEASE_WAIT": {
+      "projection": {
+        "max_projection_rad": 0.0019772429020842816,
+        "raw_out_of_bound_coordinates": 446
+      },
+      "train_indices": {
+        "active_rmse_rad": 0.0006198149950402058,
+        "active_max_error_rad": 0.005474446754191627,
+        "frames": 128
+      },
+      "validation_indices": {
+        "active_rmse_rad": 0.0006210569775485976,
+        "active_max_error_rad": 0.005548530807410745,
+        "frames": 128
+      },
+      "heldout_accepted": true
+    }
+  }
+}

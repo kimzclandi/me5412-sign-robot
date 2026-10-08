@@ -1,0 +1,296 @@
+{
+  "attempt": 1,
+  "validation_scope": "same-demonstration odd-frame interpolation; no independent action generalization",
+  "fit": {
+    "HELLO": {
+      "projection": {
+        "max_projection_rad": 0.00017100278252056239,
+        "raw_out_of_bound_coordinates": 932
+      },
+      "train_indices": {
+        "active_rmse_rad": 0.0004240754480559257,
+        "active_max_error_rad": 0.004850746232552883,
+        "frames": 118
+      },
+      "validation_indices": {
+        "active_rmse_rad": 0.00042974241013478,
+        "active_max_error_rad": 0.004277902519654264,
+        "frames": 117
+      },
+      "heldout_accepted": true
+    },
+    "THANK_YOU": {
+      "projection": {
+        "max_projection_rad": 0.00017396164959441709,
+        "raw_out_of_bound_coordinates": 958
+      },
+      "train_indices": {
+        "active_rmse_rad": 0.0026422391655839986,
+        "active_max_error_rad": 0.046647246452662626,
+        "frames": 121
+      },
+      "validation_indices": {
+        "active_rmse_rad": 0.0025277728584274075,
+        "active_max_error_rad": 0.046328774827806174,
+        "frames": 120
+      },
+      "heldout_accepted": true
+    },
+    "PLEASE_WAIT": {
+      "projection": {
+        "max_projection_rad": 0.0019772429020842816,
+        "raw_out_of_bound_coordinates": 446
+      },
+      "train_indices": {
+        "active_rmse_rad": 0.0006198149950402058,
+        "active_max_error_rad": 0.005474446754191627,
+        "frames": 128
+      },
+      "validation_indices": {
+        "active_rmse_rad": 0.0006210569775485976,
+        "active_max_error_rad": 0.005548530807410745,
+        "frames": 128
+      },
+      "heldout_accepted": true
+    }
+  },
+  "generated": [
+    {
+      "status": "candidate",
+      "action_id": "HELLO",
+      "metrics": {
+        "max_projection_rad": 0.00017100278252056239,
+        "raw_out_of_bound_coordinates": 932,
+        "joint_limit_violation_rad": 0.0,
+        "max_mimic_error_rad": 0.0,
+        "max_joint_speed_rad_s": 0.9579726138881512,
+        "max_speed_limit_excess_rad_s": 0.0,
+        "penetrating_contact_events_below_minus_1mm": 0,
+        "maximum_reported_penetration_m": 0.0006435253579007639,
+        "collision_frames_checked": 235,
+        "collision_scope": "upstream collision geoms at sampled frames only"
+      },
+      "accepted": true,
+      "rejection_reasons": [],
+      "geometric_accepted": true,
+      "default_enabled": false,
+      "asl_reviewed": false,
+      "execution_mode": "learned_text_phase_regression",
+      "duration_s": 7.8,
+      "conditioning_text": "Hello",
+      "file": "results/motion_learning/v1/HELLO.npz",
+      "duration_scale": 1.0
+    },
+    {
+      "status": "candidate",
+      "action_id": "HELLO",
+      "metrics": {
+        "max_projection_rad": 0.0001722391093067939,
+        "raw_out_of_bound_coordinates": 1120,
+        "joint_limit_violation_rad": 0.0,
+        "max_mimic_error_rad": 0.0,
+        "max_joint_speed_rad_s": 0.7984670689317328,
+        "max_speed_limit_excess_rad_s": 0.0,
+        "penetrating_contact_events_below_minus_1mm": 0,
+        "maximum_reported_penetration_m": 0.0006435253579007642,
+        "collision_frames_checked": 282,
+        "collision_scope": "upstream collision geoms at sampled frames only"
+      },
+      "accepted": true,
+      "rejection_reasons": [],
+      "geometric_accepted": true,
+      "default_enabled": false,
+      "asl_reviewed": false,
+      "execution_mode": "learned_text_phase_regression",
+      "duration_s": 9.36,
+      "conditioning_text": "Hello",
+      "file": "results/motion_learning/v1/HELLO_slow120.npz",
+      "duration_scale": 1.2
+    },
+    {
+      "status": "candidate",
+      "action_id": "THANK_YOU",
+      "metrics": {
+        "max_projection_rad": 0.00017396164959441419,
+        "raw_out_of_bound_coordinates": 958,
+        "joint_limit_violation_rad": 0.0,
+        "max_mimic_error_rad": 0.0,
+        "max_joint_speed_rad_s": 1.8859733470278346,
+        "max_speed_limit_excess_rad_s": 0.0,
+        "penetrating_contact_events_below_minus_1mm": 0,
+        "maximum_reported_penetration_m": 0.000643525357900796,
+        "collision_frames_checked": 241,
+        "collision_scope": "upstream collision geoms at sampled frames only"
+      },
+      "accepted": true,
+      "rejection_reasons": [],
+      "geometric_accepted": true,
+      "default_enabled": false,
+      "asl_reviewed": false,
+      "execution_mode": "learned_text_phase_regression",
+      "duration_s": 8.0,
+      "conditioning_text": "Thank you",
+      "file": "results/motion_learning/v1/THANK_YOU.npz",
+      "duration_scale": 1.0
+    },
+    {
+      "status": "candidate",
+      "action_id": "THANK_YOU",
+      "metrics": {
+        "max_projection_rad": 0.0001740994962733312,
+        "raw_out_of_bound_coordinates": 1158,
+        "joint_limit_violation_rad": 0.0,
+        "max_mimic_error_rad": 0.0,
+        "max_joint_speed_rad_s": 1.5717427999725264,
+        "max_speed_limit_excess_rad_s": 0.0,
+        "penetrating_contact_events_below_minus_1mm": 0,
+        "maximum_reported_penetration_m": 0.000643525357900769,
+        "collision_frames_checked": 289,
+        "collision_scope": "upstream collision geoms at sampled frames only"
+      },
+      "accepted": true,
+      "rejection_reasons": [],
+      "geometric_accepted": true,
+      "default_enabled": false,
+      "asl_reviewed": false,
+      "execution_mode": "learned_text_phase_regression",
+      "duration_s": 9.6,
+      "conditioning_text": "Thank you",
+      "file": "results/motion_learning/v1/THANK_YOU_slow120.npz",
+      "duration_scale": 1.2
+    },
+    {
+      "status": "candidate",
+      "action_id": "PLEASE_WAIT",
+      "metrics": {
+        "max_projection_rad": 0.0019772429020842833,
+        "raw_out_of_bound_coordinates": 446,
+        "joint_limit_violation_rad": 0.0,
+        "max_mimic_error_rad": 0.0,
+        "max_joint_speed_rad_s": 1.4613294062542377,
+        "max_speed_limit_excess_rad_s": 0.0,
+        "penetrating_contact_events_below_minus_1mm": 0,
+        "maximum_reported_penetration_m": 0.0006435253579010552,
+        "collision_frames_checked": 256,
+        "collision_scope": "upstream collision geoms at sampled frames only"
+      },
+      "accepted": true,
+      "rejection_reasons": [],
+      "geometric_accepted": true,
+      "default_enabled": false,
+      "asl_reviewed": false,
+      "execution_mode": "learned_text_phase_regression",
+      "duration_s": 8.5,
+      "conditioning_text": "Please wait",
+      "file": "results/motion_learning/v1/PLEASE_WAIT.npz",
+      "duration_scale": 1.0
+    },
+    {
+      "status": "candidate",
+      "action_id": "PLEASE_WAIT",
+      "metrics": {
+        "max_projection_rad": 0.001977465552038579,
+        "raw_out_of_bound_coordinates": 532,
+        "joint_limit_violation_rad": 0.0,
+        "max_mimic_error_rad": 0.0,
+        "max_joint_speed_rad_s": 1.2179238306097215,
+        "max_speed_limit_excess_rad_s": 0.0,
+        "penetrating_contact_events_below_minus_1mm": 0,
+        "maximum_reported_penetration_m": 0.0006435253579009103,
+        "collision_frames_checked": 307,
+        "collision_scope": "upstream collision geoms at sampled frames only"
+      },
+      "accepted": true,
+      "rejection_reasons": [],
+      "geometric_accepted": true,
+      "default_enabled": false,
+      "asl_reviewed": false,
+      "execution_mode": "learned_text_phase_regression",
+      "duration_s": 10.2,
+      "conditioning_text": "Please wait",
+      "file": "results/motion_learning/v1/PLEASE_WAIT_slow120.npz",
+      "duration_scale": 1.2
+    }
+  ],
+  "paraphrase_probes": [
+    {
+      "status": "candidate",
+      "action_id": "HELLO",
+      "metrics": {
+        "max_projection_rad": 0.0002647505012225008,
+        "raw_out_of_bound_coordinates": 454,
+        "joint_limit_violation_rad": 0.0,
+        "max_mimic_error_rad": 0.0,
+        "max_joint_speed_rad_s": 0.7513464381979755,
+        "max_speed_limit_excess_rad_s": 0.0,
+        "penetrating_contact_events_below_minus_1mm": 0,
+        "maximum_reported_penetration_m": 0.0006435253579008058,
+        "collision_frames_checked": 235,
+        "collision_scope": "upstream collision geoms at sampled frames only"
+      },
+      "accepted": true,
+      "rejection_reasons": [],
+      "geometric_accepted": true,
+      "default_enabled": false,
+      "asl_reviewed": false,
+      "execution_mode": "learned_text_phase_regression",
+      "duration_s": 7.8,
+      "conditioning_text": "Hi there"
+    },
+    {
+      "status": "candidate",
+      "action_id": "THANK_YOU",
+      "metrics": {
+        "max_projection_rad": 0.00027786509014199475,
+        "raw_out_of_bound_coordinates": 464,
+        "joint_limit_violation_rad": 0.0,
+        "max_mimic_error_rad": 0.0,
+        "max_joint_speed_rad_s": 1.241340663062828,
+        "max_speed_limit_excess_rad_s": 0.0,
+        "penetrating_contact_events_below_minus_1mm": 0,
+        "maximum_reported_penetration_m": 0.00064352535790078,
+        "collision_frames_checked": 241,
+        "collision_scope": "upstream collision geoms at sampled frames only"
+      },
+      "accepted": true,
+      "rejection_reasons": [],
+      "geometric_accepted": true,
+      "default_enabled": false,
+      "asl_reviewed": false,
+      "execution_mode": "learned_text_phase_regression",
+      "duration_s": 8.0,
+      "conditioning_text": "Thanks a lot"
+    },
+    {
+      "status": "candidate",
+      "action_id": "PLEASE_WAIT",
+      "metrics": {
+        "max_projection_rad": 0.0010646476058825687,
+        "raw_out_of_bound_coordinates": 462,
+        "joint_limit_violation_rad": 0.0,
+        "max_mimic_error_rad": 0.0,
+        "max_joint_speed_rad_s": 0.8152093635197206,
+        "max_speed_limit_excess_rad_s": 0.0,
+        "penetrating_contact_events_below_minus_1mm": 0,
+        "maximum_reported_penetration_m": 0.0006435253579008571,
+        "collision_frames_checked": 256,
+        "collision_scope": "upstream collision geoms at sampled frames only"
+      },
+      "accepted": true,
+      "rejection_reasons": [],
+      "geometric_accepted": true,
+      "default_enabled": false,
+      "asl_reviewed": false,
+      "execution_mode": "learned_text_phase_regression",
+      "duration_s": 8.5,
+      "conditioning_text": "Wait a moment"
+    }
+  ],
+  "default_enabled": false,
+  "asl_reviewed": false,
+  "fit_accepted": true,
+  "engineering_accepted": true,
+  "accepted": true,
+  "elapsed_s": 2.8410616660003143,
+  "model_sha256": "f2e064ed155ef429a29f5e2a0f6ccc3bf6209c603840e2ed744bdc651faac1f7"
+}

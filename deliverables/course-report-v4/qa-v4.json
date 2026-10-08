@@ -1,0 +1,65 @@
+{
+  "schema": "me5412-slide-qa-v4",
+  "final_pptx_sha256": "63066ce828451ad9166472c5a4e621d0f221d61fc90d2f3e5c5ef831c4057f95",
+  "final_pdf_sha256": "af12cba2734034bf9e21ab78ecd7697d406c9d90a7f2cf8442cdd51bd760e31e",
+  "editable_object_counts": {
+    "slides": 14,
+    "native_text_shapes": 116,
+    "native_tables": 5,
+    "native_charts": 1,
+    "embedded_images": 7,
+    "notes": 14
+  },
+  "finalizer": "validation-v4.json",
+  "provenance": "provenance-v4.json",
+  "visual_review": {
+    "all_final_slides_reimported_rendered": true,
+    "all_final_slides_individually_reviewed_at_1280x720": true,
+    "reviewed_slide_numbers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "issues_remaining": [],
+    "previews": "final-previews/",
+    "contact_sheet": "contact-sheet.webp"
+  },
+  "planned_duration_seconds": 865,
+  "actual_rehearsal_timing": false,
+  "old_v3_pptx_hash_unchanged": true,
+  "source_claims": {
+    "authored_demonstrations": 3,
+    "fit_frames": 367,
+    "validation_frames": 365,
+    "split": "even/odd frames from the same demonstrations",
+    "model": "frozen MiniLM + Gaussian RBF ridge, not a deep generative model",
+    "validation": "same-demonstration temporal interpolation only",
+    "metrics_after_projection": true,
+    "how2sign_metadata_rows": 35263,
+    "new_corpus_video_pose_robot_supervision": 0,
+    "asl_reviewed": false,
+    "default_route_unchanged": true
+  },
+  "pdf": {
+    "pages": 14,
+    "type": "static image-only preview",
+    "all_pages_pixel_identical_to_reviewed_slide_previews": true,
+    "native_export_limit": "Missing bundled #standard-fonts/Helvetica module"
+  },
+  "limitations": [
+    "Native Microsoft PowerPoint rendering not checked",
+    "PDF text is not editable; use PPTX master",
+    "No new-sign, independent-demonstration, human ASL or clinical validation claim"
+  ]
+}

@@ -1,0 +1,1112 @@
+{
+  "schema_version": 1,
+  "analysis_kind": "read_only_reanalysis_without_inference",
+  "created_at_utc": "2026-10-08T14:48:12.426063+00:00",
+  "source_run": "results/evaluation/test-20261008T142047221403Z",
+  "raw_rows": 180,
+  "unique_test_cases": 60,
+  "method_order": [
+    "exact",
+    "embedding",
+    "llm"
+  ],
+  "methods": {
+    "exact": {
+      "n": 60,
+      "n_supported": 30,
+      "n_unsupported": 30,
+      "supported": {
+        "correct_selection": 8,
+        "wrong_rejection": 22,
+        "wrong_action_id": 0,
+        "error": 0
+      },
+      "out_of_scope": {
+        "correct_rejection": 30,
+        "false_execution": 0,
+        "error": 0
+      },
+      "accuracy": {
+        "numerator": 38,
+        "denominator": 60,
+        "value": 0.6333333333333333
+      },
+      "supported_correct_selection_rate": {
+        "numerator": 8,
+        "denominator": 30,
+        "value": 0.26666666666666666
+      },
+      "supported_wrong_rejection_rate": {
+        "numerator": 22,
+        "denominator": 30,
+        "value": 0.7333333333333333
+      },
+      "supported_wrong_execution_rate": {
+        "numerator": 0,
+        "denominator": 30,
+        "value": 0.0
+      },
+      "unsupported_false_execution_rate": {
+        "numerator": 0,
+        "denominator": 30,
+        "value": 0.0
+      },
+      "execution_coverage": {
+        "numerator": 8,
+        "denominator": 60,
+        "value": 0.13333333333333333
+      },
+      "execution_precision": {
+        "numerator": 8,
+        "denominator": 8,
+        "value": 1.0
+      },
+      "runtime_error_rate": {
+        "numerator": 0,
+        "denominator": 60,
+        "value": 0.0
+      },
+      "strict_status_match_rate": {
+        "numerator": 32,
+        "denominator": 60,
+        "value": 0.5333333333333333
+      },
+      "latency_ms": {
+        "median": 0.007958498827065341,
+        "p95_nearest_rank": 0.016000001778593287,
+        "max": 0.12475000039557926
+      },
+      "confusion": {
+        "HELLO": {
+          "HELLO": 2,
+          "REJECT": 8
+        },
+        "THANK_YOU": {
+          "THANK_YOU": 3,
+          "REJECT": 7
+        },
+        "PLEASE_WAIT": {
+          "PLEASE_WAIT": 3,
+          "REJECT": 7
+        },
+        "REJECT": {
+          "REJECT": 30
+        }
+      },
+      "by_category": {
+        "canonical": {
+          "total": 8,
+          "correct": 8
+        },
+        "paraphrase": {
+          "total": 22,
+          "correct": 0
+        },
+        "negation": {
+          "total": 4,
+          "correct": 4
+        },
+        "decline": {
+          "total": 1,
+          "correct": 1
+        },
+        "sarcasm": {
+          "total": 1,
+          "correct": 1
+        },
+        "role": {
+          "total": 1,
+          "correct": 1
+        },
+        "third_party": {
+          "total": 2,
+          "correct": 2
+        },
+        "reported": {
+          "total": 2,
+          "correct": 2
+        },
+        "metalinguistic": {
+          "total": 1,
+          "correct": 1
+        },
+        "qualified_wait": {
+          "total": 4,
+          "correct": 4
+        },
+        "mixed_intent": {
+          "total": 5,
+          "correct": 5
+        },
+        "clinical": {
+          "total": 4,
+          "correct": 4
+        },
+        "out_of_scope": {
+          "total": 2,
+          "correct": 2
+        },
+        "ambiguous": {
+          "total": 2,
+          "correct": 2
+        },
+        "conditional": {
+          "total": 1,
+          "correct": 1
+        }
+      },
+      "reason_counts": {
+        "exact_alias": 8,
+        "no_exact_alias": 27,
+        "reported_or_metalinguistic": 4,
+        "qualified_wait_out_of_scope": 5,
+        "negated_or_declining": 6,
+        "waiting_role_mismatch": 1,
+        "multiple_or_compound_intents": 4,
+        "clinical_content_out_of_scope": 4,
+        "conditional_input": 1
+      },
+      "execution_path_counts": {
+        "exact_backend": 35,
+        "shared_guard": 25
+      },
+      "llm_call_audit": {
+        "http_attempted": {
+          "numerator": 0,
+          "denominator": 60,
+          "value": 0.0
+        },
+        "http_response_received": {
+          "numerator": 0,
+          "denominator": 60,
+          "value": 0.0
+        },
+        "response_subset_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null
+        },
+        "response_subset_selector_latency_ms": {
+          "median": null,
+          "p95_nearest_rank": null,
+          "max": null
+        }
+      }
+    },
+    "embedding": {
+      "n": 60,
+      "n_supported": 30,
+      "n_unsupported": 30,
+      "supported": {
+        "correct_selection": 17,
+        "wrong_rejection": 13,
+        "wrong_action_id": 0,
+        "error": 0
+      },
+      "out_of_scope": {
+        "correct_rejection": 30,
+        "false_execution": 0,
+        "error": 0
+      },
+      "accuracy": {
+        "numerator": 47,
+        "denominator": 60,
+        "value": 0.7833333333333333
+      },
+      "supported_correct_selection_rate": {
+        "numerator": 17,
+        "denominator": 30,
+        "value": 0.5666666666666667
+      },
+      "supported_wrong_rejection_rate": {
+        "numerator": 13,
+        "denominator": 30,
+        "value": 0.43333333333333335
+      },
+      "supported_wrong_execution_rate": {
+        "numerator": 0,
+        "denominator": 30,
+        "value": 0.0
+      },
+      "unsupported_false_execution_rate": {
+        "numerator": 0,
+        "denominator": 30,
+        "value": 0.0
+      },
+      "execution_coverage": {
+        "numerator": 17,
+        "denominator": 60,
+        "value": 0.2833333333333333
+      },
+      "execution_precision": {
+        "numerator": 17,
+        "denominator": 17,
+        "value": 1.0
+      },
+      "runtime_error_rate": {
+        "numerator": 0,
+        "denominator": 60,
+        "value": 0.0
+      },
+      "strict_status_match_rate": {
+        "numerator": 41,
+        "denominator": 60,
+        "value": 0.6833333333333333
+      },
+      "latency_ms": {
+        "median": 3.039208500922541,
+        "p95_nearest_rank": 3.2139169998117723,
+        "max": 3.7347920006141067
+      },
+      "confusion": {
+        "HELLO": {
+          "HELLO": 7,
+          "REJECT": 3
+        },
+        "THANK_YOU": {
+          "THANK_YOU": 4,
+          "REJECT": 6
+        },
+        "PLEASE_WAIT": {
+          "PLEASE_WAIT": 6,
+          "REJECT": 4
+        },
+        "REJECT": {
+          "REJECT": 30
+        }
+      },
+      "by_category": {
+        "canonical": {
+          "total": 8,
+          "correct": 8
+        },
+        "paraphrase": {
+          "total": 22,
+          "correct": 9
+        },
+        "negation": {
+          "total": 4,
+          "correct": 4
+        },
+        "decline": {
+          "total": 1,
+          "correct": 1
+        },
+        "sarcasm": {
+          "total": 1,
+          "correct": 1
+        },
+        "role": {
+          "total": 1,
+          "correct": 1
+        },
+        "third_party": {
+          "total": 2,
+          "correct": 2
+        },
+        "reported": {
+          "total": 2,
+          "correct": 2
+        },
+        "metalinguistic": {
+          "total": 1,
+          "correct": 1
+        },
+        "qualified_wait": {
+          "total": 4,
+          "correct": 4
+        },
+        "mixed_intent": {
+          "total": 5,
+          "correct": 5
+        },
+        "clinical": {
+          "total": 4,
+          "correct": 4
+        },
+        "out_of_scope": {
+          "total": 2,
+          "correct": 2
+        },
+        "ambiguous": {
+          "total": 2,
+          "correct": 2
+        },
+        "conditional": {
+          "total": 1,
+          "correct": 1
+        }
+      },
+      "reason_counts": {
+        "embedding_match": 17,
+        "embedding_below_threshold": 18,
+        "reported_or_metalinguistic": 4,
+        "qualified_wait_out_of_scope": 5,
+        "negated_or_declining": 6,
+        "waiting_role_mismatch": 1,
+        "multiple_or_compound_intents": 4,
+        "clinical_content_out_of_scope": 4,
+        "conditional_input": 1
+      },
+      "execution_path_counts": {
+        "embedding_backend": 35,
+        "shared_guard": 25
+      },
+      "llm_call_audit": {
+        "http_attempted": {
+          "numerator": 0,
+          "denominator": 60,
+          "value": 0.0
+        },
+        "http_response_received": {
+          "numerator": 0,
+          "denominator": 60,
+          "value": 0.0
+        },
+        "response_subset_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null
+        },
+        "response_subset_selector_latency_ms": {
+          "median": null,
+          "p95_nearest_rank": null,
+          "max": null
+        }
+      }
+    },
+    "llm": {
+      "n": 60,
+      "n_supported": 30,
+      "n_unsupported": 30,
+      "supported": {
+        "correct_selection": 20,
+        "wrong_rejection": 7,
+        "wrong_action_id": 1,
+        "error": 2
+      },
+      "out_of_scope": {
+        "correct_rejection": 28,
+        "false_execution": 2,
+        "error": 0
+      },
+      "accuracy": {
+        "numerator": 48,
+        "denominator": 60,
+        "value": 0.8
+      },
+      "supported_correct_selection_rate": {
+        "numerator": 20,
+        "denominator": 30,
+        "value": 0.6666666666666666
+      },
+      "supported_wrong_rejection_rate": {
+        "numerator": 7,
+        "denominator": 30,
+        "value": 0.23333333333333334
+      },
+      "supported_wrong_execution_rate": {
+        "numerator": 1,
+        "denominator": 30,
+        "value": 0.03333333333333333
+      },
+      "unsupported_false_execution_rate": {
+        "numerator": 2,
+        "denominator": 30,
+        "value": 0.06666666666666667
+      },
+      "execution_coverage": {
+        "numerator": 23,
+        "denominator": 60,
+        "value": 0.38333333333333336
+      },
+      "execution_precision": {
+        "numerator": 20,
+        "denominator": 23,
+        "value": 0.8695652173913043
+      },
+      "runtime_error_rate": {
+        "numerator": 2,
+        "denominator": 60,
+        "value": 0.03333333333333333
+      },
+      "strict_status_match_rate": {
+        "numerator": 42,
+        "denominator": 60,
+        "value": 0.7
+      },
+      "latency_ms": {
+        "median": 18.76595800058567,
+        "p95_nearest_rank": 24.478708997776266,
+        "max": 41.02545800196822
+      },
+      "confusion": {
+        "HELLO": {
+          "HELLO": 10
+        },
+        "THANK_YOU": {
+          "THANK_YOU": 8,
+          "HELLO": 1,
+          "REJECT": 1
+        },
+        "PLEASE_WAIT": {
+          "ERROR": 2,
+          "PLEASE_WAIT": 2,
+          "REJECT": 6
+        },
+        "REJECT": {
+          "REJECT": 28,
+          "THANK_YOU": 2
+        }
+      },
+      "by_category": {
+        "canonical": {
+          "total": 8,
+          "correct": 6
+        },
+        "paraphrase": {
+          "total": 22,
+          "correct": 14
+        },
+        "negation": {
+          "total": 4,
+          "correct": 4
+        },
+        "decline": {
+          "total": 1,
+          "correct": 1
+        },
+        "sarcasm": {
+          "total": 1,
+          "correct": 1
+        },
+        "role": {
+          "total": 1,
+          "correct": 1
+        },
+        "third_party": {
+          "total": 2,
+          "correct": 1
+        },
+        "reported": {
+          "total": 2,
+          "correct": 1
+        },
+        "metalinguistic": {
+          "total": 1,
+          "correct": 1
+        },
+        "qualified_wait": {
+          "total": 4,
+          "correct": 4
+        },
+        "mixed_intent": {
+          "total": 5,
+          "correct": 5
+        },
+        "clinical": {
+          "total": 4,
+          "correct": 4
+        },
+        "out_of_scope": {
+          "total": 2,
+          "correct": 2
+        },
+        "ambiguous": {
+          "total": 2,
+          "correct": 2
+        },
+        "conditional": {
+          "total": 1,
+          "correct": 1
+        }
+      },
+      "reason_counts": {
+        "llm_selection": 33,
+        "reported_or_metalinguistic": 4,
+        "llm_invalid_label": 2,
+        "qualified_wait_out_of_scope": 5,
+        "negated_or_declining": 6,
+        "waiting_role_mismatch": 1,
+        "multiple_or_compound_intents": 4,
+        "clinical_content_out_of_scope": 4,
+        "conditional_input": 1
+      },
+      "execution_path_counts": {
+        "llm_http_response": 35,
+        "shared_guard": 25
+      },
+      "llm_call_audit": {
+        "http_attempted": {
+          "numerator": 35,
+          "denominator": 60,
+          "value": 0.5833333333333334
+        },
+        "http_response_received": {
+          "numerator": 35,
+          "denominator": 60,
+          "value": 0.5833333333333334
+        },
+        "response_subset_accuracy": {
+          "numerator": 25,
+          "denominator": 35,
+          "value": 0.7142857142857143
+        },
+        "response_subset_selector_latency_ms": {
+          "median": 20.05987499796902,
+          "p95_nearest_rank": 36.56091599987121,
+          "max": 41.02545800196822
+        }
+      }
+    }
+  },
+  "llm_paths": {
+    "llm_http_response": {
+      "n": 35,
+      "correct": 25,
+      "outcomes": {
+        "correct_selection": 20,
+        "wrong_action_id": 1,
+        "error": 2,
+        "wrong_rejection": 5,
+        "false_execution": 2,
+        "correct_rejection": 5
+      },
+      "supported": 28,
+      "out_of_scope": 7,
+      "case_ids": [
+        "test-001",
+        "test-002",
+        "test-003",
+        "test-004",
+        "test-005",
+        "test-006",
+        "test-007",
+        "test-008",
+        "test-009",
+        "test-010",
+        "test-011",
+        "test-012",
+        "test-013",
+        "test-014",
+        "test-015",
+        "test-016",
+        "test-018",
+        "test-019",
+        "test-020",
+        "test-021",
+        "test-022",
+        "test-023",
+        "test-024",
+        "test-025",
+        "test-026",
+        "test-027",
+        "test-028",
+        "test-030",
+        "test-038",
+        "test-040",
+        "test-049",
+        "test-056",
+        "test-057",
+        "test-058",
+        "test-060"
+      ]
+    },
+    "shared_guard": {
+      "n": 25,
+      "correct": 23,
+      "outcomes": {
+        "wrong_rejection": 2,
+        "correct_rejection": 23
+      },
+      "supported": 2,
+      "out_of_scope": 23,
+      "case_ids": [
+        "test-017",
+        "test-029",
+        "test-031",
+        "test-032",
+        "test-033",
+        "test-034",
+        "test-035",
+        "test-036",
+        "test-037",
+        "test-039",
+        "test-041",
+        "test-042",
+        "test-043",
+        "test-044",
+        "test-045",
+        "test-046",
+        "test-047",
+        "test-048",
+        "test-050",
+        "test-051",
+        "test-052",
+        "test-053",
+        "test-054",
+        "test-055",
+        "test-059"
+      ]
+    }
+  },
+  "chart_data": {
+    "method_labels": [
+      "Exact + guard",
+      "MiniLM + guard",
+      "Local LLM + guard"
+    ],
+    "supported": {
+      "denominator_per_method": [
+        30,
+        30,
+        30
+      ],
+      "series": {
+        "correct_selection": [
+          8,
+          17,
+          20
+        ],
+        "wrong_rejection": [
+          22,
+          13,
+          7
+        ],
+        "wrong_action_id": [
+          0,
+          0,
+          1
+        ],
+        "error": [
+          0,
+          0,
+          2
+        ]
+      }
+    },
+    "out_of_scope": {
+      "denominator_per_method": [
+        30,
+        30,
+        30
+      ],
+      "series": {
+        "correct_rejection": [
+          30,
+          30,
+          28
+        ],
+        "false_execution": [
+          0,
+          0,
+          2
+        ],
+        "error": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "llm_paths": {
+      "llm_http_response": {
+        "n": 35,
+        "correct": 25,
+        "outcomes": {
+          "correct_selection": 20,
+          "wrong_action_id": 1,
+          "error": 2,
+          "wrong_rejection": 5,
+          "false_execution": 2,
+          "correct_rejection": 5
+        },
+        "supported": 28,
+        "out_of_scope": 7,
+        "case_ids": [
+          "test-001",
+          "test-002",
+          "test-003",
+          "test-004",
+          "test-005",
+          "test-006",
+          "test-007",
+          "test-008",
+          "test-009",
+          "test-010",
+          "test-011",
+          "test-012",
+          "test-013",
+          "test-014",
+          "test-015",
+          "test-016",
+          "test-018",
+          "test-019",
+          "test-020",
+          "test-021",
+          "test-022",
+          "test-023",
+          "test-024",
+          "test-025",
+          "test-026",
+          "test-027",
+          "test-028",
+          "test-030",
+          "test-038",
+          "test-040",
+          "test-049",
+          "test-056",
+          "test-057",
+          "test-058",
+          "test-060"
+        ]
+      },
+      "shared_guard": {
+        "n": 25,
+        "correct": 23,
+        "outcomes": {
+          "wrong_rejection": 2,
+          "correct_rejection": 23
+        },
+        "supported": 2,
+        "out_of_scope": 23,
+        "case_ids": [
+          "test-017",
+          "test-029",
+          "test-031",
+          "test-032",
+          "test-033",
+          "test-034",
+          "test-035",
+          "test-036",
+          "test-037",
+          "test-039",
+          "test-041",
+          "test-042",
+          "test-043",
+          "test-044",
+          "test-045",
+          "test-046",
+          "test-047",
+          "test-048",
+          "test-050",
+          "test-051",
+          "test-052",
+          "test-053",
+          "test-054",
+          "test-055",
+          "test-059"
+        ]
+      }
+    }
+  },
+  "summary_validation": {
+    "all_recomputed_fields_match": true,
+    "leaf_comparisons": 281,
+    "readiness_excluded_from_dataset_counts": true
+  },
+  "protected_inputs_unchanged": true,
+  "protected_input_hashes": {
+    "config/embedding.json": "80a121725fa803c8eab2b1866cfda134c38c78fa545adfc2a437fa4dc5ad3230",
+    "config/embedding_download_manifest.json": "bf2a0a3e87e40e27154bcae9eddac6ed3c3051760ee062467e53b8e5b7ee26fd",
+    "config/llm.json": "164bb95b517fe939401de14402fc70c2301078f6954e1636b8eba92f1cdad1ee",
+    "config/llm_development_audit.json": "b89c373244430d3eb2c5e586f99e52010d0737aa6a1b59a31c992d9c4ace4b7a",
+    "config/llm_experimental.json": "029a9a8cac30db39bee31c3c3dee2c8de8fd12c298875afa04317760189393b9",
+    "config/llm_local_feasibility_v1.json": "55ec15ac5fc7f016add98dcf1d7466fa1bc4e7552fc498d2d27a0d754975e882",
+    "config/llm_local_feasibility_v2_label.json": "2749cf7bb43adc5962c0aa66a65184871e6b62f3234933429be73afa322dc9ec",
+    "config/llm_local_provenance.json": "d60a5b4dc9ffa04d12416a3a07b80cbbd65925c6d0754efeff4ec5134455477d",
+    "config/llm_unconfigured_v1.json": "164bb95b517fe939401de14402fc70c2301078f6954e1636b8eba92f1cdad1ee",
+    "config/local_runtime.example.json": "d81e57d3dd194b9b1dc2ab8316285309275d3dc01f836436acc57d5d9173b95c",
+    "config/local_runtime.json": "a51546b50ed18867ccdae3d10153aa6d79b6c5ae37e2664b3221ddeb29e6a68c",
+    "contracts/interfaces.json": "b3e024882087fd89dd91fbf347a642d2b0127b1376df76fdb2f8cf0846c7163f",
+    "data/catalog.json": "024fda8da4b8409a3bee4100e4f4ff1c6a3eec027100775fceba15cb95a71523",
+    "data/eval_dev.jsonl": "e33fc62e3280cbbf6b61578e99c5ca9a08c492139e683cec0178f2e500bfdf04",
+    "data/eval_test.jsonl": "83a4f5310f28f45a5cc2aeecf6660742c2bf93b0b0f99660ad08d6d02f2f4231",
+    "data/source_manifest.json": "0e177a10a44d9f8b108bc935832e9a59989bfb8cfc2a44a52f92db78d44e9d9b",
+    "results/evaluation/test-20261008T135255840626Z/counterexamples.jsonl": "80d58e55d54635aad9524a3a4bf2800f4204f64a48bde6a091196550dad1a5aa",
+    "results/evaluation/test-20261008T135255840626Z/raw.jsonl": "1d702a4309712f52ffb7caa391dc28e8c87a7f1eadd80aaacd1389973f3bfaf4",
+    "results/evaluation/test-20261008T135255840626Z/summary.json": "b69a61c6fdb6f3934e7ab26331499aee207caf5ba1c9a5684aa77d2c0c45ffc6",
+    "results/evaluation/test-20261008T141909955017Z/counterexamples.jsonl": "55fc21ed90dfaebaf8a60f56368ccab2085a31da89e4c656dfb48a6c8f3392c8",
+    "results/evaluation/test-20261008T141909955017Z/raw.jsonl": "5a09f80b840bd2b17320f054e20a1bb81028b3b2e32857075efe59170fc058b2",
+    "results/evaluation/test-20261008T141909955017Z/summary.json": "3c84762e507df249a443ba2013265b2874ecef6b5910b807ecdb1621ca14fc1a",
+    "results/evaluation/test-20261008T142047221403Z/counterexamples.jsonl": "f55d6433b39cdc727f1b98630ec4e17b710f28399df8afb4e082428001458043",
+    "results/evaluation/test-20261008T142047221403Z/raw.jsonl": "23097752f2e46bd504d8908d4f6014f9b32ca30303b59ff3a93048bf15513d78",
+    "results/evaluation/test-20261008T142047221403Z/summary.json": "5e93537376e61bd663d0d6b25b3ff41e792576bcb752b5f8eeb75de5d7813c4a",
+    "scripts/evaluate.py": "0f23f8cb10acab040d529b5529026390fb87ddeebe13121e628b9e005722ac72"
+  },
+  "analysis_script_sha256": "3147b2defc12c75480b298b03d1800192661e6a9a7d942cbe081ecdf49210777",
+  "representative_failures": [
+    {
+      "selection_rule": "Lowest case ID for this method/outcome/path; all LLM out-of-scope false executions.",
+      "outcome": "wrong_rejection",
+      "source_row": {
+        "case_id": "test-003",
+        "split": "test",
+        "text": "Hello to you!",
+        "expected_action_id": "HELLO",
+        "expected_status": "execute",
+        "category": "paraphrase",
+        "label_status": "agent_draft_unreviewed",
+        "method": "exact",
+        "prediction": {
+          "status": "unsupported",
+          "action_id": null,
+          "reason_code": "no_exact_alias",
+          "method": "exact",
+          "latency_ms": 0.01
+        },
+        "execution_path": "exact_backend",
+        "wall_latency_ms": 0.011249998351559043,
+        "correct": false
+      }
+    },
+    {
+      "selection_rule": "Lowest case ID for this method/outcome/path; all LLM out-of-scope false executions.",
+      "outcome": "wrong_rejection",
+      "source_row": {
+        "case_id": "test-006",
+        "split": "test",
+        "text": "Good to see you!",
+        "expected_action_id": "HELLO",
+        "expected_status": "execute",
+        "category": "paraphrase",
+        "label_status": "agent_draft_unreviewed",
+        "method": "embedding",
+        "prediction": {
+          "status": "unsupported",
+          "action_id": null,
+          "reason_code": "embedding_below_threshold",
+          "method": "embedding",
+          "latency_ms": 3.173
+        },
+        "execution_path": "embedding_backend",
+        "wall_latency_ms": 3.1769160013936926,
+        "correct": false
+      }
+    },
+    {
+      "selection_rule": "Lowest case ID for this method/outcome/path; all LLM out-of-scope false executions.",
+      "outcome": "wrong_action_id",
+      "source_row": {
+        "case_id": "test-016",
+        "split": "test",
+        "text": "Much appreciated!",
+        "expected_action_id": "THANK_YOU",
+        "expected_status": "execute",
+        "category": "paraphrase",
+        "label_status": "agent_draft_unreviewed",
+        "method": "llm",
+        "prediction": {
+          "status": "execute",
+          "action_id": "HELLO",
+          "reason_code": "llm_selection",
+          "method": "llm",
+          "latency_ms": 18.362,
+          "metadata": {
+            "request_attempted": true,
+            "response_received": true,
+            "config_file": "config/llm_experimental.json",
+            "config_sha256": "029a9a8cac30db39bee31c3c3dee2c8de8fd12c298875afa04317760189393b9",
+            "output_mode": "label",
+            "prompt_prefix_sha256": "763a7102f8acc89dab9ed133d2303ec9feda94cf24b11379df198d4eac53f379",
+            "response_sha256": "2ed414fbf5c195d3edad37de96f3754379261b768d0d56b33cb5845280061dc8",
+            "raw_model_output": "HELLO",
+            "finish_reason": "stop",
+            "response_model": "default_model",
+            "system_fingerprint": "0.26.3-0.29.3-macOS-27.0-arm64-arm-64bit-applegpu_g16s"
+          }
+        },
+        "execution_path": "llm_http_response",
+        "wall_latency_ms": 18.367792003118666,
+        "correct": false
+      }
+    },
+    {
+      "selection_rule": "Lowest case ID for this method/outcome/path; all LLM out-of-scope false executions.",
+      "outcome": "wrong_rejection",
+      "source_row": {
+        "case_id": "test-017",
+        "split": "test",
+        "text": "I really appreciate what you did.",
+        "expected_action_id": "THANK_YOU",
+        "expected_status": "execute",
+        "category": "paraphrase",
+        "label_status": "agent_draft_unreviewed",
+        "method": "llm",
+        "prediction": {
+          "status": "unsupported",
+          "action_id": null,
+          "reason_code": "reported_or_metalinguistic",
+          "method": "llm",
+          "latency_ms": 0.012
+        },
+        "execution_path": "shared_guard",
+        "wall_latency_ms": 0.01300000076298602,
+        "correct": false
+      }
+    },
+    {
+      "selection_rule": "Lowest case ID for this method/outcome/path; all LLM out-of-scope false executions.",
+      "outcome": "wrong_rejection",
+      "source_row": {
+        "case_id": "test-025",
+        "split": "test",
+        "text": "Give me a moment, please.",
+        "expected_action_id": "PLEASE_WAIT",
+        "expected_status": "execute",
+        "category": "paraphrase",
+        "label_status": "agent_draft_unreviewed",
+        "method": "llm",
+        "prediction": {
+          "status": "clarify",
+          "action_id": null,
+          "reason_code": "llm_selection",
+          "method": "llm",
+          "latency_ms": 22.12,
+          "metadata": {
+            "request_attempted": true,
+            "response_received": true,
+            "config_file": "config/llm_experimental.json",
+            "config_sha256": "029a9a8cac30db39bee31c3c3dee2c8de8fd12c298875afa04317760189393b9",
+            "output_mode": "label",
+            "prompt_prefix_sha256": "763a7102f8acc89dab9ed133d2303ec9feda94cf24b11379df198d4eac53f379",
+            "response_sha256": "09c841702d46f34a9f5891afe07c91881a2dc29d879f13e9cd65341b307d5411",
+            "raw_model_output": "CLARIFY",
+            "finish_reason": "stop",
+            "response_model": "default_model",
+            "system_fingerprint": "0.26.3-0.29.3-macOS-27.0-arm64-arm-64bit-applegpu_g16s"
+          }
+        },
+        "execution_path": "llm_http_response",
+        "wall_latency_ms": 22.125792002043454,
+        "correct": false
+      }
+    },
+    {
+      "selection_rule": "Lowest case ID for this method/outcome/path; all LLM out-of-scope false executions.",
+      "outcome": "error",
+      "source_row": {
+        "case_id": "test-021",
+        "split": "test",
+        "text": "Wait a moment.",
+        "expected_action_id": "PLEASE_WAIT",
+        "expected_status": "execute",
+        "category": "canonical",
+        "label_status": "agent_draft_unreviewed",
+        "method": "llm",
+        "prediction": {
+          "status": "error",
+          "action_id": null,
+          "reason_code": "llm_invalid_label",
+          "method": "llm",
+          "latency_ms": 41.021,
+          "metadata": {
+            "request_attempted": true,
+            "response_received": true,
+            "config_file": "config/llm_experimental.json",
+            "config_sha256": "029a9a8cac30db39bee31c3c3dee2c8de8fd12c298875afa04317760189393b9",
+            "output_mode": "label",
+            "prompt_prefix_sha256": "763a7102f8acc89dab9ed133d2303ec9feda94cf24b11379df198d4eac53f379",
+            "response_sha256": "472850b40a9a277dd0b64223c57bec2fec1b1c918575bf68553e2d148b9f597b",
+            "raw_model_output": "THERE_ARE_NO_SUCH_INFORMATION, PLEASE_WAIT",
+            "finish_reason": "stop",
+            "response_model": "default_model",
+            "system_fingerprint": "0.26.3-0.29.3-macOS-27.0-arm64-arm-64bit-applegpu_g16s"
+          }
+        },
+        "execution_path": "llm_http_response",
+        "wall_latency_ms": 41.02545800196822,
+        "correct": false
+      }
+    },
+    {
+      "selection_rule": "Lowest case ID for this method/outcome/path; all LLM out-of-scope false executions.",
+      "outcome": "false_execution",
+      "source_row": {
+        "case_id": "test-038",
+        "split": "test",
+        "text": "She wants to thank you.",
+        "expected_action_id": null,
+        "expected_status": "unsupported",
+        "category": "third_party",
+        "label_status": "agent_draft_unreviewed",
+        "method": "llm",
+        "prediction": {
+          "status": "execute",
+          "action_id": "THANK_YOU",
+          "reason_code": "llm_selection",
+          "method": "llm",
+          "latency_ms": 24.228,
+          "metadata": {
+            "request_attempted": true,
+            "response_received": true,
+            "config_file": "config/llm_experimental.json",
+            "config_sha256": "029a9a8cac30db39bee31c3c3dee2c8de8fd12c298875afa04317760189393b9",
+            "output_mode": "label",
+            "prompt_prefix_sha256": "763a7102f8acc89dab9ed133d2303ec9feda94cf24b11379df198d4eac53f379",
+            "response_sha256": "b692a4c840ebaa657af1c050d3f839657a64cc80399fcd7ccf77d60522d74867",
+            "raw_model_output": "THANK_YOU",
+            "finish_reason": "stop",
+            "response_model": "default_model",
+            "system_fingerprint": "0.26.3-0.29.3-macOS-27.0-arm64-arm-64bit-applegpu_g16s"
+          }
+        },
+        "execution_path": "llm_http_response",
+        "wall_latency_ms": 24.23350000026403,
+        "correct": false
+      }
+    },
+    {
+      "selection_rule": "Lowest case ID for this method/outcome/path; all LLM out-of-scope false executions.",
+      "outcome": "false_execution",
+      "source_row": {
+        "case_id": "test-040",
+        "split": "test",
+        "text": "They thanked me yesterday.",
+        "expected_action_id": null,
+        "expected_status": "unsupported",
+        "category": "reported",
+        "label_status": "agent_draft_unreviewed",
+        "method": "llm",
+        "prediction": {
+          "status": "execute",
+          "action_id": "THANK_YOU",
+          "reason_code": "llm_selection",
+          "method": "llm",
+          "latency_ms": 24.294,
+          "metadata": {
+            "request_attempted": true,
+            "response_received": true,
+            "config_file": "config/llm_experimental.json",
+            "config_sha256": "029a9a8cac30db39bee31c3c3dee2c8de8fd12c298875afa04317760189393b9",
+            "output_mode": "label",
+            "prompt_prefix_sha256": "763a7102f8acc89dab9ed133d2303ec9feda94cf24b11379df198d4eac53f379",
+            "response_sha256": "7adeba33a02e1762a7043655c96ed1988cc985bef044143ee62d3bc9d004afcd",
+            "raw_model_output": "THANK_YOU",
+            "finish_reason": "stop",
+            "response_model": "default_model",
+            "system_fingerprint": "0.26.3-0.29.3-macOS-27.0-arm64-arm-64bit-applegpu_g16s"
+          }
+        },
+        "execution_path": "llm_http_response",
+        "wall_latency_ms": 24.300332999700913,
+        "correct": false
+      }
+    }
+  ],
+  "environment": {
+    "python": "3.12.14",
+    "matplotlib": "3.10.7",
+    "backend": "Agg",
+    "labels": "English",
+    "dpi": 200
+  },
+  "limitations": [
+    "All 60 labels are agent_draft_unreviewed; no human or population validity claim.",
+    "No inference rerun, new data, threshold change, prompt change, or significance test.",
+    "Three selectors share heuristic guards; HTTP subset is conditioned on passing them.",
+    "LLM default enablement gate remains failed; research comparison does not accept deployment.",
+    "English-to-candidate selection is separate from ASL meaning, robot geometry and user comprehension."
+  ],
+  "figure_hashes": {}
+}

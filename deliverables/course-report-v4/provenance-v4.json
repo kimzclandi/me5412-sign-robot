@@ -1,0 +1,16 @@
+{
+  "revision": "v4",
+  "font": "Helvetica Neue",
+  "createdAt": "2026-10-08T15:15:44.035Z",
+  "frozenSummary": "results/evaluation/test-20261008T142047221403Z/summary.json",
+  "sources": {
+    "results/evaluation/test-20261008T142047221403Z/summary.json": "5e93537376e61bd663d0d6b25b3ff41e792576bcb752b5f8eeb75de5d7813c4a",
+    "results/evaluation/test-20261008T142047221403Z/raw.jsonl": "23097752f2e46bd504d8908d4f6014f9b32ca30303b59ff3a93048bf15513d78",
+    "scripts/build_course_slides.mjs": "7e88abdbe8e1d0887143551ddd704fc36089374069be95718793d9e3e6ee1ed9",
+    "docs/source-review.md": "a311a17a95a0fda49e51479fce10b2a4e3899f19297fa31405f442cc583409e8",
+    "docs/video-calibration.md": "9228bbc686d3208f254084eb5fd80fd19ebdc996612cdae67df1510159f11c2f",
+    "results/motion_learning/v1/report.json": "73578257b4b06ee062131eb17d8b48b3a2de79044fe290838c278a3b69b81c25",
+    "results/motion_learning/v1/model.json": "260459a3e9709dcd73433f3cf293df385598537dc8bf482ef3e6de5642980f64",
+    "data/corpus_index/how2sign_realigned_v1/download_manifest.json": "56cb4e664534e4bc38a42183899f52b8664e2a4a7e487a6b33f1583bec426fc4"
+  }
+}

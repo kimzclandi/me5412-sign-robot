@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-08",
+  "purpose": "Separate official corpus scale from locally obtained metadata and motion training data.",
+  "authorization_boundary": "Public small metadata only; no whole video corpus, personal-data application, agreement submission, paid API or contact.",
+  "sources": [
+    {
+      "dataset_id": "how2sign",
+      "language": "American Sign Language with English translations",
+      "unit": "continuous signed sentence/video, not isolated vocabulary class",
+      "published_scale": {"video_hours_lower_bound": 80, "sentence_alignments_lower_bound": 35000, "english_vocabulary_approx": 16000, "panoptic_3d_subset_hours": 3},
+      "published_modalities": ["multiview RGB", "English transcripts", "speech", "depth", "three-hour Panoptic subset enabling 3D pose estimation"],
+      "public_download_listing_checked": ["RGB videos/clips", "body-face-hand 2D keypoint archives", "original and manually realigned English sentence CSVs"],
+      "access_status": "public_small_english_annotation_download_available",
+      "selected_local_modality": "realigned English sentence text, IDs and timestamps only",
+      "local_metadata": {"status": "downloaded_and_verified", "manifest": "data/corpus_index/how2sign_realigned_v1/download_manifest.json", "annotation_rows": 35263, "unique_sentence_ids": 34438, "unique_sentence_names": 35263, "english_token_types_by_local_rule": 16026, "local_motion_targets": 0, "downloaded_bytes_including_provenance_script": 6367677},
+      "license": "CC BY-NC 4.0; project page limits use to research and requires attribution; original How2 media has separate rights",
+      "official_urls": ["https://how2sign.github.io/", "https://arxiv.org/abs/2008.08143", "https://arxiv.org/pdf/2008.08143v2", "https://github.com/how2sign/how2sign.github.io/blob/f85816c184662406bd8e0f338863b7c243763129/download_how2sign.sh"],
+      "repo_revision": "f85816c184662406bd8e0f338863b7c243763129",
+      "repo_revision_checked_via": "https://api.github.com/repos/how2sign/how2sign.github.io/commits/main",
+      "limitations": ["Only metadata is being obtained; video/pose availability is not checked per instance", "Homepage modality headings do not prove every modality is currently released", "English token vocabulary is not an ASL gloss vocabulary", "No robot joint trajectories are provided by the sentence CSV"]
+    },
+    {
+      "dataset_id": "wlasl",
+      "language": "American Sign Language",
+      "unit": "isolated gloss/class and video instance",
+      "published_scale": {"gloss_classes": 2000, "video_instances": 21083, "signers": 119},
+      "published_modalities": ["RGB video references", "gloss, split, signer/variation IDs, temporal bounds, bounding box metadata", "separately linked pose-based benchmark assets"],
+      "access_status": "not_downloaded_under_current_no_agreement_boundary",
+      "access_reason": "Official README explicitly requires reading and agreeing to C-UDA before dataset use. No exception for metadata was established. Missing/preprocessed videos require a separate request form.",
+      "license": "Computational Use of Data Agreement (C-UDA); official page says academic/computational use only, no commercial use",
+      "official_urls": ["https://github.com/dxli94/WLASL", "https://dxli94.github.io/WLASL/", "https://arxiv.org/pdf/1910.11006", "https://github.com/dxli94/WLASL/blob/ac00e6be631c1a2a486621b65f202219f3964d6b/start_kit/WLASL_v0.3.json"],
+      "repo_revision": "ac00e6be631c1a2a486621b65f202219f3964d6b",
+      "repo_revision_checked_via": "https://api.github.com/repos/dxli94/WLASL/commits/master",
+      "actual_local_instance_count": null,
+      "actual_local_vocabulary_count": null,
+      "limitations": ["Scale above is paper-reported, not a fresh local recount", "Original video links can expire; no instance link has been tested here", "Isolated glosses do not establish sentence generation or robot control targets"]
+    },
+    {
+      "dataset_id": "asl_citizen",
+      "language": "American Sign Language",
+      "unit": "isolated sign and RGB video instance",
+      "published_scale": {"version": "1.0", "sign_classes": 2731, "videos": 83399, "signers": 52},
+      "published_modalities": ["RGB videos", "gloss metadata", "signer-independent train/validation/test splits", "generalized participant demographics"],
+      "access_status": "not_downloaded_under_current_no_agreement_boundary",
+      "access_reason": "Official Microsoft Research terms state use accepts an agreement; data use is non-commercial research and redistribution is restricted. The full ZIP is not small metadata.",
+      "license": "Microsoft Research License Terms, dataset-specific",
+      "official_urls": ["https://www.microsoft.com/en-us/research/project/asl-citizen/dataset-description/", "https://www.microsoft.com/en-us/research/project/asl-citizen/", "https://www.microsoft.com/en-us/research/project/asl-citizen/dataset-license/", "https://github.com/microsoft/ASL-citizen-code"],
+      "code_repo_revision": "17f0148b00ef87a5957ec103da8d10bd8eb1fa23",
+      "repo_revision_checked_via": "https://api.github.com/repos/microsoft/ASL-citizen-code/commits/main",
+      "limitations": ["Version 0.9 had a different video count; do not mix versions", "Recognition/dictionary retrieval data is not already a text-to-robot motion corpus", "No files or individual media availability were verified locally"]
+    },
+    {
+      "dataset_id": "signavatars",
+      "language": "Includes ASL and PHOENIX-2014T German sign language subsets; repository labels the latter GSL; also HamNoSys and word subsets",
+      "unit": "motion sequence and annotated frame",
+      "published_scale": {"motion_sequences_approx": 70000, "smplx_annotated_frames_approx": 8340000},
+      "published_modalities": ["3D SMPL-X whole-body annotations", "MANO hand variant", "text/HamNoSys/word annotations according to subset"],
+      "access_status": "application_required_not_submitted",
+      "access_reason": "Official annotations require a request form and agreement to the data license; original RGB is not redistributed and has separate source instructions.",
+      "official_urls": ["https://github.com/ZhengdiYu/SignAvatars", "https://signavatars.github.io/"],
+      "repo_revision": "bbfb35056aaad252ae67c60b44eb91618506d4a8",
+      "repo_revision_checked_via": "https://api.github.com/repos/ZhengdiYu/SignAvatars/commits/main",
+      "limitations": ["70k sequences are not 70k vocabulary classes", "8.34M frames are not independent demonstrations", "The total is not an ASL-only corpus", "Human SMPL-X/MANO parameters still require constrained robot retargeting", "No annotation files were obtained"]
+    }
+  ]
+}

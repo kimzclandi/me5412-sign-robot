@@ -1,0 +1,26 @@
+{
+  "status": "candidate",
+  "action_id": "PLEASE_WAIT",
+  "metrics": {
+    "max_projection_rad": 0.001977465552038579,
+    "raw_out_of_bound_coordinates": 532,
+    "joint_limit_violation_rad": 0.0,
+    "max_mimic_error_rad": 0.0,
+    "max_joint_speed_rad_s": 1.2179238306097215,
+    "max_speed_limit_excess_rad_s": 0.0,
+    "penetrating_contact_events_below_minus_1mm": 0,
+    "maximum_reported_penetration_m": 0.0006435253579009103,
+    "collision_frames_checked": 307,
+    "collision_scope": "upstream collision geoms at sampled frames only"
+  },
+  "accepted": true,
+  "rejection_reasons": [],
+  "geometric_accepted": true,
+  "default_enabled": false,
+  "asl_reviewed": false,
+  "execution_mode": "learned_text_phase_regression",
+  "duration_s": 10.2,
+  "conditioning_text": "Please wait",
+  "file": "results/motion_learning/v1/PLEASE_WAIT_slow120.npz",
+  "duration_scale": 1.2
+}

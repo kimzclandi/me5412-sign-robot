@@ -1,0 +1,6 @@
+# Treat exported document containers as binary, including ASCII-encoded PDFs.
+*.pdf binary
+*.pptx binary
+*.npz binary
+# Preserve Matplotlib's exported figures byte-for-byte; source code stays checked.
+results/analysis/**/*.svg -whitespace

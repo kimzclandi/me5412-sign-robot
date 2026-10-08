@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-08T15:27:42.652545+00:00",
+  "base_commit": "f7ebea290af8eb3ebe1acabe9e581863fd9bd98a",
+  "summary_zh": "新增学习型回归模型、公开文本索引、实际生成轨迹检查网页、后台启动器和14页课程汇报。模型仅拟合三个自编示范，未证明新手语泛化或ASL可理解性。",
+  "tests": {
+    "tests": "206",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "14.033"
+  },
+  "software_checks": {
+    "python_compileall": true,
+    "three_web_js_syntax_checks": true,
+    "git_diff_check": true,
+    "local_markdown_links_checked": 12,
+    "local_links_passed": true,
+    "staged_git_diff_check": true,
+    "generated_artifact_handling": "PDF/PPTX/NPZ treated as binary; Matplotlib SVG whitespace preserved by scoped attributes; source whitespace checks unchanged"
+  },
+  "baseline_preservation": {
+    "original_asset_hash_checks": 75,
+    "all_frozen_and_asset_hashes_passed": true,
+    "protected_tracked_changes": []
+  },
+  "learning": {
+    "model_sha256": "f2e064ed155ef429a29f5e2a0f6ccc3bf6209c603840e2ed744bdc651faac1f7",
+    "independent_demonstrations": 3,
+    "train_frames": 367,
+    "validation_frames": 365,
+    "validation_scope": "same-demonstration odd-frame interpolation; no independent action generalization",
+    "fit_accepted": true,
+    "engineering_accepted": true,
+    "main_generated_checks": 6,
+    "exploratory_paraphrases": 3,
+    "default_route_replaced": false,
+    "asl_reviewed": false
+  },
+  "corpus": {
+    "metadata_rows": 35263,
+    "motion_targets": 0,
+    "offline_hash_verification": true
+  },
+  "browser_checks": {
+    "real_Thank_you_120_percent_frames": 289,
+    "real_Hello_frames": 235,
+    "out_of_scope_hides_previous_preview": true,
+    "frame_slider_120_time_s": 4,
+    "play_pause": true,
+    "download": {
+      "download_file": "learned-HELLO-7.8s.json",
+      "download_sha256": "d5016443021102fa9757407b20f978129431232ad2a1ef98dc1a365db4d3e0c7",
+      "shape": [
+        235,
+        53
+      ],
+      "same_as_frozen_generated_HELLO": true,
+      "skeleton_shape": [
+        235,
+        42,
+        3
+      ],
+      "model_sha256": "f2e064ed155ef429a29f5e2a0f6ccc3bf6209c603840e2ed744bdc651faac1f7",
+      "accepted": true,
+      "asl_reviewed": false
+    },
+    "console_warn_or_error_observed": false,
+    "screenshots": [
+      "results/ui/phase2/inspection.jpg",
+      "results/ui/phase2/learning-final.jpg"
+    ]
+  },
+  "learned_preview_output_hashes": [
+    {
+      "path": "results/motion_learning/v1/previews/HELLO_front.mp4",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/HELLO_front.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/HELLO_front_end.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/HELLO_front_middle.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/HELLO_front_start.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/HELLO_right_side.mp4",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/HELLO_right_side.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/HELLO_right_side_end.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/HELLO_right_side_middle.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/HELLO_right_side_start.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/PLEASE_WAIT_front.mp4",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/PLEASE_WAIT_front.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/PLEASE_WAIT_front_end.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/PLEASE_WAIT_front_middle.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/PLEASE_WAIT_front_start.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/PLEASE_WAIT_right_side.mp4",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/PLEASE_WAIT_right_side.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/PLEASE_WAIT_right_side_end.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/PLEASE_WAIT_right_side_middle.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/PLEASE_WAIT_right_side_start.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/THANK_YOU_front.mp4",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/THANK_YOU_front.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/THANK_YOU_front_end.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/THANK_YOU_front_middle.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/THANK_YOU_front_start.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/THANK_YOU_right_side.mp4",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/THANK_YOU_right_side.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/THANK_YOU_right_side_end.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/THANK_YOU_right_side_middle.png",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/previews/THANK_YOU_right_side_start.png",
+      "passed": true
+    }
+  ],
+  "slides": {
+    "slides": 14,
+    "pptx_sha256": "63066ce828451ad9166472c5a4e621d0f221d61fc90d2f3e5c5ef831c4057f95",
+    "pdf_sha256": "af12cba2734034bf9e21ab78ecd7697d406c9d90a7f2cf8442cdd51bd760e31e",
+    "planned_seconds": 865,
+    "actual_rehearsal": false,
+    "native_powerpoint_checked": false,
+    "pdf_image_only": true
+  },
+  "limitations": [
+    "Only three authored demonstrations; English metadata adds zero paired motion supervision",
+    "No independent-sign, independent-signer or human ASL comprehensibility validation",
+    "Kinematic sampled-frame checks only; maximum reported penetration about 0.644 mm, no events deeper than 1 mm",
+    "No actuator dynamics or real hardware validation",
+    "No cloud service, public site deployment or remote Git push",
+    "Other computers and native PowerPoint not tested"
+  ],
+  "service": {
+    "url": "http://127.0.0.1:5412/",
+    "pid_at_final_check": 32520,
+    "server_revision": "learning-v1",
+    "healthy": true,
+    "background_launch_verified": true,
+    "startup_command": ".venv/bin/python -m sign_robot.service start",
+    "other_computers_tested": false
+  }
+}

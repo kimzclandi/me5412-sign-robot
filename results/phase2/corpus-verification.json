@@ -1,0 +1,20 @@
+{
+  "verified": true,
+  "directory": "/Users/yukaiyan/Documents/Codex/2026-10-08/华为AIInfra_作品集与简历工作区/me5412-sign-robot/data/corpus_index/how2sign_realigned_v1",
+  "aggregate_counts": {
+    "annotation_rows": 35263,
+    "unique_sentence_ids": 34438,
+    "unique_sentence_names": 35263,
+    "unique_video_ids": 2456,
+    "unique_english_strings": 33483,
+    "english_token_types": 16026,
+    "english_token_instances": 622554,
+    "english_tokenization": "ASCII letters, casefold, internal apostrophe retained; not an ASL gloss count",
+    "asl_vocabulary_classes": null,
+    "blank_english_rows": 0,
+    "nonpositive_or_negative_time_rows": 0,
+    "locally_available_motion_targets": 0,
+    "instance_media_checked": 0
+  },
+  "all_video_and_pose_files_not_downloaded": true
+}

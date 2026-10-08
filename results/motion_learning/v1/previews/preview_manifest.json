@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-08T15:11:33.819551+00:00",
+  "source_sha256": {
+    "results/motion_learning/v1/model.npz": "f2e064ed155ef429a29f5e2a0f6ccc3bf6209c603840e2ed744bdc651faac1f7",
+    "results/motion_learning/v1/model.json": "260459a3e9709dcd73433f3cf293df385598537dc8bf482ef3e6de5642980f64",
+    "results/motion_learning/v1/protocol.json": "d27c412494acb54ea375340618d15ef80c681e4398c5bbe65c29aa5872e21ca0",
+    "results/motion_learning/v1/report.json": "73578257b4b06ee062131eb17d8b48b3a2de79044fe290838c278a3b69b81c25",
+    "results/motion_learning/v1/HELLO.npz": "20c4a8ce1502ecd5f55a702788e8b504d0200b2ce961e4fba3500bed19b544ef",
+    "results/motion_learning/v1/HELLO.json": "ced4d39586e24255d0c5d131795e31ddf364b72725112cb22796cf32cc3858d1",
+    "results/motion_learning/v1/THANK_YOU.npz": "27a286e866e5fc16733ab5ba917eda49086a4fe52ab9d4235c4d83b7fd623f88",
+    "results/motion_learning/v1/THANK_YOU.json": "8b2b90d320e810052299ca3f5d959d7dde4a10e2125c36f44a8c0cac31e41f8d",
+    "results/motion_learning/v1/PLEASE_WAIT.npz": "3e42d56d78388ea61e670066111e82da130090553610d177a1f1abb08209dc78",
+    "results/motion_learning/v1/PLEASE_WAIT.json": "4fab93174dad146f0aa686c3b884619c12e3f1915ba11185f23364378919e1fd",
+    "assets/robot/scene.xml": "42fa55e694045a561e0b804de40a4312f27f0576a58f93ecc87101863a214e95",
+    "assets/robot/model_info.json": "755e980ffca68fedb70b08f4fdfe7c2254a325e35b09393a54c5b5e52a1f91fa",
+    "assets/robot/upstream_manifest.json": "b019827b94d1663a0d23c2c6e7ffac5e61b3cf5d1be00d42c742cc657a14f89d",
+    "scripts/render_learned_motion.py": "11c609d9b2f918f1a582b47027c9f5257bb8bec5047c470b77fbaf0995d9b3b3",
+    "scripts/export_inspection.py": "4f2a1603e59f32b46933b82611a78c8759c25fca0aba0f8d639562e62f880ebe",
+    "src/sign_robot/motion.py": "04b6a3f34512e21bc9baa2b9840dd7914e9939de8a474a2bd2aa2fe4254f6c13"
+  },
+  "mujoco_version": "3.15.0",
+  "cameras": {
+    "front": {
+      "label_zh": "正面",
+      "lookat": [
+        0.07,
+        0,
+        1.1
+      ],
+      "distance": 1.13,
+      "azimuth": 180,
+      "elevation": -4,
+      "purpose_zh": "查看双手是否可见、手型与左右横向运动；前后距离会受到透视压缩。"
+    },
+    "right_side": {
+      "label_zh": "机器人右侧",
+      "lookat": [
+        0.14,
+        0,
+        1.1
+      ],
+      "distance": 1.13,
+      "azimuth": 90,
+      "elevation": -4,
+      "purpose_zh": "查看向前与向下位移、手与脸的间距及掌面转动；左右手可能沿视线部分重叠，需配合正面。"
+    }
+  },
+  "execution_mode": "saved_learned_npz_kinematic_replay",
+  "asl_reviewed": false,
+  "validation_scope": "Independent replay/geometry checks of generated arrays; no independent ASL/generalization evaluation",
+  "actions": {
+    "HELLO": {
+      "trajectory": "results/motion_learning/v1/HELLO.npz",
+      "trajectory_sha256": "20c4a8ce1502ecd5f55a702788e8b504d0200b2ce961e4fba3500bed19b544ef",
+      "independent_inspection": {
+        "frame_count": 235,
+        "joint_count": 53,
+        "joint_limit_violation_rad": 0.0,
+        "max_mimic_error_rad": 0.0,
+        "max_reference_speed_rad_s": 0.9579726138881512,
+        "frames_with_penetration_over_1mm": 0,
+        "maximum_reported_penetration_m": 0.0006435253579007639,
+        "max_abs_difference_from_demonstration_rad": 0.00485074623255255,
+        "positions_identical_to_demonstration": false,
+        "collision_scope": "Upstream collision geoms at saved sample frames only",
+        "asl_reviewed": false,
+        "dynamics_run": false
+      },
+      "views": {
+        "front": {
+          "view": "front",
+          "mp4": "HELLO_front.mp4",
+          "png": "HELLO_front.png",
+          "frame_count": 235,
+          "fps": 30,
+          "width": 960,
+          "height": 720,
+          "keyframes": {
+            "start": {
+              "png": "HELLO_front_start.png",
+              "frame_index": 60,
+              "timestamp_s": 2.0
+            },
+            "middle": {
+              "png": "HELLO_front_middle.png",
+              "frame_index": 114,
+              "timestamp_s": 3.8
+            },
+            "end": {
+              "png": "HELLO_front_end.png",
+              "frame_index": 174,
+              "timestamp_s": 5.8
+            }
+          }
+        },
+        "right_side": {
+          "view": "right_side",
+          "mp4": "HELLO_right_side.mp4",
+          "png": "HELLO_right_side.png",
+          "frame_count": 235,
+          "fps": 30,
+          "width": 960,
+          "height": 720,
+          "keyframes": {
+            "start": {
+              "png": "HELLO_right_side_start.png",
+              "frame_index": 60,
+              "timestamp_s": 2.0
+            },
+            "middle": {
+              "png": "HELLO_right_side_middle.png",
+              "frame_index": 114,
+              "timestamp_s": 3.8
+            },
+            "end": {
+              "png": "HELLO_right_side_end.png",
+              "frame_index": 174,
+              "timestamp_s": 5.8
+            }
+          }
+        }
+      }
+    },
+    "THANK_YOU": {
+      "trajectory": "results/motion_learning/v1/THANK_YOU.npz",
+      "trajectory_sha256": "27a286e866e5fc16733ab5ba917eda49086a4fe52ab9d4235c4d83b7fd623f88",
+      "independent_inspection": {
+        "frame_count": 241,
+        "joint_count": 53,
+        "joint_limit_violation_rad": 0.0,
+        "max_mimic_error_rad": 0.0,
+        "max_reference_speed_rad_s": 1.8859733470278346,
+        "frames_with_penetration_over_1mm": 0,
+        "maximum_reported_penetration_m": 0.000643525357900796,
+        "max_abs_difference_from_demonstration_rad": 0.046647246452663015,
+        "positions_identical_to_demonstration": false,
+        "collision_scope": "Upstream collision geoms at saved sample frames only",
+        "asl_reviewed": false,
+        "dynamics_run": false
+      },
+      "views": {
+        "front": {
+          "view": "front",
+          "mp4": "THANK_YOU_front.mp4",
+          "png": "THANK_YOU_front.png",
+          "frame_count": 241,
+          "fps": 30,
+          "width": 960,
+          "height": 720,
+          "keyframes": {
+            "start": {
+              "png": "THANK_YOU_front_start.png",
+              "frame_index": 75,
+              "timestamp_s": 2.5
+            },
+            "middle": {
+              "png": "THANK_YOU_front_middle.png",
+              "frame_index": 117,
+              "timestamp_s": 3.9
+            },
+            "end": {
+              "png": "THANK_YOU_front_end.png",
+              "frame_index": 144,
+              "timestamp_s": 4.8
+            }
+          }
+        },
+        "right_side": {
+          "view": "right_side",
+          "mp4": "THANK_YOU_right_side.mp4",
+          "png": "THANK_YOU_right_side.png",
+          "frame_count": 241,
+          "fps": 30,
+          "width": 960,
+          "height": 720,
+          "keyframes": {
+            "start": {
+              "png": "THANK_YOU_right_side_start.png",
+              "frame_index": 75,
+              "timestamp_s": 2.5
+            },
+            "middle": {
+              "png": "THANK_YOU_right_side_middle.png",
+              "frame_index": 117,
+              "timestamp_s": 3.9
+            },
+            "end": {
+              "png": "THANK_YOU_right_side_end.png",
+              "frame_index": 144,
+              "timestamp_s": 4.8
+            }
+          }
+        }
+      }
+    },
+    "PLEASE_WAIT": {
+      "trajectory": "results/motion_learning/v1/PLEASE_WAIT.npz",
+      "trajectory_sha256": "3e42d56d78388ea61e670066111e82da130090553610d177a1f1abb08209dc78",
+      "independent_inspection": {
+        "frame_count": 256,
+        "joint_count": 53,
+        "joint_limit_violation_rad": 0.0,
+        "max_mimic_error_rad": 0.0,
+        "max_reference_speed_rad_s": 1.4613294062542377,
+        "frames_with_penetration_over_1mm": 0,
+        "maximum_reported_penetration_m": 0.0006435253579010552,
+        "max_abs_difference_from_demonstration_rad": 0.005548530807410745,
+        "positions_identical_to_demonstration": false,
+        "collision_scope": "Upstream collision geoms at saved sample frames only",
+        "asl_reviewed": false,
+        "dynamics_run": false
+      },
+      "views": {
+        "front": {
+          "view": "front",
+          "mp4": "PLEASE_WAIT_front.mp4",
+          "png": "PLEASE_WAIT_front.png",
+          "frame_count": 256,
+          "fps": 30,
+          "width": 960,
+          "height": 720,
+          "keyframes": {
+            "start": {
+              "png": "PLEASE_WAIT_front_start.png",
+              "frame_index": 60,
+              "timestamp_s": 2.0
+            },
+            "middle": {
+              "png": "PLEASE_WAIT_front_middle.png",
+              "frame_index": 120,
+              "timestamp_s": 4.0
+            },
+            "end": {
+              "png": "PLEASE_WAIT_front_end.png",
+              "frame_index": 180,
+              "timestamp_s": 6.0
+            }
+          }
+        },
+        "right_side": {
+          "view": "right_side",
+          "mp4": "PLEASE_WAIT_right_side.mp4",
+          "png": "PLEASE_WAIT_right_side.png",
+          "frame_count": 256,
+          "fps": 30,
+          "width": 960,
+          "height": 720,
+          "keyframes": {
+            "start": {
+              "png": "PLEASE_WAIT_right_side_start.png",
+              "frame_index": 60,
+              "timestamp_s": 2.0
+            },
+            "middle": {
+              "png": "PLEASE_WAIT_right_side_middle.png",
+              "frame_index": 120,
+              "timestamp_s": 4.0
+            },
+            "end": {
+              "png": "PLEASE_WAIT_right_side_end.png",
+              "frame_index": 180,
+              "timestamp_s": 6.0
+            }
+          }
+        }
+      }
+    }
+  },
+  "output_sha256": {
+    "HELLO_front.mp4": "e81d0c596163d4e29bd5e881d53daf27172f537bfdca6bd0507bce179dfa5636",
+    "HELLO_front.png": "4bee3f1ae71dab656df9628f832402710fc8f03687a4bac3aa48a545e8270357",
+    "HELLO_front_end.png": "9100ed85b796022401181145b04ad8dd5d09865d82e9f816bdc66144a4d81e6f",
+    "HELLO_front_middle.png": "4bee3f1ae71dab656df9628f832402710fc8f03687a4bac3aa48a545e8270357",
+    "HELLO_front_start.png": "c0ae1a240d9a09bcb09edc65d031ca28cda19b60473d43b226e54a216c92a80c",
+    "HELLO_right_side.mp4": "fbb6c3fd7c5f30028d7d91ee726837e8b4e328a11e6211a2c99f26459a39b083",
+    "HELLO_right_side.png": "f198450cdddd9f002fd56d09ab1564cea5fb04578d759cdbd10b52b97653fad4",
+    "HELLO_right_side_end.png": "b9ba849648d6b77cffb8bdb44f388bdb9dcee29c9fc088d9ffa5ea5361684086",
+    "HELLO_right_side_middle.png": "f198450cdddd9f002fd56d09ab1564cea5fb04578d759cdbd10b52b97653fad4",
+    "HELLO_right_side_start.png": "a4618f3e73a34dad0f5bc220d8d70e15db3a7fe022d3bf38c830a6dad796008b",
+    "PLEASE_WAIT_front.mp4": "59524210cd5e5baf506ffc87871287a4cffa0b0765bc9c0be07dcf9476e034a9",
+    "PLEASE_WAIT_front.png": "6d8927de92d64a379003233e9169955f64098005d2856c3a84ba0c61ebb44072",
+    "PLEASE_WAIT_front_end.png": "b80c8d420a1affde38acf469ec392797cdbf64fdd6727b4550b2675530d8f5c9",
+    "PLEASE_WAIT_front_middle.png": "6d8927de92d64a379003233e9169955f64098005d2856c3a84ba0c61ebb44072",
+    "PLEASE_WAIT_front_start.png": "062d8cc1f3f421c39ea71a495105089c1bdb4fd53ac09cea60c45e385f567ee8",
+    "PLEASE_WAIT_right_side.mp4": "90006942c2e80693400739398d614389d303736a67b3fdce29898be0f606e339",
+    "PLEASE_WAIT_right_side.png": "28a9735f8bb5d839dda2956c9c85abd9d2f5ba31cb69193d43f3cf8e3526a448",
+    "PLEASE_WAIT_right_side_end.png": "af5fcc168d617ca1c1fc22b23555fe6ec8dcc812cc72acdf18c7b8f97018fbf0",
+    "PLEASE_WAIT_right_side_middle.png": "28a9735f8bb5d839dda2956c9c85abd9d2f5ba31cb69193d43f3cf8e3526a448",
+    "PLEASE_WAIT_right_side_start.png": "8d837fc2bd7075905dce8b9b913a748c3ee683543880d4c5500636f022ae6c46",
+    "THANK_YOU_front.mp4": "cb965a358a7bdb269236005ae6a795b365a5eb344ab51b427d81dc1cc176f33e",
+    "THANK_YOU_front.png": "0c6310c1419eb2749b3e9a45c669fc1f6bc53adcd4c8a88209aa9476ddd2daf1",
+    "THANK_YOU_front_end.png": "86f8b7a0dafdb86fd7d1a08228db6ccdeb6a8ef0d6f8b1f0094ae413904c97bf",
+    "THANK_YOU_front_middle.png": "0c6310c1419eb2749b3e9a45c669fc1f6bc53adcd4c8a88209aa9476ddd2daf1",
+    "THANK_YOU_front_start.png": "c9b74013138489c9e64e911896d2abf70016acad26b61e0c50b739a696e57f96",
+    "THANK_YOU_right_side.mp4": "876bea66114547bb269d4b5f31e23e25bb4aff56ffd9ca8a468452f99af235f0",
+    "THANK_YOU_right_side.png": "b0c90ca3e073b2900b717d883dce5e09790ebf1e2ac8b8dabd357bb7c023c867",
+    "THANK_YOU_right_side_end.png": "39f04319dec84c2d9041552b50b78ed8ed6fbd5b8760309b419951588437cbb8",
+    "THANK_YOU_right_side_middle.png": "b0c90ca3e073b2900b717d883dce5e09790ebf1e2ac8b8dabd357bb7c023c867",
+    "THANK_YOU_right_side_start.png": "80c753e46094f27f43a55485921a319a31635079971cc823c7e3b0d522377a1b"
+  }
+}

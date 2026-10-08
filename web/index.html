@@ -5,7 +5,7 @@
   <header><a class="brand" href="/">ME5412 <span>ROBOTICS FOR HEALTHCARE</span></a><span class="local"><i></i> 本地仿真研究</span></header>
   <main>
     <div class="intro"><div><p class="eyebrow">TEXT TO ROBOT EXPRESSION</p><h1>文字到机器人表达</h1><p class="subtitle">从有限含义到可重复的动作，分别检查选择、执行与理解。</p></div><div class="scope"><strong>03</strong><span>候选表达<br>ASL 使用者评审待完成</span></div></div>
-    <nav aria-label="页面内容"><button class="tab active" data-tab="demo">交互演示</button><button class="tab" data-tab="evidence">验收与边界</button><button class="tab" data-tab="team">六人协作</button></nav>
+    <nav aria-label="页面内容"><button class="tab active" data-tab="demo">交互演示</button><button class="tab" data-tab="learning">学习模型</button><button class="tab" data-tab="inspection">动作检查</button><button class="tab" data-tab="evidence">验收与边界</button><button class="tab" data-tab="team">六人协作</button></nav>
     <section id="demo" class="tab-panel">
       <div class="workspace">
         <div class="input-pane">
@@ -28,10 +28,42 @@
       </div>
       <div class="source-section"><div class="section-top"><h2>表达目录与来源</h2><p>来源支持参考动作；不等于机器人表达已通过验证。</p></div><div id="catalog" class="catalog"></div></div>
     </section>
+    <section id="learning" class="tab-panel hidden">
+      <h2>文字条件生成关节轨迹</h2><p class="section-description">冻结文字编码器 + 已训练的 RBF 回归模型。每次请求根据文字向量和动作相位计算角度，再做逐帧运动学检查。</p>
+      <div class="learning-facts"><article><strong>3</strong><span>独立自编轨迹</span></article><article><strong>367 / 365</strong><span>训练帧 / 同轨迹验证帧</span></article><article><strong id="learn-corpus">—</strong><span>公开文本索引 · 动作监督 0</span></article></div>
+      <div class="learning-form"><div><label for="learn-text">英文输入 · 当前仍限三类已登记完整含义</label><textarea id="learn-text" maxlength="1000" spellcheck="false">Thank you</textarea><div class="phrase-buttons"><button data-learn-example="Hello">Hello</button><button data-learn-example="Thank you">Thank you</button><button data-learn-example="Please wait">Please wait</button></div></div><div><label for="learn-duration">生成时长</label><select id="learn-duration"><option value="1">原始时长</option><option value="1.2">延长 20% · 重新计算轨迹</option></select><button id="learn-generate" class="primary">生成并检查研究候选 <span>→</span></button><p class="inspection-boundary">模型未经过 ASL 使用者评审。这里生成并预览实验轨迹；交互演示保留原动作库。</p></div></div>
+      <p id="learn-status" role="status">模型实验信息读取中…</p>
+      <div id="learn-result" class="hidden">
+        <div class="learning-preview"><div class="section-top"><h2>本次生成的运动学骨架</h2><span id="learn-identity" class="mode-tag"></span></div><canvas id="learn-pose" role="img" aria-label="本次生成轨迹的正面与侧面关节骨架"></canvas><div class="frame-bar"><button id="learn-play">播放生成轨迹</button><output id="learn-time">—</output><button id="learn-download">下载本次轨迹 JSON</button></div><label for="learn-frame">生成轨迹帧位置</label><input id="learn-frame" type="range" min="0" max="1" step="1" value="0"><p class="note">画面由本次预测角度经 MuJoCo 正运动学实时计算，线段连接机器人连杆坐标原点。此简化骨架不呈现完整手部网格，也不验证动力学。</p></div>
+        <div class="learning-diagnostics"><div><label for="learn-joint">检查生成的关节曲线</label><select id="learn-joint"></select></div><canvas id="learn-chart" role="img" aria-label="本次生成关节角度随时间变化"></canvas><div id="learn-metrics" class="note"></div></div>
+        <details><summary>本次生成的来源与指标</summary><pre id="learn-details"></pre></details>
+      </div>
+      <details><summary>已训练什么，还缺什么</summary><p class="note">三个自编动作共 732 帧，按偶数帧训练、奇数帧验证。因此目前只验证了同一示范内的时间插值，没有验证新手语或独立使用者。How2Sign 已接入英文句子与时间戳，尚未接入视频、人体姿态或机器人监督。下一步需要有来源的人体动作、重定向和独立可理解性评价。</p></details>
+    </section>
+    <section id="inspection" class="tab-panel hidden">
+      <h2>从动作外观检查到关节轨迹</h2><p class="section-description">正面观察手型，右侧斜视观察前后位移。画面来自同一条 MuJoCo 运动学轨迹，曲线显示该轨迹的关节坐标。</p>
+      <div class="inspection-controls"><div><label for="inspect-action">候选表达</label><select id="inspect-action"><option value="THANK_YOU">THANK_YOU · 谢谢</option><option value="HELLO">HELLO · 你好</option><option value="PLEASE_WAIT">PLEASE_WAIT · WAIT 词例</option></select></div><button id="inspect-load" class="primary">打开候选轨迹</button></div>
+      <p class="inspection-boundary">点击“打开候选轨迹”表示查看未评审动作的研究预览。没有进行 ASL 使用者可理解性或动力学验证。</p>
+      <p id="inspect-status" role="status">选择表达后打开轨迹。数据和视频完全在本机读取。</p>
+      <div id="inspect-content" class="hidden">
+        <div class="inspection-workspace"><div class="inspection-video-pane">
+          <div class="inspection-fields"><div><label for="inspect-view">查看视角</label><select id="inspect-view"><option value="front">正面</option><option value="right_side">右侧斜视</option></select></div><div><label for="inspect-speed">播放速度</label><select id="inspect-speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option></select></div></div>
+          <video id="inspect-video" controls playsinline preload="metadata" aria-label="机器人轨迹检查视频"></video>
+          <div class="frame-bar"><button id="inspect-prev" aria-label="上一帧">← 上一帧</button><output id="inspect-time">0.00 s</output><button id="inspect-next" aria-label="下一帧">下一帧 →</button></div>
+          <label for="inspect-frame">轨迹帧位置</label><input id="inspect-frame" type="range" min="0" max="1" step="1" value="0"><p id="inspect-phase" class="note"></p>
+        </div><div class="inspection-data-pane">
+          <div class="inspection-fields"><div><label for="inspect-group">关节组</label><select id="inspect-group"><option value="right_arm">右臂</option><option value="left_arm">左臂</option><option value="right_hand">右手主动关节</option><option value="left_hand">左手主动关节</option></select></div><div><label for="inspect-joint">关节名称</label><select id="inspect-joint"></select></div></div>
+          <div class="joint-readouts"><div><small>当前位置</small><strong id="inspect-angle">—</strong></div><div><small>当前速度</small><strong id="inspect-velocity">—</strong></div></div>
+          <canvas id="inspect-position-chart" role="img" aria-label="关节位置随时间变化，虚线表示关节限位"></canvas><canvas id="inspect-velocity-chart" role="img" aria-label="关节速度随时间变化"></canvas>
+          <p id="inspect-coupling" class="note"></p><p class="inspection-boundary">速度来自相邻轨迹帧的差分，首帧置零。曲线与视频共用轨迹时间轴，不表示真实执行器跟踪性能。</p>
+        </div></div>
+        <details><summary>数据来源与检查范围</summary><pre id="inspect-provenance"></pre></details>
+      </div>
+    </section>
     <section id="evidence" class="tab-panel hidden">
       <h2>把三类证据分开</h2><p class="section-description">代码能运行、动作能播放、手语能被理解，需要分别验证。</p>
       <div class="evidence-grid"><article><span class="step">01</span><h3>文字选择</h3><p>固定匹配与本地语义匹配用同一批探索性测试输入比较。大模型后端未配置时明确返回不可用。</p></article><article><span class="step">02</span><h3>机器人执行</h3><p>运动学轨迹与 MuJoCo 渲染。原模型关节耦合保留；未证明执行器动力学、真实硬件或临床适用性。</p></article><article><span class="step">03</span><h3>ASL 可理解性</h3><p>尚无真实 ASL 使用者评审。源词例、候选完整含义和机器人动作并不自动等价。</p></article></div>
-      <h3>当前验收记录</h3><p id="evidence-summary" class="section-description">读取中…</p>
+      <h3>首版验收记录 · 冻结保留</h3><p id="evidence-summary" class="section-description">读取中…</p>
       <table><thead><tr><th>文字选择方法</th><th>支持输入选对</th><th>支持输入误拒</th><th>库外错误执行</th></tr></thead><tbody id="evaluation-rows"></tbody></table>
       <p class="note">同一批 60 条 agent 起草、尚未人审的探索性样例；所有方法包含公共拒绝规则。这里的分数不衡量机器人手语是否能被理解。本地 LLM 仅作失败分析对照，默认入口未启用。</p>
       <details><summary>查看完整验收记录</summary><pre id="evidence-json">读取中…</pre></details>
@@ -48,5 +80,5 @@
       </tbody></table><p class="note">三个公共接口：表达目录、选择结果、具有关节名和时间戳的轨迹。修改接口前先统一，再更新各模块。</p>
     </section>
     <footer>ME5412 COURSE PROJECT <span>有限表达 · 仿真候选 · 证据与边界公开可查</span></footer>
-  </main><script src="/app.js"></script>
+  </main><script src="/app.js"></script><script src="/inspector.js"></script><script src="/learning.js"></script>
 </body></html>

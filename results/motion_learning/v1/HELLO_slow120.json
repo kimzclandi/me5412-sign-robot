@@ -1,0 +1,26 @@
+{
+  "status": "candidate",
+  "action_id": "HELLO",
+  "metrics": {
+    "max_projection_rad": 0.0001722391093067939,
+    "raw_out_of_bound_coordinates": 1120,
+    "joint_limit_violation_rad": 0.0,
+    "max_mimic_error_rad": 0.0,
+    "max_joint_speed_rad_s": 0.7984670689317328,
+    "max_speed_limit_excess_rad_s": 0.0,
+    "penetrating_contact_events_below_minus_1mm": 0,
+    "maximum_reported_penetration_m": 0.0006435253579007642,
+    "collision_frames_checked": 282,
+    "collision_scope": "upstream collision geoms at sampled frames only"
+  },
+  "accepted": true,
+  "rejection_reasons": [],
+  "geometric_accepted": true,
+  "default_enabled": false,
+  "asl_reviewed": false,
+  "execution_mode": "learned_text_phase_regression",
+  "duration_s": 9.36,
+  "conditioning_text": "Hello",
+  "file": "results/motion_learning/v1/HELLO_slow120.npz",
+  "duration_scale": 1.2
+}

@@ -4,6 +4,8 @@ from __future__ import annotations
 import argparse
 import json
 import mimetypes
+import os
+import re
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
@@ -12,6 +14,8 @@ from threading import Lock
 
 from .contracts import ROOT, load_catalog
 from .pipeline import run_selection, resolve_execution
+from . import inspection
+from .service import instance_id
 
 LOG_LOCK = Lock()
 
@@ -51,14 +55,45 @@ class Handler(BaseHTTPRequestHandler):
         if not self.allowed_host():
             return self.send_json({"error": "invalid_host"}, 403)
         route = urlparse(self.path).path
+        if route == "/api/health":
+            return self.send_json({"project_id": "me5412-sign-robot", "status": "ok", "pid": os.getpid(),
+                                   "instance_id": instance_id(ROOT), "server_revision": "learning-v1"})
         if route == "/api/status":
             return self.send_json(project_status())
         if route == "/api/evidence":
             path = ROOT / "results/acceptance.json"
             return self.send_json(json.loads(path.read_text(encoding="utf-8")) if path.exists() else {"status": "in_progress"})
-        static = {"/": "index.html", "/app.js": "app.js", "/style.css": "style.css"}
+        if route == "/api/learning":
+            from .learning_api import status
+            try:
+                return self.send_json(status(ROOT))
+            except (OSError, ValueError, KeyError):
+                return self.send_json({"error": "learning_experiment_unavailable"}, 503)
+        if route == "/api/inspection" or route.startswith("/api/inspection/"):
+            try:
+                if route == "/api/inspection":
+                    value = inspection.inventory(ROOT)
+                else:
+                    matched = re.fullmatch(r"/api/inspection/([A-Z_]+)/([0-9a-f]{16})", route)
+                    if not matched:
+                        return self.send_json({"error": "not_found"}, 404)
+                    action_id, run_id = matched.groups()
+                    value = inspection.telemetry(action_id, ROOT, run_id=run_id)
+                return self.send_json(value)
+            except (ValueError, KeyError, OSError) as exc:
+                return self.send_json({"error": "inspection_unavailable", "message": str(exc)}, 404)
+        static = {"/": "index.html", "/app.js": "app.js", "/style.css": "style.css", "/inspector.js": "inspector.js", "/learning.js": "learning.js"}
         if route in static:
             path = ROOT / "web" / static[route]
+        elif route.startswith("/inspection-media/"):
+            matched = re.fullmatch(r"/inspection-media/([A-Z_]+)/([0-9a-f]{16})/(front|right_side)\.(mp4|png)", route)
+            if not matched:
+                return self.send_json({"error": "not_found"}, 404)
+            try:
+                action_id, run_id, view, extension = matched.groups()
+                path = inspection.media(action_id, view, extension, root=ROOT, run_id=run_id)
+            except (ValueError, KeyError, OSError) as exc:
+                return self.send_json({"error": "inspection_unavailable", "message": str(exc)}, 404)
         else:
             valid_media = {f'/media/{a["action_id"]}.{ext}': ROOT / f'results/previews/{a["action_id"]}.{ext}'
                            for a in load_catalog() for ext in ("mp4", "png")}
@@ -72,7 +107,6 @@ class Handler(BaseHTTPRequestHandler):
         start, end, partial = 0, size - 1, False
         requested = self.headers.get("Range", "")
         if requested:
-            import re
             match = re.fullmatch(r"bytes=(\d+)-(\d*)", requested)
             if not match:
                 return self.send_json({"error": "invalid_range"}, 416)
@@ -99,7 +133,7 @@ class Handler(BaseHTTPRequestHandler):
         origin = self.headers.get("Origin")
         if origin is not None and origin not in {f"http://127.0.0.1:{port}", f"http://localhost:{port}"}:
             return self.send_json({"error": "invalid_origin"}, 403)
-        if self.path not in {"/api/select", "/api/action"}:
+        if self.path not in {"/api/select", "/api/action", "/api/learning/generate"}:
             return self.send_json({"error": "not_found"}, 404)
         try:
             length = int(self.headers.get("Content-Length", "0"))
@@ -108,6 +142,9 @@ class Handler(BaseHTTPRequestHandler):
             req = json.loads(self.rfile.read(length))
             if not isinstance(req, dict):
                 raise ValueError("Expected JSON object")
+            if self.path == "/api/learning/generate":
+                from .learning_api import generate_request
+                return self.send_json(generate_request(req, ROOT))
             allow = req.get("allow_candidate_preview", False)
             if type(allow) is not bool:
                 raise ValueError("allow_candidate_preview must be boolean")

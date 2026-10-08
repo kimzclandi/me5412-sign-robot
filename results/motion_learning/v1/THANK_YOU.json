@@ -1,0 +1,26 @@
+{
+  "status": "candidate",
+  "action_id": "THANK_YOU",
+  "metrics": {
+    "max_projection_rad": 0.00017396164959441419,
+    "raw_out_of_bound_coordinates": 958,
+    "joint_limit_violation_rad": 0.0,
+    "max_mimic_error_rad": 0.0,
+    "max_joint_speed_rad_s": 1.8859733470278346,
+    "max_speed_limit_excess_rad_s": 0.0,
+    "penetrating_contact_events_below_minus_1mm": 0,
+    "maximum_reported_penetration_m": 0.000643525357900796,
+    "collision_frames_checked": 241,
+    "collision_scope": "upstream collision geoms at sampled frames only"
+  },
+  "accepted": true,
+  "rejection_reasons": [],
+  "geometric_accepted": true,
+  "default_enabled": false,
+  "asl_reviewed": false,
+  "execution_mode": "learned_text_phase_regression",
+  "duration_s": 8.0,
+  "conditioning_text": "Thank you",
+  "file": "results/motion_learning/v1/THANK_YOU.npz",
+  "duration_scale": 1.0
+}

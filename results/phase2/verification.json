@@ -1,0 +1,623 @@
+{
+  "asset_and_frozen_checks": [
+    {
+      "path": "assets/robot/vendor/g1_29dof_rev_1_0_with_inspire_hand_DFQ.urdf",
+      "expected": "e2b2d6bfe58f6b8d57b9f28df9ad9e5e5d0ea728f562e925b8b1482a902b6ff3",
+      "actual": "e2b2d6bfe58f6b8d57b9f28df9ad9e5e5d0ea728f562e925b8b1482a902b6ff3",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/UPSTREAM_LICENSE",
+      "expected": "84aac59fd3246e3ddc49d1387644e8fcf43b0def4f0b9fe687f372e90446df2d",
+      "actual": "84aac59fd3246e3ddc49d1387644e8fcf43b0def4f0b9fe687f372e90446df2d",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/UPSTREAM_README.md",
+      "expected": "0f3d66629ca904b3d01d8b20186b26d17cca513d7217f66649dc68523aa94f43",
+      "actual": "0f3d66629ca904b3d01d8b20186b26d17cca513d7217f66649dc68523aa94f43",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/L_hand_base_link.STL",
+      "expected": "33ab4e97801bd5421903a78f5977a44e477ae8653eaf32358d35633e465411e0",
+      "actual": "33ab4e97801bd5421903a78f5977a44e477ae8653eaf32358d35633e465411e0",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link11_L.STL",
+      "expected": "d87cb704d80de840555d0a393117d32f9bd5e91425e0458363e0a799aa4e5339",
+      "actual": "d87cb704d80de840555d0a393117d32f9bd5e91425e0458363e0a799aa4e5339",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link11_R.STL",
+      "expected": "b49b6463f801f0402bac9c65bb989c4097f6d2c1fa1597ba560aedd640561778",
+      "actual": "b49b6463f801f0402bac9c65bb989c4097f6d2c1fa1597ba560aedd640561778",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link12_L.STL",
+      "expected": "9f35b78a9cab1007ac8b73023a5862ed055d33951b5742f9a783997d38e99551",
+      "actual": "9f35b78a9cab1007ac8b73023a5862ed055d33951b5742f9a783997d38e99551",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link12_R.STL",
+      "expected": "347212bdb22d80fb364dd889de934d6fbb935e38d1f24c682caed84f7b6ea8cb",
+      "actual": "347212bdb22d80fb364dd889de934d6fbb935e38d1f24c682caed84f7b6ea8cb",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link13_L.STL",
+      "expected": "7e93b55f2ae73fe0f62cd27e81d8a4620211068cb1c9b25e6414e802a37541ee",
+      "actual": "7e93b55f2ae73fe0f62cd27e81d8a4620211068cb1c9b25e6414e802a37541ee",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link13_R.STL",
+      "expected": "c157dfe5b666efb1c3d51342e56f5caad2fc350930ac21ee1e02d956c1034ca3",
+      "actual": "c157dfe5b666efb1c3d51342e56f5caad2fc350930ac21ee1e02d956c1034ca3",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link14_L.STL",
+      "expected": "b677bcdcddcd90ff4b005f83daa9e50eb4003d5e67ea4eeefbf857718716c164",
+      "actual": "b677bcdcddcd90ff4b005f83daa9e50eb4003d5e67ea4eeefbf857718716c164",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link14_R.STL",
+      "expected": "564aa8c3d2ff0e51b75736a8b01b4c309c7098582a424ea1391ccb75125519d8",
+      "actual": "564aa8c3d2ff0e51b75736a8b01b4c309c7098582a424ea1391ccb75125519d8",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link15_L.STL",
+      "expected": "8c601e7aa8e1c91310a75190dfb6b95a8dc981b707e5f104f9ca9ecbea118b34",
+      "actual": "8c601e7aa8e1c91310a75190dfb6b95a8dc981b707e5f104f9ca9ecbea118b34",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link15_R.STL",
+      "expected": "09c120f7fb7761aa97d89240cd8cb8e30c40ee60093cbb8b1c2e13a68a8e3845",
+      "actual": "09c120f7fb7761aa97d89240cd8cb8e30c40ee60093cbb8b1c2e13a68a8e3845",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link16_L.STL",
+      "expected": "7d8508c65db44e2349f37e8ab4c057d204a40093d4733897ae5b51075b00f5e9",
+      "actual": "7d8508c65db44e2349f37e8ab4c057d204a40093d4733897ae5b51075b00f5e9",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link16_R.STL",
+      "expected": "6942ada1189cdf442124c6b8935f3e3a3ae310092a3a1414fdeb0bd6d23578bb",
+      "actual": "6942ada1189cdf442124c6b8935f3e3a3ae310092a3a1414fdeb0bd6d23578bb",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link17_L.STL",
+      "expected": "ca2a68fed635eca290b234fbdc649779036ba5bac753addcb7ce6a086ad95949",
+      "actual": "ca2a68fed635eca290b234fbdc649779036ba5bac753addcb7ce6a086ad95949",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link17_R.STL",
+      "expected": "36fc62c609800ce6d4521ae6f3c4c9b8a732be28654f32f04893696c17e6930c",
+      "actual": "36fc62c609800ce6d4521ae6f3c4c9b8a732be28654f32f04893696c17e6930c",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link18_L.STL",
+      "expected": "9425aea7ebbf6d1dfb2eb0714fb44dfaea6b6a81c71d6e96c8d3950f636dfa62",
+      "actual": "9425aea7ebbf6d1dfb2eb0714fb44dfaea6b6a81c71d6e96c8d3950f636dfa62",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link18_R.STL",
+      "expected": "9711fac7df0c09a372e1529f74b9d506d37abf3ebc3241d976ad45e5ee7e2d69",
+      "actual": "9711fac7df0c09a372e1529f74b9d506d37abf3ebc3241d976ad45e5ee7e2d69",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link19_L.STL",
+      "expected": "cbb256a70c17e21c995df66807f0755dc136d0312df245112d6d4bfcd29c43a4",
+      "actual": "cbb256a70c17e21c995df66807f0755dc136d0312df245112d6d4bfcd29c43a4",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link19_R.STL",
+      "expected": "46619bd6a887615d7dfe850d39a6f5d8f8c5ecfa9429c567338f3a659a5d4d75",
+      "actual": "46619bd6a887615d7dfe850d39a6f5d8f8c5ecfa9429c567338f3a659a5d4d75",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link20_L.STL",
+      "expected": "e9145af7a515bce4c1c06d16b5be8900ec3f8375fc8e34d371315ce76f600877",
+      "actual": "e9145af7a515bce4c1c06d16b5be8900ec3f8375fc8e34d371315ce76f600877",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link20_R.STL",
+      "expected": "a517debff6b924c22ae0f87dbb6aac199a1f130c7fef353a7d659e365f30b1f4",
+      "actual": "a517debff6b924c22ae0f87dbb6aac199a1f130c7fef353a7d659e365f30b1f4",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link21_L.STL",
+      "expected": "180ab4ac01dab60407d0b33819883eb0ec869e4d4f349f786972135c7114fc0d",
+      "actual": "180ab4ac01dab60407d0b33819883eb0ec869e4d4f349f786972135c7114fc0d",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link21_R.STL",
+      "expected": "ed0a29d2376e8874f724bc2c20384eeec93d8268e59bb8c45628335f7ab6742e",
+      "actual": "ed0a29d2376e8874f724bc2c20384eeec93d8268e59bb8c45628335f7ab6742e",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link22_L.STL",
+      "expected": "5e64ea976ecf08c46e8cb80a5dd56ee3e8c5f36a0573ab3c69160d9337f941e1",
+      "actual": "5e64ea976ecf08c46e8cb80a5dd56ee3e8c5f36a0573ab3c69160d9337f941e1",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link22_R.STL",
+      "expected": "1aa3fb46f689251ee38f5262b71364c680f70d1ad1dd9c6f1cae8c098b0e8422",
+      "actual": "1aa3fb46f689251ee38f5262b71364c680f70d1ad1dd9c6f1cae8c098b0e8422",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/R_hand_base_link.STL",
+      "expected": "b4d84504242a99fa915c4ed5195ce4724c67cb94d9217cd4c254cfb5937ecf5c",
+      "actual": "b4d84504242a99fa915c4ed5195ce4724c67cb94d9217cd4c254cfb5937ecf5c",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/head_link.STL",
+      "expected": "005fb67fbd3eff94aa8bf4a6e83238174e9f91b6721f7111594322f223724411",
+      "actual": "005fb67fbd3eff94aa8bf4a6e83238174e9f91b6721f7111594322f223724411",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_ankle_pitch_link.STL",
+      "expected": "d49e3abc6f5b12e532062cd575b87b5ef40cd2a3fc18f54a1ca5bba4f773d51d",
+      "actual": "d49e3abc6f5b12e532062cd575b87b5ef40cd2a3fc18f54a1ca5bba4f773d51d",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_ankle_roll_link.STL",
+      "expected": "c4092af943141d4d9f74232f3cfa345afc6565f46a077793b8ae0e68b39dc33f",
+      "actual": "c4092af943141d4d9f74232f3cfa345afc6565f46a077793b8ae0e68b39dc33f",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_elbow_link.STL",
+      "expected": "fa752198accd104d5c4c3a01382e45165b944fbbc5acce085059223324e5bed3",
+      "actual": "fa752198accd104d5c4c3a01382e45165b944fbbc5acce085059223324e5bed3",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_hip_pitch_link.STL",
+      "expected": "4725168105ee768ee31638ef22b53f6be2d7641bfd7cfefe803488d884776fa4",
+      "actual": "4725168105ee768ee31638ef22b53f6be2d7641bfd7cfefe803488d884776fa4",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_hip_roll_link.STL",
+      "expected": "91f25922ee8a7c3152790051bebad17b4d9cd243569c38fe340285ff93a97acf",
+      "actual": "91f25922ee8a7c3152790051bebad17b4d9cd243569c38fe340285ff93a97acf",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_hip_yaw_link.STL",
+      "expected": "a16d88aa6ddac8083aa7ad55ed317bea44b1fa003d314fba88965b7ed0f3b55b",
+      "actual": "a16d88aa6ddac8083aa7ad55ed317bea44b1fa003d314fba88965b7ed0f3b55b",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_knee_link.STL",
+      "expected": "8d92b9e3d3a636761150bb8025e32514c4602b91c7028d523ee42b3e632de477",
+      "actual": "8d92b9e3d3a636761150bb8025e32514c4602b91c7028d523ee42b3e632de477",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_shoulder_pitch_link.STL",
+      "expected": "f0d1cfd02fcf0d42f95e678eeca33da3afbcc366ffba5c052847773ec4f31d52",
+      "actual": "f0d1cfd02fcf0d42f95e678eeca33da3afbcc366ffba5c052847773ec4f31d52",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_shoulder_roll_link.STL",
+      "expected": "fb9df21687773522598dc384f1a2945c7519f11cbc8bd372a49170316d6eee88",
+      "actual": "fb9df21687773522598dc384f1a2945c7519f11cbc8bd372a49170316d6eee88",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_shoulder_yaw_link.STL",
+      "expected": "1aa97e9748e924336567992181f78c7cd0652fd52a4afcca3df6b2ef6f9e712e",
+      "actual": "1aa97e9748e924336567992181f78c7cd0652fd52a4afcca3df6b2ef6f9e712e",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_wrist_pitch_link.STL",
+      "expected": "b251d8e05047f695d0f536cd78c11973cfa4e78d08cfe82759336cc3471de3a9",
+      "actual": "b251d8e05047f695d0f536cd78c11973cfa4e78d08cfe82759336cc3471de3a9",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_wrist_roll_link.STL",
+      "expected": "edc387c9a0ba8c2237e9b296d32531426fabeb6f53e58df45c76106bca74148c",
+      "actual": "edc387c9a0ba8c2237e9b296d32531426fabeb6f53e58df45c76106bca74148c",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_wrist_yaw_link.STL",
+      "expected": "83f8fb3a726bf9613d65dd14f0f447cb918c3c95b3938042a0c9c09749267d3b",
+      "actual": "83f8fb3a726bf9613d65dd14f0f447cb918c3c95b3938042a0c9c09749267d3b",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/logo_link.STL",
+      "expected": "8571a0a19bc4916fa55f91449f51d5fdefd751000054865a842449429d5f155b",
+      "actual": "8571a0a19bc4916fa55f91449f51d5fdefd751000054865a842449429d5f155b",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/pelvis.STL",
+      "expected": "5ba6bbc888e630550140d3c26763f10206da8c8bd30ed886b8ede41c61f57a31",
+      "actual": "5ba6bbc888e630550140d3c26763f10206da8c8bd30ed886b8ede41c61f57a31",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/pelvis_contour_link.STL",
+      "expected": "5cc5c2c7a312329e3feeb2b03d3fc09fc29705bd01864f6767e51be959662420",
+      "actual": "5cc5c2c7a312329e3feeb2b03d3fc09fc29705bd01864f6767e51be959662420",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_ankle_pitch_link.STL",
+      "expected": "15be426539ec1be70246d4d82a168806db64a41301af8b35c197a33348c787a9",
+      "actual": "15be426539ec1be70246d4d82a168806db64a41301af8b35c197a33348c787a9",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_ankle_roll_link.STL",
+      "expected": "4b66222ea56653e627711b56d0a8949b4920da5df091da0ceb343f54e884e3a5",
+      "actual": "4b66222ea56653e627711b56d0a8949b4920da5df091da0ceb343f54e884e3a5",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_elbow_link.STL",
+      "expected": "1be925d7aa268bb8fddf5362b9173066890c7d32092c05638608126e59d1e2ab",
+      "actual": "1be925d7aa268bb8fddf5362b9173066890c7d32092c05638608126e59d1e2ab",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_hip_pitch_link.STL",
+      "expected": "e4f3c99d7f4a7d34eadbef9461fc66e3486cb5442db1ec50c86317d459f1a9c6",
+      "actual": "e4f3c99d7f4a7d34eadbef9461fc66e3486cb5442db1ec50c86317d459f1a9c6",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_hip_roll_link.STL",
+      "expected": "4c254ef66a356f492947f360dd931965477b631e3fcc841f91ccc46d945d54f6",
+      "actual": "4c254ef66a356f492947f360dd931965477b631e3fcc841f91ccc46d945d54f6",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_hip_yaw_link.STL",
+      "expected": "e479c2936ca2057e9eb2f7dff6c189b7419d7b8484dea0b298cbb36a2a6aa668",
+      "actual": "e479c2936ca2057e9eb2f7dff6c189b7419d7b8484dea0b298cbb36a2a6aa668",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_knee_link.STL",
+      "expected": "63c4008449c9bbe701a6e2b557b7a252e90cf3a5abcf54cee46862b9a69f8ec8",
+      "actual": "63c4008449c9bbe701a6e2b557b7a252e90cf3a5abcf54cee46862b9a69f8ec8",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_shoulder_pitch_link.STL",
+      "expected": "24cdb387e0128dfe602770a81c56cdce3a0181d34d039a11d1aaf8819b7b8c02",
+      "actual": "24cdb387e0128dfe602770a81c56cdce3a0181d34d039a11d1aaf8819b7b8c02",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_shoulder_roll_link.STL",
+      "expected": "962b97c48f9ce9e8399f45dd9522e0865d19aa9fd299406b2d475a8fc4a53e81",
+      "actual": "962b97c48f9ce9e8399f45dd9522e0865d19aa9fd299406b2d475a8fc4a53e81",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_shoulder_yaw_link.STL",
+      "expected": "a0b76489271da0c72461a344c9ffb0f0c6e64f019ea5014c1624886c442a2fe5",
+      "actual": "a0b76489271da0c72461a344c9ffb0f0c6e64f019ea5014c1624886c442a2fe5",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_wrist_pitch_link.STL",
+      "expected": "d22f8f3b3127f15a63e5be1ee273cd5075786c3142f1c3d9f76cbf43d2a26477",
+      "actual": "d22f8f3b3127f15a63e5be1ee273cd5075786c3142f1c3d9f76cbf43d2a26477",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_wrist_roll_link.STL",
+      "expected": "a7ee9212ff5b94d6cb7f52bb1bbf3f352194d5b598acff74f4c77d340c5b344f",
+      "actual": "a7ee9212ff5b94d6cb7f52bb1bbf3f352194d5b598acff74f4c77d340c5b344f",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_wrist_yaw_link.STL",
+      "expected": "bc9dece2d12509707e0057ba2e48df8f3d56db0c79410212963a25e8a50f61a6",
+      "actual": "bc9dece2d12509707e0057ba2e48df8f3d56db0c79410212963a25e8a50f61a6",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/torso_link_rev_1_0.STL",
+      "expected": "11ddb46f2098efbbd8816b1d65893632d8e78be936376c7cdcd6771899ccc723",
+      "actual": "11ddb46f2098efbbd8816b1d65893632d8e78be936376c7cdcd6771899ccc723",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/waist_roll_link_rev_1_0.STL",
+      "expected": "b67c347a05abc3e8ddae600d98a082bee273bb39f8e651647708b0a7140a8a97",
+      "actual": "b67c347a05abc3e8ddae600d98a082bee273bb39f8e651647708b0a7140a8a97",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/waist_yaw_link_rev_1_0.STL",
+      "expected": "ec6db442b11f25eed898b5add07940c85d804f300de24dcbd264ccd8be7d554c",
+      "actual": "ec6db442b11f25eed898b5add07940c85d804f300de24dcbd264ccd8be7d554c",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/config.json",
+      "expected": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+      "actual": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/config_sentence_transformers.json",
+      "expected": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+      "actual": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/modules.json",
+      "expected": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+      "actual": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/sentence_bert_config.json",
+      "expected": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+      "actual": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/special_tokens_map.json",
+      "expected": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+      "actual": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/tokenizer.json",
+      "expected": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+      "actual": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/tokenizer_config.json",
+      "expected": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+      "actual": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/vocab.txt",
+      "expected": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "actual": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/1_Pooling/config.json",
+      "expected": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+      "actual": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/README.md",
+      "expected": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+      "actual": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/model.safetensors",
+      "expected": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+      "actual": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+      "passed": true
+    },
+    {
+      "path": "data/eval_dev.jsonl",
+      "expected": "e33fc62e3280cbbf6b61578e99c5ca9a08c492139e683cec0178f2e500bfdf04",
+      "actual": "e33fc62e3280cbbf6b61578e99c5ca9a08c492139e683cec0178f2e500bfdf04",
+      "passed": true
+    },
+    {
+      "path": "data/eval_test.jsonl",
+      "expected": "83a4f5310f28f45a5cc2aeecf6660742c2bf93b0b0f99660ad08d6d02f2f4231",
+      "actual": "83a4f5310f28f45a5cc2aeecf6660742c2bf93b0b0f99660ad08d6d02f2f4231",
+      "passed": true
+    },
+    {
+      "path": "motions/HELLO.npz",
+      "expected": "c02b49e31be5eb03f2db124ea37d1ff124e875ccdeb911a0615ac3f160f757f2",
+      "actual": "c02b49e31be5eb03f2db124ea37d1ff124e875ccdeb911a0615ac3f160f757f2",
+      "passed": true
+    },
+    {
+      "path": "motions/HELLO.json",
+      "expected": "5d0bde4ebc67c6e61aa47b03b048d62cf4166b65cf699d9290ff9c69dfda9161",
+      "actual": "5d0bde4ebc67c6e61aa47b03b048d62cf4166b65cf699d9290ff9c69dfda9161",
+      "passed": true
+    },
+    {
+      "path": "motions/THANK_YOU.npz",
+      "expected": "a7d80630c96b68c0579f60351c3302c059960811fe94cbb5862b91190976bcbf",
+      "actual": "a7d80630c96b68c0579f60351c3302c059960811fe94cbb5862b91190976bcbf",
+      "passed": true
+    },
+    {
+      "path": "motions/THANK_YOU.json",
+      "expected": "4605f417bdf707166f7e58242d1bb53cb4ea8d2d15cf6ad502a86f979b04abca",
+      "actual": "4605f417bdf707166f7e58242d1bb53cb4ea8d2d15cf6ad502a86f979b04abca",
+      "passed": true
+    },
+    {
+      "path": "motions/PLEASE_WAIT.npz",
+      "expected": "88a5c2abb1cd1c37fe10c159ea65fd2b8db812ee26ec2bbf1affc07cce3b590d",
+      "actual": "88a5c2abb1cd1c37fe10c159ea65fd2b8db812ee26ec2bbf1affc07cce3b590d",
+      "passed": true
+    },
+    {
+      "path": "motions/PLEASE_WAIT.json",
+      "expected": "65e639abf9be274176dc2fefa7c28738a825eafff345ea75a133a3e7ff0a5ca9",
+      "actual": "65e639abf9be274176dc2fefa7c28738a825eafff345ea75a133a3e7ff0a5ca9",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/scene.xml",
+      "expected": "42fa55e694045a561e0b804de40a4312f27f0576a58f93ecc87101863a214e95",
+      "actual": "42fa55e694045a561e0b804de40a4312f27f0576a58f93ecc87101863a214e95",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/model_info.json",
+      "expected": "755e980ffca68fedb70b08f4fdfe7c2254a325e35b09393a54c5b5e52a1f91fa",
+      "actual": "755e980ffca68fedb70b08f4fdfe7c2254a325e35b09393a54c5b5e52a1f91fa",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/upstream_manifest.json",
+      "expected": "b019827b94d1663a0d23c2c6e7ffac5e61b3cf5d1be00d42c742cc657a14f89d",
+      "actual": "b019827b94d1663a0d23c2c6e7ffac5e61b3cf5d1be00d42c742cc657a14f89d",
+      "passed": true
+    },
+    {
+      "path": "config/embedding.json",
+      "expected": "80a121725fa803c8eab2b1866cfda134c38c78fa545adfc2a437fa4dc5ad3230",
+      "actual": "80a121725fa803c8eab2b1866cfda134c38c78fa545adfc2a437fa4dc5ad3230",
+      "passed": true
+    },
+    {
+      "path": "config/embedding_download_manifest.json",
+      "expected": "bf2a0a3e87e40e27154bcae9eddac6ed3c3051760ee062467e53b8e5b7ee26fd",
+      "actual": "bf2a0a3e87e40e27154bcae9eddac6ed3c3051760ee062467e53b8e5b7ee26fd",
+      "passed": true
+    },
+    {
+      "path": "data/catalog.json",
+      "expected": "024fda8da4b8409a3bee4100e4f4ff1c6a3eec027100775fceba15cb95a71523",
+      "actual": "024fda8da4b8409a3bee4100e4f4ff1c6a3eec027100775fceba15cb95a71523",
+      "passed": true
+    },
+    {
+      "path": "src/sign_robot/learned_motion.py",
+      "expected": "dcf304ca409f34ffff62d8d6564918f6ac8e9867bfab8a7edd49ebb86aaf9803",
+      "actual": "dcf304ca409f34ffff62d8d6564918f6ac8e9867bfab8a7edd49ebb86aaf9803",
+      "passed": true
+    },
+    {
+      "path": "scripts/train_motion_model.py",
+      "expected": "a113afb38c2cdc50733cf0d1c3fe09fecbd1d0aed933c7f628b6e33c1e60c17d",
+      "actual": "a113afb38c2cdc50733cf0d1c3fe09fecbd1d0aed933c7f628b6e33c1e60c17d",
+      "passed": true
+    },
+    {
+      "path": "config/motion_learning_v1.json",
+      "expected": "d27c412494acb54ea375340618d15ef80c681e4398c5bbe65c29aa5872e21ca0",
+      "actual": "d27c412494acb54ea375340618d15ef80c681e4398c5bbe65c29aa5872e21ca0",
+      "passed": true
+    },
+    {
+      "path": "results/motion_learning/v1/model.npz",
+      "expected": "f2e064ed155ef429a29f5e2a0f6ccc3bf6209c603840e2ed744bdc651faac1f7",
+      "actual": "f2e064ed155ef429a29f5e2a0f6ccc3bf6209c603840e2ed744bdc651faac1f7",
+      "passed": true
+    }
+  ],
+  "all_hashes_passed": true,
+  "original_asset_checks": 75,
+  "protected_tracked_changes": [],
+  "local_markdown_link_checks": [
+    {
+      "source": "README.md",
+      "target": "docs/实施路线.md",
+      "passed": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/six-person-handoff.md",
+      "passed": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/学习型轨迹模型.md",
+      "passed": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/语料规模与模型升级.md",
+      "passed": true
+    },
+    {
+      "source": "README.md",
+      "target": "deliverables/course-report-v4/ME5412_Text_to_Robot_Signing_v4.pptx",
+      "passed": true
+    },
+    {
+      "source": "README.md",
+      "target": "deliverables/course-report-v4/ME5412_Text_to_Robot_Signing_v4.pdf",
+      "passed": true
+    },
+    {
+      "source": "README.md",
+      "target": "deliverables/course-report-v4/speaker-notes.zh-CN.txt",
+      "passed": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/source-review.md",
+      "passed": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/video-calibration.md",
+      "passed": true
+    },
+    {
+      "source": "docs/实施路线.md",
+      "target": "six-person-handoff.md",
+      "passed": true
+    }
+  ],
+  "all_local_links_passed": true,
+  "browser_download": {
+    "download_file": "learned-HELLO-7.8s.json",
+    "download_sha256": "d5016443021102fa9757407b20f978129431232ad2a1ef98dc1a365db4d3e0c7",
+    "shape": [
+      235,
+      53
+    ],
+    "same_as_frozen_generated_HELLO": true,
+    "skeleton_shape": [
+      235,
+      42,
+      3
+    ],
+    "model_sha256": "f2e064ed155ef429a29f5e2a0f6ccc3bf6209c603840e2ed744bdc651faac1f7",
+    "accepted": true,
+    "asl_reviewed": false
+  }
+}
