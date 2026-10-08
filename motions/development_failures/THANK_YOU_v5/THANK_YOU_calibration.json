@@ -1,0 +1,103 @@
+{
+  "action_id": "THANK_YOU",
+  "status": "agent_engineering_calibration_not_human_ASL_review",
+  "source_id": "lifeprint_thank_you",
+  "source_url": "https://www.lifeprint.com/asl101/pages-signs/t/thankyou.htm",
+  "demonstration_video_url": "https://www.youtube.com/watch?v=2W0BDFUjsG0",
+  "method": "Qualitative 2D reference observations -> manual engineering targets -> bounded IK -> robot FK checks",
+  "trajectory_sha256": "5e8ae89cb23356f6bfe92b1fa89c24180a448ada4f057d54c375932aad7790f9",
+  "robot_coordinate_system": "metres; +X forward, +Y robot left, +Z upward; pelvis fixed at world z=0.79",
+  "reference_requirements": [
+    {
+      "requirement": "Dominant flat hand; fingertips initially near lips/lower face",
+      "implementation": "Open right hand; fingertips aimed at a lower-face proxy",
+      "status": "approximation",
+      "remaining_deviation": "No model lips, no actual lip contact, individual finger lengths differ"
+    },
+    {
+      "requirement": "Move forward toward recipient and slightly downward",
+      "implementation": "12 intermediate wrist-pose targets; Slerp rotation and descending fingertip proxy",
+      "status": "robot_path_check_passed"
+    },
+    {
+      "requirement": "End with palm up",
+      "implementation": "Right-palm normal aligned with world +Z",
+      "status": "robot_orientation_check_passed"
+    },
+    {
+      "requirement": "Smile/nonmanual component",
+      "implementation": null,
+      "status": "not_implemented"
+    }
+  ],
+  "robot_measurements": {
+    "execution_interval_s": [
+      3.0,
+      4.8
+    ],
+    "fingertip_proxy_definition": "right_palm site position + 0.17m times local hand longitudinal +X axis",
+    "proxy_start_m": [
+      0.15994986359849725,
+      -0.06893945621457379,
+      1.1697096169898036
+    ],
+    "proxy_end_m": [
+      0.5099995022585923,
+      -0.040000280144269894,
+      1.07999997943747
+    ],
+    "forward_displacement_m": 0.350049638660095,
+    "vertical_displacement_m": -0.08970963755233363,
+    "maximum_upward_detour_above_start_m": 0.0,
+    "minimum_forward_step_m": 0.0019170926934713728,
+    "palm_normal_start": [
+      -0.9177214845013131,
+      -0.19873439145031735,
+      -0.34393592214186947
+    ],
+    "palm_normal_end": [
+      -2.676638185316064e-06,
+      1.129246442957132e-06,
+      0.9999999999957805
+    ],
+    "palm_normal_definition": "Right wrist local +Y: verified by positive finger flexion moving toward +Y; local +X points longitudinally along fingers",
+    "finger_flexion_validation_displacement_in_wrist_frame_m": [
+      -0.0022014834823967937,
+      0.009347588653812544,
+      -7.68468698434803e-05
+    ],
+    "head_mesh_world_aabb_m": [
+      [
+        -0.06635622193364174,
+        -0.077774607791608,
+        1.1147958715665078
+      ],
+      [
+        0.07398402471680535,
+        0.07781664265373238,
+        1.3205725905475354
+      ]
+    ],
+    "start_proxy_to_head_aabb_distance_lower_bound_m": 0.0859658388816919,
+    "gap_interpretation": "A lower bound to the head surface, not a lip measurement; source near-lip contact is not reproduced",
+    "max_keyframe_position_error_m": 0.0060601523086042455,
+    "keyframe_error_compares_to": "Agent-authored engineering targets only, not tracked human joints"
+  },
+  "not_measured": [
+    "Human 3D poses or timing",
+    "Human-to-robot tracking error",
+    "ASL user comprehensibility",
+    "Clinical communication safety"
+  ],
+  "review_images": [
+    "results/previews/THANK_YOU_start.png",
+    "results/previews/THANK_YOU_middle.png",
+    "results/previews/THANK_YOU_end.png"
+  ],
+  "retained_development_failures": [
+    "motions/development_failures/THANK_YOU_v1",
+    "motions/development_failures/THANK_YOU_v2",
+    "motions/development_failures/THANK_YOU_v3",
+    "motions/development_failures/THANK_YOU_v4"
+  ]
+}

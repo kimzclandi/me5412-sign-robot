@@ -1,0 +1,4 @@
+{
+  "reason": "Robot bounds/couplings/collision tests passed, but source-video alignment review found fingertip proxy at least 8.6cm in front of head AABB; retained as previous stable fallback.",
+  "next_change": "One explicit geometry-based attempt: desired fingertip proxy [0.10,-0.02,1.20]m and derive palm target by subtracting the 0.17m longitudinal offset. Same constraints and thresholds."
+}

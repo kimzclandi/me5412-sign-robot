@@ -1,0 +1,4 @@
+{
+  "reason": "No collision violations, but joint-space interpolation makes fingertips arc upwards mid-action.",
+  "next_change": "Use intermediate Cartesian palm targets with a straight, slightly descending fingertip proxy and SLERP orientations."
+}

@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "status": "research_prototype_engineering_checks_passed_language_unreviewed",
+  "created_at_utc": "2026-10-08T14:23:08.252118+00:00",
+  "summary_zh": "143 项软件与轨迹测试通过；75 项资源/数据哈希检查通过。3 条候选轨迹可播放；2 个来源视频已观看校准；ASL 可理解性仍未验证。",
+  "checks": {
+    "pytest": {
+      "passed": true,
+      "tests": 143,
+      "report": "results/tests-final.txt"
+    },
+    "asset_hashes": {
+      "passed": true,
+      "checks": 75,
+      "report": "results/asset_verification.json"
+    },
+    "document_links": {
+      "checked": 5,
+      "missing": []
+    },
+    "python_compileall": "passed",
+    "git_diff_cached_check": "passed after staging all 105 project files; no remote configured"
+  },
+  "robot": {
+    "name": "Unitree G1 + Inspire DFQ",
+    "upstream_commit": "5994d4faef0a9cadd3287f8de0199a67eeb2a259",
+    "scalar_coordinates": 53,
+    "mimic_equalities": 12,
+    "actuators": 0,
+    "execution": "fixed-base kinematic replay",
+    "native_viewer": "HELLO opened and played to normal exit",
+    "trajectory_shapes": {
+      "HELLO": [
+        235,
+        53
+      ],
+      "THANK_YOU": [
+        241,
+        53
+      ],
+      "PLEASE_WAIT": [
+        256,
+        53
+      ]
+    },
+    "upstream_collision_geometry": "all stored frames checked; no penetration deeper than 1 mm; not full collision-safety validation"
+  },
+  "video_calibration": {
+    "report": "docs/video-calibration.md",
+    "actually_watched": [
+      "THANK_YOU",
+      "WAIT"
+    ],
+    "human_3d_tracking": false,
+    "action_model_training": false,
+    "robot_detail": "results/previews/THANK_YOU_calibration.json",
+    "asl_human_review": false,
+    "please_wait_full_expression_verified": false
+  },
+  "text_evaluation": {
+    "report": "results/evaluation/test-20261008T142047221403Z/summary.json",
+    "dataset_sha256": "83a4f5310f28f45a5cc2aeecf6660742c2bf93b0b0f99660ad08d6d02f2f4231",
+    "label_status": "agent_draft_unreviewed",
+    "n": 60,
+    "n_supported": 30,
+    "n_unsupported": 30,
+    "methods": {
+      "exact": {
+        "status": "completed",
+        "accuracy": {
+          "numerator": 38,
+          "denominator": 60,
+          "value": 0.6333333333333333
+        },
+        "supported_correct": {
+          "numerator": 8,
+          "denominator": 30,
+          "value": 0.26666666666666666
+        },
+        "supported_wrong_rejection": {
+          "numerator": 22,
+          "denominator": 30,
+          "value": 0.7333333333333333
+        },
+        "supported_wrong_execution": {
+          "numerator": 0,
+          "denominator": 30,
+          "value": 0.0
+        },
+        "unsupported_false_execution": {
+          "numerator": 0,
+          "denominator": 30,
+          "value": 0.0
+        },
+        "runtime_errors": {
+          "numerator": 0,
+          "denominator": 60,
+          "value": 0.0
+        },
+        "execution_path_counts": {
+          "exact_backend": 35,
+          "shared_guard": 25
+        }
+      },
+      "embedding": {
+        "status": "completed",
+        "accuracy": {
+          "numerator": 47,
+          "denominator": 60,
+          "value": 0.7833333333333333
+        },
+        "supported_correct": {
+          "numerator": 17,
+          "denominator": 30,
+          "value": 0.5666666666666667
+        },
+        "supported_wrong_rejection": {
+          "numerator": 13,
+          "denominator": 30,
+          "value": 0.43333333333333335
+        },
+        "supported_wrong_execution": {
+          "numerator": 0,
+          "denominator": 30,
+          "value": 0.0
+        },
+        "unsupported_false_execution": {
+          "numerator": 0,
+          "denominator": 30,
+          "value": 0.0
+        },
+        "runtime_errors": {
+          "numerator": 0,
+          "denominator": 60,
+          "value": 0.0
+        },
+        "execution_path_counts": {
+          "embedding_backend": 35,
+          "shared_guard": 25
+        }
+      },
+      "llm": {
+        "status": "completed",
+        "accuracy": {
+          "numerator": 48,
+          "denominator": 60,
+          "value": 0.8
+        },
+        "supported_correct": {
+          "numerator": 20,
+          "denominator": 30,
+          "value": 0.6666666666666666
+        },
+        "supported_wrong_rejection": {
+          "numerator": 7,
+          "denominator": 30,
+          "value": 0.23333333333333334
+        },
+        "supported_wrong_execution": {
+          "numerator": 1,
+          "denominator": 30,
+          "value": 0.03333333333333333
+        },
+        "unsupported_false_execution": {
+          "numerator": 2,
+          "denominator": 30,
+          "value": 0.06666666666666667
+        },
+        "runtime_errors": {
+          "numerator": 2,
+          "denominator": 60,
+          "value": 0.03333333333333333
+        },
+        "execution_path_counts": {
+          "llm_http_response": 35,
+          "shared_guard": 25
+        }
+      }
+    },
+    "all_methods_include_shared_guard": true,
+    "llm_actual_test_http_responses": 35,
+    "llm_readiness_requests": 1,
+    "configuration_and_dataset_unchanged_during_run": true,
+    "not_asl_comprehensibility_score": true
+  },
+  "llm": {
+    "default_enabled": false,
+    "default_config": "config/llm.json",
+    "research_config": "config/llm_experimental.json",
+    "research_model": "Existing local Qwen2-architecture 0.5B-class MLX Q8 checkpoint; prior tuning history not independently established",
+    "developer_gate": "3/3 required; v2 2/3 correct, not accepted",
+    "model_service_after_evaluation": "self-owned 127.0.0.1:5413 service stopped",
+    "result_interpretation": "48/60 overall does not establish superiority: 2/30 out-of-scope inputs returned execution, 1/30 supported selected wrong ID, and 2/30 supported returned invalid labels."
+  },
+  "retained_runs": [
+    {
+      "path": "results/evaluation/test-20261008T135255840626Z",
+      "reason": "first exact and embedding run; LLM not enabled"
+    },
+    {
+      "path": "results/evaluation/test-20261008T141909955017Z",
+      "reason": "restricted sandbox blocked loopback readiness; no final LLM questions called"
+    },
+    {
+      "path": "results/evaluation/test-20261008T142047221403Z",
+      "reason": "same frozen assets after loopback permission correction; true local LLM research comparison"
+    }
+  ],
+  "ui_checks": [
+    "Exact Thank you selects THANK_YOU; default review gate blocks playback",
+    "Explicit candidate flag enables real MuJoCo-rendered MP4",
+    "Real local MiniLM Many thanks selects THANK_YOU",
+    "Mixed intent rejected and previous playback cleared",
+    "All three phrase controls backed by stored trajectories and media"
+  ],
+  "screenshots": [
+    "results/ui/demo-detail.jpg",
+    "results/ui/demo.jpg",
+    "results/ui/rejection.jpg"
+  ],
+  "not_verified": [
+    "ASL fluent-user intelligibility",
+    "Complete polite PLEASE_WAIT request",
+    "Facial and head expression",
+    "Human 3D retargeting error",
+    "Actuator dynamics or hardware",
+    "Clinical efficacy or communication safety",
+    "Reproduction on a second computer"
+  ],
+  "source_hashes": {
+    "src/sign_robot/language.py": "87f091ff7974f463e3f80d0de5e020687bce663729845b949eb5092b6b1cb949",
+    "src/sign_robot/llm.py": "d91a4454301d1a372e3a364b4c5de83f49d46640d2288750c61aa7d89dd6aa34",
+    "src/sign_robot/pipeline.py": "86b150d61c79841a806357dd2fcda2348d72ba044e378a12be4dacb52e6aebb1",
+    "src/sign_robot/server.py": "2118c8f0f21d0d53256399d5aba3c86e8a2a81f5384b806d9e1abf40d0df19df",
+    "scripts/build_motions.py": "24b0df39f77be2d1345792647ce0029fb893b9e968a93f46831c219c3f4e2343",
+    "scripts/evaluate.py": "0f23f8cb10acab040d529b5529026390fb87ddeebe13121e628b9e005722ac72",
+    "scripts/fetch_embedding.py": "1f930deff527124f0277b4a04534cdf0cf49e702d5d9443caf7b9c168389d060",
+    "data/catalog.json": "024fda8da4b8409a3bee4100e4f4ff1c6a3eec027100775fceba15cb95a71523",
+    "data/source_manifest.json": "0e177a10a44d9f8b108bc935832e9a59989bfb8cfc2a44a52f92db78d44e9d9b",
+    "config/llm.json": "164bb95b517fe939401de14402fc70c2301078f6954e1636b8eba92f1cdad1ee",
+    "config/llm_experimental.json": "029a9a8cac30db39bee31c3c3dee2c8de8fd12c298875afa04317760189393b9"
+  }
+}

@@ -1,0 +1,370 @@
+{
+  "schema_version": 1,
+  "protocol": {
+    "protocol_version": "exploratory-agent-draft-v1",
+    "created_on": "2026-10-08",
+    "label_status": "agent_draft_unreviewed",
+    "human_reviewed": false,
+    "counts": {
+      "dev": 18,
+      "test": 60,
+      "test_supported": 30,
+      "test_unsupported": 30
+    },
+    "dev_sha256": "e33fc62e3280cbbf6b61578e99c5ca9a08c492139e683cec0178f2e500bfdf04",
+    "test_sha256": "83a4f5310f28f45a5cc2aeecf6660742c2bf93b0b0f99660ad08d6d02f2f4231",
+    "freeze_rule": "Final cases frozen before method execution; language implementer may inspect dev only. Keep failures; do not retune on final and call the rerun independent.",
+    "scope": "Text-to-candidate-ID selection only; excludes ASL intelligibility, clinical safety and robot playback approval.",
+    "latency": "One catalog-alias readiness/warmup call per method recorded separately; dataset calls measured end-to-end by the evaluator and include guards, selection and errors. Report median/P95/max. Local CPU scheduling can affect comparisons.",
+    "missing_backend": "Skip the whole method after an unguarded readiness call reports unavailable. Do not score guarded rows as LLM model results.",
+    "llm": "Disabled in the default evaluation; an explicitly requested existing local endpoint may be evaluated with --include-llm. No remote paid API."
+  },
+  "split": "test",
+  "dataset_sha256": "83a4f5310f28f45a5cc2aeecf6660742c2bf93b0b0f99660ad08d6d02f2f4231",
+  "started_at_utc": "20261008T135255840626Z",
+  "environment": {
+    "python": "3.12.14",
+    "system": "Darwin",
+    "machine": "arm64"
+  },
+  "source_hashes": {
+    "data/catalog.json": "024fda8da4b8409a3bee4100e4f4ff1c6a3eec027100775fceba15cb95a71523",
+    "data/source_manifest.json": "3896c3ea862047f97543325578c1a6de2b1b366a178acc257a0604e98612b06b",
+    "scripts/evaluate.py": "7cb412c5b7efc12c3e126fdba8ecc9ab2ff21f049eeb8ef3f98ca9fca0d36a4a",
+    "src/sign_robot/language.py": "f0a9a40be70ce1bdd0d55672f24b8fcdfc7cf4e8d24ecc2ffc54ca7333568e0f",
+    "src/sign_robot/llm.py": "010d49ebaad6fae164b88aa60c84391c3b1db06be84dd9db1e0394b26f4aaa14",
+    "src/sign_robot/contracts.py": "59192798bdfaa93541dc1a277594ebf44a494a64fe22a698c2f74de91da8b64f",
+    "config/embedding.json": "80a121725fa803c8eab2b1866cfda134c38c78fa545adfc2a437fa4dc5ad3230",
+    "config/llm.json": "164bb95b517fe939401de14402fc70c2301078f6954e1636b8eba92f1cdad1ee",
+    "config/embedding_download_manifest.json": "bf2a0a3e87e40e27154bcae9eddac6ed3c3051760ee062467e53b8e5b7ee26fd"
+  },
+  "methods": {
+    "exact": {
+      "status": "completed",
+      "readiness": {
+        "status": "execute",
+        "action_id": "HELLO",
+        "reason_code": "exact_alias",
+        "method": "exact",
+        "latency_ms": 0.326
+      },
+      "readiness_wall_ms": 0.33025000084307976,
+      "metrics": {
+        "n": 60,
+        "n_supported": 30,
+        "n_unsupported": 30,
+        "accuracy": {
+          "numerator": 38,
+          "denominator": 60,
+          "value": 0.6333333333333333
+        },
+        "supported_correct_selection_rate": {
+          "numerator": 8,
+          "denominator": 30,
+          "value": 0.26666666666666666
+        },
+        "supported_wrong_rejection_rate": {
+          "numerator": 22,
+          "denominator": 30,
+          "value": 0.7333333333333333
+        },
+        "supported_wrong_execution_rate": {
+          "numerator": 0,
+          "denominator": 30,
+          "value": 0.0
+        },
+        "unsupported_false_execution_rate": {
+          "numerator": 0,
+          "denominator": 30,
+          "value": 0.0
+        },
+        "execution_coverage": {
+          "numerator": 8,
+          "denominator": 60,
+          "value": 0.13333333333333333
+        },
+        "execution_precision": {
+          "numerator": 8,
+          "denominator": 8,
+          "value": 1.0
+        },
+        "runtime_error_rate": {
+          "numerator": 0,
+          "denominator": 60,
+          "value": 0.0
+        },
+        "strict_status_match_rate": {
+          "numerator": 32,
+          "denominator": 60,
+          "value": 0.5333333333333333
+        },
+        "latency_ms": {
+          "median": 0.007562499376945198,
+          "p95_nearest_rank": 0.014165998436510563,
+          "max": 0.1122089997807052
+        },
+        "confusion": {
+          "HELLO": {
+            "HELLO": 2,
+            "REJECT": 8
+          },
+          "THANK_YOU": {
+            "THANK_YOU": 3,
+            "REJECT": 7
+          },
+          "PLEASE_WAIT": {
+            "PLEASE_WAIT": 3,
+            "REJECT": 7
+          },
+          "REJECT": {
+            "REJECT": 30
+          }
+        },
+        "by_category": {
+          "canonical": {
+            "total": 8,
+            "correct": 8
+          },
+          "paraphrase": {
+            "total": 22,
+            "correct": 0
+          },
+          "negation": {
+            "total": 4,
+            "correct": 4
+          },
+          "decline": {
+            "total": 1,
+            "correct": 1
+          },
+          "sarcasm": {
+            "total": 1,
+            "correct": 1
+          },
+          "role": {
+            "total": 1,
+            "correct": 1
+          },
+          "third_party": {
+            "total": 2,
+            "correct": 2
+          },
+          "reported": {
+            "total": 2,
+            "correct": 2
+          },
+          "metalinguistic": {
+            "total": 1,
+            "correct": 1
+          },
+          "qualified_wait": {
+            "total": 4,
+            "correct": 4
+          },
+          "mixed_intent": {
+            "total": 5,
+            "correct": 5
+          },
+          "clinical": {
+            "total": 4,
+            "correct": 4
+          },
+          "out_of_scope": {
+            "total": 2,
+            "correct": 2
+          },
+          "ambiguous": {
+            "total": 2,
+            "correct": 2
+          },
+          "conditional": {
+            "total": 1,
+            "correct": 1
+          }
+        },
+        "reason_counts": {
+          "exact_alias": 8,
+          "no_exact_alias": 27,
+          "reported_or_metalinguistic": 4,
+          "qualified_wait_out_of_scope": 5,
+          "negated_or_declining": 6,
+          "waiting_role_mismatch": 1,
+          "multiple_or_compound_intents": 4,
+          "clinical_content_out_of_scope": 4,
+          "conditional_input": 1
+        },
+        "method_interpretation": "Whole selector including shared heuristic guard; not isolated model quality."
+      }
+    },
+    "embedding": {
+      "status": "completed",
+      "readiness": {
+        "status": "execute",
+        "action_id": "HELLO",
+        "reason_code": "embedding_match",
+        "method": "embedding",
+        "latency_ms": 2430.74
+      },
+      "readiness_wall_ms": 2430.7508329984557,
+      "metrics": {
+        "n": 60,
+        "n_supported": 30,
+        "n_unsupported": 30,
+        "accuracy": {
+          "numerator": 47,
+          "denominator": 60,
+          "value": 0.7833333333333333
+        },
+        "supported_correct_selection_rate": {
+          "numerator": 17,
+          "denominator": 30,
+          "value": 0.5666666666666667
+        },
+        "supported_wrong_rejection_rate": {
+          "numerator": 13,
+          "denominator": 30,
+          "value": 0.43333333333333335
+        },
+        "supported_wrong_execution_rate": {
+          "numerator": 0,
+          "denominator": 30,
+          "value": 0.0
+        },
+        "unsupported_false_execution_rate": {
+          "numerator": 0,
+          "denominator": 30,
+          "value": 0.0
+        },
+        "execution_coverage": {
+          "numerator": 17,
+          "denominator": 60,
+          "value": 0.2833333333333333
+        },
+        "execution_precision": {
+          "numerator": 17,
+          "denominator": 17,
+          "value": 1.0
+        },
+        "runtime_error_rate": {
+          "numerator": 0,
+          "denominator": 60,
+          "value": 0.0
+        },
+        "strict_status_match_rate": {
+          "numerator": 41,
+          "denominator": 60,
+          "value": 0.6833333333333333
+        },
+        "latency_ms": {
+          "median": 3.2398960011050804,
+          "p95_nearest_rank": 3.759333998459624,
+          "max": 4.372416999103734
+        },
+        "confusion": {
+          "HELLO": {
+            "HELLO": 7,
+            "REJECT": 3
+          },
+          "THANK_YOU": {
+            "THANK_YOU": 4,
+            "REJECT": 6
+          },
+          "PLEASE_WAIT": {
+            "PLEASE_WAIT": 6,
+            "REJECT": 4
+          },
+          "REJECT": {
+            "REJECT": 30
+          }
+        },
+        "by_category": {
+          "canonical": {
+            "total": 8,
+            "correct": 8
+          },
+          "paraphrase": {
+            "total": 22,
+            "correct": 9
+          },
+          "negation": {
+            "total": 4,
+            "correct": 4
+          },
+          "decline": {
+            "total": 1,
+            "correct": 1
+          },
+          "sarcasm": {
+            "total": 1,
+            "correct": 1
+          },
+          "role": {
+            "total": 1,
+            "correct": 1
+          },
+          "third_party": {
+            "total": 2,
+            "correct": 2
+          },
+          "reported": {
+            "total": 2,
+            "correct": 2
+          },
+          "metalinguistic": {
+            "total": 1,
+            "correct": 1
+          },
+          "qualified_wait": {
+            "total": 4,
+            "correct": 4
+          },
+          "mixed_intent": {
+            "total": 5,
+            "correct": 5
+          },
+          "clinical": {
+            "total": 4,
+            "correct": 4
+          },
+          "out_of_scope": {
+            "total": 2,
+            "correct": 2
+          },
+          "ambiguous": {
+            "total": 2,
+            "correct": 2
+          },
+          "conditional": {
+            "total": 1,
+            "correct": 1
+          }
+        },
+        "reason_counts": {
+          "embedding_match": 17,
+          "embedding_below_threshold": 18,
+          "reported_or_metalinguistic": 4,
+          "qualified_wait_out_of_scope": 5,
+          "negated_or_declining": 6,
+          "waiting_role_mismatch": 1,
+          "multiple_or_compound_intents": 4,
+          "clinical_content_out_of_scope": 4,
+          "conditional_input": 1
+        },
+        "method_interpretation": "Whole selector including shared heuristic guard; not isolated model quality."
+      }
+    },
+    "llm": {
+      "status": "not_run",
+      "reason": "llm_not_enabled",
+      "metrics": null
+    }
+  },
+  "limitations": [
+    "Agent-written labels; not human-reviewed or population-representative.",
+    "Selection of candidate IDs only; no ASL or clinical validation.",
+    "Same heuristic guard precedes all methods; results include its behavior.",
+    "Readiness/cold loading reported separately from warm dataset calls."
+  ],
+  "sources_unchanged_during_run": true,
+  "dataset_unchanged_during_run": true
+}

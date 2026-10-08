@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-08",
+  "timezone": "Asia/Singapore",
+  "review_kind": "agent_reading_and_video_frame_observation_not_human_ASL_review",
+  "sources": [
+    {
+      "source_id": "lifeprint_hello",
+      "title": "ASL University: hello",
+      "author": "William Vicars / ASL University",
+      "url": "https://www.lifeprint.com/asl101/pages-signs/h/hello.htm",
+      "accessed_on": "2026-10-08",
+      "scope": "lexical_greeting_example",
+      "access": "public_html",
+      "evidence_observed": [
+        "instructional_text"
+      ],
+      "demonstration_notes_zh": "文字说明支持自然的侧向左右挥手作为问候，并区分上下 flutter 的 hey。本次未从页面读取到正式数值或掌向参数。",
+      "handshape": "natural open-hand wave; numeric finger configuration unspecified",
+      "palm_orientation": "not explicitly fixed in the inspected text; implementation choice requires review",
+      "location": "hand in visible greeting space; exact height unspecified",
+      "movement": "side-to-side sweep",
+      "nonmanual": "not established by inspected text; natural greeting expression still requires review",
+      "complete_expression_status": "standalone_greeting_candidate_not_expert_reviewed",
+      "usage": {
+        "url": "https://www.lifeprint.com/asl101/pages-layout/permission.htm",
+        "accessed_on": "2026-10-08",
+        "summary_zh": "允许链接与自学；未经专项许可不得将其图片、视频、课程材料复制或嵌入公开应用。当前仅保存来源链接和本项目自写的简要观察，不包含原图片/视频。机器人动作是本项目人工工程近似，不是取得授权的原始动作数据或专家背书。",
+        "copied_media": false,
+        "permission_requested": false,
+        "public_media_redistribution_authorized": false
+      }
+    },
+    {
+      "source_id": "lifeprint_thank_you",
+      "title": "ASL University: Thank you",
+      "author": "William Vicars / ASL University",
+      "url": "https://www.lifeprint.com/asl101/pages-signs/t/thankyou.htm",
+      "accessed_on": "2026-10-08",
+      "scope": "lexical_gratitude_example",
+      "access": "public_html_and_inline_images",
+      "evidence_observed": [
+        "instructional_text",
+        "browser_screenshot_of_animated_image_end_pose",
+        "illustrated_path",
+        "CUA_browser_video_playback_and_paused_frame_inspection"
+      ],
+      "video_watched": true,
+      "demonstration_video_url": "https://www.youtube.com/watch?v=2W0BDFUjsG0",
+      "demonstration_notes_zh": "主手平掌，指尖从近唇处向接收者前伸并略向下；实际图片末姿可见掌面朝上。源说明提及微笑，并提醒与 GOOD 不同。",
+      "handshape": "dominant flat hand",
+      "palm_orientation": "Start palm toward signer observed near 0.916-1.016 s; palm up at 1.516 s; exact 3D rotation remains an engineering approximation.",
+      "location": "fingers initially near lips",
+      "movement": "forward toward addressee with slight downward component",
+      "nonmanual": "smile mentioned by author; mechanical model does not validate this component",
+      "complete_expression_status": "standalone_gratitude_candidate_not_expert_reviewed",
+      "usage": {
+        "url": "https://www.lifeprint.com/asl101/pages-layout/permission.htm",
+        "accessed_on": "2026-10-08",
+        "summary_zh": "允许链接与自学；未经专项许可不得将其图片、视频、课程材料复制或嵌入公开应用。当前仅保存来源链接和本项目自写的简要观察，不包含原图片/视频。机器人动作是本项目人工工程近似，不是取得授权的原始动作数据或专家背书。",
+        "copied_media": false,
+        "permission_requested": false,
+        "public_media_redistribution_authorized": false
+      },
+      "video_observation": {
+        "observed_on": "2026-10-08",
+        "method": "Official ASLU page YouTube embed played at 0.25x; page frame-step buttons used; video DOM currentTime read alongside paused screenshots.",
+        "duration_s": 2.341,
+        "playback_completed": true,
+        "sampled_observations": [
+          {
+            "time_s": 0.382966,
+            "observation_zh": "准备状态，手在下方。"
+          },
+          {
+            "time_s": 0.716299,
+            "observation_zh": "主手向下脸抬起，指尖近下巴。"
+          },
+          {
+            "time_s": 0.916299,
+            "observation_zh": "指尖近唇，手背朝观察者，掌面朝签者自身。"
+          },
+          {
+            "time_s": 1.016299,
+            "observation_zh": "仍在近唇位置；起始掌面朝内。"
+          },
+          {
+            "time_s": 1.049633,
+            "observation_zh": "手离开口部向前，手指仍较竖。"
+          },
+          {
+            "time_s": 1.116299,
+            "observation_zh": "手向前并略下，掌面开始朝上。"
+          },
+          {
+            "time_s": 1.516299,
+            "observation_zh": "前伸终姿，平掌朝上，指尖朝接收者。"
+          },
+          {
+            "time_s": 1.982966,
+            "observation_zh": "表达完成后手收回下垂。"
+          }
+        ],
+        "precision_limit": "Browser sample times, not independently decoded frame timestamps; qualitative monocular observations only, no calibrated human 3D joints or ASL expert review.",
+        "media_downloaded": false,
+        "media_redistributed": false,
+        "report": "docs/video-calibration.md"
+      }
+    },
+    {
+      "source_id": "lifeprint_wait",
+      "title": "ASL University: WAIT",
+      "author": "William Vicars / ASL University",
+      "url": "https://www.lifeprint.com/asl101/pages-signs/w/wait.htm",
+      "accessed_on": "2026-10-08",
+      "scope": "lexical_wait_example_not_complete_please_wait_request",
+      "access": "public_html_and_inline_images",
+      "evidence_observed": [
+        "instructional_text",
+        "browser_screenshot_of_consecutive_demonstration_photos",
+        "CUA_browser_video_playback_and_paused_frame_inspection"
+      ],
+      "video_watched": true,
+      "demonstration_video_url": "https://www.youtube.com/watch?v=YfwgS9ZsBVw",
+      "demonstration_notes_zh": "文字要求双手抬起略偏侧并摆动手指。实际连续照片可见双掌朝上或斜上、手指张开与交替屈伸，一侧手可略高。该词例不证明完整 PLEASE_WAIT 礼貌请求。",
+      "handshape": "open spread fingers with finger wiggle",
+      "palm_orientation": "up/obliquely up observed in photos",
+      "location": "raised in front and somewhat to the side; unequal heights observed",
+      "movement": "finger articulation; not a whole-hand repeated fist",
+      "nonmanual": "request pragmatics and politeness not verified from this lexical sample",
+      "complete_expression_status": "complete_request_unverified",
+      "usage": {
+        "url": "https://www.lifeprint.com/asl101/pages-layout/permission.htm",
+        "accessed_on": "2026-10-08",
+        "summary_zh": "允许链接与自学；未经专项许可不得将其图片、视频、课程材料复制或嵌入公开应用。当前仅保存来源链接和本项目自写的简要观察，不包含原图片/视频。机器人动作是本项目人工工程近似，不是取得授权的原始动作数据或专家背书。",
+        "copied_media": false,
+        "permission_requested": false,
+        "public_media_redistribution_authorized": false
+      },
+      "video_observation": {
+        "observed_on": "2026-10-08",
+        "method": "Official ASLU page YouTube embed played at 0.25x; page frame-step buttons used; video DOM currentTime read alongside paused screenshots.",
+        "duration_s": 2.301,
+        "playback_completed": true,
+        "sampled_observations": [
+          {
+            "time_s": 0.543993,
+            "observation_zh": "双手准备抬起。"
+          },
+          {
+            "time_s": 0.943993,
+            "observation_zh": "双掌朝上或斜上，签者左手偏侧较高，右手前方较低。"
+          },
+          {
+            "time_s": 1.143993,
+            "observation_zh": "掌位置总体相近，手指屈伸状态变化。"
+          },
+          {
+            "time_s": 1.343993,
+            "observation_zh": "连续手指屈伸可见，不是整手全握拳。"
+          },
+          {
+            "time_s": 1.943993,
+            "observation_zh": "表达后双手已收回。"
+          }
+        ],
+        "precision_limit": "Browser sample times, not independently decoded frame timestamps; qualitative monocular observations only, no calibrated human 3D joints or ASL expert review.",
+        "media_downloaded": false,
+        "media_redistributed": false,
+        "report": "docs/video-calibration.md"
+      }
+    },
+    {
+      "source_id": "lifeprint_please",
+      "title": "ASL University: please",
+      "author": "William Vicars / ASL University",
+      "url": "https://www.lifeprint.com/asl101/pages-signs/p/please.htm",
+      "accessed_on": "2026-10-08",
+      "scope": "lexical_please_and_pragmatics_notes_not_complete_please_wait_request",
+      "access": "public_html",
+      "evidence_observed": [
+        "instructional_text"
+      ],
+      "video_watched": false,
+      "demonstration_video_url": "https://youtu.be/rnb9FxPO7is",
+      "demonstration_notes_zh": "主手平掌在胸中央作圆周。作者讨论 PLEASE 的语境、表情和句末附加用法；不能仅按英文先 PLEASE 后 WAIT 拼接并声称语法已核验。",
+      "handshape": "dominant flat hand",
+      "palm_orientation": "toward chest as indicated by placement",
+      "location": "center of chest",
+      "movement": "circular; author describes observer-clockwise direction",
+      "nonmanual": "facial expression and pragmatic context discussed as important",
+      "complete_expression_status": "complete_request_unverified",
+      "usage": {
+        "url": "https://www.lifeprint.com/asl101/pages-layout/permission.htm",
+        "accessed_on": "2026-10-08",
+        "summary_zh": "允许链接与自学；未经专项许可不得将其图片、视频、课程材料复制或嵌入公开应用。当前仅保存来源链接和本项目自写的简要观察，不包含原图片/视频。机器人动作是本项目人工工程近似，不是取得授权的原始动作数据或专家背书。",
+        "copied_media": false,
+        "permission_requested": false,
+        "public_media_redistribution_authorized": false
+      }
+    }
+  ],
+  "global_limits": [
+    "No ASL-fluent human has reviewed the robot trajectories.",
+    "No downloaded human motion file or motion-capture data is claimed.",
+    "HELLO and THANK_YOU are lexical examples usable as candidate standalone acts, not proof of general sentence translation.",
+    "PLEASE_WAIT currently has lexical WAIT/PLEASE references only; phrase semantics and politeness remain unverified.",
+    "All authored robot coordinates, timing and interpolation are engineering approximations."
+  ],
+  "evaluation": {
+    "protocol_version": "exploratory-agent-draft-v1",
+    "created_on": "2026-10-08",
+    "label_status": "agent_draft_unreviewed",
+    "human_reviewed": false,
+    "counts": {
+      "dev": 18,
+      "test": 60,
+      "test_supported": 30,
+      "test_unsupported": 30
+    },
+    "dev_sha256": "e33fc62e3280cbbf6b61578e99c5ca9a08c492139e683cec0178f2e500bfdf04",
+    "test_sha256": "83a4f5310f28f45a5cc2aeecf6660742c2bf93b0b0f99660ad08d6d02f2f4231",
+    "freeze_rule": "Final cases frozen before method execution; language implementer may inspect dev only. Keep failures; do not retune on final and call the rerun independent.",
+    "scope": "Text-to-candidate-ID selection only; excludes ASL intelligibility, clinical safety and robot playback approval.",
+    "latency": "One catalog-alias readiness/warmup call per method recorded separately; dataset calls measured end-to-end by the evaluator and include guards, selection and errors. Report median/P95/max. Local CPU scheduling can affect comparisons.",
+    "missing_backend": "Skip the whole method after an unguarded readiness call reports unavailable. Do not score guarded rows as LLM model results.",
+    "llm": "Disabled in the default evaluation; an explicitly requested existing local endpoint may be evaluated with --include-llm. No remote paid API."
+  }
+}

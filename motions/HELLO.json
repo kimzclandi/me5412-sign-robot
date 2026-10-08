@@ -1,0 +1,73 @@
+{
+  "action_id": "HELLO",
+  "schema_version": 1,
+  "robot": "Unitree G1 + Inspire DFQ",
+  "robot_commit": "5994d4faef0a9cadd3287f8de0199a67eeb2a259",
+  "scene_sha256": "42fa55e694045a561e0b804de40a4312f27f0576a58f93ecc87101863a214e95",
+  "source_ids": [
+    "lifeprint_hello"
+  ],
+  "creation_method": "Agent-authored manual wrist keyframes, bounded numerical IK, smoothstep interpolation, coupled fingers",
+  "input_data": "Manual engineering targets informed by cited visual/text references; no human motion extraction",
+  "description": "Raised open right hand with lateral wave; candidate greeting",
+  "execution_mode": "kinematic_qpos_replay",
+  "asl_reviewed": false,
+  "language_validation": "unreviewed",
+  "clinical_use": false,
+  "duration_s": 7.8,
+  "fps": 30,
+  "joint_limit_check_passed": true,
+  "max_mimic_error_rad": 0.0,
+  "max_joint_speed_rad_s": 0.955895411977373,
+  "keyframe_ik": [
+    {
+      "label": "HELLO_raise",
+      "side": "right",
+      "target_position_m": [
+        0.19,
+        -0.27,
+        1.13
+      ],
+      "position_error_m": 9.794687329639758e-07,
+      "orientation_error_rad": 1.1348040295256923e-05
+    },
+    {
+      "label": "HELLO_wave_out",
+      "side": "right",
+      "target_position_m": [
+        0.19,
+        -0.35,
+        1.13
+      ],
+      "position_error_m": 2.7214894719431692e-06,
+      "orientation_error_rad": 9.507166519902978e-06
+    },
+    {
+      "label": "HELLO_wave_in",
+      "side": "right",
+      "target_position_m": [
+        0.19,
+        -0.23,
+        1.13
+      ],
+      "position_error_m": 3.030797392218961e-06,
+      "orientation_error_rad": 1.1557286126613198e-05
+    }
+  ],
+  "limitations": [
+    "Hand cannot independently abduct fingers; natural human spreading not reproduced",
+    "Facial expression and head motion are absent",
+    "Joint limits and mimic relations checked; no dynamic tracking, torque, or collision-safety claim",
+    "Unreviewed approximation: human ASL comprehensibility has not been tested"
+  ],
+  "validation_status": {
+    "numeric_structure": "passed",
+    "joint_limits": "passed",
+    "mimic_couplings": "passed",
+    "dynamics": "not_run",
+    "collision_review": "no_penetrations_below_1mm_in_upstream_collision_geoms",
+    "asl_comprehensibility": "not_reviewed",
+    "rendered_frames": 235
+  },
+  "render_report": "results/previews/HELLO_render_report.json"
+}

@@ -1,0 +1,4 @@
+{
+  "reason": "No collision-geometry penetration, but start-frame visual QA found fingertips too high near forehead rather than lower face; palm direction needs source-informed correction.",
+  "next_change": "Lower start wrist and turn start palm toward signer; keep the complete candidate unreviewed."
+}

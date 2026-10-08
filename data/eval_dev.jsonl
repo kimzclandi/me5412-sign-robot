@@ -1,0 +1,18 @@
+{"case_id":"dev-001","split":"dev","text":"hello","expected_action_id":"HELLO","expected_status":"execute","category":"canonical","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-002","split":"dev","text":"Hey there!","expected_action_id":"HELLO","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-003","split":"dev","text":"Greetings!","expected_action_id":"HELLO","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-004","split":"dev","text":"thanks","expected_action_id":"THANK_YOU","expected_status":"execute","category":"canonical","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-005","split":"dev","text":"I appreciate it.","expected_action_id":"THANK_YOU","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-006","split":"dev","text":"Many thanks to you.","expected_action_id":"THANK_YOU","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-007","split":"dev","text":"please wait","expected_action_id":"PLEASE_WAIT","expected_status":"execute","category":"canonical","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-008","split":"dev","text":"Could you wait a moment?","expected_action_id":"PLEASE_WAIT","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-009","split":"dev","text":"Please hold on briefly.","expected_action_id":"PLEASE_WAIT","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-010","split":"dev","text":"Don't say hello.","expected_action_id":null,"expected_status":"unsupported","category":"negation","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-011","split":"dev","text":"No, thank you.","expected_action_id":null,"expected_status":"unsupported","category":"decline","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-012","split":"dev","text":"I will wait.","expected_action_id":null,"expected_status":"unsupported","category":"role","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-013","split":"dev","text":"Please wait in room five.","expected_action_id":null,"expected_status":"unsupported","category":"qualified_wait","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-014","split":"dev","text":"Hello and take this pill.","expected_action_id":null,"expected_status":"unsupported","category":"mixed_intent","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-015","split":"dev","text":"What is my diagnosis?","expected_action_id":null,"expected_status":"unsupported","category":"clinical","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-016","split":"dev","text":"Say thanks to the nurse for me.","expected_action_id":null,"expected_status":"unsupported","category":"third_party","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-017","split":"dev","text":"Maybe hello or maybe thank you.","expected_action_id":null,"expected_status":"clarify","category":"ambiguous","label_status":"agent_draft_unreviewed"}
+{"case_id":"dev-018","split":"dev","text":"The nurse said 'please wait'.","expected_action_id":null,"expected_status":"unsupported","category":"reported","label_status":"agent_draft_unreviewed"}

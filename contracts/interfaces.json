@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "ids": ["HELLO", "THANK_YOU", "PLEASE_WAIT"],
+  "selection": {
+    "status": "execute|clarify|unsupported|error",
+    "action_id": "legal catalog ID for execute; null otherwise",
+    "reason_code": "short machine-readable reason",
+    "method": "exact|embedding|llm",
+    "latency_ms": "nonnegative number"
+  },
+  "motion": {
+    "timestamps_s": "float array [T], strictly increasing, seconds",
+    "joint_names": "unicode array [J], explicit named scalar joints",
+    "positions": "finite float array [T,J], radians for hinge joints",
+    "metadata": "separate JSON; robot version, source IDs, creation method, validation status"
+  },
+  "language_api": "sign_robot.language.select_action(text, method='exact', catalog=None) -> dict",
+  "motion_files": "motions/<ACTION_ID>.npz and motions/<ACTION_ID>.json",
+  "preview_files": "results/previews/<ACTION_ID>.mp4 and <ACTION_ID>.png",
+  "review_rule": "No candidate is ASL-reviewed until an actual reviewer supplies evidence; pipeline preview requires an explicit preview flag."
+}

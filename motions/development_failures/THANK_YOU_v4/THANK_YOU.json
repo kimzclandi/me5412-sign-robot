@@ -1,0 +1,63 @@
+{
+  "action_id": "THANK_YOU",
+  "schema_version": 1,
+  "robot": "Unitree G1 + Inspire DFQ",
+  "robot_commit": "5994d4faef0a9cadd3287f8de0199a67eeb2a259",
+  "scene_sha256": "42fa55e694045a561e0b804de40a4312f27f0576a58f93ecc87101863a214e95",
+  "source_ids": [
+    "lifeprint_thank_you"
+  ],
+  "creation_method": "Agent-authored manual wrist keyframes, bounded numerical IK, smoothstep interpolation, coupled fingers",
+  "input_data": "Manual engineering targets informed by cited visual/text references; no human motion extraction",
+  "description": "Flat right hand moves from near mouth forward, ending palm-up; candidate thanks",
+  "execution_mode": "kinematic_qpos_replay",
+  "asl_reviewed": false,
+  "language_validation": "unreviewed",
+  "clinical_use": false,
+  "duration_s": 8.0,
+  "fps": 30,
+  "joint_limit_check_passed": true,
+  "max_mimic_error_rad": 0.0,
+  "max_joint_speed_rad_s": 2.050947033453215,
+  "keyframe_ik": [
+    {
+      "label": "THANK_YOU_near_face",
+      "side": "right",
+      "target_position_m": [
+        0.23,
+        -0.15,
+        1.03
+      ],
+      "position_error_m": 0.0060601523086042455,
+      "orientation_error_rad": 0.027940100940595444
+    },
+    {
+      "label": "THANK_YOU_outward",
+      "side": "right",
+      "target_position_m": [
+        0.34,
+        -0.04,
+        1.08
+      ],
+      "position_error_m": 5.966057637119916e-06,
+      "orientation_error_rad": 3.421612299925661e-05
+    }
+  ],
+  "limitations": [
+    "No actual lip contact; robot geometry differs from human anatomy",
+    "Smile from source is absent",
+    "Facial expression and head motion are absent",
+    "Joint limits and mimic relations checked; no dynamic tracking, torque, or collision-safety claim",
+    "Unreviewed approximation: human ASL comprehensibility has not been tested"
+  ],
+  "validation_status": {
+    "numeric_structure": "passed",
+    "joint_limits": "passed",
+    "mimic_couplings": "passed",
+    "dynamics": "not_run",
+    "collision_review": "no_penetrations_below_1mm_in_upstream_collision_geoms",
+    "asl_comprehensibility": "not_reviewed",
+    "rendered_frames": 241
+  },
+  "render_report": "results/previews/THANK_YOU_render_report.json"
+}

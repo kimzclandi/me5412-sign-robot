@@ -1,0 +1,6 @@
+{
+  "python": "/absolute/path/to/existing/mlx-environment/bin/python",
+  "model_path": "/absolute/path/to/existing/local-mlx-model",
+  "expected_model_sha256": "replace-with-the-actual-model-safetensors-sha256",
+  "note": "Copy to local_runtime.json and set existing local paths. The launcher does not install or download anything."
+}

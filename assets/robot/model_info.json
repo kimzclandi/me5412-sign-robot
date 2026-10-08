@@ -1,0 +1,95 @@
+{
+  "model": "Unitree G1 + Inspire DFQ",
+  "mujoco_version": "3.15.0",
+  "nq": 53,
+  "nv": 53,
+  "nu": 0,
+  "equality_constraints": 12,
+  "couplings": [
+    {
+      "child": "L_thumb_intermediate_joint",
+      "parent": "L_thumb_proximal_pitch_joint",
+      "multiplier": 1.6,
+      "offset": 0.0
+    },
+    {
+      "child": "L_thumb_distal_joint",
+      "parent": "L_thumb_proximal_pitch_joint",
+      "multiplier": 2.4,
+      "offset": 0.0
+    },
+    {
+      "child": "L_index_intermediate_joint",
+      "parent": "L_index_proximal_joint",
+      "multiplier": 1.0,
+      "offset": 0.0
+    },
+    {
+      "child": "L_middle_intermediate_joint",
+      "parent": "L_middle_proximal_joint",
+      "multiplier": 1.0,
+      "offset": 0.0
+    },
+    {
+      "child": "L_ring_intermediate_joint",
+      "parent": "L_ring_proximal_joint",
+      "multiplier": 1.0,
+      "offset": 0.0
+    },
+    {
+      "child": "L_pinky_intermediate_joint",
+      "parent": "L_pinky_proximal_joint",
+      "multiplier": 1.0,
+      "offset": 0.0
+    },
+    {
+      "child": "R_thumb_intermediate_joint",
+      "parent": "R_thumb_proximal_pitch_joint",
+      "multiplier": 1.6,
+      "offset": 0.0
+    },
+    {
+      "child": "R_thumb_distal_joint",
+      "parent": "R_thumb_proximal_pitch_joint",
+      "multiplier": 2.4,
+      "offset": 0.0
+    },
+    {
+      "child": "R_index_intermediate_joint",
+      "parent": "R_index_proximal_joint",
+      "multiplier": 1.0,
+      "offset": 0.0
+    },
+    {
+      "child": "R_middle_intermediate_joint",
+      "parent": "R_middle_proximal_joint",
+      "multiplier": 1.0,
+      "offset": 0.0
+    },
+    {
+      "child": "R_ring_intermediate_joint",
+      "parent": "R_ring_proximal_joint",
+      "multiplier": 1.0,
+      "offset": 0.0
+    },
+    {
+      "child": "R_pinky_intermediate_joint",
+      "parent": "R_pinky_proximal_joint",
+      "multiplier": 1.0,
+      "offset": 0.0
+    }
+  ],
+  "fixed_base": true,
+  "execution_mode": "kinematic_qpos_replay",
+  "adaptations": [
+    "Relative mesh path repair",
+    "Fixed mount at z=0.79m",
+    "Lighting, floor, palm reference sites"
+  ],
+  "limitations": [
+    "No actuator controller; no dynamics or real-robot feasibility claim",
+    "Leg and waist positions held constant in trajectories",
+    "No moving facial expression; head is fixed",
+    "All 12 upstream mimic equalities preserved and replay explicitly obeys their equations"
+  ]
+}

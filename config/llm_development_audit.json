@@ -1,0 +1,18 @@
+{
+  "old_model_files_unchanged": {
+    "config.json": true,
+    "model.safetensors": true,
+    "model.safetensors.index.json": true,
+    "tokenizer.json": true,
+    "tokenizer_config.json": true,
+    "chat_template.jinja": true,
+    "conversion-provenance.json": true
+  },
+  "all_unchanged": true,
+  "v1": "config/llm_local_feasibility_v1.json",
+  "v2": "config/llm_local_feasibility_v2_label.json",
+  "v1_result": "3 invalid JSON responses, no action IDs",
+  "v2_result": "3 valid labels; 2 correct actions; PLEASE_WAIT falsely clarified",
+  "no_post_test_tuning": true,
+  "notes": "Only the three public developer positives were requested once per authorized output-schema version. Existing server remains running at 127.0.0.1:5413. No held-out evaluation was read."
+}

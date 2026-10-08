@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ME5412 机器人手语表达实验台</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+  <header><a class="brand" href="/">ME5412 <span>ROBOTICS FOR HEALTHCARE</span></a><span class="local"><i></i> 本地仿真研究</span></header>
+  <main>
+    <div class="intro"><div><p class="eyebrow">TEXT TO ROBOT EXPRESSION</p><h1>文字到机器人表达</h1><p class="subtitle">从有限含义到可重复的动作，分别检查选择、执行与理解。</p></div><div class="scope"><strong>03</strong><span>候选表达<br>ASL 使用者评审待完成</span></div></div>
+    <nav aria-label="页面内容"><button class="tab active" data-tab="demo">交互演示</button><button class="tab" data-tab="evidence">验收与边界</button><button class="tab" data-tab="team">六人协作</button></nav>
+    <section id="demo" class="tab-panel">
+      <div class="workspace">
+        <div class="input-pane">
+          <div class="section-top"><span class="step">01</span><h2>选择要表达的含义</h2></div>
+          <label for="text">英文输入</label><textarea id="text" maxlength="1000" spellcheck="false" placeholder="例如：Thank you.">Thank you.</textarea>
+          <div class="method-label">理解方法 <span>共用同一动作目录</span></div>
+          <div class="methods" role="group" aria-label="理解方法"><button class="method selected" data-method="exact"><b>固定匹配</b><small>登记短语</small></button><button class="method" data-method="embedding"><b>语义匹配</b><small>本地 embedding</small></button><button class="method" data-method="llm"><b>大模型</b><small>需本地服务</small></button></div>
+          <label class="preview-consent"><input type="checkbox" id="preview"><span>允许研究预览<strong>候选动作尚未经 ASL 使用者验证</strong></span></label>
+          <button id="submit" class="primary">理解并选择动作 <span>→</span></button>
+          <div class="divider"></div>
+          <div class="method-label">直接选择短语 <span>独立检查动作播放</span></div><div id="phrase-buttons" class="phrase-buttons"></div>
+          <div class="examples"><span>试试边界输入</span><button data-example="I do not want to wait.">否定句</button><button data-example="Please wait and take two pills.">混合意图</button><button data-example="Where is the pharmacy?">库外内容</button></div>
+        </div>
+        <div class="motion-pane">
+          <div class="section-top"><span class="step">02</span><h2>机器人动作</h2><span class="mode-tag">MuJoCo · 运动学预渲染</span></div>
+          <div class="viewer"><video id="video" controls playsinline preload="metadata" aria-label="机器人候选动作预览"></video><div id="empty-view"><div class="pose-icon">↗</div><strong>等待选择动作</strong><p>播放前需要允许候选动作研究预览</p></div></div>
+          <div id="result" class="result" aria-live="polite"><span class="status-dot"></span><div><strong>准备就绪</strong><p>可先用短语按钮检查动作，再比较不同文字理解方法。</p></div></div>
+          <dl class="metrics"><div><dt>选择结果</dt><dd id="chosen">—</dd></div><div><dt>选择耗时</dt><dd id="latency">—</dd></div><div><dt>语言评审</dt><dd class="amber">未验证</dd></div></dl>
+        </div>
+      </div>
+      <div class="source-section"><div class="section-top"><h2>表达目录与来源</h2><p>来源支持参考动作；不等于机器人表达已通过验证。</p></div><div id="catalog" class="catalog"></div></div>
+    </section>
+    <section id="evidence" class="tab-panel hidden">
+      <h2>把三类证据分开</h2><p class="section-description">代码能运行、动作能播放、手语能被理解，需要分别验证。</p>
+      <div class="evidence-grid"><article><span class="step">01</span><h3>文字选择</h3><p>固定匹配与本地语义匹配用同一批探索性测试输入比较。大模型后端未配置时明确返回不可用。</p></article><article><span class="step">02</span><h3>机器人执行</h3><p>运动学轨迹与 MuJoCo 渲染。原模型关节耦合保留；未证明执行器动力学、真实硬件或临床适用性。</p></article><article><span class="step">03</span><h3>ASL 可理解性</h3><p>尚无真实 ASL 使用者评审。源词例、候选完整含义和机器人动作并不自动等价。</p></article></div>
+      <h3>当前验收记录</h3><p id="evidence-summary" class="section-description">读取中…</p>
+      <table><thead><tr><th>文字选择方法</th><th>支持输入选对</th><th>支持输入误拒</th><th>库外错误执行</th></tr></thead><tbody id="evaluation-rows"></tbody></table>
+      <p class="note">同一批 60 条 agent 起草、尚未人审的探索性样例；所有方法包含公共拒绝规则。这里的分数不衡量机器人手语是否能被理解。本地 LLM 仅作失败分析对照，默认入口未启用。</p>
+      <details><summary>查看完整验收记录</summary><pre id="evidence-json">读取中…</pre></details>
+    </section>
+    <section id="team" class="tab-panel hidden">
+      <h2>六位同学，六个开发助手</h2><p class="section-description">每人负责一个可验收模块，系统运行时不需要六个 agent 互相讨论。</p>
+      <table><thead><tr><th>负责人</th><th>工作范围</th><th>交付给团队</th><th>本人验收</th></tr></thead><tbody>
+        <tr><td>A1 · 表达资料</td><td>来源、示范、关键帧说明</td><td>有出处的表达与动作要求</td><td>完整视频与含义核对</td></tr>
+        <tr><td>A2 · 机器人</td><td>模型、IK、轨迹、渲染</td><td>可重复播放的候选动作</td><td>手型、掌向、耦合、限位</td></tr>
+        <tr><td>B1 · 语义匹配</td><td>固定基线与 embedding</td><td>统一选择接口</td><td>相似与同义的区别</td></tr>
+        <tr><td>B2 · 大模型</td><td>结构化选择与异常处理</td><td>合法 ID 或明确拒绝</td><td>否定、混合、非法输出</td></tr>
+        <tr><td>C1 · 独立评价</td><td>场景、冻结测试、语言评价</td><td>原始记录与错误分析</td><td>标签与真实评审反馈</td></tr>
+        <tr><td>C2 · 集成展示</td><td>接口、界面、运行说明</td><td>整条可复现流程</td><td>另一台电脑复现与排练</td></tr>
+      </tbody></table><p class="note">三个公共接口：表达目录、选择结果、具有关节名和时间戳的轨迹。修改接口前先统一，再更新各模块。</p>
+    </section>
+    <footer>ME5412 COURSE PROJECT <span>有限表达 · 仿真候选 · 证据与边界公开可查</span></footer>
+  </main><script src="/app.js"></script>
+</body></html>

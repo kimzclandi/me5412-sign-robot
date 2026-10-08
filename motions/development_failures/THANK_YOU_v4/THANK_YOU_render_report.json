@@ -1,0 +1,10 @@
+{
+  "action_id": "THANK_YOU",
+  "frames_rendered": 241,
+  "renderer": "MuJoCo 3.15.0 native Renderer",
+  "mp4": "results/previews/THANK_YOU.mp4",
+  "penetrating_contact_events_below_minus_1mm": 0,
+  "maximum_reported_penetration_m": 0.0,
+  "contact_pairs": {},
+  "collision_check_scope": "Only collision geoms present in upstream model; not a proof of collision-free motion"
+}

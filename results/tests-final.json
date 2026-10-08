@@ -1,0 +1,6 @@
+{
+  "command": ".venv/bin/python -m pytest -q",
+  "returncode": 0,
+  "time_utc": "2026-10-08T14:19:03.956524+00:00",
+  "output": "results/tests-final.txt"
+}

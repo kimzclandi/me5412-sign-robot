@@ -1,0 +1,64 @@
+{
+  "action_id": "PLEASE_WAIT",
+  "schema_version": 1,
+  "robot": "Unitree G1 + Inspire DFQ",
+  "robot_commit": "5994d4faef0a9cadd3287f8de0199a67eeb2a259",
+  "scene_sha256": "42fa55e694045a561e0b804de40a4312f27f0576a58f93ecc87101863a214e95",
+  "source_ids": [
+    "lifeprint_wait"
+  ],
+  "creation_method": "Agent-authored manual wrist keyframes, bounded numerical IK, smoothstep interpolation, coupled fingers",
+  "input_data": "Manual engineering targets informed by cited visual/text references; no human motion extraction",
+  "description": "WAIT lexical candidate: two palm-up hands and phase-shifted finger flexion; NOT a verified complete PLEASE WAIT expression",
+  "execution_mode": "kinematic_qpos_replay",
+  "asl_reviewed": false,
+  "language_validation": "unreviewed",
+  "clinical_use": false,
+  "duration_s": 8.5,
+  "fps": 30,
+  "joint_limit_check_passed": true,
+  "max_mimic_error_rad": 0.0,
+  "max_joint_speed_rad_s": 1.4606043031069438,
+  "keyframe_ik": [
+    {
+      "label": "PLEASE_WAIT_right",
+      "side": "right",
+      "target_position_m": [
+        0.31,
+        -0.24,
+        1.02
+      ],
+      "position_error_m": 4.469245347664385e-06,
+      "orientation_error_rad": 2.5531942206218475e-05
+    },
+    {
+      "label": "PLEASE_WAIT_left",
+      "side": "left",
+      "target_position_m": [
+        0.29,
+        0.23,
+        1.1
+      ],
+      "position_error_m": 5.3402031278969665e-06,
+      "orientation_error_rad": 2.8111490103254847e-05
+    }
+  ],
+  "limitations": [
+    "The action ID is reserved for integration; complete PLEASE WAIT utterance is not verified",
+    "Finger joints are coupled; no independent finger abduction or human-like finger dexterity",
+    "No invented concatenation of PLEASE and WAIT is performed",
+    "Facial expression and head motion are absent",
+    "Joint limits and mimic relations checked; no dynamic tracking, torque, or collision-safety claim",
+    "Unreviewed approximation: human ASL comprehensibility has not been tested"
+  ],
+  "validation_status": {
+    "numeric_structure": "passed",
+    "joint_limits": "passed",
+    "mimic_couplings": "passed",
+    "dynamics": "not_run",
+    "collision_review": "no_penetrations_below_1mm_in_upstream_collision_geoms",
+    "asl_comprehensibility": "not_reviewed",
+    "rendered_frames": 256
+  },
+  "render_report": "results/previews/PLEASE_WAIT_render_report.json"
+}

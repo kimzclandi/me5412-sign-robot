@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+assets/robot/vendor/
+models/
+results/previews/
+results/session_logs/
+config/local_runtime.json
+.DS_Store

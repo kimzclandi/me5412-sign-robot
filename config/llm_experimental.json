@@ -1,0 +1,11 @@
+{
+  "endpoint": "http://127.0.0.1:5413/v1/chat/completions",
+  "model": "default_model",
+  "timeout_s": 10,
+  "output_mode": "label",
+  "status": "not_accepted_for_default",
+  "purpose": "Research-only comparison of the unchanged v2 label backend. Its developer feasibility check produced 3 valid labels but only 2 correct actions; PLEASE_WAIT was incorrectly clarified. Default config/llm.json remains unconfigured.",
+  "provenance": "config/llm_local_provenance.json",
+  "feasibility_record": "config/llm_local_feasibility_v2_label.json",
+  "v2_prompt_prefix_sha256": "763a7102f8acc89dab9ed133d2303ec9feda94cf24b11379df198d4eac53f379"
+}

@@ -1,0 +1,475 @@
+{
+  "schema_version": 1,
+  "protocol": {
+    "protocol_version": "exploratory-agent-draft-v1",
+    "created_on": "2026-10-08",
+    "label_status": "agent_draft_unreviewed",
+    "human_reviewed": false,
+    "counts": {
+      "dev": 18,
+      "test": 60,
+      "test_supported": 30,
+      "test_unsupported": 30
+    },
+    "dev_sha256": "e33fc62e3280cbbf6b61578e99c5ca9a08c492139e683cec0178f2e500bfdf04",
+    "test_sha256": "83a4f5310f28f45a5cc2aeecf6660742c2bf93b0b0f99660ad08d6d02f2f4231",
+    "freeze_rule": "Final cases frozen before method execution; language implementer may inspect dev only. Keep failures; do not retune on final and call the rerun independent.",
+    "scope": "Text-to-candidate-ID selection only; excludes ASL intelligibility, clinical safety and robot playback approval.",
+    "latency": "One catalog-alias readiness/warmup call per method recorded separately; dataset calls measured end-to-end by the evaluator and include guards, selection and errors. Report median/P95/max. Local CPU scheduling can affect comparisons.",
+    "missing_backend": "Skip the whole method after an unguarded readiness call reports unavailable. Do not score guarded rows as LLM model results.",
+    "llm": "Disabled in the default evaluation; an explicitly requested existing local endpoint may be evaluated with --include-llm. No remote paid API."
+  },
+  "split": "test",
+  "run_reason": "追加未通过开发启用门槛的本地LLM研究对照及UTF8兼容修复后的复核",
+  "dataset_sha256": "83a4f5310f28f45a5cc2aeecf6660742c2bf93b0b0f99660ad08d6d02f2f4231",
+  "started_at_utc": "20261008T141909955017Z",
+  "environment": {
+    "python": "3.12.14",
+    "system": "Darwin",
+    "machine": "arm64"
+  },
+  "source_hashes": {
+    "data/catalog.json": "024fda8da4b8409a3bee4100e4f4ff1c6a3eec027100775fceba15cb95a71523",
+    "data/source_manifest.json": "0e177a10a44d9f8b108bc935832e9a59989bfb8cfc2a44a52f92db78d44e9d9b",
+    "scripts/evaluate.py": "0f23f8cb10acab040d529b5529026390fb87ddeebe13121e628b9e005722ac72",
+    "src/sign_robot/language.py": "87f091ff7974f463e3f80d0de5e020687bce663729845b949eb5092b6b1cb949",
+    "src/sign_robot/llm.py": "d91a4454301d1a372e3a364b4c5de83f49d46640d2288750c61aa7d89dd6aa34",
+    "src/sign_robot/contracts.py": "b8c4aa20d57c8462614f4ac9663e7861f5d494ea93774ba4ec252271eb0f1f89",
+    "config/embedding.json": "80a121725fa803c8eab2b1866cfda134c38c78fa545adfc2a437fa4dc5ad3230",
+    "config/llm.json": "164bb95b517fe939401de14402fc70c2301078f6954e1636b8eba92f1cdad1ee",
+    "config/embedding_download_manifest.json": "bf2a0a3e87e40e27154bcae9eddac6ed3c3051760ee062467e53b8e5b7ee26fd",
+    "config/llm_local_provenance.json": "d60a5b4dc9ffa04d12416a3a07b80cbbd65925c6d0754efeff4ec5134455477d",
+    "config/llm_local_feasibility_v1.json": "55ec15ac5fc7f016add98dcf1d7466fa1bc4e7552fc498d2d27a0d754975e882",
+    "config/llm_local_feasibility_v2_label.json": "2749cf7bb43adc5962c0aa66a65184871e6b62f3234933429be73afa322dc9ec",
+    "config/llm_development_audit.json": "b89c373244430d3eb2c5e586f99e52010d0737aa6a1b59a31c992d9c4ace4b7a",
+    "config/llm_experimental.json": "029a9a8cac30db39bee31c3c3dee2c8de8fd12c298875afa04317760189393b9"
+  },
+  "selected_llm_config": {
+    "path": "config/llm_experimental.json",
+    "sha256": "029a9a8cac30db39bee31c3c3dee2c8de8fd12c298875afa04317760189393b9",
+    "explicit_research_override": true
+  },
+  "llm_enabled_for_this_run": true,
+  "methods": {
+    "exact": {
+      "status": "completed",
+      "readiness": {
+        "status": "execute",
+        "action_id": "HELLO",
+        "reason_code": "exact_alias",
+        "method": "exact",
+        "latency_ms": 0.35
+      },
+      "readiness_wall_ms": 0.35820799894281663,
+      "metrics": {
+        "n": 60,
+        "n_supported": 30,
+        "n_unsupported": 30,
+        "accuracy": {
+          "numerator": 38,
+          "denominator": 60,
+          "value": 0.6333333333333333
+        },
+        "supported_correct_selection_rate": {
+          "numerator": 8,
+          "denominator": 30,
+          "value": 0.26666666666666666
+        },
+        "supported_wrong_rejection_rate": {
+          "numerator": 22,
+          "denominator": 30,
+          "value": 0.7333333333333333
+        },
+        "supported_wrong_execution_rate": {
+          "numerator": 0,
+          "denominator": 30,
+          "value": 0.0
+        },
+        "unsupported_false_execution_rate": {
+          "numerator": 0,
+          "denominator": 30,
+          "value": 0.0
+        },
+        "execution_coverage": {
+          "numerator": 8,
+          "denominator": 60,
+          "value": 0.13333333333333333
+        },
+        "execution_precision": {
+          "numerator": 8,
+          "denominator": 8,
+          "value": 1.0
+        },
+        "runtime_error_rate": {
+          "numerator": 0,
+          "denominator": 60,
+          "value": 0.0
+        },
+        "strict_status_match_rate": {
+          "numerator": 32,
+          "denominator": 60,
+          "value": 0.5333333333333333
+        },
+        "latency_ms": {
+          "median": 0.007541502782260068,
+          "p95_nearest_rank": 0.011666998034343123,
+          "max": 0.11583399827941321
+        },
+        "confusion": {
+          "HELLO": {
+            "HELLO": 2,
+            "REJECT": 8
+          },
+          "THANK_YOU": {
+            "THANK_YOU": 3,
+            "REJECT": 7
+          },
+          "PLEASE_WAIT": {
+            "PLEASE_WAIT": 3,
+            "REJECT": 7
+          },
+          "REJECT": {
+            "REJECT": 30
+          }
+        },
+        "by_category": {
+          "canonical": {
+            "total": 8,
+            "correct": 8
+          },
+          "paraphrase": {
+            "total": 22,
+            "correct": 0
+          },
+          "negation": {
+            "total": 4,
+            "correct": 4
+          },
+          "decline": {
+            "total": 1,
+            "correct": 1
+          },
+          "sarcasm": {
+            "total": 1,
+            "correct": 1
+          },
+          "role": {
+            "total": 1,
+            "correct": 1
+          },
+          "third_party": {
+            "total": 2,
+            "correct": 2
+          },
+          "reported": {
+            "total": 2,
+            "correct": 2
+          },
+          "metalinguistic": {
+            "total": 1,
+            "correct": 1
+          },
+          "qualified_wait": {
+            "total": 4,
+            "correct": 4
+          },
+          "mixed_intent": {
+            "total": 5,
+            "correct": 5
+          },
+          "clinical": {
+            "total": 4,
+            "correct": 4
+          },
+          "out_of_scope": {
+            "total": 2,
+            "correct": 2
+          },
+          "ambiguous": {
+            "total": 2,
+            "correct": 2
+          },
+          "conditional": {
+            "total": 1,
+            "correct": 1
+          }
+        },
+        "reason_counts": {
+          "exact_alias": 8,
+          "no_exact_alias": 27,
+          "reported_or_metalinguistic": 4,
+          "qualified_wait_out_of_scope": 5,
+          "negated_or_declining": 6,
+          "waiting_role_mismatch": 1,
+          "multiple_or_compound_intents": 4,
+          "clinical_content_out_of_scope": 4,
+          "conditional_input": 1
+        },
+        "execution_path_counts": {
+          "exact_backend": 35,
+          "shared_guard": 25
+        },
+        "llm_call_audit": {
+          "http_attempted": {
+            "numerator": 0,
+            "denominator": 60,
+            "value": 0.0
+          },
+          "http_response_received": {
+            "numerator": 0,
+            "denominator": 60,
+            "value": 0.0
+          },
+          "response_subset_accuracy": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "response_subset_selector_latency_ms": {
+            "median": null,
+            "p95_nearest_rank": null,
+            "max": null
+          },
+          "interpretation": "HTTP counts exclude readiness. Response subset is conditioned on passing the shared guard; not isolated or representative LLM quality."
+        },
+        "method_interpretation": "Whole selector including shared heuristic guard; not isolated model quality."
+      }
+    },
+    "embedding": {
+      "status": "completed",
+      "readiness": {
+        "status": "execute",
+        "action_id": "HELLO",
+        "reason_code": "embedding_match",
+        "method": "embedding",
+        "latency_ms": 2163.432
+      },
+      "readiness_wall_ms": 2163.440457999968,
+      "metrics": {
+        "n": 60,
+        "n_supported": 30,
+        "n_unsupported": 30,
+        "accuracy": {
+          "numerator": 47,
+          "denominator": 60,
+          "value": 0.7833333333333333
+        },
+        "supported_correct_selection_rate": {
+          "numerator": 17,
+          "denominator": 30,
+          "value": 0.5666666666666667
+        },
+        "supported_wrong_rejection_rate": {
+          "numerator": 13,
+          "denominator": 30,
+          "value": 0.43333333333333335
+        },
+        "supported_wrong_execution_rate": {
+          "numerator": 0,
+          "denominator": 30,
+          "value": 0.0
+        },
+        "unsupported_false_execution_rate": {
+          "numerator": 0,
+          "denominator": 30,
+          "value": 0.0
+        },
+        "execution_coverage": {
+          "numerator": 17,
+          "denominator": 60,
+          "value": 0.2833333333333333
+        },
+        "execution_precision": {
+          "numerator": 17,
+          "denominator": 17,
+          "value": 1.0
+        },
+        "runtime_error_rate": {
+          "numerator": 0,
+          "denominator": 60,
+          "value": 0.0
+        },
+        "strict_status_match_rate": {
+          "numerator": 41,
+          "denominator": 60,
+          "value": 0.6833333333333333
+        },
+        "latency_ms": {
+          "median": 3.0612289992859587,
+          "p95_nearest_rank": 3.2671670014678966,
+          "max": 3.76437499653548
+        },
+        "confusion": {
+          "HELLO": {
+            "HELLO": 7,
+            "REJECT": 3
+          },
+          "THANK_YOU": {
+            "THANK_YOU": 4,
+            "REJECT": 6
+          },
+          "PLEASE_WAIT": {
+            "PLEASE_WAIT": 6,
+            "REJECT": 4
+          },
+          "REJECT": {
+            "REJECT": 30
+          }
+        },
+        "by_category": {
+          "canonical": {
+            "total": 8,
+            "correct": 8
+          },
+          "paraphrase": {
+            "total": 22,
+            "correct": 9
+          },
+          "negation": {
+            "total": 4,
+            "correct": 4
+          },
+          "decline": {
+            "total": 1,
+            "correct": 1
+          },
+          "sarcasm": {
+            "total": 1,
+            "correct": 1
+          },
+          "role": {
+            "total": 1,
+            "correct": 1
+          },
+          "third_party": {
+            "total": 2,
+            "correct": 2
+          },
+          "reported": {
+            "total": 2,
+            "correct": 2
+          },
+          "metalinguistic": {
+            "total": 1,
+            "correct": 1
+          },
+          "qualified_wait": {
+            "total": 4,
+            "correct": 4
+          },
+          "mixed_intent": {
+            "total": 5,
+            "correct": 5
+          },
+          "clinical": {
+            "total": 4,
+            "correct": 4
+          },
+          "out_of_scope": {
+            "total": 2,
+            "correct": 2
+          },
+          "ambiguous": {
+            "total": 2,
+            "correct": 2
+          },
+          "conditional": {
+            "total": 1,
+            "correct": 1
+          }
+        },
+        "reason_counts": {
+          "embedding_match": 17,
+          "embedding_below_threshold": 18,
+          "reported_or_metalinguistic": 4,
+          "qualified_wait_out_of_scope": 5,
+          "negated_or_declining": 6,
+          "waiting_role_mismatch": 1,
+          "multiple_or_compound_intents": 4,
+          "clinical_content_out_of_scope": 4,
+          "conditional_input": 1
+        },
+        "execution_path_counts": {
+          "embedding_backend": 35,
+          "shared_guard": 25
+        },
+        "llm_call_audit": {
+          "http_attempted": {
+            "numerator": 0,
+            "denominator": 60,
+            "value": 0.0
+          },
+          "http_response_received": {
+            "numerator": 0,
+            "denominator": 60,
+            "value": 0.0
+          },
+          "response_subset_accuracy": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "response_subset_selector_latency_ms": {
+            "median": null,
+            "p95_nearest_rank": null,
+            "max": null
+          },
+          "interpretation": "HTTP counts exclude readiness. Response subset is conditioned on passing the shared guard; not isolated or representative LLM quality."
+        },
+        "method_interpretation": "Whole selector including shared heuristic guard; not isolated model quality."
+      }
+    },
+    "llm": {
+      "status": "not_run",
+      "reason": "llm_unavailable",
+      "readiness": {
+        "status": "error",
+        "action_id": null,
+        "reason_code": "llm_unavailable",
+        "method": "llm",
+        "latency_ms": 4.391,
+        "metadata": {
+          "request_attempted": true,
+          "response_received": false,
+          "config_file": "config/llm_experimental.json",
+          "config_sha256": "029a9a8cac30db39bee31c3c3dee2c8de8fd12c298875afa04317760189393b9",
+          "output_mode": "label",
+          "prompt_prefix_sha256": "763a7102f8acc89dab9ed133d2303ec9feda94cf24b11379df198d4eac53f379"
+        }
+      },
+      "readiness_wall_ms": 4.395583000587067,
+      "metrics": null
+    }
+  },
+  "limitations": [
+    "Agent-written labels; not human-reviewed or population-representative.",
+    "Selection of candidate IDs only; no ASL or clinical validation.",
+    "Same heuristic guard precedes all methods; results include its behavior.",
+    "Readiness/cold loading reported separately from warm dataset calls.",
+    "Explicit research-only LLM config: config/llm_experimental.json; the unchanged v2 backend failed its 3/3 development enablement gate (2/3 correct). This comparison does not accept it for default use; config/llm.json remains unconfigured."
+  ],
+  "source_hashes_after": {
+    "data/catalog.json": "024fda8da4b8409a3bee4100e4f4ff1c6a3eec027100775fceba15cb95a71523",
+    "data/source_manifest.json": "0e177a10a44d9f8b108bc935832e9a59989bfb8cfc2a44a52f92db78d44e9d9b",
+    "scripts/evaluate.py": "0f23f8cb10acab040d529b5529026390fb87ddeebe13121e628b9e005722ac72",
+    "src/sign_robot/language.py": "87f091ff7974f463e3f80d0de5e020687bce663729845b949eb5092b6b1cb949",
+    "src/sign_robot/llm.py": "d91a4454301d1a372e3a364b4c5de83f49d46640d2288750c61aa7d89dd6aa34",
+    "src/sign_robot/contracts.py": "b8c4aa20d57c8462614f4ac9663e7861f5d494ea93774ba4ec252271eb0f1f89",
+    "config/embedding.json": "80a121725fa803c8eab2b1866cfda134c38c78fa545adfc2a437fa4dc5ad3230",
+    "config/llm.json": "164bb95b517fe939401de14402fc70c2301078f6954e1636b8eba92f1cdad1ee",
+    "config/embedding_download_manifest.json": "bf2a0a3e87e40e27154bcae9eddac6ed3c3051760ee062467e53b8e5b7ee26fd",
+    "config/llm_local_provenance.json": "d60a5b4dc9ffa04d12416a3a07b80cbbd65925c6d0754efeff4ec5134455477d",
+    "config/llm_local_feasibility_v1.json": "55ec15ac5fc7f016add98dcf1d7466fa1bc4e7552fc498d2d27a0d754975e882",
+    "config/llm_local_feasibility_v2_label.json": "2749cf7bb43adc5962c0aa66a65184871e6b62f3234933429be73afa322dc9ec",
+    "config/llm_development_audit.json": "b89c373244430d3eb2c5e586f99e52010d0737aa6a1b59a31c992d9c4ace4b7a",
+    "config/llm_experimental.json": "029a9a8cac30db39bee31c3c3dee2c8de8fd12c298875afa04317760189393b9"
+  },
+  "selected_llm_config_after": {
+    "path": "config/llm_experimental.json",
+    "sha256": "029a9a8cac30db39bee31c3c3dee2c8de8fd12c298875afa04317760189393b9",
+    "explicit_research_override": true
+  },
+  "selected_llm_config_unchanged_during_run": true,
+  "sources_unchanged_during_run": true,
+  "dataset_unchanged_during_run": true
+}

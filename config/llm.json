@@ -1,0 +1,6 @@
+{
+  "endpoint": null,
+  "model": null,
+  "timeout_s": 10,
+  "note": "Optional existing local OpenAI-compatible chat endpoint only. Explicit loopback IP required. No credentials, remote paid API, automatic model download, or exact fallback."
+}

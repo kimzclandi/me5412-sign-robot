@@ -1,0 +1,4 @@
+{
+  "reason": "First manual IK candidate produced shoulder/torso penetration up to 0.0412m. Development failure retained, not final validation.",
+  "next_change": "Constrain shoulder-roll away from torso during keyframe authoring."
+}

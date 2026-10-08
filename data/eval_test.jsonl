@@ -1,0 +1,60 @@
+{"case_id":"test-001","split":"test","text":"Hi there!","expected_action_id":"HELLO","expected_status":"execute","category":"canonical","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-002","split":"test","text":"Hello there!","expected_action_id":"HELLO","expected_status":"execute","category":"canonical","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-003","split":"test","text":"Hello to you!","expected_action_id":"HELLO","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-004","split":"test","text":"A warm hello to you.","expected_action_id":"HELLO","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-005","split":"test","text":"Hi, everyone.","expected_action_id":"HELLO","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-006","split":"test","text":"Good to see you!","expected_action_id":"HELLO","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-007","split":"test","text":"Howdy!","expected_action_id":"HELLO","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-008","split":"test","text":"A friendly greeting to you.","expected_action_id":"HELLO","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-009","split":"test","text":"Hiya!","expected_action_id":"HELLO","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-010","split":"test","text":"Greetings to you.","expected_action_id":"HELLO","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-011","split":"test","text":"Thank you!","expected_action_id":"THANK_YOU","expected_status":"execute","category":"canonical","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-012","split":"test","text":"Thanks a lot.","expected_action_id":"THANK_YOU","expected_status":"execute","category":"canonical","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-013","split":"test","text":"Thank you very much!","expected_action_id":"THANK_YOU","expected_status":"execute","category":"canonical","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-014","split":"test","text":"I'm grateful to you.","expected_action_id":"THANK_YOU","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-015","split":"test","text":"You have my thanks.","expected_action_id":"THANK_YOU","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-016","split":"test","text":"Much appreciated!","expected_action_id":"THANK_YOU","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-017","split":"test","text":"I really appreciate what you did.","expected_action_id":"THANK_YOU","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-018","split":"test","text":"My sincere thanks to you.","expected_action_id":"THANK_YOU","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-019","split":"test","text":"I'm thankful for your help.","expected_action_id":"THANK_YOU","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-020","split":"test","text":"Thanks so much!","expected_action_id":"THANK_YOU","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-021","split":"test","text":"Wait a moment.","expected_action_id":"PLEASE_WAIT","expected_status":"execute","category":"canonical","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-022","split":"test","text":"Please wait a moment.","expected_action_id":"PLEASE_WAIT","expected_status":"execute","category":"canonical","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-023","split":"test","text":"Hold on a moment.","expected_action_id":"PLEASE_WAIT","expected_status":"execute","category":"canonical","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-024","split":"test","text":"Would you mind waiting a moment?","expected_action_id":"PLEASE_WAIT","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-025","split":"test","text":"Give me a moment, please.","expected_action_id":"PLEASE_WAIT","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-026","split":"test","text":"Hang on briefly, please.","expected_action_id":"PLEASE_WAIT","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-027","split":"test","text":"Could you hold on a little?","expected_action_id":"PLEASE_WAIT","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-028","split":"test","text":"Just a moment, please.","expected_action_id":"PLEASE_WAIT","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-029","split":"test","text":"Please pause for a moment.","expected_action_id":"PLEASE_WAIT","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-030","split":"test","text":"Would you wait briefly?","expected_action_id":"PLEASE_WAIT","expected_status":"execute","category":"paraphrase","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-031","split":"test","text":"Please do not greet me.","expected_action_id":null,"expected_status":"unsupported","category":"negation","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-032","split":"test","text":"I am not thanking you.","expected_action_id":null,"expected_status":"unsupported","category":"negation","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-033","split":"test","text":"Do not wait.","expected_action_id":null,"expected_status":"unsupported","category":"negation","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-034","split":"test","text":"You don't have to wait.","expected_action_id":null,"expected_status":"unsupported","category":"negation","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-035","split":"test","text":"No thanks, I don't want it.","expected_action_id":null,"expected_status":"unsupported","category":"decline","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-036","split":"test","text":"Thanks for nothing.","expected_action_id":null,"expected_status":"unsupported","category":"sarcasm","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-037","split":"test","text":"I can wait for you.","expected_action_id":null,"expected_status":"unsupported","category":"role","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-038","split":"test","text":"She wants to thank you.","expected_action_id":null,"expected_status":"unsupported","category":"third_party","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-039","split":"test","text":"Tell the doctor hello.","expected_action_id":null,"expected_status":"unsupported","category":"third_party","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-040","split":"test","text":"They thanked me yesterday.","expected_action_id":null,"expected_status":"unsupported","category":"reported","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-041","split":"test","text":"He asked me to wait.","expected_action_id":null,"expected_status":"unsupported","category":"reported","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-042","split":"test","text":"What does 'hello' mean?","expected_action_id":null,"expected_status":"unsupported","category":"metalinguistic","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-043","split":"test","text":"Please wait for ten minutes.","expected_action_id":null,"expected_status":"unsupported","category":"qualified_wait","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-044","split":"test","text":"Wait outside the ward.","expected_action_id":null,"expected_status":"unsupported","category":"qualified_wait","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-045","split":"test","text":"Wait until the doctor returns.","expected_action_id":null,"expected_status":"unsupported","category":"qualified_wait","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-046","split":"test","text":"Please wait here for the nurse.","expected_action_id":null,"expected_status":"unsupported","category":"qualified_wait","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-047","split":"test","text":"Hello, please wait.","expected_action_id":null,"expected_status":"unsupported","category":"mixed_intent","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-048","split":"test","text":"Thank you; please wait a moment.","expected_action_id":null,"expected_status":"unsupported","category":"mixed_intent","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-049","split":"test","text":"Hi, follow me.","expected_action_id":null,"expected_status":"unsupported","category":"mixed_intent","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-050","split":"test","text":"Please wait and remove your shoes.","expected_action_id":null,"expected_status":"unsupported","category":"mixed_intent","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-051","split":"test","text":"Thank you, but leave now.","expected_action_id":null,"expected_status":"unsupported","category":"mixed_intent","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-052","split":"test","text":"Please wait before taking this medicine.","expected_action_id":null,"expected_status":"unsupported","category":"clinical","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-053","split":"test","text":"Take two tablets now.","expected_action_id":null,"expected_status":"unsupported","category":"clinical","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-054","split":"test","text":"Can I sign the surgery consent form?","expected_action_id":null,"expected_status":"unsupported","category":"clinical","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-055","split":"test","text":"Is it safe to double my dose?","expected_action_id":null,"expected_status":"unsupported","category":"clinical","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-056","split":"test","text":"I need an interpreter.","expected_action_id":null,"expected_status":"unsupported","category":"out_of_scope","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-057","split":"test","text":"Where is the bathroom?","expected_action_id":null,"expected_status":"unsupported","category":"out_of_scope","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-058","split":"test","text":"Either greet me or thank me.","expected_action_id":null,"expected_status":"clarify","category":"ambiguous","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-059","split":"test","text":"If she arrives, please wait.","expected_action_id":null,"expected_status":"unsupported","category":"conditional","label_status":"agent_draft_unreviewed"}
+{"case_id":"test-060","split":"test","text":"Do that.","expected_action_id":null,"expected_status":"clarify","category":"ambiguous","label_status":"agent_draft_unreviewed"}

@@ -1,0 +1,186 @@
+{
+  "action_id": "THANK_YOU",
+  "schema_version": 1,
+  "robot": "Unitree G1 + Inspire DFQ",
+  "robot_commit": "5994d4faef0a9cadd3287f8de0199a67eeb2a259",
+  "scene_sha256": "42fa55e694045a561e0b804de40a4312f27f0576a58f93ecc87101863a214e95",
+  "source_ids": [
+    "lifeprint_thank_you"
+  ],
+  "creation_method": "Agent-authored manual wrist keyframes, bounded numerical IK, smoothstep interpolation, coupled fingers",
+  "input_data": "Manual engineering targets informed by cited visual/text references; no human motion extraction",
+  "description": "Flat right hand moves from a lower-face proxy forward, ending palm-up; candidate thanks",
+  "execution_mode": "kinematic_qpos_replay",
+  "asl_reviewed": false,
+  "language_validation": "unreviewed",
+  "clinical_use": false,
+  "duration_s": 8.0,
+  "fps": 30,
+  "joint_limit_check_passed": true,
+  "max_mimic_error_rad": 0.0,
+  "max_joint_speed_rad_s": 2.834674008703762,
+  "keyframe_ik": [
+    {
+      "label": "THANK_YOU_near_face",
+      "side": "right",
+      "target_position_m": [
+        0.23,
+        -0.15,
+        1.03
+      ],
+      "position_error_m": 0.0060601523086042455,
+      "orientation_error_rad": 0.027940100940595444
+    },
+    {
+      "label": "THANK_YOU_path_0.083",
+      "side": "right",
+      "target_position_m": [
+        0.23324252627013561,
+        -0.14594376922589686,
+        1.0113201665993177
+      ],
+      "position_error_m": 1.5563690539481945e-07,
+      "orientation_error_rad": 2.5786510081436334e-07
+    },
+    {
+      "label": "THANK_YOU_path_0.167",
+      "side": "right",
+      "target_position_m": [
+        0.23502127354639343,
+        -0.14044992888023616,
+        0.9970730350957414
+      ],
+      "position_error_m": 2.753663336409863e-07,
+      "orientation_error_rad": 1.3026250325260754e-06
+    },
+    {
+      "label": "THANK_YOU_path_0.250",
+      "side": "right",
+      "target_position_m": [
+        0.23613826201115237,
+        -0.1335984679966411,
+        0.9874710255585017
+      ],
+      "position_error_m": 3.979051807664011e-07,
+      "orientation_error_rad": 1.7678206933751393e-06
+    },
+    {
+      "label": "THANK_YOU_path_0.333",
+      "side": "right",
+      "target_position_m": [
+        0.2374147824199495,
+        -0.12550890984000257,
+        0.9825912910061686
+      ],
+      "position_error_m": 5.029547030234406e-07,
+      "orientation_error_rad": 2.2422134304786495e-06
+    },
+    {
+      "label": "THANK_YOU_path_0.417",
+      "side": "right",
+      "target_position_m": [
+        0.23966747992036724,
+        -0.1163368313607267,
+        0.9823734706924966
+      ],
+      "position_error_m": 5.824120940927945e-07,
+      "orientation_error_rad": 2.6942649686064753e-06
+    },
+    {
+      "label": "THANK_YOU_path_0.500",
+      "side": "right",
+      "target_position_m": [
+        0.24368457315212397,
+        -0.10626933275713119,
+        0.9866214478256369
+      ],
+      "position_error_m": 6.391655444158982e-07,
+      "orientation_error_rad": 3.1150137372700324e-06
+    },
+    {
+      "label": "THANK_YOU_path_0.583",
+      "side": "right",
+      "target_position_m": [
+        0.2502029011337986,
+        -0.09551958907340344,
+        0.9950090605355157
+      ],
+      "position_error_m": 6.821266008291135e-07,
+      "orientation_error_rad": 3.508614113514806e-06
+    },
+    {
+      "label": "THANK_YOU_path_0.667",
+      "side": "right",
+      "target_position_m": [
+        0.2598864663362795,
+        -0.08432064249187846,
+        1.0070895997846574
+      ],
+      "position_error_m": 7.168518699846527e-07,
+      "orientation_error_rad": 3.863167443566419e-06
+    },
+    {
+      "label": "THANK_YOU_path_0.750",
+      "side": "right",
+      "target_position_m": [
+        0.2733070987737134,
+        -0.07291861608955301,
+        1.0223088176410453
+      ],
+      "position_error_m": 7.353064946651266e-07,
+      "orientation_error_rad": 4.103369641553903e-06
+    },
+    {
+      "label": "THANK_YOU_path_0.833",
+      "side": "right",
+      "target_position_m": [
+        0.29092780417820374,
+        -0.061565546675852824,
+        1.0400210671090313
+      ],
+      "position_error_m": 8.387820892590098e-07,
+      "orientation_error_rad": 4.581274213321922e-06
+    },
+    {
+      "label": "THANK_YOU_path_0.917",
+      "side": "right",
+      "target_position_m": [
+        0.3130892811633472,
+        -0.05051204542111194,
+        1.0595081035226048
+      ],
+      "position_error_m": 1.0214862487013951e-06,
+      "orientation_error_rad": 5.176058402736142e-06
+    },
+    {
+      "label": "THANK_YOU_path_1.000",
+      "side": "right",
+      "target_position_m": [
+        0.33999999999999997,
+        -0.03999999999999998,
+        1.08
+      ],
+      "position_error_m": 1.1085120030819867e-06,
+      "orientation_error_rad": 4.52006761440342e-06
+    }
+  ],
+  "limitations": [
+    "No actual lip contact; lower-face proxy is an anatomical approximation with a visible gap in front of the head",
+    "Finger spacing differs from the source fingers-together handshape; this hand has no independent finger-adduction joints",
+    "Smile from source is absent",
+    "Twelve intermediate poses approximate a forward and slightly downward fingertip path; orientations come from 2D-reference-informed manual targets",
+    "Facial expression and head motion are absent",
+    "Joint limits and mimic relations checked; no dynamic tracking, torque, or collision-safety claim",
+    "Unreviewed approximation: human ASL comprehensibility has not been tested"
+  ],
+  "validation_status": {
+    "numeric_structure": "passed",
+    "joint_limits": "passed",
+    "mimic_couplings": "passed",
+    "dynamics": "not_run",
+    "collision_review": "no_penetrations_below_1mm_in_upstream_collision_geoms",
+    "asl_comprehensibility": "not_reviewed",
+    "rendered_frames": 241
+  },
+  "render_report": "results/previews/THANK_YOU_render_report.json"
+}
