@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import argparse
 from contextlib import contextmanager
-import fcntl
 import hashlib
 import json
 import os
@@ -17,6 +16,12 @@ from urllib.error import URLError
 from urllib.request import ProxyHandler, build_opener
 
 from .contracts import ROOT
+
+try:
+    import fcntl
+except ImportError:  # Windows has no fcntl; lock one byte with msvcrt instead.
+    fcntl = None
+    import msvcrt
 
 
 def instance_id(root=ROOT):
@@ -46,7 +51,11 @@ def management_lock(port):
     path = state_path(port).with_suffix(".lock")
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a") as handle:
-        fcntl.flock(handle, fcntl.LOCK_EX)
+        if fcntl:
+            fcntl.flock(handle, fcntl.LOCK_EX)
+        else:
+            handle.seek(0)
+            msvcrt.locking(handle.fileno(), msvcrt.LK_LOCK, 1)
         yield
 
 
@@ -59,18 +68,27 @@ def start(port=5412):
         try:
             with socket.create_connection(("127.0.0.1", port), timeout=1):
                 raise RuntimeError(f"Port {port} is occupied by another or older service; no process was stopped")
-        except ConnectionRefusedError:
+        except (ConnectionRefusedError, TimeoutError):  # Windows retries refused loopback connects past 1 s
             pass
         log_path = state_path(port).with_suffix(".log")
         env = os.environ.copy()
         env["PYTHONPATH"] = str(ROOT / "src") + os.pathsep + env.get("PYTHONPATH", "")
         # Interactive demo always uses the default configuration, never an inherited research override.
         env.pop("SIGN_ROBOT_LLM_CONFIG", None)
+        executable = sys.executable
+        if os.name == "nt" and getattr(sys, "_base_executable", executable) != executable:
+            # A Windows venv python.exe is a redirector that spawns the real interpreter as a child,
+            # so its PID would never match the server's. Start the base interpreter in venv mode directly.
+            env["__PYVENV_LAUNCHER__"] = executable
+            executable = sys._base_executable
         with log_path.open("ab") as log:
-            process = subprocess.Popen([sys.executable, "-u", "-m", "sign_robot.server", "--port", str(port)],
+            process = subprocess.Popen([executable, "-u", "-m", "sign_robot.server", "--port", str(port)],
                                        cwd=ROOT, env=env, stdin=subprocess.DEVNULL,
                                        stdout=log, stderr=subprocess.STDOUT,
-                                       start_new_session=True, close_fds=True)
+                                       start_new_session=True, close_fds=True,
+                                       # Windows ignores start_new_session; detach so closing the console keeps it running.
+                                       creationflags=getattr(subprocess, "DETACHED_PROCESS", 0)
+                                       | getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0))
         for _ in range(80):
             status = probe(port)
             if matches(status) and status.get("pid") == process.pid:
