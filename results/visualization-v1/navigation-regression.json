@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-09T01:29:18.102Z",
+  "method": "Real app.js navigation and response handlers evaluated in Node VM with deterministic DOM, history, fetch and media doubles.",
+  "source_sha256": {
+    "web/app.js": "92ab8dcae7d9852322a4529e1e00bd5b408d67e98af3964d9495604fc5a51615",
+    "web/index.html": "9b62edfccb92ee2c67cefa35a25b8379e895b6bfbc1f64b18c0db1ecefefa3c4"
+  },
+  "tests": 12,
+  "failures": 0,
+  "checks": [
+    {
+      "name": "main_target_supports_programmatic_focus",
+      "passed": true
+    },
+    {
+      "name": "initial_learning_deep_link_selects_one_panel",
+      "passed": true,
+      "visible_panel": "learning"
+    },
+    {
+      "name": "skip_link_preserves_page_and_focuses_main",
+      "passed": true,
+      "hash": "#learning",
+      "focused_element": "main-content"
+    },
+    {
+      "name": "all_eight_routes_have_exactly_one_visible_active_panel",
+      "passed": true,
+      "routes": [
+        "overview",
+        "demo",
+        "learning",
+        "inspection",
+        "data",
+        "evidence",
+        "team",
+        "resources"
+      ]
+    },
+    {
+      "name": "back_restores_previous_panel_without_new_history",
+      "passed": true,
+      "history": [
+        "#learning",
+        "#inspection",
+        "#resources"
+      ],
+      "restored_panel": "learning"
+    },
+    {
+      "name": "direct_hash_event_selects_page_without_pushing_history",
+      "passed": true
+    },
+    {
+      "name": "unknown_route_falls_back_to_overview",
+      "passed": true
+    },
+    {
+      "name": "navigation_pauses_every_off_page_video",
+      "passed": true
+    },
+    {
+      "name": "delayed_selection_does_not_play_after_leaving_demo",
+      "passed": true,
+      "response_saved": true,
+      "hidden_video_paused": true,
+      "returning_to_demo_autoplays": false
+    },
+    {
+      "name": "selection_still_plays_when_demo_remains_visible",
+      "passed": true
+    },
+    {
+      "name": "rejected_input_clears_previous_media_source",
+      "passed": true
+    },
+    {
+      "name": "negative_control_detects_original_hidden_playback_bug",
+      "passed": true,
+      "mutated_only_in_memory": true,
+      "original_failure_reproduced": true
+    }
+  ],
+  "limitations": [
+    "No real browser layout, media decoding, native focus behaviour or network tested here.",
+    "History event ordering is explicitly simulated; actual browser navigation is validated separately.",
+    "Only app.js before asynchronous startup is evaluated. Model, inference, inspection charts and frozen results are unchanged."
+  ]
+}

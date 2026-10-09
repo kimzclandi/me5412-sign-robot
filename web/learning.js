@@ -94,7 +94,7 @@
   el('learn-joint').onchange = chart;
   el('learn-play').onclick = () => { if (!data) return; if (playing) return pause(); if (frame === data.timestamps_s.length - 1) frame = 0; playing = true; origin = performance.now() - data.timestamps_s[frame] * 1000; el('learn-play').textContent = '暂停'; animation = requestAnimationFrame(tick); };
   el('learn-download').onclick = () => { if (!data) return; const {_bounds, ...output} = data; const url = URL.createObjectURL(new Blob([JSON.stringify(output)], {type: 'application/json'})); const a = document.createElement('a'); a.href = url; a.download = `learned-${data.action_id}-${data.duration_s}s.json`; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); };
-  document.querySelectorAll('.tab').forEach(button => button.addEventListener('click', () => { if (button.dataset.tab !== 'learning') pause(); else requestAnimationFrame(draw); }));
+  window.addEventListener('project:tabchange', event => { if (event.detail.id !== 'learning') pause(); else requestAnimationFrame(draw); });
   window.addEventListener('resize', draw);
   fetch('/api/learning').then(r => { if (!r.ok) throw new Error('模型实验不可用'); return r.json(); }).then(s => {
     el('learn-corpus').textContent = s.corpus.annotation_rows.toLocaleString();

@@ -8,13 +8,14 @@ import os
 import re
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import quote, urlparse
 from datetime import datetime, timezone
 from threading import Lock
 
 from .contracts import ROOT, load_catalog
 from .pipeline import run_selection, resolve_execution
 from . import inspection
+from . import project_overview
 from .service import instance_id
 
 LOG_LOCK = Lock()
@@ -57,9 +58,14 @@ class Handler(BaseHTTPRequestHandler):
         route = urlparse(self.path).path
         if route == "/api/health":
             return self.send_json({"project_id": "me5412-sign-robot", "status": "ok", "pid": os.getpid(),
-                                   "instance_id": instance_id(ROOT), "server_revision": "learning-v1"})
+                                   "instance_id": instance_id(ROOT), "server_revision": "project-overview-v1"})
         if route == "/api/status":
             return self.send_json(project_status())
+        if route == "/api/project":
+            try:
+                return self.send_json(project_overview.overview(ROOT))
+            except (OSError, ValueError, KeyError, TypeError):
+                return self.send_json({"error": "project_evidence_unavailable"}, 503)
         if route == "/api/evidence":
             path = ROOT / "results/acceptance.json"
             return self.send_json(json.loads(path.read_text(encoding="utf-8")) if path.exists() else {"status": "in_progress"})
@@ -82,9 +88,22 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send_json(value)
             except (ValueError, KeyError, OSError) as exc:
                 return self.send_json({"error": "inspection_unavailable", "message": str(exc)}, 404)
-        static = {"/": "index.html", "/app.js": "app.js", "/style.css": "style.css", "/inspector.js": "inspector.js", "/learning.js": "learning.js"}
+        artifact_spec = None
+        static = {"/": "index.html", "/app.js": "app.js", "/style.css": "style.css", "/inspector.js": "inspector.js", "/learning.js": "learning.js", "/project.js": "project.js", "/project.css": "project.css"}
         if route in static:
             path = ROOT / "web" / static[route]
+        elif route.startswith("/project-files/"):
+            key = route.removeprefix("/project-files/")
+            try:
+                path, artifact_spec = project_overview.artifact(key, ROOT)
+            except KeyError:
+                return self.send_json({"error": "not_found"}, 404)
+            except FileNotFoundError:
+                return self.send_json({"error": "project_file_missing"}, 404)
+            except project_overview.IntegrityError:
+                return self.send_json({"error": "project_file_integrity_mismatch"}, 409)
+            except (ValueError, OSError):
+                return self.send_json({"error": "project_file_unavailable"}, 404)
         elif route.startswith("/inspection-media/"):
             matched = re.fullmatch(r"/inspection-media/([A-Z_]+)/([0-9a-f]{16})/(front|right_side)\.(mp4|png)", route)
             if not matched:
@@ -115,10 +134,15 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send_json({"error": "invalid_range"}, 416)
             partial = True
         self.send_response(206 if partial else 200)
-        self.send_header("Content-Type", mimetypes.guess_type(str(path))[0] or "application/octet-stream")
+        self.send_header("Content-Type", artifact_spec["mime"] if artifact_spec else (mimetypes.guess_type(str(path))[0] or "application/octet-stream"))
         self.send_header("Content-Length", str(end - start + 1))
         self.send_header("Accept-Ranges", "bytes")
         self.send_header("X-Content-Type-Options", "nosniff")
+        if artifact_spec:
+            fallback = re.sub(r"[^A-Za-z0-9_.-]", "_", path.name)
+            self.send_header("Content-Disposition", f'{artifact_spec["disposition"]}; filename="{fallback}"; filename*=UTF-8\'\'{quote(path.name)}')
+            self.send_header("ETag", f'"{artifact_spec["sha256"]}"')
+            self.send_header("Cache-Control", "no-store")
         if partial:
             self.send_header("Content-Range", f"bytes {start}-{end}/{size}")
         self.end_headers()

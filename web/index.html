@@ -1,12 +1,34 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ME5412 机器人手语表达实验台</title><link rel="stylesheet" href="/style.css"></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ME5412 机器人手语表达实验台</title><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/project.css"></head>
 <body>
-  <header><a class="brand" href="/">ME5412 <span>ROBOTICS FOR HEALTHCARE</span></a><span class="local"><i></i> 本地仿真研究</span></header>
-  <main>
-    <div class="intro"><div><p class="eyebrow">TEXT TO ROBOT EXPRESSION</p><h1>文字到机器人表达</h1><p class="subtitle">从有限含义到可重复的动作，分别检查选择、执行与理解。</p></div><div class="scope"><strong>03</strong><span>候选表达<br>ASL 使用者评审待完成</span></div></div>
-    <nav aria-label="页面内容"><button class="tab active" data-tab="demo">交互演示</button><button class="tab" data-tab="learning">学习模型</button><button class="tab" data-tab="inspection">动作检查</button><button class="tab" data-tab="evidence">验收与边界</button><button class="tab" data-tab="team">六人协作</button></nav>
-    <section id="demo" class="tab-panel">
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <aside class="project-sidebar">
+    <a class="project-brand" href="#overview"><span class="brand-mark" aria-hidden="true">↗</span><span>ME5412<small>ROBOT SIGNING LAB</small></span></a>
+    <p class="nav-caption">研究与实验</p>
+    <nav aria-label="项目导航">
+      <button class="tab active" data-tab="overview"><span aria-hidden="true">01</span>项目总览</button>
+      <button class="tab" data-tab="demo"><span aria-hidden="true">02</span>交互演示</button>
+      <button class="tab" data-tab="learning"><span aria-hidden="true">03</span>学习模型</button>
+      <button class="tab" data-tab="inspection"><span aria-hidden="true">04</span>动作检查</button>
+      <button class="tab" data-tab="data"><span aria-hidden="true">05</span>数据路线</button>
+      <button class="tab" data-tab="evidence"><span aria-hidden="true">06</span>实验评价</button>
+      <button class="tab" data-tab="team"><span aria-hidden="true">07</span>六人协作</button>
+      <button class="tab" data-tab="resources"><span aria-hidden="true">08</span>资料与汇报</button>
+    </nav>
+    <div class="sidebar-bottom"><span class="live-dot"></span> SIMULATION ONLY<p>有限表达 · 本地研究原型<br>ASL 可理解性待验证</p></div>
+  </aside>
+  <main id="main-content" tabindex="-1">
+    <header class="workspace-header"><span>NUS / ROBOTICS FOR HEALTHCARE</span><span class="connection"><i class="live-dot"></i><span id="connection-status">本地实验台</span></span></header>
+    <div class="intro"><div><p class="eyebrow" id="page-eyebrow">PROJECT AT A GLANCE</p><h1 id="page-title">项目总览</h1><p class="subtitle" id="page-subtitle">从文字到动作，看清每个环节的输入、输出与验证状态。</p></div><button class="button secondary compact" data-jump="resources">汇报与演示材料 <span aria-hidden="true">↗</span></button></div>
+    <div id="project-load-error" class="notice hidden" role="alert"></div>
+    <section id="overview" class="tab-panel">
+      <div class="overview-hero"><div class="hero-copy"><span class="pill light">ME5412 · 六人课程项目</span><h2>让文字，变成<br><em>可检查的机器人动作。</em></h2><p>通过动作库选择与学习型轨迹生成两条路径，探索英文输入到机器人候选表达的完整流程。</p><div class="hero-actions"><button class="button primary" data-jump="demo">开始交互演示 <span aria-hidden="true">→</span></button><button class="button hero-secondary" data-jump="learning">体验学习模型</button></div><span class="hero-footnote">当前范围：三个候选表达 · 运动学仿真</span></div><div class="hero-visual"><img src="/media/HELLO.png" alt="Unitree G1 机器人候选 HELLO 动作的真实 MuJoCo 渲染"><div class="hero-image-label"><span>G1 + INSPIRE DFQ</span><span>53 坐标 / 12 条耦合</span></div></div></div>
+      <div class="overview-stats"><article><span>候选表达</span><strong id="stat-actions">—</strong><small>当前仍为有限动作目录</small></article><article><span>运行路径</span><strong>2 <b>条</b></strong><small>已有动作 / 学习生成</small></article><article><span>公开文本索引</span><strong id="stat-corpus">—</strong><small>尚未配对人体或机器人动作</small></article><article><span>语言可理解性</span><strong class="pending-text">待验证</strong><small>尚未开展真实 ASL 使用者评审</small></article></div>
+      <article class="surface workflow-card"><div class="block-heading"><div><p class="eyebrow">SYSTEM MAP</p><h2>一句英文，经过哪些环节？</h2><p>切换两条路径，点击节点查看输入、输出和负责模块。</p></div><div class="segmented" aria-label="系统路径"><button class="selected" data-flow="baseline" aria-pressed="true">动作库路径</button><button data-flow="learned" aria-pressed="false">学习生成路径</button></div></div><div id="flow-nodes" class="flow-nodes"></div><div id="flow-detail" class="flow-detail" aria-live="polite"></div><p class="microcopy">这是结构示意。实际文字选择与模型推理在各自的实验入口运行。</p></article>
+      <div class="overview-bottom"><article class="surface"><div class="block-heading"><div><p class="eyebrow">CURRENT STATE</p><h2>已完成与待验证</h2></div><button class="text-button" data-jump="evidence">查看证据 →</button></div><div class="status-line"><span class="status-icon ready">✓</span><div><strong>文字到候选动作的流程已跑通</strong><p>选择、生成、仿真与关节检查均有本地记录。</p></div></div><div class="status-line"><span class="status-icon partial">◐</span><div><strong>学习模型完成小样本拟合</strong><p>3 条自编示范，仅检验同轨迹时间插值。</p></div></div><div class="status-line"><span class="status-icon pending">○</span><div><strong>新动作泛化与手语理解待验证</strong><p>需要独立动作数据与使用者的含义复述。</p></div></div></article><article class="surface next-card"><p class="eyebrow">NEXT MILESTONE</p><h2>把文字与真实动作配起来</h2><p>已有文本索引。下一步先补少量有来源的视频与人体姿态，再重定向到机器人。</p><div class="mini-route"><span>来源动作</span><span aria-hidden="true">→</span><span>机器人轨迹</span><span aria-hidden="true">→</span><span>独立评价</span></div><button class="button secondary" data-jump="data">查看数据路线 <span aria-hidden="true">→</span></button></article></div>
+    </section>
+    <section id="demo" class="tab-panel hidden">
       <div class="workspace">
         <div class="input-pane">
           <div class="section-top"><span class="step">01</span><h2>选择要表达的含义</h2></div>
@@ -30,6 +52,7 @@
     </section>
     <section id="learning" class="tab-panel hidden">
       <h2>文字条件生成关节轨迹</h2><p class="section-description">冻结文字编码器 + 已训练的 RBF 回归模型。每次请求根据文字向量和动作相位计算角度，再做逐帧运动学检查。</p>
+      <div class="model-map surface"><div><span>输入</span><strong>文字向量 + 相位</strong><small>384 维 MiniLM / 40 个 RBF 基</small></div><i aria-hidden="true">→</i><div><span>已训练权重</span><strong>预测 26 个主动角</strong><small>一次岭回归拟合，3 条自编示范</small></div><i aria-hidden="true">→</i><div><span>机器人约束</span><strong>重建 53 个坐标</strong><small>限位投影 / 12 条从动耦合</small></div></div>
       <div class="learning-facts"><article><strong>3</strong><span>独立自编轨迹</span></article><article><strong>367 / 365</strong><span>训练帧 / 同轨迹验证帧</span></article><article><strong id="learn-corpus">—</strong><span>公开文本索引 · 动作监督 0</span></article></div>
       <div class="learning-form"><div><label for="learn-text">英文输入 · 当前仍限三类已登记完整含义</label><textarea id="learn-text" maxlength="1000" spellcheck="false">Thank you</textarea><div class="phrase-buttons"><button data-learn-example="Hello">Hello</button><button data-learn-example="Thank you">Thank you</button><button data-learn-example="Please wait">Please wait</button></div></div><div><label for="learn-duration">生成时长</label><select id="learn-duration"><option value="1">原始时长</option><option value="1.2">延长 20% · 重新计算轨迹</option></select><button id="learn-generate" class="primary">生成并检查研究候选 <span>→</span></button><p class="inspection-boundary">模型未经过 ASL 使用者评审。这里生成并预览实验轨迹；交互演示保留原动作库。</p></div></div>
       <p id="learn-status" role="status">模型实验信息读取中…</p>
@@ -60,25 +83,31 @@
         <details><summary>数据来源与检查范围</summary><pre id="inspect-provenance"></pre></details>
       </div>
     </section>
+    <section id="data" class="tab-panel hidden">
+      <div class="section-lead"><span class="pill pending">数据配对待补齐</span><h2>文本索引已经有了，动作监督还缺什么？</h2><p>数据量要沿着实际处理阶段计算。点击下方阶段，查看已有内容与下一份交付。</p></div>
+      <div id="data-stages" class="data-stages"></div><div id="data-stage-detail" class="surface data-stage-detail" aria-live="polite"></div>
+      <div class="data-columns"><article class="surface"><p class="eyebrow">OFFICIAL SPLITS</p><h2>How2Sign 文本记录</h2><div id="corpus-split-bar" class="split-bar" aria-label="How2Sign 官方训练验证测试划分"></div><div id="corpus-splits" class="split-rows"></div><p id="corpus-source" class="microcopy"></p></article><article class="surface authored-branch"><p class="eyebrow">EXISTING TRAINING DATA</p><h2>当前模型来自另一条数据路径</h2><div class="authored-count"><strong id="data-demos">3</strong><span>自编机器人示范<br>并非 How2Sign 动作</span></div><div class="mini-route"><span>关键位姿 + IK</span><span aria-hidden="true">→</span><span>732 帧轨迹</span><span aria-hidden="true">→</span><span>v1 拟合</span></div><p>367 个偶数帧训练，365 个奇数帧验证。相邻帧高度相关，不能当作独立动作样本。</p><button class="text-button" data-jump="learning">打开学习模型 →</button></article></div>
+      <div class="notice"><strong>扩库的验收单位是“可表达且核验过的含义”。</strong><p>英文词型数、句子行数和 ASL 手势种类并不等价。PLEASE_WAIT 当前主要参考 WAIT 词例，完整礼貌请求仍需核对。</p></div>
+    </section>
     <section id="evidence" class="tab-panel hidden">
       <h2>把三类证据分开</h2><p class="section-description">代码能运行、动作能播放、手语能被理解，需要分别验证。</p>
       <div class="evidence-grid"><article><span class="step">01</span><h3>文字选择</h3><p>固定匹配与本地语义匹配用同一批探索性测试输入比较。大模型后端未配置时明确返回不可用。</p></article><article><span class="step">02</span><h3>机器人执行</h3><p>运动学轨迹与 MuJoCo 渲染。原模型关节耦合保留；未证明执行器动力学、真实硬件或临床适用性。</p></article><article><span class="step">03</span><h3>ASL 可理解性</h3><p>尚无真实 ASL 使用者评审。源词例、候选完整含义和机器人动作并不自动等价。</p></article></div>
+      <article class="surface evaluation-chart"><div class="block-heading"><div><p class="eyebrow">FROZEN TEXT EXPERIMENT</p><h2>选对、误拒和错误执行分别看</h2><p id="comparison-caption">正在读取原始实验汇总…</p></div><div class="segmented" aria-label="评价样本范围"><button class="selected" data-eval="supported" aria-pressed="true">支持输入</button><button data-eval="out_of_scope" aria-pressed="false">库外输入</button></div></div><div id="comparison-legend" class="chart-legend"></div><div id="comparison-bars" class="comparison-bars"></div><p id="comparison-note" class="microcopy"></p></article>
+      <div class="data-columns"><article class="surface"><p class="eyebrow">MOTION FIT</p><h2>同轨迹验证误差</h2><div id="fit-metrics" class="fit-metrics"></div><p class="microcopy">奇数帧验证，经显式限位投影后的主动关节 RMSE；仅反映同示范插值。工程检查保留约 0.644 mm 微穿透，无超过 1 mm 的接触穿透事件。</p></article><article class="surface"><p class="eyebrow">EVIDENCE SNAPSHOT</p><h2>软件检查与语言验证</h2><p id="test-snapshot" class="snapshot-number">—</p><p id="test-snapshot-date" class="microcopy">读取历史验收快照…</p><div class="notice compact-notice"><strong>ASL 可理解性：未验证</strong><p>代码通过与动作可播放，不能代替使用者看懂。</p></div></article></div>
       <h3>首版验收记录 · 冻结保留</h3><p id="evidence-summary" class="section-description">读取中…</p>
       <table><thead><tr><th>文字选择方法</th><th>支持输入选对</th><th>支持输入误拒</th><th>库外错误执行</th></tr></thead><tbody id="evaluation-rows"></tbody></table>
       <p class="note">同一批 60 条 agent 起草、尚未人审的探索性样例；所有方法包含公共拒绝规则。这里的分数不衡量机器人手语是否能被理解。本地 LLM 仅作失败分析对照，默认入口未启用。</p>
       <details><summary>查看完整验收记录</summary><pre id="evidence-json">读取中…</pre></details>
     </section>
     <section id="team" class="tab-panel hidden">
-      <h2>六位同学，六个开发助手</h2><p class="section-description">每人负责一个可验收模块，系统运行时不需要六个 agent 互相讨论。</p>
-      <table><thead><tr><th>负责人</th><th>工作范围</th><th>交付给团队</th><th>本人验收</th></tr></thead><tbody>
-        <tr><td>A1 · 表达资料</td><td>来源、示范、关键帧说明</td><td>有出处的表达与动作要求</td><td>完整视频与含义核对</td></tr>
-        <tr><td>A2 · 机器人</td><td>模型、IK、轨迹、渲染</td><td>可重复播放的候选动作</td><td>手型、掌向、耦合、限位</td></tr>
-        <tr><td>B1 · 语义匹配</td><td>固定基线与 embedding</td><td>统一选择接口</td><td>相似与同义的区别</td></tr>
-        <tr><td>B2 · 大模型</td><td>结构化选择与异常处理</td><td>合法 ID 或明确拒绝</td><td>否定、混合、非法输出</td></tr>
-        <tr><td>C1 · 独立评价</td><td>场景、冻结测试、语言评价</td><td>原始记录与错误分析</td><td>标签与真实评审反馈</td></tr>
-        <tr><td>C2 · 集成展示</td><td>接口、界面、运行说明</td><td>整条可复现流程</td><td>另一台电脑复现与排练</td></tr>
-      </tbody></table><p class="note">三个公共接口：表达目录、选择结果、具有关节名和时间戳的轨迹。修改接口前先统一，再更新各模块。</p>
+      <div class="section-lead"><span class="pill">建议职责 · 待组内认领</span><h2>六位同学，各自接住一个模块</h2><p>每人可以配一个 agent 辅助开发。本人负责理解方法、核对证据，并验收交付；点击卡片查看协作关系。</p></div><div id="role-cards" class="role-grid"></div><div id="role-detail" class="surface role-detail" aria-live="polite"></div>
+      <article class="surface roadmap"><div class="block-heading"><div><p class="eyebrow">DELIVERY PATH</p><h2>从当前原型走向课程交付</h2></div><span id="course-deadline" class="pill">课程简报：11 月 3 日</span></div><ol><li><span class="milestone-dot ready"></span><strong>已有原型</strong><p>三候选、两路径、仿真与原始记录</p></li><li><span class="milestone-dot"></span><strong>配对新动作</strong><p>有来源的完整含义与机器人轨迹</p></li><li><span class="milestone-dot"></span><strong>独立验证</strong><p>新示范测试、语言核验与另一台电脑复现</p></li><li><span class="milestone-dot"></span><strong>汇报与排练</strong><p>组员核对 slides、演示备份与答辩</p></li></ol><p class="microcopy">后续节点为建议验收顺序，不表示已完成或已分配人员。提交方式与日期应以课程最新通知为准。</p></article>
     </section>
-    <footer>ME5412 COURSE PROJECT <span>有限表达 · 仿真候选 · 证据与边界公开可查</span></footer>
-  </main><script src="/app.js"></script><script src="/inspector.js"></script><script src="/learning.js"></script>
+    <section id="resources" class="tab-panel hidden">
+      <div class="section-lead"><span class="pill">本地材料</span><h2>演示、讨论与汇报，从这里开始</h2><p>先看一个机器人视频，再打开汇报初稿。所有下载都来自本项目已保存的文件。</p></div>
+      <article class="surface preview-library"><div class="block-heading"><div><p class="eyebrow">LEARNED MOTION EXAMPLES</p><h2>模型生成的机器人样例</h2><p>固定输入、原始时长的离线渲染；新文字的实时生成在“学习模型”页。</p></div></div><div class="preview-library-grid"><div><video id="resource-video" controls playsinline preload="none" aria-label="学习模型固定样例视频"></video></div><div class="preview-library-controls"><label for="resource-action">选择表达</label><select id="resource-action"><option value="HELLO">HELLO · 你好</option><option value="THANK_YOU">THANK_YOU · 谢谢</option><option value="PLEASE_WAIT">PLEASE_WAIT · WAIT 词例</option></select><label for="resource-view">视角</label><select id="resource-view"><option value="front">正面</option><option value="right_side">右侧斜视</option></select><p id="resource-preview-info" class="note">正在读取样例…</p><button id="resource-play" class="button primary" disabled>播放候选样例 <span aria-hidden="true">▷</span></button><a id="resource-download" class="button secondary hidden" download>下载此视频 ↓</a><p class="microcopy">已检查关节与现有碰撞几何；ASL 含义尚未经使用者评审。</p></div></div></article>
+      <div class="block-heading materials-heading"><div><p class="eyebrow">PROJECT MATERIALS</p><h2>项目资料</h2></div><div id="material-filters" class="segmented" aria-label="资料分类"></div></div><div id="material-cards" class="material-grid"></div><p class="microcopy">这个网址只在当前电脑运行。发到群里时分享下载的文件；组员需要在自己的电脑启动项目后才能使用交互页面。</p>
+    </section>
+    <footer>ME5412 COURSE PROJECT <span>有限表达 · 运动学仿真 · 语言核验待开展</span></footer>
+  </main><script src="/app.js"></script><script src="/inspector.js"></script><script src="/learning.js"></script><script src="/project.js"></script>
 </body></html>

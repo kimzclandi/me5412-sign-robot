@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-09T01:34:40.991Z",
+  "tool": "Codex in-app browser via cua_repl",
+  "responsive": [
+    {
+      "page": "项目总览",
+      "scrollWidth": 390,
+      "visiblePanels": [
+        "overview"
+      ],
+      "width": 390
+    },
+    {
+      "page": "数据路线",
+      "scrollWidth": 390,
+      "visiblePanels": [
+        "data"
+      ],
+      "width": 390
+    },
+    {
+      "page": "实验评价",
+      "scrollWidth": 390,
+      "visiblePanels": [
+        "evidence"
+      ],
+      "width": 390
+    },
+    {
+      "page": "六人协作",
+      "scrollWidth": 390,
+      "visiblePanels": [
+        "team"
+      ],
+      "width": 390
+    },
+    {
+      "page": "资料与汇报",
+      "scrollWidth": 390,
+      "visiblePanels": [
+        "resources"
+      ],
+      "width": 390
+    },
+    {
+      "page": "交互演示",
+      "scrollWidth": 390,
+      "visiblePanels": [
+        "demo"
+      ],
+      "width": 390
+    },
+    {
+      "page": "学习模型",
+      "scrollWidth": 390,
+      "visiblePanels": [
+        "learning"
+      ],
+      "width": 390
+    },
+    {
+      "page": "动作检查",
+      "scrollWidth": 390,
+      "visiblePanels": [
+        "inspection"
+      ],
+      "width": 390
+    }
+  ],
+  "desktop": {
+    "width": 1280,
+    "scrollWidth": 1280,
+    "visually_reviewed": [
+      "overview",
+      "data"
+    ],
+    "screenshots": [
+      "overview-desktop.png",
+      "data-desktop.png"
+    ]
+  },
+  "mobile": {
+    "width": 390,
+    "height": 844,
+    "visually_reviewed": [
+      "overview",
+      "evidence"
+    ],
+    "screenshots": [
+      "overview-mobile.png",
+      "evidence-mobile.png"
+    ]
+  },
+  "final_viewport": {
+    "width": 705,
+    "height": 925,
+    "scrollWidth": 705,
+    "override_reset": true,
+    "screenshot": "overview-final.png"
+  },
+  "browser_checks": [
+    {
+      "name": "default_overview_and_live_service",
+      "passed": true
+    },
+    {
+      "name": "system_map_learning_route_node_and_jump",
+      "passed": true
+    },
+    {
+      "name": "live_THANK_YOU_at_1_2_duration",
+      "passed": true,
+      "frames": 289,
+      "coordinates": 53,
+      "seek_frame_index": 120,
+      "seek_seconds": 4
+    },
+    {
+      "name": "skip_link_retains_learning_route",
+      "passed": true
+    },
+    {
+      "name": "data_retarget_stage_details",
+      "passed": true
+    },
+    {
+      "name": "out_of_scope_results",
+      "passed": true,
+      "exact_correct": 30,
+      "embedding_correct": 30,
+      "llm_correct": 28,
+      "llm_false_execution": 2,
+      "denominator": 30
+    },
+    {
+      "name": "B2_role_details",
+      "passed": true
+    },
+    {
+      "name": "saved_model_THANK_YOU_right_side_video_decoded",
+      "passed": true,
+      "readyState": 4,
+      "videoWidth": 960,
+      "videoHeight": 720
+    },
+    {
+      "name": "report_material_filter",
+      "passed": true,
+      "visible_materials": 3
+    },
+    {
+      "name": "mime_file_labels_JSON_MD_TXT",
+      "passed": true
+    },
+    {
+      "name": "default_candidate_preview_blocked",
+      "passed": true,
+      "selected_action": "THANK_YOU"
+    },
+    {
+      "name": "explicit_preview_real_video",
+      "passed": true,
+      "videoWidth": 1280,
+      "readyState": 4,
+      "paused": false
+    },
+    {
+      "name": "mixed_intent_rejected_and_previous_video_cleared",
+      "passed": true
+    },
+    {
+      "name": "inspection_THANK_YOU_right_side_seek",
+      "passed": true,
+      "frame_index": 90,
+      "display_frame": 91,
+      "total_frames": 241,
+      "seconds": 3
+    },
+    {
+      "name": "browser_back_and_reload_preserve_data_route",
+      "passed": true
+    },
+    {
+      "name": "console_warnings_and_errors",
+      "passed": true,
+      "entries": []
+    }
+  ],
+  "limitations": [
+    "Layout tested in the current in-app browser only; not a Safari/Chrome or native mobile device certification.",
+    "ASL intelligibility, new-expression generalization and actuator dynamics were not evaluated."
+  ]
+}

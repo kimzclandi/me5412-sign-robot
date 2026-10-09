@@ -130,10 +130,9 @@
   el('inspect-action').onchange=()=>{clear();message('表达已改变。点击“打开候选轨迹”加载新的动作。');};
   video.addEventListener('timeupdate',()=>{if(motion && mediaReady){frame=displayedFrame(video.currentTime);updateReadouts();}});
   video.addEventListener('error',()=>{if(motion)message('视频未能载入。请检查本机资源，关节数据本身不表示视频播放成功。');});
-  document.querySelectorAll('.tab').forEach(button=>button.addEventListener('click',()=>{
-    if(button.dataset.tab!=='inspection')video.pause();
-    if(button.dataset.tab!=='demo')el('video').pause();
-    if(button.dataset.tab==='inspection')updateReadouts();
-  }));
+  window.addEventListener('project:tabchange',event=>{
+    if(event.detail.id!=='inspection')video.pause();
+    if(event.detail.id==='inspection')updateReadouts();
+  });
   window.addEventListener('resize',updateReadouts);
 })();

@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-09T01:35:04.286096+00:00",
+  "kind": "project_visualization_v1",
+  "baseline_commit": "650fb926d934c7b98744e1e1d810e24cf89bcac2",
+  "scope": [
+    "eight-page project visualization",
+    "read-only project overview API and pinned material downloads",
+    "real browser navigation and existing flow regression checks"
+  ],
+  "tests": {
+    "tests": 222,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "navigation_regression": {
+    "tests": 12,
+    "failures": 0,
+    "record": "navigation-regression.json",
+    "source_hashes_match": true
+  },
+  "frozen_preservation": {
+    "files": 261,
+    "all_unchanged": true,
+    "record": "frozen-verification.json"
+  },
+  "browser_qa": "browser-qa.json",
+  "readme_local_links": [
+    {
+      "target": "docs/实施路线.md",
+      "exists": true
+    },
+    {
+      "target": "docs/six-person-handoff.md",
+      "exists": true
+    },
+    {
+      "target": "docs/学习型轨迹模型.md",
+      "exists": true
+    },
+    {
+      "target": "docs/语料规模与模型升级.md",
+      "exists": true
+    },
+    {
+      "target": "deliverables/course-report-v4/ME5412_Text_to_Robot_Signing_v4.pptx",
+      "exists": true
+    },
+    {
+      "target": "deliverables/course-report-v4/ME5412_Text_to_Robot_Signing_v4.pdf",
+      "exists": true
+    },
+    {
+      "target": "deliverables/course-report-v4/speaker-notes.zh-CN.txt",
+      "exists": true
+    },
+    {
+      "target": "docs/source-review.md",
+      "exists": true
+    },
+    {
+      "target": "docs/video-calibration.md",
+      "exists": true
+    }
+  ],
+  "syntax_checks": {
+    "javascript_files": 4,
+    "passed": true
+  },
+  "git_diff_check": true,
+  "local_service": {
+    "url": "http://127.0.0.1:5412/",
+    "pid": 93625,
+    "status": "ok",
+    "server_revision": "project-overview-v1",
+    "checked_after_restart": true
+  },
+  "fixed_regressions": [
+    "Skip-to-content preserves current route and focuses main.",
+    "Delayed selection response cannot start off-page video."
+  ],
+  "unchanged_capability_boundaries": {
+    "candidate_expressions": 3,
+    "paired_How2Sign_motion_targets": 0,
+    "new_training": false,
+    "asl_user_evaluation": false,
+    "actuator_dynamics": false
+  },
+  "source_sha256": {
+    "README.md": "b6dd0f9e4c76eaf618eade1510f14597795f2b8d866bc7e31bffad3f274995cb",
+    "web/app.js": "92ab8dcae7d9852322a4529e1e00bd5b408d67e98af3964d9495604fc5a51615",
+    "web/index.html": "9b62edfccb92ee2c67cefa35a25b8379e895b6bfbc1f64b18c0db1ecefefa3c4",
+    "web/project.js": "067424a9c458b06a2b2c02b8b39641b4dc666b3b01a36fc37f354d33cf872825",
+    "web/project.css": "bb8d3705f540c2e04831b0ed273afca53adc044557571884f73ce82de48dcd48",
+    "web/learning.js": "8fae2013f608c76fd45b67767da8e0408c70580c8de04a36b3cb701ec7c83e96",
+    "web/inspector.js": "628819ed43a417128e4704e4d57f02a5147bf420a2bd1f8127a7e2b0213d5e55",
+    "src/sign_robot/server.py": "acced6ff0a98ada0a87c433ca8f36fb10a373e040adae10fcb79711501e1a3fd",
+    "src/sign_robot/project_overview.py": "0852f623ef2c607211ff5496220611572cadf972eaf578f4ff95dbef330564d5",
+    "tests/test_project_overview.py": "a72247b381ecbb86167ab639826866a348fae68b615e132a145eb6bc151cfc47"
+  }
+}

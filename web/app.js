@@ -11,7 +11,7 @@ function showResult(result){
   $('result').querySelector('strong').textContent=execution.state==='ready'?'正在预览候选动作':titles[selection.status]||selection.status;
   $('result').querySelector('p').textContent=execution.message||reasons[selection.reason_code]||`原因：${selection.reason_code}。未触发机器人动作。`;
   const video=$('video');video.pause();
-  if(execution.preview_url){video.style.display='block';$('empty-view').style.display='none';video.src=execution.preview_url;video.load();video.play().catch(()=>{});}
+  if(execution.preview_url){video.style.display='block';$('empty-view').style.display='none';video.src=execution.preview_url;video.load();if(!$('demo').classList.contains('hidden'))video.play().catch(()=>{});}
   else{video.removeAttribute('src');video.load();video.style.display='none';$('empty-view').style.display='flex';$('empty-view').querySelector('strong').textContent=execution.state==='review_required'?'候选表达已选中':'本次未播放动作';$('empty-view').querySelector('p').textContent=execution.state==='review_required'?'勾选研究预览后，重新提交即可查看':'可修改输入或直接选择目录中的短语';}
 }
 async function submit(endpoint,payload){
@@ -25,7 +25,22 @@ $('submit').onclick=()=>submit('/api/select',{text:$('text').value,method});
 $('text').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter')$('submit').click();});
 document.querySelectorAll('.method').forEach(button=>button.onclick=()=>{method=button.dataset.method;document.querySelectorAll('.method').forEach(b=>b.classList.toggle('selected',b===button));});
 document.querySelectorAll('[data-example]').forEach(button=>button.onclick=()=>{$('text').value=button.dataset.example;$('text').focus();});
-document.querySelectorAll('.tab').forEach(button=>button.onclick=()=>{document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b===button));document.querySelectorAll('.tab-panel').forEach(panel=>panel.classList.toggle('hidden',panel.id!==button.dataset.tab));});
+const pages={overview:['项目总览','PROJECT AT A GLANCE','从文字到动作，看清每个环节的输入、输出与验证状态。'],demo:['交互演示','TEXT TO ACTION','输入完整含义，比较不同文字选择方法与候选动作。'],learning:['学习模型','LEARNED MOTION','用已经训练的模型，为当前请求生成并检查关节轨迹。'],inspection:['动作检查','MOTION INSPECTION','连接机器人画面、时间轴和关节数据，逐帧检查候选动作。'],data:['数据路线','FROM TEXT TO MOTION DATA','沿数据处理过程，区分已取得的记录与缺少的动作监督。'],evidence:['实验评价','EVIDENCE & LIMITS','分别查看文字选择、轨迹工程与语言可理解性。'],team:['六人协作','SIX OWNERS, ONE PROJECT','明确每个模块接收什么、交付什么、怎样验收。'],resources:['资料与汇报','PROJECT LIBRARY','查看演示样例，下载组内讨论和课程汇报材料。']};
+window.navigateProject=(id,record=true)=>{
+  if(!Object.hasOwn(pages,id))id='overview';
+  document.querySelectorAll('.tab').forEach(b=>{const active=b.dataset.tab===id;b.classList.toggle('active',active);active?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current');});
+  document.querySelectorAll('.tab-panel').forEach(panel=>panel.classList.toggle('hidden',panel.id!==id));
+  $('page-title').textContent=pages[id][0];$('page-eyebrow').textContent=pages[id][1];$('page-subtitle').textContent=pages[id][2];document.title=pages[id][0]+' · ME5412 机器人手语表达';
+  document.querySelectorAll('video').forEach(video=>{if(video.closest('.tab-panel')?.id!==id)video.pause();});
+  if(record&&location.hash!=='#'+id)history.pushState(null,'','#'+id);
+  window.dispatchEvent(new CustomEvent('project:tabchange',{detail:{id}}));
+  window.scrollTo({top:0,behavior:'instant'});
+};
+document.querySelectorAll('.tab').forEach(button=>button.onclick=()=>window.navigateProject(button.dataset.tab));
+document.querySelector('.skip-link').onclick=event=>{event.preventDefault();$('main-content').focus({preventScroll:true});$('main-content').scrollIntoView({block:'start'});};
+window.addEventListener('hashchange',()=>window.navigateProject(location.hash.slice(1),false));
+window.addEventListener('popstate',()=>window.navigateProject(location.hash.slice(1),false));
+window.navigateProject(location.hash.slice(1)||'overview',false);
 async function init(){
   try{
     const status=await(await fetch('/api/status')).json();catalog=status.catalog;
