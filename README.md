@@ -2,7 +2,16 @@
 
 这是六人课程项目的可运行研究原型。默认演示将英文或短语按钮映射到有限动作；新增“学习模型”实验入口从文字向量与连续相位生成关节轨迹。已完成一次小型 RBF 岭回归训练，使用 3 条自编轨迹、367 个训练帧及 365 个同轨迹验证帧。项目仍仅覆盖 HELLO、THANK_YOU、PLEASE_WAIT；所有动作的 ASL 可理解性尚未经过真实使用者评审，PLEASE_WAIT 还存在词例到完整礼貌请求的表达缺口。
 
-本目录是独立本地 Git 项目，没有配置远端，没有公开上传。先看 [实施路线与课程交付节奏](docs/实施路线.md)，再按 [六人接手说明](docs/six-person-handoff.md) 分配每人的 agent。
+代码仓库按小组协作需要设置为 **GitHub 私有仓库**；网页展示版另行公开分享。先看 [实施路线与课程交付节奏](docs/实施路线.md)，再按 [六人接手说明](docs/six-person-handoff.md) 分配每人的 agent。
+
+## 给组员的入口
+
+- **直接查看项目**：[在线展示版](https://me5412-robot-signing-lab.kimzc0103.chatgpt.site)。无需安装，支持流程、候选视频、分工、实验图表和资料下载；实时模型推理保留在本地。
+- **代码与实验**：获得仓库访问权限后，使用 `git clone https://github.com/kimzclandi/me5412-sign-robot.git`。私有仓库链接不会自动授予同学权限，需要仓库所有者另行邀请。
+- **完整实验台**：按下方“环境和资源复现”准备 Python 环境，再启动本地服务。
+- **网站源码**：[website/README.md](website/README.md) 包含已经发布的静态展示版及独立预览命令；GitHub 推送不会自动重新发布网站。
+
+仓库保留原始提交、冻结实验及失败记录，并包括本项目训练得到的约 3 MB 回归检查点。第三方 MiniLM／LLM 预训练权重、机器人 vendor 网格、虚拟环境、运行会话日志和本机私有配置均不上传；基础依赖使用固定来源脚本恢复。How2Sign 文本索引按已记录的 CC BY-NC 4.0 范围用于非商业课程研究，未包含源视频。第三方来源和机器人 BSD 许可见 [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt)。
 
 ## 在当前电脑打开
 
@@ -109,7 +118,7 @@ python3.12 -m venv .venv
 .venv/bin/python scripts/fetch_robot.py
 .venv/bin/python scripts/prepare_robot.py
 .venv/bin/python scripts/fetch_embedding.py
-.venv/bin/python scripts/build_motions.py
+# 原候选轨迹与 v1 检查点已保存，不重新制作或训练。
 .venv/bin/python scripts/render_motions.py --allow-candidate-preview
 .venv/bin/python scripts/verify_assets.py
 .venv/bin/python -m pytest -q
@@ -150,7 +159,7 @@ SIGN_ROBOT_LLM_CONFIG=config/llm_experimental.json .venv/bin/python scripts/eval
 
 研究配置没有通过默认启用门槛，不应换入默认 `config/llm.json`。本轮重用的本地检查点及既有 MLX 环境独立于 MiniLM 安装流程；它不是新电脑安装基础依赖后就自动可用的模型。具体架构、权重哈希和历史不确定性见 `config/llm_local_provenance.json`。若在受限执行环境中运行，需允许访问本机 5413 端口；连接失败不是模型质量结果。
 
-测试分别检查非法 ID 和 JSON、失败不执行、候选预览门槛、真实 HTTP 路由、视频 Range、轨迹形状、关节限位、耦合、速度和上游已有碰撞几何。已有碰撞几何的检查通过，不等于完整自碰撞安全证明。最终汇总见 `results/acceptance.json`。
+测试分别检查非法 ID 和 JSON、失败不执行、候选预览门槛、真实 HTTP 路由、视频 Range、轨迹形状、关节限位、耦合、速度和上游已有碰撞几何。已有碰撞几何的检查通过，不等于完整自碰撞安全证明。首版汇总见 `results/acceptance.json`；网页升级验收见 `results/visualization-v1/acceptance.json`。
 
 ## 来源与使用范围
 
@@ -160,4 +169,4 @@ SIGN_ROBOT_LLM_CONFIG=config/llm_experimental.json .venv/bin/python scripts/eval
 
 语义模型来自 [Sentence Transformers MiniLM](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)，固定提交和哈希见 `config/embedding_download_manifest.json`。
 
-当前是课程研究原型。公开发布前需要另行检查第三方模型、代码、媒体的许可及课程要求；本次没有替团队申请数据、联系评审或发布网站。
+当前是课程研究原型。公开发布前需要另行检查第三方模型、代码、媒体的许可及课程要求；未替团队申请数据或联系评审。网站展示版已按用户授权提供持链接访问，代码仓库保持私有；后续改为公开代码需单独确认。

@@ -10,3 +10,10 @@ config/local_runtime.json
 .DS_Store
 deliverables/.build/
 .chart-data-*/
+
+# Local secrets and platform deployment state
+.env
+.env.*
+!.env.example
+.sites-runtime/
+website/.openai/

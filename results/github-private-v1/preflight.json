@@ -1,0 +1,583 @@
+{
+  "baseline_commit": "700dfbbdc966fa8ea82f936b6b37d87728b6a24c",
+  "private_repository_requested": true,
+  "asset_checks": [
+    {
+      "path": "assets/robot/vendor/g1_29dof_rev_1_0_with_inspire_hand_DFQ.urdf",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/UPSTREAM_LICENSE",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/UPSTREAM_README.md",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/L_hand_base_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link11_L.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link11_R.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link12_L.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link12_R.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link13_L.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link13_R.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link14_L.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link14_R.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link15_L.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link15_R.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link16_L.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link16_R.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link17_L.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link17_R.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link18_L.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link18_R.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link19_L.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link19_R.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link20_L.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link20_R.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link21_L.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link21_R.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link22_L.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/Link22_R.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/R_hand_base_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/head_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_ankle_pitch_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_ankle_roll_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_elbow_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_hip_pitch_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_hip_roll_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_hip_yaw_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_knee_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_shoulder_pitch_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_shoulder_roll_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_shoulder_yaw_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_wrist_pitch_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_wrist_roll_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/left_wrist_yaw_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/logo_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/pelvis.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/pelvis_contour_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_ankle_pitch_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_ankle_roll_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_elbow_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_hip_pitch_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_hip_roll_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_hip_yaw_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_knee_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_shoulder_pitch_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_shoulder_roll_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_shoulder_yaw_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_wrist_pitch_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_wrist_roll_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/right_wrist_yaw_link.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/torso_link_rev_1_0.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/waist_roll_link_rev_1_0.STL",
+      "passed": true
+    },
+    {
+      "path": "assets/robot/vendor/meshes/waist_yaw_link_rev_1_0.STL",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/config.json",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/config_sentence_transformers.json",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/modules.json",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/sentence_bert_config.json",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/special_tokens_map.json",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/tokenizer.json",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/tokenizer_config.json",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/vocab.txt",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/1_Pooling/config.json",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/README.md",
+      "passed": true
+    },
+    {
+      "path": "models/all-MiniLM-L6-v2/model.safetensors",
+      "passed": true
+    },
+    {
+      "path": "data/eval_dev.jsonl",
+      "passed": true
+    },
+    {
+      "path": "data/eval_test.jsonl",
+      "passed": true
+    }
+  ],
+  "assets_passed": 75,
+  "readme_links": [
+    {
+      "file": "README.md",
+      "target": "docs/实施路线.md",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "docs/six-person-handoff.md",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "website/README.md",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "THIRD_PARTY_NOTICES.txt",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "docs/学习型轨迹模型.md",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "docs/语料规模与模型升级.md",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "deliverables/course-report-v4/ME5412_Text_to_Robot_Signing_v4.pptx",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "deliverables/course-report-v4/ME5412_Text_to_Robot_Signing_v4.pdf",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "deliverables/course-report-v4/speaker-notes.zh-CN.txt",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "docs/source-review.md",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "docs/video-calibration.md",
+      "exists": true
+    },
+    {
+      "file": "website/README.md",
+      "target": "dist/materials/attribution.txt",
+      "exists": true
+    }
+  ],
+  "website_files": [
+    {
+      "path": "website/dist/index.html",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/inspector.js",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/shared-learning.js",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/project.js",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/style.css",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/project.css",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/app.js",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/materials/report-pdf.pdf",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/materials/report-pptx.pptx",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/materials/attribution.txt",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/materials/team-guide.md",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/materials/corpus-guide.md",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/materials/model-guide.md",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/materials/speaker-notes.txt",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/materials/course-plan.md",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/data/project.json",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/data/inspection-HELLO.json",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/data/inspection-PLEASE_WAIT.json",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/data/inspection-THANK_YOU.json",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/data/inspection.json",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/data/status.json",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/learned-HELLO-right_side-mp4.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/inspection-PLEASE_WAIT-right_side.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/learned-THANK_YOU-front-mp4.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/PLEASE_WAIT.png",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/learned-THANK_YOU-right_side-png.png",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/inspection-THANK_YOU-right_side.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/inspection-PLEASE_WAIT-front.png",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/learned-HELLO-front-mp4.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/learned-PLEASE_WAIT-front-mp4.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/THANK_YOU.png",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/inspection-THANK_YOU-front.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/inspection-HELLO-right_side.png",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/inspection-HELLO-front.png",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/learned-PLEASE_WAIT-right_side-png.png",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/HELLO.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/inspection-HELLO-front.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/learned-THANK_YOU-right_side-mp4.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/HELLO.png",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/learned-HELLO-front-png.png",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/learned-PLEASE_WAIT-front-png.png",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/learned-HELLO-right_side-png.png",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/learned-THANK_YOU-front-png.png",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/inspection-PLEASE_WAIT-front.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/inspection-THANK_YOU-right_side.png",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/learned-PLEASE_WAIT-right_side-mp4.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/PLEASE_WAIT.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/inspection-PLEASE_WAIT-right_side.png",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/inspection-HELLO-right_side.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/THANK_YOU.mp4",
+      "matches_deployed_snapshot": true
+    },
+    {
+      "path": "website/dist/media/inspection-THANK_YOU-front.png",
+      "matches_deployed_snapshot": true
+    }
+  ],
+  "website_snapshot_files": 51,
+  "protected_tracked_files_changed": [],
+  "history_secret_pattern_scan": {
+    "blobs": 307,
+    "credential_hits": 0,
+    "largest_blob_bytes": 15028345
+  },
+  "scope": "Private research repository upload; frozen records retained; no retraining or evaluation retuning."
+}

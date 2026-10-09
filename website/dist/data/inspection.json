@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "actions": {
+    "HELLO": {
+      "telemetry_url": "/data/inspection-HELLO.json",
+      "trajectory_sha256": "c02b49e31be5eb03f2db124ea37d1ff124e875ccdeb911a0615ac3f160f757f2",
+      "run_id": "0efe9b20010d496e",
+      "views": {
+        "front": {
+          "video_url": "/media/inspection-HELLO-front.mp4",
+          "poster_url": "/media/inspection-HELLO-front.png"
+        },
+        "right_side": {
+          "video_url": "/media/inspection-HELLO-right_side.mp4",
+          "poster_url": "/media/inspection-HELLO-right_side.png"
+        }
+      }
+    },
+    "THANK_YOU": {
+      "telemetry_url": "/data/inspection-THANK_YOU.json",
+      "trajectory_sha256": "a7d80630c96b68c0579f60351c3302c059960811fe94cbb5862b91190976bcbf",
+      "run_id": "6096df4086863be6",
+      "views": {
+        "front": {
+          "video_url": "/media/inspection-THANK_YOU-front.mp4",
+          "poster_url": "/media/inspection-THANK_YOU-front.png"
+        },
+        "right_side": {
+          "video_url": "/media/inspection-THANK_YOU-right_side.mp4",
+          "poster_url": "/media/inspection-THANK_YOU-right_side.png"
+        }
+      }
+    },
+    "PLEASE_WAIT": {
+      "telemetry_url": "/data/inspection-PLEASE_WAIT.json",
+      "trajectory_sha256": "88a5c2abb1cd1c37fe10c159ea65fd2b8db812ee26ec2bbf1affc07cce3b590d",
+      "run_id": "cfec47d9ad243fd9",
+      "views": {
+        "front": {
+          "video_url": "/media/inspection-PLEASE_WAIT-front.mp4",
+          "poster_url": "/media/inspection-PLEASE_WAIT-front.png"
+        },
+        "right_side": {
+          "video_url": "/media/inspection-PLEASE_WAIT-right_side.mp4",
+          "poster_url": "/media/inspection-PLEASE_WAIT-right_side.png"
+        }
+      }
+    }
+  },
+  "execution": "prerendered_kinematic_inspection"
+}

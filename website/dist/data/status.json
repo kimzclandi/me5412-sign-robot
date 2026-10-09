@@ -1,0 +1,120 @@
+{
+  "project": "ME5412 robot ASL research prototype",
+  "catalog": [
+    {
+      "action_id": "HELLO",
+      "label_zh": "你好（候选）",
+      "meaning_en": "A standalone friendly greeting addressed to the listener: hello or hi. No other request or information is conveyed.",
+      "aliases": [
+        "hello",
+        "hi",
+        "hello there",
+        "hi there"
+      ],
+      "exclusions": [
+        "goodbye",
+        "greeting someone else on the speaker's behalf",
+        "negated greetings",
+        "greeting combined with another request",
+        "reported or quoted greetings"
+      ],
+      "source_ids": [
+        "lifeprint_hello"
+      ],
+      "motion_status": "candidate",
+      "asl_review_status": "unreviewed"
+    },
+    {
+      "action_id": "THANK_YOU",
+      "label_zh": "谢谢（候选）",
+      "meaning_en": "The speaker directly expresses gratitude to the listener. This does not decline an offer, thank a third person, or describe a past or future act.",
+      "aliases": [
+        "thank you",
+        "thanks",
+        "thanks a lot",
+        "thank you very much"
+      ],
+      "exclusions": [
+        "no thanks or declining an offer",
+        "negated or sarcastic gratitude",
+        "reported or quoted gratitude",
+        "asking another person to give thanks",
+        "gratitude combined with another request"
+      ],
+      "source_ids": [
+        "lifeprint_thank_you"
+      ],
+      "motion_status": "candidate",
+      "asl_review_status": "unreviewed"
+    },
+    {
+      "action_id": "PLEASE_WAIT",
+      "label_zh": "请稍等（完整表达待复核）",
+      "meaning_en": "The speaker asks the listener to wait briefly, without a specified duration, location, condition, promise, or additional instruction. The complete ASL phrase is not yet verified.",
+      "aliases": [
+        "please wait",
+        "wait a moment",
+        "please wait a moment",
+        "hold on a moment"
+      ],
+      "exclusions": [
+        "the speaker will wait",
+        "negated waiting",
+        "duration or location-specific waiting",
+        "waiting for a named person or event",
+        "waiting combined with another request",
+        "conditional or reported requests"
+      ],
+      "source_ids": [
+        "lifeprint_wait",
+        "lifeprint_please"
+      ],
+      "motion_status": "candidate",
+      "asl_review_status": "unreviewed"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "lifeprint_hello",
+      "title": "ASL University: hello",
+      "url": "https://www.lifeprint.com/asl101/pages-signs/h/hello.htm"
+    },
+    {
+      "source_id": "lifeprint_thank_you",
+      "title": "ASL University: Thank you",
+      "url": "https://www.lifeprint.com/asl101/pages-signs/t/thankyou.htm"
+    },
+    {
+      "source_id": "lifeprint_wait",
+      "title": "ASL University: WAIT",
+      "url": "https://www.lifeprint.com/asl101/pages-signs/w/wait.htm"
+    },
+    {
+      "source_id": "lifeprint_please",
+      "title": "ASL University: please",
+      "url": "https://www.lifeprint.com/asl101/pages-signs/p/please.htm"
+    }
+  ],
+  "motions": {
+    "HELLO": {
+      "trajectory": true,
+      "preview": true,
+      "poster": true
+    },
+    "THANK_YOU": {
+      "trajectory": true,
+      "preview": true,
+      "poster": true
+    },
+    "PLEASE_WAIT": {
+      "trajectory": true,
+      "preview": true,
+      "poster": true
+    }
+  },
+  "limits": [
+    "候选 ASL 动作未经使用者评审",
+    "运动学回放不证明动力学控制可行",
+    "仅支持登记的完整含义"
+  ]
+}
