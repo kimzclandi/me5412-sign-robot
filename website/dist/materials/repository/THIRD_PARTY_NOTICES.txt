@@ -1,0 +1,42 @@
+ME5412 小组研究展示 — 中文说明
+网页与机器人运动学渲染由本项目制作。
+机器人：Unitree G1 + Inspire DFQ，unitree_ros 固定提交 5994d4faef0a9cadd3287f8de0199a67eeb2a259。
+来源：https://github.com/unitreerobotics/unitree_ros
+手语参照：ASL University / Lifeprint。不分发来源视频或图片；候选机器人动作不代表来源作者认可。
+How2Sign：https://how2sign.github.io/，CC BY-NC 4.0。展示站仅提供统计数量，不分发语料视频或句子集合；仓库文本索引另按已记录条件使用。
+本地研究文字编码器：sentence-transformers/all-MiniLM-L6-v2，网站不托管其权重。
+英文说明见 THIRD_PARTY_NOTICES.en.txt。
+
+BSD 三条款许可的中文解释（英文原文完整保留如下）：
+允许以源代码或二进制形式再分发及使用，可修改，条件为：源代码分发保留版权、条件和免责声明；二进制分发在说明或其他材料中复制这些内容；未获事先书面许可，不使用版权人或贡献者名称为衍生产品背书或推广。
+软件按现状提供，版权人及贡献者不提供明示或默示保证，包括适销性和特定用途适用性；对于因使用软件产生的直接、间接、附带、特殊、惩罚性或后果性损失，即使已获可能性告知，也不承担英文原文所述责任。本段只帮助理解，许可适用以保留的英文原文为准。
+
+BSD 3-Clause License
+
+Copyright (c) 2016-2022 HangZhou YuShu TECHNOLOGY CO.,LTD. ("Unitree Robotics")
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

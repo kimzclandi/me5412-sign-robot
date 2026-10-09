@@ -1,5 +1,7 @@
 # 固定底座机器人候选
 
+**中文** · [English](README.en.md)
+
 官方来源：Unitree `unitree_ros`，提交 `5994d4faef0a9cadd3287f8de0199a67eeb2a259`，模型 `g1_29dof_rev_1_0_with_inspire_hand_DFQ.urdf`。
 
 `vendor/` 为未修改原始 URDF、59 个引用网格及官方 README/许可证，共 62 个文件（27,189,102 字节）。逐文件 URL 和 SHA-256 记录在 `upstream_manifest.json`。首次下载仅访问该固定版本的官方公开文件，没有安装 ROS、下载学习模型或申请付费资源。
@@ -29,3 +31,4 @@ macOS 受限命令沙盒中渲染可能报 `invalid CoreGraphics connection`；�
 视频参照到机器人的阶段对照、起末掌面法向、指尖代理路径及头部间距下界记录在 `results/previews/THANK_YOU_calibration.json`。源视频由 A1 实际播放并逐帧查看，机器人坐标由正运动学计算。报告明确不将人工目标 IK 误差当作真人三维跟踪误差。当前指尖代理距头部包围盒仍有约 2.6 cm 间距下界；没有嘴部接触、微笑或真人可理解性验证。
 
 `play_motion.py` 已在本机用 `mjpython` 实际打开原生可旋转视角的 MuJoCo viewer，完整回放 HELLO 后正常退出。加 `--loop` 可循环；这是实时 3D 轨迹回放，不是播放 MP4。
+

@@ -1,5 +1,7 @@
 # ME5412 代码依赖与扩充动作说明
 
+**中文** · [English](code-dependencies.en.md) · [说明目录](README.md)
+
 依据仓库 `kimzclandi/me5412-sign-robot` 的提交 `3da7d842f09d8dffe812d436a619679335c88f76` 整理。属于源码审阅，没有重新运行模型或仿真。网页“项目总览”已有业务流程展示；本文补充文件之间的调用和产物依赖。
 
 ## 1. 普通交互演示
@@ -91,7 +93,7 @@ flowchart TD
 
 ## 5. 六人怎样避免互相等待
 
-以下沿用讨论中的六个角色，尚未绑定具体同学。
+以下保留较早讨论的六个角色，早于最新语言／动作／集成展示各两人的分工，尚未绑定具体同学。当前职责以[最新指南](ten-intent-learning-guide.md)为准。
 
 - 第 1 人先确定首批表达的编号、含义与来源；此后继续逐条补来源说明。
 - 第 6 人同时整理公共注册、动作格式和渲染入口，交一条能接入的新增动作示例。
@@ -109,3 +111,4 @@ flowchart TD
 - [动作加载 motion.py](https://github.com/kimzclandi/me5412-sign-robot/blob/3da7d842f09d8dffe812d436a619679335c88f76/src/sign_robot/motion.py)
 - [渲染 render_motions.py](https://github.com/kimzclandi/me5412-sign-robot/blob/3da7d842f09d8dffe812d436a619679335c88f76/scripts/render_motions.py)
 - [静态展示说明](https://github.com/kimzclandi/me5412-sign-robot/blob/3da7d842f09d8dffe812d436a619679335c88f76/website/README.md)
+

@@ -1,0 +1,18 @@
+ME5412 课程汇报初稿
+
+可编辑母版：ME5412_Text_to_Robot_Signing_v3.pptx
+静态预览：ME5412_Text_to_Robot_Signing_v3.pdf（图像型 PDF，文字不可选取或编辑）
+中文逐页口述提示：speaker-notes.zh-CN.txt，同时已写入 PPTX speaker notes。
+12 页，建议总时长 12 分 50 秒，未实际排练计时。
+
+开讲前双击项目根目录 run_demo.command，确认 http://127.0.0.1:5412 可访问。
+Slides 中的选词结果来自固定的 60 条探索性测试，标签尚未经人工复核。机器人画面是真实 MuJoCo 渲染，但全部仍为待语言理解验证的运动学候选。
+
+构建源码：scripts/build_course_slides.mjs 和 scripts/build_course_slides.py。使用 Codex 自带 Node/Python 运行时。mjs 支持 RUNTIME_ROOT 与 PRESENTATIONS_SKILL_DIR 环境变量。每次输出用新的版本参数，例如 v4，避免覆盖已有最终文件。
+示例：<bundled-node> scripts/build_course_slides.mjs v4
+PDF fallback 使用 reportlab 将已渲染 PNG 放入页面。可编辑图表与文字请始终改 PPTX。
+
+尚未在原生 Microsoft PowerPoint 中打开检查；讲课电脑可能发生字体替代，请提前打开并检查。未填写成员姓名或虚构每个人的贡献。
+
+
+英文使用说明：README.en.txt；英文讲稿：speaker-notes.en.txt。此目录保留历史版本，最新分工见 docs/ten-intent-learning-guide.md。

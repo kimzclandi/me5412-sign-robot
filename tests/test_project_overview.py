@@ -159,6 +159,6 @@ def test_missing_project_sources_do_not_claim_snapshot_success(http_server):
 def test_project_static_assets_are_explicitly_served(http_server, fixed_file):
     root, _, _ = fixed_file
     (root / "web").mkdir()
-    for name in ("project.js", "project.css"):
+    for name in ("project.js", "project.css", "i18n.js"):
         (root / "web" / name).write_text("/* fixture */")
         assert request(http_server, "/" + name)[0] == 200

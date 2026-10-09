@@ -1,5 +1,7 @@
 # GitHub 分支协作：六人各自开发，PR 检查后合并
 
+**中文** · [English](github-collaboration.en.md) · [说明目录](README.md)
+
 仓库：<https://github.com/kimzclandi/me5412-sign-robot>。默认分支是 **`master`**，下面的命令均使用这个名字。
 
 每个人从最新 `master` 建自己的任务分支，修改、提交并推送到该分支，通过 Pull Request（PR）交集成人员检查后合并。`master` 保存当前已集成的版本。
@@ -146,3 +148,4 @@ git switch -c feat/semantic-selector-v2
 - [GitHub Desktop 分支管理](https://docs.github.com/en/desktop/making-changes-in-a-branch/managing-branches-in-github-desktop)。
 - [从 GitHub Desktop 创建 PR](https://docs.github.com/en/desktop/working-with-your-remote-repository-on-github-or-github-enterprise/creating-an-issue-or-pull-request-from-github-desktop)。
 - [合并方法说明](https://docs.github.com/en/pull-requests/reference/pull-request-merges)。
+

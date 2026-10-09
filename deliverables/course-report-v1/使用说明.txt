@@ -13,3 +13,6 @@ Slides 中的选词结果来自固定的 60 条探索性测试，标签尚未经
 PDF fallback 使用 reportlab 将已渲染 PNG 放入页面。可编辑图表与文字请始终改 PPTX。
 
 尚未在原生 Microsoft PowerPoint 中打开检查；讲课电脑可能发生字体替代，请提前打开并检查。未填写成员姓名或虚构每个人的贡献。
+
+
+英文使用说明：README.en.txt；英文讲稿：speaker-notes.en.txt。此目录保留历史版本，最新分工见 docs/ten-intent-learning-guide.md。

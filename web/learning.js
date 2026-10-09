@@ -26,7 +26,7 @@
       const project = p => [half * (view + 0.5) + ((view ? p[0] : -p[1]) - (bounds.minx + bounds.maxx) / 2) * scale,
         42 + (bounds.maxz - p[2]) * scale];
       ctx.fillStyle = '#536b75'; ctx.font = '12px sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText(view ? '右侧 · 前后位移' : '正面 · 左右位移', half * (view + .5), 23);
+      ctx.fillText(window.ProjectI18n.t(view ? '右侧 · 前后位移' : '正面 · 左右位移'), half * (view + .5), 23);
       for (const [a, b] of data.kinematics.edges) {
         const p = project(points[a]), q = project(points[b]);
         ctx.strokeStyle = /^(right|R_)/.test(names[b]) ? '#087f83' : /^(left|L_)/.test(names[b]) ? '#4878a5' : '#95aab0';
@@ -96,8 +96,10 @@
   el('learn-download').onclick = () => { if (!data) return; const {_bounds, ...output} = data; const url = URL.createObjectURL(new Blob([JSON.stringify(output)], {type: 'application/json'})); const a = document.createElement('a'); a.href = url; a.download = `learned-${data.action_id}-${data.duration_s}s.json`; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); };
   window.addEventListener('project:tabchange', event => { if (event.detail.id !== 'learning') pause(); else requestAnimationFrame(draw); });
   window.addEventListener('resize', draw);
+  window.addEventListener('project:languagechange', draw);
   fetch('/api/learning').then(r => { if (!r.ok) throw new Error('模型实验不可用'); return r.json(); }).then(s => {
     el('learn-corpus').textContent = s.corpus.annotation_rows.toLocaleString();
     if (!busy && !data) el('learn-status').textContent = s.accepted && s.checkpoint_hash_verified ? 'v1 模型已完成训练，权重校验通过。选择一句英文，运行一次真实推理。' : '模型实验未通过或权重校验不一致。';
   }).catch(e => { if (!busy && !data) el('learn-status').textContent = e.message; });
 })();
+

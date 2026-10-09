@@ -35,7 +35,7 @@
     const first = motion.timestamps_s[0], last = motion.timestamps_s.at(-1);
     const x = t => pad.left+(t-first)/(last-first)*(width-pad.left-pad.right);
     const y = v => pad.top+(high-v)/(high-low)*(height-pad.top-pad.bottom);
-    context.fillStyle='#647980'; context.font='11px -apple-system,sans-serif'; context.fillText(`${title} (${unit})`,8,14);
+    context.fillStyle='#647980'; context.font='11px -apple-system,sans-serif'; context.fillText(`${window.ProjectI18n.t(title)} (${unit})`,8,14);
     context.font='10px -apple-system,sans-serif';
     for(let tick=0;tick<=3;tick++){
       const value=low+(high-low)*tick/3, heightY=y(value);
@@ -135,4 +135,6 @@
     if(event.detail.id==='inspection')updateReadouts();
   });
   window.addEventListener('resize',updateReadouts);
+  window.addEventListener('project:languagechange',updateReadouts);
 })();
+
