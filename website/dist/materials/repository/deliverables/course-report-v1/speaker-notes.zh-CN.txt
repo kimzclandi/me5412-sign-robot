@@ -1,0 +1,157 @@
+第 1 页  研究问题与原型范围（35 秒）
+
+我们的题目是有限表达的文字选择与机器人手语候选表达。输入一句英文或选择短语，系统选择一个明确编号，再预览对应的机器人动作。我们目前只研究三个候选，全部处于语言可理解性待验证状态。今天汇报两条主线：文字能否选对编号，以及机器人是否能在自身形态约束下呈现参考动作。
+
+讲述检查：不要说成任意英文翻译，也不要说已经服务医院。
+来源：
+  https://github.com/unitreerobotics/unitree_ros/tree/5994d4faef0a9cadd3287f8de0199a67eeb2a259/robots/g1_description
+  README.md
+  data/catalog.json
+
+────────────────────────────────
+
+第 2 页  场景、现有选择与收敛（60 秒）
+
+我们把应用设想放在接待处的简短服务互动，但这只是未来场景假设。文字显示、人类手语和机器人表达解决的环节不同；本项目选择可重复的机器人动作，便于检查形态和动作路径。现阶段词汇表只有 HELLO、THANK_YOU 和 PLEASE_WAIT 三个编号。最后一个编号为了接口兼容保留，但动作来源只支持 WAIT 词例，不能称为完整礼貌请求。ASL 也不等于新加坡本地 SgSL，未来本地部署还需要重新确认语言需求。
+
+讲述检查：能否清楚说明当前研究目标与设想应用之间的距离？
+来源：
+  docs/实施路线.md
+  docs/source-review.md
+  data/catalog.json
+  https://sadeaf.org.sg/sgsl-course/
+
+────────────────────────────────
+
+第 3 页  公共接口与错误隔离（65 秒）
+
+这个系统有两条独立验收线。语言模块先经过公共拒绝检查，再由固定匹配、句向量或本地模型决定编号。它输出的 status 只有四类，非 execute 状态不能携带动作。编号选中后，还要通过独立候选预览许可，默认阻止未评审动作。网页现场运行文字选择，但播放的是事先用真实 MuJoCo 逐帧渲染的 MP4，不能称为浏览器实时物理仿真。分开模块后，误选与动作几何错误可以分别定位。
+
+讲述检查：语言失败与动作失败分别在哪个接口被发现？
+来源：
+  contracts/interfaces.json
+  src/sign_robot/pipeline.py
+  src/sign_robot/server.py
+  src/sign_robot/language.py
+
+────────────────────────────────
+
+第 4 页  模型自由度与控制边界（65 秒）
+
+机器人模型来自 Unitree 官方仓库，固定到具体提交并保存逐文件哈希。这里的 53 是标量关节坐标数，包含从动关节，不能说成 53 个独立电机。我们保留 12 条 mimic 耦合。当前场景的执行器数是零，直接回放 qpos，因此验收的是运动学几何，不是控制器跟踪、力矩可行性或真实机器人安全。手指缺少独立并指能力，头部和面部也没有表达，这些限制影响动作的语言真实性。
+
+讲述检查：如果有人问这是不是实时控制，应答运动学回放，并说明未做哪些动力学检查。
+来源：
+  https://github.com/unitreerobotics/unitree_ros/tree/5994d4faef0a9cadd3287f8de0199a67eeb2a259/robots/g1_description
+  assets/robot/model_info.json
+  assets/robot/upstream_manifest.json
+  motions/THANK_YOU.json
+
+────────────────────────────────
+
+第 5 页  公开视频如何指导校准（75 秒）
+
+A1 实际播放了 ASLU 的 THANK YOU 和 WAIT 视频，并用浏览器暂停逐帧观察。THANK YOU 的关键顺序是近唇起手、掌面向自身、向前略下、最后掌向上。这里展示的是我们自己的机器人渲染，下面的秒数对应来源视频的观察时刻，并不是机器人截图的同一时间，也不是精确人体三维标注。机器人仍有脸部间隙，手指间距不同且缺少微笑。视频对照帮助修正明显偏差，但不能直接得出毫米级真人重定向误差或可理解性通过。
+
+讲述检查：指明视频时间与机器人时间属于不同时间轴。
+来源：
+  https://www.lifeprint.com/asl101/pages-signs/t/thankyou.htm
+  https://www.youtube.com/watch?v=2W0BDFUjsG0
+  docs/video-calibration.md
+  results/previews/THANK_YOU_calibration.json
+
+────────────────────────────────
+
+第 6 页  逆运动学、插值与轨迹验收（75 秒）
+
+输入是人工指定的手腕位置、朝向和时刻，输出是按关节命名的 positions[T,53]。有界数值 IK 同时考虑位置、旋转、与前一姿态的变化和部分距离惩罚。相邻关键帧使用三次 smoothstep，段端速度为零，但加速度连续性并没有保证。THANK YOU 加入 12 个中间位姿，避免仅插值两端关节角造成指尖向上绕行。我们检查全帧关节限位、速度、耦合和上游已有碰撞几何。已有几何没有深于 1 毫米的穿透，不等于完整安全证明。右图 WAIT 还有耦合手指与完整请求表达缺口。
+
+讲述检查：要能解释为何小 IK 残差不能证明手语正确。
+来源：
+  scripts/build_motions.py
+  tests/test_motion.py
+  motions/THANK_YOU.json
+  motions/PLEASE_WAIT.json
+  docs/实施路线.md
+  https://www.lifeprint.com/asl101/pages-signs/w/wait.htm
+  https://www.youtube.com/watch?v=YfwgS9ZsBVw
+
+────────────────────────────────
+
+第 7 页  方法对比与共享控制条件（65 秒）
+
+固定匹配只接受登记的完整短语。MiniLM 用本地真实的 384 维句向量，根据相似度和候选差值决定选择或拒绝。LLM 使用已有本地 Q8 检查点，严格要求整个回答等于五种标签之一，程序再封装统一接口。三个方法前面都使用同一套公共拒绝规则，所以报告的是方法加规则的系统行为。LLM 最早要求 JSON 时三个开发正例全失败；一次协议修复后格式三条合法但只选对两条，没有达到开发启用门槛，因此只进入研究对照，默认继续关闭。
+
+讲述检查：不要把共享 guard 的成功全部归功于模型。
+来源：
+  https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/tree/1110a243fdf4706b3f48f1d95db1a4f5529b4d41
+  config/embedding.json
+  config/llm_local_provenance.json
+  config/llm_local_feasibility_v1.json
+  config/llm_local_feasibility_v2_label.json
+  src/sign_robot/llm.py
+
+────────────────────────────────
+
+第 8 页  评价协议与总体结果（75 秒）
+
+最终集包含 60 条输入，支持与库外各 30 条；另外有 18 条开发题。我们在运行前冻结测试哈希，并保存全部原始返回。标签由 agent 起草、尚未人审，所以只能称探索性结果。整体行为准确率将支持输入选对和库外正确拒绝合并：固定匹配 38 条，MiniLM 47 条，LLM 48 条。error 算错误，不把运行异常当成功拒绝。三个方法的分母一致，但总分隐藏错误类型，需要看下一页。它只测英文到 ID，不测动作是否可理解。
+
+讲述检查：如果全部拒绝，支持部分会怎样计分？
+来源：
+  results/evaluation/test-20261008T142047221403Z/summary.json
+  results/evaluation/test-20261008T142047221403Z/raw.jsonl
+  data/source_manifest.json
+  docs/source-review.md
+
+────────────────────────────────
+
+第 9 页  负结果与默认选择（75 秒）
+
+LLM 的总体分数略高，但支持输入里有一条选错编号，两个非法输出，并把两条库外请求执行成动作。MiniLM 仍有 13 条支持输入被错误拒绝，不能说效果已经很好。LLM 的 60 条里只有 35 条真的请求模型，25 条由 guard 截断，实际 HTTP 子集的正确行为是 25/35，guard 是 23/25。这是经过筛选的条件子集，不能当成模型总体独立准确率。我们保留全部失败，未按最终题调提示词，默认继续用 exact 或 MiniLM。
+
+讲述检查：为什么总准确率更高还不足以启用该方法？
+来源：
+  results/evaluation/test-20261008T142047221403Z/summary.json
+  results/evaluation/test-20261008T142047221403Z/raw.jsonl
+  results/evaluation/test-20261008T142047221403Z/counterexamples.jsonl
+  config/llm.json
+  config/llm_experimental.json
+
+────────────────────────────────
+
+第 10 页  现场演示顺序（80 秒）
+
+这一页留 80 秒做现场演示。演示前先双击 run_demo.command，确认本机 5412 页面可以打开。先输入 Thank you，展示选中编号但默认阻止候选动作。再勾选研究预览，看到真实 MuJoCo 预渲染视频。接着输入 Many thanks 用 MiniLM 选择同一表达。最后输入 I do not want to wait 或 Please wait and take two pills，观察拒绝与清除上一动作。断网时模型和 MP4 已在本机即可做这两种方法的备份演示，LLM 默认不可用。网页的视频不是实时物理控制。
+
+讲述检查：失败输入后屏幕是否仍残留上一条动作？
+来源：
+  README.md
+  results/ui/demo-detail.jpg
+  tests/test_pipeline.py
+  tests/test_server.py
+
+────────────────────────────────
+
+第 11 页  六人如何接手（60 秒）
+
+分工按数据和接口而不是代码量划分。A1 确认来源支持什么含义，A2 实现受约束轨迹。B1 和 B2 只看开发集，把冻结版本交给 C1 评价。C2 汇总界面、跨电脑复现与演示。每人可以有一个 agent，但 agent 写出文件不等于同学掌握方法，大家都要能解释自己的输入输出和失败。建议 10 月底形成完整演示与备份，11 月 2 日前冻结提交版。课程原简报截止为 11 月 3 日，最终提交方式应按 Canvas 最新通知核对。
+
+讲述检查：下一次验收要看到什么文件或行为，不能只汇报“在做”。
+来源：
+  docs/six-person-handoff.md
+  docs/实施路线.md
+  Course briefing, slide 4: submission of slides on November 3, 2026
+
+────────────────────────────────
+
+第 12 页  闭环与问答（40 秒）
+
+回到开头的问题，我们已经完成可运行的有限编号选择和真实机器人运动学预览，并用统一协议记录了三种文字方法的差异。这个原型使错误可追踪，但当前证据还没有闭合语言可理解性。下一步优先补人工标签、另一台电脑复现，以及 ASL 使用者无字幕复述；如果无法找到使用者，就保留“视频参考的候选动作”这个结论。请大家在问答中把文本准确率、轨迹几何、真实控制与语言理解四类证据分开。
+
+讲述检查：不要用“测试通过”回答语言理解或临床效果问题。
+来源：
+  README.md
+  results/acceptance.json
+  docs/source-review.md
+  docs/video-calibration.md

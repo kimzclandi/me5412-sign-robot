@@ -89,7 +89,7 @@ class Handler(BaseHTTPRequestHandler):
             except (ValueError, KeyError, OSError) as exc:
                 return self.send_json({"error": "inspection_unavailable", "message": str(exc)}, 404)
         artifact_spec = None
-        static = {"/": "index.html", "/app.js": "app.js", "/style.css": "style.css", "/inspector.js": "inspector.js", "/learning.js": "learning.js", "/project.js": "project.js", "/project.css": "project.css"}
+        static = {"/": "index.html", "/app.js": "app.js", "/style.css": "style.css", "/inspector.js": "inspector.js", "/learning.js": "learning.js", "/project.js": "project.js", "/project.css": "project.css", "/i18n.js": "i18n.js"}
         if route in static:
             path = ROOT / "web" / static[route]
         elif route.startswith("/project-files/"):
@@ -216,3 +216,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

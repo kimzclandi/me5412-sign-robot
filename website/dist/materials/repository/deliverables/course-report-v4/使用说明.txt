@@ -1,0 +1,18 @@
+ME5412 课程汇报 v4
+
+14 页英文幻灯片，中文逐页讲稿已写入 PPTX speaker notes，同时另存 speaker-notes.zh-CN.txt。建议总时长 14 分 25 秒，尚未实际排练计时。
+
+ME5412_Text_to_Robot_Signing_v4.pptx 是可编辑母版。PDF 是相同页面的静态图像预览，不能编辑文字。
+
+新增第11页：实际完成的 RBF ridge 轨迹模型及同示范奇数帧误差；3条 authored 示范，367帧拟合、365帧验证，不是732条独立示范。误差为限位投影后主动关节误差。
+新增第12页：How2Sign 35,263条真实文本/ID/时间戳记录；新增视频、pose和机器人动作监督均为0，没有用这些文本训练上一页模型。
+
+默认演示仍是原来的有限动作选择与预览；学习实验独立保留候选身份。没有宣称任意新词生成、ASL人审通过或临床效果。
+
+构建：scripts/build_course_slides.mjs v4，使用 Codex bundled Node。PDF fallback 在 scripts/build_course_slides.py。RUNTIME_ROOT 与 PRESENTATIONS_SKILL_DIR 可指定相应依赖和技能目录；重建修改版请使用新版本参数，避免覆盖已验收文件。
+随包 QA：qa-v4.json、validation-v4.json、provenance-v4.json、final-previews/ 和 contact-sheet.webp。原 v3 完整保存在 deliverables/course-report-v1/。
+
+演示前运行项目根目录 run_demo.command 并确认 http://127.0.0.1:5412 可访问。尚未在原生 Microsoft PowerPoint 中打开，实际授课电脑需提前检查字体替代。
+
+
+英文使用说明：README.en.txt；英文讲稿：speaker-notes.en.txt。此目录保留历史版本，最新分工见 docs/ten-intent-learning-guide.md。

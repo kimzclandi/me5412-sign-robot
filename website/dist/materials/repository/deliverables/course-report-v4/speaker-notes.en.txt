@@ -1,0 +1,189 @@
+English speaker notes — companion to speaker-notes.zh-CN.txt
+Historical v4 presentation; use the latest ten-intent guide for current assignments.
+
+Slide 1 — Research question and prototype scope (35 s)
+
+Our project studies text selection and candidate robot signing for a limited set of expressions. Given English or a phrase button, it selects an explicit ID and previews the corresponding robot motion. We currently study three candidates, all awaiting language comprehensibility validation. This presentation follows two questions: can text select the right ID, and can the robot represent reference movements under its morphological constraints?
+
+Delivery check: do not claim arbitrary-English translation or hospital service.
+Sources:
+  https://github.com/unitreerobotics/unitree_ros/tree/5994d4faef0a9cadd3287f8de0199a67eeb2a259/robots/g1_description
+  README.en.md
+  data/catalog.json
+
+────────────────────────────────
+
+Slide 2 — Scenario, alternatives, and scope (60 s)
+
+We imagine brief reception-desk interactions, but that is a future scenario hypothesis. Text displays, human signing, and robot expression address different parts of communication. Repeatable robot movement lets us inspect morphology and paths. The catalog contains HELLO, THANK_YOU, and PLEASE_WAIT. The last ID remains for compatibility; its source supports only a WAIT lexical example, not a complete polite request. ASL is also distinct from Singapore's SgSL; local deployment would need language requirements reassessed.
+
+Delivery check: explain the distance between the present research and imagined application.
+Sources:
+  docs/实施路线.en.md
+  docs/source-review.en.md
+  data/catalog.json
+  https://sadeaf.org.sg/sgsl-course/
+
+────────────────────────────────
+
+Slide 3 — Shared contracts and error isolation (65 s)
+
+There are two independent acceptance lines. Shared rejection checks precede exact, embedding, or local-model selection. Four statuses exist; non-execute states carry no action. Selection still requires separate preview consent, blocking unreviewed motion by default. The local page runs selection live but plays MP4 prerendered framewise with real MuJoCo, not live browser physics. Separate modules localize selection and geometry errors independently.
+
+Delivery check: where does each interface detect language versus motion failure?
+Sources:
+  contracts/interfaces.json
+  src/sign_robot/pipeline.py
+  src/sign_robot/server.py
+  src/sign_robot/language.py
+
+────────────────────────────────
+
+Slide 4 — Degrees of freedom and control boundaries (65 s)
+
+The official Unitree model is pinned to a commit with per-file hashes. Fifty-three counts scalar coordinates including passive joints, not independent motors. Twelve mimic relations remain. The scene has zero actuators and directly replays qpos; acceptance concerns kinematic geometry, not controller tracking, torque feasibility, or hardware safety. Independent finger adduction and head/facial expression are absent, limiting language fidelity.
+
+Delivery check: answer control questions with kinematic playback and name untested dynamics.
+Sources:
+  https://github.com/unitreerobotics/unitree_ros/tree/5994d4faef0a9cadd3287f8de0199a67eeb2a259/robots/g1_description
+  assets/robot/model_info.json
+  assets/robot/upstream_manifest.json
+  motions/THANK_YOU.json
+
+────────────────────────────────
+
+Slide 5 — Calibration from public videos (75 s)
+
+A1 actually played ASLU THANK_YOU and WAIT and inspected paused frames. THANK_YOU starts near lips with inward palm, moves forward/slightly down, and ends palm-up. Images here are our robot renders; listed seconds belong to source observations, not the same robot timestamps or precise human 3D labels. The robot retains face clearance, different finger spacing, and no smile. Reference video fixes visible discrepancies but cannot establish millimeter human-retargeting error or comprehension.
+
+Delivery check: identify the separate video and robot time axes.
+Sources:
+  https://www.lifeprint.com/asl101/pages-signs/t/thankyou.htm
+  https://www.youtube.com/watch?v=2W0BDFUjsG0
+  docs/video-calibration.en.md
+  results/previews/THANK_YOU_calibration.json
+
+────────────────────────────────
+
+Slide 6 — IK, interpolation, and checks (75 s)
+
+Authored wrist position/orientation/time targets produce named-joint positions[T,53]. Bounded numerical IK considers position, rotation, previous posture, and selected distance penalties. Cubic smoothstep has zero segment-end velocity but no guaranteed acceleration continuity. Twelve intermediate THANK_YOU poses prevent upward fingertip detours from endpoint-only joint interpolation. All frames are checked for limits, velocity, coupling, and available upstream collision geometry. No penetration deeper than 1 mm does not establish complete safety. WAIT retains finger-coupling and full-request gaps.
+
+Delivery check: why does low IK residual not establish correct signing?
+Sources:
+  scripts/build_motions.py
+  tests/test_motion.py
+  motions/THANK_YOU.json
+  motions/PLEASE_WAIT.json
+  docs/实施路线.en.md
+  https://www.lifeprint.com/asl101/pages-signs/w/wait.htm
+  https://www.youtube.com/watch?v=YfwgS9ZsBVw
+
+────────────────────────────────
+
+Slide 7 — Methods and shared conditions (65 s)
+
+Exact matching accepts complete registered phrases. Local MiniLM uses real 384-dimensional embeddings, similarity, and candidate margins to select or reject. The existing local Q8 LLM must return exactly one of five labels, then the program wraps the shared contract. All methods share rejection rules, so results describe method-plus-rule behavior. Initial JSON requests failed all three LLM positives; one format repair produced three valid labels but only two correct. It failed the enablement gate and remains research-only/default-off.
+
+Delivery check: never credit all shared-guard successes to the model.
+Sources:
+  https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/tree/1110a243fdf4706b3f48f1d95db1a4f5529b4d41
+  config/embedding.json
+  config/llm_local_provenance.json
+  config/llm_local_feasibility_v1.json
+  config/llm_local_feasibility_v2_label.json
+  src/sign_robot/llm.py
+
+────────────────────────────────
+
+Slide 8 — Evaluation protocol and overall results (75 s)
+
+The final test has 60 cases: 30 supported and 30 outside scope, plus 18 separate development examples. Test hashes froze before running and all returns were retained. Agent-drafted labels lack human review, so results are exploratory. Overall behavior combines supported correct IDs and unsupported correct rejections: exact 38, MiniLM 47, LLM 48. Error is wrong, not successful rejection. Equal denominators still hide error types. This tests English-to-ID, not comprehensibility.
+
+Delivery check: how would rejecting everything score on supported inputs?
+Sources:
+  results/evaluation/test-20261008T142047221403Z/summary.json
+  results/evaluation/test-20261008T142047221403Z/raw.jsonl
+  data/source_manifest.json
+  docs/source-review.en.md
+
+────────────────────────────────
+
+Slide 9 — Negative results and default selection (75 s)
+
+LLM's higher total includes one wrong supported ID, two invalid outputs, and two unsupported executions. MiniLM still rejects 13 supported cases, so it is not already excellent. Only 35 LLM cases actually call the model; guards end 25. Correct behavior is 25/35 for received HTTP and 23/25 for guards. These are selected conditional subsets, not independent model-population accuracy. Failures remain, final-set prompts were not tuned, and exact/MiniLM stay the default choices.
+
+Delivery check: why is higher total accuracy insufficient for enablement?
+Sources:
+  results/evaluation/test-20261008T142047221403Z/summary.json
+  results/evaluation/test-20261008T142047221403Z/raw.jsonl
+  results/evaluation/test-20261008T142047221403Z/counterexamples.jsonl
+  config/llm.json
+  config/llm_experimental.json
+
+────────────────────────────────
+
+Slide 10 — Live demo sequence (60 s)
+
+Start run_demo.command and check localhost port 5412. Enter Thank you: selection succeeds but default preview blocks. Enable research preview for the actual MuJoCo prerender. Use Many thanks with MiniLM for the same meaning. Enter I do not want to wait or Please wait and take two pills; check rejection and clearing prior motion. Offline, installed models/MP4 support exact/MiniLM backup; LLM is unavailable by default. Video playback is not live physical control.
+
+Delivery check: does a failing input leave old motion visible?
+Sources:
+  README.en.md
+  results/ui/demo-detail.jpg
+  tests/test_pipeline.py
+  tests/test_server.py
+
+────────────────────────────────
+
+Slide 11 — The actually trained small motion model (75 s)
+
+This is one completed fit. Three agent-authored trajectories contain 732 correlated frames: 367 even training and 365 odd validation, from the same demonstrations. Frozen MiniLM yields 384 features; a constant and 40 Gaussian phase bases form a tensor product. Closed-form ridge predicts 26 active upper-body coordinates; W is 385×40×26. Fifteen remain neutral and twelve mimic coordinates reconstruct to 53. It is learned RBF ridge regression, not a deep generative model. Inference loads weights and recalculates at new times without reading old trajectory files. Errors are post-projection; small raw violations remain visible. Six primary outputs have maximum projection about 0.001978 rad, below frozen 0.02 rad. Three default and three +20% durations pass geometry gates, validating only within-demonstration interpolation. No unseen vocabulary, independent performance, or ASL comprehension evidence; the original default demo remains.
+
+Delivery check: why are 732 frames not 732 independent demonstrations?
+Sources:
+  results/motion_learning/v1/report.json
+  results/motion_learning/v1/model.json
+  config/motion_learning_v1.json
+  docs/学习型轨迹模型.en.md
+
+────────────────────────────────
+
+Slide 12 — Corpus integration and missing supervision (60 s)
+
+Three realigned How2Sign text files were downloaded/verified: 31,165, 1,741, and 2,357 rows, totaling 35,263. They contain English, IDs, timestamps; unique source sentence IDs number 34,438. Zero new video, human pose, or robot supervision means these records did not train the previous slide's motion model. CC BY-NC 4.0 attribution/raw bytes/derived changes are retained. Next is licensed human motion and retargeting of wrists, fingertips, palms, body-relative geometry. Validation separates complete demonstrations or suitable signers. More text or sampled frames cannot replace independent motion data.
+
+Delivery check: which of the 35,263 records directly supplies robot joint targets?
+Sources:
+  data/corpus_index/how2sign_realigned_v1/download_manifest.json
+  docs/语料规模与模型升级.en.md
+  https://how2sign.github.io/
+  https://github.com/how2sign/how2sign.github.io/tree/f85816c184662406bd8e0f338863b7c243763129
+  https://creativecommons.org/licenses/by-nc/4.0/
+
+────────────────────────────────
+
+Slide 13 — Historical six-person handoff (40 s)
+
+Divide by data/interfaces, not code volume. A1 verifies meaning/source, A2 constrained trajectories. B1/B2 use development data and freeze versions for C1; C2 integrates UI, reproduction, demo. An agent-generated file does not mean a teammate understands it: everyone explains inputs/outputs/failures. Historical plan: complete demo/backup by late October, freeze by November 2. Briefing deadline is November 3; check latest Canvas submission instructions. Current assignments are superseded by the ten-intent guide.
+
+Delivery check: name the next acceptable file/behavior, not just “working on it.”
+Sources:
+  docs/six-person-handoff.en.md
+  docs/实施路线.en.md
+  Course briefing, slide 4: submission of slides on November 3, 2026
+
+────────────────────────────────
+
+Slide 14 — Closing the evidence loop and Q&A (40 s)
+
+We moved from fixed candidate playback to one actual learning experiment. Original selectors remain; RBF ridge fits three known trajectories as text/phase functions; How2Sign text integration is real. Boundaries remain distinct: old 60 cases evaluate ID selection, odd frames evaluate same-demonstration interpolation, metadata adds no motion targets. Next obtain licensed real targets, split independent demonstrations, and test ASL-user comprehension. Low fit error is not general signing competence.
+
+Delivery check: software “passed” cannot answer language/clinical questions.
+Sources:
+  README.en.md
+  results/acceptance.json
+  docs/source-review.en.md
+  docs/video-calibration.en.md
+  results/motion_learning/v1/report.json
+  data/corpus_index/how2sign_realigned_v1/download_manifest.json

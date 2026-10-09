@@ -24,3 +24,11 @@ main{max-width:1600px;margin-left:218px;padding:0 36px;min-width:0}.workspace-he
 .hero-visual img{object-fit:contain}.hero-visual{background:#101925}
 @media(min-width:601px) and (max-width:1100px){.project-sidebar nav{display:grid;grid-template-columns:repeat(4,1fr);overflow:visible;gap:5px;padding-bottom:16px}.project-sidebar .tab{gap:11px;justify-content:flex-start}.project-sidebar .tab>span{display:inline}.project-sidebar{padding-top:18px}.project-sidebar nav{margin-top:17px}}
 @media(max-width:600px){.project-sidebar nav{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;overflow:visible;padding-bottom:14px}.project-sidebar .tab{padding:9px 6px;justify-content:center;font-size:10px}}
+
+
+/* Bilingual controls and longer translated copy. */
+.workspace-header{flex-wrap:wrap;gap:12px}.language-control{display:flex;align-items:center;gap:8px;font-size:14px;white-space:nowrap}.language-control select{font:inherit;min-width:94px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:white;color:var(--ink)}
+html[lang="en"] .flow-node strong,html[lang="en"] .tab,html[lang="en"] .role-card strong{overflow-wrap:normal;word-break:normal}.role-card,.flow-node{height:auto}html[lang="en"] .hero-copy h2{font-size:clamp(1.9rem,3.3vw,3.2rem);line-height:1.15}
+@media(max-width:680px){.workspace-header .connection{margin-left:auto}.language-control{margin-left:auto}.language-control select{min-width:85px}.overview-hero .hero-copy h2{font-size:2rem}}
+html[lang="en"] .project-sidebar .tab{white-space:normal;line-height:1.4;overflow-wrap:break-word}html[lang="en"] .project-sidebar .tab>span{flex-shrink:0}
+@media(max-width:600px){html[lang="en"] .project-sidebar nav{grid-template-columns:repeat(2,minmax(0,1fr))}html[lang="en"] .project-sidebar .tab{justify-content:flex-start;padding:9px 12px}.workspace-header{height:auto;min-height:90px;padding:12px 0}.workspace-header>span:first-child{width:100%}.workspace-header .connection{max-width:145px}.flow-node{min-width:0}.flow-node strong,.flow-node small{overflow-wrap:anywhere}}

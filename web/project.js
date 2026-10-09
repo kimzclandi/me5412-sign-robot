@@ -6,18 +6,18 @@
   let project = null, flow = 'baseline', selectedNode = 0, evalGroup = 'supported', selectedStage = 0, selectedRole = 'A1', materialCategory = '全部';
   const flows = {
     baseline: [
-      ['英文或短语', '完整含义作为请求', '共同入口', '输入一句英文，或选择已登记的短语。当前目录只有三个候选表达。', '英文 / 短语按钮', '一条完整请求', 'B1 · C2', 'demo'],
-      ['检查与选择', '规则 + 文字理解', '先确认表达范围', '固定别名、MiniLM 或研究 LLM 选择合法 ID；否定、混合与库外内容可能被拒绝。', '输入文字', '候选 ID / 明确拒绝', 'B1 · B2', 'demo'],
-      ['已有动作库', '3 条自编轨迹', '按编号载入已编写动作', '人工关键位姿经有界 IK 和插值形成动作。选择结果并不代表 ASL 含义已通过核验。', 'HELLO 等候选 ID', '时间戳 + 53 个坐标', 'A1 · A2', 'inspection'],
-      ['候选预览', 'MuJoCo 离线渲染', '明确查看研究候选', '允许研究预览后播放预先生成的视频。视频来自运动学轨迹，不是执行器动力学仿真。', '已保存的关节轨迹', '正面 / 侧面视频', 'A2 · C2', 'inspection'],
-      ['分层评价', '文字 / 几何 / 含义', '每一层有自己的判断', '文本选择与几何检查已有记录；机器人手语能否被理解仍需独立使用者评价。', '选择记录与动作', '指标 / 失败 / 未验证项', 'C1', 'evidence']
+      ['英文或短语', '完整含义作为请求', '共同入口', '输入一句英文，或选择已登记的短语。当前目录只有三个候选表达。', '英文 / 短语按钮', '一条完整请求', '1 · 6', 'demo'],
+      ['检查与选择', '规则 + 文字理解', '先确认表达范围', '固定别名、MiniLM 或研究 LLM 选择合法 ID；否定、混合与库外内容可能被拒绝。', '输入文字', '候选 ID / 明确拒绝', '1 · 2', 'demo'],
+      ['已有动作库', '3 条自编轨迹', '按编号载入已编写动作', '人工关键位姿经有界 IK 和插值形成动作。选择结果并不代表 ASL 含义已通过核验。', 'HELLO 等候选 ID', '时间戳 + 53 个坐标', '3 · 4', 'inspection'],
+      ['候选预览', 'MuJoCo 离线渲染', '明确查看研究候选', '允许研究预览后播放预先生成的视频。视频来自运动学轨迹，不是执行器动力学仿真。', '已保存的关节轨迹', '正面 / 侧面视频', '3 · 6', 'inspection'],
+      ['分层评价', '文字 / 几何 / 含义', '每一层有自己的判断', '文本选择与几何检查已有记录；机器人手语能否被理解仍需独立使用者评价。', '选择记录与动作', '指标 / 失败 / 未验证项', '5', 'evidence']
     ],
     learned: [
-      ['文字与相位', 'MiniLM + 时间进度', '编码文字与动作进度', '先检查输入属于登记含义，再编码实际文字。相位 u = t / T 表示动作从开始到结束的进度。', '英文 + 时间相位 u', '384 维向量 + 40 相位基', 'B2', 'learning'],
-      ['训练后权重', '一次 RBF 岭回归', '从三个自编示范拟合', '训练使用 367 帧，验证使用同轨迹 365 帧。本次训练的回归权重直接参与角度计算。', '文字与相位特征', '26 个主动上肢角度', 'B2', 'learning'],
-      ['重建与检查', '限位 + 从动关系', '生成机器人的完整坐标', '其余 15 坐标保持准备姿势，12 个从动坐标按 mimic 公式重建。检查速度和现有碰撞几何。', '26 个主动角', '53 坐标 + 检查指标', 'A2 · C1', 'learning'],
-      ['本次生成', '骨架 / 曲线 / JSON', '查看当前请求的输出', '网页骨架由本次预测轨迹经 MuJoCo 正运动学计算，可逐帧检查并导出。推理不读原动作 NPZ。', '本次预测的角度序列', '运动学骨架与关节曲线', 'C2', 'learning'],
-      ['独立验证', '下一阶段的关键', '拟合之外还需要新证据', '延长时间与同轨迹低误差不等于新手语泛化。下一步需要独立动作监督和可理解性评价。', '新动作 / 独立评审', '泛化与含义复述记录', 'A1 · C1', 'data']
+      ['文字与相位', 'MiniLM + 时间进度', '编码文字与动作进度', '先检查输入属于登记含义，再编码实际文字。相位 u = t / T 表示动作从开始到结束的进度。', '英文 + 时间相位 u', '384 维向量 + 40 相位基', '4', 'learning'],
+      ['训练后权重', '一次 RBF 岭回归', '从三个自编示范拟合', '训练使用 367 帧，验证使用同轨迹 365 帧。本次训练的回归权重直接参与角度计算。', '文字与相位特征', '26 个主动上肢角度', '4', 'learning'],
+      ['重建与检查', '限位 + 从动关系', '生成机器人的完整坐标', '其余 15 坐标保持准备姿势，12 个从动坐标按 mimic 公式重建。检查速度和现有碰撞几何。', '26 个主动角', '53 坐标 + 检查指标', '3 · 5', 'learning'],
+      ['本次生成', '骨架 / 曲线 / JSON', '查看当前请求的输出', '网页骨架由本次预测轨迹经 MuJoCo 正运动学计算，可逐帧检查并导出。推理不读原动作 NPZ。', '本次预测的角度序列', '运动学骨架与关节曲线', '6', 'learning'],
+      ['独立验证', '下一阶段的关键', '拟合之外还需要新证据', '延长时间与同轨迹低误差不等于新手语泛化。下一步需要独立动作监督和可理解性评价。', '新动作 / 独立评审', '泛化与含义复述记录', '3 · 5', 'data']
     ]
   };
   function jump(id) { window.navigateProject(id); }
@@ -37,10 +37,10 @@
   }
   document.querySelectorAll('[data-flow]').forEach(button => button.onclick = () => { flow = button.dataset.flow; selectedNode = 0; renderFlow(); });
   const stages = [
-    ['英文文本索引', '已接入', '文本已经可索引', '记录包含英文、源句子 ID 与起止时间。每行是标注记录，不等于一个独立手语词或可执行动作。', 'A1 / B1：核对来源、许可和完整含义，保留原始 train / val / test 划分。'],
-    ['视频与人体姿态', '尚未接入', '需要真实的人体动作监督', '本轮没有下载实例视频或提取人体姿态；只有视频 ID 不能充当关节坐标。', 'A1 / B1：先选少量可使用的示范，记录视频、时间段、手部可见性和姿态质量。'],
-    ['机器人配对轨迹', '尚未接入', '人体动作需要适配机器人', '人体比例、手指结构和可动关节不同。需要动作重定向、手型校准及逐帧约束检查。', 'A2：输出有来源的新版本机器人轨迹，检查限位、耦合、掌向、接触与缺失的表情。'],
-    ['独立动作训练集', '待上游配对', '建立新示范上的训练与测试', '同一条视频或动作的相邻帧不能同时充当独立泛化证据。先定义数据划分，再训练新版本。', 'B2 / C1：冻结 v2 协议，按独立示范划分，保留所有失败并单独报告语言评价。']
+    ['英文文本索引', '已接入', '文本已经可索引', '记录包含英文、源句子 ID 与起止时间。每行是标注记录，不等于一个独立手语词或可执行动作。', '1 / 3：核对来源、许可和完整含义，保留原始 train / val / test 划分。'],
+    ['视频与人体姿态', '尚未接入', '需要真实的人体动作监督', '本轮没有下载实例视频或提取人体姿态；只有视频 ID 不能充当关节坐标。', '1 / 3：先选少量可使用的示范，记录视频、时间段、手部可见性和姿态质量。'],
+    ['机器人配对轨迹', '尚未接入', '人体动作需要适配机器人', '人体比例、手指结构和可动关节不同。需要动作重定向、手型校准及逐帧约束检查。', '3：输出有来源的新版本机器人轨迹，检查限位、耦合、掌向、接触与缺失的表情。'],
+    ['独立动作训练集', '待上游配对', '建立新示范上的训练与测试', '同一条视频或动作的相邻帧不能同时充当独立泛化证据。先定义数据划分，再训练新版本。', '4 / 5：冻结 v2 协议，按独立示范划分，保留所有失败并单独报告语言评价。']
   ];
   function renderStages() {
     el('data-stages').replaceChildren();
@@ -71,26 +71,26 @@
   }
   document.querySelectorAll('[data-eval]').forEach(button => button.onclick = () => { evalGroup = button.dataset.eval; if (project) renderEvaluation(); });
   const dependencies = {
-    A1:['表达目录与来源需求','A2 的动作要求、C1 的含义检查'], A2:['A1 的示范及机器人约束','B1 / B2 的配对轨迹、C1 的几何记录'], B1:['A1 的完整含义、A2 的轨迹编号','B2 的配对清单、C1 的独立标签'], B2:['B1 的配对数据、A2 的有效关节定义','C1 的冻结模型与协议、C2 的推理接口'], C1:['各模块冻结版本与原始记录','C2 的结果、失败与未验证边界'], C2:['五个模块可复核的交付','全组演示、跨电脑复现与汇报材料']
+    A1:['动作组可获得的示范与目录范围','语意匹配目录与开发文本'], A2:['十类目录与开发文本','合法 ID、拒绝状态与配置版本'], B1:['十类完整含义与实际示范','有来源的机器人训练轨迹'], B2:['有效训练轨迹与冻结协议','新版权重、生成接口与检查指标'], C1:['语言和动作的冻结版本','独立结果、完整服务与版本注册'], C2:['已集成且检查通过的版本','统一展示、汇报与模型版本备份']
   };
   function renderRoles() {
     const cards = el('role-cards'); cards.replaceChildren();
     for (const role of project.roles) {
-      const button = node('button', undefined, `role-card${role.id === selectedRole ? ' selected' : ''}`); button.setAttribute('aria-pressed', String(role.id === selectedRole)); button.append(node('span', role.id, 'role-id'), node('strong', role.role), node('p', role.focus), node('small', '查看交接与下一步 →')); button.onclick = () => { selectedRole = role.id; renderRoles(); }; cards.append(button);
+      const button = node('button', undefined, `role-card${role.id === selectedRole ? ' selected' : ''}`); button.setAttribute('aria-pressed', String(role.id === selectedRole)); button.append(node('span', role.number || role.id, 'role-id'), node('strong', window.ProjectI18n.lang === 'en' ? role.role_en || role.role : role.role), node('p', window.ProjectI18n.lang === 'en' ? role.focus_en || role.focus : role.focus), node('small', '查看交接与下一步 →')); button.onclick = () => { selectedRole = role.id; renderRoles(); }; cards.append(button);
     }
     const role = project.roles.find(r => r.id === selectedRole), dep = dependencies[role.id];
-    const intro = node('div'); intro.append(node('h3', `${role.id} · ${role.role}`), node('p','建议责任位，待组内认领。'));
-    const work = node('dl'); work.append(node('dt','下一步工作'), node('dd', role.next_step));
+    const intro = node('div'); intro.append(node('h3', `${role.number || role.id} · ${window.ProjectI18n.lang === 'en' ? role.role_en || role.role : role.role}`), node('p','建议责任位，待组内认领。'));
+    const work = node('dl'); work.append(node('dt','下一步工作'), node('dd', window.ProjectI18n.lang === 'en' ? role.next_step_en || role.next_step : role.next_step));
     const handoff = node('dl'); handoff.append(node('dt','上游 → 下游'), node('dd', `${dep[0]} → ${dep[1]}`)); el('role-detail').replaceChildren(intro,work,handoff);
   }
   const fileType = mime => ({'application/pdf':'PDF','application/vnd.openxmlformats-officedocument.presentationml.presentation':'PPTX','application/json':'JSON','text/markdown':'MD','text/plain':'TXT'}[mime.split(';')[0]] || 'FILE');
   function renderMaterials() {
-    const materials = project.materials.filter(m => m.category !== '生成样例');
+    const materials = project.materials.filter(m => m.category !== '生成样例' && (!m.language || m.language === window.ProjectI18n.lang));
     const filters = el('material-filters'); filters.replaceChildren(); ['全部','汇报','说明','证据'].forEach(category => { const b = node('button',category,category === materialCategory ? 'selected' : ''); b.setAttribute('aria-pressed',String(category === materialCategory)); b.onclick = () => { materialCategory = category; renderMaterials(); }; filters.append(b); });
     const cards = el('material-cards'); cards.replaceChildren();
     for (const item of materials.filter(m => materialCategory === '全部' || m.category === materialCategory)) {
       const card = node('article',undefined,'material-card'), top = node('div',undefined,'file-type'); top.append(node('span', `${fileType(item.mime)} / ${item.category}`),node('span', item.bytes ? item.bytes > 1048576 ? `${(item.bytes / 1048576).toFixed(1)} MB` : `${Math.ceil(item.bytes / 1024)} KB` : '—'));
-      card.append(top,node('h3',item.title),node('p',item.description));
+      card.append(top,node('h3',window.ProjectI18n.lang === 'en' ? item.title_en || item.title : item.title),node('p',window.ProjectI18n.lang === 'en' ? item.description_en || item.description : item.description));
       if (item.available) { const a = node('a', item.mime === 'application/pdf' ? '打开 PDF ↗' : '下载文件 ↓'); a.href = item.url; if (item.mime === 'application/pdf') { a.target = '_blank'; a.rel = 'noopener noreferrer'; } else a.setAttribute('download',''); card.append(a); }
       else card.append(node('span',`暂不可用：${item.unavailable_reason || '本地文件缺失'}`,'unavailable'));
       cards.append(card);
@@ -130,5 +130,7 @@
     try { const response = await fetch('/api/health',{cache:'no-store'}); if (!response.ok) throw new Error(); const health = await response.json(); el('connection-status').textContent = health.status === 'ok' ? '本机服务在线' : '服务状态待检查'; }
     catch (_) { el('connection-status').textContent = '本机服务连接失败'; }
   }
+  window.addEventListener('project:languagechange', () => { if (project) { renderMaterials(); renderRoles(); } });
   initProject();
 })();
+
