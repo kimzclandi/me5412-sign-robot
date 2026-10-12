@@ -93,16 +93,15 @@ Inference reads weights, not demonstration NPZs. `learning_api.py` and training 
 
 ## 5. Avoid unnecessary waiting
 
-This section retains the six roles from the earlier discussion, before the newer two/two/two assignment. No named teammates are assigned.
+Use the [current three-pair guide](ten-intent-learning-guide.en.md); no named teammates are assigned.
 
-- Person 1 defines first IDs/meanings/sources, then adds source detail incrementally.
-- Person 6 organizes registry/format/rendering and an example of a new integrated motion.
-- Persons 2/3 construct different motions with common tools and separate files/paths.
-- Person 4 can develop selection after IDs/meanings exist, using explicitly labeled placeholders. Full motion demonstration waits for videos.
-- Person 5 prepares standards, independent examples, and checks from the start and accepts artifacts as they arrive.
-- Person 6 can connect interfaces/pages early; final integration needs trajectories, videos, and acceptance. Public static export/publishing is separate.
+- First agree on ten intent IDs, joint order, units, timing, and one example motion.
+- Pair 1 implements the keyword baseline and MiniLM selector in parallel and jointly evaluates paraphrases/rejection.
+- Pair 2 extracts/cleans hand-arm demonstrations and maps robot trajectories, jointly checking meaning preservation.
+- Pair 3 divides primary ownership between conditional training and inference/execution/transitions/smoothing; both train/debug and compare against direct playback.
+- UI, report, slides, integration, and reproduction are shared. Independent tests are cross-run by teammates who did not tune the corresponding component.
 
-The real chain is meaning/source → construction → checks/rendering → full demo. Selection and page interfaces can proceed concurrently against an agreed catalog. For current ownership, use [the latest guide](ten-intent-learning-guide.en.md).
+Selection can use the agreed catalog, and learning plumbing can use explicitly labeled example motion. Valid training still depends on pair 2's data, and the full demo depends on aligned interfaces/versions across all pairs. Parallel work does not remove those dependencies. Static export/publication remains separate.
 
 ## Source entries
 

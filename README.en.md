@@ -2,7 +2,7 @@
 
 [中文](README.md) · **English** · [Bilingual documentation index](docs/README.md)
 
-> **Next stage: ten fixed intents → learned conditional motions.** Reuse free local MiniLM for intent selection and train an ID-conditioned trajectory model. Six people work in pairs on language, motion, and integration/presentation. Develop in parallel on task branches, merge stable versions, and select one primary presentation format at the end. Online site rebuilding is deferred. Ten classes are a development target; the current implementation still contains the three-class prototype documented below.
+> **Next stage: ten fixed intents → learned conditional motions.** Reuse free local MiniLM for intent selection and train an ID-conditioned trajectory model. Six people work in pairs on text intent understanding, demonstrations-to-robot, and learned motion. Everyone implements and tests; UI, report, slides, and integration are shared. The target is fixed healthcare expressions. Develop in parallel on task branches, merge stable versions, and select one primary presentation format at the end. Online site rebuilding is deferred. Ten classes are a development target; the current implementation still contains the three-class prototype documented below.
 >
 > Start with the [six-person implementation guide](docs/ten-intent-learning-guide.en.md), [GitHub branches and PRs](docs/github-collaboration.en.md), and [code dependencies](docs/code-dependencies.en.md). Develop on task branches, check PRs before merging into `master`, and freeze the final delivery.
 
@@ -58,7 +58,7 @@ The default page is the project overview. Eight pages are available through the 
 | Motion inspection | Compare existing front/side videos, timeline, and joint curves. |
 | Data route | Inspect original How2Sign splits; distinguish 35,263 text records from missing motion supervision and three authored demonstrations. |
 | Experimental evaluation | Separate supported and out-of-library inputs, each with denominator 30. Show false rejection, wrong motion, and interface errors. |
-| Six-person collaboration | Select people 1–6 for two language roles, two motion roles, and two integration/presentation roles. These suggestions are not assigned to named teammates. |
+| Six-person collaboration | The current page still shows earlier roles and has not been synchronized with this documentation change. Use the [current three-pair guide](docs/ten-intent-learning-guide.en.md); no named teammates are assigned. |
 | Materials and presentation | Manually play six saved learning-model viewpoint videos and open/download PPTX, PDF, notes, and evidence. |
 
 For a first introduction, use overview → demo → learning → data → evaluation → collaboration → materials. Use motion inspection when explaining a particular handshape or joint issue.
