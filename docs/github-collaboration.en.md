@@ -12,16 +12,16 @@ Suggested names, not yet assigned to real GitHub accounts:
 
 | Person | First branch | Scope |
 |---|---|---|
-| 1: intent/text data | `feat/semantic-data-v1` | Ten meanings, paraphrases, development examples, sources. |
-| 2: selection | `feat/semantic-selector-v1` | `language.py`, embedding config, language checks. |
-| 3: motion data/mapping | `feat/motion-data-v1` | Demonstration processing, shared retargeting, versioned trajectories/manifests. |
-| 4: learning | `feat/motion-learning-v2` | Conditional model, training scripts, separate weights/reports. |
-| 5: integration/evaluation | `feat/integration-v1` | Interfaces, registry, backend, independent tests/reproduction. |
-| 6: presentation | `feat/demo-v1` | `web/`, exports, static display, presentation. |
+| 1: keyword baseline | `feat/keyword-baseline-v1` | Baseline implementation, text development examples, tests. |
+| 2: semantic understanding | `feat/semantic-selector-v1` | MiniLM, paraphrases/rejection, joint text evaluation. |
+| 3: demonstration processing | `feat/motion-data-v1` | Hand/arm extraction/cleaning, provenance, timing/coordinates. |
+| 4: robot mapping | `feat/motion-retargeting-v1` | Joint mapping, retargeting, constraints, meaning-preservation checks. |
+| 5: motion training | `feat/motion-learning-v2` | ID-conditioned model, splits, training, independent weights. |
+| 6: inference/execution | `feat/motion-execution-v1` | Inference, transitions/smoothing, playback comparisons, and shared training/debugging. |
 
-After merging a first task, branch from updated `master` using a new version such as `feat/semantic-selector-v2`. Person 5 manages shared interfaces/catalog merges. Person 1 proposes catalog changes through a PR; others build against the merged catalog. Coordinate overlapping files and merge order.
+After merging a first task, branch from updated `master` using a new version such as `feat/semantic-selector-v2`. All pairs agree on the catalog/interfaces and appoint a coordinator for shared-file review each round. Persons 1/2 jointly propose catalog changes. Coordinate overlapping files and merge order. UI, report, slides, integration, and reproduction are shared.
 
-Read [implementation guide](ten-intent-learning-guide.en.md) and [dependencies](code-dependencies.en.md): selection emits valid `action_id`, motion generates by ID, and presentation reads acceptance and trajectory/video versions.
+Read [implementation guide](ten-intent-learning-guide.en.md) and [dependencies](code-dependencies.en.md): selection emits valid `action_id`, motion generates by ID, pair 3 integrates inference/execution, and the whole team presents acceptance and trajectory/video versions.
 
 ## 2. Access, clone, environment
 
@@ -63,7 +63,7 @@ Select the branch → Compare & pull request, or Pull requests → New pull requ
 - Base **`master`**; compare your task branch.
 - Use a Draft PR for incomplete work/interfaces needed by others; state what remains.
 - When acceptable, mark ready and document behavior, commands, actual checks, and unverified scope.
-- Request person 5/upstream/downstream review where permissions allow; use actual account assignments.
+- Request the round's coordinator/upstream/downstream review where permissions allow; use actual account assignments.
 
 Use the bilingual template. Explain the concrete improvement, interface changes, execution, evidence, dependencies, and remaining issues. Example title: `Add ID-conditioned motion generation v2`; describe data, output format, engineering checks, and independent evaluation rather than “optimized.”
 
@@ -89,7 +89,7 @@ Do not blindly choose all “ours” or “theirs.” If unresolved, `git merge 
 
 ## 6. Review and merge
 
-Person 5 coordinates; an authorized maintainer merges. At least one other teammate checks changes/run records; involve affected owners for interfaces/motion.
+The round's coordinator organizes review; an authorized maintainer merges. At least one other teammate checks changes/run records; involve affected owners for interfaces/motion.
 
 - Files changed should match scope.
 - Check shared IDs, joint formats, and model versions.
@@ -116,7 +116,7 @@ git pull --ff-only origin master
 git switch -c feat/semantic-selector-v2
 ```
 
-People with ongoing work stay on their branches and synchronize as in step 5. Suggested order: catalog/interfaces → independent selection/data modules → learning → complete integration → presentation. Independent PRs can merge earlier. Person 6 can submit the presentation framework early and connect new models later.
+People with ongoing work stay on their branches and synchronize as in step 5. Suggested order: catalog/interfaces → independent selection/data modules → learning → complete integration → presentation. Independent PRs can merge earlier. Pair 3 can build training/inference plumbing with an example motion early; all pairs integrate the demo and continuously connect new models.
 
 This is a team convention, not evidence that enforced branch protection or CI exists. The owner may configure those separately.
 

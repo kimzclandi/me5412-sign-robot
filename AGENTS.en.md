@@ -8,14 +8,14 @@ This is a separate project. The user authorized upload to private `kimzclandi/me
 - Meaning, source support, geometry, and actual ASL-user comprehension are separate statuses. Never label candidates validated ASL.
 - The user authorized small-scale local learning in independent directories: freeze protocols and preserve failures. Never overwrite weights/old experiments, spend on paid APIs, apply for data, or message others. Prefer free public small samples/local tools.
 - Preserve vendor originals, commits/hashes; coupled joints are not independent drives.
-- Integration owns public contracts; language outputs IDs, never joint commands.
-- Evaluation owns final tests, frozen before running; do not tune on results then claim independent validation.
+- All three pairs agree on public contracts and appoint an integration coordinator per round; language outputs IDs, never joint commands.
+- Cross-reviewers who did not tune the corresponding component own final tests, frozen before running; do not tune on results then claim independent validation.
 - Motion developers may read sources/development data; never invent human review.
 - Deliver startup instructions, actual checks, and unverified limitations.
 
-Current roles: 1 intent/text; 2 free selector; 3 motion data/mapping; 4 conditional learning; 5 interfaces/integration/independent evaluation; 6 video/web/presentation. Historical roles remain in `docs/six-person-handoff.md`.
+Current roles: pair 1 covers person 1's keyword baseline and person 2's MiniLM/semantic understanding; pair 2 covers person 3's hand/arm demonstration extraction/cleaning and person 4's robot-joint mapping; pair 3 covers person 5's intent-conditioned training and person 6's inference/execution, transitions/smoothing, and playback comparison. Both in pair 3 help train/debug. Everyone implements and tests; UI, report, slides, integration, and reproduction are shared. Scope is fixed healthcare expressions; no named teammates are assigned. Historical roles remain in `docs/six-person-handoff.md`.
 
-Branch rules: read `docs/github-collaboration.md`. Start from latest master, deliver task branches/PRs, coordinate shared files, and merge after stage checks through integration. Team development agents do not independently merge others' PRs. Connect selection/generation by valid `action_id`; avoid repeated exact matching of original text.
+Branch rules: read `docs/github-collaboration.md`. Start from latest master, deliver task branches/PRs, coordinate shared files, and merge after stage checks through the round's coordinator and authorized maintainer. Team development agents do not independently merge others' PRs. Connect selection/generation by valid `action_id`; avoid repeated exact matching of original text.
 
 ## Bilingual maintenance
 

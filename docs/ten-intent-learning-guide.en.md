@@ -24,18 +24,17 @@ Start motion learning with conditional primitives: intent ID, normalized phase, 
 
 Shared IK/retargeting can convert human demonstrations to robot targets across all intents, reducing expression-by-expression authored poses. A model cannot invent its own training demonstrations. Three authored trajectories provide an engineering starting point; new real motion supervision is still absent.
 
-## 2. Six roles: two language, two motion, two integration/presentation
+## 2. Three pairs, each owning implementation and tests
 
-| Person | Responsibility | Inputs | Deliverable and acceptance |
-|---|---|---|---|
-| 1: intent/text data | Agree on ten meanings with motion team; organize English variants and confusing negatives | Sources and `data/catalog.json` | Ten-class catalog, development data, label disputes; clear meaning and unsupported scope per ID. |
-| 2: free model/selection | Reuse MiniLM; improve matching/rejection | Person 1's catalog/examples | Shared selection API, model/config versions, development results; do not force unknown inputs into ten classes. |
-| 3: motion data/robot mapping | Obtain usable demonstrations; unify coordinates/time; shared retargeting | Meanings, human poses/motions, robot | Sourced trajectories, manifests, geometry checks; separate measured poses from approximations. |
-| 4: conditional motion learning | Train ID-conditioned model on person 3's data; reconstruct coupling/check outputs | Training data, frozen protocol, constraints | New weights, generation API, fit and independent evaluation; inference generates from weights. |
-| 5: interfaces/integration/independent evaluation | Manage registration/versions, independent tests, end-to-end flow, second-machine reproduction | Frozen versions and dependencies | Runnable release, independent raw results, failures; separate selection from motion quality. |
-| 6: presentation format/report | Integrate and inspect versions early; produce one primary presentation format after stabilization | Integrated versions and checked trajectories | Unified ten-expression display, matching model version, backup of the same demo, and report. |
+These are proposed role assignments, not assignments to named teammates. The scope is ten fixed expressions for healthcare communication, without claiming full sign-language translation or clinical validation.
 
-Motion data/learning is heavier than reusing embeddings. Person 1 helps organize demonstrations/pairs after defining the catalog. Person 2 continues language testing/integration after stabilizing the API. Persons 5/6 participate from day one.
+| Pair | Individual responsibilities | Shared deliverables and acceptance |
+|---|---|---|
+| 1: text intent understanding | Person 1 implements a keyword baseline and organizes expressions, paraphrases, and negatives. Person 2 integrates MiniLM/a semantic model for paraphrases and rejection. | A shared valid-ID/rejection interface, development data, evaluation scripts, and a baseline/model comparison recording confusion, false rejection, and out-of-library wrong selection. |
+| 2: demonstrations to robot | Person 3 extracts and cleans hand/arm demonstrations and records sources, coordinates, timing, and missing data. Person 4 implements robot-joint mapping, retargeting, and constraint checks. | Sourced, reproducible trajectories and processing scripts. Jointly inspect whether handshape, palm orientation, position, and movement preserve meaning; document robot limits and lack of user validation. |
+| 3: learned motion | Person 5 trains an intent-ID-conditioned motion generator and manages splits, training, and model versions. Person 6 implements inference, execution integration, transitions, smoothing, and the direct-demonstration playback comparison. | Runnable training/generation, independent tests, and playback comparisons. Both help with training, debugging, and failure analysis, balancing actual workload. |
+
+Everyone owns real implementation and testing. UI, report, slides, integration, reproduction, and the final demo are shared across the team; no person is assigned only presentation work. Name a coordinator for each integration round. A teammate who did not tune the corresponding component runs its frozen independent test; do not tune on those results.
 
 ## 3. Freeze interfaces before separate iterations
 
@@ -45,7 +44,7 @@ Suggested new motion entry: `generate_for_action(action_id, duration_scale, mode
 
 Fix this existing integration issue: v1 `learned_motion.generate(text)` performs exact matching again. A paraphrase accepted by MiniLM can therefore be rejected by motion generation. The new entry must accept a valid ID directly instead of rematching the original text.
 
-Person 5 maintains registry, formats, and versions. Person 1 proposes catalog content; person 5 reviews/merges it. Persons 2/3/4 own selection, retargeting, and learning; person 6 owns presentation. Coordinate changes to shared files.
+Before starting, all three pairs agree on ten intent IDs/meanings, joint names/order, angle units, timestamps/sampling conventions, and one readable example motion. Pair 1 can then develop with text examples, pair 2 with demonstrations/retargeting, and pair 3 with the example motion for training/inference plumbing. Label placeholders and examples; they are not completed training evidence. Final training still depends on valid trajectories from pair 2, and end-to-end validation requires aligned versions from all pairs. Parallel work does not remove dependencies. All pairs approve shared catalog/interface changes and appoint a coordinator for that round.
 
 ## 4. Reuse and organize current code
 
@@ -65,11 +64,11 @@ Converge on one local service, one selection API, one motion-generation API, and
 
 Choose ten meanings from obtainable demonstrations the robot can express reasonably. Seek multiple independent performances per class. If only one exists, explicitly limit conclusions to reconstruction. Frame counts, time scaling, and same-source augmentation are not independent performances.
 
-Person 5 owns a new independent text test; persons 1/2 modify using development data. Report per-class correct selections, false rejection, confusion, out-of-library wrong selection, and runtime errors. Similarity is not probability.
+Pair 1 jointly designs text evaluation; persons 1/2 modify using development data only. A designated cross-reviewer from another pair freezes and runs the final text test. Report per-class correct selections, false rejection, confusion, out-of-library wrong selection, and runtime errors. Similarity is not probability.
 
 Split motion by complete demonstration/source; variants of one demonstration remain together. Odd/even-frame error is a fit diagnostic only. Check generated limits, coupling, velocity, available collision geometry, hand positions/palm orientation, and qualitatively compare sources.
 
-Compare the learned model with direct interpolation/playback of the same intent and explain the benefit. Ten-ID generation covers known meanings; it does not demonstrate an eleventh unseen meaning.
+Pair 3 jointly compares the learned model with direct interpolation/playback of the same intent under matching inputs and checks, examining trajectory error, constraints, smoothness, and transitions. Establish whether learning provides a benefit; report no benefit honestly rather than inventing novelty or performance improvements. Ten-ID generation covers known meanings; it does not demonstrate an eleventh unseen meaning.
 
 No ASL-user review currently exists. Describe the final scope as “ten-class intent recognition and robot signing candidate-motion generation.” Teammate checks of labels/sources do not validate ASL comprehensibility.
 
@@ -86,13 +85,13 @@ On selection rejection, generation failure, failed trajectory checks, or unavail
 | Oct 29–Nov 2 | Presentation, group rehearsal, second-machine reproduction, offline backup, submission preparation. |
 | Nov 3 | Submit according to course instructions. |
 
-These are suggested dates, not a completion guarantee. If data or a two-class flow is missing on Oct 12, immediately revise sources/scope; writing a model architecture does not establish feasibility. Persons 5/6 start integration/presentation with existing motions and continuously accept new versions.
+These are suggested dates, not a completion guarantee. If data or a two-class flow is missing on Oct 12, immediately revise sources/scope; writing a model architecture does not establish feasibility. All pairs connect interfaces with an example motion in the first round and continuously accept new versions. Both members of pair 3 own learning/execution implementation.
 
-Each delivery records changes, inputs/outputs, version, commands, actual results, failures, and what the next person needs. Discuss shared-interface changes with person 5 and upstream/downstream owners first.
+Each delivery records changes, inputs/outputs, version, commands, actual results, failures, and what the next person needs. Discuss shared-interface changes with the round's coordinator and affected owners across all pairs first.
 
 ## 7. Branch/PR collaboration
 
-Create task branches from current `master`, commit/push there, and open PRs targeting `master`. Person 5 coordinates review, validation, and merge. Merge each acceptable milestone, then start subsequent tasks from updated mainline; do not wait until the final day to integrate.
+Create task branches from current `master`, commit/push there, and open PRs targeting `master`. The round's coordinator organizes review/validation; an authorized maintainer merges under the team's agreement. Merge each acceptable milestone, then start subsequent tasks from updated mainline; do not wait until the final day to integrate.
 
 See [GitHub collaboration](github-collaboration.en.md) for commands, Desktop, conflicts, and merge order.
 
