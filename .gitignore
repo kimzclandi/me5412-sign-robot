@@ -17,3 +17,6 @@ deliverables/.build/
 !.env.example
 .sites-runtime/
 website/.openai/
+
+# Raw mocap sources (re-fetch from the pinned Studio Galt commit)
+data/mocap/*/raw/
