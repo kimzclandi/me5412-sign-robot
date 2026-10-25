@@ -40,7 +40,7 @@ On macOS use `/Applications/Blender.app/Contents/MacOS/Blender` and drop `MUJOCO
 - **Cropping**: frame 0 of every Studio Galt file is the T-pose bind pose (checked for all 27) and is skipped; the clip is then cropped to where a wrist moves faster than 0.03 m/s, with 0.2 s / 0.3 s padding.
 - **Bone names**: ASK uses the 2023 rig (Bicep/Forearm/Index1 …); the extractor has a built-in alias table to the current names.
 - **Arms**: a per-frame human chest frame (forward, left, up) is built from the shoulders and the neck–pelvis direction. Wrist and elbow positions relative to the same-side shoulder are scaled by the arm-length ratio (about 0.82) and placed at the robot shoulder. Bounded least-squares IK on the 7 joints per side matches wrist position and hand orientation, and softly the elbow.
-- **Collision avoidance**: arms keep 1 cm from the torso and hips; the right hand (solved second) may touch but not enter the already-placed left hand, with all fingers of both hands checked.
+- **Collision avoidance**: arms keep 1 cm from the torso and hips; the two hands (all fingers included) may touch but not interpenetrate. Each frame solves the left arm first (kept out of the right hand's previous pose), then the right arm (kept out of the left hand); if the hands end up closer than 2 cm, both arms are re-solved together from that non-penetrating start, so both give way instead of the right wrist twisting alone. The start must be non-penetrating because the clearance penalty only gives a useful gradient while the hands are apart.
 - **Continuity**: each arm joint may change by at most 25 rad/s worth of angle per frame, so IK cannot jump to another solution near a joint limit and flip a joint within one frame.
 - **Hand orientation**: both human and robot hand frames use wrist→middle-finger base and pinky base→index base, so left/right mirroring stays consistent.
 - **Fingers**: per finger, the rotation angles of the hand→1→2→3 joints relative to the bind pose are summed; 15°–230° maps linearly to 0–1.7 rad on the single coupled Inspire joint. Thumb flexion drives pitch (capped at 0.5 so coupled joints stay in range) and thumb crossing over the palm drives yaw. Relative rotations are used because the bone tails in these FBX files do not point along the fingers; positions would add about 90°.
@@ -53,11 +53,11 @@ Grades come from `results/mocap_previews/overview.png`, each word's comparison s
 | Grade | Count | Words |
 |---|---|---|
 | Usable: motion, position and handshape match the human | 14 | ASK, BAG, BIG, BOX, BRING, BUSY, CHILD, COME, COMPUTER, EQUAL, FUTURE, ONE, TAKE, YOU |
-| Approximate: recognisable, with a known robot limitation | 11 | Two-hand contact only reaches touching: BALL, BOOK, BUY, CALM, CLEAN, CLOSE, COOK, EVERYONE; hands near the chest look near the face: CUSTOMER; fingers cannot spread: TWO, THREE |
-| Poor: fix or replace before a demo | 2 | BABY (crossed-forearm cradle only roughly reproduced), BEFORE (both hands crowd the midline and the right wrist twists unnaturally) |
+| Approximate: recognisable, with a known robot limitation | 13 | Two-hand contact only reaches touching: BALL, BOOK, BUY, CALM, CLEAN, CLOSE, COOK, EVERYONE; overlapping hands are too large, orientation off about 0.7–0.8 rad: BABY, BEFORE; hands near the chest look near the face: CUSTOMER; fingers cannot spread: TWO, THREE |
+| Poor: fix or replace before a demo | 0 | — |
 
 - Sign-phase wrist error (frames with the hand at least 10 cm above its lowest point): below 2 cm for every usable word, below 3 mm for 12 of them.
-- Penetration: at most 14 mm for any word (upstream collision geoms only, excluding mesh overlap between adjacent parts of the same hand).
+- Penetration: at most 16 mm for any word (CUSTOMER) (upstream collision geoms only, excluding mesh overlap between adjacent parts of the same hand).
 - In the hanging rest pose at the start and end, wrists deviate 2–3 cm: the human hand hangs lower than the robot hip allows without touching the leg.
 
 ## Limitations

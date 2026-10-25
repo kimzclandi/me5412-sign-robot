@@ -25,11 +25,10 @@ APPROXIMATE = {
     "EVERYONE": "hands touch briefly; wrist offset up to 7 cm at that moment",
     "TWO": "index and middle cannot spread (reads as U-like two fingers)",
     "THREE": "fingers cannot spread; three raised digits still visible",
+    "BABY": "crossed-forearm cradle is clear; large hands cannot reach the opposite elbow (orientation off ~0.8 rad)",
+    "BEFORE": "hands stacked front-to-back at the midline as in the source; hand orientation off ~0.7 rad",
 }
-POOR = {
-    "BABY": "crossed-forearm cradle only roughly reproduced; hands cannot reach the opposite elbow",
-    "BEFORE": "right wrist twists to an unnatural angle where both hands crowd the midline",
-}
+POOR = {}
 
 
 def main():

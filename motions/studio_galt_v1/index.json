@@ -33,8 +33,8 @@
         24,
         154
       ],
-      "robot_status": "poor",
-      "robot_note": "crossed-forearm cradle only roughly reproduced; hands cannot reach the opposite elbow",
+      "robot_status": "approximate",
+      "robot_note": "crossed-forearm cradle is clear; large hands cannot reach the opposite elbow (orientation off ~0.8 rad)",
       "asl_reviewed": false
     },
     {
@@ -369,8 +369,8 @@
         24,
         111
       ],
-      "robot_status": "poor",
-      "robot_note": "right wrist twists to an unnatural angle where both hands crowd the midline",
+      "robot_status": "approximate",
+      "robot_note": "hands stacked front-to-back at the midline as in the source; hand orientation off ~0.7 rad",
       "asl_reviewed": false
     },
     {
