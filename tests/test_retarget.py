@@ -62,3 +62,18 @@ def test_retargeted_clip_matches_motion_contract(entry, model):
         for err in meta["ik_error_sign_phase"].values():
             assert err["frames"] == 0 or err["wrist_position_m"]["max"] < 0.02
     assert meta["asl_reviewed"] is False
+
+
+def test_sign_frames_sit_inside_core_and_baseline_stitches():
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts/mocap"))
+    from stitch_baseline import stitch
+    for e in INDEX["words"]:
+        c0, c1 = e["core_frames"]
+        s0, s1 = e["sign_frames"]
+        assert c0 <= s0 < s1 <= c1
+    motion = stitch(["YOU", "BUY", "BOOK"])
+    validate_motion(motion)
+    q = motion["positions"]
+    assert np.allclose(q[0], q[-1])  # sentence starts and ends at neutral
+    assert np.abs(np.diff(q, axis=0)).max() * 30 < 30  # no jump at the seams

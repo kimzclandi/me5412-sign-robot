@@ -2,6 +2,10 @@
   "schema_version": 1,
   "fps": 30,
   "neutral_start_end": true,
+  "frames": {
+    "core_frames": "retargeted source segment, from hanging rest to hanging rest",
+    "sign_frames": "inside core_frames: hands raised (>= 10 cm above their lowest point); blend between these when stitching words"
+  },
   "source": "Studio Galt Sign Language Mocap Archive (CC0-1.0), commit eb9046596fffcc6e92ee91d021372961f3d4fcaa",
   "status_scale": {
     "usable": "motion, position and handshape match the source",
@@ -19,6 +23,10 @@
         24,
         118
       ],
+      "sign_frames": [
+        42,
+        98
+      ],
       "robot_status": "usable",
       "robot_note": null,
       "asl_reviewed": false
@@ -32,6 +40,10 @@
       "core_frames": [
         24,
         154
+      ],
+      "sign_frames": [
+        35,
+        144
       ],
       "robot_status": "approximate",
       "robot_note": "crossed-forearm cradle is clear; large hands cannot reach the opposite elbow (orientation off ~0.8 rad)",
@@ -47,6 +59,10 @@
         24,
         88
       ],
+      "sign_frames": [
+        34,
+        74
+      ],
       "robot_status": "usable",
       "robot_note": null,
       "asl_reviewed": false
@@ -60,6 +76,10 @@
       "core_frames": [
         24,
         141
+      ],
+      "sign_frames": [
+        41,
+        125
       ],
       "robot_status": "approximate",
       "robot_note": "hands near chest appear near the face (short robot neck)",
@@ -75,6 +95,10 @@
         24,
         182
       ],
+      "sign_frames": [
+        41,
+        166
+      ],
       "robot_status": "approximate",
       "robot_note": "hands touch briefly; wrist offset up to 7 cm at that moment",
       "asl_reviewed": false
@@ -88,6 +112,10 @@
       "core_frames": [
         24,
         119
+      ],
+      "sign_frames": [
+        42,
+        109
       ],
       "robot_status": "approximate",
       "robot_note": "right hand rests on, not in, the left palm",
@@ -103,6 +131,10 @@
         24,
         120
       ],
+      "sign_frames": [
+        32,
+        89
+      ],
       "robot_status": "usable",
       "robot_note": null,
       "asl_reviewed": false
@@ -116,6 +148,10 @@
       "core_frames": [
         24,
         134
+      ],
+      "sign_frames": [
+        50,
+        120
       ],
       "robot_status": "usable",
       "robot_note": null,
@@ -131,6 +167,10 @@
         24,
         83
       ],
+      "sign_frames": [
+        38,
+        78
+      ],
       "robot_status": "approximate",
       "robot_note": "wiping contact kept as touching",
       "asl_reviewed": false
@@ -144,6 +184,10 @@
       "core_frames": [
         24,
         79
+      ],
+      "sign_frames": [
+        32,
+        74
       ],
       "robot_status": "approximate",
       "robot_note": "hands meet edge to edge; offset up to 4 cm",
@@ -159,6 +203,10 @@
         24,
         176
       ],
+      "sign_frames": [
+        66,
+        161
+      ],
       "robot_status": "usable",
       "robot_note": null,
       "asl_reviewed": false
@@ -172,6 +220,10 @@
       "core_frames": [
         24,
         180
+      ],
+      "sign_frames": [
+        47,
+        150
       ],
       "robot_status": "approximate",
       "robot_note": "flipping hand on palm kept as touching",
@@ -187,6 +239,10 @@
         24,
         91
       ],
+      "sign_frames": [
+        46,
+        84
+      ],
       "robot_status": "usable",
       "robot_note": null,
       "asl_reviewed": false
@@ -200,6 +256,10 @@
       "core_frames": [
         24,
         121
+      ],
+      "sign_frames": [
+        32,
+        76
       ],
       "robot_status": "approximate",
       "robot_note": "two-hand contact kept as touching; hands larger than human",
@@ -215,6 +275,10 @@
         24,
         120
       ],
+      "sign_frames": [
+        31,
+        94
+      ],
       "robot_status": "approximate",
       "robot_note": "two-hand shape: robot hands only touch, fingers cannot curve around a ball",
       "asl_reviewed": false
@@ -228,6 +292,10 @@
       "core_frames": [
         24,
         98
+      ],
+      "sign_frames": [
+        31,
+        86
       ],
       "robot_status": "usable",
       "robot_note": null,
@@ -243,6 +311,10 @@
         24,
         125
       ],
+      "sign_frames": [
+        37,
+        108
+      ],
       "robot_status": "usable",
       "robot_note": null,
       "asl_reviewed": false
@@ -256,6 +328,10 @@
       "core_frames": [
         24,
         255
+      ],
+      "sign_frames": [
+        49,
+        245
       ],
       "robot_status": "usable",
       "robot_note": null,
@@ -271,6 +347,10 @@
         24,
         96
       ],
+      "sign_frames": [
+        32,
+        78
+      ],
       "robot_status": "usable",
       "robot_note": null,
       "asl_reviewed": false
@@ -284,6 +364,10 @@
       "core_frames": [
         24,
         136
+      ],
+      "sign_frames": [
+        36,
+        128
       ],
       "robot_status": "usable",
       "robot_note": null,
@@ -299,6 +383,10 @@
         24,
         98
       ],
+      "sign_frames": [
+        40,
+        93
+      ],
       "robot_status": "approximate",
       "robot_note": "two hands close together; positions offset up to 5 cm",
       "asl_reviewed": false
@@ -312,6 +400,10 @@
       "core_frames": [
         24,
         156
+      ],
+      "sign_frames": [
+        48,
+        133
       ],
       "robot_status": "usable",
       "robot_note": null,
@@ -327,6 +419,10 @@
         24,
         133
       ],
+      "sign_frames": [
+        36,
+        93
+      ],
       "robot_status": "usable",
       "robot_note": null,
       "asl_reviewed": false
@@ -340,6 +436,10 @@
       "core_frames": [
         24,
         120
+      ],
+      "sign_frames": [
+        38,
+        89
       ],
       "robot_status": "approximate",
       "robot_note": "index and middle cannot spread (reads as U-like two fingers)",
@@ -355,6 +455,10 @@
         24,
         132
       ],
+      "sign_frames": [
+        44,
+        94
+      ],
       "robot_status": "approximate",
       "robot_note": "fingers cannot spread; three raised digits still visible",
       "asl_reviewed": false
@@ -369,6 +473,10 @@
         24,
         111
       ],
+      "sign_frames": [
+        33,
+        100
+      ],
       "robot_status": "approximate",
       "robot_note": "hands stacked front-to-back at the midline as in the source; hand orientation off ~0.7 rad",
       "asl_reviewed": false
@@ -382,6 +490,10 @@
       "core_frames": [
         24,
         166
+      ],
+      "sign_frames": [
+        36,
+        144
       ],
       "robot_status": "usable",
       "robot_note": null,

@@ -8,9 +8,36 @@ the Group 2 visual/quantitative grade from results/mocap_previews (not ASL revie
 from pathlib import Path
 import csv
 import json
+import sys
+
+import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "scripts/mocap"))
+from sign_robot.retarget import Skeleton
+from retarget_to_g1 import FPS, SKELETON_DIR, active_range
+
 CLIPS = ROOT / "motions/studio_galt_v1"
+RAISED_M = 0.10  # a hand counts as signing when >= 10 cm above its lowest point
+
+
+def sign_frames(word, core_frames):
+    """Output-frame span where either hand is raised: the sign without rise/lowering."""
+    raw = np.load(SKELETON_DIR / f"{word}.npz")
+    i0, i1, _ = active_range(Skeleton(raw, raw["rot"][0]))
+    sk = Skeleton({k: raw[k][i0:i1] for k in ("head", "tail", "rot")}
+                  | {"bone_names": raw["bone_names"], "frame_times_s": raw["frame_times_s"][i0:i1] - raw["frame_times_s"][i0]},
+                  raw["rot"][0])
+    up = sk.chest_frame()[:, :, 2]
+    raised = np.zeros(len(sk.times), bool)
+    for s in ("l", "r"):
+        h = np.einsum("ti,ti->t", up, sk.h(f"hand_{s}") - sk.h(f"upperarm_{s}"))
+        raised |= h > h.min() + RAISED_M
+    idx = np.flatnonzero(raised)
+    c0, c1 = core_frames
+    to_out = lambda i: int(min(c1, c0 + round(sk.times[i] * FPS)))
+    return [to_out(idx[0]), to_out(idx[-1])]
 
 # Group 2 review of overview.png, per-word sheets and summary.json.
 APPROXIMATE = {
@@ -41,11 +68,14 @@ def main():
         entries.append({
             "id": i, "gloss": word, "part_of_speech": row["part_of_speech"],
             "motion": f"motions/studio_galt_v1/{word}.npz", "duration_s": round(meta["duration_s"], 3),
-            "core_frames": meta["core_frames"], "robot_status": status,
+            "core_frames": meta["core_frames"], "sign_frames": sign_frames(word, meta["core_frames"]),
+            "robot_status": status,
             "robot_note": POOR.get(word) or APPROXIMATE.get(word),
             "asl_reviewed": False,
         })
-    index = {"schema_version": 1, "fps": 30, "neutral_start_end": True,
+    index = {"schema_version": 1, "fps": FPS, "neutral_start_end": True,
+             "frames": {"core_frames": "retargeted source segment, from hanging rest to hanging rest",
+                        "sign_frames": "inside core_frames: hands raised (>= 10 cm above their lowest point); blend between these when stitching words"},
              "source": "Studio Galt Sign Language Mocap Archive (CC0-1.0), commit eb9046596fffcc6e92ee91d021372961f3d4fcaa",
              "status_scale": {"usable": "motion, position and handshape match the source",
                               "approximate": "recognisable, with a known robot limitation",
