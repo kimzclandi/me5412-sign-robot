@@ -1,0 +1,28 @@
+﻿word,part_of_speech,sentence_role,fbx_path,repository_fbx_path,motion_difficulty,downloaded,selection_note
+YOU,pronoun,代词/主语,asl_motion_data/YOU/SG ASL You 2025-7-22 No Mesh Full.fbx,SG ASL Dictionary/ASL Y/SG ASL You 2025-7-22 Upload/FBX Files/Full/SG ASL You 2025-7-22 No Mesh Full.fbx,低,yes,单臂指向，胸部坐标系可用
+BABY,person_noun,人物名词/主语,asl_motion_data/BABY/SG ASL Baby 2023-11-28 No Mesh Full.fbx,SG ASL Dictionary/ASL B/SG ASL Baby 2023-11-28 Upload/FBX Files/SG ASL Baby 2023-11-28 No Mesh Full.fbx,中,yes,双臂摇抱式动作，工作空间需求较大
+CHILD,person_noun,人物名词/主语,asl_motion_data/CHILD/SG ASL Child 2025-1-9 No Mesh Full.fbx,SG ASL Dictionary/ASL C/SG ASL Child 2025-1-9 Upload/FBX Files/Research/SG ASL Child 2025-1-9 No Mesh Full.fbx,低,yes,以手臂和空间高度表达
+CUSTOMER,person_noun,人物名词/主语,asl_motion_data/CUSTOMER/SG ASL Customer 2025-12-8 No Mesh Full.fbx,SG ASL Dictionary/ASL C/SG ASL Customer 2025-12-8 Upload/FBX Files/Full/SG ASL Customer 2025-12-8 No Mesh Full.fbx,中,yes,独立词条，动作较长但无需面部数据
+EVERYONE,pronoun,代词/主语,asl_motion_data/EVERYONE/SG ASL Everyone 2025-7-23 No Mesh Full.fbx,SG ASL Dictionary/ASL E/SG ASL Everyone 2025-7-23 Upload/FBX Files/Full/SG ASL Everyone 2025-7-23 No Mesh Full.fbx,中,yes,手臂扫动范围较大
+BUY,verb,谓语,asl_motion_data/BUY/SG ASL Buy 2 2024-9-5 No Mesh Full.fbx,SG ASL Dictionary/ASL B/SG ASL Buy 2 2024-9-5 Upload/FBX Files/Research/SG ASL Buy 2 2024-9-5 No Mesh Full.fbx,中,yes,双手配合，适合搭配物体名词
+ASK,verb,谓语,asl_motion_data/ASK/SG ASL Ask 1 2023-9-1 No Mesh Full.fbx,SG ASL Dictionary/ASL A/SG ASL Ask 1 2023-9-1 Upload/SG ASL Ask 1 2023-9-1 No Mesh Full.fbx,中,yes,方向性可能承载参与者关系
+BRING,verb,谓语,asl_motion_data/BRING/SG ASL Bring 2024-7-28 No Mesh Full.fbx,SG ASL Dictionary/ASL B/SG ASL Bring 2024-7-28 Upload/FBX Files/Research/SG ASL Bring 2024-7-28 No Mesh Full.fbx,中,yes,双手方向运动，需限定轨迹范围
+CLEAN,verb,谓语,asl_motion_data/CLEAN/SG ASL Clean 2025-2-27 No Mesh Full.fbx,SG ASL Dictionary/ASL C/SG ASL Clean 2025-2-27 Upload/FBX Files/Research/SG ASL Clean 2025-2-27 No Mesh Full.fbx,低,yes,双手接触式重复运动
+CLOSE,verb,谓语,asl_motion_data/CLOSE/SG ASL Close 2025-2-8 No Mesh Full.fbx,SG ASL Dictionary/ASL C/SG ASL Close 2025-2-8 Upload/FBX Files/Research/SG ASL Close 2025-2-8 No Mesh Full.fbx,中,yes,通用独立词条，双手协调
+COME,verb,谓语,asl_motion_data/COME/SG ASL Come 2025-3-27 No Mesh Full.fbx,SG ASL Dictionary/ASL C/SG ASL Come 2025-3-27 Upload/FBX Files/Full/SG ASL Come 2025-3-27 No Mesh Full.fbx,低,yes,方向性手臂动作
+COOK,verb,谓语,asl_motion_data/COOK/SG ASL Cook 2025-7-2 No Mesh Full.fbx,SG ASL Dictionary/ASL C/SG ASL Cook 2025-7-2 Upload/FBX Files/Full/SG ASL Cook 2025-7-2 No Mesh Full.fbx,中,yes,双手协调动作
+TAKE,verb,谓语,asl_motion_data/TAKE/SG ASL Take 2 2024-10-14 No Mesh Full.fbx,SG ASL Dictionary/ASL T/SG ASL Take 2 2024-10-14 Upload/FBX Files/Research/SG ASL Take 2 2024-10-14 No Mesh Full.fbx,中,yes,抓取式手形和方向运动
+BOOK,noun,宾语名词,asl_motion_data/BOOK/SG ASL Book 2 2024-6-9 No Mesh Full.fbx,SG ASL Dictionary/ASL B/SG ASL Book 2 2024-6-9 Upload/FBX Files/Research/SG ASL Book 2 2024-6-9 No Mesh Full.fbx,中,yes,双手开合动作
+BALL,noun,宾语名词,asl_motion_data/BALL/SG ASL Ball 2023-12-20 No Mesh Full.fbx,SG ASL Dictionary/ASL B/SG ASL Ball 2023-12-20 Upload/FBX Files/SG ASL Ball 2023-12-20 No Mesh Full.fbx,中,yes,双手空间定形
+BOX,noun,宾语名词,asl_motion_data/BOX/SG ASL Box 2 2024-7-3 No Mesh Full.fbx,SG ASL Dictionary/ASL B/SG ASL Box 2 2024-7-3 Upload/FBX Files/Research/SG ASL Box 2 2024-7-3 No Mesh Full.fbx,中,yes,双手空间定形
+BAG,noun,宾语名词,asl_motion_data/BAG/SG ASL Bag 1 2023-12-15 No Mesh Full.fbx,SG ASL Dictionary/ASL B/SG ASL Bag 1 2023-12-15 Upload/FBX Files/SG ASL Bag 1 2023-12-15 No Mesh Full.fbx,低,yes,独立词条，手部动作为主
+COMPUTER,noun,宾语名词,asl_motion_data/COMPUTER/SG ASL Computer 2h 2025-4-23 No Mesh Full.fbx,SG ASL Dictionary/ASL C/SG ASL Computer 2h 2025-4-23 Upload/FBX Files/Full/SG ASL Computer 2h 2025-4-23 No Mesh Full.fbx,中,yes,选择双手版本，未使用 Computer Game 等复合词
+BIG,adjective,形容词,asl_motion_data/BIG/SG ASL Big Wide 2024-4-14 No Mesh Full.fbx,SG ASL Dictionary/ASL B/SG ASL Big Wide 2024-4-14 Upload/FBX Files/SG ASL Big Wide 2024-4-14 No Mesh Full.fbx,低,yes,双手分开，可限制工作空间
+BUSY,adjective,形容词,asl_motion_data/BUSY/SG ASL Busy 2024-9-3 No Mesh Full.fbx,SG ASL Dictionary/ASL B/SG ASL Busy 2024-9-3 Upload/FBX Files/Research/SG ASL Busy 2024-9-3 No Mesh Full.fbx,中,yes,双手在胸前交替运动，无需面部数据；需保留手指姿态
+CALM,adjective,形容词,asl_motion_data/CALM/SG ASL Calm 2024-11-7 No Mesh Full.fbx,SG ASL Dictionary/ASL C/SG ASL Calm 2024-11-7 Upload/FBX Files/Research/SG ASL Calm 2024-11-7 No Mesh Full.fbx,低,yes,双手掌向下平稳移动，适合限制在胸前工作空间
+EQUAL,adjective,形容词,asl_motion_data/EQUAL/SG ASL Equal 2025-7-23 No Mesh Full.fbx,SG ASL Dictionary/ASL E/SG ASL Equal 2025-7-23 Upload/FBX Files/Full/SG ASL Equal 2025-7-23 No Mesh Full.fbx,低,yes,双手对称手形与短距离运动，无需面部或复杂身体动作
+ONE,numeral,数量词,asl_motion_data/ONE/SG ASL 1 2024-6-15 No Mesh Full.fbx,SG ASL Fingerspelling/Numbers/SG ASL 1 2024-6-15 Upload/FBX Files/Research/SG ASL 1 2024-6-15 No Mesh Full.fbx,低,yes,静态手形为主
+TWO,numeral,数量词,asl_motion_data/TWO/SG ASL 2 2024-6-15 No Mesh Full.fbx,SG ASL Fingerspelling/Numbers/SG ASL 2 2024-6-15 Upload/FBX Files/Research/SG ASL 2 2024-6-15 No Mesh Full.fbx,低,yes,静态手形为主
+THREE,numeral,数量词,asl_motion_data/THREE/SG ASL 3 2024-6-15 No Mesh Full.fbx,SG ASL Fingerspelling/Numbers/SG ASL 3 2024-6-15 Upload/FBX Files/Research/SG ASL 3 2024-6-15 No Mesh Full.fbx,低,yes,静态手形为主
+BEFORE,time,时间状语,asl_motion_data/BEFORE/SG ASL Before 2024-3-9 No Mesh Full.fbx,SG ASL Dictionary/ASL B/SG ASL Before 2024-3-9 Upload/FBX Files/SG ASL Before 2024-3-9 No Mesh Full.fbx,中,yes,双手前后关系，使用胸部参照
+FUTURE,time,时间状语,asl_motion_data/FUTURE/SG ASL Future 2025-7-23 No Mesh Full.fbx,SG ASL Dictionary/ASL F/SG ASL Future 2025-7-23 Upload/FBX Files/Full/SG ASL Future 2025-7-23 No Mesh Full.fbx,低,yes,时间方向动作，胸部坐标系可用

@@ -20,3 +20,4 @@ website/.openai/
 
 # Raw mocap sources (re-fetch from the pinned Studio Galt commit)
 data/mocap/*/raw/
+results/mocap_previews/*.log

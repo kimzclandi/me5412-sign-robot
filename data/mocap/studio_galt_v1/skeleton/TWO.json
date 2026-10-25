@@ -1,0 +1,14 @@
+{
+  "word": "TWO",
+  "source_fbx": "SG ASL 2 2024-6-15 No Mesh Full.fbx",
+  "source_sha256": "10bf2cb570d626668efcac067a4496b7d0e7b52241159ec2b5c1f26417ddcb3f",
+  "blender_version": "4.2.3 LTS",
+  "source_fps": 60.0,
+  "frames": 195,
+  "frame_range": [
+    1,
+    195
+  ],
+  "frame": "Blender world, Z up, metres",
+  "bone_aliases": {}
+}

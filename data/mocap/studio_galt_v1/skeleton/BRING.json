@@ -1,0 +1,14 @@
+{
+  "word": "BRING",
+  "source_fbx": "SG ASL Bring 2024-7-28 No Mesh Full.fbx",
+  "source_sha256": "4722518706e2599a0612bc614054e30d4816899195fbbda5411e42be581d19e6",
+  "blender_version": "4.2.3 LTS",
+  "source_fps": 60.0,
+  "frames": 224,
+  "frame_range": [
+    1,
+    224
+  ],
+  "frame": "Blender world, Z up, metres",
+  "bone_aliases": {}
+}

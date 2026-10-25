@@ -95,7 +95,17 @@ def main():
     validate_motion(motion)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(OUT_DIR / f"{args.word}.npz", **motion)
-    summary = lambda v: {"mean": float(np.mean(v)), "max": float(np.max(v))}
+    summary = lambda v: {"mean": float(np.mean(v)), "max": float(np.max(v))} if len(v) else None
+    # Sign phase: frames where that hand is raised >= 10 cm above its lowest point.
+    # Hanging (rest) frames are excluded because the robot hip blocks the human rest pose.
+    chest = sk.chest_frame()
+    raised = {}
+    for side, (s, _) in SIDES.items():
+        height = np.einsum("ti,ti->t", chest[:, :, 2], sk.h(f"hand_{s}") - sk.h(f"upperarm_{s}"))
+        raised[side] = height > height.min() + 0.10
+    sign_error = {side: {"frames": int(raised[side].sum()),
+                         "wrist_position_m": summary(np.asarray(errors[side]["wrist_m"])[raised[side]]),
+                         "hand_orientation_rad": summary(np.asarray(errors[side]["rot_rad"])[raised[side]])} for side in SIDES}
     meta = {
         "action_id": args.word, "schema_version": 1, "robot": info["model"],
         "scene_sha256": hashlib.sha256((ROOT / "assets/robot/scene.xml").read_bytes()).hexdigest(),
@@ -108,16 +118,18 @@ def main():
         "execution_mode": "kinematic_qpos_replay", "fps": FPS, "duration_s": float(times[-1]),
         "core_frames": core_frames, "transition_s": TRANSITION_S, "arm_scale": scales,
         "ik_error": {side: {"wrist_position_m": summary(errors[side]["wrist_m"]), "hand_orientation_rad": summary(errors[side]["rot_rad"])} for side in SIDES},
+        "ik_error_sign_phase": sign_error,
         "max_joint_limit_clip_rad": max(clipped, 0.0), "max_joint_speed_rad_s": float(speed.max()),
         "asl_reviewed": False, "clinical_use": False,
         "limitations": ["Inspire fingers have no abduction; spread handshapes (e.g. V, 3) cannot be reproduced",
                         "Finger and thumb mapping use fixed flexion ranges, not per-signer calibration",
                         "Torso, head and face motion are not transferred; robot base is fixed",
-                        "Shoulder-relative scaling does not preserve exact hand-to-hand or hand-to-body contacts",
+                        "Shoulder-relative scaling does not preserve exact hand-to-hand or hand-to-body contacts; hand-hand clearance is enforced, so contacts become touching at best",
+                        "Hanging rest poses deviate a few cm because the human hand rests lower than the robot hip allows",
                         "Not reviewed by ASL users"],
     }
     (OUT_DIR / f"{args.word}.json").write_text(json.dumps(meta, indent=2) + "\n")
-    print(json.dumps({k: meta[k] for k in ("action_id", "duration_s", "core_frames", "arm_scale", "ik_error", "max_joint_speed_rad_s", "max_joint_limit_clip_rad")}, indent=1))
+    print(json.dumps({k: meta[k] for k in ("action_id", "duration_s", "core_frames", "arm_scale", "ik_error_sign_phase", "max_joint_speed_rad_s", "max_joint_limit_clip_rad")}, indent=1))
     if args.render:
         from render_comparison import render
         render(args.word, model, motion, sk, core_frames)

@@ -1,0 +1,14 @@
+{
+  "word": "BOOK",
+  "source_fbx": "SG ASL Book 2 2024-6-9 No Mesh Full.fbx",
+  "source_sha256": "e3014c2da22af6e4e1dbefba9a6fb1bbe204c3eba35f02ca3ff21b5d8a78b990",
+  "blender_version": "4.2.3 LTS",
+  "source_fps": 60.0,
+  "frames": 197,
+  "frame_range": [
+    1,
+    197
+  ],
+  "frame": "Blender world, Z up, metres",
+  "bone_aliases": {}
+}

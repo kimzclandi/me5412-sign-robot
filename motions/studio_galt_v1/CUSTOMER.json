@@ -1,0 +1,89 @@
+{
+  "action_id": "CUSTOMER",
+  "schema_version": 1,
+  "robot": "Unitree G1 + Inspire DFQ",
+  "scene_sha256": "42fa55e694045a561e0b804de40a4312f27f0576a58f93ecc87101863a214e95",
+  "source": {
+    "dataset": "Studio Galt Sign Language Mocap Archive (CC0-1.0)",
+    "repository_commit": "eb9046596fffcc6e92ee91d021372961f3d4fcaa",
+    "fbx": "SG ASL Customer 2025-12-8 No Mesh Full.fbx",
+    "fbx_sha256": "8bc9e29244631643e00df5fac31c0d1ae64fbe1f61aa692854c294f55079d632",
+    "source_fps": 25.0,
+    "source_frames_used": [
+      2,
+      101
+    ],
+    "bind_frames_skipped": 2
+  },
+  "creation_method": "Human mocap retargeting: shoulder-relative wrist targets scaled by arm length, bounded IK on 7 arm joints per side (wrist position, hand orientation, soft elbow), finger flexion ratio mapped to coupled Inspire joints",
+  "execution_mode": "kinematic_qpos_replay",
+  "fps": 30,
+  "duration_s": 5.5,
+  "core_frames": [
+    24,
+    141
+  ],
+  "transition_s": 0.8,
+  "arm_scale": {
+    "left": 0.8119416045624461,
+    "right": 0.8039045375558517
+  },
+  "ik_error": {
+    "left": {
+      "wrist_position_m": {
+        "mean": 0.0006224176556512907,
+        "max": 0.0056767605367459405
+      },
+      "hand_orientation_rad": {
+        "mean": 0.001824106658778565,
+        "max": 0.01845092649729519
+      }
+    },
+    "right": {
+      "wrist_position_m": {
+        "mean": 0.004812680251383028,
+        "max": 0.02516461691555665
+      },
+      "hand_orientation_rad": {
+        "mean": 0.06160415546371941,
+        "max": 0.24019137598181803
+      }
+    }
+  },
+  "ik_error_sign_phase": {
+    "left": {
+      "frames": 69,
+      "wrist_position_m": {
+        "mean": 0.000488634623318597,
+        "max": 0.0007463044712259708
+      },
+      "hand_orientation_rad": {
+        "mean": 0.001205898433716844,
+        "max": 0.002316795836696041
+      }
+    },
+    "right": {
+      "frames": 71,
+      "wrist_position_m": {
+        "mean": 0.004455626661008652,
+        "max": 0.02516461691555665
+      },
+      "hand_orientation_rad": {
+        "mean": 0.05673668767778599,
+        "max": 0.24019137598181803
+      }
+    }
+  },
+  "max_joint_limit_clip_rad": 0.0,
+  "max_joint_speed_rad_s": 3.170982505934846,
+  "asl_reviewed": false,
+  "clinical_use": false,
+  "limitations": [
+    "Inspire fingers have no abduction; spread handshapes (e.g. V, 3) cannot be reproduced",
+    "Finger and thumb mapping use fixed flexion ranges, not per-signer calibration",
+    "Torso, head and face motion are not transferred; robot base is fixed",
+    "Shoulder-relative scaling does not preserve exact hand-to-hand or hand-to-body contacts; hand-hand clearance is enforced, so contacts become touching at best",
+    "Hanging rest poses deviate a few cm because the human hand rests lower than the robot hip allows",
+    "Not reviewed by ASL users"
+  ]
+}

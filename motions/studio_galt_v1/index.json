@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "fps": 30,
+  "neutral_start_end": true,
+  "source": "Studio Galt Sign Language Mocap Archive (CC0-1.0), commit eb9046596fffcc6e92ee91d021372961f3d4fcaa",
+  "status_scale": {
+    "usable": "motion, position and handshape match the source",
+    "approximate": "recognisable, with a known robot limitation",
+    "poor": "noticeably wrong; fix or replace before a demo"
+  },
+  "words": [
+    {
+      "id": 1,
+      "gloss": "YOU",
+      "part_of_speech": "pronoun",
+      "motion": "motions/studio_galt_v1/YOU.npz",
+      "duration_s": 4.733,
+      "core_frames": [
+        24,
+        118
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    },
+    {
+      "id": 2,
+      "gloss": "BABY",
+      "part_of_speech": "person_noun",
+      "motion": "motions/studio_galt_v1/BABY.npz",
+      "duration_s": 5.933,
+      "core_frames": [
+        24,
+        154
+      ],
+      "robot_status": "poor",
+      "robot_note": "crossed-forearm cradle only roughly reproduced; hands cannot reach the opposite elbow",
+      "asl_reviewed": false
+    },
+    {
+      "id": 3,
+      "gloss": "CHILD",
+      "part_of_speech": "person_noun",
+      "motion": "motions/studio_galt_v1/CHILD.npz",
+      "duration_s": 3.733,
+      "core_frames": [
+        24,
+        88
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    },
+    {
+      "id": 4,
+      "gloss": "CUSTOMER",
+      "part_of_speech": "person_noun",
+      "motion": "motions/studio_galt_v1/CUSTOMER.npz",
+      "duration_s": 5.5,
+      "core_frames": [
+        24,
+        141
+      ],
+      "robot_status": "approximate",
+      "robot_note": "hands near chest appear near the face (short robot neck)",
+      "asl_reviewed": false
+    },
+    {
+      "id": 5,
+      "gloss": "EVERYONE",
+      "part_of_speech": "pronoun",
+      "motion": "motions/studio_galt_v1/EVERYONE.npz",
+      "duration_s": 6.867,
+      "core_frames": [
+        24,
+        182
+      ],
+      "robot_status": "approximate",
+      "robot_note": "hands touch briefly; wrist offset up to 7 cm at that moment",
+      "asl_reviewed": false
+    },
+    {
+      "id": 6,
+      "gloss": "BUY",
+      "part_of_speech": "verb",
+      "motion": "motions/studio_galt_v1/BUY.npz",
+      "duration_s": 4.767,
+      "core_frames": [
+        24,
+        119
+      ],
+      "robot_status": "approximate",
+      "robot_note": "right hand rests on, not in, the left palm",
+      "asl_reviewed": false
+    },
+    {
+      "id": 7,
+      "gloss": "ASK",
+      "part_of_speech": "verb",
+      "motion": "motions/studio_galt_v1/ASK.npz",
+      "duration_s": 4.8,
+      "core_frames": [
+        24,
+        120
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    },
+    {
+      "id": 8,
+      "gloss": "BRING",
+      "part_of_speech": "verb",
+      "motion": "motions/studio_galt_v1/BRING.npz",
+      "duration_s": 5.267,
+      "core_frames": [
+        24,
+        134
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    },
+    {
+      "id": 9,
+      "gloss": "CLEAN",
+      "part_of_speech": "verb",
+      "motion": "motions/studio_galt_v1/CLEAN.npz",
+      "duration_s": 3.567,
+      "core_frames": [
+        24,
+        83
+      ],
+      "robot_status": "approximate",
+      "robot_note": "wiping contact kept as touching",
+      "asl_reviewed": false
+    },
+    {
+      "id": 10,
+      "gloss": "CLOSE",
+      "part_of_speech": "verb",
+      "motion": "motions/studio_galt_v1/CLOSE.npz",
+      "duration_s": 3.433,
+      "core_frames": [
+        24,
+        79
+      ],
+      "robot_status": "approximate",
+      "robot_note": "hands meet edge to edge; offset up to 4 cm",
+      "asl_reviewed": false
+    },
+    {
+      "id": 11,
+      "gloss": "COME",
+      "part_of_speech": "verb",
+      "motion": "motions/studio_galt_v1/COME.npz",
+      "duration_s": 6.667,
+      "core_frames": [
+        24,
+        176
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    },
+    {
+      "id": 12,
+      "gloss": "COOK",
+      "part_of_speech": "verb",
+      "motion": "motions/studio_galt_v1/COOK.npz",
+      "duration_s": 6.8,
+      "core_frames": [
+        24,
+        180
+      ],
+      "robot_status": "approximate",
+      "robot_note": "flipping hand on palm kept as touching",
+      "asl_reviewed": false
+    },
+    {
+      "id": 13,
+      "gloss": "TAKE",
+      "part_of_speech": "verb",
+      "motion": "motions/studio_galt_v1/TAKE.npz",
+      "duration_s": 3.833,
+      "core_frames": [
+        24,
+        91
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    },
+    {
+      "id": 14,
+      "gloss": "BOOK",
+      "part_of_speech": "noun",
+      "motion": "motions/studio_galt_v1/BOOK.npz",
+      "duration_s": 4.833,
+      "core_frames": [
+        24,
+        121
+      ],
+      "robot_status": "approximate",
+      "robot_note": "two-hand contact kept as touching; hands larger than human",
+      "asl_reviewed": false
+    },
+    {
+      "id": 15,
+      "gloss": "BALL",
+      "part_of_speech": "noun",
+      "motion": "motions/studio_galt_v1/BALL.npz",
+      "duration_s": 4.8,
+      "core_frames": [
+        24,
+        120
+      ],
+      "robot_status": "approximate",
+      "robot_note": "two-hand shape: robot hands only touch, fingers cannot curve around a ball",
+      "asl_reviewed": false
+    },
+    {
+      "id": 16,
+      "gloss": "BOX",
+      "part_of_speech": "noun",
+      "motion": "motions/studio_galt_v1/BOX.npz",
+      "duration_s": 4.067,
+      "core_frames": [
+        24,
+        98
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    },
+    {
+      "id": 17,
+      "gloss": "BAG",
+      "part_of_speech": "noun",
+      "motion": "motions/studio_galt_v1/BAG.npz",
+      "duration_s": 4.967,
+      "core_frames": [
+        24,
+        125
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    },
+    {
+      "id": 18,
+      "gloss": "COMPUTER",
+      "part_of_speech": "noun",
+      "motion": "motions/studio_galt_v1/COMPUTER.npz",
+      "duration_s": 9.3,
+      "core_frames": [
+        24,
+        255
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    },
+    {
+      "id": 19,
+      "gloss": "BIG",
+      "part_of_speech": "adjective",
+      "motion": "motions/studio_galt_v1/BIG.npz",
+      "duration_s": 4.0,
+      "core_frames": [
+        24,
+        96
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    },
+    {
+      "id": 20,
+      "gloss": "BUSY",
+      "part_of_speech": "adjective",
+      "motion": "motions/studio_galt_v1/BUSY.npz",
+      "duration_s": 5.333,
+      "core_frames": [
+        24,
+        136
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    },
+    {
+      "id": 21,
+      "gloss": "CALM",
+      "part_of_speech": "adjective",
+      "motion": "motions/studio_galt_v1/CALM.npz",
+      "duration_s": 4.067,
+      "core_frames": [
+        24,
+        98
+      ],
+      "robot_status": "approximate",
+      "robot_note": "two hands close together; positions offset up to 5 cm",
+      "asl_reviewed": false
+    },
+    {
+      "id": 22,
+      "gloss": "EQUAL",
+      "part_of_speech": "adjective",
+      "motion": "motions/studio_galt_v1/EQUAL.npz",
+      "duration_s": 6.0,
+      "core_frames": [
+        24,
+        156
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    },
+    {
+      "id": 23,
+      "gloss": "ONE",
+      "part_of_speech": "numeral",
+      "motion": "motions/studio_galt_v1/ONE.npz",
+      "duration_s": 5.233,
+      "core_frames": [
+        24,
+        133
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    },
+    {
+      "id": 24,
+      "gloss": "TWO",
+      "part_of_speech": "numeral",
+      "motion": "motions/studio_galt_v1/TWO.npz",
+      "duration_s": 4.8,
+      "core_frames": [
+        24,
+        120
+      ],
+      "robot_status": "approximate",
+      "robot_note": "index and middle cannot spread (reads as U-like two fingers)",
+      "asl_reviewed": false
+    },
+    {
+      "id": 25,
+      "gloss": "THREE",
+      "part_of_speech": "numeral",
+      "motion": "motions/studio_galt_v1/THREE.npz",
+      "duration_s": 5.2,
+      "core_frames": [
+        24,
+        132
+      ],
+      "robot_status": "approximate",
+      "robot_note": "fingers cannot spread; three raised digits still visible",
+      "asl_reviewed": false
+    },
+    {
+      "id": 26,
+      "gloss": "BEFORE",
+      "part_of_speech": "time",
+      "motion": "motions/studio_galt_v1/BEFORE.npz",
+      "duration_s": 4.5,
+      "core_frames": [
+        24,
+        111
+      ],
+      "robot_status": "poor",
+      "robot_note": "right wrist twists to an unnatural angle where both hands crowd the midline",
+      "asl_reviewed": false
+    },
+    {
+      "id": 27,
+      "gloss": "FUTURE",
+      "part_of_speech": "time",
+      "motion": "motions/studio_galt_v1/FUTURE.npz",
+      "duration_s": 6.333,
+      "core_frames": [
+        24,
+        166
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    }
+  ]
+}

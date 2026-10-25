@@ -133,10 +133,14 @@ class G1Retargeter:
             q[f"{p}_thumb_proximal_pitch_joint"] = thumb * 0.5
         return q
 
-    def solve_arm(self, q, side, wrist, elbow, site_rot, previous, clearance_pairs):
+    def solve_arm(self, q, side, wrist, elbow, site_rot, previous, clearance_pairs, max_step=None):
         r = self.robot[side]
         ids = r["ids"]
         low, high = self.m.jnt_range[ids].T
+        if max_step is not None:
+            # A per-frame step bound keeps IK on the same branch instead of flipping
+            # a joint across its range (e.g. wrist pitch +1.6 -> -1.6 in one frame).
+            low, high = np.maximum(low, previous - max_step), np.minimum(high, previous + max_step)
         wrist_body = self.m.body(f"{side}_wrist_yaw_link").id
         elbow_body = self.m.body(f"{side}_elbow_link").id
         site = self.m.site(f"{side}_palm").id
@@ -148,7 +152,7 @@ class G1Retargeter:
             dp = (self.d.xpos[wrist_body] - wrist) * 10.0
             de = (self.d.xpos[elbow_body] - elbow) * 2.0
             dr = Rotation.from_matrix(site_rot @ self.d.site_xmat[site].reshape(3, 3).T).as_rotvec()
-            clear = [max(0.0, 0.01 - mujoco.mj_geomDistance(self.m, self.d, a, b, 0.05, None)) * 50 for a, b in clearance_pairs]
+            clear = [max(0.0, margin - mujoco.mj_geomDistance(self.m, self.d, a, b, 0.05, None)) * 50 for a, b, margin in clearance_pairs]
             return np.r_[dp, de, dr, (x - previous) * 0.1, clear]
 
         seed = np.clip(previous, low + 1e-6, high - 1e-6)
@@ -156,27 +160,47 @@ class G1Retargeter:
         err = residual(result.x)
         return result.x, float(np.linalg.norm(err[:3]) / 10), float(np.linalg.norm(err[6:9]))
 
-    def clearance_pairs(self, side):
+    def _geoms(self, bodies):
         collides = lambda g: self.m.geom_contype[g] or self.m.geom_conaffinity[g]
-        torso = {self.m.body(n).id for n in ("torso_link", "pelvis") if mujoco.mj_name2id(self.m, mujoco.mjtObj.mjOBJ_BODY, n) >= 0}
-        arm = {self.m.body(f"{side}_{part}_link").id for part in ("elbow", "wrist_roll", "wrist_pitch", "wrist_yaw")}
-        tg = [g for g in range(self.m.ngeom) if self.m.geom_bodyid[g] in torso and collides(g)]
-        ag = [g for g in range(self.m.ngeom) if self.m.geom_bodyid[g] in arm and collides(g)]
-        return [(a, b) for a in ag for b in tg]
+        ids = {self.m.body(n).id for n in bodies if mujoco.mj_name2id(self.m, mujoco.mjtObj.mjOBJ_BODY, n) >= 0}
+        return [g for g in range(self.m.ngeom) if self.m.geom_bodyid[g] in ids and collides(g)]
 
-    def retarget(self, sk, neutral):
+    def _hand_bodies(self, side, fingers=False):
+        prefix = SIDES[side][1]
+        bodies = [f"{side}_wrist_pitch_link", f"{side}_wrist_yaw_link", f"{prefix}_thumb_proximal_base", f"{prefix}_thumb_proximal"]
+        if fingers:
+            bodies += [f"{prefix}_thumb_{p}" for p in ("intermediate", "distal")]
+            bodies += [f"{prefix}_{f}_{p}" for f in FINGERS for p in ("proximal", "intermediate")]
+        return bodies
+
+    def clearance_pairs(self, side):
+        """(arm geom, obstacle geom, margin m). The right arm is solved after the left,
+        so it also keeps its hand out of the already-placed left hand (touching allowed)."""
+        # Torso plus the (fixed, standing) upper legs: hanging hands otherwise sink into the hips.
+        body = ["torso_link", "pelvis"] + [f"{s}_{p}_link" for s in ("left", "right") for p in ("hip_pitch", "hip_roll", "hip_yaw")]
+        arm = self._geoms([f"{side}_{p}_link" for p in ("shoulder_yaw", "elbow", "wrist_roll")] + self._hand_bodies(side))
+        pairs = [(a, b, 0.01) for a in arm for b in self._geoms(body)]
+        if side == "right":
+            right = self._geoms([f"right_{p}_link" for p in ("shoulder_yaw", "elbow", "wrist_roll")] + self._hand_bodies("right", fingers=True))
+            pairs += [(a, b, 0.0) for a in right for b in self._geoms(self._hand_bodies("left", fingers=True))]
+        return pairs
+
+    def retarget(self, sk, neutral, max_speed=25.0):
+        """`max_speed` (rad/s) caps each arm joint's change between source frames."""
         tg = self.targets(sk)
         fingers = self.hand_joints(sk)
         pairs = {side: self.clearance_pairs(side) for side in SIDES}
         q_all = np.zeros((len(sk.times), self.m.nq))
         errors = {side: {"wrist_m": [], "rot_rad": []} for side in SIDES}
         previous = {side: neutral[self.robot[side]["ids"]].copy() for side in SIDES}
+        dt = float(np.median(np.diff(sk.times)))
         for t in range(len(sk.times)):
             q = neutral.copy()
             for name, values in fingers.items():
                 q[self.index[name]] = values[t]
             for side in SIDES:
-                x, ep, er = self.solve_arm(q, side, tg[side]["wrist"][t], tg[side]["elbow"][t], tg[side]["site_rot"][t], previous[side], pairs[side])
+                x, ep, er = self.solve_arm(q, side, tg[side]["wrist"][t], tg[side]["elbow"][t], tg[side]["site_rot"][t], previous[side], pairs[side],
+                                           max_step=None if t == 0 else max_speed * dt)
                 q[self.robot[side]["ids"]] = x
                 previous[side] = x
                 errors[side]["wrist_m"].append(ep)

@@ -21,11 +21,16 @@ import bpy
 import numpy as np
 
 FINGERS = ("thumb", "index", "middle", "ring", "pinky")
-# Canonical (UE-style) names; ASK uses an older rig and needs its own alias table.
+# Canonical (UE-style) names; ASK uses an older rig, mapped through ALIASES below.
 CANONICAL = (["pelvis", "spine_05", "neck_01", "head"]
              + [f"{part}_{s}" for s in ("l", "r") for part in ("clavicle", "upperarm", "lowerarm", "hand")]
              + [f"{finger}_0{i}_{s}" for s in ("l", "r") for finger in FINGERS for i in (1, 2, 3)])
-ALIASES = {"ASK": {}}  # filled in when ASK is processed; see docs once verified
+OLD_RIG = {"pelvis": "Hip", "spine_05": "Chest_4", "neck_01": "Neck", "head": "Head"}
+for s, S in (("l", "L"), ("r", "R")):
+    OLD_RIG.update({f"clavicle_{s}": f"Collar_{S}", f"upperarm_{s}": f"Bicep_{S}",
+                    f"lowerarm_{s}": f"Forearm_{S}", f"hand_{s}": f"Hand_{S}"})
+    OLD_RIG.update({f"{f}_0{i}_{s}": f"{f.capitalize()}{i}_{S}" for f in FINGERS for i in (1, 2, 3)})
+ALIASES = {"ASK": OLD_RIG}  # Studio Galt's 2023 rig (Bicep/Forearm/Index1 naming)
 
 
 def parse_args():
