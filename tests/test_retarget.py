@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 import numpy as np
 import pytest
 from sign_robot.motion import ROOT, load_model, validate_motion
@@ -86,12 +87,39 @@ def test_hospital_map_matches_vocabulary_and_library():
     hospital = json.loads((ROOT / "motions/hospital_v1_motions.json").read_text())
     vocab = json.loads((ROOT / "data/mocap/hospital_v1_vocab_snapshot.json").read_text(encoding="utf-8"))
     assert [g["gloss"] for g in hospital["glosses"]] == [v["gloss"] for v in vocab]
-    library = {e["gloss"]: e for e in INDEX["words"]}
+    libraries = {}
+    for path in ("motions/studio_galt_v1/index.json", "motions/wlasl_video_v1/index.json"):
+        for e in json.loads((ROOT / path).read_text())["words"]:
+            libraries.setdefault(str(Path(path).parent), {})[e["gloss"]] = e
     for g in hospital["glosses"]:
         if g["motion_ready"]:
-            entry = library[g["gloss"]]
+            entry = libraries[g["library"]][g["gloss"]]
             assert (ROOT / g["motion"]).is_file() and g["sign_frames"] == entry["sign_frames"]
             assert entry["robot_status"] != "poor"
+            mocap = libraries["motions/studio_galt_v1"].get(g["gloss"])
+            if mocap and mocap["robot_status"] != "poor":  # mocap preferred over video
+                assert g["library"] == "motions/studio_galt_v1"
         else:
             assert g["motion"] is None
     assert hospital["motion_ready_count"] == sum(g["motion_ready"] for g in hospital["glosses"])
+
+
+VIDEO_INDEX = json.loads((ROOT / "motions/wlasl_video_v1/index.json").read_text())
+
+
+@pytest.mark.parametrize("entry", VIDEO_INDEX["words"], ids=lambda e: e["gloss"])
+def test_video_clip_matches_motion_contract(entry, model):
+    with np.load(ROOT / entry["motion"]) as data:
+        motion = {k: data[k] for k in ("timestamps_s", "joint_names", "positions")}
+    validate_motion(motion)
+    q = motion["positions"]
+    assert [str(n) for n in motion["joint_names"]] == [model.joint(i).name for i in range(model.njnt)]
+    ids = [model.joint(str(n)).id for n in motion["joint_names"]]
+    assert np.all(q >= model.jnt_range[ids, 0] - 1e-9) and np.all(q <= model.jnt_range[ids, 1] + 1e-9)
+    assert np.allclose(q[0], q[-1])
+    c0, c1 = entry["core_frames"]
+    s0, s1 = entry["sign_frames"]
+    assert 0 < c0 <= s0 < s1 <= c1 < len(q) - 1
+    assert entry["robot_status"] in ("approximate", "poor")  # never "usable" from a single camera
+    meta = json.loads((ROOT / entry["motion"]).with_suffix(".json").read_text())
+    assert meta["source"]["url"].startswith("http") and meta["asl_reviewed"] is False

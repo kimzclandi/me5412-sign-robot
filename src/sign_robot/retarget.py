@@ -65,6 +65,8 @@ def finger_flexion(sk, finger, s):
     Uses relative bone rotations, so it does not depend on the rig's bone-axis
     convention (bone tails in these FBX files do not point along the finger).
     """
+    if hasattr(sk, "flexion"):  # e.g. VideoSkeleton: positions include true fingertips
+        return sk.flexion(finger, s)
     chain = [f"hand_{s}"] + [f"{finger}_0{i}_{s}" for i in (1, 2, 3)]
     total = 0.0
     for parent, child in zip(chain, chain[1:]):
@@ -107,7 +109,10 @@ class G1Retargeter:
         for side, (s, _) in SIDES.items():
             r = self.robot[side]
             shoulder = sk.h(f"upperarm_{s}")
-            human_len = np.linalg.norm(sk.h(f"lowerarm_{s}")[0] - shoulder[0]) + np.linalg.norm(sk.h(f"hand_{s}")[0] - sk.h(f"lowerarm_{s}")[0])
+            lengths = (np.linalg.norm(sk.h(f"lowerarm_{s}") - shoulder, axis=-1)
+                       + np.linalg.norm(sk.h(f"hand_{s}") - sk.h(f"lowerarm_{s}"), axis=-1))
+            # Video estimates jitter per frame, so they use the median; mocap keeps frame 0.
+            human_len = float(np.median(lengths)) if getattr(sk, "noisy_lengths", False) else lengths[0]
             scale = r["arm_length"] / human_len
             to_robot = lambda p: r["shoulder"] + scale * np.einsum("tji,tj->ti", chest, p - shoulder)
             human_hand = hand_frame(sk.h(f"hand_{s}"), sk.h(f"middle_01_{s}"), sk.h(f"index_01_{s}"), sk.h(f"pinky_01_{s}"))

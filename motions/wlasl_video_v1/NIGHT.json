@@ -1,0 +1,117 @@
+{
+  "action_id": "NIGHT",
+  "schema_version": 1,
+  "robot": "Unitree G1 + Inspire DFQ",
+  "scene_sha256": "42fa55e694045a561e0b804de40a4312f27f0576a58f93ecc87101863a214e95",
+  "source": {
+    "dataset": "WLASL v0.3 index (C-UDA) -> third-party ASL dictionary video",
+    "gloss": "NIGHT",
+    "video_id": "38337",
+    "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Night-sXPC0bQ0y2g.mp4",
+    "host": "signstock.blob.core.windows.net",
+    "video_sha256": "be72207a27d9e428f9b0265d962bf0238df5d1011bacf3b7375cb4c193206b75",
+    "source_fps": 29.97,
+    "source_frames_used": [
+      1,
+      56
+    ],
+    "hand_detection_rate_in_clip": {
+      "left": 0.6363636363636364,
+      "right": 0.8
+    }
+  },
+  "creation_method": "Monocular video retargeting: MediaPipe PoseLandmarker/HandLandmarker world landmarks (Savitzky-Golay smoothed, gaps interpolated) -> same G1 retargeting as the mocap clips (scaled shoulder-relative wrist targets, bounded 7-DoF IK per arm with clearance, finger flexion from joint positions)",
+  "execution_mode": "kinematic_qpos_replay",
+  "fps": 30,
+  "duration_s": 3.4,
+  "core_frames": [
+    24,
+    78
+  ],
+  "transition_s": 0.8,
+  "arm_scale": {
+    "left": 1.0017519672634403,
+    "right": 0.7931272001346283
+  },
+  "finger_speed_limit_rad_s": 10.0,
+  "arm_speed_limit_rad_s": 15.0,
+  "median_filter_frames": 5,
+  "ik_error": {
+    "left": {
+      "wrist_position_m": {
+        "mean": 0.02765157198654815,
+        "max": 0.07920062828671534
+      },
+      "hand_orientation_rad": {
+        "mean": 0.09334570144945152,
+        "max": 0.2988042993090888
+      }
+    },
+    "right": {
+      "wrist_position_m": {
+        "mean": 0.006308508574741654,
+        "max": 0.02841402179304083
+      },
+      "hand_orientation_rad": {
+        "mean": 0.004707164500355304,
+        "max": 0.018675485899887007
+      }
+    }
+  },
+  "ik_error_sign_phase": {
+    "left": {
+      "frames": 12,
+      "wrist_position_m": {
+        "mean": 0.04424241055383674,
+        "max": 0.07920062828671534
+      },
+      "hand_orientation_rad": {
+        "mean": 0.16826441576272166,
+        "max": 0.2988042993090888
+      }
+    },
+    "right": {
+      "frames": 30,
+      "wrist_position_m": {
+        "mean": 0.0005454648938077818,
+        "max": 0.0019654659393937754
+      },
+      "hand_orientation_rad": {
+        "mean": 0.0011861739385728568,
+        "max": 0.005765264336755917
+      }
+    }
+  },
+  "max_joint_limit_clip_rad": 0.0,
+  "max_joint_speed_rad_s": 9.616218135857816,
+  "asl_reviewed": false,
+  "clinical_use": false,
+  "limitations": [
+    "Inspire fingers have no abduction; spread handshapes (e.g. V, 3) cannot be reproduced",
+    "Finger and thumb mapping use fixed flexion ranges, not per-signer calibration",
+    "Torso, head and face motion are not transferred; robot base is fixed",
+    "Shoulder-relative scaling does not preserve exact hand-to-hand or hand-to-body contacts; hand-hand clearance is enforced, so contacts become touching at best",
+    "Hanging rest poses deviate a few cm because the human hand rests lower than the robot hip allows",
+    "Not reviewed by ASL users",
+    "Depth (towards/away from the camera) is estimated from a single view and is the least reliable axis",
+    "Hands undetected in some frames are interpolated; finger flexion is noisier than mocap",
+    "Source videos are third-party dictionary clips indexed by WLASL (C-UDA); they are not redistributed"
+  ],
+  "selected_from": [
+    {
+      "candidate": "NIGHT__38336",
+      "dominant_hand_coverage": 0.455,
+      "sign_wrist_err_max_m": 0.1936
+    },
+    {
+      "candidate": "NIGHT__38338",
+      "dominant_hand_coverage": 0.676,
+      "sign_wrist_err_max_m": 0.086
+    },
+    {
+      "candidate": "NIGHT__38337",
+      "dominant_hand_coverage": 0.8,
+      "sign_wrist_err_max_m": 0.0792
+    }
+  ]
+}

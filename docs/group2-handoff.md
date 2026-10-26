@@ -8,14 +8,18 @@
 
 第一组改用医院场景的 35 词词表（`data/vocab/hospital_v1.json`，快照见 `data/mocap/hospital_v1_vocab_snapshot.json`），输出的是 gloss 名称而不是序号。对接文件是 **`motions/hospital_v1_motions.json`**：35 个词各自的 `motion_ready`、轨迹路径、`core_frames`、`sign_frames`、分级和说明，由 `scripts/mocap/build_hospital_motions.py` 生成。
 
-| 情况 | 数量 | 词 |
+**35 个词全部有动作（`motion_ready=true`）**：
+
+| 来源 | 数量 | 词 |
 |---|---|---|
-| 已有动作（`motion_ready=true`） | 9 | YOU、COME、TAKE（原 27 词）；HELLO、PLEASE、APPOINTMENT、BREATHE-DEEP、BLOOD-DRAW、WHERE（本次从 Studio Galt 新增） |
-| 缺动作，需要 SignAvatars | 26 | THANK-YOU、SORRY、YES、NO、YOUR、ME、DEAF、DOCTOR、NURSE、INTERPRETER、MEDICINE、STOMACH、HEADACHE、HAVE、NEED、WAIT、HURT、UNDERSTAND、WRITE、NOT、NOW、SOON、LATER、TOMORROW、MORNING、NIGHT |
+| Studio Galt 动作捕捉 | 9 | YOU、COME、TAKE（原 27 词）；HELLO、PLEASE、APPOINTMENT、BREATHE-DEEP、BLOOD-DRAW、WHERE（从 Studio Galt 新增） |
+| 公开 ASL 词典视频 + MediaPipe | 26 | THANK-YOU、SORRY、YES、NO、YOUR、ME、DEAF、DOCTOR、NURSE、INTERPRETER、MEDICINE、STOMACH、HEADACHE、HAVE、NEED、WAIT、HURT、UNDERSTAND、WRITE、NOT、NOW、SOON、LATER、TOMORROW、MORNING、NIGHT |
+
+视频来源的 26 个词全部评为“近似”（单摄像头估计，深度和手指不如动作捕捉），方法和限制见 [video-retargeting.md](video-retargeting.md)。`hospital_v1_motions.json` 的 `library` 字段标明每个词来自哪个库。
 
 - 新增 6 个词的分级：PLEASE、WHERE 可用；HELLO（肘关节最多弯约 120°，只能在头旁举手）、APPOINTMENT、BREATHE-DEEP、BLOOD-DRAW 近似。详见 `motions/studio_galt_v1/index.json` 的 `robot_note`。
-- SignAvatars 需要本人填表申请（非商业研究），并注册下载 SMPL-X 模型；仓库规定 agent 不能代为申请。26 个词都在其单词数据来源 WLASL 的词表中。拿到数据后需要新写 SMPL-X 读取程序，机器人映射之后的流程可直接复用。
-- 9 句脚本对话共用 23 个词，目前只有 s5 `Take a deep breath.`（BREATHE-DEEP）的词全部就绪。
+- 原计划的 SignAvatars 需要本人申请，来不及，因此改用 WLASL 收录的公开词典视频；SignAvatars 以后拿到也可以替换质量更好的版本。
+- 9 句脚本对话的词全部就绪，例如 `scripts/mocap/stitch_baseline.py YOU HURT WHERE --render` 可直接拼出 s4。
 - 第一组更新 `hospital_v1.json` 的 `motion_ready` 时，以 `hospital_v1_motions.json` 为准。
 - 下载这 6 个词的原始 FBX：`.venv/bin/python scripts/mocap/fetch_studio_galt.py`（固定提交、核对哈希）。
 

@@ -1,0 +1,94 @@
+{
+  "action_id": "UNDERSTAND__60546",
+  "schema_version": 1,
+  "robot": "Unitree G1 + Inspire DFQ",
+  "scene_sha256": "42fa55e694045a561e0b804de40a4312f27f0576a58f93ecc87101863a214e95",
+  "source": {
+    "dataset": "WLASL v0.3 index (C-UDA) -> third-party ASL dictionary video",
+    "gloss": "UNDERSTAND",
+    "video_id": "60546",
+    "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Understand-zgYUzElmp1k.mp4",
+    "host": "signstock.blob.core.windows.net",
+    "video_sha256": "8988762cbdd429eb5e3e8f0f6521eaa5853c265b23abbff0cd2a3a1b91d1fefe",
+    "source_fps": 23.98,
+    "source_frames_used": [
+      1,
+      42
+    ],
+    "hand_detection_rate_in_clip": {
+      "left": 0.0,
+      "right": 0.6341463414634146
+    }
+  },
+  "creation_method": "Monocular video retargeting: MediaPipe PoseLandmarker/HandLandmarker world landmarks (Savitzky-Golay smoothed, gaps interpolated) -> same G1 retargeting as the mocap clips (scaled shoulder-relative wrist targets, bounded 7-DoF IK per arm with clearance, finger flexion from joint positions)",
+  "execution_mode": "kinematic_qpos_replay",
+  "fps": 30,
+  "duration_s": 3.2666666666666666,
+  "core_frames": [
+    24,
+    74
+  ],
+  "transition_s": 0.8,
+  "arm_scale": {
+    "left": 0.8530605813789037,
+    "right": 0.6525468538040697
+  },
+  "finger_speed_limit_rad_s": 10.0,
+  "arm_speed_limit_rad_s": 15.0,
+  "median_filter_frames": 5,
+  "ik_error": {
+    "left": {
+      "wrist_position_m": {
+        "mean": 0.06383747461786277,
+        "max": 0.09192017594989846
+      },
+      "hand_orientation_rad": {
+        "mean": 0.5988466649750289,
+        "max": 1.072991269466932
+      }
+    },
+    "right": {
+      "wrist_position_m": {
+        "mean": 0.007527835817529211,
+        "max": 0.0436123801588795
+      },
+      "hand_orientation_rad": {
+        "mean": 0.14022623728099706,
+        "max": 1.8137605595335173
+      }
+    }
+  },
+  "ik_error_sign_phase": {
+    "left": {
+      "frames": 0,
+      "wrist_position_m": null,
+      "hand_orientation_rad": null
+    },
+    "right": {
+      "frames": 38,
+      "wrist_position_m": {
+        "mean": 0.005637839246931671,
+        "max": 0.0436123801588795
+      },
+      "hand_orientation_rad": {
+        "mean": 0.12505041224492355,
+        "max": 1.8137605595335173
+      }
+    }
+  },
+  "max_joint_limit_clip_rad": 0.0,
+  "max_joint_speed_rad_s": 15.000000000000004,
+  "asl_reviewed": false,
+  "clinical_use": false,
+  "limitations": [
+    "Inspire fingers have no abduction; spread handshapes (e.g. V, 3) cannot be reproduced",
+    "Finger and thumb mapping use fixed flexion ranges, not per-signer calibration",
+    "Torso, head and face motion are not transferred; robot base is fixed",
+    "Shoulder-relative scaling does not preserve exact hand-to-hand or hand-to-body contacts; hand-hand clearance is enforced, so contacts become touching at best",
+    "Hanging rest poses deviate a few cm because the human hand rests lower than the robot hip allows",
+    "Not reviewed by ASL users",
+    "Depth (towards/away from the camera) is estimated from a single view and is the least reliable axis",
+    "Hands undetected in some frames are interpolated; finger flexion is noisier than mocap",
+    "Source videos are third-party dictionary clips indexed by WLASL (C-UDA); they are not redistributed"
+  ]
+}

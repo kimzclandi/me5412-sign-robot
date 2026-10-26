@@ -56,6 +56,16 @@ def smoothstep(u):
     return u * u * (3 - 2 * u)
 
 
+MOCAP_METHOD = ("Human mocap retargeting: shoulder-relative wrist targets scaled by arm length, bounded IK on 7 arm "
+                "joints per side (wrist position, hand orientation, soft elbow), finger flexion ratio mapped to coupled Inspire joints")
+LIMITATIONS = ["Inspire fingers have no abduction; spread handshapes (e.g. V, 3) cannot be reproduced",
+               "Finger and thumb mapping use fixed flexion ranges, not per-signer calibration",
+               "Torso, head and face motion are not transferred; robot base is fixed",
+               "Shoulder-relative scaling does not preserve exact hand-to-hand or hand-to-body contacts; hand-hand clearance is enforced, so contacts become touching at best",
+               "Hanging rest poses deviate a few cm because the human hand rests lower than the robot hip allows",
+               "Not reviewed by ASL users"]
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--word", required=True)
@@ -67,7 +77,29 @@ def main():
     i0, i1, bind_frames = active_range(full)
     sk = Skeleton({k: data[k][i0:i1] for k in ("head", "tail", "rot")} | {"bone_names": data["bone_names"], "frame_times_s": data["frame_times_s"][i0:i1] - data["frame_times_s"][i0]},
                   rest_rot=data["rot"][0])
+    write_clip(args.word, sk, {"dataset": "Studio Galt Sign Language Mocap Archive (CC0-1.0)",
+                               "repository_commit": "eb9046596fffcc6e92ee91d021372961f3d4fcaa",
+                               "fbx": source["source_fbx"], "fbx_sha256": source["source_sha256"],
+                               "source_fps": source["source_fps"], "source_frames_used": [int(i0), int(i1)],
+                               "bind_frames_skipped": int(bind_frames)},
+               OUT_DIR, MOCAP_METHOD, LIMITATIONS, render=args.render)
 
+
+def rate_limit(values, max_step):
+    """Clamp each frame-to-frame change to +-max_step (removes jitter spikes, adds slight lag)."""
+    out = values.copy()
+    for t in range(1, len(out)):
+        out[t] = out[t - 1] + np.clip(out[t] - out[t - 1], -max_step, max_step)
+    return out
+
+
+def write_clip(word, sk, source, out_dir, method, limitations, render=False, preview_dir=None,
+               finger_speed_limit=None, arm_speed_limit=None, median_frames=None):
+    """Retarget a cropped skeleton, add neutral transitions and write <out_dir>/<word>.npz/.json.
+
+    The optional filters are for video estimates: `median_frames` median-filters every
+    joint (removes few-frame orientation flips), then `finger_speed_limit` and
+    `arm_speed_limit` (rad/s) rate-limit the finger drivers and the arm joints."""
     model = load_model()
     info = json.loads((ROOT / "assets/robot/model_info.json").read_text())
     rt = G1Retargeter(model, info["couplings"])
@@ -77,6 +109,16 @@ def main():
     # Resample the retargeted core to 30 fps, then add eased transitions from/to neutral.
     core_t = np.arange(0, sk.times[-1] + 1e-9, 1 / FPS)
     core = np.stack([np.interp(core_t, sk.times, q_src[:, j]) for j in range(model.nq)], axis=1)
+    if median_frames:
+        from scipy.signal import medfilt
+        core = np.stack([medfilt(core[:, j], median_frames) for j in range(model.nq)], axis=1)
+    if finger_speed_limit:
+        drivers = [rt.index[n] for n in rt.names if n.endswith(("proximal_joint", "proximal_yaw_joint", "proximal_pitch_joint"))
+                   and n[:2] in ("L_", "R_")]
+        core[:, drivers] = rate_limit(core[:, drivers], finger_speed_limit / FPS)
+    if arm_speed_limit:
+        arms = np.concatenate([rt.robot[side]["ids"] for side in SIDES])
+        core[:, arms] = rate_limit(core[:, arms], arm_speed_limit / FPS)
     n = int(round(TRANSITION_S * FPS))
     u = smoothstep(np.arange(1, n + 1) / n)[:, None]
     ease_in = neutral + (np.r_[0.0, u[:-1, 0]])[:, None] * (core[0] - neutral)
@@ -93,8 +135,8 @@ def main():
     speed = np.abs(np.diff(q, axis=0)) * FPS
     motion = {"timestamps_s": times, "joint_names": np.asarray(rt.names), "positions": q}
     validate_motion(motion)
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    np.savez_compressed(OUT_DIR / f"{args.word}.npz", **motion)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    np.savez_compressed(out_dir / f"{word}.npz", **motion)
     summary = lambda v: {"mean": float(np.mean(v)), "max": float(np.max(v))} if len(v) else None
     # Sign phase: frames where that hand is raised >= 10 cm above its lowest point.
     # Hanging (rest) frames are excluded because the robot hip blocks the human rest pose.
@@ -107,32 +149,27 @@ def main():
                          "wrist_position_m": summary(np.asarray(errors[side]["wrist_m"])[raised[side]]),
                          "hand_orientation_rad": summary(np.asarray(errors[side]["rot_rad"])[raised[side]])} for side in SIDES}
     meta = {
-        "action_id": args.word, "schema_version": 1, "robot": info["model"],
+        "action_id": word, "schema_version": 1, "robot": info["model"],
         "scene_sha256": hashlib.sha256((ROOT / "assets/robot/scene.xml").read_bytes()).hexdigest(),
-        "source": {"dataset": "Studio Galt Sign Language Mocap Archive (CC0-1.0)",
-                   "repository_commit": "eb9046596fffcc6e92ee91d021372961f3d4fcaa",
-                   "fbx": source["source_fbx"], "fbx_sha256": source["source_sha256"],
-                   "source_fps": source["source_fps"], "source_frames_used": [int(i0), int(i1)],
-                   "bind_frames_skipped": int(bind_frames)},
-        "creation_method": "Human mocap retargeting: shoulder-relative wrist targets scaled by arm length, bounded IK on 7 arm joints per side (wrist position, hand orientation, soft elbow), finger flexion ratio mapped to coupled Inspire joints",
+        "source": source,
+        "creation_method": method,
         "execution_mode": "kinematic_qpos_replay", "fps": FPS, "duration_s": float(times[-1]),
         "core_frames": core_frames, "transition_s": TRANSITION_S, "arm_scale": scales,
+        "finger_speed_limit_rad_s": finger_speed_limit, "arm_speed_limit_rad_s": arm_speed_limit,
+        "median_filter_frames": median_frames,
         "ik_error": {side: {"wrist_position_m": summary(errors[side]["wrist_m"]), "hand_orientation_rad": summary(errors[side]["rot_rad"])} for side in SIDES},
         "ik_error_sign_phase": sign_error,
         "max_joint_limit_clip_rad": max(clipped, 0.0), "max_joint_speed_rad_s": float(speed.max()),
         "asl_reviewed": False, "clinical_use": False,
-        "limitations": ["Inspire fingers have no abduction; spread handshapes (e.g. V, 3) cannot be reproduced",
-                        "Finger and thumb mapping use fixed flexion ranges, not per-signer calibration",
-                        "Torso, head and face motion are not transferred; robot base is fixed",
-                        "Shoulder-relative scaling does not preserve exact hand-to-hand or hand-to-body contacts; hand-hand clearance is enforced, so contacts become touching at best",
-                        "Hanging rest poses deviate a few cm because the human hand rests lower than the robot hip allows",
-                        "Not reviewed by ASL users"],
+        "limitations": list(limitations),
     }
-    (OUT_DIR / f"{args.word}.json").write_text(json.dumps(meta, indent=2) + "\n")
+    (out_dir / f"{word}.json").write_text(json.dumps(meta, indent=2) + "\n")
     print(json.dumps({k: meta[k] for k in ("action_id", "duration_s", "core_frames", "arm_scale", "ik_error_sign_phase", "max_joint_speed_rad_s", "max_joint_limit_clip_rad")}, indent=1))
-    if args.render:
-        from render_comparison import render
-        render(args.word, model, motion, sk, core_frames)
+    if render:
+        from render_comparison import render as render_video
+        render_video(word, model, motion, sk, core_frames, **({"out": preview_dir} if preview_dir else {}))
+    return meta
+
 
 
 if __name__ == "__main__":

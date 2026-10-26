@@ -3,10 +3,11 @@
     .venv/bin/python scripts/mocap/build_hospital_motions.py [--vocab PATH]
 
 Reads the hospital vocabulary (default: the snapshot of Group 1's
-data/vocab/hospital_v1.json in data/mocap/) and motions/studio_galt_v1/index.json,
-and writes motions/hospital_v1_motions.json: one entry per gloss with its clip,
-frames and grade. motion_ready is true only when a clip exists and is not graded
-poor; Group 1 copies these flags into their vocabulary for demo_only mode.
+data/vocab/hospital_v1.json in data/mocap/) and the motion libraries in
+priority order (Studio Galt mocap, then WLASL video-derived), and writes
+motions/hospital_v1_motions.json: one entry per gloss with its clip, frames,
+grade and source library. motion_ready is true only when a clip exists and is
+not graded poor; Group 1 copies these flags into their vocabulary for demo_only.
 """
 from pathlib import Path
 import argparse
@@ -15,7 +16,7 @@ import json
 
 ROOT = Path(__file__).resolve().parents[2]
 SNAPSHOT = ROOT / "data/mocap/hospital_v1_vocab_snapshot.json"
-LIBRARY = ROOT / "motions/studio_galt_v1/index.json"
+LIBRARIES = [ROOT / "motions/studio_galt_v1/index.json", ROOT / "motions/wlasl_video_v1/index.json"]
 OUT = ROOT / "motions/hospital_v1_motions.json"
 
 
@@ -24,7 +25,12 @@ def main():
     parser.add_argument("--vocab", type=Path, default=SNAPSHOT)
     args = parser.parse_args()
     vocab = json.loads(args.vocab.read_text(encoding="utf-8"))
-    library = {w["gloss"]: w for w in json.loads(LIBRARY.read_text())["words"]}
+    library = {}
+    for path in LIBRARIES:  # first library wins: mocap before video-derived
+        if path.exists():
+            for w in json.loads(path.read_text())["words"]:
+                if w["robot_status"] != "poor":
+                    library.setdefault(w["gloss"], w | {"library": str(path.parent.relative_to(ROOT))})
     entries = []
     for item in vocab:
         gloss = item["gloss"]
@@ -37,11 +43,12 @@ def main():
             "sign_frames": clip["sign_frames"] if clip else None,
             "robot_status": clip["robot_status"] if clip else "missing",
             "robot_note": clip["robot_note"] if clip else None,
+            "library": clip["library"] if clip else None,
         })
     ready = [e["gloss"] for e in entries if e["motion_ready"]]
     out = {"schema_version": 1, "vocab_file": args.vocab.name,
            "vocab_sha256": hashlib.sha256(args.vocab.read_bytes()).hexdigest(),
-           "motion_library": str(LIBRARY.relative_to(ROOT)), "fps": 30,
+           "motion_libraries": [str(p.parent.relative_to(ROOT)) for p in LIBRARIES], "fps": 30,
            "motion_ready_count": len(ready), "glosses": entries}
     OUT.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n")
     print(f"{len(ready)}/{len(entries)} motion_ready: {' '.join(ready)}")

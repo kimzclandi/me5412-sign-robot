@@ -54,15 +54,15 @@ def camera(azimuth):
     return cam
 
 
-def render(word, model, motion, sk, core_frames):
-    OUT.mkdir(parents=True, exist_ok=True)
+def render(word, model, motion, sk, core_frames, out=OUT):
+    out.mkdir(parents=True, exist_ok=True)
     data = mujoco.MjData(model)
     front, side = camera(180), camera(90)  # side camera on the robot's right
     q, ts = motion["positions"], motion["timestamps_s"]
     c0, c1 = core_frames
     frames = []
     with mujoco.Renderer(model, width=W, height=H) as renderer, \
-            imageio.get_writer(OUT / f"{word}.mp4", fps=30, codec="libx264", quality=8, macro_block_size=16, pixelformat="yuv420p") as writer:
+            imageio.get_writer(out / f"{word}.mp4", fps=30, codec="libx264", quality=8, macro_block_size=16, pixelformat="yuv420p") as writer:
         for i, (time_s, row) in enumerate(zip(ts, q)):
             apply_frame(model, data, motion["joint_names"], row)
             views = []
@@ -84,5 +84,5 @@ def render(word, model, motion, sk, core_frames):
     sheet = Image.new("RGB", (4 * W, H))
     for k, i in enumerate(picks):
         sheet.paste(frames[i].resize((W, H)), (k * W, 0))
-    sheet.save(OUT / f"{word}_sheet.png")
-    print(f"wrote {OUT / (word + '.mp4')} and contact sheet")
+    sheet.save(out / f"{word}_sheet.png")
+    print(f"wrote {out / (word + '.mp4')} and contact sheet")

@@ -1,0 +1,1368 @@
+{
+  "index": "https://raw.githubusercontent.com/dxli94/WLASL/master/start_kit/WLASL_v0.3.json",
+  "index_sha256": "31ba5a5c421bdbff87494ee22ca6d4e276a8dfac44f43cc9a58b76ed1c4cd684",
+  "videos": {
+    "THANK-YOU": [
+      {
+        "video_id": "57656",
+        "url": "https://media.asldeafined.com/vocabulary/1468944231.2757.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 541936,
+        "sha256": "13eaefd73e1dc0ce8f45b6717bafe7ee390df495a14114531ccf6b0a185c20a1"
+      },
+      {
+        "video_id": "57657",
+        "url": "https://media.asldeafined.com/vocabulary/1522767348.9440.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 15,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 412297,
+        "sha256": "3fe442cf794c38fa48955b827870fe8f602858ad4f36a2d7ef7bcdc8662f349d"
+      },
+      {
+        "video_id": "57655",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20ThankYou-OGQTouYS3zM.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 46,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 1006749,
+        "sha256": "d90ef14cea258dd2a78b089fe1ae4937f071b87b3c080fd5b9998b791d8f3b51"
+      },
+      {
+        "video_id": "69502",
+        "url": "http://aslbricks.org/New/ASL-Videos/thank%20you.mp4",
+        "source": "aslbricks.org",
+        "signer_id": 115,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 3354512,
+        "sha256": "833a7ae651c0e2f9c064c81fc7a0b9e1f2dac8ad19cf3cc681f849bdec4132a7"
+      }
+    ],
+    "SORRY": [
+      {
+        "video_id": "53366",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/sorry.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 38,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 409869,
+        "sha256": "005fcc6965c3f47d6a34089efcfd4a8d09894e89e6f6b694d4882fcc03e03589"
+      },
+      {
+        "video_id": "53365",
+        "url": "https://media.spreadthesign.com/video/mp4/13/94029.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 2,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 136535,
+        "sha256": "6494e84b725e894c6b7c7515a19cbb934324ab5c68fdb824f3d398a9dcce53be"
+      },
+      {
+        "video_id": "53367",
+        "url": "https://media.asldeafined.com/vocabulary/1468776763.7085.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 589042,
+        "sha256": "b17268adf65fe37b3a28910fb232a7bbd8c589e3245f69dd679ede892d6bb1d9"
+      }
+    ],
+    "YES": [
+      {
+        "video_id": "64281",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/yes.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 245413,
+        "sha256": "9f9050112c8249a61c6577061f9a535f07540e37fc169fc505b4ce380c3587e2"
+      },
+      {
+        "video_id": "64280",
+        "url": "https://media.spreadthesign.com/video/mp4/13/485639.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 28,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 51395,
+        "sha256": "e95e5c8922e4f5078f101a9df1ba1fca3edc03d2c545c9d3b91d14f64cdf9230"
+      },
+      {
+        "video_id": "64287",
+        "url": "https://media.asldeafined.com/vocabulary/1468774983.6377.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 438070,
+        "sha256": "0766d518c5af292441025a380d4d99d94af4136e02f04df41018f65ee48c923a"
+      },
+      {
+        "video_id": "64288",
+        "url": "https://media.asldeafined.com/vocabulary/1522767427.6654.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 15,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 332995,
+        "sha256": "800780f606c436521683e0574c1deb9a0c6d60194c1875defe1878cb1de30588"
+      }
+    ],
+    "NO": [
+      {
+        "video_id": "38525",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/no.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 235098,
+        "sha256": "5c10d54d416a1b2d88048c616c538babb1f9135ac64b2aec8934a54d4b7b4ca5"
+      },
+      {
+        "video_id": "38524",
+        "url": "https://media.spreadthesign.com/video/mp4/13/48823.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 56,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 132145,
+        "sha256": "315ddd47f72c15eb9fb3d980c792de2d31741a79910866bc106e53ec7fd20f02"
+      },
+      {
+        "video_id": "38529",
+        "url": "https://media.asldeafined.com/vocabulary/1468719269.5533.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 761615,
+        "sha256": "aa8fedbd03a5b56975f44ec19e2754e670923ba5a32221e24b798f7a1753047c"
+      },
+      {
+        "video_id": "38530",
+        "url": "https://media.asldeafined.com/vocabulary/1522767129.7038.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 15,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 330351,
+        "sha256": "bf4f6f859357445d40f1ae90cbc02be384f8863d0d3cbf4c294a96ce7d3504d6"
+      }
+    ],
+    "YOUR": [
+      {
+        "video_id": "64428",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/your.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 326286,
+        "sha256": "d8d820d4ad2886b2d856a30cacf668e36b9c756c577353d710f8f5d21c2dbcec"
+      },
+      {
+        "video_id": "64427",
+        "url": "https://media.spreadthesign.com/video/mp4/13/307682.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 2,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 54875,
+        "sha256": "b32967913c7375bc889c4b90e1ba6baa6820c9abe240141c522f3e9034e22ab7"
+      },
+      {
+        "video_id": "64430",
+        "url": "https://media.asldeafined.com/vocabulary/1468775332.5006.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 576376,
+        "sha256": "5fa535e4766b80dc55565f589b371c08af252560be83ee80bdf43e827898f18e"
+      },
+      {
+        "video_id": "64429",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/SignSchool%20Your.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 31,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 255650,
+        "sha256": "250ad4d6b4e06ac8c3a52a7aa5b536784531276172cf90db945c41eccd4dc9c9"
+      }
+    ],
+    "ME": [
+      {
+        "video_id": "35544",
+        "url": "https://media.spreadthesign.com/video/mp4/13/48587.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 56,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 134847,
+        "sha256": "9fe348110c60d4ca8ef5929ab36f370a96e5394bbd8a96fcb9c3c19d189864e3"
+      },
+      {
+        "video_id": "35546",
+        "url": "https://media.asldeafined.com/vocabulary/1468714358.3817.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 627421,
+        "sha256": "387314be839cfb7c5d89941bf20af4c85054e89be76f042c8c23c2080846f037"
+      },
+      {
+        "video_id": "35545",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20me%202-Y668nIcpIJM.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 70,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 207395,
+        "sha256": "f171fb2da21a7540250adba54222ef265a3aae7557bde0058feedeed76e42672"
+      }
+    ],
+    "DEAF": [
+      {
+        "video_id": "14882",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/deaf.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 391520,
+        "sha256": "68e1926771fc2e00d68702c167abf239c8e6301e77f2d5fc6561026b8b59f096"
+      },
+      {
+        "video_id": "14887",
+        "url": "https://media.asldeafined.com/vocabulary/1466906743.302.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 59,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 432850,
+        "sha256": "8d6cbc82641d373e31b7635f69b5ff0a3bcad73dbd2177a5663ff58928b1329f"
+      },
+      {
+        "video_id": "14888",
+        "url": "https://media.asldeafined.com/vocabulary/1522766619.2346.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 15,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 405255,
+        "sha256": "458b0eecf47b9c59756b4a4cb814b2c81bdca2aeac30464f98a8036ba198dc62"
+      },
+      {
+        "video_id": "14883",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Deaf%202-1tMYCoZB0lE.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 45,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 343197,
+        "sha256": "5aeaef877a1cd8a6018ba1431f14fbcd8a311c6cc44105855bb896ce32129cb8"
+      }
+    ],
+    "DOCTOR": [
+      {
+        "video_id": "17015",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/doctor.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 388470,
+        "sha256": "d62df7d627df5e7746ce1f7c10c52f6e1a45146222b09eb0e4ea60cb366cea46"
+      },
+      {
+        "video_id": "17014",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/doctor2.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 322845,
+        "sha256": "28c9919900b89efc2db70ffce7945f8946802e6fa073bdee08da6d62638b0f1d"
+      },
+      {
+        "video_id": "17013",
+        "url": "https://media.spreadthesign.com/video/mp4/13/456750.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 8,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 70740,
+        "sha256": "a0b2c3db717704b431b860aa58cd7e18a4c13db6a12eba217f18f39ca298d391"
+      },
+      {
+        "video_id": "17017",
+        "url": "https://media.asldeafined.com/vocabulary/1467772429.4932.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 21,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 621431,
+        "sha256": "266a5f6fa82f35f2e13f7ebea76e96337d298041f65c3cc9542892945d77bce0"
+      }
+    ],
+    "NURSE": [
+      {
+        "video_id": "39089",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/nurse.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 303943,
+        "sha256": "7eeb892096a733aa09f67166433e5dd0584cce0b80fa0c6403130fc99ae8388f"
+      },
+      {
+        "video_id": "39088",
+        "url": "https://media.spreadthesign.com/video/mp4/13/49008.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 56,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 145732,
+        "sha256": "812ba009ed7d7f8ece2744a771d98248655e75c1eb9c73dd712c232011e58b15"
+      },
+      {
+        "video_id": "39091",
+        "url": "https://media.asldeafined.com/vocabulary/1468720349.7460.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 728719,
+        "sha256": "3c62890ac09e33fbd2424614e687df4c0dd1483268aec46c4fbda8ab067dec04"
+      },
+      {
+        "video_id": "39090",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Nurse-9PdisRY9NCw.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 60,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 254736,
+        "sha256": "3c6508a78a08ffd32c3a845de09945be3a61e71b2310e2a7bacf157a3bf84cf2"
+      }
+    ],
+    "INTERPRETER": [
+      {
+        "video_id": "30257",
+        "url": "https://media.spreadthesign.com/video/mp4/13/51869.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 35,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 126074,
+        "sha256": "518fc8496e6e9dfa58a510f0ab3609d1fadf816fd97b2094e634c5543729202d"
+      },
+      {
+        "video_id": "30258",
+        "url": "https://media.asldeafined.com/vocabulary/1468668022.8755.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 21,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 537241,
+        "sha256": "571f1c3eddd767ca32e43499d8f8787c331e0904e31cebb7f1b2ad3d3c5e6dd4"
+      }
+    ],
+    "MEDICINE": [
+      {
+        "video_id": "35453",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/medicine.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 38,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 651343,
+        "sha256": "c1bf69ad54b7024cdc96e3797bf8f08659bd5fb7f13d898be4ce9785073a9ff4"
+      },
+      {
+        "video_id": "35452",
+        "url": "https://media.spreadthesign.com/video/mp4/13/157839.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 2,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 90115,
+        "sha256": "da9110ed5de92a6ac521bb8c09006da3326e277b138f6323762921920a46f247"
+      },
+      {
+        "video_id": "35455",
+        "url": "https://media.asldeafined.com/vocabulary/1468714638.9395.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 867362,
+        "sha256": "7d5ae83255eca53f635677274fa0ff5b09d26bd608cbea4faa6373ff5c09227a"
+      },
+      {
+        "video_id": "35456",
+        "url": "https://media.asldeafined.com/vocabulary/1546574540.142.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 34,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 624375,
+        "sha256": "af08dcf3f8ad06856c5cd131efcc8d7d7e4e1a2f7a8297594a560a3f4123ac2c"
+      }
+    ],
+    "STOMACH": [
+      {
+        "video_id": "54878",
+        "url": "https://media.spreadthesign.com/video/mp4/13/310766.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 26,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 50759,
+        "sha256": "3eb28865399e99ef1bb0f54e5932b8748aa1fe98d20841a52d8b1815628d3cfc"
+      },
+      {
+        "video_id": "54880",
+        "url": "https://media.asldeafined.com/vocabulary/1468896442.4103.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 481544,
+        "sha256": "e2b20c35103fa329c4ad42447103164e0ad425fa7a14abba079561aed35f80a4"
+      },
+      {
+        "video_id": "54879",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Stomach-7_C30DpQkhM.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 31,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 490373,
+        "sha256": "de3171aa671b467ac4955aaef92d67504b86683b755634fc52b0a9fd3f401146"
+      }
+    ],
+    "HEADACHE": [
+      {
+        "video_id": "26834",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/headache.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 38,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 529523,
+        "sha256": "0935156b82a4a40008be115b2ebe0bdb69bb9e0034809804256efa2244989ee4"
+      },
+      {
+        "video_id": "26833",
+        "url": "https://media.spreadthesign.com/video/mp4/13/456563.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 37,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 100301,
+        "sha256": "df840027e182a4e8b9fe17dab73e51da4d896259a8fa6996ec0f1fade703918b"
+      },
+      {
+        "video_id": "26837",
+        "url": "https://media.asldeafined.com/vocabulary/1468580092.2901.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 21,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 688309,
+        "sha256": "d7c78759975db09a6cc47bce81d7a9110fbc8c244fbd0d65f8f4c4eaa015e6fa"
+      },
+      {
+        "video_id": "26835",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Bad%20Headache-_dx7n545hbc.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 60,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 338780,
+        "sha256": "b0e111afb00d890c2e52be39399f91842ced2cec0f64f8c0b8315740f5ebf47d"
+      }
+    ],
+    "HAVE": [
+      {
+        "video_id": "26766",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/have.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 38,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 391528,
+        "sha256": "2a77a90fe09cf3a0d8c232aa3c86d06125b7782da4dcd67ddd25624be498d7c9"
+      },
+      {
+        "video_id": "26768",
+        "url": "https://media.asldeafined.com/vocabulary/1468579931.5661.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 21,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 446675,
+        "sha256": "19900c2013befb8cf8d3f9c5c8747ebad54cb3ebddec3b7f602618b057e73b34"
+      },
+      {
+        "video_id": "26767",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Have-5EEsTqgJ6dw.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 31,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 524832,
+        "sha256": "1765d2f8f0acecd084691ea1cdd2d761c4d4d5b4bf35c886ec5b4bc2e812175c"
+      },
+      {
+        "video_id": "69360",
+        "url": "http://aslbricks.org/New/ASL-Videos/have.mp4",
+        "source": "aslbricks.org",
+        "signer_id": 118,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 2810217,
+        "sha256": "e3e712bad0eff0cc7728cc2fe833f3df5bf4ad47f604a6b73816ca302b5c6ac1"
+      }
+    ],
+    "NEED": [
+      {
+        "video_id": "37882",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/need.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 306011,
+        "sha256": "cb0b80d1d7674420f408ca0c21a626ff2c6defa48a56f071f16156dc49c37d8a"
+      },
+      {
+        "video_id": "37881",
+        "url": "https://media.spreadthesign.com/video/mp4/13/63549.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 0,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 101641,
+        "sha256": "ea2c449ebcf0c42b45bbed24d5a3d07d0a564b78364ce4056f65cf5a56e64f6d"
+      },
+      {
+        "video_id": "37884",
+        "url": "https://media.asldeafined.com/vocabulary/1468718141.8252.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 677171,
+        "sha256": "5aaf09ab5350ab1310ddef72d0c74b87f31953fd4c7a1b6ebfa2addff1b66352"
+      },
+      {
+        "video_id": "37883",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Need-0qij0e7-5Ak.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 27,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 953459,
+        "sha256": "4bec39f59b03931ad2af559708acace1a2a419163356944231a82208b9ed4397"
+      }
+    ],
+    "WAIT": [
+      {
+        "video_id": "62098",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/wait.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 38,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 688745,
+        "sha256": "e957faebc69e5f2e829deee6bf9276b1085c8a611571ada76418061ad47d4646"
+      },
+      {
+        "video_id": "62097",
+        "url": "https://media.spreadthesign.com/video/mp4/13/50933.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 56,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 177460,
+        "sha256": "c0ff2b815cb859d612811ac9002e6d98646ede12c3f1dd00e20de03ae799b10a"
+      },
+      {
+        "video_id": "62103",
+        "url": "https://media.asldeafined.com/vocabulary/1468926839.9265.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 699774,
+        "sha256": "53098e976a22f97ac2610b564d468d5a304c0444da8204bad0a2f084639031e6"
+      },
+      {
+        "video_id": "62100",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20wait-g4zPWVKTVc4.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 60,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 322498,
+        "sha256": "544730fa46fb6b59dfcfa0d91f9ab2ee500f8098f515181452a70fc0d7ace94f"
+      }
+    ],
+    "HURT": [
+      {
+        "video_id": "28440",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/hurt.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 292011,
+        "sha256": "c3937763ea856532fb6fcbd5979bd5a364dd7bea60a7eb33838bde501202bf54"
+      },
+      {
+        "video_id": "28441",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Hurt-_st2tPdAvgQ.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 60,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 301600,
+        "sha256": "6e330c1b22aea08800321e047e0721dcee99e1b6c0e1a2af32bcc2c665d9bf0d"
+      }
+    ],
+    "UNDERSTAND": [
+      {
+        "video_id": "60545",
+        "url": "https://media.spreadthesign.com/video/mp4/13/50869.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 56,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 134325,
+        "sha256": "0fc05894b6063e1b7d24846288cb32bd54764cfe1ab6c05106651880240cc99a"
+      },
+      {
+        "video_id": "60547",
+        "url": "https://media.asldeafined.com/vocabulary/1468924808.7518.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 594584,
+        "sha256": "2368d37557194ed0bcdfa3fefb51ac425b385de850095343ef39c382bb0924e7"
+      },
+      {
+        "video_id": "60548",
+        "url": "https://media.asldeafined.com/vocabulary/1522767381.9090.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 15,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 457206,
+        "sha256": "a390fa0fe6b5838adc1a2dd21b93c78c896f0b30000799a2bc2e899e347e0cb8"
+      },
+      {
+        "video_id": "60546",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Understand-zgYUzElmp1k.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 6,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 688543,
+        "sha256": "8988762cbdd429eb5e3e8f0f6521eaa5853c265b23abbff0cd2a3a1b91d1fefe"
+      }
+    ],
+    "WRITE": [
+      {
+        "video_id": "64057",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/write.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 297981,
+        "sha256": "d963c2fca5d17b71433eca32f796f1275d81aa4a66b88241602812d740bee0df"
+      },
+      {
+        "video_id": "64058",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/writing.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 38,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 573079,
+        "sha256": "8b77cac1c02641719478f524a60cdf2f8ef596f53931889845a7de959e06d1ee"
+      },
+      {
+        "video_id": "64056",
+        "url": "https://media.spreadthesign.com/video/mp4/13/51100.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 42,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 128050,
+        "sha256": "e31cd7eed85a16ce47eaa1b76307ba2586ae7d2d1434c053042b0dbafddf17fc"
+      },
+      {
+        "video_id": "64060",
+        "url": "https://media.asldeafined.com/vocabulary/1468929385.6917.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 581216,
+        "sha256": "c076038504ecdb2fd693648e16c6533e840f3177b0135773f96f9c0672a8c9f2"
+      }
+    ],
+    "NOT": [
+      {
+        "video_id": "38858",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/not.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 227738,
+        "sha256": "402211372b0bd057f199db8a4f773cc8f8ce772847354e5eb9dc66056a86c606"
+      },
+      {
+        "video_id": "38857",
+        "url": "https://media.spreadthesign.com/video/mp4/13/92963.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 2,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 115291,
+        "sha256": "83b0e67bf3816a8222e5138fc59fafe6ec2ea4fd9c83d88bee0844be9be4dc50"
+      },
+      {
+        "video_id": "38861",
+        "url": "https://media.asldeafined.com/vocabulary/1468719771.6543.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 592056,
+        "sha256": "98d5343bb67530c4437c4b4f67c91ecae6b7d5176da974e1421ac6eb5bccebce"
+      },
+      {
+        "video_id": "38859",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Not-BCUwejC9ZMw.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 3,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 706954,
+        "sha256": "c29843374b0d61b249df4486dc36ca2a01e194a7691d59316bd64f91e4eb43a2"
+      }
+    ],
+    "NOW": [
+      {
+        "video_id": "38990",
+        "url": "https://media.spreadthesign.com/video/mp4/13/111145.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 2,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 112814,
+        "sha256": "05e2387b33867630097b511336c8bf4ad9c4af369582ee16b69639b6c9cfa444"
+      },
+      {
+        "video_id": "38991",
+        "url": "https://media.spreadthesign.com/video/mp4/13/49006.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 56,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 134118,
+        "sha256": "4a86ff2ce5c8aba034507066420a984f4f904347049868d77ebe8cc161cbaf84"
+      },
+      {
+        "video_id": "38995",
+        "url": "https://media.asldeafined.com/vocabulary/1468719996.5074.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 629254,
+        "sha256": "6e07a7c1c9471fb5917a10946b1aa4588bc7477e5e7db5ff134d98aec2a221ea"
+      },
+      {
+        "video_id": "38994",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20now-0wcuocGAvNU.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 70,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 247591,
+        "sha256": "612be516ad2f42738c4b5e440597f0d589c8a02af590d7b90408df8e315edfe1"
+      }
+    ],
+    "SOON": [
+      {
+        "video_id": "53292",
+        "url": "https://media.spreadthesign.com/video/mp4/13/50817.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 63,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 100176,
+        "sha256": "e8d6cdb7c0ddd084562e07aae927d69c8857a3408c847896bc9f79b60452c3ac"
+      },
+      {
+        "video_id": "53296",
+        "url": "https://media.asldeafined.com/vocabulary/1468776598.3772.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 644827,
+        "sha256": "06958ffe1bb37179afd973f51f284e5333932e81da1ed5dd833a974f701dbfec"
+      },
+      {
+        "video_id": "53295",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Temporary-K7MTuhcMSfQ.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 4,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 588257,
+        "sha256": "1960c9059bd2b68d7480089db5f517c2feaf10aecc55fa9caeab181921c9a3c4"
+      },
+      {
+        "video_id": "53293",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20soon-8tDdpDqZ1tY.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 70,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 263808,
+        "sha256": "7ac63f4bb3f3528a7cb7c636bf957e8be1db2348b332ba093139573f6da17fde"
+      }
+    ],
+    "LATER": [
+      {
+        "video_id": "32320",
+        "url": "https://media.spreadthesign.com/video/mp4/13/457497.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 8,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 78364,
+        "sha256": "147e749768183f2c681fa5dd65e11005814ce278f406372f2d5f053cb6400f0a"
+      },
+      {
+        "video_id": "32326",
+        "url": "https://media.asldeafined.com/vocabulary/1468671424.4465.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 751919,
+        "sha256": "786ba2e55345024b3f62a34e1200f8949ada2c58566adc55fc7464d7e9b46692"
+      },
+      {
+        "video_id": "32321",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Later%202-UlcQ5965pNk.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 4,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 387332,
+        "sha256": "a928595a5602e70db2f8105c54aa7b9755b78b74c1b7006264bf94fa0526c6ec"
+      },
+      {
+        "video_id": "32322",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Later%203-nbbipDhvyVQ.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 4,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 485805,
+        "sha256": "c94565c7d5b8cc056da4c59948311063a9e179d885fa4ad0b6a112907aa62020"
+      }
+    ],
+    "TOMORROW": [
+      {
+        "video_id": "58806",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/tomorrow.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 38,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 532474,
+        "sha256": "aaf6635fdb62659ae20f9e6d4048dcd45e9e63f3a2a3d70e65026617fbcc6755"
+      },
+      {
+        "video_id": "58805",
+        "url": "https://media.spreadthesign.com/video/mp4/13/50911.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 56,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 131396,
+        "sha256": "43777102db81f555f4a6033b97ef2dc7a252b867b6cf62073ad7a5f6b6211360"
+      },
+      {
+        "video_id": "58808",
+        "url": "https://media.asldeafined.com/vocabulary/1468945920.1211.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 500051,
+        "sha256": "69d6495e920ca89de6f2538f28338ee3ef644eaa880ad85085b8deca0f0d430e"
+      },
+      {
+        "video_id": "58807",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Tomorrow-RHKBEZHE1yY.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 46,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 669497,
+        "sha256": "e65dea362e986abfe311a02b87432ca2549dce5e41e3b2ea2d93c1bd04cef6bf"
+      }
+    ],
+    "MORNING": [
+      {
+        "video_id": "36858",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/morning.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 302571,
+        "sha256": "6a856de093b037813568a80af97024b3507429a4197f27522677d7c06837286b"
+      },
+      {
+        "video_id": "36857",
+        "url": "https://media.spreadthesign.com/video/mp4/13/48602.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 56,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 155546,
+        "sha256": "bdc401d65deffec977716104a5bf9aa58517d1a276dadcfb33ba91fe8927cea0"
+      },
+      {
+        "video_id": "36860",
+        "url": "https://media.asldeafined.com/vocabulary/1468716608.8519.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 607959,
+        "sha256": "33264f8051b37cb1e12425924fd6acded81b55d43c818c69e9afccb999308e70"
+      },
+      {
+        "video_id": "36859",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Morning-Oem8EmGkQ0M.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 46,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 519102,
+        "sha256": "f7d0c70aaa9226f612754aa7aec05d4374ffb44368ba2255caf82443393c49b3"
+      }
+    ],
+    "NIGHT": [
+      {
+        "video_id": "38336",
+        "url": "https://media.spreadthesign.com/video/mp4/13/48821.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 56,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 162961,
+        "sha256": "c19b4d90522050ee7616de56c3c2f0a1d6d9ed30c569c25e6d6ac12638453f05"
+      },
+      {
+        "video_id": "38338",
+        "url": "https://media.asldeafined.com/vocabulary/1468719112.7545.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 637284,
+        "sha256": "330832f93d5e5e1840bf2945bb4531c158a6f1ba8630e185d01f046eabddc9cd"
+      },
+      {
+        "video_id": "38337",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Night-sXPC0bQ0y2g.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 46,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 513540,
+        "sha256": "be72207a27d9e428f9b0265d962bf0238df5d1011bacf3b7375cb4c193206b75"
+      }
+    ],
+    "YOU": [
+      {
+        "video_id": "64380",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/you.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 283575,
+        "sha256": "341eaab6497e8f946094bc8320ab3c032e9ae2ea584dfa88d6a9258bb605b8ec"
+      },
+      {
+        "video_id": "64379",
+        "url": "https://media.spreadthesign.com/video/mp4/13/51110.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 42,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 72737,
+        "sha256": "dba9f3f6b4d8baa4bbadf6f4eb1ee5ad7f96672604ecf16b720ba887043f5de4"
+      },
+      {
+        "video_id": "64382",
+        "url": "https://media.asldeafined.com/vocabulary/1468775202.6030.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 407553,
+        "sha256": "e5dcd445ccf7b2476839197efc68f28db436eada125e89191d4b58ed942ded55"
+      },
+      {
+        "video_id": "64383",
+        "url": "https://media.asldeafined.com/vocabulary/1468775230.7358.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 574335,
+        "sha256": "b0eabfaabfb27134e5c3459edc53d56f2cab5e8b7a34f32a9e5ea48263b3c03a"
+      }
+    ],
+    "COME": [
+      {
+        "video_id": "11876",
+        "url": "https://media.spreadthesign.com/video/mp4/13/399315.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 56,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 55477,
+        "sha256": "94ca1b48f50616b777737bc81a5fd00ac90c97f2d605593f63e9d15361602083"
+      },
+      {
+        "video_id": "11878",
+        "url": "https://media.asldeafined.com/vocabulary/1466900105.5607.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 59,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 641095,
+        "sha256": "7c1862a2ab6602027961689027f86c541efa9991ae5fd5553a0ad2ed31633348"
+      },
+      {
+        "video_id": "11877",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20To%20Come-T815w96_jns.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 31,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 490893,
+        "sha256": "c16f9ed68a97627105e3aa47eba573189f9b1ef0934226eb1b0623acb18ad89a"
+      },
+      {
+        "video_id": "69275",
+        "url": "http://aslbricks.org/New/ASL-Videos/come.mp4",
+        "source": "aslbricks.org",
+        "signer_id": 115,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 3601188,
+        "sha256": "9394598579d5b2c82a127037b7aedd4bcaafca7eac093b11db48d37c63e41f6c"
+      }
+    ],
+    "TAKE": [
+      {
+        "video_id": "56693",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/take.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 38,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 542958,
+        "sha256": "8204bd31eaa6f5fd61ff7871ffd3ddb8250dda577edc526e89815bf765cfc3de"
+      },
+      {
+        "video_id": "56692",
+        "url": "https://media.spreadthesign.com/video/mp4/13/63592.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 0,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 91987,
+        "sha256": "0db41fe4799a8c7508b1453632bc60a877d4cfb72befc77d7d61761798c1ecc9"
+      },
+      {
+        "video_id": "56694",
+        "url": "https://media.asldeafined.com/vocabulary/1468942967.4684.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 549053,
+        "sha256": "8b32f7b28261b75091cc73a434c5a6931a400eeb146fa27c971e1bb68935c5e4"
+      },
+      {
+        "video_id": "69500",
+        "url": "http://aslbricks.org/New/ASL-Videos/take.mp4",
+        "source": "aslbricks.org",
+        "signer_id": 115,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 3920325,
+        "sha256": "c3f34c9aedd3b277778f2804d4737d216e3d8d2dec9890bec489b320bc3c07a3"
+      }
+    ],
+    "HELLO": [
+      {
+        "video_id": "27173",
+        "url": "https://media.asldeafined.com/vocabulary/1468580623.2588.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 21,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 443620,
+        "sha256": "fb9ac8f75adab247a1f319ab2a5b4eef57df0adbf51571dc34a8580004df523a"
+      },
+      {
+        "video_id": "27172",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Hello-6kvCOzxP9_A.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 46,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 746854,
+        "sha256": "73c8f74e5c755708f05cd43511644fcafb2713369cb8c5ef1ba57fa14ab79847"
+      }
+    ],
+    "PLEASE": [
+      {
+        "video_id": "43217",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/please.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 300868,
+        "sha256": "a9adb1688fa90a915ce453990da296d8ff685101025c264b06a0320c1e869ec5"
+      },
+      {
+        "video_id": "43219",
+        "url": "https://media.asldeafined.com/vocabulary/1468754067.6864.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 601010,
+        "sha256": "e595aca6a4f8decf8871d294785a9198d4cb7e6539494771c92616016a4d15e5"
+      },
+      {
+        "video_id": "43220",
+        "url": "https://media.asldeafined.com/vocabulary/1522767174.1064.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 15,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 489644,
+        "sha256": "969f4c5150d9bcf70836826403a2371ad4a15034515dbcb67b87838f6b7f444b"
+      },
+      {
+        "video_id": "43218",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Please-eyu0V3s1-XA.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 3,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 738344,
+        "sha256": "74f98c97b1fac995460ffbd91e196e09b212b23f4b7eaedf7d69d84ff8096947"
+      }
+    ],
+    "WHERE": [
+      {
+        "video_id": "63082",
+        "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/where.mp4",
+        "source": "files.startasl.com",
+        "signer_id": 36,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 240679,
+        "sha256": "eed7b8ed9c978fc3019712b929ea94fe7ffafa9e2656a119cdb65f24e3fe7518"
+      },
+      {
+        "video_id": "63081",
+        "url": "https://media.spreadthesign.com/video/mp4/13/51067.mp4",
+        "source": "media.spreadthesign.com",
+        "signer_id": 42,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 138448,
+        "sha256": "3edd205b213e317069cf2fe8b500b57799875c0776987a29407c6ee3f6644bf0"
+      },
+      {
+        "video_id": "63084",
+        "url": "https://media.asldeafined.com/vocabulary/1468928023.2600.mp4",
+        "source": "media.asldeafined.com",
+        "signer_id": 13,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 655205,
+        "sha256": "ee4d9aace60c5f5c9d0f41886e24393e147d0a6905c951b777803479057ea114"
+      },
+      {
+        "video_id": "63083",
+        "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20where-LSM0sp4VCz4.mp4",
+        "source": "signstock.blob.core.windows.net",
+        "signer_id": 70,
+        "frame_start": 1,
+        "frame_end": -1,
+        "fps": 25,
+        "bytes": 212603,
+        "sha256": "0febc54080dfe31993b776153690dbbc324b5a8420dfc0a49fd6b9c7bf396ab2"
+      }
+    ]
+  }
+}

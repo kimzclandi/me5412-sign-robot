@@ -1,0 +1,122 @@
+{
+  "action_id": "HAVE",
+  "schema_version": 1,
+  "robot": "Unitree G1 + Inspire DFQ",
+  "scene_sha256": "42fa55e694045a561e0b804de40a4312f27f0576a58f93ecc87101863a214e95",
+  "source": {
+    "dataset": "WLASL v0.3 index (C-UDA) -> third-party ASL dictionary video",
+    "gloss": "HAVE",
+    "video_id": "26766",
+    "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/have.mp4",
+    "host": "files.startasl.com",
+    "video_sha256": "2a77a90fe09cf3a0d8c232aa3c86d06125b7782da4dcd67ddd25624be498d7c9",
+    "source_fps": 29.97,
+    "source_frames_used": [
+      1,
+      48
+    ],
+    "hand_detection_rate_in_clip": {
+      "left": 0.7659574468085106,
+      "right": 0.7872340425531915
+    }
+  },
+  "creation_method": "Monocular video retargeting: MediaPipe PoseLandmarker/HandLandmarker world landmarks (Savitzky-Golay smoothed, gaps interpolated) -> same G1 retargeting as the mocap clips (scaled shoulder-relative wrist targets, bounded 7-DoF IK per arm with clearance, finger flexion from joint positions)",
+  "execution_mode": "kinematic_qpos_replay",
+  "fps": 30,
+  "duration_s": 3.1333333333333333,
+  "core_frames": [
+    24,
+    70
+  ],
+  "transition_s": 0.8,
+  "arm_scale": {
+    "left": 1.1808664662265758,
+    "right": 0.811447422038644
+  },
+  "finger_speed_limit_rad_s": 10.0,
+  "arm_speed_limit_rad_s": 15.0,
+  "median_filter_frames": 5,
+  "ik_error": {
+    "left": {
+      "wrist_position_m": {
+        "mean": 0.01362416391252984,
+        "max": 0.03821405059007481
+      },
+      "hand_orientation_rad": {
+        "mean": 0.18236079711588205,
+        "max": 0.5188755869824435
+      }
+    },
+    "right": {
+      "wrist_position_m": {
+        "mean": 0.037194709095392894,
+        "max": 0.08665303489321736
+      },
+      "hand_orientation_rad": {
+        "mean": 0.23396445482825567,
+        "max": 0.7388995434745703
+      }
+    }
+  },
+  "ik_error_sign_phase": {
+    "left": {
+      "frames": 25,
+      "wrist_position_m": {
+        "mean": 0.01767791216387621,
+        "max": 0.03821405059007481
+      },
+      "hand_orientation_rad": {
+        "mean": 0.29910536289529227,
+        "max": 0.5188755869824435
+      }
+    },
+    "right": {
+      "frames": 32,
+      "wrist_position_m": {
+        "mean": 0.0233225106981287,
+        "max": 0.0503385767792842
+      },
+      "hand_orientation_rad": {
+        "mean": 0.31221495761677626,
+        "max": 0.7388995434745703
+      }
+    }
+  },
+  "max_joint_limit_clip_rad": 0.0,
+  "max_joint_speed_rad_s": 15.000000000000004,
+  "asl_reviewed": false,
+  "clinical_use": false,
+  "limitations": [
+    "Inspire fingers have no abduction; spread handshapes (e.g. V, 3) cannot be reproduced",
+    "Finger and thumb mapping use fixed flexion ranges, not per-signer calibration",
+    "Torso, head and face motion are not transferred; robot base is fixed",
+    "Shoulder-relative scaling does not preserve exact hand-to-hand or hand-to-body contacts; hand-hand clearance is enforced, so contacts become touching at best",
+    "Hanging rest poses deviate a few cm because the human hand rests lower than the robot hip allows",
+    "Not reviewed by ASL users",
+    "Depth (towards/away from the camera) is estimated from a single view and is the least reliable axis",
+    "Hands undetected in some frames are interpolated; finger flexion is noisier than mocap",
+    "Source videos are third-party dictionary clips indexed by WLASL (C-UDA); they are not redistributed"
+  ],
+  "selected_from": [
+    {
+      "candidate": "HAVE__26766",
+      "dominant_hand_coverage": 0.787,
+      "sign_wrist_err_max_m": 0.0503
+    },
+    {
+      "candidate": "HAVE__26768",
+      "dominant_hand_coverage": 0.617,
+      "sign_wrist_err_max_m": 0.0791
+    },
+    {
+      "candidate": "HAVE__26767",
+      "dominant_hand_coverage": 0.795,
+      "sign_wrist_err_max_m": 0.0749
+    },
+    {
+      "candidate": "HAVE__69360",
+      "dominant_hand_coverage": 0.536,
+      "sign_wrist_err_max_m": 0.0158
+    }
+  ]
+}

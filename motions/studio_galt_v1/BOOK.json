@@ -28,6 +28,9 @@
     "left": 0.8164028753993787,
     "right": 0.817520363105849
   },
+  "finger_speed_limit_rad_s": null,
+  "arm_speed_limit_rad_s": null,
+  "median_filter_frames": null,
   "ik_error": {
     "left": {
       "wrist_position_m": {

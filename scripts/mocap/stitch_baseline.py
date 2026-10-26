@@ -19,7 +19,9 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 from sign_robot.motion import load_model, validate_motion
 
-INDEX = ROOT / "motions/studio_galt_v1/index.json"
+HOSPITAL = ROOT / "motions/hospital_v1_motions.json"
+# Lookup order: the hospital map (mocap first, then video), then the full libraries.
+LIBRARIES = [ROOT / "motions/studio_galt_v1/index.json", ROOT / "motions/wlasl_video_v1/index.json"]
 OUT = ROOT / "results/mocap_previews"
 
 
@@ -31,12 +33,18 @@ def blend(a, b, seconds, fps):
 
 
 def stitch(glosses, transition_s=0.5):
-    index = json.loads(INDEX.read_text())
-    words = {w["gloss"]: w for w in index["words"]}
+    words = {}
+    if HOSPITAL.exists():
+        words.update({g["gloss"]: g for g in json.loads(HOSPITAL.read_text())["glosses"] if g["motion_ready"]})
+    for path in LIBRARIES:
+        if path.exists():
+            for w in json.loads(path.read_text())["words"]:
+                if w["robot_status"] != "poor":
+                    words.setdefault(w["gloss"], w)
     unknown = [g for g in glosses if g not in words]
     if unknown:
         raise SystemExit(f"Not in the library: {unknown}")
-    fps = index["fps"]
+    fps = 30
     pieces, names = [], None
     for k, gloss in enumerate(glosses):
         w = words[gloss]
