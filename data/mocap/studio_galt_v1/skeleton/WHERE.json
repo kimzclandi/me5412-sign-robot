@@ -1,0 +1,14 @@
+{
+  "word": "WHERE",
+  "source_fbx": "SG ASL Where Var 2025-7-24 No Mesh Full.fbx",
+  "source_sha256": "925fe98389c60d60ad080e7aba75fa1617edab8a9d803a50af2f01ea1448d164",
+  "blender_version": "4.2.3 LTS",
+  "source_fps": 25.0,
+  "frames": 251,
+  "frame_range": [
+    1,
+    251
+  ],
+  "frame": "Blender world, Z up, metres",
+  "bone_aliases": {}
+}

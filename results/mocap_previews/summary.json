@@ -1,5 +1,39 @@
 [
   {
+    "word": "APPOINTMENT",
+    "part_of_speech": null,
+    "core_s": 4.6,
+    "wrist_err_max_mm": 84.7,
+    "rot_err_max_rad": 0.54,
+    "arm_speed_max": 20.17,
+    "finger_speed_max": 21.17,
+    "penetration_max_mm": 19.4,
+    "penetrating_pairs": {
+      "R_middle_intermediate | right_hip_yaw_link": 0.004018824265950887,
+      "R_middle_intermediate | right_hip_roll_link": 0.0014946278928941997,
+      "L_middle_intermediate | right_wrist_yaw_link": 0.019416406361049205,
+      "L_ring_intermediate | right_wrist_yaw_link": 0.015296819978378349,
+      "L_index_intermediate | right_wrist_yaw_link": 0.0010063617195249317,
+      "left_wrist_yaw_link | right_wrist_pitch_link": 0.0017474793457944884,
+      "left_wrist_pitch_link | right_wrist_pitch_link": 0.00183833046492125,
+      "left_shoulder_roll_link | torso_link": 0.007408062503732803,
+      "left_wrist_roll_link | right_wrist_pitch_link": 0.0014742525122791788,
+      "left_wrist_pitch_link | right_wrist_roll_link": 0.002881497929938511,
+      "left_wrist_pitch_link | right_elbow_link": 0.002111957597954947,
+      "left_wrist_yaw_link | right_wrist_roll_link": 0.001946967163945545,
+      "left_wrist_pitch_link | right_wrist_yaw_link": 0.001135329711232585,
+      "left_wrist_yaw_link | right_wrist_yaw_link": 0.001852061742416253,
+      "L_thumb_proximal | right_wrist_yaw_link": 0.00134124661833602,
+      "L_pinky_intermediate | right_wrist_yaw_link": 0.00821362038249325,
+      "L_pinky_intermediate | R_index_proximal": 0.002409528699745697,
+      "L_ring_intermediate | R_index_proximal": 0.005856026056664755,
+      "L_thumb_intermediate | R_thumb_proximal": 0.0011991802895308884,
+      "L_middle_intermediate | R_thumb_intermediate": 0.003371607905946356,
+      "L_middle_intermediate | R_thumb_distal": 0.004526126924009521
+    },
+    "palm_gap_min_m": 0.06
+  },
+  {
     "word": "ASK",
     "part_of_speech": "verb",
     "core_s": 3.2,
@@ -21,16 +55,16 @@
     "finger_speed_max": 7.83,
     "penetration_max_mm": 6.1,
     "penetrating_pairs": {
-      "L_ring_intermediate | right_wrist_yaw_link": 0.004774120710066126,
-      "L_middle_intermediate | right_wrist_yaw_link": 0.0038821571326289202,
-      "L_ring_intermediate | R_thumb_proximal": 0.00608522082945651,
-      "L_ring_intermediate | R_thumb_intermediate": 0.0034993285696153864,
-      "L_pinky_intermediate | right_wrist_yaw_link": 0.0011424113911178905,
-      "left_wrist_yaw_link | right_wrist_pitch_link": 0.0010215968831692387,
-      "L_index_intermediate | right_shoulder_yaw_link": 0.004320756314552235,
-      "L_index_intermediate | right_elbow_link": 0.0033384974118943578,
-      "L_index_intermediate | right_wrist_roll_link": 0.0018219828804639472,
-      "L_middle_proximal | R_ring_intermediate": 0.002550000646671547
+      "L_ring_intermediate | right_wrist_yaw_link": 0.0047741207688797435,
+      "L_middle_intermediate | right_wrist_yaw_link": 0.003882157057283522,
+      "L_ring_intermediate | R_thumb_proximal": 0.006085220771154628,
+      "L_ring_intermediate | R_thumb_intermediate": 0.003499328253904723,
+      "L_pinky_intermediate | right_wrist_yaw_link": 0.0011424129932818678,
+      "left_wrist_yaw_link | right_wrist_pitch_link": 0.001021596798890704,
+      "L_index_intermediate | right_shoulder_yaw_link": 0.0043209646531645034,
+      "L_index_intermediate | right_elbow_link": 0.003338494688974064,
+      "L_index_intermediate | right_wrist_roll_link": 0.0018219927895488002,
+      "L_middle_proximal | R_ring_intermediate": 0.0025500006467044692
     },
     "palm_gap_min_m": 0.057
   },
@@ -40,7 +74,7 @@
     "core_s": 3.37,
     "wrist_err_max_mm": 0.9,
     "rot_err_max_rad": 0.004,
-    "arm_speed_max": 15.54,
+    "arm_speed_max": 15.53,
     "finger_speed_max": 15.35,
     "penetration_max_mm": 0.0,
     "penetrating_pairs": {},
@@ -56,12 +90,12 @@
     "finger_speed_max": 6.59,
     "penetration_max_mm": 9.0,
     "penetrating_pairs": {
-      "L_index_intermediate | R_middle_intermediate": 0.009040396847475176,
-      "L_index_intermediate | R_ring_intermediate": 0.007505001373135223,
-      "L_index_intermediate | R_index_intermediate": 0.008150278375033298,
-      "L_middle_intermediate | R_middle_intermediate": 0.003122946732287463,
-      "L_index_proximal | R_index_intermediate": 0.005108700480761597,
-      "L_thumb_distal | R_index_intermediate": 0.0020443848426525417
+      "L_index_intermediate | R_middle_intermediate": 0.009040396894870724,
+      "L_index_intermediate | R_ring_intermediate": 0.007505001374765398,
+      "L_index_intermediate | R_index_intermediate": 0.008150278410189107,
+      "L_middle_intermediate | R_middle_intermediate": 0.003122946733348819,
+      "L_index_proximal | R_index_intermediate": 0.005108701005050518,
+      "L_thumb_distal | R_index_intermediate": 0.002044384224194674
     },
     "palm_gap_min_m": 0.154
   },
@@ -75,24 +109,24 @@
     "finger_speed_max": 4.69,
     "penetration_max_mm": 4.0,
     "penetrating_pairs": {
-      "L_index_proximal | R_index_intermediate": 0.00398512395759491,
-      "L_middle_proximal | R_index_intermediate": 0.001281176967807893,
-      "L_ring_proximal | R_middle_intermediate": 0.0014097120621599539,
-      "L_middle_proximal | R_middle_intermediate": 0.002687882558642607,
-      "L_index_intermediate | R_index_intermediate": 0.002407778244745453,
-      "L_pinky_proximal | R_ring_intermediate": 0.002209867615934561,
-      "L_middle_intermediate | R_index_intermediate": 0.0036519511576472196,
-      "L_middle_intermediate | R_middle_intermediate": 0.0034323468733431814,
-      "L_ring_intermediate | R_middle_intermediate": 0.001742707941110202,
-      "L_ring_intermediate | R_ring_intermediate": 0.0024899472360088576,
-      "L_pinky_intermediate | R_pinky_intermediate": 0.0028394128576041356,
-      "L_middle_intermediate | R_index_proximal": 0.0034260811760365335,
-      "L_middle_intermediate | R_middle_proximal": 0.0027508051225734365,
-      "L_ring_intermediate | R_ring_proximal": 0.001021759360529492,
-      "L_pinky_intermediate | R_ring_intermediate": 0.0018776532784520435,
-      "L_index_intermediate | R_index_proximal": 0.00203577660744368,
-      "L_pinky_proximal | R_pinky_intermediate": 0.00278704772558511,
-      "L_ring_proximal | R_ring_intermediate": 0.002044644189683646
+      "L_index_proximal | R_index_intermediate": 0.003985124610934433,
+      "L_middle_proximal | R_index_intermediate": 0.001281176939776081,
+      "L_ring_proximal | R_middle_intermediate": 0.0014097120030815034,
+      "L_middle_proximal | R_middle_intermediate": 0.002687832102750958,
+      "L_index_intermediate | R_index_intermediate": 0.0024077778703818532,
+      "L_pinky_proximal | R_ring_intermediate": 0.002209867677785129,
+      "L_middle_intermediate | R_index_intermediate": 0.0036519512069673327,
+      "L_middle_intermediate | R_middle_intermediate": 0.0034322789332399497,
+      "L_ring_intermediate | R_middle_intermediate": 0.0017427080155429523,
+      "L_ring_intermediate | R_ring_intermediate": 0.0024899464346065684,
+      "L_pinky_intermediate | R_pinky_intermediate": 0.0028394128411995,
+      "L_middle_intermediate | R_index_proximal": 0.0034260817770312363,
+      "L_middle_intermediate | R_middle_proximal": 0.002750806926196581,
+      "L_ring_intermediate | R_ring_proximal": 0.0010217583583803347,
+      "L_pinky_intermediate | R_ring_intermediate": 0.0018776533369955807,
+      "L_index_intermediate | R_index_proximal": 0.0020357759831379444,
+      "L_pinky_proximal | R_pinky_intermediate": 0.0027870497160554994,
+      "L_ring_proximal | R_ring_intermediate": 0.0020446454230370246
     },
     "palm_gap_min_m": 0.128
   },
@@ -109,6 +143,27 @@
     "palm_gap_min_m": 0.106
   },
   {
+    "word": "BLOOD-DRAW",
+    "part_of_speech": null,
+    "core_s": 5.57,
+    "wrist_err_max_mm": 66.6,
+    "rot_err_max_rad": 0.581,
+    "arm_speed_max": 10.71,
+    "finger_speed_max": 18.75,
+    "penetration_max_mm": 3.3,
+    "penetrating_pairs": {
+      "L_thumb_proximal | right_wrist_pitch_link": 0.0010454860767806304,
+      "right_shoulder_roll_link | torso_link": 0.00326477575579785,
+      "left_wrist_yaw_link | right_wrist_pitch_link": 0.002439405443284795,
+      "left_wrist_pitch_link | right_wrist_pitch_link": 0.00211891274669214,
+      "left_wrist_pitch_link | right_wrist_yaw_link": 0.0011373233331369286,
+      "left_wrist_yaw_link | right_wrist_yaw_link": 0.0017728678348554014,
+      "R_middle_intermediate | left_shoulder_yaw_link": 0.0021524253919406044,
+      "R_pinky_intermediate | left_wrist_yaw_link": 0.0013317606023192812
+    },
+    "palm_gap_min_m": 0.064
+  },
+  {
     "word": "BOOK",
     "part_of_speech": "noun",
     "core_s": 3.23,
@@ -118,7 +173,7 @@
     "finger_speed_max": 3.88,
     "penetration_max_mm": 1.1,
     "penetrating_pairs": {
-      "left_wrist_pitch_link | right_wrist_pitch_link": 0.0010699712116671797
+      "left_wrist_pitch_link | right_wrist_pitch_link": 0.001069971213359448
     },
     "palm_gap_min_m": 0.057
   },
@@ -132,11 +187,23 @@
     "finger_speed_max": 4.05,
     "penetration_max_mm": 6.2,
     "penetrating_pairs": {
-      "L_index_intermediate | right_shoulder_yaw_link": 0.005301221485869501,
-      "L_middle_intermediate | right_shoulder_yaw_link": 0.0036207901527377487,
-      "L_thumb_distal | right_shoulder_yaw_link": 0.006246360260508227
+      "L_index_intermediate | right_shoulder_yaw_link": 0.005301221482748771,
+      "L_middle_intermediate | right_shoulder_yaw_link": 0.0036207901865559404,
+      "L_thumb_distal | right_shoulder_yaw_link": 0.006246360438502116
     },
     "palm_gap_min_m": 0.152
+  },
+  {
+    "word": "BREATHE-DEEP",
+    "part_of_speech": null,
+    "core_s": 3.0,
+    "wrist_err_max_mm": 14.4,
+    "rot_err_max_rad": 0.213,
+    "arm_speed_max": 7.73,
+    "finger_speed_max": 5.12,
+    "penetration_max_mm": 0.0,
+    "penetrating_pairs": {},
+    "palm_gap_min_m": 0.1
   },
   {
     "word": "BRING",
@@ -184,7 +251,7 @@
     "finger_speed_max": 3.67,
     "penetration_max_mm": 1.3,
     "penetrating_pairs": {
-      "L_thumb_proximal | R_thumb_intermediate": 0.0012972408183655366
+      "L_thumb_proximal | R_thumb_intermediate": 0.0012972407735328453
     },
     "palm_gap_min_m": 0.071
   },
@@ -246,12 +313,12 @@
     "finger_speed_max": 4.94,
     "penetration_max_mm": 7.8,
     "penetrating_pairs": {
-      "L_thumb_intermediate | R_thumb_distal": 0.005565397307448847,
-      "L_thumb_distal | R_thumb_distal": 0.007845779870237303,
-      "L_thumb_proximal | R_thumb_distal": 0.0020174506239372713,
-      "L_thumb_intermediate | R_thumb_intermediate": 0.0026069364019715184,
-      "L_thumb_proximal | R_thumb_intermediate": 0.0015659002037274744,
-      "L_thumb_distal | R_thumb_intermediate": 0.003936031967106908
+      "L_thumb_intermediate | R_thumb_distal": 0.0055653973574995635,
+      "L_thumb_distal | R_thumb_distal": 0.00784577988303951,
+      "L_thumb_proximal | R_thumb_distal": 0.002060219264687518,
+      "L_thumb_intermediate | R_thumb_intermediate": 0.0026069358254519883,
+      "L_thumb_proximal | R_thumb_intermediate": 0.0015655410708383319,
+      "L_thumb_distal | R_thumb_intermediate": 0.0039360317912175025
     },
     "palm_gap_min_m": 0.142
   },
@@ -265,8 +332,8 @@
     "finger_speed_max": 2.97,
     "penetration_max_mm": 6.3,
     "penetrating_pairs": {
-      "L_thumb_proximal | right_wrist_yaw_link": 0.0011732831571461422,
-      "L_thumb_distal | R_pinky_intermediate": 0.006295591873816586
+      "L_thumb_proximal | right_wrist_yaw_link": 0.0011732829983062058,
+      "L_thumb_distal | R_pinky_intermediate": 0.006295591728853544
     },
     "palm_gap_min_m": 0.054
   },
@@ -276,25 +343,18 @@
     "core_s": 3.9,
     "wrist_err_max_mm": 6.3,
     "rot_err_max_rad": 0.11,
-    "arm_speed_max": 2.48,
+    "arm_speed_max": 2.96,
     "finger_speed_max": 3.11,
-    "penetration_max_mm": 15.6,
+    "penetration_max_mm": 11.5,
     "penetrating_pairs": {
-      "fixed_mount | left_wrist_pitch_link": 0.005854967691169479,
-      "L_thumb_intermediate | right_hip_roll_link": 0.003244528475837752,
-      "L_thumb_distal | right_hip_roll_link": 0.006409797952148879,
-      "fixed_mount | left_wrist_yaw_link": 0.0010247584796581881,
-      "L_index_intermediate | R_index_intermediate": 0.004223284418390181,
-      "L_middle_intermediate | R_middle_intermediate": 0.0035734412662910397,
-      "L_middle_intermediate | R_index_intermediate": 0.011465972552222554,
-      "L_ring_intermediate | R_middle_intermediate": 0.002858552009113182,
-      "L_ring_intermediate | R_ring_intermediate": 0.001963000955551764,
-      "L_ring_intermediate | R_index_intermediate": 0.00603325394022027,
-      "L_middle_intermediate | R_index_proximal": 0.0037077566331283453,
-      "L_thumb_proximal | right_wrist_yaw_link": 0.0013378066313147483,
-      "R_thumb_distal | left_hip_roll_link": 0.01562285754066927,
-      "R_thumb_intermediate | left_hip_roll_link": 0.008354983266020154,
-      "R_index_intermediate | left_hip_roll_link": 0.002641050133322168
+      "L_index_intermediate | R_index_intermediate": 0.004223284413986916,
+      "L_middle_intermediate | R_middle_intermediate": 0.00357344128945104,
+      "L_middle_intermediate | R_index_intermediate": 0.011465972566159966,
+      "L_ring_intermediate | R_middle_intermediate": 0.002858552016661743,
+      "L_ring_intermediate | R_ring_intermediate": 0.0019630009599374263,
+      "L_ring_intermediate | R_index_intermediate": 0.006033253883347257,
+      "L_middle_intermediate | R_index_proximal": 0.003707756827617609,
+      "L_thumb_proximal | right_wrist_yaw_link": 0.0012955093730320408
     },
     "palm_gap_min_m": 0.064
   },
@@ -308,19 +368,19 @@
     "finger_speed_max": 4.36,
     "penetration_max_mm": 5.6,
     "penetrating_pairs": {
-      "L_index_intermediate | R_index_intermediate": 0.0056393323183546226,
-      "L_middle_intermediate | R_middle_intermediate": 0.00557457829061422,
-      "L_ring_intermediate | R_ring_intermediate": 0.0040445340952828465,
-      "L_middle_intermediate | R_index_intermediate": 0.002292498943330668,
-      "L_ring_intermediate | R_middle_intermediate": 0.002245061419844211,
-      "L_pinky_intermediate | R_ring_intermediate": 0.0018652481518000945,
-      "L_ring_proximal | R_middle_intermediate": 0.0018664857875198828,
-      "L_middle_proximal | R_index_intermediate": 0.0011785160101423651,
-      "L_pinky_proximal | R_ring_intermediate": 0.0013920642363495915,
-      "L_index_intermediate | R_middle_intermediate": 0.004762563109670109,
-      "L_middle_intermediate | R_ring_intermediate": 0.004532863639281121,
-      "L_middle_proximal | R_middle_intermediate": 0.002617376193651923,
-      "L_index_proximal | R_index_intermediate": 0.002036577508198944
+      "L_index_intermediate | R_index_intermediate": 0.005639332316564856,
+      "L_middle_intermediate | R_middle_intermediate": 0.005574578287962082,
+      "L_ring_intermediate | R_ring_intermediate": 0.004044534081098559,
+      "L_middle_intermediate | R_index_intermediate": 0.0022924990285153025,
+      "L_ring_intermediate | R_middle_intermediate": 0.0022450614873328074,
+      "L_pinky_intermediate | R_ring_intermediate": 0.0018652481942831784,
+      "L_ring_proximal | R_middle_intermediate": 0.001866485875039024,
+      "L_middle_proximal | R_index_intermediate": 0.001178516059995541,
+      "L_pinky_proximal | R_ring_intermediate": 0.0013920642724329789,
+      "L_index_intermediate | R_middle_intermediate": 0.004762563127121158,
+      "L_middle_intermediate | R_ring_intermediate": 0.004532863610747484,
+      "L_middle_proximal | R_middle_intermediate": 0.002617376144102324,
+      "L_index_proximal | R_index_intermediate": 0.00203657744720663
     },
     "palm_gap_min_m": 0.119
   },
@@ -334,8 +394,8 @@
     "finger_speed_max": 10.77,
     "penetration_max_mm": 3.0,
     "penetrating_pairs": {
-      "left_wrist_yaw_link | right_wrist_yaw_link": 0.0012547084547942116,
-      "L_thumb_proximal | right_wrist_yaw_link": 0.0030274929896930637
+      "left_wrist_yaw_link | right_wrist_yaw_link": 0.0012547083612576826,
+      "L_thumb_proximal | right_wrist_yaw_link": 0.0030273955322851543
     },
     "palm_gap_min_m": 0.076
   },
@@ -352,6 +412,18 @@
     "palm_gap_min_m": 0.393
   },
   {
+    "word": "HELLO",
+    "part_of_speech": null,
+    "core_s": 2.17,
+    "wrist_err_max_mm": 170.9,
+    "rot_err_max_rad": 0.807,
+    "arm_speed_max": 25.0,
+    "finger_speed_max": 6.17,
+    "penetration_max_mm": 0.0,
+    "penetrating_pairs": {},
+    "palm_gap_min_m": 0.349
+  },
+  {
     "word": "ONE",
     "part_of_speech": "numeral",
     "core_s": 3.63,
@@ -362,6 +434,18 @@
     "penetration_max_mm": 0.0,
     "penetrating_pairs": {},
     "palm_gap_min_m": 0.379
+  },
+  {
+    "word": "PLEASE",
+    "part_of_speech": null,
+    "core_s": 2.0,
+    "wrist_err_max_mm": 0.4,
+    "rot_err_max_rad": 0.002,
+    "arm_speed_max": 25.0,
+    "finger_speed_max": 3.67,
+    "penetration_max_mm": 0.0,
+    "penetrating_pairs": {},
+    "palm_gap_min_m": 0.253
   },
   {
     "word": "TAKE",
@@ -398,6 +482,18 @@
     "penetration_max_mm": 0.0,
     "penetrating_pairs": {},
     "palm_gap_min_m": 0.355
+  },
+  {
+    "word": "WHERE",
+    "part_of_speech": null,
+    "core_s": 2.9,
+    "wrist_err_max_mm": 0.4,
+    "rot_err_max_rad": 0.002,
+    "arm_speed_max": 5.41,
+    "finger_speed_max": 9.73,
+    "penetration_max_mm": 0.0,
+    "penetrating_pairs": {},
+    "palm_gap_min_m": 0.411
   },
   {
     "word": "YOU",

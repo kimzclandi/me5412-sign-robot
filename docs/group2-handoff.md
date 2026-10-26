@@ -4,6 +4,21 @@
 
 状态（2026-10-26）：第一组词库的 27 个词已全部转换成 G1 机器人关节轨迹，代码、数据、视频和测试都在 PR [#5](https://github.com/kimzclandi/me5412-sign-robot/pull/5)（分支 `group2/fbx-retarget-you`），尚未合并到 `master`。
 
+## 〇、2026-10-27 更新：第一组的 35 词医院词表
+
+第一组改用医院场景的 35 词词表（`data/vocab/hospital_v1.json`，快照见 `data/mocap/hospital_v1_vocab_snapshot.json`），输出的是 gloss 名称而不是序号。对接文件是 **`motions/hospital_v1_motions.json`**：35 个词各自的 `motion_ready`、轨迹路径、`core_frames`、`sign_frames`、分级和说明，由 `scripts/mocap/build_hospital_motions.py` 生成。
+
+| 情况 | 数量 | 词 |
+|---|---|---|
+| 已有动作（`motion_ready=true`） | 9 | YOU、COME、TAKE（原 27 词）；HELLO、PLEASE、APPOINTMENT、BREATHE-DEEP、BLOOD-DRAW、WHERE（本次从 Studio Galt 新增） |
+| 缺动作，需要 SignAvatars | 26 | THANK-YOU、SORRY、YES、NO、YOUR、ME、DEAF、DOCTOR、NURSE、INTERPRETER、MEDICINE、STOMACH、HEADACHE、HAVE、NEED、WAIT、HURT、UNDERSTAND、WRITE、NOT、NOW、SOON、LATER、TOMORROW、MORNING、NIGHT |
+
+- 新增 6 个词的分级：PLEASE、WHERE 可用；HELLO（肘关节最多弯约 120°，只能在头旁举手）、APPOINTMENT、BREATHE-DEEP、BLOOD-DRAW 近似。详见 `motions/studio_galt_v1/index.json` 的 `robot_note`。
+- SignAvatars 需要本人填表申请（非商业研究），并注册下载 SMPL-X 模型；仓库规定 agent 不能代为申请。26 个词都在其单词数据来源 WLASL 的词表中。拿到数据后需要新写 SMPL-X 读取程序，机器人映射之后的流程可直接复用。
+- 9 句脚本对话共用 23 个词，目前只有 s5 `Take a deep breath.`（BREATHE-DEEP）的词全部就绪。
+- 第一组更新 `hospital_v1.json` 的 `motion_ready` 时，以 `hospital_v1_motions.json` 为准。
+- 下载这 6 个词的原始 FBX：`.venv/bin/python scripts/mocap/fetch_studio_galt.py`（固定提交、核对哈希）。
+
 ## 一、在整条流程中的位置
 
 ```

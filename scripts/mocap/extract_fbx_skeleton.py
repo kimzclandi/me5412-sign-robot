@@ -21,7 +21,7 @@ import bpy
 import numpy as np
 
 FINGERS = ("thumb", "index", "middle", "ring", "pinky")
-# Canonical (UE-style) names; ASK uses an older rig, mapped through ALIASES below.
+# Canonical (UE-style) names; 2023 files (e.g. ASK, APPOINTMENT) use an older rig mapped through OLD_RIG.
 CANONICAL = (["pelvis", "spine_05", "neck_01", "head"]
              + [f"{part}_{s}" for s in ("l", "r") for part in ("clavicle", "upperarm", "lowerarm", "hand")]
              + [f"{finger}_0{i}_{s}" for s in ("l", "r") for finger in FINGERS for i in (1, 2, 3)])
@@ -30,7 +30,6 @@ for s, S in (("l", "L"), ("r", "R")):
     OLD_RIG.update({f"clavicle_{s}": f"Collar_{S}", f"upperarm_{s}": f"Bicep_{S}",
                     f"lowerarm_{s}": f"Forearm_{S}", f"hand_{s}": f"Hand_{S}"})
     OLD_RIG.update({f"{f}_0{i}_{s}": f"{f.capitalize()}{i}_{S}" for f in FINGERS for i in (1, 2, 3)})
-ALIASES = {"ASK": OLD_RIG}  # Studio Galt's 2023 rig (Bicep/Forearm/Index1 naming)
 
 
 def parse_args():
@@ -57,7 +56,8 @@ def main():
     scene = bpy.context.scene
     fps = scene.render.fps / scene.render.fps_base
     first, last = (int(round(v)) for v in action.frame_range)
-    alias = ALIASES.get(args.word, {})
+    # Detect Studio Galt's 2023 rig (Bicep/Forearm/Index1 naming) by its bone names.
+    alias = OLD_RIG if "upperarm_l" not in arm.pose.bones and "Bicep_L" in arm.pose.bones else {}
     names = [alias.get(n, n) for n in CANONICAL]
     missing = [n for n in names if n not in arm.pose.bones]
     if missing:

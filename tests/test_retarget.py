@@ -32,9 +32,12 @@ def test_finger_flexion_is_zero_at_bind_and_reads_the_you_handshape():
 
 
 def test_index_covers_group1_vocabulary_in_order():
+    import csv
     words = [e["gloss"] for e in INDEX["words"]]
-    assert len(words) == 27 and len(set(words)) == 27
-    assert [e["id"] for e in INDEX["words"]] == list(range(1, 28))
+    original = [r["word"] for r in csv.DictReader(open(ROOT / "data/mocap/studio_galt_v1/recommended_vocabulary.csv", encoding="utf-8-sig"))]
+    fetched = list(json.loads((ROOT / "data/mocap/studio_galt_v1/fetch_manifest.json").read_text())["files"])
+    assert words == original + fetched and len(set(words)) == len(words)  # ids 1-27 unchanged
+    assert [e["id"] for e in INDEX["words"]] == list(range(1, len(words) + 1))
     assert {e["robot_status"] for e in INDEX["words"]} <= set(INDEX["status_scale"])
     assert all(e["robot_note"] for e in INDEX["words"] if e["robot_status"] != "usable")
 
@@ -77,3 +80,18 @@ def test_sign_frames_sit_inside_core_and_baseline_stitches():
     q = motion["positions"]
     assert np.allclose(q[0], q[-1])  # sentence starts and ends at neutral
     assert np.abs(np.diff(q, axis=0)).max() * 30 < 30  # no jump at the seams
+
+
+def test_hospital_map_matches_vocabulary_and_library():
+    hospital = json.loads((ROOT / "motions/hospital_v1_motions.json").read_text())
+    vocab = json.loads((ROOT / "data/mocap/hospital_v1_vocab_snapshot.json").read_text(encoding="utf-8"))
+    assert [g["gloss"] for g in hospital["glosses"]] == [v["gloss"] for v in vocab]
+    library = {e["gloss"]: e for e in INDEX["words"]}
+    for g in hospital["glosses"]:
+        if g["motion_ready"]:
+            entry = library[g["gloss"]]
+            assert (ROOT / g["motion"]).is_file() and g["sign_frames"] == entry["sign_frames"]
+            assert entry["robot_status"] != "poor"
+        else:
+            assert g["motion"] is None
+    assert hospital["motion_ready_count"] == sum(g["motion_ready"] for g in hospital["glosses"])

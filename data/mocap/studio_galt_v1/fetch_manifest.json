@@ -1,0 +1,35 @@
+{
+  "repository_commit": "eb9046596fffcc6e92ee91d021372961f3d4fcaa",
+  "files": {
+    "HELLO": {
+      "repository_path": "SG ASL Dictionary/ASL H/SG ASL Hello 2024-6-9 Upload/FBX Files/Research/SG ASL Hello 2024-6-9 No Mesh Full.fbx",
+      "bytes": 3190652,
+      "sha256": "4c73e5e7d550bd1859a234687f61596b0e429ebc6563dd142ac14990fd9220b9"
+    },
+    "PLEASE": {
+      "repository_path": "SG ASL Dictionary/ASL P/SG ASL Please 2024-10-13 Upload/FBX Files/Research/SG ASL Please 2024-10-13 No Mesh Full.fbx",
+      "bytes": 3069724,
+      "sha256": "435d906493926fb133bb30f84af7e5bbd414c2a1322fc5f742ae9e87e51cafa9"
+    },
+    "APPOINTMENT": {
+      "repository_path": "SG ASL Dictionary/ASL A/SG ASL Appointment 1 2023-7-29 Upload/SG ASL Appointment 1 2023-7-29 No Mesh Full.fbx",
+      "bytes": 1160620,
+      "sha256": "d2371cd088e815b4bfc00cb3b3e2430d5aa63d65665e526989c524a25b5632b2"
+    },
+    "BREATHE-DEEP": {
+      "repository_path": "SG ASL Dictionary/ASL B/SG ASL Breathe Deep 2024-7-24 Upload/FBX Files/Research/SG ASL Breathe Deep 2024-7-24 No Mesh Full.fbx",
+      "bytes": 3656076,
+      "sha256": "d2287b248e473036d68b5c342111ef02dee57546e2a1818d4f1ba4ce50e75e7e"
+    },
+    "BLOOD-DRAW": {
+      "repository_path": "SG ASL Dictionary/ASL B/SG ASL Blood Draw 2 2024-5-15 Upload/FBX Files/Research/SG ASL Blood Draw 2 2024-5-15 No Mesh Full.fbx",
+      "bytes": 4475836,
+      "sha256": "22fa53104a452d872b89bc73d81bc9ec5d91614cbee650a6e204ce07f346b129"
+    },
+    "WHERE": {
+      "repository_path": "SG ASL Dictionary/ASL W/SG ASL Where Var 2025-7-24 Upload/FBX Files/Full/SG ASL Where Var 2025-7-24 No Mesh Full.fbx",
+      "bytes": 3010588,
+      "sha256": "925fe98389c60d60ad080e7aba75fa1617edab8a9d803a50af2f01ea1448d164"
+    }
+  }
+}

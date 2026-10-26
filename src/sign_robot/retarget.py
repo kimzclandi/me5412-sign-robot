@@ -190,16 +190,17 @@ class G1Retargeter:
         return bodies
 
     def clearance_pairs(self, side):
-        """(arm geom, obstacle geom, margin m): torso and the (fixed, standing) upper legs,
-        which hanging hands otherwise sink into."""
-        body = ["torso_link", "pelvis"] + [f"{s}_{p}_link" for s in ("left", "right") for p in ("hip_pitch", "hip_roll", "hip_yaw")]
-        arm = self._geoms([f"{side}_{p}_link" for p in ("shoulder_yaw", "elbow", "wrist_roll")] + self._hand_bodies(side))
+        """(arm geom, obstacle geom, margin m): torso, the (fixed, standing) upper legs
+        which hanging hands otherwise sink into, and the base mount behind the pelvis."""
+        body = ["torso_link", "pelvis", "fixed_mount"] + [f"{s}_{p}_link" for s in ("left", "right") for p in ("hip_pitch", "hip_roll", "hip_yaw")]
+        arm = self._geoms([f"{side}_{p}_link" for p in ("shoulder_yaw", "elbow", "wrist_roll")] + self._hand_bodies(side, fingers=True))
         return [(a, b, 0.01) for a in arm for b in self._geoms(body)]
 
     def hand_pairs(self):
-        """Right arm/hand vs left hand, all fingers included; touching allowed (margin 0)."""
-        right = self._geoms([f"right_{p}_link" for p in ("shoulder_yaw", "elbow", "wrist_roll")] + self._hand_bodies("right", fingers=True))
-        return [(a, b, 0.0) for a in right for b in self._geoms(self._hand_bodies("left", fingers=True))]
+        """Right forearm/hand vs left forearm/hand, all fingers included; touching allowed
+        (margin 0). Forearms are included because signs such as BLOOD-DRAW touch the elbow."""
+        arm = lambda side: self._geoms([f"{side}_{p}_link" for p in ("shoulder_yaw", "elbow", "wrist_roll")] + self._hand_bodies(side, fingers=True))
+        return [(a, b, 0.0) for a in arm("right") for b in arm("left")]
 
     def _min_distance(self, q, pairs):
         self.d.qpos[:] = q

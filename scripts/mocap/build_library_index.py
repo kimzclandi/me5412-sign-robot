@@ -2,8 +2,10 @@
 
     .venv/bin/python scripts/mocap/build_library_index.py
 
-IDs follow Group 1's recommended_vocabulary.csv order (1-based). Review status is
-the Group 2 visual/quantitative grade from results/mocap_previews (not ASL review).
+IDs 1-27 follow Group 1's original recommended_vocabulary.csv order; words added
+later through fetch_studio_galt.py (hospital vocabulary) follow from 28 in fetch
+order. Review status is the Group 2 visual/quantitative grade from
+results/mocap_previews (not ASL review).
 """
 from pathlib import Path
 import csv
@@ -54,12 +56,18 @@ APPROXIMATE = {
     "THREE": "fingers cannot spread; three raised digits still visible",
     "BABY": "crossed-forearm cradle is clear; large hands cannot reach the opposite elbow (orientation off ~0.8 rad)",
     "BEFORE": "hands stacked front-to-back at the midline as in the source; hand orientation off ~0.7 rad",
+    "HELLO": "salute starts beside the head, not at the forehead: elbow (max ~120 deg) and wrist joints reach their limits",
+    "APPOINTMENT": "hands meet higher and further forward than the source; left fingers touch the right wrist (19 mm overlap)",
+    "BREATHE-DEEP": "hand positions match (14 mm) but the large robot hands overlap visually on the chest",
+    "BLOOD-DRAW": "tap at the inner left elbow only roughly reproduced (wrist offset up to 7 cm)",
 }
 POOR = {}
 
 
 def main():
     vocab = list(csv.DictReader(open(ROOT / "data/mocap/studio_galt_v1/recommended_vocabulary.csv", encoding="utf-8-sig")))
+    fetched = json.loads((ROOT / "data/mocap/studio_galt_v1/fetch_manifest.json").read_text())["files"]
+    vocab += [{"word": word, "part_of_speech": None} for word in fetched]
     entries = []
     for i, row in enumerate(vocab, start=1):
         word = row["word"]

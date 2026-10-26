@@ -1,0 +1,374 @@
+[
+  {
+    "gloss": "HELLO",
+    "category": null,
+    "source": "studio_galt",
+    "motion_ready": false,
+    "english": [
+      "hello",
+      "hi",
+      "hey"
+    ]
+  },
+  {
+    "gloss": "PLEASE",
+    "category": null,
+    "source": "studio_galt",
+    "motion_ready": false,
+    "english": [
+      "please"
+    ]
+  },
+  {
+    "gloss": "THANK-YOU",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "thank you",
+      "thanks"
+    ]
+  },
+  {
+    "gloss": "SORRY",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "sorry",
+      "apologize",
+      "excuse me"
+    ]
+  },
+  {
+    "gloss": "YES",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "yes",
+      "yeah",
+      "sure"
+    ]
+  },
+  {
+    "gloss": "NO",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "no",
+      "nope"
+    ]
+  },
+  {
+    "gloss": "YOU",
+    "category": null,
+    "source": "studio_galt",
+    "motion_ready": true,
+    "english": [
+      "you"
+    ]
+  },
+  {
+    "gloss": "YOUR",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "your",
+      "yours"
+    ]
+  },
+  {
+    "gloss": "ME",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "I",
+      "me",
+      "myself"
+    ]
+  },
+  {
+    "gloss": "DEAF",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "deaf"
+    ]
+  },
+  {
+    "gloss": "DOCTOR",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "doctor",
+      "physician",
+      "Dr"
+    ]
+  },
+  {
+    "gloss": "NURSE",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "nurse"
+    ]
+  },
+  {
+    "gloss": "INTERPRETER",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "interpreter",
+      "sign language interpreter",
+      "translator"
+    ]
+  },
+  {
+    "gloss": "APPOINTMENT",
+    "category": null,
+    "source": "studio_galt",
+    "motion_ready": false,
+    "english": [
+      "appointment",
+      "booking",
+      "reservation"
+    ]
+  },
+  {
+    "gloss": "MEDICINE",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "medicine",
+      "medication",
+      "pills",
+      "tablets",
+      "drug"
+    ]
+  },
+  {
+    "gloss": "STOMACH",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "stomach",
+      "belly",
+      "tummy"
+    ]
+  },
+  {
+    "gloss": "HEADACHE",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "headache"
+    ]
+  },
+  {
+    "gloss": "HAVE",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "have",
+      "has",
+      "got"
+    ]
+  },
+  {
+    "gloss": "NEED",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "need",
+      "must",
+      "have to",
+      "require"
+    ]
+  },
+  {
+    "gloss": "WAIT",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "wait",
+      "hold on",
+      "one moment"
+    ]
+  },
+  {
+    "gloss": "COME",
+    "category": null,
+    "source": "studio_galt",
+    "motion_ready": true,
+    "english": [
+      "come",
+      "coming",
+      "be here",
+      "arrive"
+    ]
+  },
+  {
+    "gloss": "HURT",
+    "category": "verb",
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "hurt",
+      "pain",
+      "ache",
+      "sore",
+      "painful"
+    ]
+  },
+  {
+    "gloss": "BREATHE-DEEP",
+    "category": null,
+    "source": "studio_galt",
+    "motion_ready": false,
+    "english": [
+      "take a deep breath",
+      "breathe deeply",
+      "breathe in"
+    ]
+  },
+  {
+    "gloss": "BLOOD-DRAW",
+    "category": null,
+    "source": "studio_galt",
+    "motion_ready": false,
+    "english": [
+      "draw blood",
+      "blood test",
+      "blood sample"
+    ]
+  },
+  {
+    "gloss": "TAKE",
+    "category": null,
+    "source": "studio_galt",
+    "motion_ready": true,
+    "english": [
+      "take"
+    ]
+  },
+  {
+    "gloss": "UNDERSTAND",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "understand",
+      "get it"
+    ]
+  },
+  {
+    "gloss": "WRITE",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "write",
+      "write down",
+      "note down"
+    ]
+  },
+  {
+    "gloss": "NOT",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "not",
+      "don't",
+      "doesn't",
+      "didn't"
+    ]
+  },
+  {
+    "gloss": "NOW",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "now",
+      "right now",
+      "immediately"
+    ]
+  },
+  {
+    "gloss": "SOON",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "soon",
+      "shortly",
+      "in a minute",
+      "in a moment"
+    ]
+  },
+  {
+    "gloss": "LATER",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "later",
+      "after a while"
+    ]
+  },
+  {
+    "gloss": "TOMORROW",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "tomorrow"
+    ]
+  },
+  {
+    "gloss": "MORNING",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "morning",
+      "in the morning"
+    ]
+  },
+  {
+    "gloss": "NIGHT",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "night",
+      "evening",
+      "at night",
+      "bedtime"
+    ]
+  },
+  {
+    "gloss": "WHERE",
+    "category": null,
+    "source": "signavatars",
+    "motion_ready": false,
+    "english": [
+      "where"
+    ]
+  }
+]

@@ -1,0 +1,414 @@
+{
+  "schema_version": 1,
+  "vocab_file": "hospital_v1_vocab_snapshot.json",
+  "vocab_sha256": "d999ca625f13c6714aa7e9760ff179ca60ee3914d392442974d9554538519b54",
+  "motion_library": "motions/studio_galt_v1/index.json",
+  "fps": 30,
+  "motion_ready_count": 9,
+  "glosses": [
+    {
+      "gloss": "HELLO",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/HELLO.npz",
+      "core_frames": [
+        24,
+        89
+      ],
+      "sign_frames": [
+        33,
+        77
+      ],
+      "robot_status": "approximate",
+      "robot_note": "salute starts beside the head, not at the forehead: elbow (max ~120 deg) and wrist joints reach their limits"
+    },
+    {
+      "gloss": "PLEASE",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/PLEASE.npz",
+      "core_frames": [
+        24,
+        84
+      ],
+      "sign_frames": [
+        35,
+        76
+      ],
+      "robot_status": "usable",
+      "robot_note": null
+    },
+    {
+      "gloss": "THANK-YOU",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "SORRY",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "YES",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "NO",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "YOU",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/YOU.npz",
+      "core_frames": [
+        24,
+        118
+      ],
+      "sign_frames": [
+        42,
+        98
+      ],
+      "robot_status": "usable",
+      "robot_note": null
+    },
+    {
+      "gloss": "YOUR",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "ME",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "DEAF",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "DOCTOR",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "NURSE",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "INTERPRETER",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "APPOINTMENT",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/APPOINTMENT.npz",
+      "core_frames": [
+        24,
+        162
+      ],
+      "sign_frames": [
+        55,
+        147
+      ],
+      "robot_status": "approximate",
+      "robot_note": "hands meet higher and further forward than the source; left fingers touch the right wrist (19 mm overlap)"
+    },
+    {
+      "gloss": "MEDICINE",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "STOMACH",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "HEADACHE",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "HAVE",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "NEED",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "WAIT",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "COME",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/COME.npz",
+      "core_frames": [
+        24,
+        176
+      ],
+      "sign_frames": [
+        66,
+        161
+      ],
+      "robot_status": "usable",
+      "robot_note": null
+    },
+    {
+      "gloss": "HURT",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "BREATHE-DEEP",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/BREATHE-DEEP.npz",
+      "core_frames": [
+        24,
+        114
+      ],
+      "sign_frames": [
+        31,
+        102
+      ],
+      "robot_status": "approximate",
+      "robot_note": "hand positions match (14 mm) but the large robot hands overlap visually on the chest"
+    },
+    {
+      "gloss": "BLOOD-DRAW",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/BLOOD-DRAW.npz",
+      "core_frames": [
+        24,
+        191
+      ],
+      "sign_frames": [
+        31,
+        180
+      ],
+      "robot_status": "approximate",
+      "robot_note": "tap at the inner left elbow only roughly reproduced (wrist offset up to 7 cm)"
+    },
+    {
+      "gloss": "TAKE",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/TAKE.npz",
+      "core_frames": [
+        24,
+        91
+      ],
+      "sign_frames": [
+        46,
+        84
+      ],
+      "robot_status": "usable",
+      "robot_note": null
+    },
+    {
+      "gloss": "UNDERSTAND",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "WRITE",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "NOT",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "NOW",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "SOON",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "LATER",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "TOMORROW",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "MORNING",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "NIGHT",
+      "motion_ready": false,
+      "planned_source": "signavatars",
+      "motion": null,
+      "core_frames": null,
+      "sign_frames": null,
+      "robot_status": "missing",
+      "robot_note": null
+    },
+    {
+      "gloss": "WHERE",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/studio_galt_v1/WHERE.npz",
+      "core_frames": [
+        24,
+        111
+      ],
+      "sign_frames": [
+        40,
+        94
+      ],
+      "robot_status": "usable",
+      "robot_note": null
+    }
+  ]
+}

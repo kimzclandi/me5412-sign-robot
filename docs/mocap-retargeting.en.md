@@ -38,13 +38,17 @@ On macOS use `/Applications/Blender.app/Contents/MacOS/Blender` and drop `MUJOCO
 ## Mapping method
 
 - **Cropping**: frame 0 of every Studio Galt file is the T-pose bind pose (checked for all 27) and is skipped; the clip is then cropped to where a wrist moves faster than 0.03 m/s, with 0.2 s / 0.3 s padding.
-- **Bone names**: ASK uses the 2023 rig (Bicep/Forearm/Index1 …); the extractor has a built-in alias table to the current names.
+- **Bone names**: 2023 files (ASK, APPOINTMENT) use the old rig (Bicep/Forearm/Index1 …); the extractor detects it from the bone names and maps it to the current names.
 - **Arms**: a per-frame human chest frame (forward, left, up) is built from the shoulders and the neck–pelvis direction. Wrist and elbow positions relative to the same-side shoulder are scaled by the arm-length ratio (about 0.82) and placed at the robot shoulder. Bounded least-squares IK on the 7 joints per side matches wrist position and hand orientation, and softly the elbow.
-- **Collision avoidance**: arms keep 1 cm from the torso and hips; the two hands (all fingers included) may touch but not interpenetrate. Each frame solves the left arm first (kept out of the right hand's previous pose), then the right arm (kept out of the left hand); if the hands end up closer than 2 cm, both arms are re-solved together from that non-penetrating start, so both give way instead of the right wrist twisting alone. The start must be non-penetrating because the clearance penalty only gives a useful gradient while the hands are apart.
+- **Collision avoidance**: arms, hands and fingers keep 1 cm from the torso, hips and the fixed mount behind the robot; the two forearms and hands (all fingers included) may touch but not interpenetrate (BLOOD-DRAW touches the inner elbow). Each frame solves the left arm first (kept out of the right hand's previous pose), then the right arm (kept out of the left hand); if the hands end up closer than 2 cm, both arms are re-solved together from that non-penetrating start, so both give way instead of the right wrist twisting alone. The start must be non-penetrating because the clearance penalty only gives a useful gradient while the hands are apart.
 - **Continuity**: each arm joint may change by at most 25 rad/s worth of angle per frame, so IK cannot jump to another solution near a joint limit and flip a joint within one frame.
 - **Hand orientation**: both human and robot hand frames use wrist→middle-finger base and pinky base→index base, so left/right mirroring stays consistent.
 - **Fingers**: per finger, the rotation angles of the hand→1→2→3 joints relative to the bind pose are summed; 15°–230° maps linearly to 0–1.7 rad on the single coupled Inspire joint. Thumb flexion drives pitch (capped at 0.5 so coupled joints stay in range) and thumb crossing over the palm drives yaw. Relative rotations are used because the bone tails in these FBX files do not point along the fingers; positions would add about 90°.
 - **Joining**: the core is resampled to 30 fps with 0.8 s smooth transitions from and to the shared neutral pose.
+
+## Six words added for the hospital vocabulary (2026-10-27)
+
+Downloaded from the pinned commit by `scripts/mocap/fetch_studio_galt.py`: HELLO, PLEASE, APPOINTMENT, BREATHE-DEEP, BLOOD-DRAW, WHERE. PLEASE and WHERE are usable; the other 4 are approximate (reasons in `robot_note` of `index.json`). After adding forearm and finger clearance all 33 words were re-run; none of the original 27 got worse (CUSTOMER penetration 15.6→11.5 mm). Among the new words APPOINTMENT keeps a 19 mm finger–wrist overlap (finger angles come straight from the human data and are not optimised).
 
 ## Results for the 27 words
 

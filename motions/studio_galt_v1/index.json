@@ -498,6 +498,114 @@
       "robot_status": "usable",
       "robot_note": null,
       "asl_reviewed": false
+    },
+    {
+      "id": 28,
+      "gloss": "HELLO",
+      "part_of_speech": null,
+      "motion": "motions/studio_galt_v1/HELLO.npz",
+      "duration_s": 3.767,
+      "core_frames": [
+        24,
+        89
+      ],
+      "sign_frames": [
+        33,
+        77
+      ],
+      "robot_status": "approximate",
+      "robot_note": "salute starts beside the head, not at the forehead: elbow (max ~120 deg) and wrist joints reach their limits",
+      "asl_reviewed": false
+    },
+    {
+      "id": 29,
+      "gloss": "PLEASE",
+      "part_of_speech": null,
+      "motion": "motions/studio_galt_v1/PLEASE.npz",
+      "duration_s": 3.6,
+      "core_frames": [
+        24,
+        84
+      ],
+      "sign_frames": [
+        35,
+        76
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
+    },
+    {
+      "id": 30,
+      "gloss": "APPOINTMENT",
+      "part_of_speech": null,
+      "motion": "motions/studio_galt_v1/APPOINTMENT.npz",
+      "duration_s": 6.2,
+      "core_frames": [
+        24,
+        162
+      ],
+      "sign_frames": [
+        55,
+        147
+      ],
+      "robot_status": "approximate",
+      "robot_note": "hands meet higher and further forward than the source; left fingers touch the right wrist (19 mm overlap)",
+      "asl_reviewed": false
+    },
+    {
+      "id": 31,
+      "gloss": "BREATHE-DEEP",
+      "part_of_speech": null,
+      "motion": "motions/studio_galt_v1/BREATHE-DEEP.npz",
+      "duration_s": 4.6,
+      "core_frames": [
+        24,
+        114
+      ],
+      "sign_frames": [
+        31,
+        102
+      ],
+      "robot_status": "approximate",
+      "robot_note": "hand positions match (14 mm) but the large robot hands overlap visually on the chest",
+      "asl_reviewed": false
+    },
+    {
+      "id": 32,
+      "gloss": "BLOOD-DRAW",
+      "part_of_speech": null,
+      "motion": "motions/studio_galt_v1/BLOOD-DRAW.npz",
+      "duration_s": 7.167,
+      "core_frames": [
+        24,
+        191
+      ],
+      "sign_frames": [
+        31,
+        180
+      ],
+      "robot_status": "approximate",
+      "robot_note": "tap at the inner left elbow only roughly reproduced (wrist offset up to 7 cm)",
+      "asl_reviewed": false
+    },
+    {
+      "id": 33,
+      "gloss": "WHERE",
+      "part_of_speech": null,
+      "motion": "motions/studio_galt_v1/WHERE.npz",
+      "duration_s": 4.5,
+      "core_frames": [
+        24,
+        111
+      ],
+      "sign_frames": [
+        40,
+        94
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "asl_reviewed": false
     }
   ]
 }
