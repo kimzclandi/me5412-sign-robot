@@ -2,7 +2,7 @@
 
 [中文](group2-handoff.md) · **English** · [Method details](mocap-retargeting.en.md)
 
-Status (2026-10-26): all 27 words in Group 1's vocabulary are converted to G1 joint trajectories. Code, data, videos and tests are in PR [#5](https://github.com/kimzclandi/me5412-sign-robot/pull/5) (branch `group2/fbx-retarget-you`), not yet merged into `master`.
+Status (2026-10-27): all 35 glosses of Group 1's hospital vocabulary have G1 joint trajectories (see section 0); the original 27 words are also converted. Code, data, videos and tests are in PR [#5](https://github.com/kimzclandi/me5412-sign-robot/pull/5) (branch `group2/fbx-retarget-you`), not yet merged into `master`.
 
 ## 0. Update 2026-10-27: Group 1's 35-word hospital vocabulary
 
@@ -26,8 +26,8 @@ All 26 video-derived words are graded "approximate" (single-camera estimate; dep
 ## 1. Where this sits in the pipeline
 
 ```
-Teacher's sentence → [Group 1] LLM → ids [1, 6, 14]
-                   → [Group 2, this delivery] id → one robot joint trajectory per word (prepared offline)
+Teacher's sentence → [Group 1] LLM → gloss sequence, e.g. ["YOU", "HURT", "WHERE"]
+                   → [Group 2, this delivery] gloss → one robot joint trajectory per word (prepared offline)
                    → [Group 3] stitch the clips into a sentence → MuJoCo playback
 ```
 
@@ -37,11 +37,13 @@ Group 2's output is **data prepared offline** and independent of the operating s
 
 | File | Content |
 |---|---|
-| `motions/studio_galt_v1/index.json` | **Entry point.** 27 words, each with `id` (1–27), `gloss`, motion path, duration, `core_frames`, `sign_frames`, `robot_status` and a note |
-| `motions/studio_galt_v1/<WORD>.npz` | `timestamps_s[T]`, `joint_names[53]`, `positions[T,53]`, radians, 30 fps — the existing repository motion format, playable with `sign_robot.motion.apply_frame` |
+| `motions/hospital_v1_motions.json` | **Entry point for the hospital demo.** The 35 glosses in Group 1's vocabulary order, each with `motion_ready`, motion path, `core_frames`, `sign_frames`, grade, note and source `library` |
+| `motions/studio_galt_v1/index.json` | Mocap library: the original 27 words (`id` 1–27) plus the 6 added for the hospital vocabulary (`id` 28–33) |
+| `motions/wlasl_video_v1/index.json` | Video library: 32 words, same fields; see [video-retargeting.en.md](video-retargeting.en.md) |
+| `motions/studio_galt_v1/<WORD>.npz`, `motions/wlasl_video_v1/<WORD>.npz` | `timestamps_s[T]`, `joint_names[53]`, `positions[T,53]`, radians, 30 fps — the existing repository motion format, playable with `sign_robot.motion.apply_frame` |
 | `motions/studio_galt_v1/<WORD>.json` | Source FBX and hash, IK error, peak joint speed, limitations |
 | `scripts/mocap/stitch_baseline.py` | **Simplest sentence baseline**: each word cut to `sign_frames`, fixed 0.5 s smooth blend between words. Usable as Group 3's required "direct playback" comparison |
-| `results/mocap_previews/sentence_YOU_BUY_BOOK.mp4` | Example sentence from the baseline |
+| `results/mocap_previews/sentence_*.mp4` | Example sentences from the baseline, including the 9 scripted hospital dialogue lines |
 
 ### Frame ranges per word
 
@@ -58,20 +60,22 @@ Group 2's output is **data prepared offline** and independent of the operating s
 ### Stitching example
 
 ```bash
-MUJOCO_GL=egl .venv/bin/python scripts/mocap/stitch_baseline.py YOU BUY BOOK --render   # drop MUJOCO_GL=egl on macOS
+MUJOCO_GL=egl .venv/bin/python scripts/mocap/stitch_baseline.py YOU HURT WHERE --render   # drop MUJOCO_GL=egl on macOS
 ```
 
-Writes `results/mocap_previews/sentence_YOU_BUY_BOOK.npz` (same motion format) and `.mp4`. Words outside the library, e.g. `MEDICINE`, are rejected.
+Writes `results/mocap_previews/sentence_YOU_HURT_WHERE.npz` (same motion format) and `.mp4`. Glosses are looked up by name: first in `hospital_v1_motions.json` (mocap preferred, video otherwise), then in both libraries; anything else is rejected.
 
 ### Notes for Group 3
 
-- **Finger speed**: finger closing reaches about 25 rad/s (real human speed), which a physical Inspire hand may not achieve. Rate-limit if aiming at real hardware.
+- **Joint speed**: mocap words reach about 25 rad/s in fingers and arms (real human speed), which a physical Inspire hand and G1 arm may not achieve; video words are already limited (fingers 10, arms 15 rad/s). Apply one common limit if aiming at real hardware.
 - **Known baseline issue**: YOU's `sign_frames` ends while the hand is already dropping, so the right arm dips briefly between YOU and BUY. This is where Group 3's transition method can improve on, and be compared with, the baseline.
 - **Interfaces unchanged**: `ACTION_IDS`, `data/catalog.json` and the three original motions are untouched; the new library lives in `motions/studio_galt_v1/`. Whether to extend `ACTION_IDS` for the demo is a joint decision of all three groups.
 
 ## 3. For Group 1
 
-- `id` in `index.json` is the number the LLM should output (same order as Group 1's `recommended_vocabulary.csv`).
+- **Hospital vocabulary**: gloss names output by the LLM map directly to `gloss` in `hospital_v1_motions.json`. All 35 are `motion_ready=true`; please copy this into Group 1's `data/vocab/hospital_v1.json`, otherwise `demo_only` mode can only use YOU, COME and TAKE.
+- The notes below describe the original 27-word version (history; the vocabulary is now the hospital one):
+- `id` in `index.json` was the number the LLM should output (same order as Group 1's `recommended_vocabulary.csv`).
 - Grades (whether the robot reproduces the human motion — **not an ASL review**):
   - Usable (14): ASK, BAG, BIG, BOX, BRING, BUSY, CHILD, COME, COMPUTER, EQUAL, FUTURE, ONE, TAKE, YOU
   - Approximate (13): BABY, BALL, BEFORE, BOOK, BUY, CALM, CLEAN, CLOSE, COOK, CUSTOMER, EVERYONE, THREE, TWO
@@ -98,10 +102,10 @@ MUJOCO_GL=egl PYTHONPATH=scripts/mocap .venv/bin/python scripts/mocap/retarget_t
 
 ### Key numbers
 
-- 27/27 words converted; 14 usable, 13 approximate, 0 poor.
-- Sign-phase wrist error: below 2 cm for every usable word.
-- Penetration: at most 16 mm for any word (upstream collision geoms only).
-- 252 repository tests pass; the only failure, `test_project_overview`, also fails on `master` (doc edits without updated website allow-list hashes) and is unrelated to Group 2.
+- Hospital vocabulary: 35/35 glosses have motion (9 mocap, 26 video-derived, the latter all "approximate"); all 9 scripted dialogue lines can be stitched.
+- Mocap library, 33 words: 16 usable, 17 approximate, 0 poor; sign-phase wrist error below 2 cm for every usable word; penetration at most 19 mm (APPOINTMENT finger–wrist overlap; all others at most 16 mm; upstream collision geoms only).
+- Video library, 32 words: all converted; joint speed at most 15 rad/s.
+- 291 repository tests pass; the only failure, `test_project_overview`, also fails on `master` (doc edits without updated website allow-list hashes) and is unrelated to Group 2.
 
 ## 5. Not done — work teammates can pick up
 

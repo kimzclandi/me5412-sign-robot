@@ -2,7 +2,7 @@
 
 **中文** · [English](group2-handoff.en.md) · [方法细节](mocap-retargeting.md)
 
-状态（2026-10-26）：第一组词库的 27 个词已全部转换成 G1 机器人关节轨迹，代码、数据、视频和测试都在 PR [#5](https://github.com/kimzclandi/me5412-sign-robot/pull/5)（分支 `group2/fbx-retarget-you`），尚未合并到 `master`。
+状态（2026-10-27）：第一组医院词表的 35 个词全部有 G1 机器人关节轨迹（见第〇节）；最初的 27 个词也已全部转换。代码、数据、视频和测试都在 PR [#5](https://github.com/kimzclandi/me5412-sign-robot/pull/5)（分支 `group2/fbx-retarget-you`），尚未合并到 `master`。
 
 ## 〇、2026-10-27 更新：第一组的 35 词医院词表
 
@@ -26,8 +26,8 @@
 ## 一、在整条流程中的位置
 
 ```
-老师的句子 →【第一组】大模型 → 序号 [1, 6, 14]
-          →【第二组，本交付】序号 → 每个词一段机器人关节轨迹（离线已做好）
+老师的句子 →【第一组】大模型 → gloss 序列，如 ["YOU", "HURT", "WHERE"]
+          →【第二组，本交付】gloss → 每个词一段机器人关节轨迹（离线已做好）
           →【第三组】把几段轨迹衔接成一句 → MuJoCo 播放
 ```
 
@@ -37,11 +37,13 @@
 
 | 文件 | 内容 |
 |---|---|
-| `motions/studio_galt_v1/index.json` | **入口文件**。27 个词，每个词：`id`（1–27）、`gloss`、轨迹路径、时长、`core_frames`、`sign_frames`、`robot_status` 和问题说明 |
-| `motions/studio_galt_v1/<词>.npz` | `timestamps_s[T]`、`joint_names[53]`、`positions[T,53]`，弧度，30 fps，与仓库原有动作同一格式，可直接用 `sign_robot.motion.apply_frame` 回放 |
+| `motions/hospital_v1_motions.json` | **医院演示的入口文件**。按第一组词表顺序列出 35 个 gloss，每个词：`motion_ready`、轨迹路径、`core_frames`、`sign_frames`、分级、说明、来源库 `library` |
+| `motions/studio_galt_v1/index.json` | 动作捕捉词库：最初的 27 个词（`id` 1–27）加医院词表新增的 6 个（`id` 28–33） |
+| `motions/wlasl_video_v1/index.json` | 视频词库：32 个词，字段相同，详见 [video-retargeting.md](video-retargeting.md) |
+| `motions/studio_galt_v1/<词>.npz`、`motions/wlasl_video_v1/<词>.npz` | `timestamps_s[T]`、`joint_names[53]`、`positions[T,53]`，弧度，30 fps，与仓库原有动作同一格式，可直接用 `sign_robot.motion.apply_frame` 回放 |
 | `motions/studio_galt_v1/<词>.json` | 来源 FBX 及哈希、逆运动学误差、最大关节速度、限制 |
 | `scripts/mocap/stitch_baseline.py` | **最简单的拼句基线**：每个词裁到 `sign_frames`，词与词之间用固定 0.5 秒平滑过渡。可作为第三组要求的“直接播放对照” |
-| `results/mocap_previews/sentence_YOU_BUY_BOOK.mp4` | 基线拼出的整句示例视频 |
+| `results/mocap_previews/sentence_*.mp4` | 基线拼出的整句示例视频，包括 9 句医院脚本对话 |
 
 ### 三组帧范围（每个词）
 
@@ -58,20 +60,22 @@
 ### 拼句示例
 
 ```bash
-MUJOCO_GL=egl .venv/bin/python scripts/mocap/stitch_baseline.py YOU BUY BOOK --render   # macOS 去掉 MUJOCO_GL=egl
+MUJOCO_GL=egl .venv/bin/python scripts/mocap/stitch_baseline.py YOU HURT WHERE --render   # macOS 去掉 MUJOCO_GL=egl
 ```
 
-输出 `results/mocap_previews/sentence_YOU_BUY_BOOK.npz`（同一轨迹格式）和 `.mp4`。不在词库里的词会直接报错，例如 `MEDICINE`。
+输出 `results/mocap_previews/sentence_YOU_HURT_WHERE.npz`（同一轨迹格式）和 `.mp4`。按 gloss 名称查找：先查 `hospital_v1_motions.json`（动作捕捉优先，没有再用视频），再查两个词库；都没有的词会直接报错。
 
 ### 第三组需要注意
 
-- **手指速度**：手指闭合最快约 25 rad/s（人体真实速度），真实 Inspire 手可能达不到。需要接近真实硬件时请限速。
+- **关节速度**：动作捕捉词的手指和手臂最快约 25 rad/s（人体真实速度），真实 Inspire 手和 G1 手臂可能达不到；视频词已限速（手指 10、手臂 15 rad/s）。需要接近真实硬件时请统一限速。
 - **基线的已知问题**：YOU 的 `sign_frames` 结尾时手已开始下落，所以 YOU→BUY 之间右臂会短暂下沉。这正是第三组衔接方法可以改进、并拿来和基线对比的地方。
 - **接口未变**：`ACTION_IDS`、`data/catalog.json` 和原有三条动作没有改动；新词库独立放在 `motions/studio_galt_v1/`。接入演示时需要三组一起决定是否扩展 `ACTION_IDS`。
 
 ## 三、交给第一组的东西
 
-- `index.json` 的 `id` 就是大模型应输出的序号（顺序与第一组 `recommended_vocabulary.csv` 一致）。
+- **医院词表**：大模型输出的 gloss 名称直接对应 `hospital_v1_motions.json` 里的 `gloss`。35 个词全部 `motion_ready=true`，请同步到第一组的 `data/vocab/hospital_v1.json`，否则 `demo_only` 模式只能用 YOU、COME、TAKE。
+- 以下是最初 27 词版本的说明（历史，词表已换成医院用词）：
+- `index.json` 的 `id` 是当时大模型应输出的序号（顺序与第一组 `recommended_vocabulary.csv` 一致）。
 - 分级（只看机器人有没有还原人体动作，**不是 ASL 评审**）：
   - 可用 14 个：ASK、BAG、BIG、BOX、BRING、BUSY、CHILD、COME、COMPUTER、EQUAL、FUTURE、ONE、TAKE、YOU
   - 近似 13 个：BABY、BALL、BEFORE、BOOK、BUY、CALM、CLEAN、CLOSE、COOK、CUSTOMER、EVERYONE、THREE、TWO
@@ -98,10 +102,10 @@ MUJOCO_GL=egl PYTHONPATH=scripts/mocap .venv/bin/python scripts/mocap/retarget_t
 
 ### 关键数字
 
-- 27/27 个词转换成功；可用 14，近似 13，做不好 0。
-- 打手语阶段手腕误差：可用的词全部 < 2 cm。
-- 穿模：所有词 ≤ 16 mm（只统计上游模型自带的碰撞体）。
-- 全仓测试 252 项通过；唯一失败项 `test_project_overview` 在 `master` 上同样失败（文档改动后未更新网站白名单哈希），与第二组无关。
+- 医院词表：35/35 个词有动作（9 个动作捕捉，26 个视频提取，后者全部为“近似”）；9 句脚本对话都能拼出整句。
+- 动作捕捉词库 33 个词：可用 16，近似 17，做不好 0；可用的词打手语阶段手腕误差全部 < 2 cm；穿模 ≤ 19 mm（APPOINTMENT 的手指—手腕重叠，其余 ≤ 16 mm，只统计上游模型自带的碰撞体）。
+- 视频词库 32 个词：全部转换成功；关节速度 ≤ 15 rad/s。
+- 全仓测试 291 项通过；唯一失败项 `test_project_overview` 在 `master` 上同样失败（文档改动后未更新网站白名单哈希），与第二组无关。
 
 ## 五、没做的、可以分给队友的
 
