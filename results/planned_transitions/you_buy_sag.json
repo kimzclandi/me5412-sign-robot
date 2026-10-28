@@ -1,0 +1,127 @@
+{
+  "glosses": [
+    "YOU",
+    "BUY"
+  ],
+  "fps": 30,
+  "metric": "undershoot = max(0, min(start_z, end_z) - min(z)); includes boundary samples",
+  "units": "metres",
+  "baseline_interval": [
+    98,
+    113
+  ],
+  "planned_interval": [
+    98,
+    104
+  ],
+  "planned_transition_status": "PASS",
+  "planned_used_via": true,
+  "archived_baseline_buy_boundary_difference_rad": 9.556674784860775e-09,
+  "baseline": {
+    "frames_including_endpoints": 16,
+    "duration_s": 0.5,
+    "right_wrist_yaw_link": {
+      "start_z_m": 0.8008947939317104,
+      "end_z_m": 0.8118379022711881,
+      "minimum_z_m": 0.8000450253390134,
+      "undershoot_below_lower_endpoint_m": 0.0008497685926969201,
+      "drop_from_start_m": 0.0008497685926969201,
+      "heights_m": [
+        0.8008947939317104,
+        0.8007892532762558,
+        0.800528957981133,
+        0.8002336345712847,
+        0.8000450253390134,
+        0.8000983026989662,
+        0.8004972601386555,
+        0.8012955598531492,
+        0.8024867279208149,
+        0.8040042985580492,
+        0.8057311480085314,
+        0.8075148269405021,
+        0.809184720895585,
+        0.8105675725049157,
+        0.8114998629362625,
+        0.8118379022711881
+      ]
+    },
+    "right_elbow_link": {
+      "start_z_m": 0.9054962400633019,
+      "end_z_m": 0.8974369431194894,
+      "minimum_z_m": 0.8974369431194894,
+      "undershoot_below_lower_endpoint_m": 0.0,
+      "drop_from_start_m": 0.008059296943812466,
+      "heights_m": [
+        0.9054962400633019,
+        0.9053600319925823,
+        0.9049812571584128,
+        0.9044090123616596,
+        0.9036951774944544,
+        0.902891192482998,
+        0.9020454096370386,
+        0.9012010217015174,
+        0.9003945926657726,
+        0.899655232217969,
+        0.899004456578899,
+        0.898456771012854,
+        0.8980209963667086,
+        0.897702347527272,
+        0.8975052589694369,
+        0.8974369431194894
+      ]
+    }
+  },
+  "planned": {
+    "frames_including_endpoints": 7,
+    "duration_s": 0.2,
+    "right_wrist_yaw_link": {
+      "start_z_m": 0.8008947938718565,
+      "end_z_m": 0.8118379022862995,
+      "minimum_z_m": 0.8008947938718565,
+      "undershoot_below_lower_endpoint_m": 0.0,
+      "drop_from_start_m": 0.0,
+      "heights_m": [
+        0.8008947938718565,
+        0.8081394246145446,
+        0.8375942378903326,
+        0.8513020973677718,
+        0.8403937158187843,
+        0.8174588080537556,
+        0.8118379022862995
+      ]
+    },
+    "right_elbow_link": {
+      "start_z_m": 0.9054962401844098,
+      "end_z_m": 0.8974369431530465,
+      "minimum_z_m": 0.8974369431530465,
+      "undershoot_below_lower_endpoint_m": 0.0,
+      "drop_from_start_m": 0.008059297031363322,
+      "heights_m": [
+        0.9054962401844098,
+        0.9067336472223355,
+        0.9150284554245842,
+        0.9197224603524519,
+        0.912866119010896,
+        0.8998918654556987,
+        0.8974369431530465
+      ]
+    }
+  },
+  "inherited_source_descent": {
+    "source_frames": [
+      42,
+      98
+    ],
+    "note": "Same in baseline and planned: exact boundary and word-slice preservation prevents removing this descent.",
+    "right_wrist_yaw_link": {
+      "peak_z_m": 1.0352437457243187,
+      "end_z_m": 0.8008947938718565,
+      "peak_to_end_drop_m": 0.23434895185246218
+    },
+    "right_elbow_link": {
+      "peak_z_m": 0.9603175755651642,
+      "end_z_m": 0.9054962401844098,
+      "peak_to_end_drop_m": 0.0548213353807544
+    }
+  }
+}

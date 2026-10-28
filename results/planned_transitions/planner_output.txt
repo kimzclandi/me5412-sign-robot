@@ -1,0 +1,22 @@
+planned_sentence_HELLO_YOU_APPOINTMENT_HAVE: 317 frames, 10.567s; transitions 3 pass 3 failed 0
+  WARNING HELLO -> YOU wrist undershoot retained: one lifted via did not clear both height and collision checks
+  WARNING APPOINTMENT -> HAVE wrist undershoot retained: one lifted via did not clear both height and collision checks
+planned_sentence_MEDICINE_MORNING_NIGHT_TAKE: 279 frames, 9.300s; transitions 3 pass 2 failed 1
+  WARNING MEDICINE -> MORNING wrist undershoot remains; collision status reported separately
+  FAILED MEDICINE -> MORNING penetration 2.211 mm > 2 mm: L_thumb_distal | right_wrist_yaw_link, sample 2 (interior); penetration 8.437 mm > 2 mm: left_hip_roll_link | left_wrist_yaw_link, sample 5 (interior); penetration 10.744 mm > 2 mm: L_index_proximal | left_hip_roll_link, sample 5 (interior); +24 more (see JSON report)
+planned_sentence_NOW_NURSE_BLOOD-DRAW: 368 frames, 12.267s; transitions 2 pass 0 failed 2
+  WARNING NOW -> NURSE wrist undershoot remains; collision status reported separately
+  FAILED NOW -> NURSE penetration 16.466 mm > 2 mm: left_wrist_pitch_link | right_wrist_yaw_link, sample 9 (interior); penetration 3.657 mm > 2 mm: R_ring_proximal | left_wrist_pitch_link, sample 9 (interior); penetration 19.921 mm > 2 mm: R_pinky_proximal | left_wrist_pitch_link, sample 9 (interior); +12 more (see JSON report)
+  WARNING NURSE -> BLOOD-DRAW wrist undershoot remains; collision status reported separately
+  FAILED NURSE -> BLOOD-DRAW penetration 2.006 mm > 2 mm: R_index_proximal | right_hip_roll_link, sample 4 (interior)
+planned_sentence_PLEASE_WAIT_DOCTOR_COME_SOON: 404 frames, 13.467s; transitions 4 pass 2 failed 2
+  FAILED DOCTOR -> COME penetration 7.011 mm > 2 mm: R_thumb_intermediate | left_elbow_link, sample 0 (start_endpoint); penetration 7.854 mm > 2 mm: R_thumb_distal | left_elbow_link, sample 0 (start_endpoint)
+  FAILED COME -> SOON penetration 13.729 mm > 2 mm: left_wrist_yaw_link | right_wrist_yaw_link, sample 6 (interior); penetration 30.859 mm > 2 mm: R_thumb_proximal | left_wrist_yaw_link, sample 6 (interior); penetration 24.461 mm > 2 mm: R_thumb_intermediate | left_wrist_yaw_link, sample 6 (interior); +1 more (see JSON report)
+planned_sentence_YOU_BUY_BOOK: 290 frames, 9.667s; transitions 2 pass 2 failed 0
+planned_sentence_YOU_HURT_WHERE: 269 frames, 8.967s; transitions 2 pass 2 failed 0
+planned_sentence_YOU_NEED_INTERPRETER: 276 frames, 9.200s; transitions 2 pass 1 failed 1
+  FAILED NEED -> INTERPRETER penetration 19.312 mm > 2 mm: L_thumb_proximal | left_hip_pitch_link, sample 1 (interior); penetration 13.981 mm > 2 mm: L_thumb_intermediate | left_hip_pitch_link, sample 1 (interior); penetration 7.723 mm > 2 mm: L_thumb_intermediate | left_hip_roll_link, sample 1 (interior); +14 more (see JSON report)
+planned_sentence_YOU_UNDERSTAND: 206 frames, 6.867s; transitions 1 pass 1 failed 0
+planned_sentence_BREATHE-DEEP: 139 frames, 4.633s; transitions 0 pass 0 failed 0
+planned_sentence_THANK-YOU: 129 frames, 4.300s; transitions 0 pass 0 failed 0
+wrote /workspace/me5412/wt-transitions/results/planned_transitions/report.json
