@@ -22,7 +22,8 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from sign_robot.motion import apply_frame, load_model, validate_motion
-from sign_robot.transitions import (FPS, MIN_LEG_DURATION_S, MujocoClearance, body_heights,
+from sign_robot.transitions import (ENDPOINT_NEAR_M, FPS, MIN_LEG_DURATION_S,
+                                    PENETRATION_TOLERANCE_M, MujocoClearance, body_heights,
                                     joint_rate_limits, lookup_words)
 
 OUT = ROOT / "results/planned_transitions"
@@ -71,13 +72,35 @@ def verify_saved_sentence(report, model):
         result = clearance(clip)
         endpoints = [clearance(clip[[i]]).min_distance_m for i in (0, -1)]
         floor = min((d for d in endpoints if d is not None), default=None)
-        if floor is not None and floor < -0.002:
-            status = "source_collision" if result.min_distance_m >= floor else "FAILED"
+        if floor is not None and floor < ENDPOINT_NEAR_M:
+            status = "source_collision"
+            assert segment["method"] == "source_collision"
+            assert not segment["used_via"] and len(segment["attempts"]) == 1
         else:
             status = "PASS" if result.passed else "FAILED"
+            assert segment["method"] == ("FAILED" if status == "FAILED" else chosen["kind"])
+        hard_floor = floor if floor is not None and floor < -PENETRATION_TOLERANCE_M else None
+        assert segment["endpoint_floor_m"] == hard_floor
+        relative_ok = (None if hard_floor is None else
+                       result.min_distance_m is not None and result.min_distance_m >= hard_floor)
+        assert segment["relative_floor_passed"] == relative_ok
+        if chosen["kind"] == "hub":
+            assert len(chosen["leg_clearance"]) == 2
+            offset = 0
+            for intervals, saved in zip(chosen["leg_intervals"], chosen["leg_clearance"]):
+                leg = clearance(clip[offset:offset + intervals + 1])
+                assert leg.passed == saved["passed"]
+                assert leg.min_distance_m == saved["min_distance_m"]
+                if status == "PASS":
+                    assert leg.passed
+                offset += intervals
+        if chosen["kind"] == "via2":
+            assert len(chosen["leg_intervals"]) == 3 and len(chosen["via_directions"]) == 2
         assert status == segment["status"]
         assert result.min_distance_m == segment["clearance"]["min_distance_m"]
-    return {"passed": True, "checks": "saved endpoints, rates, per-leg durations, collision classification",
+        assert segment["min_clearance_mm"] == (None if result.min_distance_m is None else
+                                               result.min_distance_m * 1000)
+    return {"passed": True, "checks": "saved endpoints, rates, per-leg durations, endpoint gate, whole-path and hub-leg collision classification; source_collision is diagnostic only",
             "transition_peak_rates": peaks}
 
 
@@ -106,6 +129,7 @@ def measure_sag(model, sentence):
               "planned_interval": [transition["start_frame"], transition["end_frame"]],
               "planned_transition_status": transition["status"],
               "planned_used_via": transition["used_via"],
+              "planned_method": transition["method"],
               "planned_via_direction": transition["via_direction"],
               "archived_baseline_buy_boundary_difference_rad": boundary_difference}
     for key, motion, a, b in (
@@ -212,35 +236,39 @@ def write_tables(reports):
             pair = transition["from_gloss"] + " → " + transition["to_gloss"]
             distance = transition["clearance"]["min_distance_m"]
             transitions.append([sentence, pair, transition["status"],
-                                transition["via_direction"] or "—",
+                                transition["method"],
+                                " → ".join(transition["via_directions"]) or "—",
                                 f"{transition['duration_s']:.3f}",
-                                "null" if distance is None else f"{distance:.9f}"])
+                                "null" if distance is None else f"{distance * 1000:.6f}"])
             if transition["status"] == "FAILED":
                 worst = transition["worst_collision"]
                 failed.append([sentence, pair, " / ".join(worst["bodies"]) if worst else "—",
                                worst["distance_m"] if worst else distance,
                                worst["frame"] if worst else "—", transition["endpoint_floor_m"]])
-    handoff_rows = [[item["word"], item["frame"], " / ".join(item["bodies"]), item["distance_m"]]
+    handoff_rows = [[item["word"], item["frame"], " / ".join(item["bodies"]),
+                     f"{item['clearance_mm']:.6f}", item["distance_m"]]
                     for item in handoff]
     for english in (False, True):
         summary_headers = (["Sentence", "Word segments", "Transitions", "PASS", "source_collision", "FAILED",
                             "Planned s", "Baseline s", "Difference s"] if english else
                            ["句子", "单词段", "过渡数", "PASS", "source_collision", "FAILED", "规划秒数", "基线秒数", "秒数差"])
-        transition_headers = (["Sentence", "Transition", "Status", "Via direction", "Duration s", "Min contact distance m"]
-                              if english else ["句子", "过渡", "状态", "中间点方向", "时长秒", "最小接触距离 m"])
+        transition_headers = (["Sentence", "Transition", "Status", "Method", "Via directions", "Duration s", "Min clearance mm"]
+                              if english else ["句子", "过渡", "状态", "方法", "中间点方向", "时长秒", "最小间隙 mm"])
         failure_headers = (["Sentence", "Transition", "Worst body pair", "distance_m", "Transition frame", "Endpoint floor m"]
                            if english else ["句子", "过渡", "最差碰撞体对", "distance_m", "过渡内帧", "端点下限 m"])
-        handoff_headers = (["Word", "Source sign_frames index", "Body pair", "distance_m"] if english else
-                           ["单词", "源 sign_frames 帧索引", "碰撞体对", "distance_m"])
+        handoff_headers = (["Word", "Source sign_frames index", "Body pair", "Clearance mm", "distance_m"] if english else
+                           ["单词", "源 sign_frames 帧索引", "碰撞体对", "间隙 mm", "distance_m"])
         intro = ("# Transition results\n\n[中文](report.md) · **English**\n\n"
                  "Local generated report. Sentence duration is frame count / 30; each transition/leg duration is intervals / 30. "
-                 "PASS, source_collision and FAILED are disjoint transition counts. source_collision accepts inherited endpoint penetration only "
-                 "when the complete transition never worsens the worse endpoint. Singleton sentences have zero checks. "
+                 "PASS, source_collision and FAILED are disjoint transition counts. Either endpoint strictly below ENDPOINT_NEAR_M = 0 m "
+                 "stops search as source_collision; its emitted direct path is diagnostic only, with full-path penetration still reported. "
+                 "Clear endpoints escalate through direct, best via1/via2, then model-qpos0 hub. Singleton sentences have zero checks. "
                  "A null distance means no detected contacts, not a measured positive gap. "
                  "See the [protocol, commands and limitations](../../docs/transition-planner.en.md).\n\n" if english else
                  "# 衔接规划结果\n\n**中文** · [English](report.en.md)\n\n"
                  "本地生成报告。句子时长按帧数 / 30，过渡及各腿时长按时间间隔数 / 30。PASS、source_collision、FAILED 分开计数。"
-                 "source_collision 仅在整个过渡不比最差端点更深时接受原始端点穿透；单词句零次检查。"
+                 "任一端点严格低于 ENDPOINT_NEAR_M = 0 m 即停止搜索并记为 source_collision；输出的直连仅供诊断，仍报告全路径穿透。"
+                 "端点通过后依次尝试直连、最优 via1/via2、模型 qpos0 hub；单词句零次检查。"
                  "null 表示无接触记录，并非测得正间隙。详见[协议、启动命令与限制](../../docs/transition-planner.md)。\n\n")
         content = (intro + table(summary_headers, summary) + "\n\n" +
                    ("## Emitted transitions\n\n" if english else "## 输出过渡\n\n") +
@@ -250,6 +278,62 @@ def write_tables(reports):
                    ("## Group 2 source collision handoff\n\n" if english else "## 交给第二组的源姿态碰撞\n\n") +
                    (table(handoff_headers, handoff_rows) if handoff_rows else ("None." if english else "无。")) + "\n")
         (OUT / ("report.en.md" if english else "report.md")).write_text(content)
+
+
+def write_fixed_mount_finding(model):
+    """Report source/runtime evidence; never change geometry or collision masks."""
+    body = model.body("fixed_mount")
+    geoms = [g for g in range(model.ngeom) if model.geom_bodyid[g] == body.id]
+    rows = []
+    for geom in geoms:
+        mesh = model.mesh(int(model.geom_dataid[geom])).name
+        rows.append(f"| {geom} | {mesh} | {int(model.geom_contype[geom])} | "
+                    f"{int(model.geom_conaffinity[geom])} | {int(model.geom_group[geom])} |")
+    table = ("| geom ID | mesh | contype | conaffinity | group |\n"
+             "|---|---|---|---|---|\n" + "\n".join(rows))
+    info = json.loads((ROOT / "assets/robot/model_info.json").read_text())
+    adaptation = next(item for item in info["adaptations"] if "Fixed mount" in item)
+    position = ", ".join(f"{value:g}" for value in body.pos)
+    finding = f"""# fixed_mount evidence / fixed_mount 证据
+
+## 中文
+
+`assets/robot/scene.xml:65` 定义包装体 `fixed_mount`，局部位置为 ({position}) m。
+`scripts/prepare_robot.py:27–31` 创建 `pos=\"0 0 0.79\"` 的包装体，并把导入的 worldbody
+子元素重新挂到它下面，使模型成为抬高的固定基座模拟。`assets/robot/model_info.json`
+记录 `fixed_base=true` 和 `{adaptation}`；运行模式为 `{info['execution_mode']}`。
+
+模型直接挂在该体上的 mesh / 碰撞掩码如下（MuJoCo 运行时读取；XML 第 66–68 行）：
+
+{table}
+
+`pelvis` 与一份 `pelvis_contour_link` 是视觉几何（0/0）；另一份
+`pelvis_contour_link` 省略 XML 掩码属性，运行时为 1/1，参与碰撞。
+证据支持它是虚拟挂载 / 固定基座包装，并非单独增加的真实机器人夹具；体名下的活动碰撞网格
+仍是骨盆轮廓几何。`MujocoClearance` 必须保留它，不能按 `fixed_mount` 体名过滤。
+这里仅调查定义和几何含义，没有更改模型、掩码或 2 mm 阈值，也没有验证真实硬件。
+
+## English
+
+`assets/robot/scene.xml:65` defines the `fixed_mount` wrapper body at ({position}) m.
+`scripts/prepare_robot.py:27–31` creates `pos=\"0 0 0.79\"` and re-parents the imported
+worldbody children beneath it for raised fixed-base simulation. `assets/robot/model_info.json`
+records `fixed_base=true`, `{adaptation}`, and `{info['execution_mode']}`.
+
+The table above reads the three directly attached mesh geoms and their masks from MuJoCo
+(XML lines 66–68). `pelvis` and one `pelvis_contour_link` geom are visual-only (0/0).
+The other `pelvis_contour_link` omits XML mask attributes and has active runtime masks 1/1.
+This is a virtual mounting / fixed-base wrapper, rather than an additional real-robot fixture.
+Its active collision mesh is still pelvis-contour geometry and must remain in
+`MujocoClearance`; filtering the body name would discard that geometry. This investigation
+changes no model, mask, or 2 mm threshold and makes no hardware-validation claim.
+
+Regenerate / 重新生成：`.venv/bin/python scripts/evaluate_planned_transitions.py`
+after / 之前先运行 `.venv/bin/python scripts/plan_transitions.py --all`.
+"""
+    path = OUT / "fixed_mount_finding.md"
+    path.write_text(finding)
+    return str(path.relative_to(ROOT))
 
 
 def main(argv=None):
@@ -262,6 +346,7 @@ def main(argv=None):
     model = load_model(ROOT)
     for sentence in report["sentences"]:
         sentence["artifact_verification"] = verify_saved_sentence(sentence, model)
+    report["fixed_mount_finding"] = write_fixed_mount_finding(model)
     sag_sentence = next(s for s in report["sentences"] if s["glosses"] == ["YOU", "BUY", "BOOK"])
     sag = measure_sag(model, sag_sentence)
     (OUT / "you_buy_sag.json").write_text(json.dumps(sag, indent=2) + "\n")
@@ -276,7 +361,8 @@ def main(argv=None):
     inputs.update(sentence["baseline"]["path"] for sentence in report["sentences"])
     inputs.update(("assets/robot/scene.xml", "motions/hospital_v1_motions.json",
                    "assets/robot/upstream_manifest.json", "assets/robot/model_info.json",
-                   "motions/studio_galt_v1/index.json", "motions/wlasl_video_v1/index.json"))
+                   "motions/studio_galt_v1/index.json", "motions/wlasl_video_v1/index.json",
+                   "scripts/prepare_robot.py", "src/sign_robot/transitions.py"))
     report["input_sha256"] = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
                               for name in sorted(inputs)}
     import mujoco

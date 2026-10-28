@@ -3,6 +3,15 @@
 The first word keeps frame 0 (rise from neutral), the last keeps its return to
 neutral, just as stitch_baseline.py does. Interior words use inclusive sign_frames.
 This is a geometric preview, not a dynamics controller or an ASL validation.
+
+Clearance escalation is deliberately ordered.  A single-frame endpoint check
+comes first; an endpoint whose minimum measured contact distance is strictly
+below :data:`ENDPOINT_NEAR_M` is reported as ``source_collision`` and is handed
+to the source-motion group without searching for a detour.  ``0.0`` means that
+any contacting/penetrating endpoint is near the hard ``-2 mm`` line.  Only when
+both endpoints are clear do we try one-via and two-via candidates, followed by
+the model's neutral (hub) pose.  ``fixed_mount`` and every other active MuJoCo
+geometry remain in these checks.
 """
 from __future__ import annotations
 
@@ -34,6 +43,11 @@ VIA_DIRECTIONS = (
 # Follow the task's explicit failure rule, contact.dist < -0.002 m. This is
 # a penetration tolerance, NOT a claim of positive 2 mm free-space clearance.
 PENETRATION_TOLERANCE_M = 0.002
+# Hard fail line remains contact.dist < -PENETRATION_TOLERANCE_M (-2 mm).
+# ENDPOINT_NEAR_M: an endpoint min contact.dist strictly below this value is
+# source_collision.  With 0.0, this includes both hard-failing endpoints and
+# negative contacts inside the permitted 2 mm band; neither triggers a search.
+ENDPOINT_NEAR_M = 0.0
 HEIGHT_TOLERANCE_M = 1e-7
 
 
@@ -81,6 +95,8 @@ class ClearanceResult:
     min_distance_m: float | None = None
     collisions: list = field(default_factory=list)
     sampled_frames: int = 0
+    near_contacts: list = field(default_factory=list)
+    worst_contact: dict | None = None
 
 
 class MujocoClearance:
@@ -96,7 +112,8 @@ class MujocoClearance:
         self.joint_names = joint_names
 
     def __call__(self, positions):
-        distances, pairs = [], {}
+        distances, pairs, near_pairs = [], {}, {}
+        worst = None
         for frame, row in enumerate(positions):
             apply_frame(self.model, self.data, self.joint_names, row)
             for contact in self.data.contact[:self.data.ncon]:
@@ -105,15 +122,61 @@ class MujocoClearance:
                     continue
                 distance = float(contact.dist)
                 distances.append(distance)
+                location = ("start_endpoint" if frame == 0 else
+                            "end_endpoint" if frame == len(positions) - 1 else "interior")
+                item = {"bodies": bodies, "distance_m": distance,
+                        "frame": frame, "location": location}
+                if worst is None or distance < worst["distance_m"]:
+                    worst = item
+                key = tuple(bodies)
+                if distance < ENDPOINT_NEAR_M:
+                    if key not in near_pairs or distance < near_pairs[key]["distance_m"]:
+                        near_pairs[key] = item
                 if distance < -PENETRATION_TOLERANCE_M:
-                    key = tuple(bodies)
                     if key not in pairs or distance < pairs[key]["distance_m"]:
-                        location = ("start_endpoint" if frame == 0 else
-                                    "end_endpoint" if frame == len(positions) - 1 else "interior")
-                        pairs[key] = {"bodies": bodies, "distance_m": distance,
-                                      "frame": frame, "location": location}
+                        pairs[key] = item
         return ClearanceResult(not pairs, min(distances) if distances else None,
-                               list(pairs.values()), len(positions))
+                               list(pairs.values()), len(positions),
+                               list(near_pairs.values()), worst)
+
+
+def neutral_pose(joint_names, model=None):
+    """Exact fixed-base model qpos0 for the named scalar trajectory joints.
+
+    This is a routing reference, never an assumption that the hub or its legs
+    are collision-free.  All of them must pass the same clearance check.
+    """
+    model = model if model is not None else load_model()
+    addresses = [int(model.joint(str(n)).qposadr[0]) for n in joint_names]
+    return model.qpos0[addresses].copy()
+
+
+def _ik_wrist_offset(solver, reference, joint_names, vector, *, offset_sides=("left", "right")):
+    """Solve both arms from a reference, keeping all non-arm joints exact."""
+    model = solver.m
+    solver.d.qpos[:] = model.qpos0
+    apply_frame(model, solver.d, joint_names, reference)
+    q = solver.d.qpos.copy()
+    addresses = [int(model.joint(str(n)).qposadr[0]) for n in joint_names]
+    robot_to_world = solver.d.xmat[model.body("fixed_mount").id].reshape(3, 3).copy()
+    sides = ("left", "right")
+    vector = np.asarray(vector, dtype=float)
+    norm = np.linalg.norm(vector)
+    offset = VIA_DISPLACEMENT_M * vector / norm if norm else np.zeros(3)
+    goals = {}
+    for side in sides:
+        delta = (robot_to_world @ (offset * (1, 1 if side == "left" else -1, 1))
+                 if side in offset_sides else np.zeros(3))
+        wrist = solver.d.xpos[model.body(f"{side}_wrist_yaw_link").id].copy()
+        elbow = solver.d.xpos[model.body(f"{side}_elbow_link").id].copy()
+        rotation = solver.d.site_xmat[model.site(f"{side}_palm").id].reshape(3, 3).copy()
+        goals[side] = (wrist + delta, elbow + delta / 2, rotation)
+    previous = {side: q[solver.robot[side]["ids"]].copy() for side in sides}
+    solved, _ = solver.solve_arms(q, sides, goals, previous, [])
+    via_q = q.copy()
+    for side in sides:
+        via_q[solver.robot[side]["ids"]] = solved[side]
+    return via_q[addresses]
 
 
 def ik_via_candidates(a, b, joint_names, model=None):
@@ -129,32 +192,69 @@ def ik_via_candidates(a, b, joint_names, model=None):
     model = model if model is not None else load_model()
     solver = G1Retargeter(model, [])  # No finger solving/recoupling is needed.
     midpoint = (np.asarray(a) + np.asarray(b)) / 2
-    apply_frame(model, solver.d, joint_names, midpoint)
-    q = solver.d.qpos.copy()
-    addresses = [int(model.joint(str(n)).qposadr[0]) for n in joint_names]
-    robot_to_world = solver.d.xmat[model.body("fixed_mount").id].reshape(3, 3).copy()
-    sides = ("left", "right")
-    anchors = {
-        side: (solver.d.xpos[model.body(f"{side}_wrist_yaw_link").id].copy(),
-               solver.d.xpos[model.body(f"{side}_elbow_link").id].copy(),
-               solver.d.site_xmat[model.site(f"{side}_palm").id].reshape(3, 3).copy())
-        for side in sides
-    }
-    previous = {side: q[solver.robot[side]["ids"]].copy() for side in sides}
     for direction, vector in VIA_DIRECTIONS:
-        offset = VIA_DISPLACEMENT_M * np.asarray(vector, dtype=float) / np.linalg.norm(vector)
-        goals = {}
-        for side in sides:
-            delta = robot_to_world @ (offset * (1, 1 if side == "left" else -1, 1))
-            wrist, elbow, rotation = anchors[side]
-            goals[side] = (wrist + delta, elbow + delta / 2, rotation)
         # Clearance is assessed on the entire emitted path, rather than trusting
         # a penalty on this one IK pose. Every solve uses the same seed.
-        solved, _ = solver.solve_arms(q, sides, goals, previous, [])
-        via_q = q.copy()
-        for side in sides:
-            via_q[solver.robot[side]["ids"]] = solved[side]
-        yield direction, via_q[addresses]
+        yield direction, _ik_wrist_offset(solver, midpoint, joint_names, vector)
+
+
+def ik_dual_via_candidates(a, b, joint_names, model=None):
+    """Two IK knots: endpoint offsets, then neutral-arm retreat + outward.
+
+    The first family offsets source and target wrists in the same seven robot
+    directions as via1, retaining their respective fingers/non-arm coordinates.
+    The retreat family uses qpos0 arms and one-third interpolated fingers/other
+    joints for via1, solved by IK at that reference's wrist/elbow/palm targets.
+    Via2 offsets those retreated wrists out, out+up, or out+forward; its non-arm
+    coordinates are two-thirds from source to target.  A serialized family
+    parks either arm at neutral+out (or +out+up/+out+forward) at both knots;
+    the other arm stays at source for via1 and reaches target for via2.  Fingers
+    and other non-arm joints still use the one-/two-thirds interpolation.
+    No source-word identity affects this set. Every complete path is checked.
+    """
+    from sign_robot.retarget import G1Retargeter
+
+    model = model if model is not None else load_model()
+    solver = G1Retargeter(model, [])
+    a, b = np.asarray(a), np.asarray(b)
+    for direction, vector in VIA_DIRECTIONS:
+        yield [direction, direction], [
+            _ik_wrist_offset(solver, a, joint_names, vector),
+            _ik_wrist_offset(solver, b, joint_names, vector),
+        ]
+    arm = np.array([any(p in str(n) for p in ("shoulder", "elbow", "wrist"))
+                    for n in joint_names])
+    neutral = neutral_pose(joint_names, model)
+    retreat = a + (b - a) / 3
+    retreat[arm] = neutral[arm]
+    first = _ik_wrist_offset(solver, retreat, joint_names, (0, 0, 0))
+    outward = first.copy()
+    outward[~arm] = (a + 2 * (b - a) / 3)[~arm]
+    for direction, vector in VIA_DIRECTIONS:
+        if direction in ("out", "out+up", "out+forward"):
+            yield ["neutral_retreat", direction], [
+                first.copy(), _ik_wrist_offset(solver, outward, joint_names, vector),
+            ]
+    # A single neutral hub can still leave the other hand sweeping through a
+    # stationary wrist.  These fixed, symmetric families park one arm at a
+    # time with an outward wrist offset while the other arm changes pose.
+    # They are general geometry candidates, not word-specific exceptions.
+    for parked_side in ("left", "right"):
+        parked = arm & np.array([str(n).startswith(parked_side + "_") for n in joint_names])
+        first_reference, second_reference = a.copy(), b.copy()
+        first_reference[~arm] = (a + (b - a) / 3)[~arm]
+        second_reference[~arm] = (a + 2 * (b - a) / 3)[~arm]
+        first_reference[parked] = neutral[parked]
+        second_reference[parked] = neutral[parked]
+        for direction, vector in VIA_DIRECTIONS:
+            if direction not in ("out", "out+up", "out+forward"):
+                continue
+            first = _ik_wrist_offset(solver, first_reference, joint_names, vector,
+                                     offset_sides=(parked_side,))
+            second = _ik_wrist_offset(solver, second_reference, joint_names, vector,
+                                      offset_sides=(parked_side,))
+            yield [f"neutral_retreat_{parked_side}+{direction}",
+                   f"hold_{parked_side}+{direction}"], [first, second]
 
 
 def body_heights(model, joint_names, positions, bodies):
@@ -211,16 +311,22 @@ class TransitionPlan:
     selected_attempt: int = 0
     endpoint_clearance: list = field(default_factory=list)
     endpoint_floor_m: float | None = None
+    method: str = "direct"
+    via_directions: list = field(default_factory=list)
 
 
 def plan_transition(a, b, joint_names, *, clearance: Callable,
-                    via_factory=None, height_check=None):
-    """Try a direct quintic, then the fixed set of named IK via candidates.
+                    via_factory=None, via2_factory=None, hub_factory=None,
+                    height_check=None, model=None):
+    """Endpoint gate, direct quintic, best via1/via2, then qpos0 hub fallback.
 
-    Source collisions pass only when no sample is worse than the worse endpoint.
-    All candidates use the same endpoint rule; among passing vias, maximize the
-    minimum contact distance over both complete legs. A failed path is retained
-    for diagnosis with its worst colliding pair. Height is a separate guard.
+    Endpoint-near paths stop as source_collision, without a detour search. Their
+    direct samples are diagnostic only, even if they worsen an inherited hard
+    penetration; the old relative floor is retained as an explicit diagnostic.
+    Clear endpoints use the absolute 2 mm rule on every complete candidate.
+    All passing one-/two-via candidates compete on minimum contact distance.
+    Hub clearance is checked on both legs as well as the complete path. A failed
+    candidate is retained for diagnosis with its worst pair, never for execution.
     """
     direct = minimum_jerk_blend(a, b, joint_names)
     endpoints = [asdict(clearance(direct[[i]])) for i in (0, -1)]
@@ -228,23 +334,38 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
                         if r["min_distance_m"] is not None), default=None)
     endpoint_floor = (endpoint_min if endpoint_min is not None and
                       endpoint_min < -PENETRATION_TOLERANCE_M else None)
+    endpoint_near = endpoint_min is not None and endpoint_min < ENDPOINT_NEAR_M
     attempts = []
 
-    def assess(q, kind, leg_intervals, direction=None):
+    def assess(q, kind, leg_intervals, directions=(), legs=()):
         result = clearance(q)
+        leg_clearance = [asdict(clearance(leg)) for leg in legs]
         height = height_check(q) if height_check else {"passed": True}
-        if endpoint_floor is not None:
-            accepted = result.min_distance_m is not None and result.min_distance_m >= endpoint_floor
-            status = "source_collision" if accepted else "FAILED"
+        relative_ok = (None if endpoint_floor is None else
+                       result.min_distance_m is not None and result.min_distance_m >= endpoint_floor)
+        if endpoint_near:
+            status = "source_collision"
         else:
-            status = "PASS" if result.passed else "FAILED"
-        reasons = _clearance_reasons(result, endpoint_floor) if status == "FAILED" else []
-        worst = min(result.collisions, key=lambda c: c["distance_m"], default=None)
-        attempts.append({"kind": kind, "via_direction": direction, "intervals": len(q) - 1,
+            status = "PASS" if result.passed and all(r["passed"] for r in leg_clearance) else "FAILED"
+        reasons = _clearance_reasons(result) if status == "FAILED" else []
+        worst = result.worst_contact or min(result.collisions, key=lambda c: c["distance_m"], default=None)
+        directions = list(directions)
+        attempts.append({"kind": kind, "method": kind,
+                         "via_direction": directions[0] if kind == "via1" else None,
+                         "via_directions": directions, "intervals": len(q) - 1,
                          "leg_intervals": leg_intervals,
+                         "leg_clearance": leg_clearance,
+                         "relative_floor_passed": relative_ok,
                          "clearance": asdict(result), "height": height,
                          "worst_collision": worst, "status": status, "reasons": reasons})
         return len(attempts) - 1, q
+
+    def through(knots, kind, directions=(), check_legs=False):
+        legs = [minimum_jerk_blend(left, right, joint_names)
+                for left, right in zip(knots, knots[1:])]
+        q = np.vstack([legs[0]] + [leg[1:] for leg in legs[1:]])
+        return assess(q, kind, [len(leg) - 1 for leg in legs], directions,
+                      legs if check_legs else ())
 
     def finish(choice, warnings=None):
         index, q = choice
@@ -252,8 +373,14 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
         if warnings is None:
             warnings = ([] if attempt["height"]["passed"] else
                         ["wrist undershoot remains; collision status reported separately"])
-        return TransitionPlan(q, attempt["status"], index != 0, attempts, attempt["reasons"],
-                              warnings, attempt["via_direction"], index, endpoints, endpoint_floor)
+        return TransitionPlan(
+            positions=q, status=attempt["status"],
+            used_via=attempt["kind"] in ("via1", "via2", "hub"),
+            attempts=attempts, reasons=attempt["reasons"], warnings=warnings,
+            via_direction=attempt["via_direction"], selected_attempt=index,
+            endpoint_clearance=endpoints, endpoint_floor_m=endpoint_floor,
+            method="FAILED" if attempt["status"] == "FAILED" else attempt["kind"],
+            via_directions=attempt["via_directions"])
 
     def score(choice):
         distance = attempts[choice[0]]["clearance"]["min_distance_m"]
@@ -261,17 +388,31 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
         # reports, since this is not a measured positive free-space distance.
         return np.inf if distance is None else distance
 
+    if endpoint_near:
+        choice = assess(direct, "source_collision", [len(direct) - 1])
+        warnings = [f"source endpoint minimum {endpoint_min} m is below ENDPOINT_NEAR_M "
+                    f"({ENDPOINT_NEAR_M} m); no detour searched; direct samples are diagnostic only"]
+        if attempts[0]["relative_floor_passed"] is False:
+            warnings.extend(_clearance_reasons(
+                ClearanceResult(**attempts[0]["clearance"]), endpoint_floor))
+        return finish(choice, warnings)
+
     direct_choice = assess(direct, "direct", [len(direct) - 1])
-    direct_ok = attempts[0]["status"] != "FAILED"
+    direct_ok = attempts[0]["status"] == "PASS"
     if direct_ok and attempts[0]["height"]["passed"]:
         return finish(direct_choice)
     candidates = []
-    for direction, via in (via_factory or ik_via_candidates)(a, b, joint_names):
-        first, second = (minimum_jerk_blend(a, via, joint_names),
-                         minimum_jerk_blend(via, b, joint_names))
-        retry = np.vstack([first, second[1:]])  # One shared via; v=a=0 on both legs.
-        candidates.append(assess(retry, "ik_via", [len(first) - 1, len(second) - 1], direction))
-    passing = [c for c in candidates if attempts[c[0]]["status"] != "FAILED"]
+    singles = (via_factory(a, b, joint_names) if via_factory is not None else
+               ik_via_candidates(a, b, joint_names, model))
+    for direction, via in singles:
+        candidates.append(through([a, via, b], "via1", [direction]))
+    duals = (via2_factory(a, b, joint_names) if via2_factory is not None else
+             ik_dual_via_candidates(a, b, joint_names, model))
+    for directions, vias in duals:
+        if len(vias) != 2 or len(directions) != 2:
+            raise ValueError("A via2 candidate must have exactly two knots and direction names")
+        candidates.append(through([a, *vias, b], "via2", directions))
+    passing = [c for c in candidates if attempts[c[0]]["status"] == "PASS"]
     if direct_ok:
         # A sag-only search may replace an accepted direct path only when it
         # also removes the undershoot. Never exchange clearance for appearance.
@@ -280,7 +421,11 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
             return finish(direct_choice, ["wrist undershoot retained: no via passed both height and collision checks"])
     if passing:
         return finish(max(passing, key=score))
-    return finish(max(candidates, key=score) if candidates else direct_choice)
+    hub = hub_factory(joint_names) if hub_factory is not None else neutral_pose(joint_names, model)
+    hub_choice = through([a, hub, b], "hub", check_legs=True)
+    if attempts[hub_choice[0]]["status"] == "PASS":
+        return finish(hub_choice)
+    return finish(max([direct_choice, *candidates, hub_choice], key=score))
 
 
 def lookup_words(root=ROOT):
@@ -339,7 +484,6 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
         model = model if model is not None else load_model(root)
         clearance = MujocoClearance(model, names)
     height_check = (lambda q: wrist_height_check(model, names, q)) if model is not None else None
-    via_factory = lambda a, b, n: ik_via_candidates(a, b, n, model)
     pieces, transitions, segments, handoff, count = [], [], [], [], 0
     for k, (gloss, q) in enumerate(zip(glosses, clips)):
         s0, s1 = words[gloss]["sign_frames"]
@@ -348,14 +492,20 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
         end = len(q) - 1 if k == len(glosses) - 1 else s1
         if k:
             plan = plan_transition(pieces[-1][-1], q[start], names, clearance=clearance,
-                                   via_factory=via_factory, height_check=height_check)
+                                   height_check=height_check, model=model)
             chosen = plan.attempts[plan.selected_attempt]
             source_frames = (words[glosses[k - 1]]["sign_frames"][1], s0)
             for word, source_frame, result in zip((glosses[k - 1], gloss), source_frames,
                                                    plan.endpoint_clearance):
-                for collision in result["collisions"]:
+                # Near contacts can pass the absolute -2 mm check, so the old
+                # hard-collision list alone cannot supply the Group 2 handoff.
+                contacts = result["near_contacts"] or result["collisions"]
+                for collision in contacts:
+                    if collision["distance_m"] >= ENDPOINT_NEAR_M:
+                        continue
                     item = {"word": word, "frame": source_frame, "bodies": collision["bodies"],
-                            "distance_m": collision["distance_m"]}
+                            "distance_m": collision["distance_m"],
+                            "clearance_mm": collision["distance_m"] * 1000}
                     if item not in handoff:
                         handoff.append(item)
             transitions.append({"from_gloss": glosses[k - 1], "to_gloss": gloss,
@@ -366,12 +516,17 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
                                 "intervals": len(plan.positions) - 1,
                                 "duration_s": (len(plan.positions) - 1) / FPS,
                                 "status": plan.status, "used_via": plan.used_via,
+                                "method": plan.method,
                                 "via_direction": plan.via_direction,
+                                "via_directions": plan.via_directions,
                                 "selected_attempt": plan.selected_attempt,
                                 "clearance": chosen["clearance"],
+                                "min_clearance_mm": (None if chosen["clearance"]["min_distance_m"] is None else
+                                                     chosen["clearance"]["min_distance_m"] * 1000),
                                 "worst_collision": chosen["worst_collision"],
                                 "endpoint_clearance": plan.endpoint_clearance,
                                 "endpoint_floor_m": plan.endpoint_floor_m,
+                                "relative_floor_passed": chosen["relative_floor_passed"],
                                 "reasons": plan.reasons, "warnings": plan.warnings,
                                 "attempts": plan.attempts,
                                 "peak_rates": peak_rates(plan.positions, names)})
@@ -398,11 +553,15 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
               "rate_limits_rad_s": {"arm": ARM_RATE_RAD_S, "finger": FINGER_RATE_RAD_S},
               "minimum_leg_duration_s": MIN_LEG_DURATION_S,
               "collision_failure_below_m": -PENETRATION_TOLERANCE_M,
+              "endpoint_near_below_m": ENDPOINT_NEAR_M,
               "collision_threshold_note": "explicit task rule: fail below -2 mm, not a positive 2 mm separation guarantee",
-              "source_collision_rule": "when an endpoint is below -2 mm, accept only if the whole transition minimum is no worse than the worse endpoint",
+              "source_collision_rule": "first gate: either single-frame endpoint minimum below ENDPOINT_NEAR_M; no via/hub search; emitted direct samples are diagnostic only, not a clearance pass",
+              "relative_floor_rule": "for endpoints below -2 mm, retain endpoint_floor_m and relative_floor_passed as diagnostics; the first gate still stops search",
+              "escalation_order": ["endpoint_near", "direct", "best_via1_or_via2", "hub", "FAILED"],
+              "neutral_hub_source": "fixed-base model qpos0 for named trajectory joints; never assumed clear",
               "clearance_scope": "all transition samples including endpoints; upstream geoms; same-hand adjacency excluded",
               "sentence_peak_rates": peak_rates(q, names),
-              "failed_trajectory_policy": "emit least-penetrating failed via for diagnostic replay; not safe for execution",
+              "failed_trajectory_policy": "emit least-penetrating checked candidate for diagnostic replay; source_collision and FAILED are not certified for execution",
               "source_collision_handoff": handoff,
               "word_segments": segments, "transitions": transitions}
     return motion, report

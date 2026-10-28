@@ -106,10 +106,11 @@ def plan_one(glosses, *, model=None, render=False, out_dir=OUT):
           f"transitions {report['transition_count']} pass {report['pass_count']} "
           f"source_collision {report['source_collision_count']} failed {report['failed_count']}")
     for transition in report["transitions"]:
-        if transition["used_via"]:
-            print("  VIA", transition["from_gloss"], "->", transition["to_gloss"],
-                  transition["via_direction"], transition["status"],
-                  "minimum contact distance", transition["clearance"]["min_distance_m"], "m")
+        directions = " -> ".join(transition["via_directions"])
+        print("  SEGMENT", transition["from_gloss"], "->", transition["to_gloss"],
+              transition["method"], directions, transition["status"],
+              "minimum contact distance", transition["min_clearance_mm"], "mm;",
+              transition["duration_s"], "s")
         for warning in transition["warnings"]:
             print("  WARNING", transition["from_gloss"], "->", transition["to_gloss"], warning)
         if transition["status"] == "FAILED":
@@ -152,7 +153,8 @@ def main(argv=None):
         for item in sentence["source_collision_handoff"]:
             if item not in handoff:
                 handoff.append(item)
-    payload = {"sentences": reports,
+    payload = {"planner_protocol": "round3_endpoint_near_via1_via2_hub",
+               "sentences": reports,
                "totals": {key: sum(s[key] for s in reports) for key in
                           ("transition_count", "pass_count", "source_collision_count", "failed_count")},
                "source_collision_handoff": handoff}

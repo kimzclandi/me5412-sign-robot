@@ -1,69 +1,87 @@
-# Group 3: transition planner, round 2
+# Group 3: transition planner, round 3
 
 [中文](transition-planner.md) · **English**
 
-This round edits the existing planner at `bded331` (original base `2656412`) on `group3/transition-planner`. All nine scripted sentences plus THANK-YOU were regenerated locally. Of 19 transitions, **13 are PASS, two are source_collision, and four are FAILED**. These are disjoint counts; `accepted_count` is PASS plus source_collision. A source_collision still contains inherited penetration, and a FAILED path is retained only for diagnosis. The singleton sentences BREATHE-DEEP and THANK-YOU have zero transitions and receive no transition clearance certification.
+This round adds the endpoint gate, dual vias and neutral-hub fallback on `group3/transition-planner` at `98c0970` (original base `2656412`). All nine scripted sentences plus THANK-YOU were regenerated locally: **19 segments = 16 PASS, three source_collision, zero FAILED**. Counts are disjoint; the compatibility field `accepted_count` still sums PASS and source_collision and is not a safe-execution count. Emitted source_collision direct paths are diagnostic only. BREATHE-DEEP and THANK-YOU are singleton sentences with zero transitions and receive no clearance certification of the words themselves.
 
-## Run and local outputs
+## Run and local artifacts
 
-Run sequentially from the repository root using the existing `.venv` and vendor symlinks. These thread settings keep one heavy process active, at most three threads, and require at least 2 GiB MemAvailable:
+Use the existing `.venv` from the repository root, sequentially, without installing `sentence_transformers`. Before each heavy task, confirm `MemAvailable ≥ 2 GiB`; run only one MuJoCo / planner process and at most three threads:
 
 ```bash
 export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
-export LP_NUM_THREADS=1 MESA_GLTHREAD=false
+export LP_NUM_THREADS=1 MESA_GLTHREAD=false MUJOCO_GL=egl
+.venv/bin/python -c 'from pathlib import Path; m = int(next(s.split()[1] for s in Path("/proc/meminfo").read_text().splitlines() if s.startswith("MemAvailable:"))); assert m >= 2 * 1024**2; print("MemAvailable GiB:", m / 1024**2)'
 .venv/bin/python scripts/plan_transitions.py --all
-MUJOCO_GL=egl .venv/bin/python scripts/evaluate_planned_transitions.py --render-comparison
+.venv/bin/python scripts/evaluate_planned_transitions.py
 .venv/bin/python -m pytest -q tests/test_plan_transitions.py
 .venv/bin/python -m pytest -q
 ```
 
-The evaluator defaults to `results/planned_transitions/you_hurt_where_baseline_vs_planned_v2.mp4` and copies it to `/workspace/you_hurt_where_baseline_vs_planned_v2.mp4`; `--copy-to` changes the copy path. On macOS omit `MUJOCO_GL=egl`; macOS was not tested here. `--help` lists options. For a single preview, use a separate report so the ten-sentence JSON is preserved:
+For macOS rendering, omit `MUJOCO_GL=egl`; neither macOS nor a host-capable environment was tested this round. Use a separate report for a single preview so the ten-sentence result is preserved:
 
 ```bash
 MUJOCO_GL=egl .venv/bin/python scripts/plan_transitions.py YOU HURT WHERE --render --report results/planned_transitions/you_hurt_where_preview.json
 ```
 
-Trajectories use `results/mocap_previews/planned_sentence_<GLOSSES>.npz` with the unchanged `timestamps_s`, `joint_names`, `positions` fields. Local reports, logs, heights, and video live in `results/planned_transitions/`: [JSON](../results/planned_transitions/report.json), [English table](../results/planned_transitions/report.en.md), [Chinese table](../results/planned_transitions/report.md), [planner log](../results/planned_transitions/planner_round2_output.txt), and [v2 video](../results/planned_transitions/you_hurt_where_baseline_vs_planned_v2.mp4). These generated files are ignored; a fresh checkout must regenerate them before those local links work. The planner exits 0 after emitting artifacts even if some transitions are FAILED; inspect report statuses.
+Generated NPZ files use `results/mocap_previews/planned_sentence_<GLOSSES>.npz` and preserve the `timestamps_s`, `joint_names`, `positions` contract. All artifacts below are gitignored; regenerate them after a fresh checkout:
 
-## Protocol
+- [report.json](../results/planned_transitions/report.json), [Chinese table](../results/planned_transitions/report.md), [English table](../results/planned_transitions/report.en.md): `method`, `via_direction` / `via_directions`, `min_clearance_mm` and `duration_s` for all 19 segments, per-sentence total duration against baseline, all candidate attempts, and source-frame handoff.
+- [fixed_mount_finding.md](../results/planned_transitions/fixed_mount_finding.md): bilingual source locations, generator and runtime mesh / mask evidence.
+- [Planner log](../results/planned_transitions/planner_round3_output.txt), [saved-artifact recheck log](../results/planned_transitions/evaluate_round3_output.txt), [before/after test comparison](../results/planned_transitions/pytest_round3_summary.json), [focused test log](../results/planned_transitions/pytest_round3_transitions_final.txt), [full test log](../results/planned_transitions/pytest_round3_after.txt).
+- `report_round2.json` / `.md` / `.en.md` preserve the previous reports. `report_round3_initial.json` preserves the initial result with one remaining FAILED before adding serialized retreat. `serialized_neutral_probe.json` and `serialized_outward_probe.json` retain failed and passing general-candidate probes.
 
-- Lookup uses the hospital map, then mocap/video indexes with the baseline ready/poor filters. Interior words keep inclusive `sign_frames`; the first keeps its frame-0 rise and the last its return to neutral. Transition endpoints exactly equal the previous `sign_frames[1]` and next `sign_frames[0]`. Source slices are not edited or resampled.
-- Every direct blend and every via leg uses `s(u)=10u³−15u⁴+6u⁵`. Duration is `max(shortest_rate_limited_time, 0.3 s)`, rounded up to integer 30 fps intervals: at least nine intervals per leg, and at least 0.6 s for a two-leg via. Continuous peak velocity is `1.875 × |Δq| / T`. Arm limits stay 15 rad/s, fingers 10 rad/s, including coupled finger joints. Coupled joints are not independent drives.
-- `load_model` / `apply_frame` inspect every emitted transition sample, including endpoints, with upstream collision geoms and the existing same-hand adjacency exclusion. The absolute failure threshold stays **`contact.dist < -0.002 m`**. This allows 2 mm penetration; it does not promise a positive 2 mm gap. Null means no detected contacts, not a measured positive separation. Collision masks, rates, and thresholds are unchanged; between-sample continuous collision is unverified.
-- When an endpoint is below -2 mm, the whole transition passes as **`source_collision` only if its minimum contact distance is at least the minimum of the two endpoint distances**. A no-contact endpoint does not lower that floor. Any interior worsening must be repaired by a via under the same relative rule, or remains FAILED. `clearance.passed` retains the absolute check; transition `status` carries the relative classification.
-- A clearance failure tries the fixed directions `out`, `up`, `forward`, `out+up`, `out+forward`, `up+forward`, `out+up+forward`. Each target is 6.5 cm from the wrist at the endpoint midpoint pose; combination vectors are normalized. Existing shoulder offsets and forward foot geoms confirm robot +Y left, +X forward, +Z up. Outward means +Y for the left hand and -Y for the right. Bounded `G1Retargeter.solve_arms` IK starts each candidate from the same midpoint, softly retaining palm orientation and elbow position. Only arms change; fingers and all other coordinates stay the convex midpoint. Joint limits can prevent fully reaching a target.
-- Both complete min-jerk legs are checked for every candidate. The passing via with the largest minimum contact distance wins, using fixed direction order to break ties. No detected contacts rank first but remain null in reports. The chosen `via_direction`, every attempt, endpoint distances, and the selected worst pair with `distance_m` are recorded. If no candidate passes, the least-penetrating failed via is emitted as FAILED.
-- Wrist undershoot remains a separate aesthetic check. An already accepted direct path can use the same search to remove undershoot, but is retained with a warning if no via passes both height and collision checks. When clearance itself requires a via, collision acceptance and clearance ranking take priority; any remaining undershoot is reported.
+The planner exits 0 after successfully writing artifacts even when reports contain FAILED segments; inspect statuses. Sentence duration means frame count / 30; transition and leg duration mean intervals / 30.
 
-The Group 2 handoff lists each colliding endpoint's word, zero-based source frame from `sign_frames`, body pair, and signed `distance_m`, including bad endpoints on FAILED transitions. It appears per sentence and deduplicated at report level. This run has eight pair records across NURSE frame 24 and DOCTOR frame 89; source motions remain unchanged.
+## Ordered escalation protocol
 
-## Results and validation
+1. **Endpoint gate first.** Check both endpoints separately as single frames. The explicit constant **`ENDPOINT_NEAR_M = 0.0 m`** classifies either endpoint minimum `contact.dist` **strictly `< 0.0`** as `source_collision`, records word, zero-based source frame, body pair and distance, and stops via1, via2 and hub search. This includes inherited hard failures below −2 mm and mild negative contacts inside the tolerance. Exactly 0 does not trigger the gate; null means no detected contacts. MEDICINE frame 119 measures **−0.806716 mm** and must also be handed off. This gate is separate from the path's absolute hard-failure line; a detour cannot conceal a source-pose problem.
+2. **Direct.** With both endpoints clear, check a direct min-jerk blend. The absolute rule remains **`contact.dist < -PENETRATION_TOLERANCE_M`, `PENETRATION_TOLERANCE_M = 0.002 m`**. It permits up to 2 mm penetration and does not promise a positive 2 mm gap. Check every emitted sample including endpoints. Null is not a measured positive separation.
+3. **Rank via1 and via2 together.** If direct clearance fails, evaluate the fixed seven single-via and sixteen dual-via candidates. Choose the passing candidate with the largest minimum contact distance over its **complete path**, retaining candidate order for ties. No-contact candidates rank above detected contacts but still report null. `method="via1"` has `via_direction`; `method="via2"` has two `via_directions`. Each via uses the existing bounded `G1Retargeter.solve_arms` IK without editing `retarget.py`; neither IK targets nor neutral poses are assumed clear.
+4. **Hub fallback.** Only when every via1/via2 candidate fails clearance, try source → hub → target. The hub uses the fixed-base model's **`qpos0` values for the named joints**. Check the complete path and both legs independently; all must pass for PASS / `method="hub"`. If it still fails, report `method="FAILED"` and retain the least-penetrating checked candidate, its worst body pair and distance for diagnosis only. All current 19 segments find accepted candidates before hub; real hub paths can fail, while mocked-clearance unit tests cover selection of a passing fallback.
 
-The two source_collision segments are NOW→NURSE (endpoint floor **-0.032892744 m**) and DOCTOR→COME (**-0.007854003 m**); each complete path equals its endpoint floor. Four segments still fail after all seven directions:
+Single vias retain the robot-frame directions `out`, `up`, `forward`, `out+up`, `out+forward`, `up+forward`, `out+up+forward`. Robot +X is forward, +Y left, +Z up; outward is +Y for the left hand and −Y for the right. Normalized vectors request a 6.5 cm wrist displacement. Single-via IK starts at the endpoint joint midpoint with non-arm coordinates held exactly at that midpoint. Joint bounds can prevent reaching the full target.
 
-| Transition | Chosen direction | Worst body pair | distance_m |
-|---|---|---|---:|
-| MEDICINE→MORNING | out+up | left_wrist_yaw_link / torso_link | -0.047320147 |
-| NURSE→BLOOD-DRAW | up | R_thumb_proximal / fixed_mount | -0.040771353 |
-| COME→SOON | out | R_index_proximal / left_wrist_yaw_link | -0.025966885 |
-| NEED→INTERPRETER | out+up | L_thumb_distal / left_hip_roll_link | -0.034908732 |
+The sixteen dual-via candidates use no word identity: seven offset the source and target wrist poses in the same direction; three retreat to qpos0 arms then go out, out+up or out+forward; six try serialized retreat symmetrically for either arm. At both serialized knots, the parked arm uses neutral wrist targets plus out / out+up / out+forward displacement. The other arm stays at source for via1 and reaches target for via2, then the parked arm approaches its target. The latter two families use one-/two-thirds source-to-target interpolation for fingers and other non-arm coordinates. Only arms are solved; upstream coupling is retained, and coupled joints are not independent drives.
 
-These failed candidates have substantial penetration and are not execution trajectories. The new fixed search does not resolve every transition.
+Every leg uses `s(u)=10u³−15u⁴+6u⁵`, whose continuous peak speed is `1.875 × |Δq| / T`. Round up to 30 fps intervals satisfying the rate limits and **0.3 s / nine intervals** per leg. Via1 / hub take at least 0.6 s and via2 at least 0.9 s. Arm **15 rad/s** and finger **10 rad/s** limits remain unchanged.
 
-Saved NPZ files are rechecked for exact endpoints, sampled rates, per-leg minimum duration, and collision classification. The JSON also records input SHA-256 hashes and runtime versions. Sentence duration means frame count / 30; transition/leg duration means intervals / 30. The comparison has baseline on top, planned below, front left and right-side right, at original 30 fps. Baseline YOU HURT WHERE is **9.400 s**, planned **9.033 s**; the shorter row holds its last frame without time warping, and both planned transitions are PASS.
+`endpoint_floor_m` and `relative_floor_passed` retain the relative-floor diagnostic for inherited endpoints below −2 mm. The new endpoint gate stops search first; interior worsening is never relabelled as a clearance pass. Source_collision still emits and measures a direct diagnostic path. Wrist undershoot remains separate: an already clear direct path may search for a via that passes both height and clearance, retaining the direct path if none does. A purely aesthetic search never escalates to hub.
 
-YOU→BUY uses the up via; right-wrist undershoot below the lower endpoint decreases from **0.849769 mm to zero**. Elbow undershoot is zero in both, with the fixed endpoint descent of 8.059297 mm preserved. Inside source YOU, wrist and elbow peak-to-end descents remain **234.348952 mm** and **54.821335 mm**. See local [you_buy_sag.json](../results/planned_transitions/you_buy_sag.json). Archived baseline boundaries have approximately 1e-8 rad differences from today's sources; new planned endpoints are exact.
+Source lookup retains hospital-map precedence followed by existing mocap / video ready / poor filters. Interior words keep inclusive `sign_frames`; the first retains its frame-0 rise and the last its neutral return. Source slices are neither edited nor resampled, and transition endpoints match source values bit-for-bit. The existing same-hand finger / wrist adjacency rule is unchanged; no geom exclusion, collision-mask change or `fixed_mount` filtering was added.
 
-The focused transition suite has **38 passing tests**, 13 more than round 1. This sandbox's unchanged full baseline is **286 passed, eight failed, 23 errors**; five failures lack `sentence_transformers`, one is the existing project overview failure, and two failures plus 23 errors result from prohibited sockets. The full after run is **299 passed, eight failed, 23 errors**, with **zero new failures or errors**. Full before/after logs and the [failure-set comparison](../results/planned_transitions/pytest_round2_summary.json) are retained locally. A host-capable environment was unavailable; no bypass flags, skips, or dependency fixes were used. These developer checks are not an independent frozen evaluation. Dynamics, hardware execution, ASL meaning, and human comprehension remain unverified; source-word rates/collisions are retained and whole-sentence rates are reported separately.
+## Results and Group 2 handoff
+
+| Previously FAILED segment | Current status / method | Via directions | Duration s | Whole-path minimum mm |
+|---|---|---|---:|---:|
+| MEDICINE → MORNING | source_collision | No search | 0.433 | −56.182782 |
+| NURSE → BLOOD-DRAW | PASS / via2 | up → up | 1.000 | null |
+| COME → SOON | PASS / via2 | neutral_retreat_right+out → hold_right+out | 0.900 | null |
+| NEED → INTERPRETER | PASS / via2 | out → out | 0.900 | null |
+
+**The −56.183 mm for MEDICINE → MORNING is the retained direct diagnostic path's measurement, not the endpoint gate value or a passing path.** Its trigger is MEDICINE frame 119, left shoulder yaw / torso (−0.807 mm). NOW → NURSE and DOCTOR → COME also retain source_collision; their worst source endpoints are **−32.892744 mm** and **−7.854003 mm**. The handoff contains **10 body-pair records across three word frames** (MEDICINE 119, NURSE 24, DOCTOR 89), includes within-tolerance contacts, and is deduplicated in sentence and aggregate reports. No source motion was changed.
+
+All ten saved NPZ files were rechecked for endpoints, sampled rates, per-leg duration floor, both endpoint gates and collision classification. Inserted transitions peak at **14.635394 rad/s** for arms and **8.868628 rad/s** for fingers. JSON records input SHA-256 hashes, planner-source hash and runtime versions. Local bilingual tables contain every sentence's duration against baseline. YOU HURT WHERE remains **9.033 s** planned versus **9.400 s** baseline. The v2 comparison video was retained and was not refreshed this round. Optionally run `MUJOCO_GL=egl .venv/bin/python scripts/evaluate_planned_transitions.py --render-comparison` to refresh `results/planned_transitions/you_hurt_where_baseline_vs_planned_v2.mp4`; it also copies to `/workspace/you_hurt_where_baseline_vs_planned_v2.mp4` by default, configurable with `--copy-to`.
+
+YOU → BUY still selects the up via, reducing right-wrist undershoot below the lower endpoint from **0.849769 mm** to zero. Source YOU's internal wrist / elbow peak-to-end drops remain **234.348952 / 54.821335 mm**; a planner preserving source frames cannot repair them. See [you_buy_sag.json](../results/planned_transitions/you_buy_sag.json).
+
+### fixed_mount evidence
+
+[scene.xml lines 65–68](../assets/robot/scene.xml) define the wrapper at z=0.79 m; [prepare_robot.py lines 27–31](../scripts/prepare_robot.py) re-parent the imported robot beneath it; [model_info.json](../assets/robot/model_info.json) explicitly records `Fixed mount at z=0.79m`. Directly attached geoms are visual pelvis, visual pelvis_contour_link (both 0/0), and active collision pelvis_contour_link (runtime `contype=1 conaffinity=1`). It is a virtual mounting / fixed-base placeholder rather than an additional real-robot fixture. Its active mesh is still pelvis-contour geometry and **must remain in collision checks**. This round reports evidence without changing the model. The complete runtime table is in local [fixed_mount_finding.md](../results/planned_transitions/fixed_mount_finding.md).
+
+## Actual tests and limitations
+
+The focused suite has **55 passing tests**, covering the strict endpoint gate without via/hub search, real dual-via IK, neutral qpos0, rates / 0.3 s floor, maximum whole-path clearance selection, hub-leg checks and selection, inherited relative-floor diagnostics, fixed-mount collision and source-frame handoff. The full sandbox baseline was **299 passed, eight failed, 23 errors**; after changes it is **316 passed, eight failed, 23 errors**. The same 31 failure / error IDs remain, with **zero new failures or errors**. Five failures are existing learned_motion / learning_api failures without `sentence_transformers`; one is the existing overview failure. Two further failures and 23 errors come from prohibited sockets. The host reference baseline is **324 passed / six failed**; a host-capable run was unavailable, and the sandbox run is not presented as a host run. No dependencies were installed, tests skipped or related modules changed.
+
+These are developer regression checks, not a frozen independent evaluation by reviewers who did not tune the planner. Source_collision and FAILED artifacts are not safe execution trajectories. Source-word rates / collisions remain unchanged, and whole-sentence peaks are reported separately. Between-sample continuous collision, dynamics, hardware execution, ASL meaning and human comprehension remain unverified.
 
 ## Git handoff
 
-`.gitignore` excludes planned NPZ/MP4 files, `results/planned_transitions/`, and comparison MP4s. The requested `git rm --cached` failed because the worktree Git index is on a read-only filesystem. Ignore patterns cannot untrack existing files: the foreman must run the following on the host before committing. `--cached` keeps every file on disk.
+Generated artifacts remain gitignored. No push or file deletion is authorized or performed. Deliver only the following six code / test / documentation files, also listed locally in `results/planned_transitions/FILE_LIST.txt`. Here `git add` exited 128 because the worktree `index.lock` could not be created on a read-only filesystem ([error log](../results/planned_transitions/git_handoff_round3.txt)). All six changes remain unstaged; no commit or push was attempted. The foreman can commit on the host:
 
 ```bash
-git rm -r --cached -- 'results/mocap_previews/planned_sentence_*.npz' results/planned_transitions/ results/you_hurt_where_baseline_vs_planned.mp4
-git add .gitignore src/sign_robot/transitions.py scripts/plan_transitions.py scripts/evaluate_planned_transitions.py tests/test_plan_transitions.py docs/transition-planner.md docs/transition-planner.en.md
-git commit -m "feat(group3): add IK via search and source collision handoff"
+git add src/sign_robot/transitions.py scripts/plan_transitions.py scripts/evaluate_planned_transitions.py tests/test_plan_transitions.py docs/transition-planner.md docs/transition-planner.en.md
+git commit -m "feat(group3): endpoint-near gate, dual-via and hub fallback"
 ```
 
-All changes remain unstaged here; no commit or push was made. No files were deleted. `motions/`, `retarget.py`, `ACTION_IDS`, original baseline clips, vendor symlinks, `.venv`, and `_scratch/` are outside this change.
+`motions/`, `retarget.py`, `ACTION_IDS`, model / collision masks, baseline clips, existing `.venv` / vendor symlinks and `_scratch/` were not changed.
