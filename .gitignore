@@ -26,3 +26,9 @@ results/mocap_previews/*.log
 data/video/*/raw/
 data/video/wlasl/WLASL_v0.3.json
 results/video_previews/*.log
+
+# Regenerable transition plans, reports, renders, and comparisons stay local
+results/mocap_previews/planned_sentence_*.npz
+results/mocap_previews/planned_sentence_*.mp4
+results/planned_transitions/
+results/you_hurt_where_baseline_vs_planned*.mp4

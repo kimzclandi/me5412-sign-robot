@@ -22,7 +22,8 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from sign_robot.motion import apply_frame, load_model, validate_motion
-from sign_robot.transitions import FPS, body_heights, joint_rate_limits, lookup_words
+from sign_robot.transitions import (FPS, MIN_LEG_DURATION_S, MujocoClearance, body_heights,
+                                    joint_rate_limits, lookup_words)
 
 OUT = ROOT / "results/planned_transitions"
 PREVIEWS = ROOT / "results/mocap_previews"
@@ -44,17 +45,21 @@ def load_report(path):
     return json.loads(path.read_text())
 
 
-def verify_saved_sentence(report):
-    """Independent saved-artifact check, including both transition endpoints."""
+def verify_saved_sentence(report, model):
+    """Recheck saved samples/endpoints; this is a developer check, not a held-out test."""
     path = artifact_path(report["output_npz"])
     motion = read_motion(path)
     q, names = motion["positions"], motion["joint_names"]
     assert len(q) == report["frames"]
     np.testing.assert_allclose(np.diff(motion["timestamps_s"]), 1 / FPS)
     words = lookup_words()
+    clearance = MujocoClearance(model, names)
     peaks = {"arm_rad_s": 0.0, "finger_rad_s": 0.0}
     for segment in report["transitions"]:
         clip = q[segment["start_frame"]:segment["end_frame"] + 1]
+        chosen = segment["attempts"][segment["selected_attempt"]]
+        assert all(n / FPS >= MIN_LEG_DURATION_S for n in chosen["leg_intervals"])
+        assert sum(chosen["leg_intervals"]) == len(clip) - 1
         speed = np.abs(np.diff(clip, axis=0)) * FPS
         assert np.all(speed <= joint_rate_limits(names) + 1e-10)
         for limit, key in ((15, "arm_rad_s"), (10, "finger_rad_s")):
@@ -63,7 +68,17 @@ def verify_saved_sentence(report):
             with np.load(ROOT / words[gloss]["motion"], allow_pickle=False) as source:
                 np.testing.assert_array_equal(names, source["joint_names"])
                 np.testing.assert_array_equal(clip[index], source["positions"][words[gloss]["sign_frames"][bound]])
-    return {"passed": True, "transition_peak_rates": peaks}
+        result = clearance(clip)
+        endpoints = [clearance(clip[[i]]).min_distance_m for i in (0, -1)]
+        floor = min((d for d in endpoints if d is not None), default=None)
+        if floor is not None and floor < -0.002:
+            status = "source_collision" if result.min_distance_m >= floor else "FAILED"
+        else:
+            status = "PASS" if result.passed else "FAILED"
+        assert status == segment["status"]
+        assert result.min_distance_m == segment["clearance"]["min_distance_m"]
+    return {"passed": True, "checks": "saved endpoints, rates, per-leg durations, collision classification",
+            "transition_peak_rates": peaks}
 
 
 def measure_sag(model, sentence):
@@ -91,6 +106,7 @@ def measure_sag(model, sentence):
               "planned_interval": [transition["start_frame"], transition["end_frame"]],
               "planned_transition_status": transition["status"],
               "planned_used_via": transition["used_via"],
+              "planned_via_direction": transition["via_direction"],
               "archived_baseline_buy_boundary_difference_rad": boundary_difference}
     for key, motion, a, b in (
             ("baseline", baseline, start, baseline_end),
@@ -167,55 +183,91 @@ def render_comparison(model, planned_report, destination):
                 print(f"comparison render {i + 1}/{n_frames} frames", flush=True)
             if i == 100:
                 panel.save(OUT / "you_hurt_where_comparison_frame.png")
-    return {"path": str(destination.relative_to(ROOT)), "fps": FPS, "frames": n_frames,
+    return {"path": str(destination.relative_to(ROOT) if destination.is_relative_to(ROOT) else destination),
+            "fps": FPS, "frames": n_frames,
             "duration_s": n_frames / FPS, "size": [2 * width, 2 * height],
             "layout": "baseline top, planned bottom; front left, right-side right; shorter row holds its end"}
 
 
 def write_tables(reports):
-    head = "| Sentence | Transitions | Pass | Failed | Planned s | Baseline s | Difference s |"
-    lines = [head, "|---|---:|---:|---:|---:|---:|---:|"]
+    def seconds(value, signed=False):
+        return "—" if value is None else format(value, "+.3f" if signed else ".3f")
+
+    def table(headers, rows):
+        return "\n".join(["| " + " | ".join(headers) + " |",
+                          "|" + "---|" * len(headers)] +
+                         ["| " + " | ".join(map(str, row)) + " |" for row in rows])
+
+    summary, transitions, failed, handoff = [], [], [], []
     for report in reports:
-        lines.append(f"| {' '.join(report['glosses'])} | {report['transition_count']} | "
-                     f"{report['pass_count']} | {report['failed_count']} | {report['duration_s']:.3f} | "
-                     f"{report['baseline']['duration_s']:.3f} | {report['duration_vs_baseline_s']:+.3f} |")
-    table = "\n".join(lines)
-    failed = [t for report in reports for t in report["transitions"] if t["status"] == "FAILED"]
-    detail = "\n\n".join(f"- **{t['from_gloss']} → {t['to_gloss']}: FAILED** — " + "; ".join(t["reasons"])
-                           for t in failed)
-    chinese_detail = (detail.replace(": FAILED", ": 失败").replace("penetration", "穿透")
-                      .replace("sample", "采样帧").replace("start_endpoint", "起点")
-                      .replace("end_endpoint", "终点").replace("interior", "内部"))
-    chinese_table = table.replace(head, "| 句子 | 过渡数 | 通过 | 失败 | 规划秒数 | 基线秒数 | 秒数差 |")
-    (OUT / "report.en.md").write_text(
-        "# Transition results\n\n[中文](report.md) · **English**\n\n"
-        "Duration is frame count / 30, including the final displayed frame. "
-        "Pass/fail counts cover inserted transitions only; singleton sentences have zero checks. "
-        "See the [protocol, commands and limitations](../../docs/transition-planner.en.md).\n\n" +
-        table + "\n\nFailure details (raw collision body names):\n\n" + detail + "\n")
-    (OUT / "report.md").write_text(
-        "# 衔接规划结果\n\n**中文** · [English](report.en.md)\n\n"
-        "时长按帧数 / 30 计算，包含最后一帧显示时间。通过/失败只统计插入的过渡；"
-        "单词句没有过渡检查。详见[协议、启动命令与限制](../../docs/transition-planner.md)。\n\n" +
-        chinese_table + "\n\n失败详情（碰撞体名称保留原始标识；采样帧按过渡内位置编号）：\n\n" + chinese_detail + "\n")
+        sentence = " ".join(report["glosses"])
+        summary.append([sentence, len(report["word_segments"]), report["transition_count"],
+                        report["pass_count"], report["source_collision_count"], report["failed_count"],
+                        seconds(report["duration_s"]), seconds(report["baseline"]["duration_s"]),
+                        seconds(report["duration_vs_baseline_s"], signed=True)])
+        for item in report["source_collision_handoff"]:
+            if item not in handoff:
+                handoff.append(item)
+        for transition in report["transitions"]:
+            pair = transition["from_gloss"] + " → " + transition["to_gloss"]
+            distance = transition["clearance"]["min_distance_m"]
+            transitions.append([sentence, pair, transition["status"],
+                                transition["via_direction"] or "—",
+                                f"{transition['duration_s']:.3f}",
+                                "null" if distance is None else f"{distance:.9f}"])
+            if transition["status"] == "FAILED":
+                worst = transition["worst_collision"]
+                failed.append([sentence, pair, " / ".join(worst["bodies"]) if worst else "—",
+                               worst["distance_m"] if worst else distance,
+                               worst["frame"] if worst else "—", transition["endpoint_floor_m"]])
+    handoff_rows = [[item["word"], item["frame"], " / ".join(item["bodies"]), item["distance_m"]]
+                    for item in handoff]
+    for english in (False, True):
+        summary_headers = (["Sentence", "Word segments", "Transitions", "PASS", "source_collision", "FAILED",
+                            "Planned s", "Baseline s", "Difference s"] if english else
+                           ["句子", "单词段", "过渡数", "PASS", "source_collision", "FAILED", "规划秒数", "基线秒数", "秒数差"])
+        transition_headers = (["Sentence", "Transition", "Status", "Via direction", "Duration s", "Min contact distance m"]
+                              if english else ["句子", "过渡", "状态", "中间点方向", "时长秒", "最小接触距离 m"])
+        failure_headers = (["Sentence", "Transition", "Worst body pair", "distance_m", "Transition frame", "Endpoint floor m"]
+                           if english else ["句子", "过渡", "最差碰撞体对", "distance_m", "过渡内帧", "端点下限 m"])
+        handoff_headers = (["Word", "Source sign_frames index", "Body pair", "distance_m"] if english else
+                           ["单词", "源 sign_frames 帧索引", "碰撞体对", "distance_m"])
+        intro = ("# Transition results\n\n[中文](report.md) · **English**\n\n"
+                 "Local generated report. Sentence duration is frame count / 30; each transition/leg duration is intervals / 30. "
+                 "PASS, source_collision and FAILED are disjoint transition counts. source_collision accepts inherited endpoint penetration only "
+                 "when the complete transition never worsens the worse endpoint. Singleton sentences have zero checks. "
+                 "A null distance means no detected contacts, not a measured positive gap. "
+                 "See the [protocol, commands and limitations](../../docs/transition-planner.en.md).\n\n" if english else
+                 "# 衔接规划结果\n\n**中文** · [English](report.en.md)\n\n"
+                 "本地生成报告。句子时长按帧数 / 30，过渡及各腿时长按时间间隔数 / 30。PASS、source_collision、FAILED 分开计数。"
+                 "source_collision 仅在整个过渡不比最差端点更深时接受原始端点穿透；单词句零次检查。"
+                 "null 表示无接触记录，并非测得正间隙。详见[协议、启动命令与限制](../../docs/transition-planner.md)。\n\n")
+        content = (intro + table(summary_headers, summary) + "\n\n" +
+                   ("## Emitted transitions\n\n" if english else "## 输出过渡\n\n") +
+                   table(transition_headers, transitions) + "\n\n" +
+                   ("## FAILED worst collisions\n\n" if english else "## FAILED 最差碰撞\n\n") +
+                   (table(failure_headers, failed) if failed else ("None." if english else "无。")) + "\n\n" +
+                   ("## Group 2 source collision handoff\n\n" if english else "## 交给第二组的源姿态碰撞\n\n") +
+                   (table(handoff_headers, handoff_rows) if handoff_rows else ("None." if english else "无。")) + "\n")
+        (OUT / ("report.en.md" if english else "report.md")).write_text(content)
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--report", type=Path, default=OUT / "report.json")
     parser.add_argument("--render-comparison", action="store_true")
-    parser.add_argument("--copy-to", type=Path, default=Path("/workspace/you_hurt_where_baseline_vs_planned.mp4"))
+    parser.add_argument("--copy-to", type=Path, default=Path("/workspace/you_hurt_where_baseline_vs_planned_v2.mp4"))
     args = parser.parse_args(argv)
     report = load_report(args.report)
-    for sentence in report["sentences"]:
-        sentence["artifact_verification"] = verify_saved_sentence(sentence)
     model = load_model(ROOT)
+    for sentence in report["sentences"]:
+        sentence["artifact_verification"] = verify_saved_sentence(sentence, model)
     sag_sentence = next(s for s in report["sentences"] if s["glosses"] == ["YOU", "BUY", "BOOK"])
     sag = measure_sag(model, sag_sentence)
     (OUT / "you_buy_sag.json").write_text(json.dumps(sag, indent=2) + "\n")
     if args.render_comparison:
         sentence = next(s for s in report["sentences"] if s["glosses"] == ["YOU", "HURT", "WHERE"])
-        video = render_comparison(model, sentence, OUT / "you_hurt_where_baseline_vs_planned.mp4")
+        video = render_comparison(model, sentence, OUT / "you_hurt_where_baseline_vs_planned_v2.mp4")
         shutil.copy2(artifact_path(video["path"]), args.copy_to)
         video["copy"] = str(args.copy_to)
         report["comparison_video"] = video

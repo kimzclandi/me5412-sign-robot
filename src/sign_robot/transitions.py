@@ -18,6 +18,19 @@ from sign_robot.motion import ROOT, apply_frame, load_model, validate_motion
 FPS = 30
 ARM_RATE_RAD_S = 15.0
 FINGER_RATE_RAD_S = 10.0
+MIN_LEG_DURATION_S = 0.3
+VIA_DISPLACEMENT_M = 0.065
+# Robot frame: +X forward (toe geoms), +Y left (shoulder offsets), +Z up.
+# Normalize combinations so every wrist target moves 6.5 cm in total.
+VIA_DIRECTIONS = (
+    ("out", (0, 1, 0)),
+    ("up", (0, 0, 1)),
+    ("forward", (1, 0, 0)),
+    ("out+up", (0, 1, 1)),
+    ("out+forward", (1, 1, 0)),
+    ("up+forward", (1, 0, 1)),
+    ("out+up+forward", (1, 1, 1)),
+)
 # Follow the task's explicit failure rule, contact.dist < -0.002 m. This is
 # a penetration tolerance, NOT a claim of positive 2 mm free-space clearance.
 PENETRATION_TOLERANCE_M = 0.002
@@ -34,18 +47,19 @@ def joint_rate_limits(joint_names):
 
 
 def minimum_jerk_blend(a, b, joint_names):
-    """Include both endpoints and at least two interior samples at 30 fps.
+    """Include both endpoints with at least 0.3 s per min-jerk leg at 30 fps.
 
     s'(u) peaks at 15/8. Thus ceil(fps * 15/8 * max(|b-a|/rate))
-    is the shortest integer duration satisfying the continuous (and sampled)
-    rate bound for this joint-space path. Never change the rate limits.
+    is the shortest rate-safe integer duration, subject to the 0.3 s floor.
+    Never change the rate limits.
     """
     a, b = np.asarray(a, dtype=float), np.asarray(b, dtype=float)
     if a.shape != b.shape or a.shape != (len(joint_names),):
         raise ValueError("Transition endpoints must match joint_names")
     if not np.isfinite(a).all() or not np.isfinite(b).all():
         raise ValueError("Transition endpoints must be finite")
-    intervals = max(3, int(np.ceil(FPS * 1.875 * np.max(np.abs(b - a) / joint_rate_limits(joint_names), initial=0))))
+    intervals = max(int(np.ceil(FPS * MIN_LEG_DURATION_S)),
+                    int(np.ceil(FPS * 1.875 * np.max(np.abs(b - a) / joint_rate_limits(joint_names), initial=0))))
     u = np.linspace(0, 1, intervals + 1)[:, None]
     s = 10 * u**3 - 15 * u**4 + 6 * u**5
     q = a + s * (b - a)
@@ -102,24 +116,45 @@ class MujocoClearance:
                                list(pairs.values()), len(positions))
 
 
-def lifted_midpoint(a, b, joint_names, model=None):
-    """One deterministic joint-space via: lift both arms toward the front torso.
+def ik_via_candidates(a, b, joint_names, model=None):
+    """Fixed Cartesian wrist directions, each solved from the same midpoint.
 
-    Shoulder pitch -0.35 rad and elbow +0.15 rad raise the wrists from the
-    hanging/mid-torso poses. This heuristic is not an IK/clearance guarantee;
-    the entire retry is checked again. Finger couplings remain a convex mix.
+    Reuse the bounded arm IK without modifying retarget.py. Palm orientation
+    stays near the midpoint; elbows softly follow half the wrist displacement.
+    Only arm joints are solved: fingers (including coupled joints) and all other
+    coordinates retain the exact convex midpoint of the endpoints.
     """
-    via = (np.asarray(a) + np.asarray(b)) / 2
-    for i, name in enumerate(joint_names):
-        if str(name).endswith("shoulder_pitch_joint"):
-            via[i] -= 0.35
-        elif str(name).endswith("elbow_joint"):
-            via[i] += 0.15
-        if model is not None:
-            joint = model.joint(str(name))
-            if joint.limited[0]:
-                via[i] = np.clip(via[i], *joint.range)
-    return via
+    from sign_robot.retarget import G1Retargeter
+
+    model = model if model is not None else load_model()
+    solver = G1Retargeter(model, [])  # No finger solving/recoupling is needed.
+    midpoint = (np.asarray(a) + np.asarray(b)) / 2
+    apply_frame(model, solver.d, joint_names, midpoint)
+    q = solver.d.qpos.copy()
+    addresses = [int(model.joint(str(n)).qposadr[0]) for n in joint_names]
+    robot_to_world = solver.d.xmat[model.body("fixed_mount").id].reshape(3, 3).copy()
+    sides = ("left", "right")
+    anchors = {
+        side: (solver.d.xpos[model.body(f"{side}_wrist_yaw_link").id].copy(),
+               solver.d.xpos[model.body(f"{side}_elbow_link").id].copy(),
+               solver.d.site_xmat[model.site(f"{side}_palm").id].reshape(3, 3).copy())
+        for side in sides
+    }
+    previous = {side: q[solver.robot[side]["ids"]].copy() for side in sides}
+    for direction, vector in VIA_DIRECTIONS:
+        offset = VIA_DISPLACEMENT_M * np.asarray(vector, dtype=float) / np.linalg.norm(vector)
+        goals = {}
+        for side in sides:
+            delta = robot_to_world @ (offset * (1, 1 if side == "left" else -1, 1))
+            wrist, elbow, rotation = anchors[side]
+            goals[side] = (wrist + delta, elbow + delta / 2, rotation)
+        # Clearance is assessed on the entire emitted path, rather than trusting
+        # a penalty on this one IK pose. Every solve uses the same seed.
+        solved, _ = solver.solve_arms(q, sides, goals, previous, [])
+        via_q = q.copy()
+        for side in sides:
+            via_q[solver.robot[side]["ids"]] = solved[side]
+        yield direction, via_q[addresses]
 
 
 def body_heights(model, joint_names, positions, bodies):
@@ -148,7 +183,13 @@ def wrist_height_check(model, joint_names, positions):
             "right_wrist_undershoot_m": float(dips[1])}
 
 
-def _clearance_reasons(result):
+def _clearance_reasons(result, endpoint_floor=None):
+    if endpoint_floor is not None:
+        return [f"minimum contact distance {result.min_distance_m} m worsens "
+                f"source endpoint minimum {endpoint_floor} m"] + [
+            f"{' | '.join(c['bodies'])}, distance_m={c['distance_m']}, "
+            f"sample {c['frame']} ({c.get('location', 'unspecified')})"
+            for c in result.collisions if c["distance_m"] < endpoint_floor]
     if result.passed:
         return []
     if result.collisions:
@@ -166,44 +207,80 @@ class TransitionPlan:
     attempts: list
     reasons: list
     warnings: list = field(default_factory=list)
+    via_direction: str | None = None
+    selected_attempt: int = 0
+    endpoint_clearance: list = field(default_factory=list)
+    endpoint_floor_m: float | None = None
 
 
 def plan_transition(a, b, joint_names, *, clearance: Callable,
                     via_factory=None, height_check=None):
-    """Try the shortest quintic, then exactly one lifted via if required.
+    """Try a direct quintic, then the fixed set of named IK via candidates.
 
-    A failed retry is still emitted for diagnosis. Its FAILED status/reasons must
-    travel with the motion in the report; it is never represented as collision-free.
+    Source collisions pass only when no sample is worse than the worse endpoint.
+    All candidates use the same endpoint rule; among passing vias, maximize the
+    minimum contact distance over both complete legs. A failed path is retained
+    for diagnosis with its worst colliding pair. Height is a separate guard.
     """
+    direct = minimum_jerk_blend(a, b, joint_names)
+    endpoints = [asdict(clearance(direct[[i]])) for i in (0, -1)]
+    endpoint_min = min((r["min_distance_m"] for r in endpoints
+                        if r["min_distance_m"] is not None), default=None)
+    endpoint_floor = (endpoint_min if endpoint_min is not None and
+                      endpoint_min < -PENETRATION_TOLERANCE_M else None)
     attempts = []
 
-    def assess(q, kind, leg_intervals):
+    def assess(q, kind, leg_intervals, direction=None):
         result = clearance(q)
         height = height_check(q) if height_check else {"passed": True}
-        reasons = _clearance_reasons(result)
-        attempts.append({"kind": kind, "intervals": len(q) - 1,
+        if endpoint_floor is not None:
+            accepted = result.min_distance_m is not None and result.min_distance_m >= endpoint_floor
+            status = "source_collision" if accepted else "FAILED"
+        else:
+            status = "PASS" if result.passed else "FAILED"
+        reasons = _clearance_reasons(result, endpoint_floor) if status == "FAILED" else []
+        worst = min(result.collisions, key=lambda c: c["distance_m"], default=None)
+        attempts.append({"kind": kind, "via_direction": direction, "intervals": len(q) - 1,
                          "leg_intervals": leg_intervals,
                          "clearance": asdict(result), "height": height,
-                         "status": "PASS" if not reasons else "FAILED", "reasons": reasons})
-        return reasons, height["passed"]
+                         "worst_collision": worst, "status": status, "reasons": reasons})
+        return len(attempts) - 1, q
 
-    direct = minimum_jerk_blend(a, b, joint_names)
-    direct_reasons, direct_height_ok = assess(direct, "direct", [len(direct) - 1])
-    if not direct_reasons and direct_height_ok:
-        return TransitionPlan(direct, "PASS", False, attempts, [])
-    via = (via_factory or lifted_midpoint)(a, b, joint_names)
-    first, second = (minimum_jerk_blend(a, via, joint_names),
-                     minimum_jerk_blend(via, b, joint_names))
-    retry = np.vstack([first, second[1:]])  # Single shared via frame, v=a=0 on both legs.
-    reasons, height_ok = assess(retry, "one_lifted_via", [len(first) - 1, len(second) - 1])
-    # Height is an aesthetic guard, separate from the mandatory collision check.
-    # Keep an already-clear direct path if this one heuristic cannot improve it.
-    # In particular, never replace a clear direct path with a colliding sag fix.
-    if not direct_reasons and (reasons or not height_ok):
-        return TransitionPlan(direct, "PASS", False, attempts, [],
-                              ["wrist undershoot retained: one lifted via did not clear both height and collision checks"])
-    warnings = [] if height_ok else ["wrist undershoot remains; collision status reported separately"]
-    return TransitionPlan(retry, "FAILED" if reasons else "PASS", True, attempts, reasons, warnings)
+    def finish(choice, warnings=None):
+        index, q = choice
+        attempt = attempts[index]
+        if warnings is None:
+            warnings = ([] if attempt["height"]["passed"] else
+                        ["wrist undershoot remains; collision status reported separately"])
+        return TransitionPlan(q, attempt["status"], index != 0, attempts, attempt["reasons"],
+                              warnings, attempt["via_direction"], index, endpoints, endpoint_floor)
+
+    def score(choice):
+        distance = attempts[choice[0]]["clearance"]["min_distance_m"]
+        # No detected contacts outranks detected contacts; None stays None in
+        # reports, since this is not a measured positive free-space distance.
+        return np.inf if distance is None else distance
+
+    direct_choice = assess(direct, "direct", [len(direct) - 1])
+    direct_ok = attempts[0]["status"] != "FAILED"
+    if direct_ok and attempts[0]["height"]["passed"]:
+        return finish(direct_choice)
+    candidates = []
+    for direction, via in (via_factory or ik_via_candidates)(a, b, joint_names):
+        first, second = (minimum_jerk_blend(a, via, joint_names),
+                         minimum_jerk_blend(via, b, joint_names))
+        retry = np.vstack([first, second[1:]])  # One shared via; v=a=0 on both legs.
+        candidates.append(assess(retry, "ik_via", [len(first) - 1, len(second) - 1], direction))
+    passing = [c for c in candidates if attempts[c[0]]["status"] != "FAILED"]
+    if direct_ok:
+        # A sag-only search may replace an accepted direct path only when it
+        # also removes the undershoot. Never exchange clearance for appearance.
+        passing = [c for c in passing if attempts[c[0]]["height"]["passed"]]
+        if not passing:
+            return finish(direct_choice, ["wrist undershoot retained: no via passed both height and collision checks"])
+    if passing:
+        return finish(max(passing, key=score))
+    return finish(max(candidates, key=score) if candidates else direct_choice)
 
 
 def lookup_words(root=ROOT):
@@ -262,8 +339,8 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
         model = model if model is not None else load_model(root)
         clearance = MujocoClearance(model, names)
     height_check = (lambda q: wrist_height_check(model, names, q)) if model is not None else None
-    via_factory = lambda a, b, n: lifted_midpoint(a, b, n, model)
-    pieces, transitions, segments, count = [], [], [], 0
+    via_factory = lambda a, b, n: ik_via_candidates(a, b, n, model)
+    pieces, transitions, segments, handoff, count = [], [], [], [], 0
     for k, (gloss, q) in enumerate(zip(glosses, clips)):
         s0, s1 = words[gloss]["sign_frames"]
         # Deliberately keep baseline first-word rise and last-word return.
@@ -272,6 +349,15 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
         if k:
             plan = plan_transition(pieces[-1][-1], q[start], names, clearance=clearance,
                                    via_factory=via_factory, height_check=height_check)
+            chosen = plan.attempts[plan.selected_attempt]
+            source_frames = (words[glosses[k - 1]]["sign_frames"][1], s0)
+            for word, source_frame, result in zip((glosses[k - 1], gloss), source_frames,
+                                                   plan.endpoint_clearance):
+                for collision in result["collisions"]:
+                    item = {"word": word, "frame": source_frame, "bodies": collision["bodies"],
+                            "distance_m": collision["distance_m"]}
+                    if item not in handoff:
+                        handoff.append(item)
             transitions.append({"from_gloss": glosses[k - 1], "to_gloss": gloss,
                                 "start_frame": count - 1,
                                 "end_frame": count + len(plan.positions) - 2,
@@ -280,6 +366,12 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
                                 "intervals": len(plan.positions) - 1,
                                 "duration_s": (len(plan.positions) - 1) / FPS,
                                 "status": plan.status, "used_via": plan.used_via,
+                                "via_direction": plan.via_direction,
+                                "selected_attempt": plan.selected_attempt,
+                                "clearance": chosen["clearance"],
+                                "worst_collision": chosen["worst_collision"],
+                                "endpoint_clearance": plan.endpoint_clearance,
+                                "endpoint_floor_m": plan.endpoint_floor_m,
                                 "reasons": plan.reasons, "warnings": plan.warnings,
                                 "attempts": plan.attempts,
                                 "peak_rates": peak_rates(plan.positions, names)})
@@ -295,15 +387,22 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
     motion = {"timestamps_s": np.arange(len(q)) / FPS, "joint_names": names, "positions": q}
     validate_motion(motion)
     failed = sum(t["status"] == "FAILED" for t in transitions)
+    source_collisions = sum(t["status"] == "source_collision" for t in transitions)
+    passed = sum(t["status"] == "PASS" for t in transitions)
     report = {"glosses": glosses, "fps": FPS, "frames": len(q),
               "duration_s": len(q) / FPS, "last_timestamp_s": (len(q) - 1) / FPS,
-              "transition_count": len(transitions), "pass_count": len(transitions) - failed,
-              "failed_count": failed, "status": "FAILED" if failed else "PASS",
+              "transition_count": len(transitions), "pass_count": passed,
+              "source_collision_count": source_collisions, "accepted_count": passed + source_collisions,
+              "failed_count": failed,
+              "status": "FAILED" if failed else "source_collision" if source_collisions else "PASS",
               "rate_limits_rad_s": {"arm": ARM_RATE_RAD_S, "finger": FINGER_RATE_RAD_S},
+              "minimum_leg_duration_s": MIN_LEG_DURATION_S,
               "collision_failure_below_m": -PENETRATION_TOLERANCE_M,
               "collision_threshold_note": "explicit task rule: fail below -2 mm, not a positive 2 mm separation guarantee",
+              "source_collision_rule": "when an endpoint is below -2 mm, accept only if the whole transition minimum is no worse than the worse endpoint",
               "clearance_scope": "all transition samples including endpoints; upstream geoms; same-hand adjacency excluded",
               "sentence_peak_rates": peak_rates(q, names),
-              "failed_trajectory_policy": "emit failed via blend for diagnostic replay; not safe for execution",
+              "failed_trajectory_policy": "emit least-penetrating failed via for diagnostic replay; not safe for execution",
+              "source_collision_handoff": handoff,
               "word_segments": segments, "transitions": transitions}
     return motion, report
