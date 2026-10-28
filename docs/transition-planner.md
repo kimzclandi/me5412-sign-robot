@@ -1,87 +1,116 @@
-# 第三组：衔接规划器第三轮
+# 第三组：衔接规划器，第四轮
 
 **中文** · [English](transition-planner.en.md)
 
-本轮在 `group3/transition-planner` 的 `98c0970`（原起点 `2656412`）上加入端点门控、双 via 和中立 hub 回退。九个脚本句子加 THANK-YOU 已本地重新生成：**19 段 = 16 PASS、3 source_collision、0 FAILED**。状态互斥；兼容字段 `accepted_count` 仍为 PASS 加 source_collision，不代表安全执行数量。source_collision 的直连输出只供诊断。BREATHE-DEEP 和 THANK-YOU 是单词句，过渡数为零，不获得单词自身碰撞认证。
+本轮在 `group3/transition-planner` 的 `3eccb06`（原起点 `2656412`）上实现 **`ENDPOINT_NEAR_M = 0.002`、near-source 完整搜索和数值间隙**。九个脚本句子加 THANK-YOU 已重新生成并复核：**19 段 = 0 PASS、18 source_near、1 FAILED**。三个状态互斥；`accepted_count` 为 PASS 加 source_near，仅表示满足相应规划条件的数量。BREATHE-DEEP 和 THANK-YOU 是单词句，过渡数为零，不获得单词自身的碰撞认证。
 
-## 启动与本地产物
+零个普通 PASS 的原因是数值测距发现所有边界姿态都包含保留的 `fixed_mount` / `left_hip_pitch_link` 约 **+0.701652 mm** 间隙，小于 2 mm。没有排除此体或任何其他 geom。18 段只满足相对端点条件，不能宣称具有绝对 +2 mm 间隙。
 
-从仓库根目录使用已有 `.venv`，顺序运行；不安装 `sentence_transformers`。每次重型任务前确认 `MemAvailable ≥ 2 GiB`，只运行一个 MuJoCo / 规划进程，总线程不超过三条：
+## 启动、再生成与本地产物
+
+在仓库根目录使用已有 `.venv`，不安装 `sentence_transformers`。所有重任务顺序执行，每次先确认 `MemAvailable ≥ 2 GiB`；最多三个线程、同时只有一个重进程：
 
 ```bash
 export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
 export LP_NUM_THREADS=1 MESA_GLTHREAD=false MUJOCO_GL=egl
-.venv/bin/python -c 'from pathlib import Path; m = int(next(s.split()[1] for s in Path("/proc/meminfo").read_text().splitlines() if s.startswith("MemAvailable:"))); assert m >= 2 * 1024**2; print("MemAvailable GiB:", m / 1024**2)'
-.venv/bin/python scripts/plan_transitions.py --all
-.venv/bin/python scripts/evaluate_planned_transitions.py
-.venv/bin/python -m pytest -q tests/test_plan_transitions.py
-.venv/bin/python -m pytest -q
+check_mem() {
+  .venv/bin/python -c 'from pathlib import Path; m = int(next(s.split()[1] for s in Path("/proc/meminfo").read_text().splitlines() if s.startswith("MemAvailable:"))); assert m >= 2 * 1024**2; print("MemAvailable GiB:", m / 1024**2)'
+}
+check_mem && .venv/bin/python scripts/plan_transitions.py --all
+check_mem && .venv/bin/python scripts/evaluate_planned_transitions.py
+check_mem && .venv/bin/python scripts/evaluate_planned_transitions.py --render-comparison --comparison-glosses YOU HURT WHERE --artifact-name you_hurt_where_baseline_vs_planned_v3 --copy-to /workspace/you_hurt_where_baseline_vs_planned_v3.mp4
+check_mem && .venv/bin/python scripts/evaluate_planned_transitions.py --render-comparison --comparison-glosses MEDICINE MORNING NIGHT TAKE --artifact-name medicine_morning_baseline_vs_planned_v3 --copy-to /workspace/medicine_morning_baseline_vs_planned_v3.mp4
+check_mem && .venv/bin/python -m pytest -q tests/test_plan_transitions.py
+check_mem && .venv/bin/python -m pytest -q
 ```
 
-macOS 渲染时省略 `MUJOCO_GL=egl`；本轮没有 macOS 或宿主机环境验证。单句预览使用单独报告，避免覆盖十句结果：
+macOS 渲染应省略 `MUJOCO_GL=egl`；本轮未测试 macOS 或可开放 socket 的宿主环境。单句预览使用独立报告，保留十句总报告：
 
 ```bash
-MUJOCO_GL=egl .venv/bin/python scripts/plan_transitions.py YOU HURT WHERE --render --report results/planned_transitions/you_hurt_where_preview.json
+check_mem && .venv/bin/python scripts/plan_transitions.py YOU HURT WHERE --render --report results/planned_transitions/you_hurt_where_preview.json
 ```
 
-生成的 NPZ 为 `results/mocap_previews/planned_sentence_<GLOSSES>.npz`，保持 `timestamps_s`、`joint_names`、`positions` 契约。以下产物均已 gitignore；全新检出须先重新生成：
+规划器写出报告后退出 0，即使存在 FAILED，也必须读取状态。NPZ 为 `results/mocap_previews/planned_sentence_<GLOSSES>.npz`，基线为同目录 `sentence_<GLOSSES>.npz`；两者均使用 `timestamps_s`、`joint_names`、`positions`。句子时长按帧数 / 30，过渡和各腿时长按间隔数 / 30。
 
-- [report.json](../results/planned_transitions/report.json)、[中文表](../results/planned_transitions/report.md)、[英文表](../results/planned_transitions/report.en.md)：全部 19 段的 `method`、`via_direction` / `via_directions`、`min_clearance_mm`、`duration_s`，每句与基线的总时长对比，以及全部候选尝试和源帧交接表。
-- [fixed_mount_finding.md](../results/planned_transitions/fixed_mount_finding.md)：定义位置、生成器、运行时 mesh / 掩码证据，中英双语。
-- [规划日志](../results/planned_transitions/planner_round3_output.txt)、[保存产物复查日志](../results/planned_transitions/evaluate_round3_output.txt)、[测试前后比较](../results/planned_transitions/pytest_round3_summary.json)、[聚焦测试日志](../results/planned_transitions/pytest_round3_transitions_final.txt)、[全套测试日志](../results/planned_transitions/pytest_round3_after.txt)。
-- `report_round2.json` / `.md` / `.en.md` 保留上一轮报告，`report_round3_initial.json` 保留加入单臂退让族之前仍有一个 FAILED 的结果；`serialized_neutral_probe.json` 和 `serialized_outward_probe.json` 保留通用候选探索中的失败及通过记录。
+以下产物均 gitignored，需在新 checkout 后再生成：
 
-规划命令在成功写出产物后退出 0，即使报告存在 FAILED 也如此，使用者必须查看状态。句子时长按帧数 / 30；过渡及每腿时长按间隔数 / 30。
+- [report.json](../results/planned_transitions/report.json)、[中文表](../results/planned_transitions/report.md)、[英文表](../results/planned_transitions/report.en.md)：全部 19 段的 `status`、`method`、`source_near`、`endpoint_clearances_mm`、`min_clearance_mm`、`closest_pair` / `worst_collision`、`duration_s`、via 方向及完整候选记录。最近对包含体名、geom 名或 ID；间隙始终为有限数值。
+- [YOU HURT WHERE v3](../results/planned_transitions/you_hurt_where_baseline_vs_planned_v3.mp4)，另复制到 `/workspace/you_hurt_where_baseline_vs_planned_v3.mp4`。
+- [MEDICINE MORNING NIGHT TAKE v3](../results/planned_transitions/medicine_morning_baseline_vs_planned_v3.mp4)，另复制到 `/workspace/medicine_morning_baseline_vs_planned_v3.mp4`。其 FAILED 衔接仅供诊断回放。
+- [规划日志](../results/planned_transitions/planner_round4_adaptive_output.txt)、[保存产物复核](../results/planned_transitions/evaluate_round4_output.txt)、[测试比较](../results/planned_transitions/pytest_round4_summary.json)、[聚焦测试](../results/planned_transitions/pytest_round4_transitions_final.txt)、[全量测试](../results/planned_transitions/pytest_round4_after.txt)。
+- [R3 归档](../results/planned_transitions/round3_archive/report.json) 保留更新前的报告、十个规划 NPZ 和 sag 记录；原 v1/v2 视频及历史实验日志保留。首次统一 25 cm margin 的慢速尝试被中断，日志保留为 `planner_round4_output.txt`；最终使用逐级扩展检测。
 
-## 有序升级协议
+视频统一为上排基线、下排规划，左列正面、右列右侧；30 fps 原速，较短一排结束后保持末帧。`render_comparison` 根据传入 glosses 找基线、根据报告找规划 NPZ，并使用独立 artifact name；CLI 的 `--comparison-glosses`、`--artifact-name`、`--copy-to` 对应这些参数。两个视频的元数据分别保存在总报告的 `comparison_videos` 中。
 
-1. **端点先行门控。** 每段先分别执行两个单帧 clearance 检查。显式常量 **`ENDPOINT_NEAR_M = 0.0 m`**：任一端点最小 `contact.dist` **严格 `< 0.0`**，立刻分类为 `source_collision`，记录词、零基源帧、体对和距离，停止 via1、via2、hub 搜索。这包含低于 −2 mm 的原始硬失败，也包含容差内的轻微负接触；恰好 0 不触发，null 表示未检测到接触。MEDICINE 第 119 帧为 **−0.806716 mm**，因此也须交接。此门控独立于路径的绝对硬失败线，不能用 detour 掩盖源姿态问题。
-2. **直连。** 两端通过后，先检查 min-jerk 直连。绝对规则始终为 **`contact.dist < -PENETRATION_TOLERANCE_M`，`PENETRATION_TOLERANCE_M = 0.002 m`**。这是允许至多 2 mm 穿透的规则，并非正 2 mm 自由空间保证。每个输出采样都检查，包括端点；null 并非测得正间隙。
-3. **via1 与 via2 共同择优。** 直连碰撞时，依次评估固定七种单 via 和十六种双 via；全部通过候选按**完整路径**的最小接触距离取最大，同分保持候选顺序。无接触候选排在有接触候选之前，报告仍为 null。`method="via1"` 配 `via_direction`；`method="via2"` 配两个 `via_directions`。每个 via 用原有有界 `G1Retargeter.solve_arms` 求解，未改 `retarget.py`，也不假定 IK 目标或中立姿态天然无碰撞。
-4. **hub 回退。** 只有全部 via1/via2 碰撞失败，才尝试源 → hub → 目标；hub 取固定基座模型 **`qpos0` 中的同名关节值**。检查完整路径并单独检查两腿，均通过才记 PASS / `method="hub"`。仍失败则 `method="FAILED"`，保留检查过的最小穿透候选、最差体对和距离，仅供诊断。当前 19 段的通过候选均在 hub 前找到；真实 hub 路径可失败，回退选择通过模拟 clearance 的单元测试覆盖。
+## 距离约定与通过条件
 
-单 via 的机器人坐标方向仍为 `out`、`up`、`forward`、`out+up`、`out+forward`、`up+forward`、`out+up+forward`。机器人 +X 向前、+Y 向左、+Z 向上；左手向外为 +Y，右手为 −Y。向量归一化后每腕目标偏移 6.5 cm；单 via 从两端关节中点求 IK，非手臂坐标保持精确中点。关节限制可能使目标无法完全到达。
+统一使用 MuJoCo 碰撞表面的有符号距离：**正值为分离，负值为穿透**。`PENETRATION_TOLERANCE_M = 0.002 m` 不变，普通路径的物理规则是 **`min_distance_m >= PENETRATION_TOLERANCE_M`**，即至少 +2 mm 间隙。
 
-双 via 的十六个固定候选无需词名：七个把同方向偏移分别加到源 / 目标腕位姿；三个先用 qpos0 手臂作中立退让，再向外、外上或外前；另六个对左 / 右手臂对称尝试单臂退让。单臂族在两个 via 都把退让手臂保持在 qpos0 腕目标加外 / 外上 / 外前偏移，另一手臂在 via1 保持源姿态、via2 到达目标姿态，最后退让手臂接近目标。后两族的手指及其他非手臂坐标分别取源到目标的 1/3、2/3 插值。只求解手臂，保留上游耦合关系，不把耦合关节当独立驱动。
+| 端点分类 | 完整路径与 hub 各腿的条件 | 通过后的状态 |
+|---|---|---|
+| 两端最小间隙均 ≥ `ENDPOINT_NEAR_M` | 全路径最小间隙 ≥ +0.002 m | `PASS` |
+| 任一端点最小间隙严格 < `ENDPOINT_NEAR_M = 0.002 m` | 全路径最小间隙 ≥ 两端最小间隙中的较小值 | `source_near` |
+| 全部候选均不满足对应条件 | 保留最小间隙最大的已检查候选，仅供诊断 | `FAILED` |
 
-每腿使用 `s(u)=10u³−15u⁴+6u⁵`，连续峰值速度为 `1.875 × |Δq| / T`；按 30 fps 向上取整到满足限速且不少于 **0.3 s / 九个间隔**。via1 / hub 至少 0.6 s，via2 至少 0.9 s。手臂 **15 rad/s**、手指 **10 rad/s** 不变。
+恰好 2 mm 不属于 near；小于 2 mm 的正间隙、−0.8 mm 轻微接触及更深原始穿透都属于 near。`source_near=true` 标志在 FAILED 段也保留，`method` 始终记录诊断或通过路线 `direct` / `via1` / `via2` / `hub`。`source_near_count` 只计状态为 source_near 的通过段，与 `failed_count` 分开；`endpoint_floor_m` 在 near 段为较差端点值，`relative_floor_passed` 报告所选路线是否达到该值。新报告不再使用 `source_collision` 名称。
 
-`endpoint_floor_m` 与 `relative_floor_passed` 保留原始低于 −2 mm 端点的相对下限诊断，但新的端点门控先停止搜索，不能把内部恶化标成碰撞通过。source_collision 仍保存并测量直连诊断路径。腕部低于两端的下垂检查继续独立报告；已碰撞通过的直连可尝试消除下垂，只有同时通过高度和碰撞的 via 才能替换它，纯外观搜索不升级到 hub。
+原始 `clearance.passed` 始终表示绝对 +2 mm 检查；near 段是否相对通过，应读取 `status` 和 `relative_floor_passed`。因此 source_near 与 `clearance.passed=false` 可以同时出现。
 
-源单词查找仍按 hospital map 优先，其次 mocap / video 的既有 ready / poor 规则。内部词保留含端点的 `sign_frames`，首词保留第 0 帧起势、末词保留回中立；源切片不编辑、不重采样，衔接端点逐位等于源文件。保持既有同手指 / 腕邻接体对规则，没有新增任何 geom 排除、修改碰撞掩码或过滤 `fixed_mount`。
+### 无接触时仍测数值距离
+
+`MujocoClearance` 对每个输出采样先做原模型运动学，再临时提高 geom 和显式 pair 的检测 margin，调用 `mj_collision`：从 2 mm 开始，必要时依次扩展到 1 cm、5 cm、25 cm，最后覆盖当前场景的 geom 中心跨度加 1 m。一旦测到非同手的有效配对，未检测到的更远配对不会降低最小值。读取的 `contact.dist` 是表面距离，不减去检测 margin，也不把 margin 当作通过阈值。
+
+每次查询在 `finally` 中恢复原始 geom / pair margin；不永久编辑 MJCF，不改变 contype / conaffinity、原有 MuJoCo 配对过滤或既有同手指 / 腕规则，不排除 `fixed_mount`。无原始接触的分离姿态也返回有限 `min_distance_m` 和最近体 / geom 对，远至 1.2 m 的分离球体测试覆盖扩展范围。空轨迹或完全没有有效非同手配对的模型明确报错，不编造距离或返回 null。本轮数值取统一检测过程下的结果，不能混用 R3 旧测量值。
+
+## 所有段的搜索顺序
+
+1. 分别测量两个端点，仅决定绝对或相对下限，**不停止搜索**。先检查包含两端的 direct min-jerk 路径；满足对应条件即可通过。
+2. direct 不满足时，检查原有七个 via1 候选，随后检查十六个 via2 候选（含 neutral-retreat 和左右对称串行退让族）。对所有通过的 via1/via2 按完整路径最小间隙取最大值，平局保持候选顺序。
+3. 全部 via 失败后，检查 source → `qpos0` hub → target。hub 为固定基座模型同名关节的原始中立值，完整路径及两腿分别检查同一下限；不假设 hub 安全。
+4. 仍不满足则 FAILED，报告最佳诊断路线的最差体 / geom 对、帧和间隙；不将恶化的 direct 当作 source_near 通过。
+
+已满足间隙条件的 direct 若有腕部下垂，可额外搜索 via；只有同时通过间隙与高度的候选才能替换它，否则保留 direct 并警告。纯高度搜索不升级 hub。
+
+via1 的机器人坐标方向仍为 `out`、`up`、`forward` 及组合；+X 前、+Y 左、+Z 上，组合归一化后请求 6.5 cm 腕位移。via2 保留两端同方向偏移、中立手臂退让及单臂先停靠再移动另一臂的通用候选，不使用词身份特例。复用既有有界 `G1Retargeter.solve_arms`，只解手臂，其他坐标保留中点或 1/3、2/3 凸插值；上游耦合关系不变，耦合关节不是独立驱动。
+
+每腿使用 `s(u)=10u³−15u⁴+6u⁵`，连续峰值速度为 `1.875 × |Δq| / T`，按 30 fps 向上取整，且每腿至少 **0.3 s / 九个间隔**。手臂 **15 rad/s**、手指 **10 rad/s** 不变。源动作不编辑、不重采样；内部词保留含端点的 `sign_frames`，首词保留第 0 帧起势、末词保留回中立，规划端点与源值逐位相同。
 
 ## 本轮结果与第二组交接
 
-| 原 FAILED 段 | 本轮状态 / 方法 | via 方向 | 时长 s | 完整路径最小距离 mm |
-|---|---|---|---:|---:|
-| MEDICINE → MORNING | source_collision | 无搜索 | 0.433 | −56.182782 |
-| NURSE → BLOOD-DRAW | PASS / via2 | up → up | 1.000 | null |
-| COME → SOON | PASS / via2 | neutral_retreat_right+out → hold_right+out | 0.900 | null |
-| NEED → INTERPRETER | PASS / via2 | out → out | 0.900 | null |
+| 段 | 状态 / 方法 | via 方向 | 时长 s | 两端间隙 mm | 全路径最小 mm |
+|---|---|---|---:|---|---:|
+| MEDICINE → MORNING | FAILED / via2 | neutral_retreat_left+out+forward → hold_left+out+forward | 1.100 | −0.809260 / +0.701652 | −42.047690 |
+| NURSE → BLOOD-DRAW | source_near / via2 | up → up | 1.000 | +0.701652 / +0.701652 | +0.701652 |
+| COME → SOON | source_near / via2 | neutral_retreat_right+out → hold_right+out | 0.900 | +0.701652 / +0.701652 | +0.701652 |
+| NEED → INTERPRETER | source_near / via2 | out → out | 0.900 | +0.701652 / +0.701652 | +0.701652 |
 
-**MEDICINE → MORNING 的 −56.183 mm 是保留下来的直连诊断路径测量，不是门控端点值，也不是通过轨迹。** 其触发端点为 MEDICINE 119 帧的左肩 yaw / torso（−0.807 mm）。NOW → NURSE 和 DOCTOR → COME 同样保留 source_collision：最差源端点分别为 **−32.892744 mm** 和 **−7.854003 mm**。交接表共 **10 条体对记录、3 个词帧**（MEDICINE 119、NURSE 24、DOCTOR 89），包含容差内接触，并在句子和总报告中去重列出。没有修改源动作。
+MEDICINE → MORNING 完整检查 **25 条路线：1 direct、7 via1、16 via2、1 hub**。direct 为 **−56.182729 mm**，hub 为 **−54.852146 mm**，最佳 via2 仍只有 **−42.047690 mm**，低于 **−0.809260 mm** 相对下限；输出及视频明确为 FAILED 诊断。最佳路线最差对为 `fixed_mount` / `left_wrist_yaw_link`（geom 3 / 57），过渡内第 5 帧。
 
-保存后的十个 NPZ 已重新检查端点、采样限速、每腿下限、两端门控和碰撞分类。输出过渡的最大采样速度为手臂 **14.635394 rad/s**、手指 **8.868628 rad/s**。JSON 记录输入 SHA-256、规划器源码哈希和运行时版本。全部句子时长 / 基线对比见本地中英表。YOU HURT WHERE 仍为规划 **9.033 s**、基线 **9.400 s**，本轮未刷新 v2 对照视频；原视频保留。可选用 `MUJOCO_GL=egl .venv/bin/python scripts/evaluate_planned_transitions.py --render-comparison` 刷新到 `results/planned_transitions/you_hurt_where_baseline_vs_planned_v2.mp4`，默认另复制到 `/workspace/you_hurt_where_baseline_vs_planned_v2.mp4`，`--copy-to` 可更改位置。
+`source_near_handoff` 在句子与总报告中去重，含 **83 条体对记录、34 个词帧**，每条有 word、零基源帧、pair、`clearance_mm`，也包含 FAILED 的 near 端点。所有边界的固定基座 / 髋部小间隙保留；MEDICINE 119 帧约 −0.809260 mm、NURSE 24 帧约 −32.846892 mm、DOCTOR 89 帧约 −7.853912 mm 的源问题另列交接。源动作未修改。
 
-YOU → BUY 仍选 up via，右腕相对较低端点的下垂从 **0.849769 mm** 降至零。YOU 源词内部的腕 / 肘峰值到末帧下降仍为 **234.348952 / 54.821335 mm**，不可通过保持源帧的衔接规划修复；详见 [you_buy_sag.json](../results/planned_transitions/you_buy_sag.json)。
+十个保存 NPZ 的端点、限速、每腿时长、数值间隙及状态已实际复核；过渡最大采样速度为手臂 **14.635394 rad/s**、手指 **8.868628 rad/s**。JSON 包含输入 SHA-256、规划器源码哈希和运行时版本。YOU HURT WHERE 为规划 **9.033 s**、基线 **9.400 s**；MEDICINE MORNING NIGHT TAKE 为规划 **10.267 s**、基线 **10.067 s**。
 
-### fixed_mount 证据
+YOU → BUY 仍选 up via，右腕相对较低端点的下垂从 **0.849769 mm** 降至零；源 YOU 内部腕 / 肘峰值到末帧下降 **234.348952 / 54.821335 mm** 保留，详见 [you_buy_sag.json](../results/planned_transitions/you_buy_sag.json)。
 
-[scene.xml 第 65–68 行](../assets/robot/scene.xml) 定义 z=0.79 m 的包装体；[prepare_robot.py 第 27–31 行](../scripts/prepare_robot.py) 将导入机器人重新挂到该体下；[model_info.json](../assets/robot/model_info.json) 明记 `Fixed mount at z=0.79m`。其直接几何为视觉 pelvis、视觉 pelvis_contour_link（均 0/0）以及活动碰撞 pelvis_contour_link（运行时 `contype=1 conaffinity=1`）。证据表明它是虚拟挂载 / 固定基座占位，不是单独增加的真实机器人夹具；活动网格仍是骨盆轮廓几何，**必须保留碰撞检查**。本轮只报告证据，没有修改模型。完整运行时表见本地 [fixed_mount_finding.md](../results/planned_transitions/fixed_mount_finding.md)。
+`fixed_mount` 仍为 z=0.79 m 的固定基座包装体，其活动 pelvis-contour 碰撞网格必须保留；源定义和运行时证据见 [fixed_mount_finding.md](../results/planned_transitions/fixed_mount_finding.md)。本轮只临时扩展查询 margin，模型文件和碰撞掩码均未修改。
 
 ## 实际测试与限制
 
-聚焦测试 **55 passed**，覆盖严格端点门控、不触发 via/hub、双 via 真实 IK、中立 qpos0、速率 / 0.3 s、全部候选最大距离选择、hub 双腿检查与选择、源碰撞相对 floor 诊断、固定挂载碰撞与源帧交接。全仓修改前 **299 passed、8 failed、23 errors**，修改后 **316 passed、8 failed、23 errors**；31 项失败 / 错误集合逐项一致，**新增为零**。其中 5 项是未安装 `sentence_transformers` 的既有 learned_motion / learning_api 失败，1 项是既有 overview 失败，另外 2 项失败和 23 项错误为沙箱 socket 限制。宿主机参考基线是 **324 passed / 6 failed**，本轮无法在宿主机执行，未将沙箱结果冒充宿主机结果，也未安装依赖、跳过测试或更改相关模块。
+最终聚焦测试 **88 passed**，覆盖数值分离距离、普通路径 +2 mm、严格 near 阈值、near-source 相对通过与失败后的完整搜索、via1/via2/hub 路线保留、失败段不计 accepted 且保留 handoff、速率、0.3 s 下限、真实 IK、同手排除和 fixed_mount 检查。
 
-以上是开发回归检查，并非由未参与调参者执行的冻结独立评审。source_collision 和 FAILED 产物不可作为安全执行轨迹；单词自身限速 / 碰撞保留，整句峰值另报。采样点之间的连续碰撞、动力学、硬件执行、ASL 含义和真人可理解性仍未验证。
+全量测试修改前 **316 passed、8 failed、23 errors**，修改后 **349 passed、8 failed、23 errors**；**31 项失败 / 错误 ID 集合完全相同，新增为零**。其中六项是任务给定宿主参考基线中的既有 learned_motion / learning_api / overview 失败，另两项失败及 23 项错误来自沙箱 socket 限制。没有可运行宿主环境，本轮未冒充宿主测试。完整集合见 [pytest_round4_summary.json](../results/planned_transitions/pytest_round4_summary.json)。未安装依赖、跳过测试或修改这些模块。
+
+两份 v3 视频均实际解码核对为 **30 fps、960×1088**，分别为 **282 / 308 帧**，指定 `/workspace` 副本 SHA-256 均相同；MEDICINE 失败帧已目视确认带 `FAILED` 标签。递归检查的 **309 个 clearance 结果全部为有限数值且有最近体 / geom 对**；见 [round4_artifact_audit.json](../results/planned_transitions/round4_artifact_audit.json)。渲染进程实测三个线程，重任务前可用内存均超过 2 GiB。
+
+这是开发回归检查，并非未参与调参者执行的冻结独立评审。source_near 仅表示没有比原端点更差，仍可能保留明显穿透；FAILED 仅供诊断。单词内部速度 / 碰撞保留，整句峰值另报；采样之间的连续碰撞、动力学、硬件执行、ASL 含义和真人可理解性仍未验证。
 
 ## Git 交接
 
-生成产物继续保持 gitignored，不推送、不删除文件。仅交付以下六个代码 / 测试 / 文档文件，列表另存本地 `results/planned_transitions/FILE_LIST.txt`。本轮 `git add` 因无法创建只读工作树的 `index.lock` 而退出 128（[错误日志](../results/planned_transitions/git_handoff_round3.txt)）；六个变更保持未暂存，没有尝试提交或推送，由 foreman 在宿主机提交：
+仅交付 `src/sign_robot/transitions.py`、`scripts/plan_transitions.py`、`scripts/evaluate_planned_transitions.py`、`tests/test_plan_transitions.py`、本中文说明及对应英文版，另存 [FILE_LIST.txt](../results/planned_transitions/FILE_LIST.txt)。生成结果不暂存；不推送、不删除文件。若只读 `.git` 阻止暂存 / 提交，变更保持未暂存，由 foreman 在宿主机执行：
 
 ```bash
 git add src/sign_robot/transitions.py scripts/plan_transitions.py scripts/evaluate_planned_transitions.py tests/test_plan_transitions.py docs/transition-planner.md docs/transition-planner.en.md
-git commit -m "feat(group3): endpoint-near gate, dual-via and hub fallback"
+git commit -m "feat(group3): near-source search with numeric clearance"
 ```
 
-`motions/`、`retarget.py`、`ACTION_IDS`、模型与碰撞掩码、基线片段、已有 `.venv` / vendor 软链接和 `_scratch/` 均未修改。
+`motions/`、`retarget.py`、`ACTION_IDS`、原模型 / 碰撞掩码、基线片段、已有 `.venv` / vendor 软链接和 `_scratch/` 均未修改。

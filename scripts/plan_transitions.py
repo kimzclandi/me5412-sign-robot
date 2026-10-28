@@ -104,13 +104,15 @@ def plan_one(glosses, *, model=None, render=False, out_dir=OUT):
         report["output_mp4"] = str(render_motion(npz_path, glosses, out_dir / f"{stem}.mp4"))
     print(f"{stem}: {report['frames']} frames, {report['duration_s']:.3f}s; "
           f"transitions {report['transition_count']} pass {report['pass_count']} "
-          f"source_collision {report['source_collision_count']} failed {report['failed_count']}")
+          f"source_near {report['source_near_count']} failed {report['failed_count']}")
     for transition in report["transitions"]:
         directions = " -> ".join(transition["via_directions"])
         print("  SEGMENT", transition["from_gloss"], "->", transition["to_gloss"],
               transition["method"], directions, transition["status"],
-              "minimum contact distance", transition["min_clearance_mm"], "mm;",
+              "endpoint clearances", transition["endpoint_clearances_mm"], "mm;",
+              "minimum signed clearance", transition["min_clearance_mm"], "mm;",
               transition["duration_s"], "s")
+        print("    closest pair:", transition["closest_pair"])
         for warning in transition["warnings"]:
             print("  WARNING", transition["from_gloss"], "->", transition["to_gloss"], warning)
         if transition["status"] == "FAILED":
@@ -150,14 +152,14 @@ def main(argv=None):
     args.report.parent.mkdir(parents=True, exist_ok=True)
     handoff = []
     for sentence in reports:
-        for item in sentence["source_collision_handoff"]:
+        for item in sentence["source_near_handoff"]:
             if item not in handoff:
                 handoff.append(item)
-    payload = {"planner_protocol": "round3_endpoint_near_via1_via2_hub",
+    payload = {"planner_protocol": "round4_source_near_relative_numeric_clearance",
                "sentences": reports,
                "totals": {key: sum(s[key] for s in reports) for key in
-                          ("transition_count", "pass_count", "source_collision_count", "failed_count")},
-               "source_collision_handoff": handoff}
+                          ("transition_count", "pass_count", "source_near_count", "failed_count")},
+               "source_near_handoff": handoff}
     args.report.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n")
     print(f"wrote {args.report}")
     return 0

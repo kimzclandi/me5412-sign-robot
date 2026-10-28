@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 import shutil
 import sys
@@ -71,19 +72,17 @@ def verify_saved_sentence(report, model):
                 np.testing.assert_array_equal(clip[index], source["positions"][words[gloss]["sign_frames"][bound]])
         result = clearance(clip)
         endpoints = [clearance(clip[[i]]).min_distance_m for i in (0, -1)]
-        floor = min((d for d in endpoints if d is not None), default=None)
-        if floor is not None and floor < ENDPOINT_NEAR_M:
-            status = "source_collision"
-            assert segment["method"] == "source_collision"
-            assert not segment["used_via"] and len(segment["attempts"]) == 1
-        else:
-            status = "PASS" if result.passed else "FAILED"
-            assert segment["method"] == ("FAILED" if status == "FAILED" else chosen["kind"])
-        hard_floor = floor if floor is not None and floor < -PENETRATION_TOLERANCE_M else None
-        assert segment["endpoint_floor_m"] == hard_floor
-        relative_ok = (None if hard_floor is None else
-                       result.min_distance_m is not None and result.min_distance_m >= hard_floor)
-        assert segment["relative_floor_passed"] == relative_ok
+        assert isinstance(result.min_distance_m, (int, float)) and math.isfinite(result.min_distance_m)
+        floor = min(endpoints)
+        near = floor < ENDPOINT_NEAR_M
+        required = floor if near else PENETRATION_TOLERANCE_M
+        passed = result.min_distance_m >= required
+        assert segment["source_near"] == near
+        assert segment["method"] == chosen["kind"]
+        assert segment["endpoint_clearances_mm"] == [d * 1000 for d in endpoints]
+        assert segment["endpoint_floor_m"] == (floor if near else None)
+        assert segment["closest_pair"] == result.worst_contact == segment["worst_collision"]
+        assert len(segment["closest_pair"]["bodies"]) == len(segment["closest_pair"]["geoms"]) == 2
         if chosen["kind"] == "hub":
             assert len(chosen["leg_clearance"]) == 2
             offset = 0
@@ -91,16 +90,16 @@ def verify_saved_sentence(report, model):
                 leg = clearance(clip[offset:offset + intervals + 1])
                 assert leg.passed == saved["passed"]
                 assert leg.min_distance_m == saved["min_distance_m"]
-                if status == "PASS":
-                    assert leg.passed
+                passed = passed and leg.min_distance_m >= required
                 offset += intervals
         if chosen["kind"] == "via2":
             assert len(chosen["leg_intervals"]) == 3 and len(chosen["via_directions"]) == 2
+        assert segment["relative_floor_passed"] == (passed if near else None)
+        status = ("source_near" if near else "PASS") if passed else "FAILED"
         assert status == segment["status"]
         assert result.min_distance_m == segment["clearance"]["min_distance_m"]
-        assert segment["min_clearance_mm"] == (None if result.min_distance_m is None else
-                                               result.min_distance_m * 1000)
-    return {"passed": True, "checks": "saved endpoints, rates, per-leg durations, endpoint gate, whole-path and hub-leg collision classification; source_collision is diagnostic only",
+        assert segment["min_clearance_mm"] == result.min_distance_m * 1000
+    return {"passed": True, "checks": "saved endpoints, rates, per-leg durations, numeric signed clearance/closest pair, normal 2 mm absolute floor and near-source relative floor on whole paths and hub legs; source_near is not absolute clearance certification",
             "transition_peak_rates": peaks}
 
 
@@ -168,14 +167,18 @@ def _phase(report, index):
     return "end hold"
 
 
-def render_comparison(model, planned_report, destination):
+def render_comparison(model, planned_report, glosses, artifact_name, *, out_dir=OUT):
     import imageio.v2 as imageio
     import mujoco
     from PIL import Image, ImageDraw
     sys.path.insert(0, str(ROOT / "scripts/mocap"))
     from render_comparison import camera
 
-    baseline = read_motion(PREVIEWS / "sentence_YOU_HURT_WHERE.npz")
+    glosses = [g.upper() for g in glosses]
+    if glosses != planned_report["glosses"]:
+        raise ValueError("Comparison glosses must match the planned report")
+    destination = out_dir / f"{artifact_name}.mp4"
+    baseline = read_motion(PREVIEWS / ("sentence_" + "_".join(glosses) + ".npz"))
     planned = read_motion(artifact_path(planned_report["output_npz"]))
     data = mujoco.MjData(model)
     width, height = 480, 544  # Dimensions divisible by the encoder macroblock.
@@ -198,7 +201,7 @@ def render_comparison(model, planned_report, destination):
                     phase = _phase(planned_report, frame_index) if row else "fixed 0.5s smoothstep"
                     if i >= len(motion["positions"]):
                         phase = "end hold (no time warping)"
-                    draw.text((12, 8), f"{label} | YOU HURT WHERE | {i / FPS:.2f}s", fill="white")
+                    draw.text((12, 8), f"{label} | {' '.join(glosses)} | {i / FPS:.2f}s", fill="white")
                     draw.text((12, 27), f"{'front' if col == 0 else 'right side'} | {phase}", fill="white")
                     draw.text((12, 44), "Kinematic candidate preview; ASL unreviewed", fill=(230, 208, 160))
                     panel.paste(frame, (col * width, row * height))
@@ -206,9 +209,9 @@ def render_comparison(model, planned_report, destination):
             if i % 30 == 0 or i == n_frames - 1:
                 print(f"comparison render {i + 1}/{n_frames} frames", flush=True)
             if i == 100:
-                panel.save(OUT / "you_hurt_where_comparison_frame.png")
+                panel.save(out_dir / f"{artifact_name}_frame.png")
     return {"path": str(destination.relative_to(ROOT) if destination.is_relative_to(ROOT) else destination),
-            "fps": FPS, "frames": n_frames,
+            "glosses": glosses, "fps": FPS, "frames": n_frames,
             "duration_s": n_frames / FPS, "size": [2 * width, 2 * height],
             "layout": "baseline top, planned bottom; front left, right-side right; shorter row holds its end"}
 
@@ -226,20 +229,23 @@ def write_tables(reports):
     for report in reports:
         sentence = " ".join(report["glosses"])
         summary.append([sentence, len(report["word_segments"]), report["transition_count"],
-                        report["pass_count"], report["source_collision_count"], report["failed_count"],
+                        report["pass_count"], report["source_near_count"], report["failed_count"],
                         seconds(report["duration_s"]), seconds(report["baseline"]["duration_s"]),
                         seconds(report["duration_vs_baseline_s"], signed=True)])
-        for item in report["source_collision_handoff"]:
+        for item in report["source_near_handoff"]:
             if item not in handoff:
                 handoff.append(item)
         for transition in report["transitions"]:
             pair = transition["from_gloss"] + " → " + transition["to_gloss"]
             distance = transition["clearance"]["min_distance_m"]
+            closest = transition["closest_pair"]
+            endpoints = transition["endpoint_clearances_mm"]
             transitions.append([sentence, pair, transition["status"],
-                                transition["method"],
+                                transition["method"], str(transition["source_near"]).lower(),
                                 " → ".join(transition["via_directions"]) or "—",
                                 f"{transition['duration_s']:.3f}",
-                                "null" if distance is None else f"{distance * 1000:.6f}"])
+                                f"{endpoints[0]:.6f}", f"{endpoints[1]:.6f}",
+                                f"{distance * 1000:.6f}", " / ".join(closest["bodies"])])
             if transition["status"] == "FAILED":
                 worst = transition["worst_collision"]
                 failed.append([sentence, pair, " / ".join(worst["bodies"]) if worst else "—",
@@ -249,33 +255,38 @@ def write_tables(reports):
                      f"{item['clearance_mm']:.6f}", item["distance_m"]]
                     for item in handoff]
     for english in (False, True):
-        summary_headers = (["Sentence", "Word segments", "Transitions", "PASS", "source_collision", "FAILED",
+        summary_headers = (["Sentence", "Word segments", "Transitions", "PASS", "source_near", "FAILED",
                             "Planned s", "Baseline s", "Difference s"] if english else
-                           ["句子", "单词段", "过渡数", "PASS", "source_collision", "FAILED", "规划秒数", "基线秒数", "秒数差"])
-        transition_headers = (["Sentence", "Transition", "Status", "Method", "Via directions", "Duration s", "Min clearance mm"]
-                              if english else ["句子", "过渡", "状态", "方法", "中间点方向", "时长秒", "最小间隙 mm"])
+                           ["句子", "单词段", "过渡数", "PASS", "source_near", "FAILED", "规划秒数", "基线秒数", "秒数差"])
+        transition_headers = (["Sentence", "Transition", "Status", "Method", "source_near", "Via directions", "Duration s",
+                               "Start clearance mm", "End clearance mm", "Min clearance mm", "Closest body pair"]
+                              if english else ["句子", "过渡", "状态", "方法", "source_near", "中间点方向", "时长秒",
+                                               "起点间隙 mm", "终点间隙 mm", "最小间隙 mm", "最近体对"])
         failure_headers = (["Sentence", "Transition", "Worst body pair", "distance_m", "Transition frame", "Endpoint floor m"]
                            if english else ["句子", "过渡", "最差碰撞体对", "distance_m", "过渡内帧", "端点下限 m"])
         handoff_headers = (["Word", "Source sign_frames index", "Body pair", "Clearance mm", "distance_m"] if english else
                            ["单词", "源 sign_frames 帧索引", "碰撞体对", "间隙 mm", "distance_m"])
         intro = ("# Transition results\n\n[中文](report.md) · **English**\n\n"
                  "Local generated report. Sentence duration is frame count / 30; each transition/leg duration is intervals / 30. "
-                 "PASS, source_collision and FAILED are disjoint transition counts. Either endpoint strictly below ENDPOINT_NEAR_M = 0 m "
-                 "stops search as source_collision; its emitted direct path is diagnostic only, with full-path penetration still reported. "
-                 "Clear endpoints escalate through direct, best via1/via2, then model-qpos0 hub. Singleton sentences have zero checks. "
-                 "A null distance means no detected contacts, not a measured positive gap. "
+                 "PASS, source_near and FAILED are disjoint transition counts. Either endpoint strictly below ENDPOINT_NEAR_M = 0.002 m "
+                 "uses the smaller endpoint clearance as its relative floor; normal paths require at least +2 mm separation. "
+                 "Every segment can escalate through direct, best via1/via2, then model-qpos0 hub. A failed relative search is FAILED. "
+                 "Signed distance is positive for separation and negative for penetration, measured numerically with temporarily expanded "
+                 "MuJoCo detection margins and unchanged pair filtering. Singleton sentences have zero transition checks. "
+                 "source_near is an endpoint-relative pass, not an absolute clearance certification; FAILED paths are diagnostic only. "
                  "See the [protocol, commands and limitations](../../docs/transition-planner.en.md).\n\n" if english else
                  "# 衔接规划结果\n\n**中文** · [English](report.en.md)\n\n"
-                 "本地生成报告。句子时长按帧数 / 30，过渡及各腿时长按时间间隔数 / 30。PASS、source_collision、FAILED 分开计数。"
-                 "任一端点严格低于 ENDPOINT_NEAR_M = 0 m 即停止搜索并记为 source_collision；输出的直连仅供诊断，仍报告全路径穿透。"
-                 "端点通过后依次尝试直连、最优 via1/via2、模型 qpos0 hub；单词句零次检查。"
-                 "null 表示无接触记录，并非测得正间隙。详见[协议、启动命令与限制](../../docs/transition-planner.md)。\n\n")
+                 "本地生成报告。句子时长按帧数 / 30，过渡及各腿时长按时间间隔数 / 30。PASS、source_near、FAILED 分开计数。"
+                 "任一端点严格低于 ENDPOINT_NEAR_M = 0.002 m 时，以较差端点间隙为相对下限；普通路径要求至少 +2 mm 分离。"
+                 "每段均可依次尝试直连、最优 via1/via2、模型 qpos0 hub；相对下限搜索失败记为 FAILED。"
+                 "有符号距离正值为分离、负值为穿透；临时扩大 MuJoCo 检测 margin，配对过滤不变，始终报告数值。单词句零次过渡检查。"
+                 "source_near 仅相对端点通过，不是绝对间隙认证；FAILED 输出仅供诊断。详见[协议、启动命令与限制](../../docs/transition-planner.md)。\n\n")
         content = (intro + table(summary_headers, summary) + "\n\n" +
                    ("## Emitted transitions\n\n" if english else "## 输出过渡\n\n") +
                    table(transition_headers, transitions) + "\n\n" +
                    ("## FAILED worst collisions\n\n" if english else "## FAILED 最差碰撞\n\n") +
                    (table(failure_headers, failed) if failed else ("None." if english else "无。")) + "\n\n" +
-                   ("## Group 2 source collision handoff\n\n" if english else "## 交给第二组的源姿态碰撞\n\n") +
+                   ("## Group 2 source_near handoff\n\n" if english else "## 交给第二组的 source_near 源姿态\n\n") +
                    (table(handoff_headers, handoff_rows) if handoff_rows else ("None." if english else "无。")) + "\n")
         (OUT / ("report.en.md" if english else "report.md")).write_text(content)
 
@@ -340,7 +351,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--report", type=Path, default=OUT / "report.json")
     parser.add_argument("--render-comparison", action="store_true")
-    parser.add_argument("--copy-to", type=Path, default=Path("/workspace/you_hurt_where_baseline_vs_planned_v2.mp4"))
+    parser.add_argument("--comparison-glosses", nargs="+", default=["YOU", "HURT", "WHERE"],
+                        help="glosses of the baseline/planned sentence to compare")
+    parser.add_argument("--artifact-name", help="MP4 stem; defaults to <glosses>_baseline_vs_planned_v3")
+    parser.add_argument("--copy-to", type=Path, help="copy MP4 here (default: /workspace/<artifact-name>.mp4)")
     args = parser.parse_args(argv)
     report = load_report(args.report)
     model = load_model(ROOT)
@@ -351,11 +365,16 @@ def main(argv=None):
     sag = measure_sag(model, sag_sentence)
     (OUT / "you_buy_sag.json").write_text(json.dumps(sag, indent=2) + "\n")
     if args.render_comparison:
-        sentence = next(s for s in report["sentences"] if s["glosses"] == ["YOU", "HURT", "WHERE"])
-        video = render_comparison(model, sentence, OUT / "you_hurt_where_baseline_vs_planned_v2.mp4")
-        shutil.copy2(artifact_path(video["path"]), args.copy_to)
-        video["copy"] = str(args.copy_to)
-        report["comparison_video"] = video
+        glosses = [g.upper() for g in args.comparison_glosses]
+        sentence = next((s for s in report["sentences"] if s["glosses"] == glosses), None)
+        if sentence is None:
+            parser.error(f"Sentence not in report: {' '.join(glosses)}")
+        name = args.artifact_name or "_".join(glosses).lower() + "_baseline_vs_planned_v3"
+        video = render_comparison(model, sentence, glosses, name)
+        copy_to = args.copy_to or Path("/workspace") / f"{name}.mp4"
+        shutil.copy2(artifact_path(video["path"]), copy_to)
+        video["copy"] = str(copy_to)
+        report.setdefault("comparison_videos", {})[name] = video
     report["you_buy_sag"] = str((OUT / "you_buy_sag.json").relative_to(ROOT))
     inputs = {segment["motion"] for sentence in report["sentences"] for segment in sentence["word_segments"]}
     inputs.update(sentence["baseline"]["path"] for sentence in report["sentences"])

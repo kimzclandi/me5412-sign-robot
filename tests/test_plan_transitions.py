@@ -1,6 +1,7 @@
 """Transition contract checks, separate from source-clip quality/ASL review."""
 
 import json
+import math
 
 import numpy as np
 import pytest
@@ -9,6 +10,7 @@ from sign_robot.motion import ROOT, apply_frame, load_model, validate_motion
 from sign_robot.transitions import (
     FPS,
     ENDPOINT_NEAR_M,
+    PENETRATION_TOLERANCE_M,
     VIA_DIRECTIONS,
     VIA_DISPLACEMENT_M,
     ClearanceResult,
@@ -37,8 +39,18 @@ SENTENCES = (
 )
 
 
+def distance_result(distance, positions, frame=0):
+    contact = {"bodies": ["torso_link", "right_wrist_yaw_link"],
+               "geoms": ["torso_geom", "wrist_geom"],
+               "distance_m": distance, "frame": frame,
+               "location": "start_endpoint" if frame == 0 else "interior"}
+    violations = [contact] if distance < PENETRATION_TOLERANCE_M else []
+    return ClearanceResult(not violations, distance, violations, len(positions),
+                           [contact] if distance < ENDPOINT_NEAR_M else [], contact)
+
+
 def clear(positions):
-    return ClearanceResult(True, sampled_frames=len(positions))
+    return distance_result(0.01, positions)
 
 
 @pytest.fixture(scope="module")
@@ -113,7 +125,12 @@ def test_sentence_boundaries_rates_and_source_frames(glosses, words):
         assert segment["from_gloss"] == previous
         assert segment["to_gloss"] == following
         assert segment["method"] == "direct"
-        assert segment["min_clearance_mm"] is None
+        assert segment["status"] == "PASS" and not segment["source_near"]
+        assert isinstance(segment["min_clearance_mm"], (int, float))
+        assert math.isfinite(segment["min_clearance_mm"])
+        assert segment["min_clearance_mm"] == 10.0
+        assert segment["endpoint_clearances_mm"] == [10.0, 10.0]
+        assert segment["closest_pair"]["bodies"] == ["torso_link", "right_wrist_yaw_link"]
         start_frame, end_frame = segment["start_frame"], segment["end_frame"]
         assert (end_frame - start_frame) / FPS >= 0.3
         transition = positions[start_frame:end_frame + 1]
@@ -139,9 +156,7 @@ def test_sentence_boundaries_rates_and_source_frames(glosses, words):
 
 
 def collision_result(distance, positions, frame=0):
-    return ClearanceResult(False, distance, [{"bodies": ["torso_link", "right_wrist_yaw_link"],
-                                              "distance_m": distance, "frame": frame,
-                                              "location": "interior"}], len(positions))
+    return distance_result(distance, positions, frame)
 
 
 def test_collision_tries_named_vias_and_preserves_endpoints():
@@ -180,9 +195,9 @@ def test_collision_tries_named_vias_and_preserves_endpoints():
 
 
 @pytest.mark.parametrize("margins,chosen", [
-    ([-0.004, -0.001, -0.003], 1),  # Only one direction passes.
-    ([-0.001, -0.0003, -0.0008], 1),  # Select best, not first passing direction.
-    ([-0.001, None, -0.0008], 1),  # No detected contacts stays null in the report.
+    ([-0.004, 0.002, 0.001], 1),  # Only one direction passes the +2 mm line.
+    ([0.003, 0.005, 0.004], 1),  # Select best, not first passing direction.
+    ([0.003, 0.02, 0.004], 1),  # Separated candidates rank by numeric distance.
 ])
 def test_multi_candidate_selects_largest_passing_clearance(margins, chosen):
     names = ["right_shoulder_pitch_joint", "right_elbow_joint"]
@@ -199,8 +214,7 @@ def test_multi_candidate_selects_largest_passing_clearance(margins, chosen):
         if len(whole_paths) == 1:
             return collision_result(-0.01, positions, 3)
         distance = margins[len(whole_paths) - 2]
-        return (collision_result(distance, positions, 3) if distance is not None and distance < -0.002
-                else ClearanceResult(True, distance, sampled_frames=len(positions)))
+        return distance_result(distance, positions, 3)
 
     plan = plan_transition(start, end, names, clearance=clearance,
                            via_factory=lambda *args: vias, via2_factory=lambda *args: [])
@@ -214,8 +228,8 @@ def test_multi_candidate_selects_largest_passing_clearance(margins, chosen):
 
 
 @pytest.mark.parametrize("single_margin,dual_margin,method", [
-    (-0.001, -0.0002, "via2"), (-0.0002, -0.001, "via1"),
-    (-0.003, None, "via2"), (-0.001, -0.004, "via1"),
+    (0.003, 0.005, "via2"), (0.005, 0.003, "via1"),
+    (0.001, 0.01, "via2"), (0.003, -0.004, "via1"),
 ])
 def test_via1_and_via2_compete_on_whole_path_clearance(single_margin, dual_margin, method):
     names = ["right_shoulder_pitch_joint", "R_index_proximal_joint"]
@@ -228,9 +242,7 @@ def test_via1_and_via2_compete_on_whole_path_clearance(single_margin, dual_margi
             return clear(positions)
         paths.append(positions.copy())
         distance = [-0.01, single_margin, dual_margin][len(paths) - 1]
-        if distance is not None and distance < -0.002:
-            return collision_result(distance, positions, 4)
-        return ClearanceResult(True, distance, sampled_frames=len(positions))
+        return distance_result(distance, positions, 4)
 
     def unexpected_hub(*args):
         pytest.fail("Hub is a fallback after every via candidate fails")
@@ -265,7 +277,7 @@ def test_hub_fallback_selected_only_after_mocked_vias_fail_and_both_legs_clear()
             return clear(positions)
         if any(np.array_equal(row, hub) for row in positions):
             hub_paths.append(positions.copy())
-            return ClearanceResult(True, -0.001, sampled_frames=len(positions))
+            return distance_result(0.003, positions)
         return collision_result(-0.01, positions, 4)
 
     plan = plan_transition(start, end, names, clearance=clearance,
@@ -302,7 +314,7 @@ def test_persistent_interior_collision_checks_hub_and_reports_worst_pair():
                            via2_factory=lambda a, b, n: [(["neutral_retreat", "out"], [a + 0.2, b + 0.2])],
                            hub_factory=lambda names: np.full(len(names), -0.3))
     assert len(calls) == 3 + len(VIA_DIRECTIONS) + 1 + 3  # Via2, hub whole path and both legs.
-    assert plan.status == plan.method == "FAILED"
+    assert plan.status == "FAILED" and plan.method == "direct"
     assert plan.attempts[-1]["kind"] == "hub"
     assert len(plan.attempts[-1]["leg_clearance"]) == 2
     assert plan.reasons
@@ -336,22 +348,22 @@ def sphere_pair_model(first_body, second_body):
     """)
 
 
-@pytest.mark.parametrize("penetration,passed", [(0.0015, True), (0.0025, False)])
-def test_real_mujoco_contact_respects_explicit_penetration_tolerance(penetration, passed):
+@pytest.mark.parametrize("distance,passed", [(0.003, True), (0.0015, False), (-0.0015, False), (-0.0025, False)])
+def test_real_mujoco_clearance_requires_positive_two_mm(distance, passed):
     model = sphere_pair_model("torso_link", "right_wrist_yaw_link")
     checker = MujocoClearance(model, np.array(["right_wrist_pitch_joint"]))
-    # Endpoints are separated; only the middle transition sample collides.
-    result = checker(np.array([[0.005], [-penetration], [0.005]]))
+    # Endpoints are separated; the middle sample determines signed clearance.
+    result = checker(np.array([[0.005], [distance], [0.005]]))
     assert result.passed is passed
     assert result.sampled_frames == 3
-    assert result.min_distance_m == pytest.approx(-penetration, abs=1e-10)
+    assert result.min_distance_m == pytest.approx(distance, abs=1e-10)
     if passed:
         assert result.collisions == []
     else:
         assert len(result.collisions) == 1
         collision = result.collisions[0]
         assert set(collision["bodies"]) == {"torso_link", "right_wrist_yaw_link"}
-        assert collision["distance_m"] == pytest.approx(-penetration, abs=1e-10)
+        assert collision["distance_m"] == pytest.approx(distance, abs=1e-10)
         assert collision["frame"] == 1 and collision["location"] == "interior"
 
 
@@ -367,14 +379,52 @@ def test_clearance_checks_both_transition_endpoints(frame, location):
     assert result.collisions[0]["location"] == location
 
 
+@pytest.mark.parametrize("gap", [0.005, 1.2])
+def test_separated_clearance_and_planned_pass_are_finite_with_closest_pair(gap):
+    model = sphere_pair_model("fixed_mount", "right_wrist_yaw_link")
+    names = ["right_wrist_pitch_joint"]
+    checker = MujocoClearance(model, names)
+    margins, pair_margins = model.geom_margin.copy(), model.pair_margin.copy()
+    masks = (model.geom_contype.copy(), model.geom_conaffinity.copy())
+    apply_frame(model, checker.data, names, [gap])
+    assert checker.data.ncon == 0  # No contacts with the original zero margins.
+    result = checker(np.array([[gap], [gap + 0.005]]))
+    assert isinstance(result.min_distance_m, (int, float)) and math.isfinite(result.min_distance_m)
+    assert result.min_distance_m == pytest.approx(gap)
+    assert result.passed and len(result.worst_contact["bodies"]) == 2
+    assert "fixed_mount" in result.worst_contact["bodies"]
+    assert len(result.worst_contact["geoms"]) == 2
+    plan = plan_transition([gap], [gap + 0.005], names, clearance=checker)
+    chosen = plan.attempts[plan.selected_attempt]
+    assert plan.status == "PASS" and not plan.source_near
+    assert math.isfinite(chosen["clearance"]["min_distance_m"])
+    assert chosen["worst_collision"]["bodies"] == result.worst_contact["bodies"]
+    np.testing.assert_array_equal(model.geom_margin, margins)
+    np.testing.assert_array_equal(model.pair_margin, pair_margins)
+    np.testing.assert_array_equal(model.geom_contype, masks[0])
+    np.testing.assert_array_equal(model.geom_conaffinity, masks[1])
+
+
+@pytest.mark.parametrize("distance", [-0.0008, 0.0, 0.001999999, 0.002, 0.003])
+def test_normal_path_uses_absolute_positive_two_mm_floor(distance):
+    def clearance(positions):
+        return clear(positions) if len(positions) == 1 else distance_result(distance, positions, 4)
+
+    plan = plan_transition([0.0], [0.5], ["right_elbow_joint"], clearance=clearance,
+                           via_factory=lambda *args: [], via2_factory=lambda *args: [],
+                           hub_factory=lambda *args: [-0.5])
+    assert not plan.source_near and plan.endpoint_floor_m is None
+    assert plan.status == ("PASS" if distance >= 0.002 else "FAILED")
+
+
 @pytest.mark.parametrize("endpoint", [0, 1])
-@pytest.mark.parametrize("penetration", [0.0008, 0.002, 0.004])
-def test_endpoint_near_is_source_collision_without_any_detour_search(endpoint, penetration):
+@pytest.mark.parametrize("distance", [-0.0008, -0.002, -0.004, 0.001])
+def test_real_near_endpoint_direct_passes_only_at_relative_floor(endpoint, distance):
     model = sphere_pair_model("fixed_mount", "right_wrist_yaw_link")
     names = ["right_wrist_pitch_joint"]
     checker = MujocoClearance(model, names)
     endpoints = [[0.005], [0.005]]
-    endpoints[endpoint] = [-penetration]
+    endpoints[endpoint] = [distance]
     checks = []
 
     def clearance(positions):
@@ -382,38 +432,42 @@ def test_endpoint_near_is_source_collision_without_any_detour_search(endpoint, p
         return checker(positions)
 
     def unexpected_search(*args):
-        pytest.fail("Even a within-tolerance near endpoint must stop before via1, via2 or hub")
+        pytest.fail("A direct path meeting the relative floor needs no escalation")
 
     plan = plan_transition(*endpoints, names, clearance=clearance,
                            via_factory=unexpected_search, via2_factory=unexpected_search,
-                           hub_factory=unexpected_search,
-                           height_check=lambda q: {"passed": False})
+                           hub_factory=unexpected_search)
     assert len(checks) == 3 and len(checks[0]) == len(checks[1]) == 1
-    assert plan.status == plan.method == "source_collision" and not plan.used_via
+    assert plan.status == "source_near" and plan.method == "direct" and not plan.used_via
+    assert plan.source_near and plan.attempts[0]["relative_floor_passed"]
     assert plan.via_direction is None and plan.via_directions == []
     assert len(plan.attempts) == 1
     near = plan.endpoint_clearance[endpoint]
-    assert near["min_distance_m"] == pytest.approx(-penetration)
+    assert near["min_distance_m"] == pytest.approx(distance)
     assert set(near["near_contacts"][0]["bodies"]) == {"fixed_mount", "right_wrist_yaw_link"}
-    if penetration < 0.002:
-        assert near["passed"] and near["collisions"] == []
+    assert not near["passed"]  # Absolute clearance and relative acceptance are separate.
     np.testing.assert_array_equal(plan.positions[[0, -1]], endpoints)
 
 
-@pytest.mark.parametrize("endpoint_distance", [ENDPOINT_NEAR_M, 0.001, None])
-def test_endpoint_near_gate_is_strict_and_null_is_not_a_measured_gap(endpoint_distance):
+@pytest.mark.parametrize("endpoint_distance,status", [
+    (0.002, "PASS"), (0.003, "PASS"), (0.001999999, "source_near"), (0.001, "source_near"),
+])
+def test_endpoint_near_threshold_is_strict(endpoint_distance, status):
+    assert ENDPOINT_NEAR_M == 0.002
+    assert PENETRATION_TOLERANCE_M == 0.002
+
     def clearance(positions):
-        return ClearanceResult(True, endpoint_distance, sampled_frames=len(positions))
+        return distance_result(endpoint_distance, positions)
 
     plan = plan_transition([0.0], [0.5], ["right_elbow_joint"], clearance=clearance)
-    assert plan.status == "PASS" and plan.method == "direct"
+    assert plan.status == status and plan.method == "direct"
     assert plan.endpoint_clearance[0]["min_distance_m"] == endpoint_distance
 
 
 @pytest.mark.parametrize("start,end", [
     (-0.004, 0.005), (0.005, -0.004), (-0.004, -0.003), (-0.004, -0.004),
 ])
-def test_real_source_collisions_no_worse_than_endpoints_are_accepted(start, end):
+def test_real_source_near_no_worse_than_endpoints_is_accepted(start, end):
     model = sphere_pair_model("torso_link", "right_wrist_yaw_link")
     names = ["right_wrist_pitch_joint"]
     checker = MujocoClearance(model, names)
@@ -422,70 +476,153 @@ def test_real_source_collisions_no_worse_than_endpoints_are_accepted(start, end)
         pytest.fail("An unchanged source collision should not need a via")
 
     plan = plan_transition([start], [end], names, clearance=checker, via_factory=unexpected_via)
-    assert plan.status == "source_collision" and not plan.used_via
+    assert plan.status == "source_near" and not plan.used_via
     assert plan.reasons == []
     assert plan.endpoint_floor_m == pytest.approx(min(start, end))
     assert checker(plan.positions).min_distance_m >= plan.endpoint_floor_m
 
 
-@pytest.mark.parametrize("path_distance,no_worse", [
-    (-0.004, True), (-0.004000001, False), (-0.006, False),
-])
-def test_source_collision_relative_floor_is_diagnostic_and_never_forces_search(path_distance, no_worse):
+@pytest.mark.parametrize("floor", [-0.004, -0.0008, 0.001])
+@pytest.mark.parametrize("worsening", [0.0, 1e-9, 0.056])
+def test_source_near_relative_floor_escalates_all_candidates_before_failed(floor, worsening):
     names = ["right_shoulder_pitch_joint", "right_elbow_joint"]
     start, end = np.zeros(2), np.array([0.6, 0.9])
-    full_paths = []
+    full_paths, factories = [], []
 
     def clearance(positions):
         if len(positions) == 1:
-            return collision_result(-0.004, positions)
+            return distance_result(floor, positions)
         full_paths.append(positions.copy())
-        return collision_result(path_distance, positions, 4)
+        return distance_result(floor - worsening, positions, 4)
 
-    def unexpected_search(*args):
-        pytest.fail("The endpoint-near gate must stop before any detour search")
+    def vias(*args):
+        factories.append("via1")
+        return [("out", (start + end) / 2 + 0.1)]
+
+    def duals(*args):
+        factories.append("via2")
+        return [(["neutral_retreat", "out"], [start + 0.2, end + 0.2])]
+
+    def hub(*args):
+        factories.append("hub")
+        return np.full(2, -0.5)
 
     plan = plan_transition(start, end, names, clearance=clearance,
-                           via_factory=unexpected_search, via2_factory=unexpected_search,
-                           hub_factory=unexpected_search)
-    assert len(full_paths) == 1 and not plan.used_via
-    assert plan.status == plan.method == "source_collision"
-    assert plan.endpoint_floor_m == -0.004
-    assert plan.attempts[0]["relative_floor_passed"] is no_worse
-    assert bool([w for w in plan.warnings if "worsens" in w]) is not no_worse
+                           via_factory=vias, via2_factory=duals, hub_factory=hub)
+    assert plan.source_near and plan.endpoint_floor_m == floor
+    assert plan.status == ("FAILED" if worsening else "source_near")
+    assert plan.method == "direct"  # Stable tie order, but FAILED never counts as accepted.
+    assert factories == (["via1", "via2", "hub"] if worsening else [])
+    assert len(full_paths) == (6 if worsening else 1)
+    assert [a["kind"] for a in plan.attempts] == (["direct", "via1", "via2", "hub"] if worsening else ["direct"])
+    assert plan.attempts[plan.selected_attempt]["relative_floor_passed"] is (not worsening)
+    assert bool(plan.reasons) == bool(worsening)
+    if worsening:
+        assert plan.attempts[-1]["status"] == "FAILED"
+        assert plan.attempts[plan.selected_attempt]["worst_collision"]["distance_m"] == floor - worsening
 
 
-def test_source_collision_report_separates_counts_and_hands_off_source_frames(words):
+@pytest.mark.parametrize("method", ["via1", "via2", "hub"])
+@pytest.mark.parametrize("endpoint", [0, 1])
+@pytest.mark.parametrize("floor", [-0.0008, 0.001])
+def test_source_near_search_accepts_route_at_worse_endpoint_floor(method, endpoint, floor):
+    endpoint_calls, path_calls, factories = [], [], []
+    endpoints = [0.006, 0.006]
+    endpoints[endpoint] = floor
+
+    def clearance(positions):
+        if len(positions) == 1:
+            distance = endpoints[len(endpoint_calls)]
+            endpoint_calls.append(positions.copy())
+        else:
+            kind = ["direct", "via1", "via2", "hub", "hub", "hub"][len(path_calls)]
+            path_calls.append(positions.copy())
+            distance = floor if kind == method else -0.056
+        return distance_result(distance, positions)
+
+    def vias(*args):
+        factories.append("via1")
+        return [("out", [0.2])]
+
+    def duals(*args):
+        factories.append("via2")
+        return [(["neutral_retreat", "out"], [[0.1], [0.4]])]
+
+    def hub(*args):
+        factories.append("hub")
+        return [-0.5]
+
+    plan = plan_transition([0.0], [0.5], ["right_elbow_joint"], clearance=clearance,
+                           via_factory=vias, via2_factory=duals, hub_factory=hub)
+    assert plan.status == "source_near" and plan.source_near
+    assert plan.method == method and plan.used_via
+    assert plan.endpoint_floor_m == floor
+    assert factories == (["via1", "via2", "hub"] if method == "hub" else ["via1", "via2"])
+    assert plan.attempts[0]["status"] == "FAILED"  # The -56 mm direct is never accepted.
+    chosen = plan.attempts[plan.selected_attempt]
+    assert chosen["relative_floor_passed"] and chosen["clearance"]["min_distance_m"] == floor
+    if method == "hub":
+        assert len(chosen["leg_clearance"]) == 2
+        assert all(r["min_distance_m"] == floor for r in chosen["leg_clearance"])
+
+
+def test_source_near_report_separates_counts_and_hands_off_source_frames(words):
     def clearance(positions):
         return collision_result(-0.004, positions)
 
     _, report = plan_sentence(["YOU", "BUY"], clearance=clearance)
-    assert report["transition_count"] == report["source_collision_count"] == report["accepted_count"] == 1
+    assert report["transition_count"] == report["source_near_count"] == report["accepted_count"] == 1
     assert report["pass_count"] == report["failed_count"] == 0
-    assert report["status"] == "source_collision"
-    assert {(row["word"], row["frame"]) for row in report["source_collision_handoff"]} == {
+    assert report["status"] == "source_near"
+    assert {(row["word"], row["frame"]) for row in report["source_near_handoff"]} == {
         ("YOU", words["YOU"]["sign_frames"][1]), ("BUY", words["BUY"]["sign_frames"][0]),
     }
     assert all(row["distance_m"] == -0.004 and "torso_link" in row["bodies"]
-               for row in report["source_collision_handoff"])
+               for row in report["source_near_handoff"])
 
 
-def test_within_tolerance_near_contacts_are_in_source_frame_handoff(words):
+@pytest.mark.parametrize("floor", [-0.0008, 0.001])
+def test_failed_source_near_report_is_not_accepted_and_keeps_handoff(words, monkeypatch, floor):
+    import sign_robot.transitions as transitions
+
+    monkeypatch.setattr(transitions, "ik_via_candidates", lambda *args: [])
+    monkeypatch.setattr(transitions, "ik_dual_via_candidates", lambda *args: [])
+    monkeypatch.setattr(transitions, "neutral_pose", lambda names, model=None: np.zeros(len(names)))
+
+    def clearance(positions):
+        return distance_result(floor if len(positions) == 1 else -0.056, positions)
+
+    _, report = plan_sentence(["YOU", "BUY"], clearance=clearance)
+    assert report["transition_count"] == report["failed_count"] == 1
+    assert report["pass_count"] == report["source_near_count"] == report["accepted_count"] == 0
+    transition, = report["transitions"]
+    assert report["status"] == transition["status"] == "FAILED"
+    assert transition["source_near"] and not transition["relative_floor_passed"]
+    assert transition["min_clearance_mm"] == -56.0
+    assert transition["closest_pair"]["distance_m"] == -0.056
+    assert {(row["word"], row["frame"]) for row in report["source_near_handoff"]} == {
+        ("YOU", words["YOU"]["sign_frames"][1]), ("BUY", words["BUY"]["sign_frames"][0]),
+    }
+
+
+@pytest.mark.parametrize("distance", [-0.0008, 0.001])
+def test_mild_contacts_and_small_positive_gaps_are_in_source_near_handoff(words, distance):
     def clearance(positions):
         contact = {"bodies": ["fixed_mount", "right_wrist_yaw_link"],
-                   "distance_m": -0.0008, "frame": 0, "location": "start_endpoint"}
-        return ClearanceResult(True, -0.0008, sampled_frames=len(positions),
+                   "distance_m": distance, "frame": 0, "location": "start_endpoint"}
+        return ClearanceResult(False, distance, sampled_frames=len(positions),
                                near_contacts=[contact], worst_contact=contact)
 
     _, report = plan_sentence(["YOU", "BUY"], clearance=clearance)
-    assert report["source_collision_count"] == 1 and report["pass_count"] == 0
+    assert report["source_near_count"] == 1 and report["pass_count"] == 0
     transition, = report["transitions"]
-    assert transition["method"] == "source_collision" and not transition["used_via"]
-    assert transition["min_clearance_mm"] == -0.8
-    assert {(row["word"], row["frame"]) for row in report["source_collision_handoff"]} == {
+    assert transition["method"] == "direct" and transition["status"] == "source_near"
+    assert transition["source_near"] and not transition["used_via"]
+    assert transition["min_clearance_mm"] == distance * 1000
+    assert {(row["word"], row["frame"]) for row in report["source_near_handoff"]} == {
         ("YOU", words["YOU"]["sign_frames"][1]), ("BUY", words["BUY"]["sign_frames"][0]),
     }
-    assert all(row["clearance_mm"] == -0.8 for row in report["source_collision_handoff"])
+    assert all(row["clearance_mm"] == distance * 1000 for row in report["source_near_handoff"])
 
 
 def test_ik_vias_use_robot_axes_bounded_arms_and_convex_fingers(words, monkeypatch):
@@ -595,12 +732,28 @@ def test_dual_ik_family_uses_neutral_qpos0_arms_and_solves_every_knot(words, mon
 ])
 def test_real_contact_excludes_only_same_hand_adjacency(first, second, excluded):
     model = sphere_pair_model(first, second)
+    if excluded:
+        # Keep an eligible far pair so exclusion does not require a null or
+        # invented clearance. The contacting hand pair must remain excluded.
+        import mujoco
+        xml = f"""
+            <mujoco><worldbody>
+              <body name="{first}"><geom type="sphere" size="0.01"/></body>
+              <body name="{second}" pos="0.02 0 0">
+                <joint name="right_wrist_pitch_joint" type="slide" axis="1 0 0"/>
+                <geom type="sphere" size="0.01"/>
+              </body>
+              <body name="torso_link" pos="0.5 0 0"><geom type="sphere" size="0.01"/></body>
+            </worldbody></mujoco>"""
+        model = mujoco.MjModel.from_xml_string(xml)
     checker = MujocoClearance(model, ["right_wrist_pitch_joint"])
     result = checker(np.array([[-0.004], [-0.004]]))
     assert checker.data.ncon > 0  # Filtering, rather than missing contacts, explains PASS.
     assert result.passed is excluded
     if excluded:
-        assert result.collisions == [] and result.min_distance_m is None
+        assert result.collisions == [] and math.isfinite(result.min_distance_m)
+        assert result.min_distance_m > 0.002
+        assert "torso_link" in result.worst_contact["bodies"]
     else:
         assert result.min_distance_m == pytest.approx(-0.004, abs=1e-10)
         assert result.collisions

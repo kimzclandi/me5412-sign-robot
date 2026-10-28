@@ -4,14 +4,12 @@ The first word keeps frame 0 (rise from neutral), the last keeps its return to
 neutral, just as stitch_baseline.py does. Interior words use inclusive sign_frames.
 This is a geometric preview, not a dynamics controller or an ASL validation.
 
-Clearance escalation is deliberately ordered.  A single-frame endpoint check
-comes first; an endpoint whose minimum measured contact distance is strictly
-below :data:`ENDPOINT_NEAR_M` is reported as ``source_collision`` and is handed
-to the source-motion group without searching for a detour.  ``0.0`` means that
-any contacting/penetrating endpoint is near the hard ``-2 mm`` line.  Only when
-both endpoints are clear do we try one-via and two-via candidates, followed by
-the model's neutral (hub) pose.  ``fixed_mount`` and every other active MuJoCo
-geometry remain in these checks.
+Signed clearance is positive for separation and negative for penetration.
+Normal paths require at least 2 mm; paths with either endpoint strictly below
+2 mm must never worsen the smaller endpoint clearance. Both use the same
+direct, via1, via2 and neutral-hub escalation. A passing near-source path is
+labelled ``source_near`` and handed to the source-motion group. ``fixed_mount``
+and every other upstream collision geometry remain in these checks.
 """
 from __future__ import annotations
 
@@ -40,14 +38,13 @@ VIA_DIRECTIONS = (
     ("up+forward", (1, 0, 1)),
     ("out+up+forward", (1, 1, 1)),
 )
-# Follow the task's explicit failure rule, contact.dist < -0.002 m. This is
-# a penetration tolerance, NOT a claim of positive 2 mm free-space clearance.
+# Signed distance: positive separation, negative penetration. Normal paths
+# require distance >= this unchanged physical 2 mm threshold.
 PENETRATION_TOLERANCE_M = 0.002
-# Hard fail line remains contact.dist < -PENETRATION_TOLERANCE_M (-2 mm).
-# ENDPOINT_NEAR_M: an endpoint min contact.dist strictly below this value is
-# source_collision.  With 0.0, this includes both hard-failing endpoints and
-# negative contacts inside the permitted 2 mm band; neither triggers a search.
-ENDPOINT_NEAR_M = 0.0
+# Either endpoint strictly below 2 mm uses the relative endpoint floor and
+# remains on the Group 2 source_near handoff, including positive gaps < 2 mm.
+ENDPOINT_NEAR_M = 0.002
+CLEARANCE_DETECTION_MARGIN_M = 0.25
 HEIGHT_TOLERANCE_M = 1e-7
 
 
@@ -92,7 +89,7 @@ def same_hand(bodies):
 @dataclass
 class ClearanceResult:
     passed: bool
-    min_distance_m: float | None = None
+    min_distance_m: float
     collisions: list = field(default_factory=list)
     sampled_frames: int = 0
     near_contacts: list = field(default_factory=list)
@@ -102,8 +99,14 @@ class ClearanceResult:
 class MujocoClearance:
     """Inspect upstream collision geoms at every transition sample, endpoints too.
 
-    No collision masks/geoms/model limits are changed. Contact distances only
-    bound detected contacts; no contacts is reported as None, not a measured gap.
+    Temporarily expand geom/explicit-pair detection margins for mj_collision,
+    starting at 2 mm and growing through 25 cm if needed, then restore them in
+    a finally block. Once an eligible pair is detected, any omitted pair is
+    farther than the detection margin and cannot lower the minimum. Native pair
+    filtering and the existing same-hand rule stay intact. contact.dist is a
+    signed surface distance, not the margin-adjusted constraint distance. Thus
+    even separated poses have a numeric minimum and closest body/geom pair.
+    Models with no eligible pair, or empty trajectories, raise ValueError.
     """
 
     def __init__(self, model, joint_names):
@@ -111,31 +114,62 @@ class MujocoClearance:
         self.model, self.data = model, mujoco.MjData(model)
         self.joint_names = joint_names
 
+    def _contacts(self):
+        """Measure free space with native pair filtering; never edit the MJCF."""
+        import mujoco
+        model = self.model
+        margins, pair_margins = model.geom_margin.copy(), model.pair_margin.copy()
+        try:
+            # Expand only while no eligible pair is measured. Large margins
+            # on every sample make mesh narrow-phase checks needlessly costly.
+            # The last pass spans the scene so distant eligible pairs are also
+            # measured rather than returning a clipped-distance sentinel.
+            span = float(np.linalg.norm(np.ptp(self.data.geom_xpos, axis=0)))
+            full_margin = max(CLEARANCE_DETECTION_MARGIN_M, span + 1.0)
+            for margin in (PENETRATION_TOLERANCE_M, 0.01, 0.05,
+                           CLEARANCE_DETECTION_MARGIN_M, full_margin):
+                model.geom_margin[:] = np.maximum(margins, margin)
+                model.pair_margin[:] = np.maximum(pair_margins, margin)
+                mujoco.mj_collision(model, self.data)
+                contacts = []
+                for contact in self.data.contact[:self.data.ncon]:
+                    geoms = sorted(map(int, contact.geom),
+                                   key=lambda g: (model.body(model.geom_bodyid[g]).name, g))
+                    bodies = [model.body(model.geom_bodyid[g]).name for g in geoms]
+                    if same_hand(bodies):
+                        continue
+                    contacts.append({"bodies": bodies,
+                                     "geoms": [model.geom(g).name or f"geom_{g}" for g in geoms],
+                                     "geom_ids": geoms, "distance_m": float(contact.dist)})
+                if contacts:
+                    return contacts
+        finally:
+            model.geom_margin[:] = margins
+            model.pair_margin[:] = pair_margins
+        raise ValueError("Clearance requires at least one eligible non-same-hand geom pair")
+
     def __call__(self, positions):
-        distances, pairs, near_pairs = [], {}, {}
+        if not len(positions):
+            raise ValueError("Clearance requires at least one pose")
+        pairs, near_pairs = {}, {}
         worst = None
         for frame, row in enumerate(positions):
             apply_frame(self.model, self.data, self.joint_names, row)
-            for contact in self.data.contact[:self.data.ncon]:
-                bodies = sorted(self.model.body(self.model.geom_bodyid[int(g)]).name for g in contact.geom)
-                if same_hand(bodies):
-                    continue
-                distance = float(contact.dist)
-                distances.append(distance)
+            for contact in self._contacts():
+                distance = contact["distance_m"]
                 location = ("start_endpoint" if frame == 0 else
                             "end_endpoint" if frame == len(positions) - 1 else "interior")
-                item = {"bodies": bodies, "distance_m": distance,
-                        "frame": frame, "location": location}
+                item = {**contact, "frame": frame, "location": location}
                 if worst is None or distance < worst["distance_m"]:
                     worst = item
-                key = tuple(bodies)
+                key = tuple(contact["bodies"])
                 if distance < ENDPOINT_NEAR_M:
                     if key not in near_pairs or distance < near_pairs[key]["distance_m"]:
                         near_pairs[key] = item
-                if distance < -PENETRATION_TOLERANCE_M:
+                if distance < PENETRATION_TOLERANCE_M:
                     if key not in pairs or distance < pairs[key]["distance_m"]:
                         pairs[key] = item
-        return ClearanceResult(not pairs, min(distances) if distances else None,
+        return ClearanceResult(not pairs, worst["distance_m"],
                                list(pairs.values()), len(positions),
                                list(near_pairs.values()), worst)
 
@@ -283,20 +317,16 @@ def wrist_height_check(model, joint_names, positions):
             "right_wrist_undershoot_m": float(dips[1])}
 
 
-def _clearance_reasons(result, endpoint_floor=None):
-    if endpoint_floor is not None:
-        return [f"minimum contact distance {result.min_distance_m} m worsens "
-                f"source endpoint minimum {endpoint_floor} m"] + [
-            f"{' | '.join(c['bodies'])}, distance_m={c['distance_m']}, "
-            f"sample {c['frame']} ({c.get('location', 'unspecified')})"
-            for c in result.collisions if c["distance_m"] < endpoint_floor]
-    if result.passed:
+def _clearance_reasons(result, required_clearance):
+    if result.min_distance_m >= required_clearance:
         return []
-    if result.collisions:
-        return [f"penetration {-c['distance_m'] * 1000:.3f} mm > 2 mm: "
-                f"{' | '.join(c['bodies'])}, sample {c['frame']} "
-                f"({c.get('location', 'unspecified')})" for c in result.collisions]
-    return [f"clearance failed (minimum contact distance {result.min_distance_m} m)"]
+    worst = result.worst_contact or min(result.collisions, key=lambda c: c["distance_m"], default=None)
+    reasons = [f"minimum signed clearance {result.min_distance_m} m is below "
+               f"required floor {required_clearance} m"]
+    if worst:
+        reasons.append(f"{' | '.join(worst['bodies'])}, distance_m={worst['distance_m']}, "
+                       f"sample {worst['frame']} ({worst.get('location', 'unspecified')})")
+    return reasons
 
 
 @dataclass
@@ -313,41 +343,41 @@ class TransitionPlan:
     endpoint_floor_m: float | None = None
     method: str = "direct"
     via_directions: list = field(default_factory=list)
+    source_near: bool = False
 
 
 def plan_transition(a, b, joint_names, *, clearance: Callable,
                     via_factory=None, via2_factory=None, hub_factory=None,
                     height_check=None, model=None):
-    """Endpoint gate, direct quintic, best via1/via2, then qpos0 hub fallback.
+    """Direct quintic, best via1/via2, then qpos0 hub, also for near endpoints.
 
-    Endpoint-near paths stop as source_collision, without a detour search. Their
-    direct samples are diagnostic only, even if they worsen an inherited hard
-    penetration; the old relative floor is retained as an explicit diagnostic.
-    Clear endpoints use the absolute 2 mm rule on every complete candidate.
-    All passing one-/two-via candidates compete on minimum contact distance.
+    If either endpoint is strictly below 2 mm, every complete candidate must
+    meet the smaller endpoint clearance; accepted paths retain source_near.
+    Normal paths require signed clearance >= PENETRATION_TOLERANCE_M (2 mm).
+    All passing one-/two-via candidates compete on minimum signed clearance.
     Hub clearance is checked on both legs as well as the complete path. A failed
     candidate is retained for diagnosis with its worst pair, never for execution.
     """
     direct = minimum_jerk_blend(a, b, joint_names)
     endpoints = [asdict(clearance(direct[[i]])) for i in (0, -1)]
-    endpoint_min = min((r["min_distance_m"] for r in endpoints
-                        if r["min_distance_m"] is not None), default=None)
-    endpoint_floor = (endpoint_min if endpoint_min is not None and
-                      endpoint_min < -PENETRATION_TOLERANCE_M else None)
-    endpoint_near = endpoint_min is not None and endpoint_min < ENDPOINT_NEAR_M
+    endpoint_min = min(r["min_distance_m"] for r in endpoints)
+    endpoint_near = endpoint_min < ENDPOINT_NEAR_M
+    endpoint_floor = endpoint_min if endpoint_near else None
+    required_clearance = endpoint_min if endpoint_near else PENETRATION_TOLERANCE_M
     attempts = []
 
     def assess(q, kind, leg_intervals, directions=(), legs=()):
         result = clearance(q)
         leg_clearance = [asdict(clearance(leg)) for leg in legs]
         height = height_check(q) if height_check else {"passed": True}
-        relative_ok = (None if endpoint_floor is None else
-                       result.min_distance_m is not None and result.min_distance_m >= endpoint_floor)
-        if endpoint_near:
-            status = "source_collision"
-        else:
-            status = "PASS" if result.passed and all(r["passed"] for r in leg_clearance) else "FAILED"
-        reasons = _clearance_reasons(result) if status == "FAILED" else []
+        passed = (result.min_distance_m >= required_clearance and
+                  all(r["min_distance_m"] >= required_clearance for r in leg_clearance))
+        relative_ok = passed if endpoint_near else None
+        status = ("source_near" if endpoint_near else "PASS") if passed else "FAILED"
+        reasons = _clearance_reasons(result, required_clearance) if not passed else []
+        for number, leg in enumerate(leg_clearance):
+            reasons.extend(f"hub leg {number + 1}: {reason}" for reason in
+                           _clearance_reasons(ClearanceResult(**leg), required_clearance))
         worst = result.worst_contact or min(result.collisions, key=lambda c: c["distance_m"], default=None)
         directions = list(directions)
         attempts.append({"kind": kind, "method": kind,
@@ -355,6 +385,8 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
                          "via_directions": directions, "intervals": len(q) - 1,
                          "leg_intervals": leg_intervals,
                          "leg_clearance": leg_clearance,
+                         "source_near": bool(endpoint_near),
+                         "required_clearance_m": required_clearance,
                          "relative_floor_passed": relative_ok,
                          "clearance": asdict(result), "height": height,
                          "worst_collision": worst, "status": status, "reasons": reasons})
@@ -379,26 +411,14 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
             attempts=attempts, reasons=attempt["reasons"], warnings=warnings,
             via_direction=attempt["via_direction"], selected_attempt=index,
             endpoint_clearance=endpoints, endpoint_floor_m=endpoint_floor,
-            method="FAILED" if attempt["status"] == "FAILED" else attempt["kind"],
-            via_directions=attempt["via_directions"])
+            method=attempt["kind"], via_directions=attempt["via_directions"],
+            source_near=bool(endpoint_near))
 
     def score(choice):
-        distance = attempts[choice[0]]["clearance"]["min_distance_m"]
-        # No detected contacts outranks detected contacts; None stays None in
-        # reports, since this is not a measured positive free-space distance.
-        return np.inf if distance is None else distance
-
-    if endpoint_near:
-        choice = assess(direct, "source_collision", [len(direct) - 1])
-        warnings = [f"source endpoint minimum {endpoint_min} m is below ENDPOINT_NEAR_M "
-                    f"({ENDPOINT_NEAR_M} m); no detour searched; direct samples are diagnostic only"]
-        if attempts[0]["relative_floor_passed"] is False:
-            warnings.extend(_clearance_reasons(
-                ClearanceResult(**attempts[0]["clearance"]), endpoint_floor))
-        return finish(choice, warnings)
+        return attempts[choice[0]]["clearance"]["min_distance_m"]
 
     direct_choice = assess(direct, "direct", [len(direct) - 1])
-    direct_ok = attempts[0]["status"] == "PASS"
+    direct_ok = attempts[0]["status"] != "FAILED"
     if direct_ok and attempts[0]["height"]["passed"]:
         return finish(direct_choice)
     candidates = []
@@ -412,7 +432,7 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
         if len(vias) != 2 or len(directions) != 2:
             raise ValueError("A via2 candidate must have exactly two knots and direction names")
         candidates.append(through([a, *vias, b], "via2", directions))
-    passing = [c for c in candidates if attempts[c[0]]["status"] == "PASS"]
+    passing = [c for c in candidates if attempts[c[0]]["status"] != "FAILED"]
     if direct_ok:
         # A sag-only search may replace an accepted direct path only when it
         # also removes the undershoot. Never exchange clearance for appearance.
@@ -423,7 +443,7 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
         return finish(max(passing, key=score))
     hub = hub_factory(joint_names) if hub_factory is not None else neutral_pose(joint_names, model)
     hub_choice = through([a, hub, b], "hub", check_legs=True)
-    if attempts[hub_choice[0]]["status"] == "PASS":
+    if attempts[hub_choice[0]]["status"] != "FAILED":
         return finish(hub_choice)
     return finish(max([direct_choice, *candidates, hub_choice], key=score))
 
@@ -497,15 +517,17 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
             source_frames = (words[glosses[k - 1]]["sign_frames"][1], s0)
             for word, source_frame, result in zip((glosses[k - 1], gloss), source_frames,
                                                    plan.endpoint_clearance):
-                # Near contacts can pass the absolute -2 mm check, so the old
-                # hard-collision list alone cannot supply the Group 2 handoff.
                 contacts = result["near_contacts"] or result["collisions"]
+                if not contacts and result["min_distance_m"] < ENDPOINT_NEAR_M:
+                    contacts = [result["worst_contact"]] if result["worst_contact"] else []
                 for collision in contacts:
                     if collision["distance_m"] >= ENDPOINT_NEAR_M:
                         continue
                     item = {"word": word, "frame": source_frame, "bodies": collision["bodies"],
                             "distance_m": collision["distance_m"],
                             "clearance_mm": collision["distance_m"] * 1000}
+                    if "geoms" in collision:
+                        item["geoms"] = collision["geoms"]
                     if item not in handoff:
                         handoff.append(item)
             transitions.append({"from_gloss": glosses[k - 1], "to_gloss": gloss,
@@ -516,15 +538,18 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
                                 "intervals": len(plan.positions) - 1,
                                 "duration_s": (len(plan.positions) - 1) / FPS,
                                 "status": plan.status, "used_via": plan.used_via,
+                                "source_near": plan.source_near,
                                 "method": plan.method,
                                 "via_direction": plan.via_direction,
                                 "via_directions": plan.via_directions,
                                 "selected_attempt": plan.selected_attempt,
                                 "clearance": chosen["clearance"],
-                                "min_clearance_mm": (None if chosen["clearance"]["min_distance_m"] is None else
-                                                     chosen["clearance"]["min_distance_m"] * 1000),
+                                "min_clearance_mm": float(chosen["clearance"]["min_distance_m"] * 1000),
+                                "closest_pair": chosen["worst_collision"],
                                 "worst_collision": chosen["worst_collision"],
                                 "endpoint_clearance": plan.endpoint_clearance,
+                                "endpoint_clearances_mm": [float(r["min_distance_m"] * 1000)
+                                                           for r in plan.endpoint_clearance],
                                 "endpoint_floor_m": plan.endpoint_floor_m,
                                 "relative_floor_passed": chosen["relative_floor_passed"],
                                 "reasons": plan.reasons, "warnings": plan.warnings,
@@ -542,26 +567,26 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
     motion = {"timestamps_s": np.arange(len(q)) / FPS, "joint_names": names, "positions": q}
     validate_motion(motion)
     failed = sum(t["status"] == "FAILED" for t in transitions)
-    source_collisions = sum(t["status"] == "source_collision" for t in transitions)
+    source_near = sum(t["status"] == "source_near" for t in transitions)
     passed = sum(t["status"] == "PASS" for t in transitions)
     report = {"glosses": glosses, "fps": FPS, "frames": len(q),
               "duration_s": len(q) / FPS, "last_timestamp_s": (len(q) - 1) / FPS,
               "transition_count": len(transitions), "pass_count": passed,
-              "source_collision_count": source_collisions, "accepted_count": passed + source_collisions,
+              "source_near_count": source_near, "accepted_count": passed + source_near,
               "failed_count": failed,
-              "status": "FAILED" if failed else "source_collision" if source_collisions else "PASS",
+              "status": "FAILED" if failed else "source_near" if source_near else "PASS",
               "rate_limits_rad_s": {"arm": ARM_RATE_RAD_S, "finger": FINGER_RATE_RAD_S},
               "minimum_leg_duration_s": MIN_LEG_DURATION_S,
-              "collision_failure_below_m": -PENETRATION_TOLERANCE_M,
+              "normal_clearance_minimum_m": PENETRATION_TOLERANCE_M,
               "endpoint_near_below_m": ENDPOINT_NEAR_M,
-              "collision_threshold_note": "explicit task rule: fail below -2 mm, not a positive 2 mm separation guarantee",
-              "source_collision_rule": "first gate: either single-frame endpoint minimum below ENDPOINT_NEAR_M; no via/hub search; emitted direct samples are diagnostic only, not a clearance pass",
-              "relative_floor_rule": "for endpoints below -2 mm, retain endpoint_floor_m and relative_floor_passed as diagnostics; the first gate still stops search",
-              "escalation_order": ["endpoint_near", "direct", "best_via1_or_via2", "hub", "FAILED"],
+              "collision_threshold_note": "signed distance: positive separation, negative penetration; normal whole-path minimum >= 0.002 m",
+              "source_near_rule": "either endpoint minimum strictly < 0.002 m; same full search, label source_near only if the relative floor passes",
+              "relative_floor_rule": "near-source whole-path minimum >= min(endpoint clearances); otherwise continue search through hub, then FAILED",
+              "escalation_order": ["direct", "best_via1_or_via2", "hub", "FAILED"],
               "neutral_hub_source": "fixed-base model qpos0 for named trajectory joints; never assumed clear",
-              "clearance_scope": "all transition samples including endpoints; upstream geoms; same-hand adjacency excluded",
+              "clearance_scope": "all samples including endpoints; native MuJoCo pairs and same-hand exclusion unchanged; temporarily expanded detection margins, restored after each query; finite signed minimum and closest body/geom pair",
               "sentence_peak_rates": peak_rates(q, names),
-              "failed_trajectory_policy": "emit least-penetrating checked candidate for diagnostic replay; source_collision and FAILED are not certified for execution",
-              "source_collision_handoff": handoff,
+              "failed_trajectory_policy": "FAILED emits the checked candidate with greatest minimum clearance for diagnostic replay only; source_near retains inherited endpoint proximity and is not an absolute 2 mm clearance certification",
+              "source_near_handoff": handoff,
               "word_segments": segments, "transitions": transitions}
     return motion, report
