@@ -9,13 +9,17 @@ import pytest
 from sign_robot.motion import ROOT, apply_frame, load_model, validate_motion
 from sign_robot.transitions import (
     FPS,
+    CLEARANCE_DISPLAY_CAP_M,
     ENDPOINT_NEAR_M,
     PENETRATION_TOLERANCE_M,
     VIA_DIRECTIONS,
     VIA_DISPLACEMENT_M,
     ClearanceResult,
     MujocoClearance,
+    build_retract_approach_route,
+    clearance_is_capped,
     derive_static_body_pairs,
+    format_clearance_mm,
     ik_via_candidates,
     ik_dual_via_candidates,
     joint_rate_limits,
@@ -23,6 +27,7 @@ from sign_robot.transitions import (
     neutral_pose,
     plan_sentence,
     plan_transition,
+    timescale_to_rate_limits,
 )
 
 
@@ -951,3 +956,121 @@ def test_sag_guard_does_not_replace_a_clear_blend_with_colliding_via():
     assert plan.warnings
     assert plan.attempts[1]["status"] == "FAILED"
     np.testing.assert_array_equal(plan.positions, direct)
+
+
+
+def test_clearance_display_caps_at_nine_point_five_mm():
+    assert CLEARANCE_DISPLAY_CAP_M == pytest.approx(0.0095)
+    assert clearance_is_capped(0.0095)
+    assert clearance_is_capped(0.00950015)
+    assert clearance_is_capped(0.05)
+    assert not clearance_is_capped(0.0094)
+    assert not clearance_is_capped(-0.0008)
+    assert format_clearance_mm(0.00950015) == ">=9.5"
+    assert format_clearance_mm(0.0095) == ">=9.5"
+    assert format_clearance_mm(0.003) == "3.000000"
+    assert format_clearance_mm(-0.00080926) == "-0.809260"
+
+
+def test_retract_approach_route_bridges_and_timescales():
+    names = ["right_elbow_joint", "right_wrist_pitch_joint"]
+    retract = np.array([[0.0, 0.0], [0.1, 0.0], [0.2, 0.0]])
+    approach = np.array([[0.5, 0.0], [0.6, 0.0], [0.7, 0.0]])
+    route, info = build_retract_approach_route(retract, approach, names)
+    assert info["bridge_intervals"] >= int(np.ceil(FPS * 0.3)) - 0  # min-jerk bridge >= 0.3 s
+    assert len(route) >= int(np.ceil(FPS * 0.3)) + 1
+    np.testing.assert_allclose(route[0], retract[0])
+    np.testing.assert_allclose(route[-1], approach[-1])
+    rates = np.abs(np.diff(route, axis=0)) * FPS
+    assert rates.max() <= 15.0 + 1e-9
+
+
+@pytest.mark.parametrize("floor", [-0.0008, 0.001])
+def test_retract_approach_accepts_when_prior_routes_fail(floor):
+    names = ["right_elbow_joint"]
+    a, b = np.array([0.0]), np.array([1.0])
+    retract = np.vstack([a, [[0.2]], [[0.4]]])
+    approach = np.vstack([[[0.6]], [[0.8]], [b]])
+    multi = []
+
+    def clearance(positions):
+        if len(positions) == 1:
+            return distance_result(floor, positions)
+        multi.append(len(positions))
+        # direct (1) + hub whole+2 legs (3) fail; then retract/approach slices + route pass.
+        if len(multi) <= 4:
+            return distance_result(-0.056, positions)
+        return distance_result(floor, positions)
+
+    plan = plan_transition(
+        a, b, names, clearance=clearance,
+        via_factory=lambda *args: [], via2_factory=lambda *args: [],
+        hub_factory=lambda names: np.array([-0.5]),
+        source_retract=retract, target_approach=approach,
+        source_retract_frames=(10, 12), target_approach_frames=(0, 2))
+    assert plan.status == ("source_near" if floor < ENDPOINT_NEAR_M else "PASS")
+    assert plan.method == "retract_approach" and plan.used_via
+    chosen = plan.attempts[plan.selected_attempt]
+    assert chosen["kind"] == "retract_approach"
+    assert not chosen["in_slice_collision"]
+    assert chosen["source_retract_frames"] == [10, 12]
+    assert chosen["target_approach_frames"] == [0, 2]
+    assert chosen["clearance"]["min_distance_m"] == floor
+    assert "retract_approach" in [a["kind"] for a in plan.attempts]
+    assert any(a["kind"] == "hub" for a in plan.attempts)
+
+
+def test_retract_approach_in_slice_collision_stops_without_rrt(floor=-0.0008):
+    names = ["right_elbow_joint"]
+    a, b = np.array([0.0]), np.array([1.0])
+    retract = np.vstack([a, [[0.2]], [[0.4]]])
+    approach = np.vstack([[[0.6]], [[0.8]], [b]])
+
+    def clearance(positions):
+        if len(positions) == 1:
+            return distance_result(floor, positions)
+        # Retract slice (3 frames starting at 0.0): collide. Approach OK at floor.
+        if len(positions) == 3 and float(positions[0, 0]) == 0.0:
+            return distance_result(-0.05, positions, frame=1)
+        if len(positions) <= 4:
+            return distance_result(floor, positions)
+        return distance_result(-0.056, positions)
+
+    plan = plan_transition(
+        a, b, names, clearance=clearance,
+        via_factory=lambda *args: [], via2_factory=lambda *args: [],
+        hub_factory=lambda names: np.array([-0.5]),
+        source_retract=retract, target_approach=approach,
+        source_retract_frames=(10, 12), target_approach_frames=(0, 2))
+    assert plan.status == "FAILED" and plan.method == "retract_approach"
+    chosen = plan.attempts[plan.selected_attempt]
+    assert chosen["in_slice_collision"] is True
+    assert any(h["slice"] == "retract" and h["library_frame"] == 11
+               for h in chosen["slice_collisions"])
+    assert any("retract slice collision" in r for r in plan.reasons)
+    # No RRT attempt is recorded when the slice itself collides.
+    assert all(a["kind"] != "rrt" for a in plan.attempts)
+
+
+def test_plan_sentence_escalation_includes_retract_approach(words, monkeypatch):
+    import sign_robot.transitions as transitions
+    monkeypatch.setattr(transitions, "ik_via_candidates", lambda *args: [])
+    monkeypatch.setattr(transitions, "ik_dual_via_candidates", lambda *args: [])
+    monkeypatch.setattr(transitions, "neutral_pose", lambda names, model=None: np.zeros(len(names)))
+
+    def clearance(positions):
+        # Endpoints near; every multi-frame path fails relative floor except we
+        # still expect retract_approach to be attempted from library slices.
+        if len(positions) == 1:
+            return distance_result(-0.0008, positions)
+        return distance_result(-0.056, positions)
+
+    _, report = plan_sentence(["YOU", "BUY"], clearance=clearance)
+    assert report["escalation_order"][-2] == "source_retract_approach"
+    transition, = report["transitions"]
+    assert transition["retract_approach_attempted"]
+    assert transition["method"] == "retract_approach"
+    assert transition["in_slice_collision"]
+    assert transition["source_retract_frames"][0] == words["YOU"]["sign_frames"][1]
+    assert transition["target_approach_frames"][1] == words["BUY"]["sign_frames"][0]
+    assert report["clearance_display_cap_m"] == CLEARANCE_DISPLAY_CAP_M

@@ -83,6 +83,8 @@ def verify_saved_sentence(report, model):
         assert segment["endpoint_floor_m"] == (floor if near else None)
         assert segment["closest_pair"] == result.worst_contact == segment["worst_collision"]
         assert segment["hub_attempted"] == any(a["kind"] == "hub" for a in segment["attempts"])
+        assert segment.get("retract_approach_attempted") == any(
+            a["kind"] == "retract_approach" for a in segment["attempts"])
         assert segment["clearance"]["vendor_structural_gaps"] == result.vendor_structural_gaps
         assert len(segment["closest_pair"]["bodies"]) == len(segment["closest_pair"]["geoms"]) == 2
         if chosen["kind"] == "hub":
@@ -96,11 +98,20 @@ def verify_saved_sentence(report, model):
                 offset += intervals
         if chosen["kind"] == "via2":
             assert len(chosen["leg_intervals"]) == 3 and len(chosen["via_directions"]) == 2
+        if chosen["kind"] == "retract_approach":
+            assert chosen.get("source_retract_frames") is not None
+            assert chosen.get("target_approach_frames") is not None
+            if chosen.get("in_slice_collision"):
+                assert chosen["status"] == "FAILED"
+                assert chosen.get("slice_collisions")
         assert segment["relative_floor_passed"] == (passed if near else None)
         status = ("source_near" if near else "PASS") if passed else "FAILED"
         assert status == segment["status"]
         assert result.min_distance_m == segment["clearance"]["min_distance_m"]
         assert segment["min_clearance_mm"] == result.min_distance_m * 1000
+        from sign_robot.transitions import format_clearance_mm, clearance_is_capped
+        assert segment.get("min_clearance_mm_display") == format_clearance_mm(result.min_distance_m)
+        assert segment.get("clearance_capped") == clearance_is_capped(result.min_distance_m)
     return {"passed": True, "checks": "saved endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair, normal 2 mm absolute floor and near-source relative floor on whole paths and hub legs; vendor structural gaps remain separate; source_near is not absolute clearance certification",
             "transition_peak_rates": peaks}
 
@@ -290,7 +301,7 @@ def write_tables(reports):
                  "joint sets, derived from every library frame (span > 1e-9 rad) plus planner arm IK. Native static pairs "
                  "are detected once across the scene and remeasured with mj_geomDistance; they are listed as vendor structural gaps "
                  "and do not affect PASS/source_near/FAILED. "
-                 "Every segment can escalate through direct, best via1/via2, then model-qpos0 hub. A failed relative search is FAILED. "
+                 "Every segment can escalate through direct, best via1/via2, model-qpos0 hub, then source retract/target approach. In-slice retract/approach collisions stop without RRT. A failed relative search is FAILED. "
                  "Signed distance is positive for separation and negative for penetration, measured numerically with temporarily expanded "
                  "MuJoCo detection margins and unchanged pair filtering. Singleton sentences have zero transition checks. "
                  "source_near is an endpoint-relative pass, not an absolute clearance certification; FAILED paths are diagnostic only. "
@@ -300,7 +311,7 @@ def write_tables(reports):
                  "任一端点严格低于 ENDPOINT_NEAR_M = 0.002 m 时，以较差端点间隙为相对下限；普通路径要求至少 +2 mm 分离。"
                  "全部决策距离及最近对仅使用运动体对。静态对由全部动作帧（关节跨度 > 1e-9 rad）加手臂 IK 的运动祖先关节集合相等推导。"
                  "原生静态配对一次扩大检测至全场景，再用 mj_geomDistance 复测，另列为原厂结构缝，不影响 PASS/source_near/FAILED。"
-                 "每段均可依次尝试直连、最优 via1/via2、模型 qpos0 hub；相对下限搜索失败记为 FAILED。"
+                 "每段均可依次尝试直连、最优 via1/via2、模型 qpos0 hub、源收回/目标接近；切片内碰撞则停止且不进 RRT；相对下限搜索失败记为 FAILED。"
                  "有符号距离正值为分离、负值为穿透；临时扩大 MuJoCo 检测 margin，配对过滤不变，始终报告数值。单词句零次过渡检查。"
                  "source_near 仅相对端点通过，不是绝对间隙认证；FAILED 输出仅供诊断。详见[协议、启动命令与限制](../../docs/transition-planner.md)。\n\n")
         content = (intro + table(summary_headers, summary) + "\n\n" +

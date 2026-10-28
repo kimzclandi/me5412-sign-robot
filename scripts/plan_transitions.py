@@ -109,17 +109,33 @@ def plan_one(glosses, *, model=None, render=False, out_dir=OUT):
         directions = " -> ".join(transition["via_directions"])
         print("  SEGMENT", transition["from_gloss"], "->", transition["to_gloss"],
               transition["method"], directions, transition["status"],
-              "endpoint clearances", transition["endpoint_clearances_mm"], "mm;",
-              "minimum signed clearance", transition["min_clearance_mm"], "mm;",
+              "endpoint clearances", transition.get("endpoint_clearances_mm_display",
+                                                    transition["endpoint_clearances_mm"]), "mm;",
+              "minimum signed clearance", transition.get("min_clearance_mm_display",
+                                                         transition["min_clearance_mm"]), "mm;",
               transition["duration_s"], "s")
         print("    closest pair:", transition["closest_pair"])
         hubs = [a for a in transition["attempts"] if a["kind"] == "hub"]
         print("    hub/neutral attempted:", transition["hub_attempted"])
+        print("    retract/approach attempted:", transition.get("retract_approach_attempted", False),
+              "in_slice_collision:", transition.get("in_slice_collision", False))
         for hub in hubs:
             print("    HUB", hub["status"],
-                  "moving minimum", hub["clearance"]["min_distance_m"] * 1000, "mm;",
+                  "moving minimum", hub["clearance"].get("clearance_mm_display",
+                                                         hub["clearance"]["min_distance_m"] * 1000), "mm;",
                   "required floor", hub["required_clearance_m"] * 1000, "mm;",
                   "closest pair", hub["worst_collision"])
+        ras = [a for a in transition["attempts"] if a["kind"] == "retract_approach"]
+        for ra in ras:
+            print("    RETRACT_APPROACH", ra["status"],
+                  "retract frames", ra.get("source_retract_frames"),
+                  "approach frames", ra.get("target_approach_frames"),
+                  "in_slice", ra.get("in_slice_collision"),
+                  "moving minimum", ra["clearance"].get("clearance_mm_display",
+                                                        ra["clearance"]["min_distance_m"] * 1000), "mm")
+            for hit in ra.get("slice_collisions") or []:
+                print("      slice", hit["slice"], "library_frame", hit["library_frame"],
+                      "bodies", hit.get("bodies"), "distance_m", hit.get("distance_m"))
         for warning in transition["warnings"]:
             print("  WARNING", transition["from_gloss"], "->", transition["to_gloss"], warning)
         if transition["status"] == "FAILED":

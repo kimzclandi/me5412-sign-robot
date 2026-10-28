@@ -1,8 +1,8 @@
-# 第三组：衔接规划器，第六轮
+# 第三组：衔接规划器，第七轮
 
 **中文** · [English](transition-planner.en.md)
 
-本轮从 `group3/transition-planner @ a24af59` 实现**仅对运动配对执行 2 mm 门槛，并单列原厂结构缝**。九个脚本句子加 THANK-YOU 已重新规划：**19 段 = 16 PASS、2 source_near、1 FAILED**。端点分类、绝对 / 相对下限、最小间隙及最近对均只使用运动配对。静态配对仍测量距离，但不会单独触发 source_near、FAILED 或阻止 PASS。BREATHE-DEEP 和 THANK-YOU 是单词句，零次过渡检查不代表单词本身无碰撞。
+本轮从 `group3/transition-planner @ 2c3aea4` 增加通用的**源收回 / 目标接近**回退（在 direct / via1 / via2 / hub 之后），把 ≥9.5 mm 的间隙显示为 `>=9.5`，并保持运动对 2 mm 门槛与原厂结构缝分列。九个脚本句子加 THANK-YOU 已重新规划：**19 段 = 16 PASS、2 source_near、1 FAILED**。MEDICINE→MORNING 走到收回/接近后因切片内库动作碰撞失败，故未运行 RRT。BREATHE-DEEP 和 THANK-YOU 是单词句，零次过渡检查不代表单词本身无碰撞。
 
 ## 静态配对如何推导
 
@@ -33,7 +33,7 @@
 
 运动配对继续使用 R4 的数值查询：从 2 mm、1 cm、5 cm、25 cm 逐级扩大检测 margin，必要时覆盖场景；只有检测到有效**运动对**才能停止扩展，静态接触不会让查询提前返回。读取 `contact.dist`，每次在 `finally` 恢复 geom / pair margin；原生 MuJoCo 配对过滤和既有同手指 / 腕排除不变。分离姿态也返回有限数值和最近体 / geom 对；空轨迹或没有有效运动对的模型报错。规划姿态若改变被分类为恒定的关节，会显式拒绝该失效分类。
 
-搜索仍按 **direct → 七个 via1 → 十六个 via2 → qpos0 hub** 升级，near 端点不截断搜索。所有通过的 via1/via2 按全路径最小间隙取最大值；全部 via 失败才检查 hub 的完整路径及两腿。通过的 direct 如有腕部下垂可额外搜索 via，只有高度与距离均通过才替换；纯高度搜索不升级 hub。全部失败仍保留最佳诊断路线。
+搜索按 **direct → via1/via2 → qpos0 hub → 源收回/目标接近** 升级，near 端点不截断。全部 via 失败后检查 hub；hub 仍失败则拼接源词 `sign_frames[1]` 之后的收回与目标词 `sign_frames[0]` 之前的接近（中性点不一致时用最小 jerk 桥接），整段按时限伸缩并保留 0.3 s 下限。通过条件为全路径最小间隙 ≥ 较差端点；切片内碰撞则报告库帧与配对并停止，不进 RRT。本轮 MEDICINE 为切片内失败，故未实现/运行 RRT。≥9.5 mm 显示为 `>=9.5`（`clearance_capped`）。通过的 direct 如有腕部下垂可额外搜索 via，只有高度与距离均通过才替换；纯高度搜索不升级 hub。全部失败仍保留最佳诊断路线。
 
 via1 / via2 保留通用的双臂偏移、中立手臂退让和左右串行退让候选，不按词身份做特例。IK 只解手臂，手指和其他坐标保留端点凸插值；耦合关节不是独立驱动。每腿采用 `s(u)=10u³−15u⁴+6u⁵`，按连续峰值 `1.875 × |Δq| / T` 向上取整到 30 fps，至少 **0.3 s / 九个间隔**。源词不修改或重采样，内部词使用含端点的 sign_frames；首词保留第 0 帧起势、末词保留回中立，过渡端点逐位相同。
 
@@ -41,13 +41,13 @@ via1 / via2 保留通用的双臂偏移、中立手臂退让和左右串行退�
 
 | 段 | 状态 / 方法 | 运动对端点间隙 mm | 运动对全路径最小 mm | 时长 s |
 |---|---|---|---:|---:|
-| MEDICINE → MORNING | FAILED / via2 | −0.809260 / +9.434433 | −42.047690 | 1.100 |
+| MEDICINE → MORNING | FAILED / retract_approach | −0.809260 / +9.434433 | −67.599238 | 2.500 |
 | NOW → NURSE | source_near / direct | +8.813409 / −32.846892 | −32.846892 | 0.300 |
-| DOCTOR → COME | source_near / direct | −7.853912 / +9.500549 | −7.853912 | 0.300 |
-| NURSE → BLOOD-DRAW | PASS / via2 | +5.952892 / +9.500673 | +5.952892 | 1.000 |
-| COME → SOON | PASS / via2 | +9.500621 / +5.476825 | +5.476825 | 0.900 |
+| DOCTOR → COME | source_near / direct | −7.853912 / >=9.5 | −7.853912 | 0.300 |
+| NURSE → BLOOD-DRAW | PASS / via2 | +5.952892 / >=9.5 | +5.952892 | 1.000 |
+| COME → SOON | PASS / via2 | >=9.5 / +5.476825 | +5.476825 | 0.900 |
 
-**MEDICINE → MORNING 实际检查全部 25 条路线，包括 hub / neutral。** direct 最小值为 −56.182729 mm；hub 为 **−54.852146 mm / FAILED**，其最近对为左右腕；所选最佳 via2 为 `neutral_retreat_left+out+forward → hold_left+out+forward`，仍只有 **−42.047690 mm**，低于 **−0.809260 mm** 相对下限。最差对为 `fixed_mount` / `left_wrist_yaw_link`（geom 3 / 57），过渡第 5 帧，说明活动腕部与基座仍被门槛阻止。`hub_attempted`、全部 `attempts` 的 clearance / status / leg_clearance 及控制台 HUB 行明确记录此次尝试。
+**MEDICINE → MORNING 依次检查了 direct、via1/via2、hub，以及收回/接近 (c)。** 相对下限仍为 −0.809260 mm。(c) 使用 MEDICINE 收回帧 **119–159** 与 MORNING 接近帧 **0–35**，在中性点拼接并按时限伸缩（2.500 s）。两段切片均低于下限：收回库帧 **145**（fixed_mount / left_wrist_yaw_link，−67.599 mm）与接近库帧 **28**（R_thumb_proximal / left_wrist_yaw_link，−44.832 mm）。因切片内碰撞，**未运行 RRT**。
 
 去重后的 `source_near_handoff` 为 **15 条运动体对记录、3 个词帧**，包含 MEDICINE 119、NURSE 24、DOCTOR 89；源动作问题继续交第二组。静态基座 / 髋部间隙不再成为 source_near 交接。十个保存 NPZ 的端点、速率、每腿时长、运动对数值间隙、状态和结构缝一致性均由 evaluate 复核。过渡最大采样速度为手臂 **14.635394 rad/s**、手指 **8.868628 rad/s**。
 
@@ -66,7 +66,7 @@ check_mem() {
 check_mem && .venv/bin/python scripts/plan_transitions.py --all
 check_mem && .venv/bin/python scripts/evaluate_planned_transitions.py
 check_mem && .venv/bin/python scripts/evaluate_planned_transitions.py --render-comparison --comparison-glosses YOU HURT WHERE --artifact-name you_hurt_where_baseline_vs_planned_v4 --copy-to /workspace/you_hurt_where_baseline_vs_planned_v4.mp4
-check_mem && .venv/bin/python scripts/evaluate_planned_transitions.py --render-comparison --comparison-glosses MEDICINE MORNING NIGHT TAKE --artifact-name medicine_morning_baseline_vs_planned_v4 --copy-to /workspace/medicine_morning_baseline_vs_planned_v4.mp4
+check_mem && .venv/bin/python scripts/evaluate_planned_transitions.py --render-comparison --comparison-glosses MEDICINE MORNING NIGHT TAKE --artifact-name medicine_morning_baseline_vs_planned_v5 --copy-to /workspace/medicine_morning_baseline_vs_planned_v5.mp4
 check_mem && .venv/bin/python -m pytest -q tests/test_plan_transitions.py
 ```
 
@@ -74,9 +74,9 @@ macOS 省略 `MUJOCO_GL=egl`；本轮未测试 macOS。`plan_transitions.py` 写
 
 - [report.json](../results/planned_transitions/report.json)、[中文表](../results/planned_transitions/report.md)、[英文表](../results/planned_transitions/report.en.md)：19 段的 method、source_near、运动对端点及全路径间隙、最近体对、duration_s、status、hub 记录，以及独立原厂结构缝清单。JSON 另含全部 35 个派生输入动作的 SHA-256 和运行时版本。
 - [YOU HURT WHERE v4](../results/planned_transitions/you_hurt_where_baseline_vs_planned_v4.mp4)；目标副本 `/workspace/you_hurt_where_baseline_vs_planned_v4.mp4`。
-- [MEDICINE MORNING NIGHT TAKE v4](../results/planned_transitions/medicine_morning_baseline_vs_planned_v4.mp4)；目标副本 `/workspace/medicine_morning_baseline_vs_planned_v4.mp4`。FAILED 衔接保持诊断标签。
+- [MEDICINE MORNING NIGHT TAKE v5](../results/planned_transitions/medicine_morning_baseline_vs_planned_v5.mp4)；目标副本 `/workspace/medicine_morning_baseline_vs_planned_v5.mp4`。FAILED 衔接保持诊断标签。
 - 规划 NPZ 为 `results/mocap_previews/planned_sentence_<GLOSSES>.npz`，基线为同目录 `sentence_<GLOSSES>.npz`，契约为 timestamps_s / joint_names / positions。
-- [round6 规划日志](../results/planned_transitions/planner_round6_output.txt)、[YOU HURT WHERE 复核 / 渲染日志](../results/planned_transitions/evaluate_round6_you_hurt_where.txt)、[MEDICINE 复核 / 渲染日志](../results/planned_transitions/evaluate_round6_medicine_morning.txt)。
+- [round6 规划日志](../results/planned_transitions/planner_round7_output.txt)、[YOU HURT WHERE 复核 / 渲染日志](../results/planned_transitions/evaluate_round6_you_hurt_where.txt)、[MEDICINE 复核 / 渲染日志](../results/planned_transitions/evaluate_round7_medicine_morning.txt)。
 - [round4 更新前归档](../results/planned_transitions/round4_before_round6_archive/report.json) 保留旧报告及十个规划 NPZ；此前 v1/v2/v3 视频、原始实验和失败记录均保留。
 
 两个视频均为 `render_comparison` 输出：上排基线、下排规划，左侧正面、右侧右视图；30 fps 原速，较短一排结束后保持末帧，不做时间拉伸。输出文件、复制状态和视频元数据记录于总报告 `comparison_videos`。上述结果与视频均 gitignored，需要新 checkout 后重新生成。
@@ -91,7 +91,7 @@ macOS 省略 `MUJOCO_GL=egl`；本轮未测试 macOS。`plan_transitions.py` 写
 
 ```bash
 cp results/planned_transitions/you_hurt_where_baseline_vs_planned_v4.mp4 /workspace/you_hurt_where_baseline_vs_planned_v4.mp4
-cp results/planned_transitions/medicine_morning_baseline_vs_planned_v4.mp4 /workspace/medicine_morning_baseline_vs_planned_v4.mp4
+cp results/planned_transitions/medicine_morning_baseline_vs_planned_v5.mp4 /workspace/medicine_morning_baseline_vs_planned_v5.mp4
 ```
 
 这是开发回归检查，不是未参与调参者执行的冻结独立评审。PASS 仅指输出采样中的运动配对达到 +2 mm；source_near 仅相对端点通过，仍可能保留明显穿透；FAILED 仅供诊断。原厂结构缝只是给定恒定关节条件下的几何报告，不能据此认证硬件结构安全。单词内部速度 / 碰撞、采样间连续碰撞、动力学、硬件执行、ASL 含义及真人可理解性均未验证。
@@ -102,7 +102,7 @@ cp results/planned_transitions/medicine_morning_baseline_vs_planned_v4.mp4 /work
 
 ```bash
 git add src/sign_robot/transitions.py scripts/plan_transitions.py scripts/evaluate_planned_transitions.py tests/test_plan_transitions.py docs/transition-planner.md docs/transition-planner.en.md
-git commit -m "feat(group3): moving-pair clearance gate and vendor structural gaps"
+git commit -m "feat(group3): retract/approach fallback and capped clearance reporting"
 ```
 
 `motions/`、`retarget.py`、`ACTION_IDS`、`scripts/prepare_robot.py`、原模型和碰撞掩码均未修改。
