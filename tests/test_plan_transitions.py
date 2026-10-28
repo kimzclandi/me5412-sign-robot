@@ -15,6 +15,7 @@ from sign_robot.transitions import (
     VIA_DISPLACEMENT_M,
     ClearanceResult,
     MujocoClearance,
+    derive_static_body_pairs,
     ik_via_candidates,
     ik_dual_via_candidates,
     joint_rate_limits,
@@ -346,6 +347,174 @@ def sphere_pair_model(first_body, second_body):
           </worldbody>
         </mujoco>
     """)
+
+
+def test_static_body_pairs_are_computed_from_moving_ancestors_not_names():
+    import mujoco
+
+    model = mujoco.MjModel.from_xml_string("""
+        <mujoco><worldbody>
+          <body name="anchor"><geom type="sphere" size="0.01"/></body>
+          <body name="branch_a" pos="0.1 0 0">
+            <joint name="motor_a" type="slide" axis="1 0 0"/>
+            <geom type="sphere" size="0.01"/>
+            <body name="rigid_tip" pos="0.05 0 0">
+              <geom type="sphere" size="0.01"/>
+            </body>
+          </body>
+          <body name="branch_b" pos="0.3 0 0">
+            <joint name="motor_b" type="slide" axis="1 0 0"/>
+            <geom type="sphere" size="0.01"/>
+          </body>
+        </worldbody></mujoco>
+    """)
+
+    def pair(a, b):
+        return tuple(sorted((model.body(a).id, model.body(b).id)))
+
+    moving_a = derive_static_body_pairs(model, {model.joint("motor_a").id})
+    moving_b = derive_static_body_pairs(model, {model.joint("motor_b").id})
+    assert pair("anchor", "branch_b") in moving_a
+    assert pair("anchor", "branch_a") not in moving_a
+    assert pair("branch_a", "rigid_tip") in moving_a
+    assert pair("anchor", "branch_a") in moving_b
+    assert pair("anchor", "branch_b") not in moving_b
+    assert moving_a != moving_b
+
+
+def test_moving_joint_derivation_uses_aggregate_library_span_and_planner_ik(tmp_path):
+    import mujoco
+
+    model = mujoco.MjModel.from_xml_string("""
+        <mujoco><worldbody>
+          <body name="anchor"><geom type="sphere" size="0.01"/></body>
+          <body name="between_clip_body" pos="0.1 0 0">
+            <joint name="between_clip_joint" type="slide" axis="1 0 0"/>
+            <geom type="sphere" size="0.01"/>
+          </body>
+          <body name="constant_body" pos="0.3 0 0">
+            <joint name="constant_joint" type="slide" axis="1 0 0"/>
+            <geom type="sphere" size="0.01"/>
+          </body>
+          <body name="ik_body" pos="0.5 0 0">
+            <joint name="left_wrist_pitch_joint" type="slide" axis="1 0 0"/>
+            <geom type="sphere" size="0.01"/>
+          </body>
+        </worldbody></mujoco>
+    """)
+    names = np.array(["between_clip_joint", "constant_joint", "left_wrist_pitch_joint"])
+    folder = tmp_path / "motions"
+    folder.mkdir()
+    words = []
+    # Every individual clip is stationary. Only the complete library reveals
+    # that the first joint moves; the second is always the same nonzero value.
+    for index, between_value in enumerate((0.0, 2e-9)):
+        path = folder / f"clip_{index}.npz"
+        np.savez(path, timestamps_s=np.array([0.0, 1 / FPS]), joint_names=names,
+                 positions=np.tile([between_value, 0.0004, 0.0], (2, 1)))
+        words.append({"gloss": f"CLIP-{index}", "motion_ready": True,
+                      "motion": f"motions/{path.name}"})
+    library_path = folder / "hospital_v1_motions.json"
+    library_path.write_text(json.dumps({"glosses": words}))
+    checker = MujocoClearance(model, names, library_path=library_path)
+
+    assert checker.moving_joint_ids == frozenset({model.joint("between_clip_joint").id,
+                                                 model.joint("left_wrist_pitch_joint").id})
+    assert checker.derivation["library_words"] == 2
+    assert checker.derivation["library_frames"] == 4
+    anchor = model.body("anchor").id
+    stationary_pair = tuple(sorted((anchor, model.body("constant_body").id)))
+    moving_pair = tuple(sorted((anchor, model.body("between_clip_body").id)))
+    ik_pair = tuple(sorted((anchor, model.body("ik_body").id)))
+    assert stationary_pair in checker.static_body_pairs
+    assert moving_pair not in checker.static_body_pairs
+    assert ik_pair not in checker.static_body_pairs  # IK can move it despite constant source clips.
+
+
+def test_library_static_pairs_include_mount_hips_and_exclude_arm_hand_bodies(words):
+    model = load_model()
+    with np.load(ROOT / words["YOU"]["motion"]) as source:
+        checker = MujocoClearance(model, source["joint_names"])
+
+    body_pairs = {
+        tuple(sorted(model.body(body).name for body in pair))
+        for pair in checker.static_body_pairs
+    }
+    assert len(checker.moving_joint_ids) == 38
+    assert len(checker.moving_ancestor_joint_ids) == model.nbody
+    for side in ("left", "right"):
+        assert tuple(sorted(("fixed_mount", f"{side}_hip_pitch_link"))) in body_pairs
+        assert tuple(sorted(("fixed_mount", f"{side}_wrist_yaw_link"))) not in body_pairs
+        assert any(set(gap["bodies"]) == {"fixed_mount", f"{side}_hip_pitch_link"}
+                   for gap in checker.vendor_structural_gaps)
+    assert not any(
+        body.startswith(("L_", "R_")) or
+        any(part in body.lower() for part in ("arm", "hand", "finger", "wrist", "shoulder", "elbow"))
+        for pair in body_pairs for body in pair
+    )
+
+
+def test_vendor_gap_is_reported_without_dominating_moving_minimum_or_source_near():
+    import mujoco
+
+    model = mujoco.MjModel.from_xml_string("""
+        <mujoco><worldbody>
+          <body name="fixed_mount">
+            <geom name="mount_geom" type="sphere" size="0.01"/>
+          </body>
+          <body name="left_hip_pitch_link" pos="0.0195 0 0">
+            <joint name="left_hip_pitch_joint" type="slide" axis="1 0 0"/>
+            <geom name="hip_geom" type="sphere" size="0.01"/>
+          </body>
+          <body name="left_wrist_yaw_link" pos="0.2 0 0">
+            <joint name="left_wrist_pitch_joint" type="slide" axis="1 0 0"/>
+            <geom name="wrist_geom" type="sphere" size="0.01"/>
+          </body>
+        </worldbody></mujoco>
+    """)
+    names = ["left_hip_pitch_joint", "left_wrist_pitch_joint"]
+    checker = MujocoClearance(model, names)
+    start, end = [0.0, 0.0], [0.0, 0.005]
+    result = checker(np.array([start, end]))
+    assert result.passed and result.min_distance_m > 0.002
+    assert "left_wrist_yaw_link" in result.worst_contact["bodies"]
+    assert not result.collisions and not result.near_contacts
+    vendor = [gap for gap in result.vendor_structural_gaps
+              if set(gap["bodies"]) == {"fixed_mount", "left_hip_pitch_link"}]
+    assert vendor
+    assert vendor[0]["distance_m"] == pytest.approx(-0.0005, abs=1e-10)
+    assert vendor[0]["distance_mm"] == pytest.approx(-0.5, abs=1e-7)
+    assert set(vendor[0]["geoms"]) == {"mount_geom", "hip_geom"}
+    plan = plan_transition(start, end, names, clearance=checker)
+    assert plan.status == "PASS" and not plan.source_near
+    assert all(endpoint["min_distance_m"] > 0.002 for endpoint in plan.endpoint_clearance)
+    assert all(endpoint["vendor_structural_gaps"] for endpoint in plan.endpoint_clearance)
+
+
+@pytest.mark.parametrize("distance", [-0.003, 0.001])
+def test_forced_left_wrist_mount_violation_still_blocks_normal_gate(distance):
+    model = sphere_pair_model("fixed_mount", "left_wrist_yaw_link")
+    names = ["right_wrist_pitch_joint"]
+    checker = MujocoClearance(model, names)
+    wrist_mount = tuple(sorted((model.body("fixed_mount").id,
+                               model.body("left_wrist_yaw_link").id)))
+    assert wrist_mount not in checker.static_body_pairs
+
+    def clearance(positions):
+        forced = np.asarray(positions).copy()
+        if len(forced) > 1:
+            forced[len(forced) // 2, 0] = distance
+        return checker(forced)
+
+    plan = plan_transition([0.005], [0.01], names, clearance=clearance,
+                           via_factory=lambda *args: [], via2_factory=lambda *args: [],
+                           hub_factory=lambda *args: [0.02])
+    assert plan.status == "FAILED" and not plan.source_near
+    assert plan.attempts[-1]["kind"] == "hub"
+    assert all(attempt["clearance"]["min_distance_m"] < 0.002 for attempt in plan.attempts)
+    assert set(plan.attempts[plan.selected_attempt]["worst_collision"]["bodies"]) == {
+        "fixed_mount", "left_wrist_yaw_link",
+    }
 
 
 @pytest.mark.parametrize("distance,passed", [(0.003, True), (0.0015, False), (-0.0015, False), (-0.0025, False)])

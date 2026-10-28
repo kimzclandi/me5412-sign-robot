@@ -82,6 +82,8 @@ def verify_saved_sentence(report, model):
         assert segment["endpoint_clearances_mm"] == [d * 1000 for d in endpoints]
         assert segment["endpoint_floor_m"] == (floor if near else None)
         assert segment["closest_pair"] == result.worst_contact == segment["worst_collision"]
+        assert segment["hub_attempted"] == any(a["kind"] == "hub" for a in segment["attempts"])
+        assert segment["clearance"]["vendor_structural_gaps"] == result.vendor_structural_gaps
         assert len(segment["closest_pair"]["bodies"]) == len(segment["closest_pair"]["geoms"]) == 2
         if chosen["kind"] == "hub":
             assert len(chosen["leg_clearance"]) == 2
@@ -99,7 +101,7 @@ def verify_saved_sentence(report, model):
         assert status == segment["status"]
         assert result.min_distance_m == segment["clearance"]["min_distance_m"]
         assert segment["min_clearance_mm"] == result.min_distance_m * 1000
-    return {"passed": True, "checks": "saved endpoints, rates, per-leg durations, numeric signed clearance/closest pair, normal 2 mm absolute floor and near-source relative floor on whole paths and hub legs; source_near is not absolute clearance certification",
+    return {"passed": True, "checks": "saved endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair, normal 2 mm absolute floor and near-source relative floor on whole paths and hub legs; vendor structural gaps remain separate; source_near is not absolute clearance certification",
             "transition_peak_rates": peaks}
 
 
@@ -225,7 +227,7 @@ def write_tables(reports):
                           "|" + "---|" * len(headers)] +
                          ["| " + " | ".join(map(str, row)) + " |" for row in rows])
 
-    summary, transitions, failed, handoff = [], [], [], []
+    summary, transitions, failed, handoff, vendor = [], [], [], [], []
     for report in reports:
         sentence = " ".join(report["glosses"])
         summary.append([sentence, len(report["word_segments"]), report["transition_count"],
@@ -235,17 +237,24 @@ def write_tables(reports):
         for item in report["source_near_handoff"]:
             if item not in handoff:
                 handoff.append(item)
+        for item in report.get("vendor_structural_gaps", []):
+            if item not in vendor:
+                vendor.append(item)
         for transition in report["transitions"]:
             pair = transition["from_gloss"] + " → " + transition["to_gloss"]
             distance = transition["clearance"]["min_distance_m"]
             closest = transition["closest_pair"]
             endpoints = transition["endpoint_clearances_mm"]
+            hubs = [a for a in transition["attempts"] if a["kind"] == "hub"]
+            hub_summary = (f"{hubs[0]['status']} / {hubs[0]['clearance']['min_distance_m'] * 1000:.6f}"
+                           if hubs else "—")
             transitions.append([sentence, pair, transition["status"],
                                 transition["method"], str(transition["source_near"]).lower(),
                                 " → ".join(transition["via_directions"]) or "—",
                                 f"{transition['duration_s']:.3f}",
                                 f"{endpoints[0]:.6f}", f"{endpoints[1]:.6f}",
-                                f"{distance * 1000:.6f}", " / ".join(closest["bodies"])])
+                                f"{distance * 1000:.6f}", " / ".join(closest["bodies"]),
+                                str(transition["hub_attempted"]).lower(), hub_summary])
             if transition["status"] == "FAILED":
                 worst = transition["worst_collision"]
                 failed.append([sentence, pair, " / ".join(worst["bodies"]) if worst else "—",
@@ -254,22 +263,33 @@ def write_tables(reports):
     handoff_rows = [[item["word"], item["frame"], " / ".join(item["bodies"]),
                      f"{item['clearance_mm']:.6f}", item["distance_m"]]
                     for item in handoff]
+    vendor_rows = [[" / ".join(item["bodies"]), " / ".join(item["geoms"]),
+                    f"{item['distance_m']:.9f}", f"{item['distance_mm']:.6f}"]
+                   for item in vendor]
     for english in (False, True):
         summary_headers = (["Sentence", "Word segments", "Transitions", "PASS", "source_near", "FAILED",
                             "Planned s", "Baseline s", "Difference s"] if english else
                            ["句子", "单词段", "过渡数", "PASS", "source_near", "FAILED", "规划秒数", "基线秒数", "秒数差"])
         transition_headers = (["Sentence", "Transition", "Status", "Method", "source_near", "Via directions", "Duration s",
-                               "Start clearance mm", "End clearance mm", "Min clearance mm", "Closest body pair"]
+                               "Start clearance mm", "End clearance mm", "Min clearance mm", "Closest body pair",
+                               "Hub ran", "Hub status / min mm"]
                               if english else ["句子", "过渡", "状态", "方法", "source_near", "中间点方向", "时长秒",
-                                               "起点间隙 mm", "终点间隙 mm", "最小间隙 mm", "最近体对"])
+                                               "起点间隙 mm", "终点间隙 mm", "最小间隙 mm", "最近体对",
+                                               "已尝试 hub", "Hub 状态 / 最小 mm"])
         failure_headers = (["Sentence", "Transition", "Worst body pair", "distance_m", "Transition frame", "Endpoint floor m"]
                            if english else ["句子", "过渡", "最差碰撞体对", "distance_m", "过渡内帧", "端点下限 m"])
         handoff_headers = (["Word", "Source sign_frames index", "Body pair", "Clearance mm", "distance_m"] if english else
                            ["单词", "源 sign_frames 帧索引", "碰撞体对", "间隙 mm", "distance_m"])
+        vendor_headers = (["Body pair", "Geom pair", "distance_m", "distance_mm"] if english else
+                          ["体对", "Geom 对", "distance_m", "间隙 mm"])
         intro = ("# Transition results\n\n[中文](report.md) · **English**\n\n"
                  "Local generated report. Sentence duration is frame count / 30; each transition/leg duration is intervals / 30. "
                  "PASS, source_near and FAILED are disjoint transition counts. Either endpoint strictly below ENDPOINT_NEAR_M = 0.002 m "
                  "uses the smaller endpoint clearance as its relative floor; normal paths require at least +2 mm separation. "
+                 "All decision distances and closest pairs refer to moving pairs only. Static pairs have equal moving-ancestor "
+                 "joint sets, derived from every library frame (span > 1e-9 rad) plus planner arm IK. Native static pairs "
+                 "are detected once across the scene and remeasured with mj_geomDistance; they are listed as vendor structural gaps "
+                 "and do not affect PASS/source_near/FAILED. "
                  "Every segment can escalate through direct, best via1/via2, then model-qpos0 hub. A failed relative search is FAILED. "
                  "Signed distance is positive for separation and negative for penetration, measured numerically with temporarily expanded "
                  "MuJoCo detection margins and unchanged pair filtering. Singleton sentences have zero transition checks. "
@@ -278,6 +298,8 @@ def write_tables(reports):
                  "# 衔接规划结果\n\n**中文** · [English](report.en.md)\n\n"
                  "本地生成报告。句子时长按帧数 / 30，过渡及各腿时长按时间间隔数 / 30。PASS、source_near、FAILED 分开计数。"
                  "任一端点严格低于 ENDPOINT_NEAR_M = 0.002 m 时，以较差端点间隙为相对下限；普通路径要求至少 +2 mm 分离。"
+                 "全部决策距离及最近对仅使用运动体对。静态对由全部动作帧（关节跨度 > 1e-9 rad）加手臂 IK 的运动祖先关节集合相等推导。"
+                 "原生静态配对一次扩大检测至全场景，再用 mj_geomDistance 复测，另列为原厂结构缝，不影响 PASS/source_near/FAILED。"
                  "每段均可依次尝试直连、最优 via1/via2、模型 qpos0 hub；相对下限搜索失败记为 FAILED。"
                  "有符号距离正值为分离、负值为穿透；临时扩大 MuJoCo 检测 margin，配对过滤不变，始终报告数值。单词句零次过渡检查。"
                  "source_near 仅相对端点通过，不是绝对间隙认证；FAILED 输出仅供诊断。详见[协议、启动命令与限制](../../docs/transition-planner.md)。\n\n")
@@ -288,6 +310,9 @@ def write_tables(reports):
                    (table(failure_headers, failed) if failed else ("None." if english else "无。")) + "\n\n" +
                    ("## Group 2 source_near handoff\n\n" if english else "## 交给第二组的 source_near 源姿态\n\n") +
                    (table(handoff_headers, handoff_rows) if handoff_rows else ("None." if english else "无。")) + "\n")
+        content += (("\n## Vendor structural gaps (excluded from moving-pair gates)\n\n" if english else
+                     "\n## 原厂结构缝（不进入运动体对门槛）\n\n") +
+                    (table(vendor_headers, vendor_rows) if vendor_rows else ("None." if english else "无。")) + "\n")
         (OUT / ("report.en.md" if english else "report.md")).write_text(content)
 
 
@@ -322,6 +347,8 @@ def write_fixed_mount_finding(model):
 `pelvis_contour_link` 省略 XML 掩码属性，运行时为 1/1，参与碰撞。
 证据支持它是虚拟挂载 / 固定基座包装，并非单独增加的真实机器人夹具；体名下的活动碰撞网格
 仍是骨盆轮廓几何。`MujocoClearance` 必须保留它，不能按 `fixed_mount` 体名过滤。
+第六轮按运动祖先关节集合推导静态对：与恒定腿部的原厂结构缝单独测量报告；
+与活动手臂 / 腕部的配对仍进入原有 2 mm / 端点相对门槛。
 这里仅调查定义和几何含义，没有更改模型、掩码或 2 mm 阈值，也没有验证真实硬件。
 
 ## English
@@ -337,6 +364,9 @@ The other `pelvis_contour_link` omits XML mask attributes and has active runtime
 This is a virtual mounting / fixed-base wrapper, rather than an additional real-robot fixture.
 Its active collision mesh is still pelvis-contour geometry and must remain in
 `MujocoClearance`; filtering the body name would discard that geometry. This investigation
+derives static pairs from equal moving-ancestor joint sets: gaps against constant legs
+are measured separately, while pairs against moving arms/wrists retain the 2 mm and
+endpoint-relative gates. This investigation
 changes no model, mask, or 2 mm threshold and makes no hardware-validation claim.
 
 Regenerate / 重新生成：`.venv/bin/python scripts/evaluate_planned_transitions.py`
@@ -353,9 +383,10 @@ def main(argv=None):
     parser.add_argument("--render-comparison", action="store_true")
     parser.add_argument("--comparison-glosses", nargs="+", default=["YOU", "HURT", "WHERE"],
                         help="glosses of the baseline/planned sentence to compare")
-    parser.add_argument("--artifact-name", help="MP4 stem; defaults to <glosses>_baseline_vs_planned_v3")
+    parser.add_argument("--artifact-name", help="MP4 stem; defaults to <glosses>_baseline_vs_planned_v4")
     parser.add_argument("--copy-to", type=Path, help="copy MP4 here (default: /workspace/<artifact-name>.mp4)")
     args = parser.parse_args(argv)
+    copy_failed = False
     report = load_report(args.report)
     model = load_model(ROOT)
     for sentence in report["sentences"]:
@@ -369,11 +400,19 @@ def main(argv=None):
         sentence = next((s for s in report["sentences"] if s["glosses"] == glosses), None)
         if sentence is None:
             parser.error(f"Sentence not in report: {' '.join(glosses)}")
-        name = args.artifact_name or "_".join(glosses).lower() + "_baseline_vs_planned_v3"
+        name = args.artifact_name or "_".join(glosses).lower() + "_baseline_vs_planned_v4"
         video = render_comparison(model, sentence, glosses, name)
         copy_to = args.copy_to or Path("/workspace") / f"{name}.mp4"
-        shutil.copy2(artifact_path(video["path"]), copy_to)
-        video["copy"] = str(copy_to)
+        try:
+            shutil.copy2(artifact_path(video["path"]), copy_to)
+            video["copy"] = str(copy_to)
+        except OSError as exc:
+            # Preserve verification and the completed local artifact even when
+            # a managed workspace cannot write the requested external copy.
+            video["copy_requested"] = str(copy_to)
+            video["copy_error"] = str(exc)
+            copy_failed = True
+            print(f"COPY FAILED / 复制失败: {copy_to}: {exc}", file=sys.stderr)
         report.setdefault("comparison_videos", {})[name] = video
     report["you_buy_sag"] = str((OUT / "you_buy_sag.json").relative_to(ROOT))
     inputs = {segment["motion"] for sentence in report["sentences"] for segment in sentence["word_segments"]}
@@ -382,6 +421,10 @@ def main(argv=None):
                    "assets/robot/upstream_manifest.json", "assets/robot/model_info.json",
                    "motions/studio_galt_v1/index.json", "motions/wlasl_video_v1/index.json",
                    "scripts/prepare_robot.py", "src/sign_robot/transitions.py"))
+    # Static-pair derivation uses the entire hospital library, including clips
+    # absent from these ten sentences; provenance must cover all of those inputs.
+    library = json.loads((ROOT / "motions/hospital_v1_motions.json").read_text())
+    inputs.update(word["motion"] for word in library["glosses"] if word["motion_ready"])
     report["input_sha256"] = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
                               for name in sorted(inputs)}
     import mujoco
@@ -390,7 +433,7 @@ def main(argv=None):
     args.report.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n")
     write_tables(report["sentences"])
     print(f"saved {OUT / 'you_buy_sag.json'} and report tables; all saved endpoints/rates verified")
-    return 0
+    return 1 if copy_failed else 0
 
 
 if __name__ == "__main__":

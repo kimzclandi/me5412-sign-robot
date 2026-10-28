@@ -8,12 +8,14 @@ Signed clearance is positive for separation and negative for penetration.
 Normal paths require at least 2 mm; paths with either endpoint strictly below
 2 mm must never worsen the smaller endpoint clearance. Both use the same
 direct, via1, via2 and neutral-hub escalation. A passing near-source path is
-labelled ``source_near`` and handed to the source-motion group. ``fixed_mount``
-and every other upstream collision geometry remain in these checks.
+labelled ``source_near`` and handed to the source-motion group. These gates use
+only pairs whose relative pose can change under library/planner joints. Static
+pairs remain measured separately as vendor structural gaps; no body is removed.
 """
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
+from functools import lru_cache
 import json
 from pathlib import Path
 from typing import Callable
@@ -46,6 +48,57 @@ PENETRATION_TOLERANCE_M = 0.002
 ENDPOINT_NEAR_M = 0.002
 CLEARANCE_DETECTION_MARGIN_M = 0.25
 HEIGHT_TOLERANCE_M = 1e-7
+MOVING_JOINT_TOL_RAD = 1e-9
+MOTION_LIBRARY_PATH = ROOT / "motions/hospital_v1_motions.json"
+
+
+@lru_cache(maxsize=8)
+def _library_joint_ranges(library_path):
+    """Full-frame joint extrema, shared across clearance objects in one run."""
+    path = Path(library_path)
+    root = path.parent.parent
+    lower, upper, frames, paths = {}, {}, 0, []
+    for word in json.loads(path.read_text())["glosses"]:
+        if not word["motion_ready"]:
+            continue
+        with np.load(root / word["motion"], allow_pickle=False) as source:
+            motion = {key: source[key] for key in ("timestamps_s", "joint_names", "positions")}
+            validate_motion(motion)
+            for name, lo, hi in zip(motion["joint_names"], motion["positions"].min(axis=0),
+                                    motion["positions"].max(axis=0)):
+                name = str(name)
+                lower[name] = min(lower.get(name, float(lo)), float(lo))
+                upper[name] = max(upper.get(name, float(hi)), float(hi))
+            frames += len(motion["positions"])
+        paths.append(word["motion"])
+    if not paths:
+        raise ValueError("Moving-joint derivation requires a nonempty motion library")
+    return lower, upper, frames, tuple(paths)
+
+
+def moving_ancestor_joint_ids(model, moving_joint_ids):
+    """Moving joints on each body's path to world, including its own joints."""
+    ancestors = []
+    for body in range(model.nbody):
+        joints, current = set(), body
+        while current:
+            start = int(model.body_jntadr[current])
+            joints.update(joint for joint in range(start, start + int(model.body_jntnum[current]))
+                          if joint in moving_joint_ids)
+            current = int(model.body_parentid[current])
+        ancestors.append(frozenset(joints))
+    return tuple(ancestors)
+
+
+def derive_static_body_pairs(model, moving_joint_ids):
+    """Equal moving-ancestor sets mean no moving joint on the body-to-body path.
+
+    This is a topology computation, independent of anatomical/body/geom names.
+    Native MuJoCo eligibility and same-hand exclusions are applied when measuring.
+    """
+    ancestors = moving_ancestor_joint_ids(model, moving_joint_ids)
+    return frozenset((a, b) for a in range(model.nbody) for b in range(a + 1, model.nbody)
+                     if ancestors[a] == ancestors[b])
 
 
 def joint_rate_limits(joint_names):
@@ -94,6 +147,7 @@ class ClearanceResult:
     sampled_frames: int = 0
     near_contacts: list = field(default_factory=list)
     worst_contact: dict | None = None
+    vendor_structural_gaps: list = field(default_factory=list)
 
 
 class MujocoClearance:
@@ -101,33 +155,89 @@ class MujocoClearance:
 
     Temporarily expand geom/explicit-pair detection margins for mj_collision,
     starting at 2 mm and growing through 25 cm if needed, then restore them in
-    a finally block. Once an eligible pair is detected, any omitted pair is
+    a finally block. Once an eligible moving pair is detected, any omitted pair is
     farther than the detection margin and cannot lower the minimum. Native pair
     filtering and the existing same-hand rule stay intact. contact.dist is a
     signed surface distance, not the margin-adjusted constraint distance. Thus
     even separated poses have a numeric minimum and closest body/geom pair.
-    Models with no eligible pair, or empty trajectories, raise ValueError.
+    Static pairs are derived from full-library joint spans plus planner IK and
+    measured once across the scene, since their relative poses are invariant. Their
+    vendor gap records never enter the 2 mm/endpoint-relative gates. Models with
+    no eligible moving pair, or empty trajectories, raise ValueError.
     """
 
-    def __init__(self, model, joint_names):
+    def __init__(self, model, joint_names, *, library_path=MOTION_LIBRARY_PATH):
         import mujoco
+        from sign_robot.retarget import ARM_SUFFIXES
+
         self.model, self.data = model, mujoco.MjData(model)
         self.joint_names = joint_names
+        library_path = Path(library_path).resolve()
+        lower, upper, frames, paths = _library_joint_ranges(library_path)
+        # Include the exact arm-joint contract used by G1Retargeter, even if a
+        # future small library happens not to exercise one of its IK joints.
+        ik_names = {f"{side}_{suffix}" for side in ("left", "right") for suffix in ARM_SUFFIXES}
+        # Unknown joints stay conservatively moving rather than being silently
+        # exempted by a library that contains no evidence about them.
+        self.moving_joint_ids = frozenset(
+            joint for joint in range(model.njnt)
+            if (name := model.joint(joint).name) not in lower or name in ik_names
+            or upper[name] - lower[name] > MOVING_JOINT_TOL_RAD)
+        self.moving_ancestor_joint_ids = moving_ancestor_joint_ids(model, self.moving_joint_ids)
+        self.static_body_pairs = derive_static_body_pairs(model, self.moving_joint_ids)
+        self.derivation = {
+            "library_path": str(library_path.relative_to(ROOT) if library_path.is_relative_to(ROOT) else library_path),
+            "library_motion_paths": list(paths), "library_words": len(paths), "library_frames": frames,
+            "joint_span_tolerance_rad": MOVING_JOINT_TOL_RAD,
+            "moving_joint_names": [model.joint(j).name for j in sorted(self.moving_joint_ids)],
+            "static_body_pair_count": len(self.static_body_pairs),
+            "static_rule": "equal moving ancestor joint ID sets; no moving joint on the body-to-body path",
+            "vendor_measurement": "scene-spanning native mj_collision eligibility, then mj_geomDistance per static geom pair",
+        }
+        # Library-constant joints are evaluated at their constant values. The
+        # current robot's legs/waist equal qpos0, also used by the neutral hub.
+        self._constant_columns = []
+        self._constant_values = []
+        for column, name in enumerate(joint_names):
+            name = str(name)
+            joint = model.joint(name)
+            if joint.id not in self.moving_joint_ids:
+                self.data.qpos[int(joint.qposadr[0])] = lower[name]
+                self._constant_columns.append(column)
+                self._constant_values.append(lower[name])
+        mujoco.mj_forward(model, self.data)
+        self.derivation["vendor_detection_margin_m"] = max(
+            CLEARANCE_DETECTION_MARGIN_M, float(np.linalg.norm(np.ptp(self.data.geom_xpos, axis=0))) + 1.0)
+        vendor_pairs = {}
+        for contact in self._contacts(vendor_only=True):
+            key = tuple(contact["geom_ids"])
+            if key not in vendor_pairs:
+                # Expanded mesh contacts can use a coarse separating axis at
+                # large margins. Re-measure the actual surface distance with a
+                # scene-spanning bound, independent of that detection margin.
+                distance = float(mujoco.mj_geomDistance(
+                    model, self.data, *key, self.derivation["vendor_detection_margin_m"], None))
+                vendor_pairs[key] = {**contact, "distance_m": distance, "distance_mm": distance * 1000}
+        self.vendor_structural_gaps = sorted(vendor_pairs.values(), key=lambda c: c["distance_m"])
 
-    def _contacts(self):
+    def _contacts(self, *, vendor_only=False):
         """Measure free space with native pair filtering; never edit the MJCF."""
         import mujoco
         model = self.model
         margins, pair_margins = model.geom_margin.copy(), model.pair_margin.copy()
         try:
-            # Expand only while no eligible pair is measured. Large margins
+            # Expand only while no eligible MOVING pair is measured. Static
+            # contacts must not stop expansion and hide the gated minimum.
+            # Large margins
             # on every sample make mesh narrow-phase checks needlessly costly.
             # The last pass spans the scene so distant eligible pairs are also
             # measured rather than returning a clipped-distance sentinel.
             span = float(np.linalg.norm(np.ptp(self.data.geom_xpos, axis=0)))
             full_margin = max(CLEARANCE_DETECTION_MARGIN_M, span + 1.0)
-            for margin in (PENETRATION_TOLERANCE_M, 0.01, 0.05,
-                           CLEARANCE_DETECTION_MARGIN_M, full_margin):
+            detection_margins = ((full_margin,) if vendor_only else
+                                 (PENETRATION_TOLERANCE_M, 0.01, 0.05,
+                                  CLEARANCE_DETECTION_MARGIN_M, full_margin))
+            for margin in detection_margins:
                 model.geom_margin[:] = np.maximum(margins, margin)
                 model.pair_margin[:] = np.maximum(pair_margins, margin)
                 mujoco.mj_collision(model, self.data)
@@ -138,19 +248,27 @@ class MujocoClearance:
                     bodies = [model.body(model.geom_bodyid[g]).name for g in geoms]
                     if same_hand(bodies):
                         continue
+                    body_ids = tuple(sorted(int(model.geom_bodyid[g]) for g in geoms))
+                    static = body_ids[0] == body_ids[1] or body_ids in self.static_body_pairs
+                    if static != vendor_only:
+                        continue
                     contacts.append({"bodies": bodies,
                                      "geoms": [model.geom(g).name or f"geom_{g}" for g in geoms],
                                      "geom_ids": geoms, "distance_m": float(contact.dist)})
-                if contacts:
+                if contacts or vendor_only:
                     return contacts
         finally:
             model.geom_margin[:] = margins
             model.pair_margin[:] = pair_margins
-        raise ValueError("Clearance requires at least one eligible non-same-hand geom pair")
+        raise ValueError("Clearance requires at least one eligible moving non-same-hand geom pair")
 
     def __call__(self, positions):
         if not len(positions):
             raise ValueError("Clearance requires at least one pose")
+        if self._constant_columns and np.any(
+                np.abs(np.asarray(positions)[:, self._constant_columns] - self._constant_values)
+                > MOVING_JOINT_TOL_RAD):
+            raise ValueError("Planner pose varies a library-constant joint; static classification is invalid")
         pairs, near_pairs = {}, {}
         worst = None
         for frame, row in enumerate(positions):
@@ -171,7 +289,7 @@ class MujocoClearance:
                         pairs[key] = item
         return ClearanceResult(not pairs, worst["distance_m"],
                                list(pairs.values()), len(positions),
-                               list(near_pairs.values()), worst)
+                               list(near_pairs.values()), worst, self.vendor_structural_gaps)
 
 
 def neutral_pose(joint_names, model=None):
@@ -502,7 +620,7 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
         clips.append(clip["positions"])
     if clearance is None:
         model = model if model is not None else load_model(root)
-        clearance = MujocoClearance(model, names)
+        clearance = MujocoClearance(model, names, library_path=root / "motions/hospital_v1_motions.json")
     height_check = (lambda q: wrist_height_check(model, names, q)) if model is not None else None
     pieces, transitions, segments, handoff, count = [], [], [], [], 0
     for k, (gloss, q) in enumerate(zip(glosses, clips)):
@@ -552,6 +670,8 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
                                                            for r in plan.endpoint_clearance],
                                 "endpoint_floor_m": plan.endpoint_floor_m,
                                 "relative_floor_passed": chosen["relative_floor_passed"],
+                                "vendor_structural_gaps": chosen["clearance"]["vendor_structural_gaps"],
+                                "hub_attempted": any(a["kind"] == "hub" for a in plan.attempts),
                                 "reasons": plan.reasons, "warnings": plan.warnings,
                                 "attempts": plan.attempts,
                                 "peak_rates": peak_rates(plan.positions, names)})
@@ -579,12 +699,14 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
               "minimum_leg_duration_s": MIN_LEG_DURATION_S,
               "normal_clearance_minimum_m": PENETRATION_TOLERANCE_M,
               "endpoint_near_below_m": ENDPOINT_NEAR_M,
-              "collision_threshold_note": "signed distance: positive separation, negative penetration; normal whole-path minimum >= 0.002 m",
-              "source_near_rule": "either endpoint minimum strictly < 0.002 m; same full search, label source_near only if the relative floor passes",
+              "collision_threshold_note": "moving pairs only; signed distance: positive separation, negative penetration; normal whole-path minimum >= 0.002 m",
+              "source_near_rule": "either moving-pair endpoint minimum strictly < 0.002 m; same full search, label source_near only if the relative floor passes",
               "relative_floor_rule": "near-source whole-path minimum >= min(endpoint clearances); otherwise continue search through hub, then FAILED",
               "escalation_order": ["direct", "best_via1_or_via2", "hub", "FAILED"],
               "neutral_hub_source": "fixed-base model qpos0 for named trajectory joints; never assumed clear",
-              "clearance_scope": "all samples including endpoints; native MuJoCo pairs and same-hand exclusion unchanged; temporarily expanded detection margins, restored after each query; finite signed minimum and closest body/geom pair",
+              "clearance_scope": "moving pairs at all samples including endpoints; static pairs with equal moving-ancestor joint sets measured separately as vendor structural gaps; native MuJoCo pairs and same-hand exclusion unchanged; temporarily expanded detection margins, restored after each query; finite signed moving minimum and closest body/geom pair",
+              "clearance_derivation": getattr(clearance, "derivation", None),
+              "vendor_structural_gaps": getattr(clearance, "vendor_structural_gaps", []),
               "sentence_peak_rates": peak_rates(q, names),
               "failed_trajectory_policy": "FAILED emits the checked candidate with greatest minimum clearance for diagnostic replay only; source_near retains inherited endpoint proximity and is not an absolute 2 mm clearance certification",
               "source_near_handoff": handoff,

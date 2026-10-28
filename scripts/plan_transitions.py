@@ -113,6 +113,13 @@ def plan_one(glosses, *, model=None, render=False, out_dir=OUT):
               "minimum signed clearance", transition["min_clearance_mm"], "mm;",
               transition["duration_s"], "s")
         print("    closest pair:", transition["closest_pair"])
+        hubs = [a for a in transition["attempts"] if a["kind"] == "hub"]
+        print("    hub/neutral attempted:", transition["hub_attempted"])
+        for hub in hubs:
+            print("    HUB", hub["status"],
+                  "moving minimum", hub["clearance"]["min_distance_m"] * 1000, "mm;",
+                  "required floor", hub["required_clearance_m"] * 1000, "mm;",
+                  "closest pair", hub["worst_collision"])
         for warning in transition["warnings"]:
             print("  WARNING", transition["from_gloss"], "->", transition["to_gloss"], warning)
         if transition["status"] == "FAILED":
@@ -155,12 +162,18 @@ def main(argv=None):
         for item in sentence["source_near_handoff"]:
             if item not in handoff:
                 handoff.append(item)
-    payload = {"planner_protocol": "round4_source_near_relative_numeric_clearance",
+    payload = {"planner_protocol": "round6_moving_pair_clearance_vendor_structural_gaps",
+               "clearance_derivation": reports[0]["clearance_derivation"],
+               "vendor_structural_gaps": reports[0]["vendor_structural_gaps"],
                "sentences": reports,
                "totals": {key: sum(s[key] for s in reports) for key in
                           ("transition_count", "pass_count", "source_near_count", "failed_count")},
                "source_near_handoff": handoff}
     args.report.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n")
+    gaps = payload["vendor_structural_gaps"]
+    print(f"vendor structural gaps / 原厂结构缝: {len(gaps)} measured geom pairs; excluded from moving-pair gates")
+    for gap in gaps:
+        print("  VENDOR", " / ".join(gap["bodies"]), " / ".join(gap["geoms"]), gap["distance_mm"], "mm")
     print(f"wrote {args.report}")
     return 0
 
