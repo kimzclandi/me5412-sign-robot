@@ -27,7 +27,9 @@ from sign_robot.motion import apply_frame, load_model, validate_motion
 from sign_robot.transitions import (ENDPOINT_NEAR_M, FPS, MIN_LEG_DURATION_S,
                                     PENETRATION_TOLERANCE_M, MujocoClearance, body_heights,
                                     clearance_is_capped, format_clearance_mm,
-                                    joint_rate_limits, lookup_words)
+                                    joint_rate_limits, lookup_words, RRT_GLOSSES,
+                                    RRT_SEED, RRT_BUDGET_S, rrt_arm_space,
+                                    RRT_EDGE_RESOLUTION_RAD, timescale_to_rate_limits)
 
 OUT = ROOT / "results/planned_transitions"
 PREVIEWS = ROOT / "results/mocap_previews"
@@ -102,7 +104,7 @@ def verify_saved_sentence(report, model):
                 offset += intervals
         if chosen["kind"] == "via2":
             assert len(chosen["leg_intervals"]) == 3 and len(chosen["via_directions"]) == 2
-        if chosen["kind"] == "retract_approach":
+        if chosen["kind"] == "retract_approach" or chosen.get("diagnostic_method") == "retract_approach":
             # Original library samples remain authoritative even if a saved
             # retimed route omits the offending pose. Recheck them separately.
             slice_failures = []
@@ -123,13 +125,49 @@ def verify_saved_sentence(report, model):
             assert segment["in_slice_collision"] == bool(slice_failures)
             assert segment["slice_collisions"] == chosen["slice_collisions"]
             passed = passed and not slice_failures
+        if chosen["kind"] == "rrt_connect":
+            assert (segment["from_gloss"], segment["to_gloss"]) == RRT_GLOSSES
+            assert segment["rrt_attempted"]
+            assert sum(a["kind"] == "rrt_connect" for a in segment["attempts"]) == 1
+            assert chosen["rrt_seed"] == segment["rrt_seed"] == RRT_SEED
+            assert chosen["rrt_budget_s"] <= RRT_BUDGET_S
+            assert chosen["rrt_nodes"] == segment["rrt_nodes"]
+            assert chosen["smoothed"] == segment["smoothed"]
+            assert chosen["rrt_runtime_s"] == segment["rrt_runtime_s"]
+            assert all(a["status"] == "FAILED" for a in segment["attempts"][:segment["selected_attempt"]])
+            if chosen["rrt_found"]:
+                columns, bounds = rrt_arm_space(names, model)
+                assert np.all(clip[:, columns] >= bounds[:, 0])
+                assert np.all(clip[:, columns] <= bounds[:, 1])
+                knots = np.array(chosen["rrt_path_knots"])
+                np.testing.assert_array_equal(clip, timescale_to_rate_limits(knots, names))
+                delta = clip[-1, columns] - clip[0, columns]
+                progress = (np.clip((knots[:, columns] - clip[0, columns]) @ delta / (delta @ delta), 0, 1)
+                            if delta @ delta else np.zeros(len(knots)))
+                non_arm = np.setdiff1d(np.arange(len(names)), columns)
+                expected = clip[0] + progress[:, None] * (clip[-1] - clip[0])
+                # Endpoints always preserve the exact source/target poses.
+                expected[0], expected[-1] = clip[0], clip[-1]
+                np.testing.assert_allclose(knots[:, non_arm], expected[:, non_arm], atol=1e-12, rtol=0)
+                dense = np.vstack([np.linspace(left, right, max(1, int(np.ceil(
+                    np.max(np.abs(right - left)) / RRT_EDGE_RESOLUTION_RAD))) + 1)
+                                   for left, right in zip(knots, knots[1:])])
+                assert clearance(dense).min_distance_m >= required
+                assert passed
+            else:
+                assert segment["status"] == chosen["status"] == "needs_group2_fix"
+                passed = False
         assert segment["relative_floor_passed"] == (passed if near else None)
-        status = ("source_near" if near else "PASS") if passed else "FAILED"
+        status = (("source_near" if near else "PASS") if passed else
+                  "needs_group2_fix" if chosen["kind"] == "rrt_connect" else "FAILED")
         assert status == segment["status"] == chosen["status"]
         assert result.min_distance_m == segment["clearance"]["min_distance_m"]
         assert segment["min_clearance_mm"] == result.min_distance_m * 1000
         assert segment.get("min_clearance_mm_display") == format_clearance_mm(result.min_distance_m)
         assert segment.get("clearance_capped") == clearance_is_capped(result.min_distance_m)
+    assert report["failed_count"] == sum(t["status"] in ("FAILED", "needs_group2_fix") for t in report["transitions"])
+    assert report.get("needs_group2_fix_count", 0) == sum(
+        t["status"] == "needs_group2_fix" for t in report["transitions"])
     return {"passed": True, "checks": "saved endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
             "transition_peak_rates": peaks}
 
@@ -256,7 +294,7 @@ def write_tables(reports):
                           "|" + "---|" * len(headers)] +
                          ["| " + " | ".join(map(str, row)) + " |" for row in rows])
 
-    summary, transitions, failed, handoff, vendor = [], [], [], [], []
+    summary, transitions, failed, handoff, vendor, rrts = [], [], [], [], [], []
     for report in reports:
         sentence = " ".join(report["glosses"])
         summary.append([sentence, len(report["word_segments"]), report["transition_count"],
@@ -276,6 +314,11 @@ def write_tables(reports):
             endpoints = [format_clearance_mm(value / 1000)
                          for value in transition["endpoint_clearances_mm"]]
             hubs = [a for a in transition["attempts"] if a["kind"] == "hub"]
+            if transition.get("rrt_attempted"):
+                rrts.append([pair, transition["status"], transition["rrt_seed"],
+                             transition["rrt_nodes"], f"{transition['rrt_runtime_s']:.6f}",
+                             str(transition["smoothed"]).lower(), format_clearance_mm(distance),
+                             f"{transition['duration_s']:.3f}", transition["rrt_outcome"]])
             hub_summary = (f"{hubs[0]['status']} / {format_clearance_mm(hubs[0]['clearance']['min_distance_m'])}"
                            if hubs else "—")
             transitions.append([sentence, pair, transition["status"],
@@ -285,7 +328,7 @@ def write_tables(reports):
                                 *endpoints,
                                 format_clearance_mm(distance), " / ".join(closest["bodies"]),
                                 str(transition["hub_attempted"]).lower(), hub_summary])
-            if transition["status"] == "FAILED":
+            if transition["status"] in ("FAILED", "needs_group2_fix"):
                 worst = transition["worst_collision"]
                 failed.append([sentence, pair, " / ".join(worst["bodies"]) if worst else "—",
                                format_clearance_mm(worst["distance_m"] if worst else distance),
@@ -326,7 +369,10 @@ def write_tables(reports):
                  "and do not affect PASS/source_near/FAILED. "
                  "Every segment can escalate through direct, best via1/via2, model-qpos0 hub, then source retract/target approach. "
                  "Retract/approach requires the worse-endpoint floor for its whole route and original slices, including clear endpoints. "
-                 "An in-slice failure selects that route for diagnosis even if an earlier failed candidate has greater clearance, and stops without RRT. "
+                 "An in-slice failure selects that route for diagnosis even if an earlier failed candidate has greater clearance. "
+                 "Only MEDICINE→MORNING then gets one arm-only RRT-Connect attempt (seed 5412, 120 s total cap), including in-slice failure; "
+                 "it keeps the same endpoint-relative floor and rechecks smoothing and rate-scaled output. Failed smoothing retains the checked unsmoothed path. "
+                 "RRT failure is needs_group2_fix (included in failed_count), with the prior checked diagnostic and Group 2 handoff retained. "
                  "Other FAILED searches retain the candidate with greatest minimum clearance. "
                  "Moving clearances at or above 9.5 mm display as >=9.5 (clearance_capped=true); JSON retains raw numeric measurements. "
                  "The Group 2 source_near handoff includes both endpoint proximity and original-library slice defects. "
@@ -340,7 +386,8 @@ def write_tables(reports):
                  "全部决策距离及最近对仅使用运动体对。静态对由全部动作帧（关节跨度 > 1e-9 rad）加手臂 IK 的运动祖先关节集合相等推导。"
                  "原生静态配对一次扩大检测至全场景，再用 mj_geomDistance 复测，另列为原厂结构缝，不影响 PASS/source_near/FAILED。"
                  "每段均可依次尝试直连、最优 via1/via2、模型 qpos0 hub、源收回/目标接近。收回/接近的全路径和原始切片均须达到较差端点下限，两端清晰时也适用。"
-                 "切片内失败时选择该路线供诊断，即使先前失败候选间隙更大，也停止且不进 RRT；其他 FAILED 搜索保留最小间隙最大的候选。"
+                 "切片内失败时选择该路线供诊断，即使先前失败候选间隙更大。仅 MEDICINE→MORNING 在此后可作一次仅手臂的 RRT-Connect（种子 5412、总上限 120 秒），包括切片失败情形；"
+                 "保持端点相对下限，平滑后及速率缩放后复查；平滑失败保留已检查的未平滑路线。RRT 失败标为 needs_group2_fix（计入 failed_count），保留原诊断与第二组交接。其他 FAILED 搜索保留最小间隙最大的候选。"
                  "运动对间隙达到或超过 9.5 mm 时显示为 >=9.5（clearance_capped=true），JSON 保留原始测量数值。"
                  "第二组 source_near 交接清单同时包含端点接近与原始动作库切片缺陷。"
                  "有符号距离正值为分离、负值为穿透；临时扩大 MuJoCo 检测 margin，配对过滤不变，始终报告数值。单词句零次过渡检查。"
@@ -355,6 +402,11 @@ def write_tables(reports):
         content += (("\n## Vendor structural gaps (excluded from moving-pair gates)\n\n" if english else
                      "\n## 原厂结构缝（不进入运动体对门槛）\n\n") +
                     (table(vendor_headers, vendor_rows) if vendor_rows else ("None." if english else "无。")) + "\n")
+        if rrts:
+            content += (("\n## One-shot MEDICINE→MORNING RRT-Connect\n\n" if english else
+                         "\n## MEDICINE→MORNING 单次 RRT-Connect\n\n") +
+                        table((["Transition", "Status", "Seed", "Nodes", "Runtime s", "Smoothed", "Min mm", "Duration s", "Outcome"]
+                               if english else ["过渡", "状态", "种子", "节点", "运行秒数", "已平滑", "最小 mm", "时长秒", "结果"]), rrts) + "\n")
         (OUT / ("report.en.md" if english else "report.md")).write_text(content)
 
 
@@ -448,7 +500,7 @@ def main(argv=None):
         if sentence is None:
             parser.error(f"Sentence not in report: {' '.join(glosses)}")
         name = args.artifact_name or "_".join(glosses).lower() + "_baseline_vs_planned_v4"
-        video = render_comparison(model, sentence, glosses, name)
+        video = render_comparison(model, sentence, glosses, name, out_dir=OUT)
         copy_to = args.copy_to or Path("/workspace") / f"{name}.mp4"
         try:
             shutil.copy2(artifact_path(video["path"]), copy_to)

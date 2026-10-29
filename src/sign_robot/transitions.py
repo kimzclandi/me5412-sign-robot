@@ -8,6 +8,7 @@ Signed clearance is positive for separation and negative for penetration.
 Normal paths require at least 2 mm; paths with either endpoint strictly below
 2 mm must never worsen the smaller endpoint clearance. Both use the same
 direct, via1, via2, neutral-hub, then source retract/approach escalation.
+Only MEDICINE→MORNING may then attempt one bounded arm-only RRT-Connect.
 Retract/approach always uses the smaller endpoint clearance as its floor,
 including when both endpoints exceed 2 mm.
 A passing near-source path is labelled ``source_near`` and handed to the
@@ -23,6 +24,7 @@ from dataclasses import asdict, dataclass, field
 from functools import lru_cache
 import json
 from pathlib import Path
+import time
 from typing import Callable
 
 import numpy as np
@@ -61,6 +63,223 @@ MOTION_LIBRARY_PATH = ROOT / "motions/hospital_v1_motions.json"
 CLEARANCE_DISPLAY_CAP_M = 0.0095
 CLEARANCE_CAP_TOL_M = 1e-9
 POSE_MATCH_TOL_RAD = 1e-9
+# Round 8 Step 3: one invocation, only after all earlier routes fail for this pair.
+RRT_GLOSSES = ("MEDICINE", "MORNING")
+RRT_SEED = 5412
+RRT_BUDGET_S = 120.0
+RRT_STEP_RAD = 0.35
+RRT_EDGE_RESOLUTION_RAD = 0.04
+RRT_GOAL_BIAS = 0.15
+
+
+def rrt_arm_space(joint_names, model):
+    """Exact bilateral ARM_SUFFIXES columns and finite MuJoCo joint limits.
+
+    Subsets support small developer tests; the real trajectory has all 14 arms.
+    Fingers, similarly named unknown joints and all non-arm joints are excluded.
+    """
+    from sign_robot.retarget import ARM_SUFFIXES
+    arms = {f"{side}_{suffix}" for side in ("left", "right") for suffix in ARM_SUFFIXES}
+    columns = np.array([i for i, name in enumerate(joint_names) if str(name) in arms], dtype=int)
+    if not len(columns):
+        raise ValueError("RRT requires named ARM_SUFFIXES joints")
+    joints = [model.joint(str(joint_names[i])) for i in columns]
+    bounds = np.array([j.range for j in joints], dtype=float)
+    if (not all(bool(j.limited[0]) for j in joints) or not np.isfinite(bounds).all()
+            or np.any(bounds[:, 0] >= bounds[:, 1])):
+        raise ValueError("RRT requires finite limited MuJoCo arm joints")
+    return columns, bounds
+
+
+def shortcut_rrt_path(path, edge_ok, *, expired=lambda: False):
+    """Deterministic farthest-first shortcuts that strictly shorten joint length.
+
+    This is bounded shortcut smoothing, not a claim of global optimality. The
+    caller independently rechecks the resulting whole path and timed samples.
+    """
+    path = np.asarray(path).copy()
+    checks = 0
+    i = 0
+    while i < len(path) - 2 and checks < 128 and not expired():
+        for j in range(len(path) - 1, i + 1, -1):
+            if expired() or checks >= 128:
+                break
+            old_length = np.linalg.norm(np.diff(path[i:j + 1], axis=0), axis=1).sum()
+            if np.linalg.norm(path[j] - path[i]) >= old_length - 1e-12:
+                continue
+            checks += 1
+            if edge_ok(path[i], path[j]):
+                path = np.vstack([path[:i + 1], path[j:]])
+                break
+        i += 1
+    return path
+
+
+@dataclass
+class RRTResult:
+    positions: np.ndarray | None
+    clearance: ClearanceResult | None
+    info: dict
+
+
+def rrt_connect(a, b, joint_names, *, model, clearance, required_clearance_m,
+                seed=RRT_SEED, budget_s=RRT_BUDGET_S, clock=None, rng_factory=None):
+    """One bounded bidirectional arm-only search, with a fixed non-arm policy.
+
+    Each arm knot sets progress to its clipped projection onto the start→goal
+    arm vector. Non-arm coordinates are a + progress*(b-a); between knots all
+    coordinates interpolate linearly. Progress is derived, never sampled. This
+    makes edges reversible and both trees use the same deterministic policy.
+    Every edge is sampled at <=0.04 rad in every coordinate through the existing
+    clearance callable. This is sampled geometry, not continuous certification.
+
+    The 120 s budget includes smoothing and final validation. Reserve 20% for
+    these stages; a cooperative deadline is checked between clearance queries.
+    If smoothing/rechecking fails or runs out of its allowance, retain the
+    already checked, rate-scaled unsmoothed path. No second search or seed retry.
+    """
+    clock = time.monotonic if clock is None else clock
+    rng_factory = np.random.default_rng if rng_factory is None else rng_factory
+    started = clock()
+    deadline = started + min(float(budget_s), RRT_BUDGET_S)
+    search_deadline = started + 0.8 * (deadline - started)
+    info = {"rrt_seed": int(seed), "rrt_nodes": 0, "rrt_runtime_s": 0.0,
+            "rrt_budget_s": min(float(budget_s), RRT_BUDGET_S), "rrt_found": False,
+            "smoothed": False, "rrt_outcome": "timeout",
+            "rrt_edge_resolution_rad": RRT_EDGE_RESOLUTION_RAD,
+            "rrt_non_arm_policy": "clipped arm start-goal projection at knots; linear non-arm interpolation along each edge"}
+
+    class Deadline(Exception):
+        pass
+
+    def check_time(limit=deadline):
+        if clock() >= limit:
+            raise Deadline
+
+    def done(positions=None, result=None):
+        info["rrt_runtime_s"] = float(clock() - started)
+        return RRTResult(positions, result, info)
+
+    a, b = np.asarray(a, dtype=float), np.asarray(b, dtype=float)
+    try:
+        check_time()
+        columns, bounds = rrt_arm_space(joint_names, model)
+        info["rrt_arm_joint_names"] = [str(joint_names[i]) for i in columns]
+        if np.any(a[columns] < bounds[:, 0]) or np.any(a[columns] > bounds[:, 1]) or np.any(
+                b[columns] < bounds[:, 0]) or np.any(b[columns] > bounds[:, 1]):
+            info["rrt_outcome"] = "endpoint_outside_joint_limits"
+            return done()
+        rng = rng_factory(seed)
+        delta = b[columns] - a[columns]
+        norm2 = float(delta @ delta)
+
+        def lift(arms):
+            progress = float(np.clip((arms - a[columns]) @ delta / norm2, 0, 1)) if norm2 else 0.0
+            q = a + progress * (b - a)
+            q[columns] = arms
+            return q
+
+        def samples(left, right):
+            count = max(1, int(np.ceil(np.max(np.abs(right - left)) / RRT_EDGE_RESOLUTION_RAD)))
+            q = np.linspace(left, right, count + 1)
+            q[0], q[-1] = left, right
+            return q
+
+        def edge_ok(left, right, limit=deadline):
+            for pose in samples(left, right):
+                check_time(limit)
+                result = clearance(pose[None, :])
+                check_time(limit)
+                if result.min_distance_m < required_clearance_m:
+                    return False
+            return True
+
+        # Tree labels stay attached while active/passive trees alternate.
+        trees = [{"q": [a.copy()], "parent": [-1], "start": True},
+                 {"q": [b.copy()], "parent": [-1], "start": False}]
+        info["rrt_nodes"] = 2
+
+        def extend(tree, target):
+            check_time(search_deadline)
+            arms = np.array(tree["q"])[:, columns]
+            nearest = int(np.argmin(np.linalg.norm(arms - target[columns], axis=1)))
+            left = tree["q"][nearest]
+            d = target[columns] - left[columns]
+            distance = float(np.linalg.norm(d))
+            if distance <= 1e-12 and np.array_equal(left, target):
+                return nearest, "reached"
+            reached = distance <= RRT_STEP_RAD
+            right = target.copy() if reached else lift(left[columns] + d * RRT_STEP_RAD / distance)
+            if not edge_ok(left, right, search_deadline):
+                return nearest, "trapped"
+            tree["q"].append(right)
+            tree["parent"].append(nearest)
+            info["rrt_nodes"] += 1
+            return len(tree["q"]) - 1, "reached" if reached else "advanced"
+
+        def branch(tree, node):
+            path = []
+            while node != -1:
+                path.append(tree["q"][node])
+                node = tree["parent"][node]
+            return path[::-1]
+
+        raw = None
+        while raw is None:
+            check_time(search_deadline)
+            active, passive = trees
+            target = (passive["q"][0] if rng.random() < RRT_GOAL_BIAS else
+                      lift(rng.uniform(bounds[:, 0], bounds[:, 1])))
+            node, state = extend(active, target)
+            if state != "trapped":
+                other, state = extend(passive, active["q"][node])
+                while state == "advanced":
+                    other, state = extend(passive, active["q"][node])
+                if state == "reached":
+                    first, second = branch(active, node), branch(passive, other)
+                    if not active["start"]:
+                        first, second = second, first
+                    raw = np.asarray(first + second[-2::-1])
+            trees.reverse()
+
+        info["rrt_search_found"] = True
+        info["rrt_raw_knots"] = len(raw)
+
+        def validate(path):
+            # Also recheck dense edges after reconstruction/smoothing, followed
+            # by the exact output of the shared rate retimer.
+            if not all(edge_ok(left, right) for left, right in zip(path, path[1:])):
+                return None, None
+            timed = timescale_to_rate_limits(path, joint_names)
+            check_time()
+            result = clearance(timed)
+            check_time()
+            return (timed, result) if result.min_distance_m >= required_clearance_m else (None, result)
+
+        timed, result = validate(raw)
+        if timed is None:
+            info["rrt_outcome"] = "unsmoothed_recheck_failed"
+            return done()
+        # Safe fallback is fully checked before any shortcut is attempted.
+        info["rrt_found"] = True
+        info["rrt_outcome"] = "found"
+        try:
+            smooth = shortcut_rrt_path(raw, edge_ok, expired=lambda: clock() >= started + 0.9 * (deadline - started))
+            if not np.array_equal(smooth, raw):
+                smooth_timed, smooth_result = validate(smooth)
+                info["rrt_smoothing_recheck_passed"] = smooth_timed is not None
+                if smooth_timed is not None:
+                    timed, result = smooth_timed, smooth_result
+                    info["smoothed"] = True
+                else:
+                    info["rrt_smoothing_fallback"] = "checked_unsmoothed"
+        except Deadline:
+            info["rrt_smoothing_fallback"] = "checked_unsmoothed_deadline"
+        info["rrt_accepted_knots"] = len(smooth) if info["smoothed"] else len(raw)
+        info["rrt_path_knots"] = (smooth if info["smoothed"] else raw).tolist()
+        return done(timed, result)
+    except Deadline:
+        return done()
 
 
 @lru_cache(maxsize=8)
@@ -553,7 +772,8 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
                     via_factory=None, via2_factory=None, hub_factory=None,
                     height_check=None, model=None,
                     source_retract=None, target_approach=None,
-                    source_retract_frames=None, target_approach_frames=None):
+                    source_retract_frames=None, target_approach_frames=None,
+                    from_gloss=None, to_gloss=None, rrt_factory=None):
     """Direct, via1/via2, hub, then source retract / target approach fallback.
 
     If either endpoint is strictly below 2 mm, every complete candidate must
@@ -565,8 +785,9 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
     Hub clearance is checked on both legs as well as the complete path. After
     hub failure, the general retract/approach route uses the source word's
     post-sign frames and the target word's pre-sign frames. An in-slice
-    collision below the floor stops the segment without RRT. A failed
-    candidate is retained for diagnosis with its worst pair, never for execution.
+    collision below the floor stops every pair except MEDICINE→MORNING. That
+    pair gets one bounded RRT-Connect attempt after all previous routes fail.
+    Failed output is diagnostic only, never for execution.
     """
     direct = minimum_jerk_blend(a, b, joint_names)
     endpoints = [annotate_clearance_dict(asdict(clearance(direct[[i]]))) for i in (0, -1)]
@@ -575,10 +796,11 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
     endpoint_floor = endpoint_min if endpoint_near else None
     required_clearance = endpoint_min if endpoint_near else PENETRATION_TOLERANCE_M
     attempts = []
+    rrt_enabled = (str(from_gloss).upper(), str(to_gloss).upper()) == RRT_GLOSSES
 
-    def assess(q, kind, leg_intervals, directions=(), legs=(), *, floor=None):
+    def assess(q, kind, leg_intervals, directions=(), legs=(), *, floor=None, result=None):
         floor = required_clearance if floor is None else floor
-        result = clearance(q)
+        result = clearance(q) if result is None else result
         leg_clearance = [asdict(clearance(leg)) for leg in legs]
         height = height_check(q) if height_check else {"passed": True}
         passed = (result.min_distance_m >= floor and
@@ -594,6 +816,9 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
         attempts.append({"kind": kind, "method": kind,
                          "via_direction": directions[0] if kind == "via1" else None,
                          "via_directions": directions, "intervals": len(q) - 1,
+                         "duration_s": (len(q) - 1) / FPS,
+                         "min_clearance_m": float(result.min_distance_m),
+                         "min_clearance_mm_display": format_clearance_mm(result.min_distance_m),
                          "leg_intervals": leg_intervals,
                          "leg_clearance": leg_clearance,
                          "source_near": bool(endpoint_near),
@@ -618,7 +843,7 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
                         ["wrist undershoot remains; collision status reported separately"])
         return TransitionPlan(
             positions=q, status=attempt["status"],
-            used_via=attempt["kind"] in ("via1", "via2", "hub", "retract_approach"),
+            used_via=attempt["kind"] in ("via1", "via2", "hub", "retract_approach", "rrt_connect"),
             attempts=attempts, reasons=attempt["reasons"], warnings=warnings,
             via_direction=attempt["via_direction"], selected_attempt=index,
             endpoint_clearance=endpoints, endpoint_floor_m=endpoint_floor,
@@ -717,14 +942,39 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
                     f"{hit['slice']} slice collision: library_frame={hit['library_frame']}, "
                     f"bodies={' | '.join(hit['bodies'] or [])}, distance_m={hit['distance_m']}")
             attempt["reasons"] = reasons
-            # Slice-stop exception: emit this failed library route to expose
-            # the source defect, even if an earlier failed candidate has a
-            # greater minimum clearance. Do not continue to RRT.
+            # Preserve the slice-stop diagnostic selection for other pairs.
+            # Only the Round 8 Step 3 pair may continue to one RRT attempt.
             retract_choice = (index, q)
-            return finish(retract_choice)
+            if not rrt_enabled:
+                return finish(retract_choice)
         retract_choice = (index, q)
         if attempt["status"] != "FAILED":
             return finish(retract_choice)
+
+    if rrt_enabled and retract_choice is not None:
+        search = rrt_connect if rrt_factory is None else rrt_factory
+        rrt = search(a, b, joint_names, model=model if model is not None else load_model(),
+                     clearance=clearance, required_clearance_m=required_clearance)
+        if rrt.positions is not None:
+            choice = assess(rrt.positions, "rrt_connect", [len(rrt.positions) - 1], result=rrt.clearance)
+            attempts[choice[0]].update(rrt.info)
+            if attempts[choice[0]]["status"] != "FAILED":
+                return finish(choice)
+        else:
+            # Keep the checked library diagnostic and its slice defects, while
+            # explicitly reporting the unsuccessful one-shot RRT outcome.
+            diagnostic = dict(attempts[retract_choice[0]])
+            diagnostic.update(rrt.info)
+            diagnostic.update(kind="rrt_connect", method="rrt_connect",
+                              diagnostic_method="retract_approach")
+            attempts.append(diagnostic)
+            choice = (len(attempts) - 1, retract_choice[1])
+        attempt = attempts[choice[0]]
+        attempt["status"] = "needs_group2_fix"
+        attempt["relative_floor_passed"] = False if endpoint_near else None
+        attempt["reasons"] = [*attempt["reasons"],
+                              f"one-shot RRT-Connect: {rrt.info['rrt_outcome']}; needs_group2_fix"]
+        return finish(choice)
 
     pool = [direct_choice, *candidates, hub_choice]
     if retract_choice is not None:
@@ -803,6 +1053,7 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
             plan = plan_transition(
                 pieces[-1][-1], q[start], names, clearance=clearance,
                 height_check=height_check, model=model,
+                from_gloss=prev, to_gloss=gloss,
                 source_retract=retract, target_approach=approach,
                 source_retract_frames=(prev_s1, len(source_full) - 1),
                 target_approach_frames=(0, s0))
@@ -850,6 +1101,7 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
                                 "via_directions": plan.via_directions,
                                 "selected_attempt": plan.selected_attempt,
                                 "clearance": chosen["clearance"],
+                                "min_clearance_m": float(chosen["clearance"]["min_distance_m"]),
                                 "min_clearance_mm": float(chosen["clearance"]["min_distance_m"] * 1000),
                                 "min_clearance_mm_display": format_clearance_mm(
                                     chosen["clearance"]["min_distance_m"]),
@@ -871,6 +1123,9 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
                                 "hub_attempted": any(a["kind"] == "hub" for a in plan.attempts),
                                 "retract_approach_attempted": any(
                                     a["kind"] == "retract_approach" for a in plan.attempts),
+                                "rrt_attempted": any(a["kind"] == "rrt_connect" for a in plan.attempts),
+                                **{key: value for key, value in chosen.items()
+                                   if key.startswith("rrt_") or key in ("smoothed", "diagnostic_method")},
                                 "in_slice_collision": bool(chosen.get("in_slice_collision")),
                                 "slice_collisions": list(chosen.get("slice_collisions") or []),
                                 "source_retract_frames": chosen.get("source_retract_frames"),
@@ -889,7 +1144,8 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
     q = np.vstack(pieces)
     motion = {"timestamps_s": np.arange(len(q)) / FPS, "joint_names": names, "positions": q}
     validate_motion(motion)
-    failed = sum(t["status"] == "FAILED" for t in transitions)
+    failed = sum(t["status"] in ("FAILED", "needs_group2_fix") for t in transitions)
+    needs_fix = sum(t["status"] == "needs_group2_fix" for t in transitions)
     source_near = sum(t["status"] == "source_near" for t in transitions)
     passed = sum(t["status"] == "PASS" for t in transitions)
     report = {"glosses": glosses, "fps": FPS, "frames": len(q),
@@ -897,16 +1153,20 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
               "transition_count": len(transitions), "pass_count": passed,
               "source_near_count": source_near, "accepted_count": passed + source_near,
               "failed_count": failed,
-              "status": "FAILED" if failed else "source_near" if source_near else "PASS",
+              "needs_group2_fix_count": needs_fix,
+              "status": "needs_group2_fix" if needs_fix else "FAILED" if failed else "source_near" if source_near else "PASS",
               "rate_limits_rad_s": {"arm": ARM_RATE_RAD_S, "finger": FINGER_RATE_RAD_S},
               "minimum_leg_duration_s": MIN_LEG_DURATION_S,
               "normal_clearance_minimum_m": PENETRATION_TOLERANCE_M,
               "endpoint_near_below_m": ENDPOINT_NEAR_M,
               "collision_threshold_note": "moving pairs only; signed distance: positive separation, negative penetration; normal whole-path minimum >= 0.002 m",
               "source_near_rule": "either moving-pair endpoint minimum strictly < 0.002 m; same full search, label source_near only if the relative floor passes",
-              "relative_floor_rule": "near-source whole-path minimum >= min(endpoint clearances); otherwise continue search through hub and retract/approach, then FAILED",
+              "relative_floor_rule": "near-source whole-path minimum >= min(endpoint clearances); otherwise continue through hub and retract/approach; only MEDICINE->MORNING then gets one RRT-Connect attempt",
               "retract_approach_rule": "whole route and original library slices must each meet min(endpoint clearances), including clear endpoints; recorded required_clearance_m is specific to each candidate",
               "escalation_order": ["direct", "best_via1_or_via2", "hub", "source_retract_approach", "FAILED"],
+              "rrt_override": {"glosses": list(RRT_GLOSSES), "after": "all prior routes fail, including in-slice collision",
+                               "seed": RRT_SEED, "budget_s": RRT_BUDGET_S,
+                               "failure_status": "needs_group2_fix", "search": "ARM_SUFFIXES only, within MuJoCo limits"},
               "clearance_display_cap_m": CLEARANCE_DISPLAY_CAP_M,
               "clearance_cap_note": "separations >= 9.5 mm display as >=9.5; verified true elbow/wrist_pitch mesh gap (~9.50015 mm via mj_geomDistance distmax=1.0), not a distmax clip",
               "neutral_hub_source": "fixed-base model qpos0 for named trajectory joints; never assumed clear",
@@ -914,7 +1174,7 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
               "clearance_derivation": getattr(clearance, "derivation", None),
               "vendor_structural_gaps": getattr(clearance, "vendor_structural_gaps", []),
               "sentence_peak_rates": peak_rates(q, names),
-              "failed_trajectory_policy": "FAILED emits the checked candidate with greatest minimum clearance, except an in-slice collision selects retract_approach to expose the library defect and stops escalation; all FAILED output is diagnostic only; source_near retains inherited endpoint proximity and is not an absolute 2 mm clearance certification",
+              "failed_trajectory_policy": "FAILED emits the checked candidate with greatest minimum clearance, except an in-slice collision selects retract_approach to expose the library defect; only MEDICINE->MORNING continues to one RRT-Connect attempt, whose failure is needs_group2_fix with the checked retract/approach diagnostic; failed_count includes needs_group2_fix; all failed output is diagnostic only; source_near is not absolute 2 mm certification",
               "source_near_handoff": handoff,
               "word_segments": segments, "transitions": transitions}
     return motion, report

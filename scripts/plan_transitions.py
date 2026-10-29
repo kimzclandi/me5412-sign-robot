@@ -139,7 +139,12 @@ def plan_one(glosses, *, model=None, render=False, out_dir=OUT):
                       "bodies", hit.get("bodies"), "distance_m", hit.get("distance_m"))
         for warning in transition["warnings"]:
             print("  WARNING", transition["from_gloss"], "->", transition["to_gloss"], warning)
-        if transition["status"] == "FAILED":
+        if transition.get("rrt_attempted"):
+            print("    RRT_CONNECT", transition["status"],
+                  "nodes", transition["rrt_nodes"], "runtime_s", transition["rrt_runtime_s"],
+                  "seed", transition["rrt_seed"], "smoothed", transition["smoothed"],
+                  "outcome", transition["rrt_outcome"])
+        if transition["status"] in ("FAILED", "needs_group2_fix"):
             reasons = transition["reasons"]
             reason = "; ".join(reasons[:3])
             if len(reasons) > 3:
@@ -179,12 +184,12 @@ def main(argv=None):
         for item in sentence["source_near_handoff"]:
             if item not in handoff:
                 handoff.append(item)
-    payload = {"planner_protocol": "round8_step1_retract_endpoint_floor_preserved_knots",
+    payload = {"planner_protocol": "round8_step3_medicine_morning_one_shot_arm_rrt_connect",
                "clearance_derivation": reports[0]["clearance_derivation"],
                "vendor_structural_gaps": reports[0]["vendor_structural_gaps"],
                "sentences": reports,
                "totals": {key: sum(s[key] for s in reports) for key in
-                          ("transition_count", "pass_count", "source_near_count", "failed_count")},
+                          ("transition_count", "pass_count", "source_near_count", "failed_count", "needs_group2_fix_count")},
                "source_near_handoff": handoff}
     args.report.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n")
     gaps = payload["vendor_structural_gaps"]

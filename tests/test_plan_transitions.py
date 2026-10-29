@@ -1242,6 +1242,9 @@ def test_group2_handoff_keeps_endpoint_and_adds_both_library_slice_defects(words
     monkeypatch.setattr(transitions, "ik_via_candidates", lambda *args: [])
     monkeypatch.setattr(transitions, "ik_dual_via_candidates", lambda *args: [])
     monkeypatch.setattr(transitions, "neutral_pose", lambda names, model=None: np.zeros(len(names)))
+    # This handoff regression is independent of the one-shot search outcome.
+    monkeypatch.setattr(transitions, "rrt_connect", lambda *args, **kwargs: transitions.RRTResult(
+        None, None, {"rrt_found": False, "rrt_outcome": "timeout"}))
     with np.load(ROOT / words["MEDICINE"]["motion"]) as source:
         retract = source["positions"][words["MEDICINE"]["sign_frames"][1]:].copy()
     with np.load(ROOT / words["MORNING"]["motion"]) as target:
@@ -1259,6 +1262,9 @@ def test_group2_handoff_keeps_endpoint_and_adds_both_library_slice_defects(words
         return distance_result(-0.0008 if len(q) == 1 else -0.056, q)
 
     _, report = plan_sentence(["MEDICINE", "MORNING"], clearance=clearance)
+    assert report["status"] == "needs_group2_fix"
+    assert report["failed_count"] == report["needs_group2_fix_count"] == 1
+    assert report["accepted_count"] == report["source_near_count"] == 0
     handoff = {(item["word"], item["frame"]): item for item in report["source_near_handoff"]}
     assert ("MEDICINE", 119) in handoff
     assert handoff["MEDICINE", 145]["clearance_mm"] == pytest.approx(-67.599238)
@@ -1266,3 +1272,32 @@ def test_group2_handoff_keeps_endpoint_and_adds_both_library_slice_defects(words
     assert handoff["MORNING", 28]["clearance_mm"] == pytest.approx(-44.832)
     assert handoff["MORNING", 28]["bodies"] == ["R_thumb_proximal", "left_wrist_yaw_link"]
     assert "except an in-slice collision" in report["failed_trajectory_policy"]
+
+
+def test_verifier_keeps_rrt_timeout_diagnostic_as_needs_group2_fix(
+        monkeypatch, tmp_path, evaluation_script):
+    import sign_robot.transitions as transitions
+
+    monkeypatch.setattr(transitions, "ik_via_candidates", lambda *args: [])
+    monkeypatch.setattr(transitions, "ik_dual_via_candidates", lambda *args: [])
+    monkeypatch.setattr(transitions, "neutral_pose", lambda names, model=None: np.zeros(len(names)))
+    monkeypatch.setattr(transitions, "rrt_connect", lambda *args, **kwargs: transitions.RRTResult(
+        None, None, {"rrt_found": False, "rrt_outcome": "timeout", "rrt_seed": 5412,
+                     "rrt_budget_s": 120.0, "rrt_nodes": 2, "rrt_runtime_s": 96.0, "smoothed": False}))
+
+    def clearance(q):
+        return distance_result(-0.0008 if len(q) == 1 else -0.056, q)
+
+    motion, report = plan_sentence(["MEDICINE", "MORNING"], clearance=clearance)
+    output = tmp_path / "rrt_timeout_diagnostic.npz"
+    np.savez_compressed(output, **motion)
+    report["output_npz"] = str(output)
+    segment, = report["transitions"]
+    assert segment["status"] == report["status"] == "needs_group2_fix"
+    assert report["failed_count"] == report["needs_group2_fix_count"] == 1
+    assert report["accepted_count"] == 0
+    monkeypatch.setattr(evaluation_script, "MujocoClearance", lambda *args: clearance)
+    assert evaluation_script.verify_saved_sentence(report, model=None)["passed"]
+    segment["status"] = "source_near"
+    with pytest.raises(AssertionError):
+        evaluation_script.verify_saved_sentence(report, model=None)
