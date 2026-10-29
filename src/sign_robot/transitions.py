@@ -1,7 +1,8 @@
-"""Rate-limited kinematic sentence transitions; source word clips stay intact.
+"""Rate-limited kinematic sentence transitions; library assets stay intact.
 
 The first word keeps frame 0 (rise from neutral), the last keeps its return to
-neutral, just as stitch_baseline.py does. Interior words use inclusive sign_frames.
+neutral, just as stitch_baseline.py does. Interior words use inclusive sign_frames,
+except explicit source-only departure trims in SOURCE_END_FRAME_OVERRIDES.
 This is a geometric preview, not a dynamics controller or an ASL validation.
 
 Signed clearance is positive for separation and negative for penetration.
@@ -59,6 +60,10 @@ CLEARANCE_DETECTION_MARGIN_M = 0.25
 HEIGHT_TOLERANCE_M = 1e-7
 MOVING_JOINT_TOL_RAD = 1e-9
 MOTION_LIBRARY_PATH = ROOT / "motions/hospital_v1_motions.json"
+# Source-only stitch trims; library metadata/assets and arrival frames stay intact.
+# Round 11 scan: NURSE f58–60 collide; f57 is the nearest preceding >=2 mm
+# pose (+9.500546 mm), inside core [24,75] and before library sign end f60.
+SOURCE_END_FRAME_OVERRIDES = {"NURSE": 57}
 # Adjacent arm-link meshes (e.g. elbow↔wrist_pitch) sit ~9.500 mm apart. That
 # value is a true mj_geomDistance result (distmax=1.0 still returns ~9.50015 mm),
 # not a MuJoCo distmax clip. Report separations at/above this floor as >=9.5.
@@ -871,7 +876,7 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
     All passing one-/two-via candidates compete on minimum signed clearance.
     Hub clearance is checked on both legs as well as the complete path. After
     hub failure, the general retract/approach route uses the source word's
-    post-sign frames and the target word's pre-sign frames. An in-slice
+    frames from departure onward and the target word's pre-sign frames. An in-slice
     collision below the floor stops every pair except MEDICINE→MORNING. That
     pair gets one bounded RRT-Connect attempt after all previous routes fail.
     Failed output is diagnostic only, never for execution.
@@ -983,7 +988,7 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
         if len(retract) < 1 or len(approach) < 1:
             raise ValueError("source_retract and target_approach must be nonempty")
         if not np.allclose(retract[0], a, atol=POSE_MATCH_TOL_RAD, rtol=0.0):
-            raise ValueError("source_retract must start at the source sign endpoint")
+            raise ValueError("source_retract must start at the source departure endpoint")
         if not np.allclose(approach[-1], b, atol=POSE_MATCH_TOL_RAD, rtol=0.0):
             raise ValueError("target_approach must end at the target sign endpoint")
         retract_floor = endpoint_min
@@ -1091,6 +1096,27 @@ def lookup_words(root=ROOT):
     return words
 
 
+def source_end_frame(word, *, overrides=None):
+    """Resolve a departure frame without changing the library's sign_frames.
+
+    Overrides must trim within the sign/core intersection, strictly before the
+    library sign end. None uses SOURCE_END_FRAME_OVERRIDES; {} disables trims.
+    Call only for a word that has an outgoing transition, never the final word.
+    """
+    overrides = SOURCE_END_FRAME_OVERRIDES if overrides is None else overrides
+    sign_start, sign_end = word["sign_frames"]
+    if word["gloss"] not in overrides:
+        return sign_end
+    frame = overrides[word["gloss"]]
+    core = word.get("core_frames")
+    if (isinstance(frame, (bool, np.bool_)) or not isinstance(frame, (int, np.integer))
+            or core is None or not max(core[0], sign_start) <= frame <= core[1]
+            or frame >= sign_end):
+        raise ValueError(f"{word['gloss']}: source-end override must be an integer inside "
+                         "core_frames/sign_frames, strictly before sign_frames[1]")
+    return int(frame)
+
+
 def peak_rates(positions, joint_names):
     rates = np.abs(np.diff(positions, axis=0)) * FPS
     names = [str(n) for n in joint_names]
@@ -1100,11 +1126,14 @@ def peak_rates(positions, joint_names):
             "finger_rad_s": float(rates[:, finger].max(initial=0))}
 
 
-def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
+def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None,
+                  source_end_frame_overrides=None):
     """Return the baseline-compatible motion and a separate, explicit status report.
 
-    Source words are not retimed or edited. Rate/collision promises apply only to
-    the inserted transitions, including their boundary samples, not to word cores.
+    Library samples are not retimed or edited. Explicit departure trims affect
+    only words with an outgoing transition; the first rise and final return stay
+    intact. Pass {} to disable the default source_end_frame_overrides. Rate and
+    collision promises apply to inserted transitions, not word cores.
     """
     glosses = [g.upper() for g in glosses]
     if not glosses:
@@ -1113,6 +1142,8 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
     unknown = [g for g in glosses if g not in words]
     if unknown:
         raise ValueError(f"Not in the library: {unknown}")
+    source_end_frame_overrides = dict(
+        SOURCE_END_FRAME_OVERRIDES if source_end_frame_overrides is None else source_end_frame_overrides)
     clips, names = [], None
     for gloss in glosses:
         with np.load(root / words[gloss]["motion"], allow_pickle=False) as data:
@@ -1134,25 +1165,26 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
     height_check = (lambda q: wrist_height_check(model, names, q)) if model is not None else None
     pieces, transitions, segments, handoff, count = [], [], [], [], 0
     for k, (gloss, q) in enumerate(zip(glosses, clips)):
-        s0, s1 = words[gloss]["sign_frames"]
+        s0 = words[gloss]["sign_frames"][0]
         # Deliberately keep baseline first-word rise and last-word return.
         start = 0 if k == 0 else s0
-        end = len(q) - 1 if k == len(glosses) - 1 else s1
+        end = (len(q) - 1 if k == len(glosses) - 1 else
+               source_end_frame(words[gloss], overrides=source_end_frame_overrides))
         if k:
             prev = glosses[k - 1]
-            prev_s0, prev_s1 = words[prev]["sign_frames"]
+            departure = segments[-1]["source_end_frame"]
             source_full = clips[k - 1]
-            retract = source_full[prev_s1:]
+            retract = source_full[departure:]
             approach = q[: s0 + 1]
             plan = plan_transition(
                 pieces[-1][-1], q[start], names, clearance=clearance,
                 height_check=height_check, model=model,
                 from_gloss=prev, to_gloss=gloss,
                 source_retract=retract, target_approach=approach,
-                source_retract_frames=(prev_s1, len(source_full) - 1),
+                source_retract_frames=(departure, len(source_full) - 1),
                 target_approach_frames=(0, s0))
             chosen = plan.attempts[plan.selected_attempt]
-            source_frames = (prev_s1, s0)
+            source_frames = (departure, s0)
             for word, source_frame, result in zip((glosses[k - 1], gloss), source_frames,
                                                    plan.endpoint_clearance):
                 contacts = result["near_contacts"] or result["collisions"]
@@ -1184,7 +1216,7 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
             transitions.append({"from_gloss": glosses[k - 1], "to_gloss": gloss,
                                 "start_frame": count - 1,
                                 "end_frame": count + len(plan.positions) - 2,
-                                "source_start_frame": words[glosses[k - 1]]["sign_frames"][1],
+                                "source_start_frame": departure,
                                 "target_start_frame": s0,
                                 "intervals": len(plan.positions) - 1,
                                 "duration_s": (len(plan.positions) - 1) / FPS,
@@ -1245,6 +1277,7 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
     source_near = sum(t["status"] == "source_near" for t in transitions)
     passed = sum(t["status"] == "PASS" for t in transitions)
     report = {"glosses": glosses, "fps": FPS, "frames": len(q),
+              "source_end_frame_overrides": source_end_frame_overrides,
               "duration_s": len(q) / FPS, "last_timestamp_s": (len(q) - 1) / FPS,
               "transition_count": len(transitions), "pass_count": passed,
               "source_near_count": source_near, "accepted_count": passed + source_near,

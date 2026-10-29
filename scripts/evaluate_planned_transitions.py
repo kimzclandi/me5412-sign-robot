@@ -31,7 +31,7 @@ from sign_robot.transitions import (ENDPOINT_NEAR_M, FPS, MIN_LEG_DURATION_S,
                                     PENETRATION_TOLERANCE_M, MujocoClearance, body_heights,
                                     check_sub_2mm_endpoint_attached, sample_clearance_profile,
                                     clearance_is_capped, format_clearance_mm,
-                                    joint_rate_limits, lookup_words, RRT_GLOSSES,
+                                    joint_rate_limits, lookup_words, source_end_frame, RRT_GLOSSES,
                                     RRT_SEED, RRT_BUDGET_S, rrt_arm_space,
                                     RRT_EDGE_RESOLUTION_RAD, timescale_to_rate_limits)
 
@@ -63,6 +63,21 @@ def verify_saved_sentence(report, model):
     assert len(q) == report["frames"]
     np.testing.assert_allclose(np.diff(motion["timestamps_s"]), 1 / FPS)
     words = lookup_words()
+    # Preserve the policy that produced this artifact; legacy reports have no
+    # trims. Never reinterpret old endpoints using today's default overrides.
+    overrides = report.get("source_end_frame_overrides", {})
+    assert len(report["word_segments"]) == len(report["glosses"])
+    for k, (gloss, segment) in enumerate(zip(report["glosses"], report["word_segments"])):
+        assert segment["gloss"] == gloss
+        assert segment["motion"] == words[gloss]["motion"]
+        with np.load(ROOT / words[gloss]["motion"], allow_pickle=False) as source:
+            np.testing.assert_array_equal(names, source["joint_names"])
+            start = 0 if k == 0 else words[gloss]["sign_frames"][0]
+            end = (len(source["positions"]) - 1 if k == len(report["glosses"]) - 1 else
+                   source_end_frame(words[gloss], overrides=overrides))
+            assert (segment["source_start_frame"], segment["source_end_frame"]) == (start, end)
+            np.testing.assert_array_equal(q[segment["start_frame"]:segment["end_frame"] + 1],
+                                          source["positions"][start:end + 1])
     clearance = MujocoClearance(model, names)
     peaks = {"arm_rad_s": 0.0, "finger_rad_s": 0.0}
     for segment in report["transitions"]:
@@ -74,10 +89,15 @@ def verify_saved_sentence(report, model):
         assert np.all(speed <= joint_rate_limits(names) + 1e-10)
         for limit, key in ((15, "arm_rad_s"), (10, "finger_rad_s")):
             peaks[key] = max(peaks[key], float(speed[:, joint_rate_limits(names) == limit].max(initial=0)))
-        for index, gloss, bound in ((0, segment["from_gloss"], 1), (-1, segment["to_gloss"], 0)):
+        departure = source_end_frame(words[segment["from_gloss"]], overrides=overrides)
+        arrival = words[segment["to_gloss"]]["sign_frames"][0]
+        assert segment["source_start_frame"] == departure
+        assert segment["target_start_frame"] == arrival
+        for index, gloss, frame in ((0, segment["from_gloss"], departure),
+                                    (-1, segment["to_gloss"], arrival)):
             with np.load(ROOT / words[gloss]["motion"], allow_pickle=False) as source:
                 np.testing.assert_array_equal(names, source["joint_names"])
-                np.testing.assert_array_equal(clip[index], source["positions"][words[gloss]["sign_frames"][bound]])
+                np.testing.assert_array_equal(clip[index], source["positions"][frame])
         result = clearance(clip)
         endpoints = [clearance(clip[[i]]).min_distance_m for i in (0, -1)]
         profile = sample_clearance_profile(result, clip, clearance)
@@ -124,7 +144,7 @@ def verify_saved_sentence(report, model):
             ):
                 with np.load(ROOT / words[gloss]["motion"], allow_pickle=False) as source:
                     np.testing.assert_array_equal(names, source["joint_names"])
-                    bounds = ([words[gloss]["sign_frames"][1], len(source["positions"]) - 1]
+                    bounds = ([departure, len(source["positions"]) - 1]
                               if label == "retract" else [0, words[gloss]["sign_frames"][0]])
                     assert chosen[key] == bounds
                     original = clearance(source["positions"][bounds[0]:bounds[1] + 1])
@@ -180,7 +200,7 @@ def verify_saved_sentence(report, model):
     assert report["failed_count"] == sum(t["status"] in ("FAILED", "needs_group2_fix") for t in report["transitions"])
     assert report.get("needs_group2_fix_count", 0) == sum(
         t["status"] == "needs_group2_fix" for t in report["transitions"])
-    return {"passed": True, "checks": "saved endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair and per-frame sub-2 mm intervals; single near-endpoint-attached run must be non-decreasing from its own endpoint through first >=2 mm sample, with no later dip; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
+    return {"passed": True, "checks": "saved word slices and source-end override policy, endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair and per-frame sub-2 mm intervals; single near-endpoint-attached run must be non-decreasing from its own endpoint through first >=2 mm sample, with no later dip; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
             "transition_peak_rates": peaks}
 
 
