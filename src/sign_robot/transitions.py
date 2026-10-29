@@ -8,6 +8,8 @@ Signed clearance is positive for separation and negative for penetration.
 Normal paths require at least 2 mm; paths with either endpoint strictly below
 2 mm must never worsen the smaller endpoint clearance. Both use the same
 direct, via1, via2, neutral-hub, then source retract/approach escalation.
+Retract/approach always uses the smaller endpoint clearance as its floor,
+including when both endpoints exceed 2 mm.
 A passing near-source path is labelled ``source_near`` and handed to the
 source-motion group. These gates use only pairs whose relative pose can change
 under library/planner joints. Static pairs remain measured separately as vendor
@@ -144,31 +146,30 @@ def annotate_clearance_dict(result_dict):
 
 
 def timescale_to_rate_limits(positions, joint_names):
-    """Linearly stretch a path for rate limits and the 0.3 s minimum duration."""
+    """Subdivide each edge, preserving every knot and at least 0.3 s in total.
+
+    Integer frame counts per edge keep neutral joins and bridge knots exact.
+    Interpolating across a uniform whole-path grid could cut those corners.
+    """
     q = np.asarray(positions, dtype=float)
     if len(q) < 2:
         return q.copy()
     limits = joint_rate_limits(joint_names)
-    delta = np.abs(np.diff(q, axis=0))
     with np.errstate(divide="ignore", invalid="ignore"):
-        need = delta * FPS / limits
-    need = np.where(np.isfinite(need), need, 0.0)
-    scale = float(need.max(initial=0.0))
-    min_intervals = int(np.ceil(FPS * MIN_LEG_DURATION_S))
-    target = max(len(q) - 1, min_intervals)
-    if scale > 1.0 + 1e-12:
-        target = max(target, int(np.ceil((len(q) - 1) * scale)))
-    if target == len(q) - 1:
-        out = q.copy()
-        out[0], out[-1] = q[0], q[-1]
-        return out
-    u_old = np.linspace(0.0, 1.0, len(q))
-    u_new = np.linspace(0.0, 1.0, target + 1)
-    out = np.empty((target + 1, q.shape[1]), dtype=float)
-    for col in range(q.shape[1]):
-        out[:, col] = np.interp(u_new, u_old, q[:, col])
-    out[0], out[-1] = q[0], q[-1]
-    return out
+        edge_need = np.max(np.abs(np.diff(q, axis=0)) * FPS / limits, axis=1)
+    edge_need = np.where(np.isfinite(edge_need), edge_need, 0.0)
+    intervals = np.maximum(1, np.ceil(edge_need).astype(int))
+    extra = max(0, int(np.ceil(FPS * MIN_LEG_DURATION_S)) - int(intervals.sum()))
+    # Spread any duration-floor padding deterministically over the edges.
+    padding, remainder = divmod(extra, len(intervals))
+    intervals += padding
+    intervals[:remainder] += 1
+    pieces = [q[:1]]
+    for left, right, count in zip(q, q[1:], intervals):
+        edge = np.linspace(left, right, int(count) + 1)
+        edge[0], edge[-1] = left, right
+        pieces.append(edge[1:])
+    return np.vstack(pieces)
 
 
 def build_retract_approach_route(retract, approach, joint_names):
@@ -557,7 +558,9 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
 
     If either endpoint is strictly below 2 mm, every complete candidate must
     meet the smaller endpoint clearance; accepted paths retain source_near.
-    Normal paths require signed clearance >= PENETRATION_TOLERANCE_M (2 mm).
+    Normal direct/via/hub paths require signed clearance >= 2 mm.
+    Retract/approach always requires the smaller endpoint clearance, even
+    for clear endpoints; its original slices are checked against that floor.
     All passing one-/two-via candidates compete on minimum signed clearance.
     Hub clearance is checked on both legs as well as the complete path. After
     hub failure, the general retract/approach route uses the source word's
@@ -573,18 +576,19 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
     required_clearance = endpoint_min if endpoint_near else PENETRATION_TOLERANCE_M
     attempts = []
 
-    def assess(q, kind, leg_intervals, directions=(), legs=()):
+    def assess(q, kind, leg_intervals, directions=(), legs=(), *, floor=None):
+        floor = required_clearance if floor is None else floor
         result = clearance(q)
         leg_clearance = [asdict(clearance(leg)) for leg in legs]
         height = height_check(q) if height_check else {"passed": True}
-        passed = (result.min_distance_m >= required_clearance and
-                  all(r["min_distance_m"] >= required_clearance for r in leg_clearance))
+        passed = (result.min_distance_m >= floor and
+                  all(r["min_distance_m"] >= floor for r in leg_clearance))
         relative_ok = passed if endpoint_near else None
         status = ("source_near" if endpoint_near else "PASS") if passed else "FAILED"
-        reasons = _clearance_reasons(result, required_clearance) if not passed else []
+        reasons = _clearance_reasons(result, floor) if not passed else []
         for number, leg in enumerate(leg_clearance):
             reasons.extend(f"hub leg {number + 1}: {reason}" for reason in
-                           _clearance_reasons(ClearanceResult(**leg), required_clearance))
+                           _clearance_reasons(ClearanceResult(**leg), floor))
         worst = result.worst_contact or min(result.collisions, key=lambda c: c["distance_m"], default=None)
         directions = list(directions)
         attempts.append({"kind": kind, "method": kind,
@@ -593,7 +597,7 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
                          "leg_intervals": leg_intervals,
                          "leg_clearance": leg_clearance,
                          "source_near": bool(endpoint_near),
-                         "required_clearance_m": required_clearance,
+                         "required_clearance_m": floor,
                          "relative_floor_passed": relative_ok,
                          "clearance": annotate_clearance_dict(asdict(result)), "height": height,
                          "worst_collision": worst, "status": status, "reasons": reasons})
@@ -663,10 +667,11 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
             raise ValueError("source_retract must start at the source sign endpoint")
         if not np.allclose(approach[-1], b, atol=POSE_MATCH_TOL_RAD, rtol=0.0):
             raise ValueError("target_approach must end at the target sign endpoint")
+        retract_floor = endpoint_min
 
         def slice_collision(label, slice_q, library_frames):
             result = clearance(slice_q)
-            if result.min_distance_m >= required_clearance:
+            if result.min_distance_m >= retract_floor:
                 return None
             worst = result.worst_contact or min(
                 result.collisions, key=lambda c: c["distance_m"], default=None)
@@ -683,7 +688,7 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
                 "bodies": None if worst is None else list(worst["bodies"]),
                 "geoms": None if worst is None else list(worst.get("geoms", [])),
                 "distance_m": result.min_distance_m,
-                "required_clearance_m": required_clearance,
+                "required_clearance_m": retract_floor,
             }
 
         retract_hit = slice_collision(
@@ -691,14 +696,8 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
         approach_hit = slice_collision(
             "approach", approach, target_approach_frames)
         route, route_info = build_retract_approach_route(retract, approach, joint_names)
-        legs = []
-        if route_info["bridge_intervals"]:
-            # Diagnostic legs: retract, bridge, approach (bridge reconstructed).
-            bridge = minimum_jerk_blend(retract[-1], approach[0], joint_names)
-            legs = [retract, bridge, approach]
         index, q = assess(route, "retract_approach",
-                          [len(route) - 1],
-                          legs=())
+                          [len(route) - 1], floor=retract_floor)
         attempt = attempts[index]
         attempt["source_retract_frames"] = (
             list(source_retract_frames) if source_retract_frames is not None else None)
@@ -718,7 +717,9 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
                     f"{hit['slice']} slice collision: library_frame={hit['library_frame']}, "
                     f"bodies={' | '.join(hit['bodies'] or [])}, distance_m={hit['distance_m']}")
             attempt["reasons"] = reasons
-            # In-slice collision: do not continue to RRT.
+            # Slice-stop exception: emit this failed library route to expose
+            # the source defect, even if an earlier failed candidate has a
+            # greater minimum clearance. Do not continue to RRT.
             retract_choice = (index, q)
             return finish(retract_choice)
         retract_choice = (index, q)
@@ -822,6 +823,19 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
                         item["geoms"] = collision["geoms"]
                     if item not in handoff:
                         handoff.append(item)
+            # The Group 2 handoff also includes original-library slice defects.
+            for attempt in plan.attempts:
+                for hit in attempt.get("slice_collisions", []):
+                    if hit["library_frame"] is None or hit["bodies"] is None:
+                        continue
+                    item = {"word": prev if hit["slice"] == "retract" else gloss,
+                            "frame": hit["library_frame"], "bodies": hit["bodies"],
+                            "distance_m": hit["distance_m"],
+                            "clearance_mm": hit["distance_m"] * 1000}
+                    if hit["geoms"]:
+                        item["geoms"] = hit["geoms"]
+                    if item not in handoff:
+                        handoff.append(item)
             transitions.append({"from_gloss": glosses[k - 1], "to_gloss": gloss,
                                 "start_frame": count - 1,
                                 "end_frame": count + len(plan.positions) - 2,
@@ -851,6 +865,7 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
                                 "endpoint_clearance_capped": [
                                     bool(r.get("clearance_capped")) for r in plan.endpoint_clearance],
                                 "endpoint_floor_m": plan.endpoint_floor_m,
+                                "required_clearance_m": chosen["required_clearance_m"],
                                 "relative_floor_passed": chosen["relative_floor_passed"],
                                 "vendor_structural_gaps": chosen["clearance"]["vendor_structural_gaps"],
                                 "hub_attempted": any(a["kind"] == "hub" for a in plan.attempts),
@@ -890,6 +905,7 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
               "collision_threshold_note": "moving pairs only; signed distance: positive separation, negative penetration; normal whole-path minimum >= 0.002 m",
               "source_near_rule": "either moving-pair endpoint minimum strictly < 0.002 m; same full search, label source_near only if the relative floor passes",
               "relative_floor_rule": "near-source whole-path minimum >= min(endpoint clearances); otherwise continue search through hub and retract/approach, then FAILED",
+              "retract_approach_rule": "whole route and original library slices must each meet min(endpoint clearances), including clear endpoints; recorded required_clearance_m is specific to each candidate",
               "escalation_order": ["direct", "best_via1_or_via2", "hub", "source_retract_approach", "FAILED"],
               "clearance_display_cap_m": CLEARANCE_DISPLAY_CAP_M,
               "clearance_cap_note": "separations >= 9.5 mm display as >=9.5; verified true elbow/wrist_pitch mesh gap (~9.50015 mm via mj_geomDistance distmax=1.0), not a distmax clip",
@@ -898,7 +914,7 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
               "clearance_derivation": getattr(clearance, "derivation", None),
               "vendor_structural_gaps": getattr(clearance, "vendor_structural_gaps", []),
               "sentence_peak_rates": peak_rates(q, names),
-              "failed_trajectory_policy": "FAILED emits the checked candidate with greatest minimum clearance for diagnostic replay only; source_near retains inherited endpoint proximity and is not an absolute 2 mm clearance certification",
+              "failed_trajectory_policy": "FAILED emits the checked candidate with greatest minimum clearance, except an in-slice collision selects retract_approach to expose the library defect and stops escalation; all FAILED output is diagnostic only; source_near retains inherited endpoint proximity and is not an absolute 2 mm clearance certification",
               "source_near_handoff": handoff,
               "word_segments": segments, "transitions": transitions}
     return motion, report

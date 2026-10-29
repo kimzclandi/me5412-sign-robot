@@ -13,6 +13,7 @@ import argparse
 import hashlib
 import json
 import math
+from os.path import relpath
 from pathlib import Path
 import shutil
 import sys
@@ -25,6 +26,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from sign_robot.motion import apply_frame, load_model, validate_motion
 from sign_robot.transitions import (ENDPOINT_NEAR_M, FPS, MIN_LEG_DURATION_S,
                                     PENETRATION_TOLERANCE_M, MujocoClearance, body_heights,
+                                    clearance_is_capped, format_clearance_mm,
                                     joint_rate_limits, lookup_words)
 
 OUT = ROOT / "results/planned_transitions"
@@ -75,7 +77,9 @@ def verify_saved_sentence(report, model):
         assert isinstance(result.min_distance_m, (int, float)) and math.isfinite(result.min_distance_m)
         floor = min(endpoints)
         near = floor < ENDPOINT_NEAR_M
-        required = floor if near else PENETRATION_TOLERANCE_M
+        required = floor if near or chosen["kind"] == "retract_approach" else PENETRATION_TOLERANCE_M
+        assert chosen["required_clearance_m"] == required
+        assert segment.get("required_clearance_m", required) == required
         passed = result.min_distance_m >= required
         assert segment["source_near"] == near
         assert segment["method"] == chosen["kind"]
@@ -99,20 +103,34 @@ def verify_saved_sentence(report, model):
         if chosen["kind"] == "via2":
             assert len(chosen["leg_intervals"]) == 3 and len(chosen["via_directions"]) == 2
         if chosen["kind"] == "retract_approach":
-            assert chosen.get("source_retract_frames") is not None
-            assert chosen.get("target_approach_frames") is not None
-            if chosen.get("in_slice_collision"):
-                assert chosen["status"] == "FAILED"
-                assert chosen.get("slice_collisions")
+            # Original library samples remain authoritative even if a saved
+            # retimed route omits the offending pose. Recheck them separately.
+            slice_failures = []
+            for label, gloss, key in (
+                ("retract", segment["from_gloss"], "source_retract_frames"),
+                ("approach", segment["to_gloss"], "target_approach_frames"),
+            ):
+                with np.load(ROOT / words[gloss]["motion"], allow_pickle=False) as source:
+                    np.testing.assert_array_equal(names, source["joint_names"])
+                    bounds = ([words[gloss]["sign_frames"][1], len(source["positions"]) - 1]
+                              if label == "retract" else [0, words[gloss]["sign_frames"][0]])
+                    assert chosen[key] == bounds
+                    original = clearance(source["positions"][bounds[0]:bounds[1] + 1])
+                if original.min_distance_m < required:
+                    slice_failures.append(label)
+            assert chosen["in_slice_collision"] == bool(slice_failures)
+            assert sorted(hit["slice"] for hit in chosen["slice_collisions"]) == sorted(slice_failures)
+            assert segment["in_slice_collision"] == bool(slice_failures)
+            assert segment["slice_collisions"] == chosen["slice_collisions"]
+            passed = passed and not slice_failures
         assert segment["relative_floor_passed"] == (passed if near else None)
         status = ("source_near" if near else "PASS") if passed else "FAILED"
-        assert status == segment["status"]
+        assert status == segment["status"] == chosen["status"]
         assert result.min_distance_m == segment["clearance"]["min_distance_m"]
         assert segment["min_clearance_mm"] == result.min_distance_m * 1000
-        from sign_robot.transitions import format_clearance_mm, clearance_is_capped
         assert segment.get("min_clearance_mm_display") == format_clearance_mm(result.min_distance_m)
         assert segment.get("clearance_capped") == clearance_is_capped(result.min_distance_m)
-    return {"passed": True, "checks": "saved endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair, normal 2 mm absolute floor and near-source relative floor on whole paths and hub legs; vendor structural gaps remain separate; source_near is not absolute clearance certification",
+    return {"passed": True, "checks": "saved endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
             "transition_peak_rates": peaks}
 
 
@@ -255,29 +273,34 @@ def write_tables(reports):
             pair = transition["from_gloss"] + " → " + transition["to_gloss"]
             distance = transition["clearance"]["min_distance_m"]
             closest = transition["closest_pair"]
-            endpoints = transition["endpoint_clearances_mm"]
+            endpoints = [format_clearance_mm(value / 1000)
+                         for value in transition["endpoint_clearances_mm"]]
             hubs = [a for a in transition["attempts"] if a["kind"] == "hub"]
-            hub_summary = (f"{hubs[0]['status']} / {hubs[0]['clearance']['min_distance_m'] * 1000:.6f}"
+            hub_summary = (f"{hubs[0]['status']} / {format_clearance_mm(hubs[0]['clearance']['min_distance_m'])}"
                            if hubs else "—")
             transitions.append([sentence, pair, transition["status"],
                                 transition["method"], str(transition["source_near"]).lower(),
                                 " → ".join(transition["via_directions"]) or "—",
                                 f"{transition['duration_s']:.3f}",
-                                f"{endpoints[0]:.6f}", f"{endpoints[1]:.6f}",
-                                f"{distance * 1000:.6f}", " / ".join(closest["bodies"]),
+                                *endpoints,
+                                format_clearance_mm(distance), " / ".join(closest["bodies"]),
                                 str(transition["hub_attempted"]).lower(), hub_summary])
             if transition["status"] == "FAILED":
                 worst = transition["worst_collision"]
                 failed.append([sentence, pair, " / ".join(worst["bodies"]) if worst else "—",
-                               worst["distance_m"] if worst else distance,
-                               worst["frame"] if worst else "—", transition["endpoint_floor_m"]])
+                               format_clearance_mm(worst["distance_m"] if worst else distance),
+                               worst["frame"] if worst else "—",
+                               transition["attempts"][transition["selected_attempt"]]["required_clearance_m"]])
     handoff_rows = [[item["word"], item["frame"], " / ".join(item["bodies"]),
-                     f"{item['clearance_mm']:.6f}", item["distance_m"]]
+                     format_clearance_mm(item["distance_m"])]
                     for item in handoff]
     vendor_rows = [[" / ".join(item["bodies"]), " / ".join(item["geoms"]),
                     f"{item['distance_m']:.9f}", f"{item['distance_mm']:.6f}"]
                    for item in vendor]
     for english in (False, True):
+        protocol_path = Path(relpath(
+            ROOT / "docs" / ("transition-planner.en.md" if english else "transition-planner.md"),
+            OUT)).as_posix()
         summary_headers = (["Sentence", "Word segments", "Transitions", "PASS", "source_near", "FAILED",
                             "Planned s", "Baseline s", "Difference s"] if english else
                            ["句子", "单词段", "过渡数", "PASS", "source_near", "FAILED", "规划秒数", "基线秒数", "秒数差"])
@@ -287,10 +310,10 @@ def write_tables(reports):
                               if english else ["句子", "过渡", "状态", "方法", "source_near", "中间点方向", "时长秒",
                                                "起点间隙 mm", "终点间隙 mm", "最小间隙 mm", "最近体对",
                                                "已尝试 hub", "Hub 状态 / 最小 mm"])
-        failure_headers = (["Sentence", "Transition", "Worst body pair", "distance_m", "Transition frame", "Endpoint floor m"]
-                           if english else ["句子", "过渡", "最差碰撞体对", "distance_m", "过渡内帧", "端点下限 m"])
-        handoff_headers = (["Word", "Source sign_frames index", "Body pair", "Clearance mm", "distance_m"] if english else
-                           ["单词", "源 sign_frames 帧索引", "碰撞体对", "间隙 mm", "distance_m"])
+        failure_headers = (["Sentence", "Transition", "Worst body pair", "Worst clearance mm", "Transition frame", "Required floor m"]
+                           if english else ["句子", "过渡", "最差碰撞体对", "最差间隙 mm", "过渡内帧", "所需下限 m"])
+        handoff_headers = (["Word", "Source library frame", "Body pair", "Clearance mm"] if english else
+                           ["单词", "源动作库帧索引", "碰撞体对", "间隙 mm"])
         vendor_headers = (["Body pair", "Geom pair", "distance_m", "distance_mm"] if english else
                           ["体对", "Geom 对", "distance_m", "间隙 mm"])
         intro = ("# Transition results\n\n[中文](report.md) · **English**\n\n"
@@ -301,19 +324,27 @@ def write_tables(reports):
                  "joint sets, derived from every library frame (span > 1e-9 rad) plus planner arm IK. Native static pairs "
                  "are detected once across the scene and remeasured with mj_geomDistance; they are listed as vendor structural gaps "
                  "and do not affect PASS/source_near/FAILED. "
-                 "Every segment can escalate through direct, best via1/via2, model-qpos0 hub, then source retract/target approach. In-slice retract/approach collisions stop without RRT. A failed relative search is FAILED. "
+                 "Every segment can escalate through direct, best via1/via2, model-qpos0 hub, then source retract/target approach. "
+                 "Retract/approach requires the worse-endpoint floor for its whole route and original slices, including clear endpoints. "
+                 "An in-slice failure selects that route for diagnosis even if an earlier failed candidate has greater clearance, and stops without RRT. "
+                 "Other FAILED searches retain the candidate with greatest minimum clearance. "
+                 "Moving clearances at or above 9.5 mm display as >=9.5 (clearance_capped=true); JSON retains raw numeric measurements. "
+                 "The Group 2 source_near handoff includes both endpoint proximity and original-library slice defects. "
                  "Signed distance is positive for separation and negative for penetration, measured numerically with temporarily expanded "
                  "MuJoCo detection margins and unchanged pair filtering. Singleton sentences have zero transition checks. "
                  "source_near is an endpoint-relative pass, not an absolute clearance certification; FAILED paths are diagnostic only. "
-                 "See the [protocol, commands and limitations](../../docs/transition-planner.en.md).\n\n" if english else
+                 f"See the [protocol, commands and limitations]({protocol_path}).\n\n" if english else
                  "# 衔接规划结果\n\n**中文** · [English](report.en.md)\n\n"
                  "本地生成报告。句子时长按帧数 / 30，过渡及各腿时长按时间间隔数 / 30。PASS、source_near、FAILED 分开计数。"
                  "任一端点严格低于 ENDPOINT_NEAR_M = 0.002 m 时，以较差端点间隙为相对下限；普通路径要求至少 +2 mm 分离。"
                  "全部决策距离及最近对仅使用运动体对。静态对由全部动作帧（关节跨度 > 1e-9 rad）加手臂 IK 的运动祖先关节集合相等推导。"
                  "原生静态配对一次扩大检测至全场景，再用 mj_geomDistance 复测，另列为原厂结构缝，不影响 PASS/source_near/FAILED。"
-                 "每段均可依次尝试直连、最优 via1/via2、模型 qpos0 hub、源收回/目标接近；切片内碰撞则停止且不进 RRT；相对下限搜索失败记为 FAILED。"
+                 "每段均可依次尝试直连、最优 via1/via2、模型 qpos0 hub、源收回/目标接近。收回/接近的全路径和原始切片均须达到较差端点下限，两端清晰时也适用。"
+                 "切片内失败时选择该路线供诊断，即使先前失败候选间隙更大，也停止且不进 RRT；其他 FAILED 搜索保留最小间隙最大的候选。"
+                 "运动对间隙达到或超过 9.5 mm 时显示为 >=9.5（clearance_capped=true），JSON 保留原始测量数值。"
+                 "第二组 source_near 交接清单同时包含端点接近与原始动作库切片缺陷。"
                  "有符号距离正值为分离、负值为穿透；临时扩大 MuJoCo 检测 margin，配对过滤不变，始终报告数值。单词句零次过渡检查。"
-                 "source_near 仅相对端点通过，不是绝对间隙认证；FAILED 输出仅供诊断。详见[协议、启动命令与限制](../../docs/transition-planner.md)。\n\n")
+                 f"source_near 仅相对端点通过，不是绝对间隙认证；FAILED 输出仅供诊断。详见[协议、启动命令与限制]({protocol_path})。\n\n")
         content = (intro + table(summary_headers, summary) + "\n\n" +
                    ("## Emitted transitions\n\n" if english else "## 输出过渡\n\n") +
                    table(transition_headers, transitions) + "\n\n" +
@@ -385,18 +416,23 @@ after / 之前先运行 `.venv/bin/python scripts/plan_transitions.py --all`.
 """
     path = OUT / "fixed_mount_finding.md"
     path.write_text(finding)
-    return str(path.relative_to(ROOT))
+    return str(path.relative_to(ROOT) if path.is_relative_to(ROOT) else path)
 
 
 def main(argv=None):
+    global OUT
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--report", type=Path, default=OUT / "report.json")
+    parser.add_argument("--out-dir", type=Path, default=OUT,
+                        help="directory for tables and verification evidence; --report selects the input JSON")
     parser.add_argument("--render-comparison", action="store_true")
     parser.add_argument("--comparison-glosses", nargs="+", default=["YOU", "HURT", "WHERE"],
                         help="glosses of the baseline/planned sentence to compare")
     parser.add_argument("--artifact-name", help="MP4 stem; defaults to <glosses>_baseline_vs_planned_v4")
     parser.add_argument("--copy-to", type=Path, help="copy MP4 here (default: /workspace/<artifact-name>.mp4)")
     args = parser.parse_args(argv)
+    OUT = args.out_dir.resolve()
+    OUT.mkdir(parents=True, exist_ok=True)
     copy_failed = False
     report = load_report(args.report)
     model = load_model(ROOT)

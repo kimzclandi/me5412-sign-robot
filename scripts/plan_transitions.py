@@ -132,7 +132,8 @@ def plan_one(glosses, *, model=None, render=False, out_dir=OUT):
                   "approach frames", ra.get("target_approach_frames"),
                   "in_slice", ra.get("in_slice_collision"),
                   "moving minimum", ra["clearance"].get("clearance_mm_display",
-                                                        ra["clearance"]["min_distance_m"] * 1000), "mm")
+                                                        ra["clearance"]["min_distance_m"] * 1000), "mm;",
+                  "required floor", ra["required_clearance_m"] * 1000, "mm")
             for hit in ra.get("slice_collisions") or []:
                 print("      slice", hit["slice"], "library_frame", hit["library_frame"],
                       "bodies", hit.get("bodies"), "distance_m", hit.get("distance_m"))
@@ -178,7 +179,7 @@ def main(argv=None):
         for item in sentence["source_near_handoff"]:
             if item not in handoff:
                 handoff.append(item)
-    payload = {"planner_protocol": "round6_moving_pair_clearance_vendor_structural_gaps",
+    payload = {"planner_protocol": "round8_step1_retract_endpoint_floor_preserved_knots",
                "clearance_derivation": reports[0]["clearance_derivation"],
                "vendor_structural_gaps": reports[0]["vendor_structural_gaps"],
                "sentences": reports,

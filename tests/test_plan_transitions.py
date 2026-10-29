@@ -1,5 +1,6 @@
 """Transition contract checks, separate from source-clip quality/ASL review."""
 
+import importlib.util
 import json
 import math
 
@@ -72,6 +73,15 @@ def words():
             if row["robot_status"] != "poor":
                 entries.setdefault(row["gloss"], row)
     return entries
+
+
+@pytest.fixture(scope="module")
+def evaluation_script():
+    spec = importlib.util.spec_from_file_location(
+        "evaluate_planned_transitions", ROOT / "scripts/evaluate_planned_transitions.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def test_joint_rate_limits_match_library_categories():
@@ -776,6 +786,7 @@ def test_failed_source_near_report_is_not_accepted_and_keeps_handoff(words, monk
     assert transition["closest_pair"]["distance_m"] == -0.056
     assert {(row["word"], row["frame"]) for row in report["source_near_handoff"]} == {
         ("YOU", words["YOU"]["sign_frames"][1]), ("BUY", words["BUY"]["sign_frames"][0]),
+        ("BUY", 0),  # Approach slice now joins the existing endpoint handoff.
     }
 
 
@@ -973,19 +984,53 @@ def test_clearance_display_caps_at_nine_point_five_mm():
 
 
 def test_retract_approach_route_bridges_and_timescales():
-    names = ["right_elbow_joint", "right_wrist_pitch_joint"]
-    retract = np.array([[0.0, 0.0], [0.1, 0.0], [0.2, 0.0]])
-    approach = np.array([[0.5, 0.0], [0.6, 0.0], [0.7, 0.0]])
+    names = ["right_elbow_joint", "R_index_proximal_joint"]
+    retract = np.array([[0.0, 0.0], [1.2, 0.9], [0.2, 0.0]])
+    approach = np.array([[0.5, 0.0], [1.8, 0.8], [0.7, 0.0]])
+    bridge = minimum_jerk_blend(retract[-1], approach[0], names)
+    raw = np.vstack([retract, bridge[1:-1], approach])
+    limits = joint_rate_limits(names)
+    assert np.any(np.abs(np.diff(raw, axis=0)) * FPS > limits)
     route, info = build_retract_approach_route(retract, approach, names)
-    assert info["bridge_intervals"] >= int(np.ceil(FPS * 0.3)) - 0  # min-jerk bridge >= 0.3 s
-    assert len(route) >= int(np.ceil(FPS * 0.3)) + 1
-    np.testing.assert_allclose(route[0], retract[0])
-    np.testing.assert_allclose(route[-1], approach[-1])
-    rates = np.abs(np.diff(route, axis=0)) * FPS
-    assert rates.max() <= 15.0 + 1e-9
+    assert info["bridge_intervals"] / FPS >= 0.3
+    assert info["timed_frames"] > info["raw_frames"]
+    np.testing.assert_array_equal(route[[0, -1]], raw[[0, -1]])
+    assert np.all(np.abs(np.diff(route, axis=0)) * FPS <= limits + 1e-10)
+    cursor = 0
+    for knot in raw:
+        matches = np.flatnonzero(np.all(route[cursor:] == knot, axis=1))
+        assert len(matches), f"Original knot {knot} was lost or reordered"
+        cursor += int(matches[0]) + 1
 
 
-@pytest.mark.parametrize("floor", [-0.0008, 0.001])
+@pytest.mark.parametrize("name,jump", [("right_elbow_joint", 1.2), ("R_index_proximal_joint", 0.8)])
+def test_timescale_stretches_rate_violations_and_preserves_every_knot(name, jump):
+    raw = np.array([[0.0], [jump], [-jump], [0.0]])
+    limit, = joint_rate_limits([name])
+    assert (len(raw) - 1) / FPS < 0.3
+    assert np.max(np.abs(np.diff(raw, axis=0))) * FPS > limit
+    timed = timescale_to_rate_limits(raw, [name])
+    assert len(timed) > len(raw) and (len(timed) - 1) / FPS >= 0.3
+    assert np.all(np.abs(np.diff(timed, axis=0)) * FPS <= limit + 1e-10)
+    np.testing.assert_array_equal(timed[[0, -1]], raw[[0, -1]])
+    for knot in raw:
+        assert np.any(np.all(timed == knot, axis=1))
+
+
+def test_retract_approach_same_neutral_retains_corner_when_duration_stretches():
+    retract = np.array([[1.0, 0.0], [0.0, 0.0]])
+    approach = np.array([[0.0, 0.0], [0.0, 1.0]])
+    route, info = build_retract_approach_route(
+        retract, approach, ["right_elbow_joint", "right_wrist_pitch_joint"])
+    assert info["bridge_intervals"] == 0
+    assert info["timed_frames"] > info["raw_frames"]
+    neutral, = np.flatnonzero(np.all(route == [0.0, 0.0], axis=1))
+    np.testing.assert_array_equal(route[:neutral + 1, 1], 0.0)
+    np.testing.assert_array_equal(route[neutral:, 0], 0.0)
+    assert (len(route) - 1) / FPS >= 0.3
+
+
+@pytest.mark.parametrize("floor", [-0.0008, 0.001, 0.008])
 def test_retract_approach_accepts_when_prior_routes_fail(floor):
     names = ["right_elbow_joint"]
     a, b = np.array([0.0]), np.array([1.0])
@@ -1016,6 +1061,7 @@ def test_retract_approach_accepts_when_prior_routes_fail(floor):
     assert chosen["source_retract_frames"] == [10, 12]
     assert chosen["target_approach_frames"] == [0, 2]
     assert chosen["clearance"]["min_distance_m"] == floor
+    assert chosen["required_clearance_m"] == floor
     assert "retract_approach" in [a["kind"] for a in plan.attempts]
     assert any(a["kind"] == "hub" for a in plan.attempts)
 
@@ -1074,3 +1120,149 @@ def test_plan_sentence_escalation_includes_retract_approach(words, monkeypatch):
     assert transition["source_retract_frames"][0] == words["YOU"]["sign_frames"][1]
     assert transition["target_approach_frames"][1] == words["BUY"]["sign_frames"][0]
     assert report["clearance_display_cap_m"] == CLEARANCE_DISPLAY_CAP_M
+
+
+@pytest.mark.parametrize("dip_at", ["route", "retract", "approach"])
+def test_clear_retract_approach_fails_below_worse_endpoint_even_above_two_mm(dip_at):
+    path_calls = 0
+
+    def clearance(q):
+        nonlocal path_calls
+        if len(q) == 1:
+            return distance_result(0.008 if q[0, 0] == 0 else 0.012, q)
+        path_calls += 1
+        if path_calls <= 4:  # Direct, hub route and its two legs.
+            return distance_result(-0.01, q)
+        kind = {5: "retract", 6: "approach", 7: "route"}[path_calls]
+        return distance_result(0.003 if kind == dip_at else 0.008, q, frame=1)
+
+    plan = plan_transition(
+        [0.0], [1.0], ["right_elbow_joint"], clearance=clearance,
+        via_factory=lambda *args: [], via2_factory=lambda *args: [],
+        hub_factory=lambda *args: [-0.5],
+        source_retract=[[0.0], [0.2], [0.4]], target_approach=[[0.6], [0.8], [1.0]],
+        source_retract_frames=(10, 12), target_approach_frames=(0, 2))
+    assert plan.status == "FAILED" and not plan.source_near
+    chosen = plan.attempts[plan.selected_attempt]
+    assert chosen["kind"] == "retract_approach"
+    assert chosen["required_clearance_m"] == 0.008
+    assert chosen["in_slice_collision"] == (dip_at != "route")
+    assert all(hit["required_clearance_m"] == 0.008 for hit in chosen["slice_collisions"])
+    assert all(attempt["required_clearance_m"] == 0.002 for attempt in plan.attempts[:-1])
+
+
+def test_slice_stop_selects_library_diagnostic_even_when_direct_has_greater_clearance():
+    direct = minimum_jerk_blend([0.0], [1.0], ["right_elbow_joint"])
+
+    def clearance(q):
+        if len(q) == 1:
+            return distance_result(0.008, q)
+        return distance_result(-0.01 if np.array_equal(q, direct) else -0.02, q)
+
+    plan = plan_transition(
+        [0.0], [1.0], ["right_elbow_joint"], clearance=clearance,
+        via_factory=lambda *args: [], via2_factory=lambda *args: [],
+        hub_factory=lambda *args: [-0.5],
+        source_retract=[[0.0], [0.2], [0.4]], target_approach=[[0.6], [0.8], [1.0]],
+        source_retract_frames=(10, 12), target_approach_frames=(0, 2))
+    assert plan.status == "FAILED" and plan.method == "retract_approach"
+    assert plan.attempts[0]["clearance"]["min_distance_m"] > plan.attempts[-1]["clearance"]["min_distance_m"]
+    assert plan.attempts[-1]["in_slice_collision"]
+
+
+def test_verifier_keeps_failed_when_original_slice_fails_but_retimed_samples_pass(
+        words, monkeypatch, tmp_path, evaluation_script):
+    import sign_robot.transitions as transitions
+
+    monkeypatch.setattr(transitions, "ik_via_candidates", lambda *args: [])
+    monkeypatch.setattr(transitions, "ik_dual_via_candidates", lambda *args: [])
+    monkeypatch.setattr(transitions, "neutral_pose", lambda names, model=None: np.zeros(len(names)))
+    with np.load(ROOT / words["YOU"]["motion"]) as source:
+        retract = source["positions"][words["YOU"]["sign_frames"][1]:].copy()
+    # Emulate an older retimer that omitted original slice samples.
+    def omitted_slice_route(retract, approach, names):
+        q = minimum_jerk_blend(retract[0], approach[-1], names)
+        return q, {"bridge_intervals": 0, "raw_frames": len(retract) + len(approach),
+                   "timed_frames": len(q)}
+
+    monkeypatch.setattr(transitions, "build_retract_approach_route", omitted_slice_route)
+    calls = 0
+
+    def recheck(q):
+        return distance_result(-0.01 if np.array_equal(q, retract) else 0.001, q)
+
+    def planning_check(q):
+        nonlocal calls
+        if len(q) > 1:
+            calls += 1
+            if calls <= 4:
+                return distance_result(-0.056, q)
+        return recheck(q)
+
+    motion, report = plan_sentence(["YOU", "BUY"], clearance=planning_check)
+    segment, = report["transitions"]
+    assert segment["status"] == "FAILED" and segment["in_slice_collision"]
+    assert segment["clearance"]["min_distance_m"] == segment["required_clearance_m"] == 0.001
+    assert segment["slice_collisions"][0]["distance_m"] == -0.01
+    output = tmp_path / "planned.npz"
+    np.savez_compressed(output, **motion)
+    report["output_npz"] = str(output)
+    monkeypatch.setattr(evaluation_script, "MujocoClearance", lambda *args: recheck)
+    assert evaluation_script.verify_saved_sentence(report, model=None)["passed"]
+    # The same independent slice failure must reject a falsely passing report.
+    segment["status"] = "source_near"
+    with pytest.raises(AssertionError):
+        evaluation_script.verify_saved_sentence(report, model=None)
+
+
+def test_bilingual_tables_cap_endpoint_route_and_hub_without_changing_raw_json(
+        monkeypatch, tmp_path, evaluation_script):
+    distance = 0.009500006
+    _, report = plan_sentence(["YOU", "BUY"], clearance=lambda q: distance_result(distance, q))
+    transition, = report["transitions"]
+    transition["attempts"].append({"kind": "hub", "status": "PASS",
+                                   "clearance": {"min_distance_m": distance}})
+    transition["hub_attempted"] = True
+    report.update(baseline={"duration_s": report["duration_s"]}, duration_vs_baseline_s=0.0)
+    raw_json = json.dumps(report, sort_keys=True)
+    monkeypatch.setattr(evaluation_script, "OUT", tmp_path)
+    evaluation_script.write_tables([report])
+    for filename in ("report.md", "report.en.md"):
+        content = (tmp_path / filename).read_text()
+        row, = [line for line in content.splitlines() if "YOU → BUY" in line]
+        assert row.count(">=9.5") == 4  # Two endpoints, full route, hub.
+        assert "9.500006" not in content
+        assert "clearance_capped=true" in content and "JSON" in content
+    assert json.dumps(report, sort_keys=True) == raw_json
+
+
+def test_group2_handoff_keeps_endpoint_and_adds_both_library_slice_defects(words, monkeypatch):
+    import sign_robot.transitions as transitions
+
+    monkeypatch.setattr(transitions, "ik_via_candidates", lambda *args: [])
+    monkeypatch.setattr(transitions, "ik_dual_via_candidates", lambda *args: [])
+    monkeypatch.setattr(transitions, "neutral_pose", lambda names, model=None: np.zeros(len(names)))
+    with np.load(ROOT / words["MEDICINE"]["motion"]) as source:
+        retract = source["positions"][words["MEDICINE"]["sign_frames"][1]:].copy()
+    with np.load(ROOT / words["MORNING"]["motion"]) as target:
+        approach = target["positions"][:words["MORNING"]["sign_frames"][0] + 1].copy()
+
+    def clearance(q):
+        if np.array_equal(q, retract):
+            result = distance_result(-0.067599238, q, frame=145 - words["MEDICINE"]["sign_frames"][1])
+            result.worst_contact["bodies"] = ["fixed_mount", "left_wrist_yaw_link"]
+            return result
+        if np.array_equal(q, approach):
+            result = distance_result(-0.044832, q, frame=28)
+            result.worst_contact["bodies"] = ["R_thumb_proximal", "left_wrist_yaw_link"]
+            return result
+        return distance_result(-0.0008 if len(q) == 1 else -0.056, q)
+
+    _, report = plan_sentence(["MEDICINE", "MORNING"], clearance=clearance)
+    handoff = {(item["word"], item["frame"]): item for item in report["source_near_handoff"]}
+    assert ("MEDICINE", 119) in handoff
+    assert handoff["MEDICINE", 145]["clearance_mm"] == pytest.approx(-67.599238)
+    assert handoff["MEDICINE", 145]["bodies"] == ["fixed_mount", "left_wrist_yaw_link"]
+    assert handoff["MORNING", 28]["clearance_mm"] == pytest.approx(-44.832)
+    assert handoff["MORNING", 28]["bodies"] == ["R_thumb_proximal", "left_wrist_yaw_link"]
+    assert "except an in-slice collision" in report["failed_trajectory_policy"]
