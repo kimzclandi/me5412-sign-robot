@@ -11,6 +11,8 @@ direct, via1, via2, neutral-hub, then source retract/approach escalation.
 Only MEDICINE→MORNING may then attempt one bounded arm-only RRT-Connect.
 Retract/approach always uses the smaller endpoint clearance as its floor,
 including when both endpoints exceed 2 mm.
+Every sub-2 mm run must additionally attach to its own near endpoint and rise
+monotonically away from it; a path that re-enters the sub-2 mm region fails.
 A passing near-source path is labelled ``source_near`` and handed to the
 source-motion group. These gates use only pairs whose relative pose can change
 under library/planner joints. Static pairs remain measured separately as vendor
@@ -452,6 +454,85 @@ class ClearanceResult:
     near_contacts: list = field(default_factory=list)
     worst_contact: dict | None = None
     vendor_structural_gaps: list = field(default_factory=list)
+    frame_clearances_m: list = field(default_factory=list)
+
+
+def sample_clearance_profile(result, positions, clearance):
+    """Return measured moving-pair minima for every path-local sample.
+
+    MuJoCo supplies the profile in the original whole-path query. Custom
+    clearance callables without that field are measured one pose at a time;
+    a whole-path minimum cannot establish the endpoint-monotonic condition.
+    Preserve the measured fallback in the result that enters the JSON report.
+    """
+    if not len(result.frame_clearances_m):
+        result.frame_clearances_m = [
+            float(clearance(np.asarray(positions)[[i]]).min_distance_m)
+            for i in range(len(positions))]
+    if len(result.frame_clearances_m) != len(positions):
+        raise ValueError("Clearance profile must contain one minimum per path sample")
+    return result.frame_clearances_m
+
+
+def check_sub_2mm_endpoint_attached(clearances_m, endpoint_clearances_m=None, *,
+                                  threshold=ENDPOINT_NEAR_M):
+    """Check one endpoint-attached, non-decreasing sub-threshold run.
+
+    Frame indices are zero-based, path-local and inclusive. A target-attached
+    profile is inspected in reverse, starting at the target. The first clear
+    sample is included in the monotonic check, and no later sample may re-dip.
+    If the entire path remains below the threshold, inspect the whole path
+    from either eligible endpoint; no unrequested requirement to reach 2 mm
+    is added. Comparison is exact, with no monotonicity tolerance.
+    """
+    distances = np.asarray(clearances_m, dtype=float)
+    if distances.ndim != 1 or not len(distances) or not np.isfinite(distances).all():
+        raise ValueError("Clearance profile must be a nonempty finite one-dimensional sequence")
+    endpoints = (distances[[0, -1]] if endpoint_clearances_m is None else
+                 np.asarray(endpoint_clearances_m, dtype=float))
+    if endpoints.shape != (2,) or not np.isfinite(endpoints).all():
+        raise ValueError("Endpoint clearance must contain two finite minima")
+    near = distances < threshold
+    bounds = np.flatnonzero(np.diff(np.r_[False, near, False]))
+    intervals = [[int(a), int(b - 1)] for a, b in zip(bounds[::2], bounds[1::2])]
+    check = {"sub_2mm_frame_intervals": intervals,
+             "sub_2mm_frame_reference": "path-local inclusive, zero-based",
+             "sub_2mm_monotonic_ok": not intervals,
+             "sub_2mm_attached_endpoint": None,
+             "sub_2mm_first_clear_frame": None,
+             "sub_2mm_reason": None}
+    if not intervals:
+        return check
+    if len(intervals) != 1:
+        check["sub_2mm_reason"] = (
+            "sub-2 mm samples form multiple disjoint runs; clearance re-dips below 2 mm")
+        return check
+    start, end = intervals[0]
+    attached = []
+    if start == 0 and endpoints[0] < threshold:
+        attached.append("source")
+    if end == len(distances) - 1 and endpoints[1] < threshold:
+        attached.append("target")
+    if not attached:
+        check["sub_2mm_reason"] = "sub-2 mm run is not attached to its own near endpoint"
+        return check
+    for endpoint in attached:
+        outward = distances if endpoint == "source" else distances[::-1]
+        cleared = np.flatnonzero(outward >= threshold)
+        first_clear = int(cleared[0]) if len(cleared) else None
+        stop = first_clear + 1 if first_clear is not None else len(outward)
+        if np.all(np.diff(outward[:stop]) >= 0) and (
+                first_clear is None or np.all(outward[first_clear:] >= threshold)):
+            check.update(sub_2mm_monotonic_ok=True,
+                         sub_2mm_attached_endpoint=endpoint,
+                         sub_2mm_first_clear_frame=(
+                             first_clear if endpoint == "source" or first_clear is None else
+                             len(distances) - 1 - first_clear))
+            return check
+    check["sub_2mm_attached_endpoint"] = attached[0] if len(attached) == 1 else None
+    check["sub_2mm_reason"] = (
+        "clearance decreases while leaving the sub-2 mm run from every attached near endpoint")
+    return check
 
 
 class MujocoClearance:
@@ -574,10 +655,13 @@ class MujocoClearance:
                 > MOVING_JOINT_TOL_RAD):
             raise ValueError("Planner pose varies a library-constant joint; static classification is invalid")
         pairs, near_pairs = {}, {}
+        frame_clearances = []
         worst = None
         for frame, row in enumerate(positions):
             apply_frame(self.model, self.data, self.joint_names, row)
-            for contact in self._contacts():
+            contacts = self._contacts()
+            frame_clearances.append(float(min(c["distance_m"] for c in contacts)))
+            for contact in contacts:
                 distance = contact["distance_m"]
                 location = ("start_endpoint" if frame == 0 else
                             "end_endpoint" if frame == len(positions) - 1 else "interior")
@@ -593,7 +677,8 @@ class MujocoClearance:
                         pairs[key] = item
         return ClearanceResult(not pairs, worst["distance_m"],
                                list(pairs.values()), len(positions),
-                               list(near_pairs.values()), worst, self.vendor_structural_gaps)
+                               list(near_pairs.values()), worst, self.vendor_structural_gaps,
+                               frame_clearances)
 
 
 def neutral_pose(joint_names, model=None):
@@ -778,6 +863,8 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
 
     If either endpoint is strictly below 2 mm, every complete candidate must
     meet the smaller endpoint clearance; accepted paths retain source_near.
+    Any samples below 2 mm must form one run attached to its own near endpoint,
+    increasing non-decreasingly away from it until clear, with no later re-dip.
     Normal direct/via/hub paths require signed clearance >= 2 mm.
     Retract/approach always requires the smaller endpoint clearance, even
     for clear endpoints; its original slices are checked against that floor.
@@ -801,13 +888,19 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
     def assess(q, kind, leg_intervals, directions=(), legs=(), *, floor=None, result=None):
         floor = required_clearance if floor is None else floor
         result = clearance(q) if result is None else result
+        profile = sample_clearance_profile(result, q, clearance)
+        endpoint_check = check_sub_2mm_endpoint_attached(
+            profile, [r["min_distance_m"] for r in endpoints])
         leg_clearance = [asdict(clearance(leg)) for leg in legs]
         height = height_check(q) if height_check else {"passed": True}
         passed = (result.min_distance_m >= floor and
-                  all(r["min_distance_m"] >= floor for r in leg_clearance))
+                  all(r["min_distance_m"] >= floor for r in leg_clearance) and
+                  endpoint_check["sub_2mm_monotonic_ok"])
         relative_ok = passed if endpoint_near else None
         status = ("source_near" if endpoint_near else "PASS") if passed else "FAILED"
         reasons = _clearance_reasons(result, floor) if not passed else []
+        if not endpoint_check["sub_2mm_monotonic_ok"]:
+            reasons.append(endpoint_check["sub_2mm_reason"])
         for number, leg in enumerate(leg_clearance):
             reasons.extend(f"hub leg {number + 1}: {reason}" for reason in
                            _clearance_reasons(ClearanceResult(**leg), floor))
@@ -824,6 +917,7 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
                          "source_near": bool(endpoint_near),
                          "required_clearance_m": floor,
                          "relative_floor_passed": relative_ok,
+                         **endpoint_check,
                          "clearance": annotate_clearance_dict(asdict(result)), "height": height,
                          "worst_collision": worst, "status": status, "reasons": reasons})
         return len(attempts) - 1, q
@@ -1119,6 +1213,8 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
                                 "endpoint_floor_m": plan.endpoint_floor_m,
                                 "required_clearance_m": chosen["required_clearance_m"],
                                 "relative_floor_passed": chosen["relative_floor_passed"],
+                                **{key: value for key, value in chosen.items()
+                                   if key.startswith("sub_2mm_")},
                                 "vendor_structural_gaps": chosen["clearance"]["vendor_structural_gaps"],
                                 "hub_attempted": any(a["kind"] == "hub" for a in plan.attempts),
                                 "retract_approach_attempted": any(
@@ -1160,7 +1256,9 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None):
               "normal_clearance_minimum_m": PENETRATION_TOLERANCE_M,
               "endpoint_near_below_m": ENDPOINT_NEAR_M,
               "collision_threshold_note": "moving pairs only; signed distance: positive separation, negative penetration; normal whole-path minimum >= 0.002 m",
-              "source_near_rule": "either moving-pair endpoint minimum strictly < 0.002 m; same full search, label source_near only if the relative floor passes",
+              "source_near_rule": "either moving-pair endpoint minimum strictly < 0.002 m; same full search, label source_near only if the relative floor and endpoint-attached monotonic gate pass",
+              "sub_2mm_rule": "all moving-pair samples strictly < 0.002 m must form one contiguous run attached to its own near source or target endpoint; from that endpoint clearance must be non-decreasing through the first >= 0.002 m sample and never re-dip afterwards; an all-near run is checked over the entire path from an eligible endpoint",
+              "sub_2mm_frame_reference": "path-local inclusive, zero-based",
               "relative_floor_rule": "near-source whole-path minimum >= min(endpoint clearances); otherwise continue through hub and retract/approach; only MEDICINE->MORNING then gets one RRT-Connect attempt",
               "retract_approach_rule": "whole route and original library slices must each meet min(endpoint clearances), including clear endpoints; recorded required_clearance_m is specific to each candidate",
               "escalation_order": ["direct", "best_via1_or_via2", "hub", "source_retract_approach", "FAILED"],

@@ -2,10 +2,13 @@
 
     .venv/bin/python scripts/plan_transitions.py --all
     MUJOCO_GL=egl .venv/bin/python scripts/evaluate_planned_transitions.py --render-comparison
+    MUJOCO_GL=egl .venv/bin/python scripts/evaluate_planned_transitions.py --render-all-comparison
 
 The video is baseline on the top row and planned on the bottom, front/right-side
 views in each row. Both play at the original 30 fps, without time warping; the
-shorter sentence holds its last frame. Failed segments are explicitly labelled.
+shorter row holds its last frame for each sentence. Batch rendering preserves
+report order, including singletons, and labels each sentence. Failed segments
+are explicitly labelled.
 """
 from __future__ import annotations
 
@@ -26,6 +29,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from sign_robot.motion import apply_frame, load_model, validate_motion
 from sign_robot.transitions import (ENDPOINT_NEAR_M, FPS, MIN_LEG_DURATION_S,
                                     PENETRATION_TOLERANCE_M, MujocoClearance, body_heights,
+                                    check_sub_2mm_endpoint_attached, sample_clearance_profile,
                                     clearance_is_capped, format_clearance_mm,
                                     joint_rate_limits, lookup_words, RRT_GLOSSES,
                                     RRT_SEED, RRT_BUDGET_S, rrt_arm_space,
@@ -76,13 +80,19 @@ def verify_saved_sentence(report, model):
                 np.testing.assert_array_equal(clip[index], source["positions"][words[gloss]["sign_frames"][bound]])
         result = clearance(clip)
         endpoints = [clearance(clip[[i]]).min_distance_m for i in (0, -1)]
+        profile = sample_clearance_profile(result, clip, clearance)
+        sub_2mm = check_sub_2mm_endpoint_attached(profile, endpoints)
+        for key, value in sub_2mm.items():
+            assert segment[key] == chosen[key] == value
+        assert segment["sub_2mm_frame_reference"] == chosen["sub_2mm_frame_reference"] == "path-local inclusive, zero-based"
+        assert segment["clearance"]["frame_clearances_m"] == result.frame_clearances_m
         assert isinstance(result.min_distance_m, (int, float)) and math.isfinite(result.min_distance_m)
         floor = min(endpoints)
         near = floor < ENDPOINT_NEAR_M
         required = floor if near or chosen["kind"] == "retract_approach" else PENETRATION_TOLERANCE_M
         assert chosen["required_clearance_m"] == required
         assert segment.get("required_clearance_m", required) == required
-        passed = result.min_distance_m >= required
+        passed = result.min_distance_m >= required and sub_2mm["sub_2mm_monotonic_ok"]
         assert segment["source_near"] == near
         assert segment["method"] == chosen["kind"]
         assert segment["endpoint_clearances_mm"] == [d * 1000 for d in endpoints]
@@ -153,7 +163,9 @@ def verify_saved_sentence(report, model):
                     np.max(np.abs(right - left)) / RRT_EDGE_RESOLUTION_RAD))) + 1)
                                    for left, right in zip(knots, knots[1:])])
                 assert clearance(dense).min_distance_m >= required
-                assert passed
+                # A floor-feasible RRT can still fail the additional sampled
+                # endpoint-attached gate; it must not count as accepted.
+                assert passed or segment["status"] == chosen["status"] == "needs_group2_fix"
             else:
                 assert segment["status"] == chosen["status"] == "needs_group2_fix"
                 passed = False
@@ -168,7 +180,7 @@ def verify_saved_sentence(report, model):
     assert report["failed_count"] == sum(t["status"] in ("FAILED", "needs_group2_fix") for t in report["transitions"])
     assert report.get("needs_group2_fix_count", 0) == sum(
         t["status"] == "needs_group2_fix" for t in report["transitions"])
-    return {"passed": True, "checks": "saved endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
+    return {"passed": True, "checks": "saved endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair and per-frame sub-2 mm intervals; single near-endpoint-attached run must be non-decreasing from its own endpoint through first >=2 mm sample, with no later dip; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
             "transition_peak_rates": peaks}
 
 
@@ -237,52 +249,81 @@ def _phase(report, index):
 
 
 def render_comparison(model, planned_report, glosses, artifact_name, *, out_dir=OUT):
+    """Preserve the single-sentence render API while sharing the batch renderer."""
+    glosses = [g.upper() for g in glosses]
+    if glosses != planned_report["glosses"]:
+        raise ValueError("Comparison glosses must match the planned report")
+    video = render_comparison_batch(model, [planned_report], artifact_name, out_dir=out_dir)
+    video["glosses"] = glosses
+    return video
+
+
+def render_comparison_batch(model, planned_reports, artifact_name, *, out_dir=OUT):
+    """Encode labelled sentences sequentially into one comparison video.
+
+    Each sentence starts both rows at frame zero. The shorter row holds its
+    endpoint until the longer row finishes; there is no time warping or gap
+    between sentences. Report order is preserved, including singletons.
+    """
     import imageio.v2 as imageio
     import mujoco
     from PIL import Image, ImageDraw
     sys.path.insert(0, str(ROOT / "scripts/mocap"))
     from render_comparison import camera
 
-    glosses = [g.upper() for g in glosses]
-    if glosses != planned_report["glosses"]:
-        raise ValueError("Comparison glosses must match the planned report")
+    if not planned_reports:
+        raise ValueError("At least one sentence is required for comparison")
     destination = out_dir / f"{artifact_name}.mp4"
-    baseline = read_motion(PREVIEWS / ("sentence_" + "_".join(glosses) + ".npz"))
-    planned = read_motion(artifact_path(planned_report["output_npz"]))
+    sentences = []
+    n_frames = 0
+    for report in planned_reports:
+        baseline = read_motion(artifact_path(report["baseline"]["path"]))
+        planned = read_motion(artifact_path(report["output_npz"]))
+        count = max(len(baseline["positions"]), len(planned["positions"]))
+        sentences.append((report, baseline, planned, count, n_frames))
+        n_frames += count
     data = mujoco.MjData(model)
     width, height = 480, 544  # Dimensions divisible by the encoder macroblock.
     cams = (camera(180), camera(90))
     destination.parent.mkdir(parents=True, exist_ok=True)
-    n_frames = max(len(baseline["positions"]), len(planned["positions"]))
     with mujoco.Renderer(model, width=width, height=height) as renderer, imageio.get_writer(
             destination, fps=FPS, codec="libx264", quality=8, macro_block_size=16,
             pixelformat="yuv420p", ffmpeg_params=["-threads", "1"]) as writer:
-        for i in range(n_frames):
-            panel = Image.new("RGB", (2 * width, 2 * height))
-            for row, (label, motion) in enumerate((("BASELINE", baseline), ("PLANNED", planned))):
-                frame_index = min(i, len(motion["positions"]) - 1)
-                apply_frame(model, data, motion["joint_names"], motion["positions"][frame_index])
-                for col, cam in enumerate(cams):
-                    renderer.update_scene(data, camera=cam)
-                    frame = Image.fromarray(renderer.render())
-                    draw = ImageDraw.Draw(frame)
-                    draw.rectangle((0, 0, width, 60), fill=(18, 24, 32))
-                    phase = _phase(planned_report, frame_index) if row else "fixed 0.5s smoothstep"
-                    if i >= len(motion["positions"]):
-                        phase = "end hold (no time warping)"
-                    draw.text((12, 8), f"{label} | {' '.join(glosses)} | {i / FPS:.2f}s", fill="white")
-                    draw.text((12, 27), f"{'front' if col == 0 else 'right side'} | {phase}", fill="white")
-                    draw.text((12, 44), "Kinematic candidate preview; ASL unreviewed", fill=(230, 208, 160))
-                    panel.paste(frame, (col * width, row * height))
-            writer.append_data(np.asarray(panel))
-            if i % 30 == 0 or i == n_frames - 1:
-                print(f"comparison render {i + 1}/{n_frames} frames", flush=True)
-            if i == 100:
-                panel.save(out_dir / f"{artifact_name}_frame.png")
+        for sentence_index, (report, baseline, planned, count, start) in enumerate(sentences):
+            glosses = report["glosses"]
+            for i in range(count):
+                panel = Image.new("RGB", (2 * width, 2 * height))
+                for row, (label, motion) in enumerate((("BASELINE", baseline), ("PLANNED", planned))):
+                    frame_index = min(i, len(motion["positions"]) - 1)
+                    apply_frame(model, data, motion["joint_names"], motion["positions"][frame_index])
+                    for col, cam in enumerate(cams):
+                        renderer.update_scene(data, camera=cam)
+                        frame = Image.fromarray(renderer.render())
+                        draw = ImageDraw.Draw(frame)
+                        draw.rectangle((0, 0, width, 78), fill=(18, 24, 32))
+                        phase = _phase(report, frame_index) if row else "fixed 0.5s smoothstep"
+                        if i >= len(motion["positions"]):
+                            phase = "end hold (no time warping)"
+                        draw.text((12, 6), f"{label} | sentence {sentence_index + 1}/{len(sentences)} | {i / FPS:.2f}s", fill="white")
+                        draw.text((12, 24), " ".join(glosses), fill="white")
+                        draw.text((12, 42), f"{'front' if col == 0 else 'right side'} | {phase}", fill="white")
+                        draw.text((12, 60), "Kinematic candidate preview; ASL unreviewed", fill=(230, 208, 160))
+                        panel.paste(frame, (col * width, row * height))
+                writer.append_data(np.asarray(panel))
+                total_index = start + i
+                if total_index % 30 == 0 or total_index == n_frames - 1:
+                    print(f"comparison render {total_index + 1}/{n_frames} frames (sentence {sentence_index + 1}/{len(sentences)})", flush=True)
+                if total_index == 100:
+                    panel.save(out_dir / f"{artifact_name}_frame.png")
     return {"path": str(destination.relative_to(ROOT) if destination.is_relative_to(ROOT) else destination),
-            "glosses": glosses, "fps": FPS, "frames": n_frames,
+            "sentences": [{"glosses": report["glosses"], "start_frame": start,
+                           "end_frame": start + count - 1, "frames": count}
+                          for report, _, _, count, start in sentences],
+            "sentence_count": len(sentences), "fps": FPS, "frames": n_frames,
             "duration_s": n_frames / FPS, "size": [2 * width, 2 * height],
-            "layout": "baseline top, planned bottom; front left, right-side right; shorter row holds its end"}
+            "layout": "baseline top, planned bottom; front left, right-side right; shorter row holds its end",
+            "sentence_order": "input report order, sequential, including singleton sentences",
+            "frame_coordinates": "video-local, zero-based, inclusive"}
 
 
 def write_tables(reports):
@@ -327,6 +368,8 @@ def write_tables(reports):
                                 f"{transition['duration_s']:.3f}",
                                 *endpoints,
                                 format_clearance_mm(distance), " / ".join(closest["bodies"]),
+                                json.dumps(transition["sub_2mm_frame_intervals"]),
+                                str(transition["sub_2mm_monotonic_ok"]).lower(),
                                 str(transition["hub_attempted"]).lower(), hub_summary])
             if transition["status"] in ("FAILED", "needs_group2_fix"):
                 worst = transition["worst_collision"]
@@ -349,9 +392,11 @@ def write_tables(reports):
                            ["句子", "单词段", "过渡数", "PASS", "source_near", "FAILED", "规划秒数", "基线秒数", "秒数差"])
         transition_headers = (["Sentence", "Transition", "Status", "Method", "source_near", "Via directions", "Duration s",
                                "Start clearance mm", "End clearance mm", "Min clearance mm", "Closest body pair",
+                               "Sub-2 mm frames (path-local, inclusive)", "Monotonic endpoint-attached check",
                                "Hub ran", "Hub status / min mm"]
                               if english else ["句子", "过渡", "状态", "方法", "source_near", "中间点方向", "时长秒",
                                                "起点间隙 mm", "终点间隙 mm", "最小间隙 mm", "最近体对",
+                                               "低于 2 mm 帧（过渡内、含端点）", "端点附着单调检查",
                                                "已尝试 hub", "Hub 状态 / 最小 mm"])
         failure_headers = (["Sentence", "Transition", "Worst body pair", "Worst clearance mm", "Transition frame", "Required floor m"]
                            if english else ["句子", "过渡", "最差碰撞体对", "最差间隙 mm", "过渡内帧", "所需下限 m"])
@@ -363,6 +408,9 @@ def write_tables(reports):
                  "Local generated report. Sentence duration is frame count / 30; each transition/leg duration is intervals / 30. "
                  "PASS, source_near and FAILED are disjoint transition counts. Either endpoint strictly below ENDPOINT_NEAR_M = 0.002 m "
                  "uses the smaller endpoint clearance as its relative floor; normal paths require at least +2 mm separation. "
+                 "Additionally, every accepted path with sub-2 mm samples must have a single contiguous run attached to its own near endpoint; "
+                 "read from that endpoint, clearance must be non-decreasing through the first >=2 mm sample and never re-dip. "
+                 "Intervals are zero-based, path-local and inclusive; no sub-2 mm samples gives [] and a true check. "
                  "All decision distances and closest pairs refer to moving pairs only. Static pairs have equal moving-ancestor "
                  "joint sets, derived from every library frame (span > 1e-9 rad) plus planner arm IK. Native static pairs "
                  "are detected once across the scene and remeasured with mj_geomDistance; they are listed as vendor structural gaps "
@@ -383,6 +431,8 @@ def write_tables(reports):
                  "# 衔接规划结果\n\n**中文** · [English](report.en.md)\n\n"
                  "本地生成报告。句子时长按帧数 / 30，过渡及各腿时长按时间间隔数 / 30。PASS、source_near、FAILED 分开计数。"
                  "任一端点严格低于 ENDPOINT_NEAR_M = 0.002 m 时，以较差端点间隙为相对下限；普通路径要求至少 +2 mm 分离。"
+                 "额外接受门槛：低于 2 mm 的样本必须仅构成一段，附着其自身低于 2 mm 的端点；从该端点读起至首次达到 ≥2 mm 必须非递减，此后不得再次低于 2 mm。"
+                 "区间使用从零开始的过渡内帧索引、两端包含；没有低于 2 mm 样本时为 []，检查为 true。"
                  "全部决策距离及最近对仅使用运动体对。静态对由全部动作帧（关节跨度 > 1e-9 rad）加手臂 IK 的运动祖先关节集合相等推导。"
                  "原生静态配对一次扩大检测至全场景，再用 mj_geomDistance 复测，另列为原厂结构缝，不影响 PASS/source_near/FAILED。"
                  "每段均可依次尝试直连、最优 via1/via2、模型 qpos0 hub、源收回/目标接近。收回/接近的全路径和原始切片均须达到较差端点下限，两端清晰时也适用。"
@@ -477,10 +527,15 @@ def main(argv=None):
     parser.add_argument("--report", type=Path, default=OUT / "report.json")
     parser.add_argument("--out-dir", type=Path, default=OUT,
                         help="directory for tables and verification evidence; --report selects the input JSON")
-    parser.add_argument("--render-comparison", action="store_true")
+    render_group = parser.add_mutually_exclusive_group()
+    render_group.add_argument("--render-comparison", action="store_true",
+                              help="render one sentence selected by --comparison-glosses")
+    render_group.add_argument("--render-all-comparison", action="store_true",
+                              help="render all report sentences sequentially, including singletons, with sentence labels")
     parser.add_argument("--comparison-glosses", nargs="+", default=["YOU", "HURT", "WHERE"],
                         help="glosses of the baseline/planned sentence to compare")
-    parser.add_argument("--artifact-name", help="MP4 stem; defaults to <glosses>_baseline_vs_planned_v4")
+    parser.add_argument("--artifact-name",
+                        help="MP4 stem; default: <glosses>_baseline_vs_planned_v4, or all_sentences_baseline_vs_planned for a batch")
     parser.add_argument("--copy-to", type=Path, help="copy MP4 here (default: /workspace/<artifact-name>.mp4)")
     args = parser.parse_args(argv)
     OUT = args.out_dir.resolve()
@@ -494,13 +549,17 @@ def main(argv=None):
     sag_sentence = next(s for s in report["sentences"] if s["glosses"] == ["YOU", "BUY", "BOOK"])
     sag = measure_sag(model, sag_sentence)
     (OUT / "you_buy_sag.json").write_text(json.dumps(sag, indent=2) + "\n")
-    if args.render_comparison:
-        glosses = [g.upper() for g in args.comparison_glosses]
-        sentence = next((s for s in report["sentences"] if s["glosses"] == glosses), None)
-        if sentence is None:
-            parser.error(f"Sentence not in report: {' '.join(glosses)}")
-        name = args.artifact_name or "_".join(glosses).lower() + "_baseline_vs_planned_v4"
-        video = render_comparison(model, sentence, glosses, name, out_dir=OUT)
+    if args.render_comparison or args.render_all_comparison:
+        if args.render_all_comparison:
+            name = args.artifact_name or "all_sentences_baseline_vs_planned"
+            video = render_comparison_batch(model, report["sentences"], name, out_dir=OUT)
+        else:
+            glosses = [g.upper() for g in args.comparison_glosses]
+            sentence = next((s for s in report["sentences"] if s["glosses"] == glosses), None)
+            if sentence is None:
+                parser.error(f"Sentence not in report: {' '.join(glosses)}")
+            name = args.artifact_name or "_".join(glosses).lower() + "_baseline_vs_planned_v4"
+            video = render_comparison(model, sentence, glosses, name, out_dir=OUT)
         copy_to = args.copy_to or Path("/workspace") / f"{name}.mp4"
         try:
             shutil.copy2(artifact_path(video["path"]), copy_to)

@@ -161,7 +161,7 @@ def main(argv=None):
         "The first word keeps its frame-0 rise and the last word keeps its return "
         "to neutral, matching stitch_baseline."))
     parser.add_argument("glosses", nargs="*", help="uppercase or lowercase hospital glosses")
-    parser.add_argument("--all", action="store_true", help="run nine scripted sentences plus THANK-YOU (ten total)")
+    parser.add_argument("--all", action="store_true", help="run eight multi-word sentences and two singletons (ten total)")
     parser.add_argument("--render", action="store_true", help="also write planned MP4 previews")
     parser.add_argument("--out-dir", type=Path, default=OUT)
     parser.add_argument("--report", type=Path, default=REPORT_OUT / "report.json")
@@ -184,7 +184,7 @@ def main(argv=None):
         for item in sentence["source_near_handoff"]:
             if item not in handoff:
                 handoff.append(item)
-    payload = {"planner_protocol": "round8_step3_medicine_morning_one_shot_arm_rrt_connect",
+    payload = {"planner_protocol": "round9_monotonic_sub_2mm_endpoint_attached",
                "clearance_derivation": reports[0]["clearance_derivation"],
                "vendor_structural_gaps": reports[0]["vendor_structural_gaps"],
                "sentences": reports,

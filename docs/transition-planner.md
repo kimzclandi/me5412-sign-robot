@@ -1,10 +1,106 @@
-# 第三组：衔接规划器，第八轮 Step 3
+# 第三组：衔接规划器，第九轮
 
 **中文** · [English](transition-planner.en.md)
 
-第八轮 Step 3 **仅为 MEDICINE→MORNING 增加一次仅手臂的 RRT-Connect**，在全部既有路线失败后运行，包括切片内碰撞。运动对 2 mm 门槛、15 / 10 rad/s 时限和原厂结构缝分列不变。新目录 `results/planned_transitions/round8_step3/` 十句复核为 **19 段 = 16 PASS、3 source_near、0 失败**。MEDICINE→MORNING 达到端点相对下限，不表示满足绝对 +2 mm 或已验证 ASL。Step 1、Round 7 记录保留。单词句零次过渡检查不证明单词本身无碰撞。
+第九轮增加**低于 2 mm 样本的端点连续附着与单调退出验收**，在原有较差端点相对下限之外实施。运动对 `ENDPOINT_NEAR_M = 0.002 m`、手臂 15 rad/s、手指 10 rad/s 不变；RRT-Connect 仍仅用于 MEDICINE→MORNING。重新生成目录为 `results/planned_transitions/round9/`，第八轮 Step 3 与更早原始产物保留。以下是开发者几何验收，不代表已验证 ASL；单词句零次过渡检查不证明词内动作通过。
 
-## 静态配对如何推导
+## 第九轮新增验收规则
+
+对每条候选轨迹逐帧计算**有效运动体对的最小有符号间隙**。通过搜索下限仍不足以接受；凡有样本严格低于 2 mm，还必须同时满足：
+
+1. 全部低于 2 mm 的样本恰好组成一个连续区间，连到自身间隙也低于 2 mm 的源端点或目标端点。
+2. 从所附着的端点向路径内部读取，间隙非递减，直至第一次达到至少 2 mm；目标端附着时逆序检查。
+3. 第一次达到至少 2 mm 后，余下路径不再低于 2 mm。
+
+相对下限仍用于搜索；新检查失败的尝试不能保留 `PASS` 或 `source_near`。JSON 每段及各尝试记录 `sub_2mm_frame_intervals`（**过渡路径内、从 0 开始、两端均含**）与 `sub_2mm_monotonic_ok`；没有低于 2 mm 样本时区间为 `[]`，该附加检查通过。`sub_2mm_attached_endpoint` 指明源端或目标端，`sub_2mm_first_clear_frame` 记录首次达到门槛的帧，失败原因放在 `sub_2mm_reason`。完整保存轨迹由 evaluator 再次计算，不能仅凭原报告通过。
+
+若整条路径均低于 2 mm、没有清晰帧，则从符合条件的端点检查全路径是否非递减，`sub_2mm_first_clear_frame=null`；不额外要求必须达到 2 mm。本轮没有接受段使用这个边界情形。
+
+## 第九轮实际结果
+
+十句重新生成 **19 段 = 16 PASS、3 source_near、0 FAILED / needs_group2_fix**；全部 19 段附加检查为 `true`，状态与 `round8_step3` 相同。[轨迹一致性审计](../results/planned_transitions/round9/trajectory_identity.json) 验证全部 19 段及十个完整句子的数组逐位相同，十个 NPZ 的 SHA-256 也均与 `336ed69` 对应的 `round8_step3/` 文件完全一致。本轮增加报告与验收，没有改变轨迹。因此同一输入轨迹的新旧渲染等价，但第九轮尚未执行重渲染。
+
+| 过渡 | 状态 | 低于 2 mm 帧区间（过渡内、含端点） | 端点附着单调检查 |
+|---|---|---|---|
+| HELLO → YOU | PASS | [] | true |
+| YOU → APPOINTMENT | PASS | [] | true |
+| APPOINTMENT → HAVE | PASS | [] | true |
+| MEDICINE → MORNING | source_near | [[0, 0]] | true |
+| MORNING → NIGHT | PASS | [] | true |
+| NIGHT → TAKE | PASS | [] | true |
+| NOW → NURSE | source_near | [[7, 9]] | true |
+| NURSE → BLOOD-DRAW | PASS | [] | true |
+| PLEASE → WAIT | PASS | [] | true |
+| WAIT → DOCTOR | PASS | [] | true |
+| DOCTOR → COME | source_near | [[0, 1]] | true |
+| COME → SOON | PASS | [] | true |
+| YOU → BUY | PASS | [] | true |
+| BUY → BOOK | PASS | [] | true |
+| YOU → HURT | PASS | [] | true |
+| HURT → WHERE | PASS | [] | true |
+| YOU → NEED | PASS | [] | true |
+| NEED → INTERPRETER | PASS | [] | true |
+| YOU → UNDERSTAND | PASS | [] | true |
+
+三个接近端点的段均在一次连续区间后离开 2 mm 门槛，之后不再跌回：
+
+- **MEDICINE→MORNING**：附着源端点，f0 **−0.809260 mm** → f1 **+2.757020 mm**；首次清晰帧 f1，仍为 `source_near / rrt_connect`。
+- **NOW→NURSE**：附着目标端点，逆序从 f9 读起：**−32.846892 → −26.332107 → −17.368712 → +8.476263 mm**（f9→f8→f7→f6）；首次清晰帧 f6，仍为 `source_near / direct`。
+- **DOCTOR→COME**：附着源端点，f0→f1→f2 为 **−7.853912 → +1.066278 → +5.074008 mm**；首次清晰帧 f2，仍为 `source_near / direct`。
+
+`source_near` 保留上述端点穿透，只有相对下限与新增几何检查通过，不是绝对 +2 mm 认证。可复核 [JSON](../results/planned_transitions/round9/report.json)、[中文生成表](../results/planned_transitions/round9/report.md)、[英文生成表](../results/planned_transitions/round9/report.en.md) 与 [本轮交付说明](../_scratch/sol_r9_result.md)。
+
+evaluator 已逐句重测十个保存轨迹的端点、速率、间隙、单调附着门槛及既有 RRT / 原库切片约束。全量 pytest 实际结果为 **418 passed、6 failed（17.79 秒）**；六个失败的测试 ID 与归档基线六项完全一致，没有新增失败。最终可运行本地测试服务器的完整结果见 [pytest_full_socket_enabled.txt](../results/planned_transitions/round9/pytest_full_socket_enabled.txt)。新增的批量渲染测试使用模拟渲染器和编码器，检查顺序、单词句、末帧保持、标签、元数据与单线程编码配置；本轮未实际渲染 MP4。
+
+这些是开发者回归检查，不是冻结独立评测或真人评审。采样不证明连续无碰撞；词内速度 / 碰撞、动力学、硬件、ASL 含义和使用者理解仍未验证。
+
+## 第九轮启动与再生成
+
+从仓库根目录使用已有 `.venv` 顺序执行；不安装 `sentence_transformers`。每个重任务先运行同一内存检查，至少 2 GiB 可用，并且同一时刻仅一个重进程：
+
+```bash
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+export LP_NUM_THREADS=1 MESA_GLTHREAD=false MUJOCO_GL=egl
+check_mem() {
+  awk '/MemAvailable/{ok=$2>=2097152; printf "MemAvailable_KiB=%d ok=%s\n",$2,(ok?"yes":"no"); exit !ok}' /proc/meminfo
+}
+check_mem && .venv/bin/python scripts/plan_transitions.py --all --out-dir results/planned_transitions/round9 --report results/planned_transitions/round9/report.json
+check_mem && .venv/bin/python scripts/evaluate_planned_transitions.py --report results/planned_transitions/round9/report.json --out-dir results/planned_transitions/round9
+check_mem && .venv/bin/python -m pytest -q
+```
+
+`--report` 显式指定输入 JSON，单独 `--out-dir` 不会选择新报告。规划器即使有失败段也退出 0，必须读取状态。定向测试使用模拟间隙序列，覆盖正常单调退出、中途再次跌破 2 mm 与端点区间内反向下降，不在单元测试中运行完整 MuJoCo RRT。
+
+## 全部句子的同一对照视频
+
+`--render-all-comparison` 复用原渲染器，将报告中的**全部十句（八个多词句、两个单词句）**按原次序连续写入一个 MP4；每句显示序号与 gloss。上排基线、下排规划，左正面、右右视图，30 fps 原速；每句中较短一排保持末帧，下一句双方从第 0 帧开始。编码固定 `ffmpeg_params=["-threads", "1"]`。视频的逐句帧区间为**视频内、从 0 开始、两端均含**，和上述过渡局部区间不同。
+
+| 次序 | 句子 | 类型 |
+|---|---|---|
+| 1 | HELLO YOU APPOINTMENT HAVE | 多词 |
+| 2 | MEDICINE MORNING NIGHT TAKE | 多词 |
+| 3 | NOW NURSE BLOOD-DRAW | 多词 |
+| 4 | PLEASE WAIT DOCTOR COME SOON | 多词 |
+| 5 | YOU BUY BOOK | 多词 |
+| 6 | YOU HURT WHERE | 多词 |
+| 7 | YOU NEED INTERPRETER | 多词 |
+| 8 | YOU UNDERSTAND | 多词 |
+| 9 | BREATHE-DEEP | 单词 |
+| 10 | THANK-YOU | 单词 |
+
+在上述线程环境和 `check_mem` 函数设置后，宿主可运行：
+
+```bash
+check_mem && .venv/bin/python scripts/evaluate_planned_transitions.py --report results/planned_transitions/round9/report.json --out-dir results/planned_transitions/round9 --render-all-comparison --artifact-name all9_sentences_baseline_vs_planned_r9 --copy-to /workspace/all9_sentences_baseline_vs_planned_r9.mp4
+```
+
+文件名按需求保留 `all9`，实际范围为上述十句。若外部复制因只读文件系统失败，完整本地视频保留在 `results/planned_transitions/round9/all9_sentences_baseline_vs_planned_r9.mp4`，复制错误写入 JSON，程序退出 1；宿主可从该处复制。单句 `--render-comparison --comparison-glosses ...` 继续可用。macOS 省略 `MUJOCO_GL=egl`，本轮未测试 macOS。
+
+## 第八轮 Step 3 历史基线
+
+第八轮 Step 3 **仅为 MEDICINE→MORNING 增加一次仅手臂的 RRT-Connect**，在全部既有路线失败后运行，包括切片内碰撞。该轮 `results/planned_transitions/round8_step3/` 十句复核为 **19 段 = 16 PASS、3 source_near、0 失败**，当时尚无第九轮单调退出门槛。MEDICINE→MORNING 达到端点相对下限，不表示满足绝对 +2 mm 或已验证 ASL。以下保留其距离、搜索协议与历史结果。
+
+### 静态配对如何推导
 
 `MujocoClearance` 首次构造时只读 `motions/hospital_v1_motions.json` 及其全部 35 个动作的所有帧（共 4485 帧），跨文件累计每个关节的最大 / 最小值。跨度严格大于 **1e-9 rad** 的关节视为运动关节；再并入规划器实际使用的 `retarget.ARM_SUFFIXES` 双臂 IK 关节。库中没有证据的未知模型关节保守视为运动，不会静默免检。当前模型得到 **38 个运动关节**；已确认恒定的 12 个腿部关节和 3 个腰部关节维持模型 qpos0。
 
@@ -19,7 +115,7 @@
 
 136 是拓扑体对数，47 是通过原生碰撞过滤后实际测量的 geom 对数，二者不是同一计数。完整清单及推导来源在总报告和句子报告中，所选过渡与各次 clearance 结果也保留清单。几何、掩码和 MJCF 均未永久编辑；`prepare_robot.py` 未修改。
 
-## 运动配对的距离与搜索规则
+### 运动配对的距离与搜索规则
 
 统一使用有符号距离：**正值分离，负值穿透**。`PENETRATION_TOLERANCE_M = 0.002`、`ENDPOINT_NEAR_M = 0.002`、手臂 **15 rad/s**、手指 **10 rad/s** 全部不变。
 
@@ -41,7 +137,7 @@
 
 via1 / via2 保留通用的双臂偏移、中立手臂退让和左右串行退让候选，不按词身份做特例。IK 只解手臂，手指和其他坐标保留端点凸插值；耦合关节不是独立驱动。每腿采用 `s(u)=10u³−15u⁴+6u⁵`，按连续峰值 `1.875 × |Δq| / T` 向上取整到 30 fps，至少 **0.3 s / 九个间隔**。源词不修改或重采样，内部词使用含端点的 sign_frames；首词保留第 0 帧起势、末词保留回中立，过渡端点逐位相同。
 
-## 单次 RRT-Connect 协议
+### 单次 RRT-Connect 协议
 
 `RRT_GLOSSES = ("MEDICINE", "MORNING")` 是唯一例外。direct、全部 via1/via2、hub、retract/approach 均失败后才搜索，从 MEDICINE 结束姿态（f119）到 MORNING 起始姿态（f35），不重放有缺陷的源收回或目标接近片段。(c) 的失败尝试及原库缺陷继续保存在 `attempts` 与 `source_near_handoff`。
 
@@ -55,7 +151,7 @@ via1 / via2 保留通用的双臂偏移、中立手臂退让和左右串行退�
 
 实现选项于集成前记录在中英并列的 [_scratch/sol_r8_rrt_notes.md](../_scratch/sol_r8_rrt_notes.md)。
 
-## 本轮结果与交接
+### Step 3 结果与交接
 
 | MEDICINE→MORNING 字段 | Step 3 实际结果 |
 |---|---:|
@@ -75,30 +171,16 @@ MEDICINE MORNING NIGHT TAKE 现在为 **9.633333 秒**，基线 **10.066667 秒*
 
 第二组清单与 Step 1 **完全一致：17 条运动对记录、5 个词帧**：**MEDICINE f119、MEDICINE f145、MORNING f28、NURSE f24、DOCTOR f89**。RRT 不修复这些库缺陷。失败的 (c) 尝试仍记录 MEDICINE 收回 f119–159、MORNING 接近 f0–35；f145 `left_wrist_yaw_link / fixed_mount` 为 −67.599238 mm，f28 `R_thumb_proximal / left_wrist_yaw_link` 为 −44.832 mm。静态基座 / 髋部结构缝仍分列。
 
-## 启动与再生成产物
+### Step 3 历史产物
 
-在仓库根目录使用已有 `.venv`，不安装 `sentence_transformers`。每个重任务前确认 `MemAvailable ≥2 GiB`，限制线程并顺序运行，一个重进程：
-
-```bash
-export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
-export LP_NUM_THREADS=1 MESA_GLTHREAD=false MUJOCO_GL=egl
-check_mem() {
-  .venv/bin/python -c 'from pathlib import Path; m = int(next(s.split()[1] for s in Path("/proc/meminfo").read_text().splitlines() if s.startswith("MemAvailable:"))); assert m >= 2 * 1024**2; print("MemAvailable GiB:", m / 1024**2)'
-}
-check_mem && .venv/bin/python scripts/plan_transitions.py --all --out-dir results/planned_transitions/round8_step3 --report results/planned_transitions/round8_step3/report.json
-check_mem && .venv/bin/python scripts/evaluate_planned_transitions.py --report results/planned_transitions/round8_step3/report.json --out-dir results/planned_transitions/round8_step3
-check_mem && .venv/bin/python scripts/evaluate_planned_transitions.py --report results/planned_transitions/round8_step3/report.json --out-dir results/planned_transitions/round8_step3 --render-comparison --comparison-glosses MEDICINE MORNING NIGHT TAKE --artifact-name medicine_morning_baseline_vs_planned_v6 --copy-to /workspace/medicine_morning_baseline_vs_planned_v6.mp4
-.venv/bin/python -m pytest -q tests/test_rrt_connect.py tests/test_plan_transitions.py
-```
-
-`--report` 显式选择新输入 JSON，单独 `--out-dir` 不会切换输入。规划器即使失败也退出 0，必须检查报告状态。evaluate 若本地视频完整但外部复制被拒绝，记录复制错误并退出 1。macOS 省略 `MUJOCO_GL=egl`，本轮未测试 macOS。
+当前再生成使用上文的独立 `round9/` 命令，不覆盖以下历史目录。
 
 - Step 3 [JSON](../results/planned_transitions/round8_step3/report.json)、[中文表](../results/planned_transitions/round8_step3/report.md)、[英文表](../results/planned_transitions/round8_step3/report.en.md)、[范围审计](../results/planned_transitions/round8_step3/scope_audit.json)、[聚焦 pytest](../results/planned_transitions/round8_step3/pytest.txt)。
 - [MEDICINE v6 对照](../results/planned_transitions/round8_step3/medicine_morning_baseline_vs_planned_v6.mp4)，元数据和复制状态在 JSON。上排基线、下排规划，左正面、右右视图；30 fps 原速，较短一排保持末帧，不拉伸时间。实际视频检查见 [artifact_audit.json](../results/planned_transitions/round8_step3/artifact_audit.json)。
-- 本轮 NPZ 为 `results/planned_transitions/round8_step3/planned_sentence_<GLOSSES>.npz`，契约为 `timestamps_s / joint_names / positions`。日志与中英结果简报见 [_scratch/sol_r8_rrt_result.md](../_scratch/sol_r8_rrt_result.md)。
+- Step 3 NPZ 为 `results/planned_transitions/round8_step3/planned_sentence_<GLOSSES>.npz`，契约为 `timestamps_s / joint_names / positions`。日志与中英结果简报见 [_scratch/sol_r8_rrt_result.md](../_scratch/sol_r8_rrt_result.md)。
 - 历史 [Step 1 JSON](../results/planned_transitions/round8_step1/report.json) 保留 16 PASS / 2 source_near / 1 FAILED 和切片停止诊断。[MEDICINE v5](../results/planned_transitions/medicine_morning_baseline_vs_planned_v5.mp4)、[YOU HURT WHERE v4](../results/planned_transitions/you_hurt_where_baseline_vs_planned_v4.mp4)、根目录 Round 7 报告、[round4 归档](../results/planned_transitions/round4_before_round6_archive/report.json)、旧视频与原始记录均保留。生成产物与视频被 gitignore，新 checkout 后需再生成。
 
-## 实际检查与未验证限制
+### Step 3 实际检查与未验证限制
 
 定向 pytest **120 passed（4.29 秒）**，覆盖固定种子稳定性、精确手臂索引与非手臂确定行为、相对下限通过、超时转 needs_group2_fix 且无重试、仅授权方向触发、先前路线通过不进 RRT，以及平滑复查失败的安全回退，并运行原有过渡回归。全量 pytest 和提交留给宿主，不推送。
 

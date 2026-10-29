@@ -53,7 +53,8 @@ def distance_result(distance, positions, frame=0):
                "location": "start_endpoint" if frame == 0 else "interior"}
     violations = [contact] if distance < PENETRATION_TOLERANCE_M else []
     return ClearanceResult(not violations, distance, violations, len(positions),
-                           [contact] if distance < ENDPOINT_NEAR_M else [], contact)
+                           [contact] if distance < ENDPOINT_NEAR_M else [], contact,
+                           frame_clearances_m=[distance] * len(positions))
 
 
 def clear(positions):
@@ -796,7 +797,8 @@ def test_mild_contacts_and_small_positive_gaps_are_in_source_near_handoff(words,
         contact = {"bodies": ["fixed_mount", "right_wrist_yaw_link"],
                    "distance_m": distance, "frame": 0, "location": "start_endpoint"}
         return ClearanceResult(False, distance, sampled_frames=len(positions),
-                               near_contacts=[contact], worst_contact=contact)
+                               near_contacts=[contact], worst_contact=contact,
+                               frame_clearances_m=[distance] * len(positions))
 
     _, report = plan_sentence(["YOU", "BUY"], clearance=clearance)
     assert report["source_near_count"] == 1 and report["pass_count"] == 0

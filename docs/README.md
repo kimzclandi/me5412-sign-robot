@@ -9,7 +9,7 @@ Current target: ten fixed intents → ID-conditioned learned motions. The implem
 | 最新六人实施指南 / Current team guide | [中文](ten-intent-learning-guide.md) | [English](ten-intent-learning-guide.en.md) |
 | GitHub 分支协作 / GitHub workflow | [中文](github-collaboration.md) | [English](github-collaboration.en.md) |
 | 代码依赖 / Dependencies | [中文](code-dependencies.md) | [English](code-dependencies.en.md) |
-| 第三组衔接规划：R8 Step 3 单次 RRT / Group 3 transitions: R8 Step 3 one-shot RRT | [中文](transition-planner.md) | [English](transition-planner.en.md) |
+| 第三组衔接规划：R9 端点单调退出验收 / Group 3 transitions: R9 monotonic endpoint exit verification | [中文](transition-planner.md) | [English](transition-planner.en.md) |
 | 历史任务卡 / Historical handoff | [中文](six-person-handoff.md) | [English](six-person-handoff.en.md) |
 | 实施路线 / Roadmap | [中文](实施路线.md) | [English](实施路线.en.md) |
 | 学习模型 / Learned model | [中文](学习型轨迹模型.md) | [English](学习型轨迹模型.en.md) |
