@@ -1,29 +1,38 @@
 # ME5412 — English to ASL Gloss Conversion
 
+**中文** · [English](README.en.md)
+
 ## 项目简介
 
 本项目把医院场景中的英文句子转换为固定词库内的美国手语（ASL）gloss 有序序列。例如，`Where does it hurt?` 可以转换为 `YOU HURT WHERE`。
 
 第一组仅负责“英文文本 → gloss”。本项目不下载手语动作，不生成机器人轨迹，也不负责 MuJoCo 或其他机器人仿真。
 
+## 在主仓库中
+
+- 端到端演示 `scripts/demo/hospital_demo.py`（见 [docs/hospital-demo.md](../docs/hospital-demo.md)）在 `--live` 时以子进程调用本文件夹的 `scripts/translate.py --demo-only`。
+- `data/offline/hospital_dialogue_gloss.json` 保存 9 句脚本对话的在线 Gemini 输出（2026-10-31，9/9 正确），演示无需联网和 API key。它是在线结果的缓存，不是独立测试。
+- `data/vocab/hospital_v1.json` 的 35 个 gloss 都是 `motion_ready=true`，已与第二组 `motions/hospital_v1_motions.json` 核对。
+
 ## 目录结构
 
 ```text
 data/vocab/hospital_v1.json       35 个固定 gloss 及英文同义词
 data/gloss_eval/gloss_test.csv    20 条评估句
+data/offline/                     9 句对话的离线 gloss 缓存
 src/sign_robot/llm.py             Gemini OpenAI 兼容接口客户端
 src/sign_robot/gloss.py           text_to_gloss() 转换与严格校验
 scripts/translate.py              单句和交互式翻译入口
 scripts/check_gloss.py            可恢复、有限额的自动评估脚本
-docs/usage.md                     面向组员的简明使用说明
-docs/integration.md               第二组安全调用与状态处理约定
+docs/usage.md                     面向组员的简明使用说明（英文 usage.en.md）
+docs/integration.md               第二组安全调用与状态处理约定（英文 integration.en.md）
 results/gloss_check/              测试结果
 tests/test_offline.py             不访问 Gemini 的离线回归测试
 ```
 
 ## 环境要求
 
-- Windows 10/11
+- Windows 10/11（也已在 Ubuntu + Python 3.12 上运行）
 - Python 3.12（项目验证版本为 3.12.7）
 - 可访问 Google Gemini API 的网络
 - Google AI Studio API Key
@@ -160,7 +169,7 @@ if result["status"] == "ok":
 - API 请求26次，其中重试6次
 - 最终 API 失败0次
 
-100%只代表这20条固定测试句在该次运行中全部通过，不代表所有英文输入都能正确转换。
+100%只代表这20条固定测试句在该次运行中全部通过，不代表所有英文输入都能正确转换。该测试由第一组自行执行，不是交叉评审的独立测试。
 
 ## 已知限制
 
