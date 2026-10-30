@@ -6,32 +6,32 @@
   "source": {
     "dataset": "WLASL v0.3 index (C-UDA) -> third-party ASL dictionary video",
     "gloss": "NOW",
-    "video_id": "38995",
-    "url": "https://media.asldeafined.com/vocabulary/1468719996.5074.mp4",
-    "host": "media.asldeafined.com",
-    "video_sha256": "6e07a7c1c9471fb5917a10946b1aa4588bc7477e5e7db5ff134d98aec2a221ea",
-    "source_fps": 30.0,
+    "video_id": "38994",
+    "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20now-0wcuocGAvNU.mp4",
+    "host": "signstock.blob.core.windows.net",
+    "video_sha256": "612be516ad2f42738c4b5e440597f0d589c8a02af590d7b90408df8e315edfe1",
+    "source_fps": 29.97,
     "source_frames_used": [
-      3,
-      82
+      21,
+      77
     ],
     "hand_detection_rate_in_clip": {
-      "left": 0.6962025316455697,
-      "right": 0.620253164556962
+      "left": 0.48214285714285715,
+      "right": 0.5714285714285714
     }
   },
   "creation_method": "Monocular video retargeting: MediaPipe PoseLandmarker/HandLandmarker world landmarks (Savitzky-Golay smoothed, gaps interpolated) -> same G1 retargeting as the mocap clips (scaled shoulder-relative wrist targets, bounded 7-DoF IK per arm with clearance, finger flexion from joint positions)",
   "execution_mode": "kinematic_qpos_replay",
   "fps": 30,
-  "duration_s": 4.2,
+  "duration_s": 3.433333333333333,
   "core_frames": [
     24,
-    102
+    79
   ],
   "transition_s": 0.8,
   "arm_scale": {
-    "left": 1.1702821045477818,
-    "right": 0.7079130699590471
+    "left": 0.71088307930852,
+    "right": 0.71088307930852
   },
   "finger_speed_limit_rad_s": 10.0,
   "arm_speed_limit_rad_s": 15.0,
@@ -39,51 +39,51 @@
   "ik_error": {
     "left": {
       "wrist_position_m": {
-        "mean": 0.002862293625535342,
-        "max": 0.009793826708794142
+        "mean": 0.003918548289937665,
+        "max": 0.005213128843371836
       },
       "hand_orientation_rad": {
-        "mean": 0.004528855674149545,
-        "max": 0.016075478320343728
+        "mean": 0.01052383372488326,
+        "max": 0.026927424574607894
       }
     },
     "right": {
       "wrist_position_m": {
-        "mean": 0.001972902629937375,
-        "max": 0.010329525908953325
+        "mean": 0.0018466946962316154,
+        "max": 0.008033147782762822
       },
       "hand_orientation_rad": {
-        "mean": 0.012795789876256061,
-        "max": 0.07564793402172125
+        "mean": 0.0072803599545349235,
+        "max": 0.1938790566292679
       }
     }
   },
   "ik_error_sign_phase": {
     "left": {
-      "frames": 25,
+      "frames": 34,
       "wrist_position_m": {
-        "mean": 0.003990624130793251,
-        "max": 0.009793826708794142
+        "mean": 0.003960178130174044,
+        "max": 0.005213128843371836
       },
       "hand_orientation_rad": {
-        "mean": 0.004535250579872906,
-        "max": 0.016075478320343728
+        "mean": 0.005331739574725672,
+        "max": 0.016062870313296444
       }
     },
     "right": {
-      "frames": 59,
+      "frames": 22,
       "wrist_position_m": {
-        "mean": 0.0005514588293120504,
-        "max": 0.001956260071119564
+        "mean": 0.001260229225482921,
+        "max": 0.008033147782762822
       },
       "hand_orientation_rad": {
-        "mean": 0.001516827790760436,
-        "max": 0.012115917089448206
+        "mean": 0.012726018819245606,
+        "max": 0.1938790566292679
       }
     }
   },
   "max_joint_limit_clip_rad": 0.0,
-  "max_joint_speed_rad_s": 12.219795785752858,
+  "max_joint_speed_rad_s": 15.0,
   "asl_reviewed": false,
   "clinical_use": false,
   "limitations": [
@@ -101,22 +101,22 @@
     {
       "candidate": "NOW__38990",
       "dominant_hand_coverage": 0.707,
-      "sign_wrist_err_max_m": 0.0266
+      "sign_wrist_err_max_m": 0.0281
     },
     {
       "candidate": "NOW__38991",
       "dominant_hand_coverage": 0.551,
-      "sign_wrist_err_max_m": 0.0205
+      "sign_wrist_err_max_m": 0.0092
     },
     {
       "candidate": "NOW__38995",
       "dominant_hand_coverage": 0.696,
-      "sign_wrist_err_max_m": 0.0098
+      "sign_wrist_err_max_m": 0.0177
     },
     {
       "candidate": "NOW__38994",
       "dominant_hand_coverage": 0.571,
-      "sign_wrist_err_max_m": 0.0087
+      "sign_wrist_err_max_m": 0.008
     }
   ]
 }

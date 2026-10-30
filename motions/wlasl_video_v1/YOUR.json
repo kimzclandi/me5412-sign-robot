@@ -30,8 +30,8 @@
   ],
   "transition_s": 0.8,
   "arm_scale": {
-    "left": 0.7576926255140927,
-    "right": 0.7521251912298506
+    "left": 0.7121548693394616,
+    "right": 0.7121548693394616
   },
   "finger_speed_limit_rad_s": 10.0,
   "arm_speed_limit_rad_s": 15.0,
@@ -39,22 +39,22 @@
   "ik_error": {
     "left": {
       "wrist_position_m": {
-        "mean": 0.01972690433421693,
-        "max": 0.05112963389658309
+        "mean": 0.018746885998253485,
+        "max": 0.04266008082354437
       },
       "hand_orientation_rad": {
-        "mean": 0.24006684096638675,
-        "max": 0.5978958945667558
+        "mean": 0.26924958118861725,
+        "max": 0.6508865197957868
       }
     },
     "right": {
       "wrist_position_m": {
-        "mean": 0.0030975565212364962,
-        "max": 0.01827138438955205
+        "mean": 0.0011847758412604893,
+        "max": 0.004801433867696415
       },
       "hand_orientation_rad": {
-        "mean": 0.013902865776866847,
-        "max": 0.07826539621762324
+        "mean": 0.003758489484678075,
+        "max": 0.024542007839702205
       }
     }
   },
@@ -67,17 +67,17 @@
     "right": {
       "frames": 68,
       "wrist_position_m": {
-        "mean": 0.0004960046808445683,
-        "max": 0.0014968061892382271
+        "mean": 0.0008983195850771043,
+        "max": 0.0019395633207697986
       },
       "hand_orientation_rad": {
-        "mean": 0.0019028586178609604,
-        "max": 0.0241463807974213
+        "mean": 0.00245603915259288,
+        "max": 0.024542007839702205
       }
     }
   },
   "max_joint_limit_clip_rad": 0.0,
-  "max_joint_speed_rad_s": 15.000000000000004,
+  "max_joint_speed_rad_s": 15.0,
   "asl_reviewed": false,
   "clinical_use": false,
   "limitations": [
@@ -95,22 +95,22 @@
     {
       "candidate": "YOUR__64428",
       "dominant_hand_coverage": 0.42,
-      "sign_wrist_err_max_m": 0.0294
+      "sign_wrist_err_max_m": 0.0236
     },
     {
       "candidate": "YOUR__64427",
       "dominant_hand_coverage": 0.576,
-      "sign_wrist_err_max_m": 0.0649
+      "sign_wrist_err_max_m": 0.0141
     },
     {
       "candidate": "YOUR__64430",
       "dominant_hand_coverage": 0.741,
-      "sign_wrist_err_max_m": 0.0015
+      "sign_wrist_err_max_m": 0.0019
     },
     {
       "candidate": "YOUR__64429",
       "dominant_hand_coverage": 0.676,
-      "sign_wrist_err_max_m": 0.0047
+      "sign_wrist_err_max_m": 0.0023
     }
   ]
 }

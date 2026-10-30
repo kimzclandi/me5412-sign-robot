@@ -30,8 +30,8 @@
   ],
   "transition_s": 0.8,
   "arm_scale": {
-    "left": 0.8530605813789037,
-    "right": 0.6525468538040697
+    "left": 0.618421256496273,
+    "right": 0.618421256496273
   },
   "finger_speed_limit_rad_s": 10.0,
   "arm_speed_limit_rad_s": 15.0,
@@ -39,22 +39,22 @@
   "ik_error": {
     "left": {
       "wrist_position_m": {
-        "mean": 0.06383747461786277,
-        "max": 0.09192017594989846
+        "mean": 0.02760442105783019,
+        "max": 0.05056163293954943
       },
       "hand_orientation_rad": {
-        "mean": 0.5988466649750289,
-        "max": 1.072991269466932
+        "mean": 0.36637412559886556,
+        "max": 0.7384291819602605
       }
     },
     "right": {
       "wrist_position_m": {
-        "mean": 0.007527835817529211,
-        "max": 0.0436123801588795
+        "mean": 0.007408608518427663,
+        "max": 0.04003133613094696
       },
       "hand_orientation_rad": {
-        "mean": 0.14022623728099706,
-        "max": 1.8137605595335173
+        "mean": 0.13310627408528874,
+        "max": 1.8350568064686668
       }
     }
   },
@@ -67,17 +67,17 @@
     "right": {
       "frames": 38,
       "wrist_position_m": {
-        "mean": 0.005637839246931671,
-        "max": 0.0436123801588795
+        "mean": 0.00536379867127722,
+        "max": 0.04003133613094696
       },
       "hand_orientation_rad": {
-        "mean": 0.12505041224492355,
-        "max": 1.8137605595335173
+        "mean": 0.12038303693498109,
+        "max": 1.8350568064686668
       }
     }
   },
   "max_joint_limit_clip_rad": 0.0,
-  "max_joint_speed_rad_s": 15.000000000000004,
+  "max_joint_speed_rad_s": 15.0,
   "asl_reviewed": false,
   "clinical_use": false,
   "limitations": [

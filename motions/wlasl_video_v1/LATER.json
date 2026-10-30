@@ -6,32 +6,32 @@
   "source": {
     "dataset": "WLASL v0.3 index (C-UDA) -> third-party ASL dictionary video",
     "gloss": "LATER",
-    "video_id": "32320",
-    "url": "https://media.spreadthesign.com/video/mp4/13/457497.mp4",
-    "host": "media.spreadthesign.com",
-    "video_sha256": "147e749768183f2c681fa5dd65e11005814ce278f406372f2d5f053cb6400f0a",
-    "source_fps": 25.0,
+    "video_id": "32321",
+    "url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Later%202-UlcQ5965pNk.mp4",
+    "host": "signstock.blob.core.windows.net",
+    "video_sha256": "a928595a5602e70db2f8105c54aa7b9755b78b74c1b7006264bf94fa0526c6ec",
+    "source_fps": 23.98,
     "source_frames_used": [
-      8,
-      82
+      1,
+      29
     ],
     "hand_detection_rate_in_clip": {
-      "left": 0.7702702702702703,
-      "right": 0.7567567567567568
+      "left": 0.0,
+      "right": 0.7142857142857143
     }
   },
   "creation_method": "Monocular video retargeting: MediaPipe PoseLandmarker/HandLandmarker world landmarks (Savitzky-Golay smoothed, gaps interpolated) -> same G1 retargeting as the mocap clips (scaled shoulder-relative wrist targets, bounded 7-DoF IK per arm with clearance, finger flexion from joint positions)",
   "execution_mode": "kinematic_qpos_replay",
   "fps": 30,
-  "duration_s": 4.5,
+  "duration_s": 2.7,
   "core_frames": [
     24,
-    111
+    57
   ],
   "transition_s": 0.8,
   "arm_scale": {
-    "left": 0.9989051004528205,
-    "right": 0.7985369360066888
+    "left": 0.585073001259067,
+    "right": 0.585073001259067
   },
   "finger_speed_limit_rad_s": 10.0,
   "arm_speed_limit_rad_s": 15.0,
@@ -39,51 +39,45 @@
   "ik_error": {
     "left": {
       "wrist_position_m": {
-        "mean": 0.017934412409647413,
-        "max": 0.0908405209690065
+        "mean": 0.025434582971121267,
+        "max": 0.03918376161439539
       },
       "hand_orientation_rad": {
-        "mean": 0.19166878160838222,
-        "max": 0.9124315075391254
+        "mean": 0.41129744006468905,
+        "max": 0.6074514975012962
       }
     },
     "right": {
       "wrist_position_m": {
-        "mean": 0.009273243177983403,
-        "max": 0.05489314271408422
+        "mean": 0.003034870993191253,
+        "max": 0.011911804174730586
       },
       "hand_orientation_rad": {
-        "mean": 0.06206679440705695,
-        "max": 0.34945577770955294
+        "mean": 0.0209852131085602,
+        "max": 0.16160090974747218
       }
     }
   },
   "ik_error_sign_phase": {
     "left": {
-      "frames": 61,
-      "wrist_position_m": {
-        "mean": 0.004779723934590496,
-        "max": 0.018778121134842073
-      },
-      "hand_orientation_rad": {
-        "mean": 0.053526073239194775,
-        "max": 0.3283259705574415
-      }
+      "frames": 0,
+      "wrist_position_m": null,
+      "hand_orientation_rad": null
     },
     "right": {
-      "frames": 61,
+      "frames": 25,
       "wrist_position_m": {
-        "mean": 0.0017858548560288478,
-        "max": 0.019373700580515647
+        "mean": 0.0029723825099289723,
+        "max": 0.011911804174730586
       },
       "hand_orientation_rad": {
-        "mean": 0.010405086790287016,
-        "max": 0.14114500785807513
+        "mean": 0.022606125933568845,
+        "max": 0.16160090974747218
       }
     }
   },
   "max_joint_limit_clip_rad": 0.0,
-  "max_joint_speed_rad_s": 10.093793324896556,
+  "max_joint_speed_rad_s": 15.0,
   "asl_reviewed": false,
   "clinical_use": false,
   "limitations": [
@@ -101,22 +95,22 @@
     {
       "candidate": "LATER__32320",
       "dominant_hand_coverage": 0.77,
-      "sign_wrist_err_max_m": 0.0194
+      "sign_wrist_err_max_m": 0.0265
     },
     {
       "candidate": "LATER__32326",
       "dominant_hand_coverage": 0.74,
-      "sign_wrist_err_max_m": 0.0184
+      "sign_wrist_err_max_m": 0.0213
     },
     {
       "candidate": "LATER__32321",
       "dominant_hand_coverage": 0.714,
-      "sign_wrist_err_max_m": 0.0076
+      "sign_wrist_err_max_m": 0.0119
     },
     {
       "candidate": "LATER__32322",
       "dominant_hand_coverage": 0.667,
-      "sign_wrist_err_max_m": 0.0826
+      "sign_wrist_err_max_m": 0.0853
     }
   ]
 }

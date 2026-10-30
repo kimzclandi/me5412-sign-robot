@@ -6,32 +6,32 @@
   "source": {
     "dataset": "WLASL v0.3 index (C-UDA) -> third-party ASL dictionary video",
     "gloss": "DOCTOR",
-    "video_id": "17013",
-    "url": "https://media.spreadthesign.com/video/mp4/13/456750.mp4",
-    "host": "media.spreadthesign.com",
-    "video_sha256": "a0b2c3db717704b431b860aa58cd7e18a4c13db6a12eba217f18f39ca298d391",
-    "source_fps": 25.0,
+    "video_id": "17015",
+    "url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/doctor.mp4",
+    "host": "files.startasl.com",
+    "video_sha256": "d62df7d627df5e7746ce1f7c10c52f6e1a45146222b09eb0e4ea60cb366cea46",
+    "source_fps": 29.97,
     "source_frames_used": [
-      5,
-      74
+      28,
+      101
     ],
     "hand_detection_rate_in_clip": {
-      "left": 0.6666666666666666,
-      "right": 0.7101449275362319
+      "left": 0.5205479452054794,
+      "right": 0.6027397260273972
     }
   },
   "creation_method": "Monocular video retargeting: MediaPipe PoseLandmarker/HandLandmarker world landmarks (Savitzky-Golay smoothed, gaps interpolated) -> same G1 retargeting as the mocap clips (scaled shoulder-relative wrist targets, bounded 7-DoF IK per arm with clearance, finger flexion from joint positions)",
   "execution_mode": "kinematic_qpos_replay",
   "fps": 30,
-  "duration_s": 4.3,
+  "duration_s": 4.0,
   "core_frames": [
     24,
-    105
+    96
   ],
   "transition_s": 0.8,
   "arm_scale": {
-    "left": 1.3737225093162564,
-    "right": 0.7378536654819067
+    "left": 0.7181696324356628,
+    "right": 0.7181696324356628
   },
   "finger_speed_limit_rad_s": 10.0,
   "arm_speed_limit_rad_s": 15.0,
@@ -39,22 +39,22 @@
   "ik_error": {
     "left": {
       "wrist_position_m": {
-        "mean": 0.014688653695580815,
-        "max": 0.08148935545058306
+        "mean": 0.013919547934282345,
+        "max": 0.05033617196723916
       },
       "hand_orientation_rad": {
-        "mean": 0.15511836854493075,
-        "max": 0.9189550814757765
+        "mean": 0.0638051686043634,
+        "max": 0.24077668959646906
       }
     },
     "right": {
       "wrist_position_m": {
-        "mean": 0.0030676240751893505,
-        "max": 0.017624093198776163
+        "mean": 0.0026436191832398294,
+        "max": 0.011067133824341411
       },
       "hand_orientation_rad": {
-        "mean": 0.017134211083548956,
-        "max": 0.1288479896946538
+        "mean": 0.006454595814636714,
+        "max": 0.10515215743702727
       }
     }
   },
@@ -67,17 +67,17 @@
     "right": {
       "frames": 55,
       "wrist_position_m": {
-        "mean": 0.0011781933868683188,
-        "max": 0.006247140329103875
+        "mean": 0.0008975990255762678,
+        "max": 0.004052436198279224
       },
       "hand_orientation_rad": {
-        "mean": 0.010413390881355237,
-        "max": 0.09865084333362821
+        "mean": 0.005139039542470755,
+        "max": 0.10515215743702727
       }
     }
   },
   "max_joint_limit_clip_rad": 0.0,
-  "max_joint_speed_rad_s": 15.000000000000004,
+  "max_joint_speed_rad_s": 15.0,
   "asl_reviewed": false,
   "clinical_use": false,
   "limitations": [
@@ -95,22 +95,22 @@
     {
       "candidate": "DOCTOR__17015",
       "dominant_hand_coverage": 0.603,
-      "sign_wrist_err_max_m": 0.0043
+      "sign_wrist_err_max_m": 0.0041
     },
     {
       "candidate": "DOCTOR__17014",
       "dominant_hand_coverage": 0.636,
-      "sign_wrist_err_max_m": 0.1059
+      "sign_wrist_err_max_m": 0.1118
     },
     {
       "candidate": "DOCTOR__17013",
       "dominant_hand_coverage": 0.71,
-      "sign_wrist_err_max_m": 0.0062
+      "sign_wrist_err_max_m": 0.0202
     },
     {
       "candidate": "DOCTOR__17017",
       "dominant_hand_coverage": 0.714,
-      "sign_wrist_err_max_m": 0.1245
+      "sign_wrist_err_max_m": 0.1096
     }
   ]
 }

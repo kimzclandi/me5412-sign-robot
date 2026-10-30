@@ -5,8 +5,8 @@
 Every downloaded video of a gloss becomes a candidate clip in
 motions/wlasl_video_v1/candidates/<GLOSS>__<video_id>.npz (+ .json), using the
 same retargeting, clearance and neutral transitions as the mocap clips. The
-candidate with the best hand-detection coverage over the sign (ties: lower
-sign-phase IK error) is copied to motions/wlasl_video_v1/<GLOSS>.npz/.json.
+candidate with the lowest sign-phase IK error among those whose signing hand is
+detected in at least half the frames is copied to motions/wlasl_video_v1/<GLOSS>.npz/.json.
 Video-derived depth and finger detail are less reliable than mocap.
 """
 from pathlib import Path
@@ -29,6 +29,7 @@ OUT = ROOT / "motions/wlasl_video_v1"
 PREVIEWS = ROOT / "results/video_previews"
 FINGER_SPEED_LIMIT = 10.0  # rad/s; video thumb/finger estimates jitter far faster than real signing
 ARM_SPEED_LIMIT = 15.0  # rad/s; stops wrist-roll flips from noisy hand orientation
+MIN_COVERAGE = 0.5  # fraction of clip frames with the signing hand detected
 MEDIAN_FRAMES = 5  # at 30 fps: removes orientation glitches shorter than ~0.1 s
 METHOD = ("Monocular video retargeting: MediaPipe PoseLandmarker/HandLandmarker world landmarks (Savitzky-Golay "
           "smoothed, gaps interpolated) -> same G1 retargeting as the mocap clips (scaled shoulder-relative wrist "
@@ -77,7 +78,10 @@ def main():
         if not results:
             print(f"{gloss}: no usable video")
             continue
-        best = max(results, key=lambda r: (round(r[1], 1), -r[2]))
+        # Lowest sign-phase error among videos whose signing hand is seen often enough;
+        # coverage alone once picked a MEDICINE video with 22 cm error over one with 3 cm.
+        covered = [r for r in results if r[1] >= MIN_COVERAGE] or [max(results, key=lambda r: r[1])]
+        best = min(covered, key=lambda r: r[2])
         if args.render:  # render only the chosen candidate
             run(gloss, next(v for v in manifest[gloss] if f"{gloss}__{v['video_id']}" == best[0]), True)
         for ext in (".npz", ".json"):

@@ -30,8 +30,8 @@
   ],
   "transition_s": 0.8,
   "arm_scale": {
-    "left": 0.781939923618063,
-    "right": 0.68979789358878
+    "left": 0.660198589966898,
+    "right": 0.660198589966898
   },
   "finger_speed_limit_rad_s": 10.0,
   "arm_speed_limit_rad_s": 15.0,
@@ -39,22 +39,22 @@
   "ik_error": {
     "left": {
       "wrist_position_m": {
-        "mean": 0.039726227802092576,
-        "max": 0.07538701616168123
+        "mean": 0.033878982259134285,
+        "max": 0.0528259511498418
       },
       "hand_orientation_rad": {
-        "mean": 0.3417959358612864,
-        "max": 0.7624557147599638
+        "mean": 0.4010624846087246,
+        "max": 0.666213308300362
       }
     },
     "right": {
       "wrist_position_m": {
-        "mean": 0.0022958243764240405,
-        "max": 0.01832730099020128
+        "mean": 0.004341902044821623,
+        "max": 0.022794987984569172
       },
       "hand_orientation_rad": {
-        "mean": 0.04384441385315117,
-        "max": 0.2785538242342776
+        "mean": 0.05457291429605424,
+        "max": 0.3543772191189923
       }
     }
   },
@@ -67,12 +67,12 @@
     "right": {
       "frames": 79,
       "wrist_position_m": {
-        "mean": 0.0010429584387610213,
-        "max": 0.007662265826274575
+        "mean": 0.0012753456865447642,
+        "max": 0.0038048353180129986
       },
       "hand_orientation_rad": {
-        "mean": 0.0036656280509971863,
-        "max": 0.1385940966465674
+        "mean": 0.002911293332204274,
+        "max": 0.0776547784281581
       }
     }
   },
@@ -95,22 +95,22 @@
     {
       "candidate": "NEED__37882",
       "dominant_hand_coverage": 0.588,
-      "sign_wrist_err_max_m": 0.0404
+      "sign_wrist_err_max_m": 0.0418
     },
     {
       "candidate": "NEED__37881",
       "dominant_hand_coverage": 0.373,
-      "sign_wrist_err_max_m": 0.0199
+      "sign_wrist_err_max_m": 0.0186
     },
     {
       "candidate": "NEED__37884",
       "dominant_hand_coverage": 0.606,
-      "sign_wrist_err_max_m": 0.0077
+      "sign_wrist_err_max_m": 0.0038
     },
     {
       "candidate": "NEED__37883",
       "dominant_hand_coverage": 0.582,
-      "sign_wrist_err_max_m": 0.0081
+      "sign_wrist_err_max_m": 0.0116
     }
   ]
 }

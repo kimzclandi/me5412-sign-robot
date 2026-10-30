@@ -105,14 +105,18 @@ class G1Retargeter:
     def targets(self, sk):
         """Robot-frame wrist, elbow and palm-site rotation targets per side, per frame."""
         chest = sk.chest_frame()
+        lengths = {s: np.linalg.norm(sk.h(f"lowerarm_{s}") - sk.h(f"upperarm_{s}"), axis=-1)
+                      + np.linalg.norm(sk.h(f"hand_{s}") - sk.h(f"lowerarm_{s}"), axis=-1) for s in "lr"}
+        if getattr(sk, "noisy_lengths", False):
+            # Video: per-frame lengths jitter, and an arm angled towards the camera looks
+            # shorter (seen up to 1.9x left/right). Human arms are symmetric and
+            # foreshortening only shortens, so both sides use the longer side's 90th percentile.
+            video_len = max(float(np.percentile(v, 90)) for v in lengths.values())
         out = {}
         for side, (s, _) in SIDES.items():
             r = self.robot[side]
             shoulder = sk.h(f"upperarm_{s}")
-            lengths = (np.linalg.norm(sk.h(f"lowerarm_{s}") - shoulder, axis=-1)
-                       + np.linalg.norm(sk.h(f"hand_{s}") - sk.h(f"lowerarm_{s}"), axis=-1))
-            # Video estimates jitter per frame, so they use the median; mocap keeps frame 0.
-            human_len = float(np.median(lengths)) if getattr(sk, "noisy_lengths", False) else lengths[0]
+            human_len = video_len if getattr(sk, "noisy_lengths", False) else lengths[s][0]  # mocap: frame 0
             scale = r["arm_length"] / human_len
             to_robot = lambda p: r["shoulder"] + scale * np.einsum("tji,tj->ti", chest, p - shoulder)
             human_hand = hand_frame(sk.h(f"hand_{s}"), sk.h(f"middle_01_{s}"), sk.h(f"index_01_{s}"), sk.h(f"pinky_01_{s}"))

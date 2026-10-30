@@ -50,11 +50,11 @@
       "motion": "motions/wlasl_video_v1/THANK-YOU.npz",
       "core_frames": [
         24,
-        104
+        90
       ],
       "sign_frames": [
-        32,
-        90
+        24,
+        80
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -67,11 +67,11 @@
       "motion": "motions/wlasl_video_v1/SORRY.npz",
       "core_frames": [
         24,
-        102
+        163
       ],
       "sign_frames": [
         24,
-        97
+        132
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -101,11 +101,11 @@
       "motion": "motions/wlasl_video_v1/NO.npz",
       "core_frames": [
         24,
-        76
+        129
       ],
       "sign_frames": [
         24,
-        76
+        118
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -169,11 +169,11 @@
       "motion": "motions/wlasl_video_v1/DEAF.npz",
       "core_frames": [
         24,
-        46
+        89
       ],
       "sign_frames": [
         24,
-        43
+        66
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -186,11 +186,11 @@
       "motion": "motions/wlasl_video_v1/DOCTOR.npz",
       "core_frames": [
         24,
-        105
+        96
       ],
       "sign_frames": [
         24,
-        89
+        78
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -203,11 +203,11 @@
       "motion": "motions/wlasl_video_v1/NURSE.npz",
       "core_frames": [
         24,
-        116
+        102
       ],
       "sign_frames": [
         24,
-        103
+        88
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -220,11 +220,11 @@
       "motion": "motions/wlasl_video_v1/INTERPRETER.npz",
       "core_frames": [
         24,
-        83
+        77
       ],
       "sign_frames": [
         24,
-        74
+        64
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -254,11 +254,11 @@
       "motion": "motions/wlasl_video_v1/MEDICINE.npz",
       "core_frames": [
         24,
-        135
+        93
       ],
       "sign_frames": [
         24,
-        119
+        74
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -305,11 +305,11 @@
       "motion": "motions/wlasl_video_v1/HAVE.npz",
       "core_frames": [
         24,
-        70
+        79
       ],
       "sign_frames": [
-        29,
-        60
+        24,
+        61
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -373,11 +373,11 @@
       "motion": "motions/wlasl_video_v1/HURT.npz",
       "core_frames": [
         24,
-        95
+        91
       ],
       "sign_frames": [
         24,
-        82
+        70
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -475,11 +475,11 @@
       "motion": "motions/wlasl_video_v1/NOT.npz",
       "core_frames": [
         24,
-        102
+        86
       ],
       "sign_frames": [
         24,
-        88
+        70
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -492,11 +492,11 @@
       "motion": "motions/wlasl_video_v1/NOW.npz",
       "core_frames": [
         24,
-        102
+        79
       ],
       "sign_frames": [
         24,
-        82
+        57
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -509,11 +509,11 @@
       "motion": "motions/wlasl_video_v1/SOON.npz",
       "core_frames": [
         24,
-        62
+        125
       ],
       "sign_frames": [
         24,
-        58
+        94
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -526,11 +526,11 @@
       "motion": "motions/wlasl_video_v1/LATER.npz",
       "core_frames": [
         24,
-        111
+        57
       ],
       "sign_frames": [
         24,
-        96
+        54
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -543,11 +543,11 @@
       "motion": "motions/wlasl_video_v1/TOMORROW.npz",
       "core_frames": [
         24,
-        80
+        88
       ],
       "sign_frames": [
-        26,
-        66
+        24,
+        75
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
@@ -560,11 +560,11 @@
       "motion": "motions/wlasl_video_v1/MORNING.npz",
       "core_frames": [
         24,
-        78
+        98
       ],
       "sign_frames": [
-        35,
-        74
+        24,
+        79
       ],
       "robot_status": "approximate",
       "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",

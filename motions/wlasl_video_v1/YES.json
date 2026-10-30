@@ -30,8 +30,8 @@
   ],
   "transition_s": 0.8,
   "arm_scale": {
-    "left": 0.776426123486404,
-    "right": 0.7254199144768996
+    "left": 0.7084937460865672,
+    "right": 0.7084937460865672
   },
   "finger_speed_limit_rad_s": 10.0,
   "arm_speed_limit_rad_s": 15.0,
@@ -39,22 +39,22 @@
   "ik_error": {
     "left": {
       "wrist_position_m": {
-        "mean": 0.023274937490214687,
-        "max": 0.07495740787941192
+        "mean": 0.026777150293715163,
+        "max": 0.05447018683871428
       },
       "hand_orientation_rad": {
-        "mean": 0.2654651968833073,
-        "max": 0.6110322312628017
+        "mean": 0.2953419790533091,
+        "max": 0.6410765771523089
       }
     },
     "right": {
       "wrist_position_m": {
-        "mean": 0.0071387982239488005,
-        "max": 0.035827549699284325
+        "mean": 0.007264347286415461,
+        "max": 0.03578245063517778
       },
       "hand_orientation_rad": {
-        "mean": 0.03885444435510344,
-        "max": 0.2097724576487231
+        "mean": 0.03466734227254712,
+        "max": 0.19008274942752038
       }
     }
   },
@@ -62,23 +62,23 @@
     "left": {
       "frames": 4,
       "wrist_position_m": {
-        "mean": 0.06658677368391239,
-        "max": 0.07495740787941192
+        "mean": 0.03948366503622498,
+        "max": 0.04584309176193497
       },
       "hand_orientation_rad": {
-        "mean": 0.5107020356176775,
-        "max": 0.6110322312628017
+        "mean": 0.4952468134670007,
+        "max": 0.5610634997287769
       }
     },
     "right": {
       "frames": 53,
       "wrist_position_m": {
-        "mean": 0.0009227543590736391,
-        "max": 0.004010163373831442
+        "mean": 0.0010450486626366897,
+        "max": 0.00325582571749954
       },
       "hand_orientation_rad": {
-        "mean": 0.0034408327863565302,
-        "max": 0.07214537033619747
+        "mean": 0.0028459070791619586,
+        "max": 0.052997448164358425
       }
     }
   },
@@ -101,22 +101,22 @@
     {
       "candidate": "YES__64281",
       "dominant_hand_coverage": 0.343,
-      "sign_wrist_err_max_m": 0.0027
+      "sign_wrist_err_max_m": 0.0029
     },
     {
       "candidate": "YES__64280",
       "dominant_hand_coverage": 0.484,
-      "sign_wrist_err_max_m": 0.0019
+      "sign_wrist_err_max_m": 0.0027
     },
     {
       "candidate": "YES__64287",
       "dominant_hand_coverage": 0.746,
-      "sign_wrist_err_max_m": 0.075
+      "sign_wrist_err_max_m": 0.0458
     },
     {
       "candidate": "YES__64288",
       "dominant_hand_coverage": 0.667,
-      "sign_wrist_err_max_m": 0.0755
+      "sign_wrist_err_max_m": 0.0834
     }
   ]
 }

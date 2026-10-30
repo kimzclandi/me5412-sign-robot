@@ -6,32 +6,32 @@
   "source": {
     "dataset": "WLASL v0.3 index (C-UDA) -> third-party ASL dictionary video",
     "gloss": "NO",
-    "video_id": "38530",
-    "url": "https://media.asldeafined.com/vocabulary/1522767129.7038.mp4",
+    "video_id": "38529",
+    "url": "https://media.asldeafined.com/vocabulary/1468719269.5533.mp4",
     "host": "media.asldeafined.com",
-    "video_sha256": "bf4f6f859357445d40f1ae90cbc02be384f8863d0d3cbf4c294a96ce7d3504d6",
+    "video_sha256": "aa8fedbd03a5b56975f44ec19e2754e670923ba5a32221e24b798f7a1753047c",
     "source_fps": 30.0,
     "source_frames_used": [
       1,
-      54
+      107
     ],
     "hand_detection_rate_in_clip": {
       "left": 0.0,
-      "right": 0.8301886792452831
+      "right": 0.7452830188679245
     }
   },
   "creation_method": "Monocular video retargeting: MediaPipe PoseLandmarker/HandLandmarker world landmarks (Savitzky-Golay smoothed, gaps interpolated) -> same G1 retargeting as the mocap clips (scaled shoulder-relative wrist targets, bounded 7-DoF IK per arm with clearance, finger flexion from joint positions)",
   "execution_mode": "kinematic_qpos_replay",
   "fps": 30,
-  "duration_s": 3.3333333333333335,
+  "duration_s": 5.1,
   "core_frames": [
     24,
-    76
+    129
   ],
   "transition_s": 0.8,
   "arm_scale": {
-    "left": 0.7414663203363636,
-    "right": 0.6974045273897477
+    "left": 0.7021217695050499,
+    "right": 0.7021217695050499
   },
   "finger_speed_limit_rad_s": 10.0,
   "arm_speed_limit_rad_s": 15.0,
@@ -39,46 +39,40 @@
   "ik_error": {
     "left": {
       "wrist_position_m": {
-        "mean": 0.029665364513872083,
-        "max": 0.11539157344136983
+        "mean": 0.04943334655830442,
+        "max": 0.06615199225896382
       },
       "hand_orientation_rad": {
-        "mean": 0.2038101781552781,
-        "max": 0.7288320802808315
+        "mean": 0.5873964912950748,
+        "max": 0.8790337900827497
       }
     },
     "right": {
       "wrist_position_m": {
-        "mean": 0.0015839435107280148,
-        "max": 0.016791201993108292
+        "mean": 0.0026487003762517987,
+        "max": 0.021727731527685992
       },
       "hand_orientation_rad": {
-        "mean": 0.0064489019226049655,
-        "max": 0.07947413043832391
+        "mean": 0.028541435765556226,
+        "max": 0.1592579206821184
       }
     }
   },
   "ik_error_sign_phase": {
     "left": {
-      "frames": 9,
-      "wrist_position_m": {
-        "mean": 0.08824425629803784,
-        "max": 0.11539157344136983
-      },
-      "hand_orientation_rad": {
-        "mean": 0.49071899981842887,
-        "max": 0.7288320802808315
-      }
+      "frames": 0,
+      "wrist_position_m": null,
+      "hand_orientation_rad": null
     },
     "right": {
-      "frames": 48,
+      "frames": 95,
       "wrist_position_m": {
-        "mean": 0.0006186859967390485,
-        "max": 0.0027023292181264026
+        "mean": 0.0011433986947610266,
+        "max": 0.00413784219670197
       },
       "hand_orientation_rad": {
-        "mean": 0.002579072045800443,
-        "max": 0.022492343280561544
+        "mean": 0.01814118353207208,
+        "max": 0.1592579206821184
       }
     }
   },
@@ -101,22 +95,22 @@
     {
       "candidate": "NO__38525",
       "dominant_hand_coverage": 0.594,
-      "sign_wrist_err_max_m": 0.0237
+      "sign_wrist_err_max_m": 0.0269
     },
     {
       "candidate": "NO__38524",
       "dominant_hand_coverage": 0.316,
-      "sign_wrist_err_max_m": 0.1288
+      "sign_wrist_err_max_m": 0.0571
     },
     {
       "candidate": "NO__38529",
       "dominant_hand_coverage": 0.745,
-      "sign_wrist_err_max_m": 0.0034
+      "sign_wrist_err_max_m": 0.0041
     },
     {
       "candidate": "NO__38530",
       "dominant_hand_coverage": 0.83,
-      "sign_wrist_err_max_m": 0.1154
+      "sign_wrist_err_max_m": 0.0187
     }
   ]
 }
