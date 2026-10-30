@@ -1,5 +1,7 @@
 # 第二组调用约定
 
+**中文** · [English](integration.en.md)
+
 ## 稳定入口
 
 从项目根目录运行 Python，并把 `src` 加入模块搜索路径后导入：
@@ -11,6 +13,8 @@ result = text_to_gloss(sentence, demo_only=True)
 ```
 
 也可以通过 `scripts/translate.py` 调用。不要复制 Prompt 或重新实现校验逻辑。
+
+在主仓库中，本模块的包同样叫 `sign_robot`，因此 `scripts/demo/hospital_demo.py` 以子进程运行 `scripts/translate.py --demo-only`，不在同一进程中导入。
 
 ## 输入
 
@@ -52,6 +56,8 @@ else:
 ## 可复现性
 
 固定代码、词库、Prompt、模型 ID 和环境配置可以保持接口与校验行为一致，但在线生成式模型不保证每次返回完全相同的 Gloss。调用方必须按状态处理每一次独立结果，不能依赖历史输出。
+
+端到端演示在失败时回退到离线缓存，只适用于已缓存的 9 句脚本对话，并标注 `offline_cache_after_live_failure`，不会复用任意的历史结果。
 
 ## 动作词库责任
 

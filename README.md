@@ -2,19 +2,29 @@
 
 **中文** · [English](README.en.md) · [中英说明目录](docs/README.md)
 
-> **下一阶段：十个固定语意 → 条件学习动作。** 语意端复用免费本地 MiniLM，动作端训练 ID 条件轨迹模型，六人分为文字意图理解、示范到机器人、学习型动作三组，每组两人，每人承担实现与测试；UI、报告、PPT 和集成由全组共同完成。目标限定医疗沟通中的固定表达。各组先在任务分支并行推进，稳定后合并，最终只选择一种主要展示方式；在线站点重建暂缓。十类为开发目标，当前实现仍为下文记录的三类原型。
+> **当前演示：医院场景的英文 → ASL 机器人手语。** 一位聋人患者就诊、现场没有手语翻译：护士或医生输入英文，第一组用在线 LLM 加词表校验转成 ASL gloss，第二组为每个 gloss 提供 Unitree G1 + Inspire 手的关节轨迹，第三组负责衔接与播放。范围是 1 个场景、35 个 gloss、9 句脚本对话。
 >
-> 从这里开始：[六人分工与实施指南](docs/ten-intent-learning-guide.md) · [GitHub 分支、PR 与合并步骤](docs/github-collaboration.md) · [当前代码依赖图](docs/code-dependencies.md)。各自在任务分支迭代，PR 检查后合入 `master`，最后冻结交付。
+> 从这里开始：[医院端到端演示](docs/hospital-demo.md)（一条命令从句子到机器人视频，默认离线、不需要 API key）· [第一组 文字→gloss](group1_text_to_gloss/README.md) · [第二组交接](docs/group2-handoff.md) · [汇报要点](docs/presentation-notes.md) · [GitHub 协作](docs/github-collaboration.md)。
 
+| 部分 | 状态 |
+|---|---|
+| 第一组 英文 → gloss | `group1_text_to_gloss/`，Gemini API 加 35 词表校验；20 句自测全对（原句 9/9、换说法 6/6、词库外 5/5 拒绝）；9 句对话另存离线结果 |
+| 第二组 gloss → 动作 | 35/35 个 gloss 有轨迹：9 个来自 Studio Galt 动作捕捉，26 个来自公开 ASL 词典视频 + MediaPipe（评为“近似”） |
+| 端到端 | `scripts/demo/hospital_demo.py`；9 句视频与 91 秒完整对话在 `results/demo/` |
+| 第三组 衔接与播放 | 进行中；当前使用固定 0.5 秒过渡的基线拼接 |
 
-这是六人课程项目的可运行研究原型。默认演示将英文或短语按钮映射到有限动作；新增“学习模型”实验入口从文字向量与连续相位生成关节轨迹。已完成一次小型 RBF 岭回归训练，使用 3 条自编轨迹、367 个训练帧及 365 个同轨迹验证帧。项目仍仅覆盖 HELLO、THANK_YOU、PLEASE_WAIT；所有动作的 ASL 可理解性尚未经过真实使用者评审，PLEASE_WAIT 还存在词例到完整礼貌请求的表达缺口。
+机器人动作是候选手语动作，**未经 ASL 使用者评审**；第一组测试为组内自测，不是独立测试。
 
-代码仓库按小组协作需要设置为 **GitHub 私有仓库**；网页展示版另行公开分享。按 [现行六人分工指南](docs/ten-intent-learning-guide.md) 分配任务；[六人接手说明](docs/six-person-handoff.md) 仅保留首版历史背景。
+## 前期工作：三类网页原型
+
+以下内容是项目前期的可运行研究原型，保留作为对照与历史记录。默认演示将英文或短语按钮映射到有限动作；“学习模型”实验入口从文字向量与连续相位生成关节轨迹。已完成一次小型 RBF 岭回归训练，使用 3 条自编轨迹、367 个训练帧及 365 个同轨迹验证帧。该原型仅覆盖 HELLO、THANK_YOU、PLEASE_WAIT；所有动作的 ASL 可理解性尚未经过真实使用者评审，PLEASE_WAIT 还存在词例到完整礼貌请求的表达缺口。十类学习动作的计划见 [十类语意指南](docs/ten-intent-learning-guide.md)，[六人接手说明](docs/six-person-handoff.md) 仅保留首版历史背景。
+
+代码仓库现为 **GitHub 公开仓库**，组员以协作者身份提交 PR；网页展示版另行分享。
 
 ## 给组员的入口
 
 - **已有在线项目**：[原在线展示版](https://me5412-robot-signing-lab.kimzc0103.chatgpt.site)。本轮更新仓库的双语说明与网页源码，未同步线上站点；实时模型推理保留在本地。
-- **代码与实验**：获得仓库访问权限后，使用 `git clone https://github.com/kimzclandi/me5412-sign-robot.git`。私有仓库链接不会自动授予同学权限，需要仓库所有者另行邀请。
+- **代码与实验**：使用 `git clone https://github.com/kimzclandi/me5412-sign-robot.git`。仓库公开可读；提交代码需要仓库所有者邀请为协作者，`master` 受保护，须通过 PR 合并。
 - **完整实验台**：按下方“环境和资源复现”准备 Python 环境，再启动本地服务。
 - **网站源码**：[website/README.md](website/README.md) 包含已经发布的静态展示版及独立预览命令；GitHub 推送不会自动重新发布网站。
 
@@ -176,4 +186,4 @@ SIGN_ROBOT_LLM_CONFIG=config/llm_experimental.json .venv/bin/python scripts/eval
 
 语义模型来自 [Sentence Transformers MiniLM](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)，固定提交和哈希见 `config/embedding_download_manifest.json`。
 
-当前是课程研究原型。公开发布前需要另行检查第三方模型、代码、媒体的许可及课程要求；未替团队申请数据或联系评审。已有网站保留原有访问状态，本轮未重新发布。代码仓库保持私有；后续改为公开代码需单独确认。
+当前是课程研究原型。公开发布前需要另行检查第三方模型、代码、媒体的许可及课程要求；未替团队申请数据或联系评审。已有网站保留原有访问状态，本轮未重新发布。代码仓库已由所有者于 2026-10 改为公开；第三方视频、模型权重和 API key 仍不入库。

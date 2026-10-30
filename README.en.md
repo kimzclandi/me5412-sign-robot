@@ -2,18 +2,29 @@
 
 [中文](README.md) · **English** · [Bilingual documentation index](docs/README.md)
 
-> **Next stage: ten fixed intents → learned conditional motions.** Reuse free local MiniLM for intent selection and train an ID-conditioned trajectory model. Six people work in pairs on text intent understanding, demonstrations-to-robot, and learned motion. Everyone implements and tests; UI, report, slides, and integration are shared. The target is fixed healthcare expressions. Develop in parallel on task branches, merge stable versions, and select one primary presentation format at the end. Online site rebuilding is deferred. Ten classes are a development target; the current implementation still contains the three-class prototype documented below.
+> **Current demo: English → ASL robot signing in a hospital scenario.** A deaf patient visits a hospital with no interpreter present: a nurse or doctor types English, Group 1 turns it into ASL glosses with an online LLM plus vocabulary validation, Group 2 provides a Unitree G1 + Inspire hand joint trajectory for each gloss, and Group 3 handles transitions and playback. Scope: one scenario, 35 glosses, 9 scripted dialogue lines.
 >
-> Start with the [six-person implementation guide](docs/ten-intent-learning-guide.en.md), [GitHub branches and PRs](docs/github-collaboration.en.md), and [code dependencies](docs/code-dependencies.en.md). Develop on task branches, check PRs before merging into `master`, and freeze the final delivery.
+> Start here: [hospital end-to-end demo](docs/hospital-demo.en.md) (one command from sentence to robot video, offline by default, no API key) · [Group 1 text to gloss](group1_text_to_gloss/README.en.md) · [Group 2 handoff](docs/group2-handoff.en.md) · [talking points](docs/presentation-notes.en.md) · [GitHub workflow](docs/github-collaboration.en.md).
 
-This runnable six-person course prototype maps English text or phrase buttons to a limited motion library. A separate learning experiment generates joint trajectories from text embeddings and continuous phase. One small RBF ridge-regression fit used three authored trajectories, 367 training frames, and 365 validation frames from the same trajectories. Only HELLO, THANK_YOU, and PLEASE_WAIT are currently covered. Real ASL users have not reviewed comprehensibility, and PLEASE_WAIT still has a gap between a WAIT lexical example and a complete polite request.
+| Part | Status |
+|---|---|
+| Group 1 English → gloss | `group1_text_to_gloss/`, Gemini API plus validation against the 35-gloss vocabulary; 20-sentence self-test all correct (original 9/9, paraphrases 6/6, out-of-vocabulary 5/5 rejected); offline results saved for the 9 dialogue lines |
+| Group 2 gloss → motion | 35/35 glosses have trajectories: 9 from Studio Galt mocap, 26 from public ASL dictionary videos + MediaPipe (graded "approximate") |
+| End to end | `scripts/demo/hospital_demo.py`; videos of the 9 lines and the 91 s full dialogue in `results/demo/` |
+| Group 3 transitions and playback | In progress; currently baseline stitching with a fixed 0.5 s blend |
 
-The code repository is **private on GitHub** for team collaboration; the demonstration website is shared separately. Read the [implementation roadmap](docs/实施路线.en.md), then the [historical handoff cards](docs/six-person-handoff.en.md).
+Robot motions are candidate signs, **not reviewed by ASL users**; Group 1's test is an in-group self-test, not an independent test.
+
+## Earlier work: three-class web prototype
+
+The following is the project's earlier runnable research prototype, kept for comparison and as a record. It maps English text or phrase buttons to a limited motion library; a separate learning experiment generates joint trajectories from text embeddings and continuous phase. One small RBF ridge-regression fit used three authored trajectories, 367 training frames, and 365 validation frames from the same trajectories. The prototype covers only HELLO, THANK_YOU, and PLEASE_WAIT. Real ASL users have not reviewed comprehensibility, and PLEASE_WAIT still has a gap between a WAIT lexical example and a complete polite request. The ten-intent plan is in the [ten-intent guide](docs/ten-intent-learning-guide.en.md); the [historical handoff cards](docs/six-person-handoff.en.md) are kept as background.
+
+The code repository is now **public on GitHub**; teammates contribute as collaborators through PRs. The demonstration website is shared separately.
 
 ## Entry points for teammates
 
 - [Existing online demonstration](https://me5412-robot-signing-lab.kimzc0103.chatgpt.site): this update covers bilingual repository documentation and web source; the online site has not been republished. Live inference runs locally.
-- Code and experiments: once granted access, run `git clone https://github.com/kimzclandi/me5412-sign-robot.git`. Sharing a private repository URL does not grant access; the owner must invite collaborators.
+- Code and experiments: run `git clone https://github.com/kimzclandi/me5412-sign-robot.git`. The repository is publicly readable; pushing requires a collaborator invitation from the owner, and `master` is protected, so changes go through PRs.
 - Full bench: prepare the Python environment below, then start the local service.
 - [Website source](website/README.en.md): the static demonstration and standalone preview command. GitHub pushes do not automatically publish the website.
 
@@ -175,4 +186,4 @@ Signing references: [ASL University / Lifeprint](https://www.lifeprint.com/), wi
 
 Semantic model: [Sentence Transformers MiniLM](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2), fixed commit/hashes in `config/embedding_download_manifest.json`.
 
-This is a course research prototype. Further public releases require checking third-party model/code/media licenses and course rules. No data applications or reviewer contacts were made. The existing website retains its access state and has not been republished in this update. The code remains private; publishing it requires separate authorization.
+This is a course research prototype. Further public releases require checking third-party model/code/media licenses and course rules. No data applications or reviewer contacts were made. The existing website retains its access state and has not been republished in this update. The owner made the code repository public in October 2026; third-party videos, model weights and API keys are still not committed.

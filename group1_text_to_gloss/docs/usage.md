@@ -1,5 +1,7 @@
 # 使用说明
 
+**中文** · [English](usage.en.md)
+
 ## 1. 启动
 
 首次使用时，在 PowerShell 中进入项目并创建本地配置文件：
@@ -83,7 +85,7 @@ Python 调用：
 result = text_to_gloss("Hello", demo_only=True)
 ```
 
-使用前仍应由第二组确认 `motion_ready` 状态准确。
+使用前仍应由第二组确认 `motion_ready` 状态准确（截至 2026-10-31，35 个均已就绪）。
 
 ## 9. 最小 Python 示例
 
