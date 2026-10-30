@@ -1,15 +1,17 @@
 """Rate-limited kinematic sentence transitions; library assets stay intact.
 
 The first word keeps frame 0 (rise from neutral), the last keeps its return to
-neutral, just as stitch_baseline.py does. Interior words use inclusive sign_frames,
-except explicit source-only departure trims in SOURCE_END_FRAME_OVERRIDES.
+neutral, just as stitch_baseline.py does. Interior words use inclusive sign_frames;
+they may trim departure via SOURCE_END_FRAME_OVERRIDES or arrival via
+TARGET_START_FRAME_OVERRIDES. Library assets and metadata stay intact.
 This is a geometric preview, not a dynamics controller or an ASL validation.
 
 Signed clearance is positive for separation and negative for penetration.
 Normal paths require at least 2 mm; paths with either endpoint strictly below
 2 mm must never worsen the smaller endpoint clearance. Both use the same
 direct, via1, via2, neutral-hub, then source retract/approach escalation.
-Only MEDICINE→MORNING may then attempt one bounded arm-only RRT-Connect.
+The RRT_PAIRS allowlist (MEDICINE→MORNING and NURSE→BLOOD-DRAW) may then
+attempt one bounded arm-only RRT-Connect per transition.
 Retract/approach always uses the smaller endpoint clearance as its floor,
 including when both endpoints exceed 2 mm.
 Every sub-2 mm run must additionally attach to its own near endpoint and rise
@@ -68,13 +70,20 @@ MOTION_LIBRARY_PATH = ROOT / "motions/hospital_v1_motions.json"
 # NEED->INTERPRETER is an arrival defect; NURSE->BLOOD-DRAW is a post-core
 # retract/approach defect. Neither is a source-end trim.
 SOURCE_END_FRAME_OVERRIDES = {"MEDICINE": 73, "NIGHT": 61, "HURT": 66}
+# Arrival-only stitch trim from the R13b scan (_scratch/r13b_diagnosis_scan.json):
+# INTERPRETER:25 trims 1/54 = 1.85% of inclusive core from library sign_start=24.
+# f24 is -26.745 mm; f25 is +4.856 mm. Library assets/metadata stay intact.
+TARGET_START_FRAME_OVERRIDES = {"INTERPRETER": 25}
 # Adjacent arm-link meshes (e.g. elbow↔wrist_pitch) sit ~9.500 mm apart. That
 # value is a true mj_geomDistance result (distmax=1.0 still returns ~9.50015 mm),
 # not a MuJoCo distmax clip. Report separations at/above this floor as >=9.5.
 CLEARANCE_DISPLAY_CAP_M = 0.0095
 CLEARANCE_CAP_TOL_M = 1e-9
 POSE_MATCH_TOL_RAD = 1e-9
-# Round 8 Step 3: one invocation, only after all earlier routes fail for this pair.
+# One invocation per allowlisted pair, only after all earlier routes fail.
+RRT_PAIRS = frozenset({("MEDICINE", "MORNING"), ("NURSE", "BLOOD-DRAW")})
+# Compatibility for callers that imported the former single-pair constant;
+# planner/evaluator gating uses RRT_PAIRS above.
 RRT_GLOSSES = ("MEDICINE", "MORNING")
 RRT_SEED = 5412
 RRT_BUDGET_S = 120.0
@@ -880,9 +889,10 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
     All passing one-/two-via candidates compete on minimum signed clearance.
     Hub clearance is checked on both legs as well as the complete path. After
     hub failure, the general retract/approach route uses the source word's
-    frames from departure onward and the target word's pre-sign frames. An in-slice
-    collision below the floor stops every pair except MEDICINE→MORNING. That
-    pair gets one bounded RRT-Connect attempt after all previous routes fail.
+    frames from departure onward and the target word's frames through arrival.
+    An in-slice collision below the floor stops pairs outside RRT_PAIRS.
+    Allowlisted pairs get one bounded RRT-Connect attempt after all previous
+    routes fail, including in-slice collisions.
     Failed output is diagnostic only, never for execution.
     """
     direct = minimum_jerk_blend(a, b, joint_names)
@@ -892,7 +902,7 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
     endpoint_floor = endpoint_min if endpoint_near else None
     required_clearance = endpoint_min if endpoint_near else PENETRATION_TOLERANCE_M
     attempts = []
-    rrt_enabled = (str(from_gloss).upper(), str(to_gloss).upper()) == RRT_GLOSSES
+    rrt_enabled = (str(from_gloss).upper(), str(to_gloss).upper()) in RRT_PAIRS
 
     def assess(q, kind, leg_intervals, directions=(), legs=(), *, floor=None, result=None):
         floor = required_clearance if floor is None else floor
@@ -1046,7 +1056,7 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
                     f"bodies={' | '.join(hit['bodies'] or [])}, distance_m={hit['distance_m']}")
             attempt["reasons"] = reasons
             # Preserve the slice-stop diagnostic selection for other pairs.
-            # Only the Round 8 Step 3 pair may continue to one RRT attempt.
+            # Only RRT_PAIRS may continue to one RRT attempt.
             retract_choice = (index, q)
             if not rrt_enabled:
                 return finish(retract_choice)
@@ -1121,6 +1131,27 @@ def source_end_frame(word, *, overrides=None):
     return int(frame)
 
 
+def target_start_frame(word, *, overrides=None):
+    """Resolve an arrival frame without changing the library's sign_frames.
+
+    Overrides must trim within the sign/core intersection, strictly after the
+    library sign start. None uses TARGET_START_FRAME_OVERRIDES; {} disables trims.
+    Call only for a word with an incoming transition, never the first word.
+    """
+    overrides = TARGET_START_FRAME_OVERRIDES if overrides is None else overrides
+    sign_start, sign_end = word["sign_frames"]
+    if word["gloss"] not in overrides:
+        return sign_start
+    frame = overrides[word["gloss"]]
+    core = word.get("core_frames")
+    if (isinstance(frame, (bool, np.bool_)) or not isinstance(frame, (int, np.integer))
+            or core is None or not max(core[0], sign_start) <= frame <= min(core[1], sign_end)
+            or frame <= sign_start):
+        raise ValueError(f"{word['gloss']}: target-start override must be an integer inside "
+                         "core_frames/sign_frames, strictly after sign_frames[0]")
+    return int(frame)
+
+
 def peak_rates(positions, joint_names):
     rates = np.abs(np.diff(positions, axis=0)) * FPS
     names = [str(n) for n in joint_names]
@@ -1131,13 +1162,14 @@ def peak_rates(positions, joint_names):
 
 
 def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None,
-                  source_end_frame_overrides=None):
+                  source_end_frame_overrides=None, target_start_frame_overrides=None):
     """Return the baseline-compatible motion and a separate, explicit status report.
 
     Library samples are not retimed or edited. Explicit departure trims affect
-    only words with an outgoing transition; the first rise and final return stay
-    intact. Pass {} to disable the default source_end_frame_overrides. Rate and
-    collision promises apply to inserted transitions, not word cores.
+    only words with an outgoing transition; arrival trims affect only words with
+    an incoming transition. The first rise and final return stay intact. For either
+    override mapping, None uses its module default and {} disables trims. Rate
+    and collision promises apply to inserted transitions, not word cores.
     """
     glosses = [g.upper() for g in glosses]
     if not glosses:
@@ -1148,6 +1180,8 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None,
         raise ValueError(f"Not in the library: {unknown}")
     source_end_frame_overrides = dict(
         SOURCE_END_FRAME_OVERRIDES if source_end_frame_overrides is None else source_end_frame_overrides)
+    target_start_frame_overrides = dict(
+        TARGET_START_FRAME_OVERRIDES if target_start_frame_overrides is None else target_start_frame_overrides)
     clips, names = [], None
     for gloss in glosses:
         with np.load(root / words[gloss]["motion"], allow_pickle=False) as data:
@@ -1169,9 +1203,9 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None,
     height_check = (lambda q: wrist_height_check(model, names, q)) if model is not None else None
     pieces, transitions, segments, handoff, count = [], [], [], [], 0
     for k, (gloss, q) in enumerate(zip(glosses, clips)):
-        s0 = words[gloss]["sign_frames"][0]
         # Deliberately keep baseline first-word rise and last-word return.
-        start = 0 if k == 0 else s0
+        start = (0 if k == 0 else
+                 target_start_frame(words[gloss], overrides=target_start_frame_overrides))
         end = (len(q) - 1 if k == len(glosses) - 1 else
                source_end_frame(words[gloss], overrides=source_end_frame_overrides))
         if k:
@@ -1179,16 +1213,16 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None,
             departure = segments[-1]["source_end_frame"]
             source_full = clips[k - 1]
             retract = source_full[departure:]
-            approach = q[: s0 + 1]
+            approach = q[: start + 1]
             plan = plan_transition(
                 pieces[-1][-1], q[start], names, clearance=clearance,
                 height_check=height_check, model=model,
                 from_gloss=prev, to_gloss=gloss,
                 source_retract=retract, target_approach=approach,
                 source_retract_frames=(departure, len(source_full) - 1),
-                target_approach_frames=(0, s0))
+                target_approach_frames=(0, start))
             chosen = plan.attempts[plan.selected_attempt]
-            source_frames = (departure, s0)
+            source_frames = (departure, start)
             for word, source_frame, result in zip((glosses[k - 1], gloss), source_frames,
                                                    plan.endpoint_clearance):
                 contacts = result["near_contacts"] or result["collisions"]
@@ -1221,7 +1255,7 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None,
                                 "start_frame": count - 1,
                                 "end_frame": count + len(plan.positions) - 2,
                                 "source_start_frame": departure,
-                                "target_start_frame": s0,
+                                "target_start_frame": start,
                                 "intervals": len(plan.positions) - 1,
                                 "duration_s": (len(plan.positions) - 1) / FPS,
                                 "status": plan.status, "used_via": plan.used_via,
@@ -1282,6 +1316,7 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None,
     passed = sum(t["status"] == "PASS" for t in transitions)
     report = {"glosses": glosses, "fps": FPS, "frames": len(q),
               "source_end_frame_overrides": source_end_frame_overrides,
+              "target_start_frame_overrides": target_start_frame_overrides,
               "duration_s": len(q) / FPS, "last_timestamp_s": (len(q) - 1) / FPS,
               "transition_count": len(transitions), "pass_count": passed,
               "source_near_count": source_near, "accepted_count": passed + source_near,
@@ -1296,10 +1331,10 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None,
               "source_near_rule": "either moving-pair endpoint minimum strictly < 0.002 m; same full search, label source_near only if the relative floor and endpoint-attached monotonic gate pass",
               "sub_2mm_rule": "all moving-pair samples strictly < 0.002 m must form one contiguous run attached to its own near source or target endpoint; from that endpoint clearance must be non-decreasing through the first >= 0.002 m sample and never re-dip afterwards; an all-near run is checked over the entire path from an eligible endpoint",
               "sub_2mm_frame_reference": "path-local inclusive, zero-based",
-              "relative_floor_rule": "near-source whole-path minimum >= min(endpoint clearances); otherwise continue through hub and retract/approach; only MEDICINE->MORNING then gets one RRT-Connect attempt",
+              "relative_floor_rule": "near-source whole-path minimum >= min(endpoint clearances); otherwise continue through hub and retract/approach; RRT_PAIRS (MEDICINE->MORNING, NURSE->BLOOD-DRAW) may then get one RRT-Connect attempt",
               "retract_approach_rule": "whole route and original library slices must each meet min(endpoint clearances), including clear endpoints; recorded required_clearance_m is specific to each candidate",
               "escalation_order": ["direct", "best_via1_or_via2", "hub", "source_retract_approach", "FAILED"],
-              "rrt_override": {"glosses": list(RRT_GLOSSES), "after": "all prior routes fail, including in-slice collision",
+              "rrt_override": {"pairs": [list(pair) for pair in sorted(RRT_PAIRS)], "after": "all prior routes fail, including in-slice collision",
                                "seed": RRT_SEED, "budget_s": RRT_BUDGET_S,
                                "failure_status": "needs_group2_fix", "search": "ARM_SUFFIXES only, within MuJoCo limits"},
               "clearance_display_cap_m": CLEARANCE_DISPLAY_CAP_M,
@@ -1309,7 +1344,7 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None,
               "clearance_derivation": getattr(clearance, "derivation", None),
               "vendor_structural_gaps": getattr(clearance, "vendor_structural_gaps", []),
               "sentence_peak_rates": peak_rates(q, names),
-              "failed_trajectory_policy": "FAILED emits the checked candidate with greatest minimum clearance, except an in-slice collision selects retract_approach to expose the library defect; only MEDICINE->MORNING continues to one RRT-Connect attempt, whose failure is needs_group2_fix with the checked retract/approach diagnostic; failed_count includes needs_group2_fix; all failed output is diagnostic only; source_near is not absolute 2 mm certification",
+              "failed_trajectory_policy": "FAILED emits the checked candidate with greatest minimum clearance, except an in-slice collision selects retract_approach to expose the library defect; RRT_PAIRS (MEDICINE->MORNING, NURSE->BLOOD-DRAW) may continue to one RRT-Connect attempt, whose failure is needs_group2_fix with the checked retract/approach diagnostic; failed_count includes needs_group2_fix; all failed output is diagnostic only; source_near is not absolute 2 mm certification",
               "source_near_handoff": handoff,
               "word_segments": segments, "transitions": transitions}
     return motion, report

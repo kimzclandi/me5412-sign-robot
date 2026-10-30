@@ -109,8 +109,17 @@ def test_rrt_accepts_negative_endpoint_relative_floor_without_relaxing_normal_ga
     assert transitions.PENETRATION_TOLERANCE_M == 0.002
 
 
-@pytest.mark.parametrize("pair,expected_calls", [(('MEDICINE', 'MORNING'), 1), (('MORNING', 'MEDICINE'), 0), (('YOU', 'BUY'), 0)])
-def test_rrt_timeout_needs_group2_fix_once_only_for_authorized_pair(pair, expected_calls):
+def test_rrt_pair_allowlist_contains_exactly_the_two_authorized_pairs():
+    assert isinstance(transitions.RRT_PAIRS, frozenset)
+    assert transitions.RRT_PAIRS == frozenset({("MEDICINE", "MORNING"), ("NURSE", "BLOOD-DRAW")})
+
+
+@pytest.mark.parametrize("pair,expected_calls", [
+    (("MEDICINE", "MORNING"), 1), (("NURSE", "BLOOD-DRAW"), 1),
+    (("nurse", "blood-draw"), 1), (("MORNING", "MEDICINE"), 0),
+    (("BLOOD-DRAW", "NURSE"), 0), (("YOU", "BUY"), 0),
+])
+def test_rrt_timeout_needs_group2_fix_once_only_for_allowlisted_pairs(pair, expected_calls):
     calls = []
     tick = iter(range(100))
 
@@ -142,11 +151,12 @@ def test_rrt_timeout_needs_group2_fix_once_only_for_authorized_pair(pair, expect
         assert plan.status == "FAILED" and plan.method == "retract_approach"
 
 
-def test_rrt_is_not_invoked_when_prior_route_passes():
+@pytest.mark.parametrize("pair", [("MEDICINE", "MORNING"), ("NURSE", "BLOOD-DRAW")])
+def test_rrt_is_not_invoked_when_prior_route_passes(pair):
     def unexpected(*args, **kwargs):
         pytest.fail("A passing earlier route must not invoke RRT")
 
     plan = transitions.plan_transition(
         START, GOAL, NAMES, clearance=lambda q: result(0.003, q),
-        from_gloss="MEDICINE", to_gloss="MORNING", rrt_factory=unexpected)
+        from_gloss=pair[0], to_gloss=pair[1], rrt_factory=unexpected)
     assert plan.status == "PASS" and plan.method == "direct"

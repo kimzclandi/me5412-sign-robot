@@ -1,8 +1,24 @@
-# 第三组：衔接规划器，第十三轮
+# 第三组：衔接规划器，第十三轮 b
 
 **中文** · [English](transition-planner.en.md)
 
-## 第十三轮：重基到 bcdefc4 后重新规划
+## 第十三轮 b 修复第一轮：延后到达与 RRT 白名单
+
+`TARGET_START_FRAME_OVERRIDES = {"INTERPRETER": 25}` 是本轮唯一新增帧覆盖。依据本地 [R13b 扫描](../_scratch/r13b_diagnosis_scan.json)，INTERPRETER 库 sign_start=f24 的间隙为 **−26.745 mm**，f25 为 **+4.856 mm**；从 sign_start 裁剪 **1/54 = 1.85%** 含端点核心长度，低于 10%。这只处理拼接到达端，不修改动作库或原始元数据，也不证明词内动作通过。
+
+`target_start_frame(word, overrides=...)` 与源端机制对称：`None` 使用模块默认，`{}` 禁用；覆盖须为 `core_frames ∩ sign_frames` 内的整数，严格晚于库 sign_start，且不晚于 core_end 或 sign_end。首词仍从 f0 起势，末词保留回中立。过渡终点、后续词切片、接近切片 `q[:start+1]`、交接帧号均使用实际到达帧。报告始终记录 `target_start_frame_overrides`；evaluator 按保存报告的策略复查，旧报告缺少该字段时使用库起点。源端默认仍为 `MEDICINE:73`、`NIGHT:61`、`HURT:66`。
+
+RRT 门控统一为 `RRT_PAIRS = frozenset({("MEDICINE", "MORNING"), ("NURSE", "BLOOD-DRAW")})`。仅白名单内的有向过渡在 direct、via1/via2、hub、retract/approach 全部失败后可作一次仅手臂 RRT，包括原始切片碰撞。报告 `rrt_override.pairs` 列出两对，取代原单对 `rrt_override.glosses`。种子 **5412**、总预算 **120 秒**、手臂 **15 rad/s**、手指 **10 rad/s**、普通路径 **+2 mm** 下限与端点附着单调门槛保持不变。
+
+从仓库根目录运行本轮聚焦检查：
+
+```bash
+.venv/bin/python -m pytest -q tests/test_plan_transitions.py tests/test_transition_endpoint_gate.py tests/test_rrt_connect.py
+```
+
+实际结果为 **227 passed / 0 failed（4.13 秒）**；见本地 [_scratch/sol_r13b_round1_pytest.txt](../_scratch/sol_r13b_round1_pytest.txt) 与[本轮交付记录](../_scratch/sol_r13b_round1_result.md)。这是开发者回归检查；本轮未重新规划 19 段，也未运行全量 pytest。新的过渡几何结果、连续无碰撞、词内动作、动力学、硬件、ASL 含义与使用者理解均未验证。以下保留第十三轮及更早历史结果，不能当作本轮修复后的结果。
+
+## 第十三轮历史记录：重基到 bcdefc4 后重新规划
 
 本轮重基到第二组 `bcdefc4`，保留规划器的 cherry-pick 提交，排除 wrist-fix 提交。旧的 `NURSE:57` / `DOCTOR:87` 来自重基前的动作帧号，已由 `ac67b76` 清除；随后 `a2b2379` 依据当前动作扫描加入三项源端提前离开覆盖：
 
@@ -43,7 +59,7 @@ check_mem && .venv/bin/python -m pytest -q
 
 ## 第九轮历史记录
 
-第九轮增加**低于 2 mm 样本的端点连续附着与单调退出验收**，在原有较差端点相对下限之外实施。运动对 `ENDPOINT_NEAR_M = 0.002 m`、手臂 15 rad/s、手指 10 rad/s 不变；RRT-Connect 仍仅用于 MEDICINE→MORNING。重新生成目录为 `results/planned_transitions/round9/`，第八轮 Step 3 与更早原始产物保留。以下是开发者几何验收，不代表已验证 ASL；单词句零次过渡检查不证明词内动作通过。
+第九轮增加**低于 2 mm 样本的端点连续附着与单调退出验收**，在原有较差端点相对下限之外实施。运动对 `ENDPOINT_NEAR_M = 0.002 m`、手臂 15 rad/s、手指 10 rad/s 不变；当时 RRT-Connect 仅用于 MEDICINE→MORNING（当前两对白名单见上方 R13b 节）。重新生成目录为 `results/planned_transitions/round9/`，第八轮 Step 3 与更早原始产物保留。以下是开发者几何验收，不代表已验证 ASL；单词句零次过渡检查不证明词内动作通过。
 
 ## 第九轮新增验收规则
 
@@ -174,13 +190,13 @@ check_mem && .venv/bin/python scripts/evaluate_planned_transitions.py --report r
 
 上表的绝对 2 mm 规则用于 direct / via / hub；**(c) 的整条路线和两个原始库切片始终要求最小间隙 ≥ 较差端点，即使两端都 ≥2 mm**。例如端点为 8 / 12 mm、途中为 3 mm 的 (c) 必须 FAILED。每次尝试及所选过渡的 `required_clearance_m` 报告实际下限，`clearance.passed` 仍仅表示绝对 2 mm 检查。evaluate 独立复查引用的原始库切片；即使保存采样通过，也不能覆盖切片内 FAILED。
 
-`failed_trajectory_policy` 的例外：若 (c) 原始切片低于下限，报告库帧与配对，并选择 retract_approach 供诊断，即使先前失败候选最小间隙更大。其他过渡到此停止；**仅 MEDICINE→MORNING 继续以下单次 RRT**。其他全部失败的搜索保留最小间隙最大的候选。FAILED 与 needs_group2_fix 输出均仅供诊断。达到或超过 9.5 mm 的运动间隙在控制台和双语表格统一显示 `>=9.5`（`clearance_capped=true`），JSON 保留原始测量值；约 9.50015 mm 来自 elbow/wrist_pitch 网格间隙，`mj_geomDistance(distmax=1.0)` 复测并非查询截断。通过的 direct 如有腕部下垂可额外搜索 via，只有高度与距离均通过才替换；纯高度搜索不升级 hub。
+`failed_trajectory_policy` 的例外：若 (c) 原始切片低于下限，报告库帧与配对，并选择 retract_approach 供诊断，即使先前失败候选最小间隙更大。白名单外的过渡到此停止；**RRT_PAIRS 内的 MEDICINE→MORNING 与 NURSE→BLOOD-DRAW 可继续以下单次 RRT**（Step 3 当时仅允许前者）。其他全部失败的搜索保留最小间隙最大的候选。FAILED 与 needs_group2_fix 输出均仅供诊断。达到或超过 9.5 mm 的运动间隙在控制台和双语表格统一显示 `>=9.5`（`clearance_capped=true`），JSON 保留原始测量值；约 9.50015 mm 来自 elbow/wrist_pitch 网格间隙，`mj_geomDistance(distmax=1.0)` 复测并非查询截断。通过的 direct 如有腕部下垂可额外搜索 via，只有高度与距离均通过才替换；纯高度搜索不升级 hub。
 
 via1 / via2 保留通用的双臂偏移、中立手臂退让和左右串行退让候选，不按词身份做特例。IK 只解手臂，手指和其他坐标保留端点凸插值；耦合关节不是独立驱动。每腿采用 `s(u)=10u³−15u⁴+6u⁵`，按连续峰值 `1.875 × |Δq| / T` 向上取整到 30 fps，至少 **0.3 s / 九个间隔**。源词不修改或重采样，内部词使用含端点的 sign_frames；首词保留第 0 帧起势、末词保留回中立，过渡端点逐位相同。
 
 ### 单次 RRT-Connect 协议
 
-`RRT_GLOSSES = ("MEDICINE", "MORNING")` 是唯一例外。direct、全部 via1/via2、hub、retract/approach 均失败后才搜索，从 MEDICINE 结束姿态（f119）到 MORNING 起始姿态（f35），不重放有缺陷的源收回或目标接近片段。(c) 的失败尝试及原库缺陷继续保存在 `attempts` 与 `source_near_handoff`。
+当前 `RRT_PAIRS` 允许 MEDICINE→MORNING 与 NURSE→BLOOD-DRAW；Step 3 当时仅允许前者。direct、全部 via1/via2、hub、retract/approach 均失败后才搜索，从实际源词离开姿态到实际目标词到达姿态，不重放有缺陷的源收回或目标接近片段。Step 3 历史 MEDICINE f119 / MORNING f35 不作为当前端点；当前端点按上方覆盖策略解析。(c) 的失败尝试及原库缺陷继续保存在 `attempts` 与 `source_near_handoff`。
 
 - 搜索精确双臂 `ARM_SUFFIXES`：实际 **14 个手臂关节**，在有限 MuJoCo 限位内采样。欧氏最近邻与步进，步长 **0.35 rad**，目标偏置 **0.15**；随机源固定为 `numpy.random.default_rng(RRT_SEED=5412)`。
 - 手指及全部非手臂坐标采用确定策略：将节点投影到手臂起终向量，截断投影进度至 [0, 1]，按该权重插值源 / 目标坐标；节点间所有坐标线性插值。不搜索任何非手臂维度，不宣称耦合手指可独立驱动。

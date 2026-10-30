@@ -1,8 +1,24 @@
-# Group 3 transition planner, round 13
+# Group 3 transition planner, round 13b
 
 [中文](transition-planner.md) · **English**
 
-## Round 13: replan after rebasing onto bcdefc4
+## Round 13b fix round 1: late arrival and RRT allowlist
+
+`TARGET_START_FRAME_OVERRIDES = {"INTERPRETER": 25}` is the only new frame override. The local [R13b scan](../_scratch/r13b_diagnosis_scan.json) records **−26.745 mm** at INTERPRETER's library sign_start=f24 and **+4.856 mm** at f25. This trims **1/54 = 1.85%** of the inclusive core length from sign_start, below 10%. It affects the stitched arrival endpoint, preserves library assets and metadata, and does not certify the word core.
+
+`target_start_frame(word, overrides=...)` mirrors the departure mechanism: `None` uses the module default and `{}` disables trims. An override must be an integer within `core_frames ∩ sign_frames`, strictly after library sign_start and no later than core_end or sign_end. The first word still starts at f0 and the final word keeps its neutral return. The transition endpoint, following word slice, approach slice `q[:start+1]`, and handoff frame all use the resolved arrival. Reports always record `target_start_frame_overrides`; the evaluator rechecks the saved policy and uses library starts for legacy reports without this field. Departure defaults remain `MEDICINE:73`, `NIGHT:61`, and `HURT:66`.
+
+The gate now uses `RRT_PAIRS = frozenset({("MEDICINE", "MORNING"), ("NURSE", "BLOOD-DRAW")})`. Each allowlisted directed transition may make one arm-only RRT attempt after direct, via1/via2, hub, and retract/approach all fail, including original-slice collisions. The report lists both pairs in `rrt_override.pairs`, replacing the single-pair `rrt_override.glosses`. Seed **5412**, total budget **120 s**, arm **15 rad/s**, finger **10 rad/s**, normal-path **+2 mm** floor, and the monotonic endpoint-attachment gate remain unchanged.
+
+Run this round's focused checks from the repository root:
+
+```bash
+.venv/bin/python -m pytest -q tests/test_plan_transitions.py tests/test_transition_endpoint_gate.py tests/test_rrt_connect.py
+```
+
+Actual result: **227 passed / 0 failed (4.13 s)**; see local [_scratch/sol_r13b_round1_pytest.txt](../_scratch/sol_r13b_round1_pytest.txt) and the [delivery record](../_scratch/sol_r13b_round1_result.md). These are developer regression checks. This round did not replan the 19 transitions or run full pytest. Updated transition geometry, continuous collision freedom, word cores, dynamics, hardware, ASL meaning, and user comprehension remain unverified. Round 13 and earlier results below are historical and do not describe trajectories after this fix.
+
+## Round 13 historical record: replan after rebasing onto bcdefc4
 
 This round rebases onto Group 2 `bcdefc4`, retaining the planner cherry-picks and excluding the wrist-fix commits. The old `NURSE:57` / `DOCTOR:87` entries used motion frame numbers from before the rebase and were cleared in `ac67b76`. Commit `a2b2379` then added three source-end early-departure overrides based on scans of the current motions:
 
@@ -43,7 +59,7 @@ The planner may exit 0 even with failed transitions, so inspect report statuses.
 
 ## Round 9 historical record
 
-Round 9 adds **endpoint-attached, monotonic exit verification for samples below 2 mm**, in addition to the existing worse-endpoint relative floor. Moving-pair `ENDPOINT_NEAR_M = 0.002 m`, arm 15 rad/s and finger 10 rad/s limits stay unchanged; RRT-Connect remains limited to MEDICINE→MORNING. Regenerated artifacts use `results/planned_transitions/round9/`; round 8 Step 3 and older raw artifacts remain intact. These are developer geometry checks, not ASL validation. Singleton sentences have no transition checks and do not certify word cores.
+Round 9 adds **endpoint-attached, monotonic exit verification for samples below 2 mm**, in addition to the existing worse-endpoint relative floor. Moving-pair `ENDPOINT_NEAR_M = 0.002 m`, arm 15 rad/s and finger 10 rad/s limits stay unchanged; RRT-Connect was then limited to MEDICINE→MORNING (see the R13b section above for the current two-pair allowlist). Regenerated artifacts use `results/planned_transitions/round9/`; round 8 Step 3 and older raw artifacts remain intact. These are developer geometry checks, not ASL validation. Singleton sentences have no transition checks and do not certify word cores.
 
 ## Additional round 9 acceptance rule
 
@@ -174,13 +190,13 @@ Search escalates **direct → via1/via2 → qpos0 hub → source retract / targe
 
 The table's absolute 2 mm rule applies to direct / via / hub. **Route (c)'s whole route and both original library slices always require minimum clearance ≥ the worse endpoint, even when both endpoints are ≥2 mm.** For example, 8 / 12 mm endpoints with a 3 mm route minimum must FAILED for (c). Each attempt and selected transition report their actual `required_clearance_m`; `clearance.passed` still means only the absolute 2 mm check. Evaluate independently rechecks referenced original slices, so passing saved samples cannot override an in-slice FAILED result.
 
-The `failed_trajectory_policy` exception is explicit: an original (c) slice below its floor reports its library frame and pair and selects retract_approach for diagnosis even when an earlier failed candidate has a greater minimum. Other pairs stop there. **Only MEDICINE→MORNING continues to the single RRT attempt described below.** Other failed searches retain the greatest-minimum candidate. FAILED and needs_group2_fix outputs are diagnostic only. Moving clearances at or above 9.5 mm display as `>=9.5` (`clearance_capped=true`) in the console and both tables; JSON retains raw measurements. The ~9.50015 mm elbow/wrist_pitch reading is a true mesh gap rechecked using `mj_geomDistance(distmax=1.0)`, not query clipping. An accepted direct path with wrist undershoot can search vias for a replacement passing both height and clearance; height-only search does not escalate to hub.
+The `failed_trajectory_policy` exception is explicit: an original (c) slice below its floor reports its library frame and pair and selects retract_approach for diagnosis even when an earlier failed candidate has a greater minimum. Pairs outside the allowlist stop there. **RRT_PAIRS permits MEDICINE→MORNING and NURSE→BLOOD-DRAW to continue to the single RRT attempt described below** (Step 3 originally allowed only the former). Other failed searches retain the greatest-minimum candidate. FAILED and needs_group2_fix outputs are diagnostic only. Moving clearances at or above 9.5 mm display as `>=9.5` (`clearance_capped=true`) in the console and both tables; JSON retains raw measurements. The ~9.50015 mm elbow/wrist_pitch reading is a true mesh gap rechecked using `mj_geomDistance(distmax=1.0)`, not query clipping. An accepted direct path with wrist undershoot can search vias for a replacement passing both height and clearance; height-only search does not escalate to hub.
 
 Via1/via2 retain general bilateral offsets, neutral-arm retreat and symmetric serialized retreat families, without word-specific exceptions. IK solves arms only, keeping fingers and other coordinates at convex endpoint interpolation; coupled joints are not independent drives. Each leg uses `s(u)=10u³−15u⁴+6u⁵`, rounds the continuous peak `1.875 × |Δq| / T` upward to 30 fps, and lasts at least **0.3 s / nine intervals**. Source words are neither edited nor resampled. Interior words keep inclusive sign_frames; the first keeps frame-0 rise and the last keeps its neutral return. Transition endpoints remain bit-exact.
 
 ### One-shot RRT-Connect protocol
 
-`RRT_GLOSSES = ("MEDICINE", "MORNING")` is the only override. Direct, all via1/via2 candidates, hub and retract/approach must fail first. Search starts at MEDICINE's sign end (f119) and ends at MORNING's sign start (f35); it does not replay the defective source retract or target approach. The failed (c) attempt and its library defects remain in `attempts` and `source_near_handoff`.
+The current `RRT_PAIRS` allows MEDICINE→MORNING and NURSE→BLOOD-DRAW; Step 3 originally allowed only the former. Direct, all via1/via2 candidates, hub and retract/approach must fail first. Search connects the resolved source departure pose and target arrival pose without replaying the defective source retract or target approach. Step 3's historical MEDICINE f119 / MORNING f35 are not current endpoints; the override policies above resolve current frames. The failed (c) attempt and its library defects remain in `attempts` and `source_near_handoff`.
 
 - Search exact bilateral `ARM_SUFFIXES`: **14 arm joints**, sampled within finite MuJoCo joint limits. Euclidean nearest/steer, **0.35 rad** step, **0.15** goal bias; RNG is `numpy.random.default_rng(RRT_SEED=5412)`.
 - Fingers and every non-arm coordinate are deterministic: derive each knot's progress by clipping its scalar projection onto the arm start→goal vector to [0, 1], then interpolate their source/target coordinates with that weight. All coordinates interpolate linearly between knots. No non-arm dimension is searched; coupled fingers are not independent drives.
