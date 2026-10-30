@@ -33,6 +33,7 @@ Windows 把 `.venv/bin/python` 换成 `.venv\Scripts\python`。完整原型（�
 | 用原句选择 | `.venv/bin/python scripts/demo/hospital_demo.py "Where does it hurt?" --view` |
 | 生成带字幕的视频 | `MUJOCO_GL=egl .venv/bin/python scripts/demo/hospital_demo.py --line s4 --render`（macOS／Windows 去掉 `MUJOCO_GL=egl`） |
 | 9 句全部生成，并拼成完整对话视频 | `MUJOCO_GL=egl .venv/bin/python scripts/demo/hospital_demo.py --all --render` |
+| 另外按 PPT 第 13–16 页生成 4 幕视频 | `MUJOCO_GL=egl .venv/bin/python scripts/demo/hospital_demo.py --acts` |
 | 现场输入任意句子（调用第一组在线模型） | `.venv/bin/python scripts/demo/hospital_demo.py "Where is the pain?" --live --view` |
 
 9 句脚本对话（s1–s9）见 `group1_text_to_gloss/data/offline/hospital_dialogue_gloss.json`，例如 s4 `Where does it hurt?` → `YOU HURT WHERE`。视频顶部是英文原句，底部 gloss 逐词高亮，并标明 gloss 来源、拼接方法和“未经 ASL 评审”。
@@ -56,6 +57,7 @@ Windows 把 `.venv/bin/python` 换成 `.venv\Scripts\python`。完整原型（�
 - `results/demo/<名称>.npz`：整句轨迹，与仓库动作同一格式（`timestamps_s`、`joint_names`、`positions`，弧度，30 fps）。
 - `results/demo/<名称>.json`：原句、gloss、来源、每个词的帧范围和来源库（动作捕捉或视频）。
 - `results/demo/<名称>.mp4`、`results/demo/hospital_dialogue.mp4`（9 句连播，约 91 秒）：已入库，可直接放进 PPT 或在断网、电脑出问题时作为备份播放。
+- 第 13–16 页的 4 幕视频（只有机器人，带英文原句和逐词 gloss 字幕）：`act1_registration.mp4`（第 1–2 句，约 23 秒）、`act2_consultation.mp4`（第 3–5 句，约 33 秒）、`act3_treatment.mp4`（第 6–7 句，约 22 秒）、`act4_discharge.mp4`（第 8–9 句，约 13 秒）。PPT 讲稿提到的右侧真人词典视频属于各网站，不入库，需要时在本地另行拼接并注明来源。
 
 ## 5. 与第三组的衔接
 

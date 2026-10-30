@@ -51,3 +51,9 @@ def test_live_result_is_used_rejection_plays_nothing_and_failure_falls_back(monk
     assert demo.resolve("Do you understand?", use_live=True)["gloss_source"] == "offline_cache_after_live_failure"
     with pytest.raises(SystemExit):
         demo.resolve("Is the pain bad?", use_live=True)
+
+
+def test_demo_acts_cover_every_scripted_line_once_in_order():
+    ids = [key for act in demo.ACTS.values() for key in act]
+    assert ids == [l["id"] for l in demo.cached_lines()]
+    assert list(demo.ACTS) == ["act1_registration", "act2_consultation", "act3_treatment", "act4_discharge"]
