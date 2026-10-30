@@ -61,12 +61,12 @@ HEIGHT_TOLERANCE_M = 1e-7
 MOVING_JOINT_TOL_RAD = 1e-9
 MOTION_LIBRARY_PATH = ROOT / "motions/hospital_v1_motions.json"
 # Source-only stitch trims; library metadata/assets and arrival frames stay intact.
-# Round 11 scan: NURSE f58–60 collide; f57 is the nearest preceding >=2 mm
-# pose (+9.500546 mm), inside core [24,75] and before library sign end f60.
-# Round 12 scan: DOCTOR f88–89 collide; f87 is nearest clear (+4.445804 mm).
-# New default trims follow the documented <=10% inclusive-core-length policy;
-# DOCTOR trims 2/82 frames (2.439%), checked by a focused policy test.
-SOURCE_END_FRAME_OVERRIDES = {"NURSE": 57, "DOCTOR": 87}
+# Round 13 starts with empty overrides on bcdefc4. Round 11 NURSE:57 and
+# Round 12 DOCTOR:87 were derived on pre-bcdefc4 motions and have been cleared.
+# Re-derive early departures only if Round 13 planning finds source_near or
+# source-end collisions; each trim is capped at 10% of inclusive core length,
+# with the policy checked by a focused test before adding future defaults.
+SOURCE_END_FRAME_OVERRIDES = {}
 # Adjacent arm-link meshes (e.g. elbow↔wrist_pitch) sit ~9.500 mm apart. That
 # value is a true mj_geomDistance result (distmax=1.0 still returns ~9.50015 mm),
 # not a MuJoCo distmax clip. Report separations at/above this floor as >=9.5.

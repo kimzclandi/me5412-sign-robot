@@ -7,6 +7,7 @@ import math
 import numpy as np
 import pytest
 
+import sign_robot.transitions as transitions
 from sign_robot.motion import ROOT, apply_frame, load_model, validate_motion
 from sign_robot.transitions import (
     FPS,
@@ -78,6 +79,12 @@ def words():
     return entries
 
 
+@pytest.fixture
+def temporary_departure_overrides(words):
+    # Test-only one-frame trims from current metadata, not collision candidates.
+    return {gloss: words[gloss]["sign_frames"][1] - 1 for gloss in ("NURSE", "DOCTOR")}
+
+
 @pytest.fixture(scope="module")
 def evaluation_script():
     spec = importlib.util.spec_from_file_location(
@@ -133,6 +140,7 @@ def test_tiny_joint_delta_still_takes_point_three_seconds():
 @pytest.mark.parametrize("glosses", SENTENCES, ids=lambda seq: "_".join(seq))
 def test_sentence_boundaries_rates_and_source_frames(glosses, words):
     motion, report = plan_sentence(glosses, clearance=clear)
+    assert report["source_end_frame_overrides"] == {}
     validate_motion(motion)
     positions = motion["positions"]
     names = motion["joint_names"]
@@ -155,7 +163,7 @@ def test_sentence_boundaries_rates_and_source_frames(glosses, words):
         transition = positions[start_frame:end_frame + 1]
         with np.load(ROOT / words[previous]["motion"]) as source:
             np.testing.assert_array_equal(names, source["joint_names"])
-            departure = SOURCE_END_FRAME_OVERRIDES.get(previous, words[previous]["sign_frames"][1])
+            departure = words[previous]["sign_frames"][1]
             assert segment["source_start_frame"] == departure
             np.testing.assert_array_equal(transition[0], source["positions"][departure])
         with np.load(ROOT / words[following]["motion"]) as target:
@@ -168,7 +176,7 @@ def test_sentence_boundaries_rates_and_source_frames(glosses, words):
         with np.load(ROOT / words[gloss]["motion"]) as clip:
             expected_start = 0 if index == 0 else words[gloss]["sign_frames"][0]
             expected_end = (len(clip["positions"]) - 1 if index == len(glosses) - 1 else
-                            SOURCE_END_FRAME_OVERRIDES.get(gloss, words[gloss]["sign_frames"][1]))
+                            words[gloss]["sign_frames"][1])
             assert segment["source_start_frame"] == expected_start
             assert segment["source_end_frame"] == expected_end
             np.testing.assert_array_equal(
@@ -177,30 +185,43 @@ def test_sentence_boundaries_rates_and_source_frames(glosses, words):
             )
 
 
-@pytest.mark.parametrize("glosses,gloss,library_end,default_end,replacement_end", [
-    (("NURSE", "BLOOD-DRAW"), "NURSE", 60, 57, 56),
-    (("NOW", "NURSE", "BLOOD-DRAW"), "NURSE", 60, 57, 56),
-    (("DOCTOR", "COME"), "DOCTOR", 89, 87, 86),
-    (("PLEASE", "WAIT", "DOCTOR", "COME", "SOON"), "DOCTOR", 89, 87, 86),
+def test_round13_default_departures_use_library_sign_ends(words):
+    assert SOURCE_END_FRAME_OVERRIDES == {}
+    for gloss in ("NURSE", "DOCTOR"):
+        assert source_end_frame(words[gloss]) == words[gloss]["sign_frames"][1]
+
+
+@pytest.mark.parametrize("glosses,gloss", [
+    (("NURSE", "BLOOD-DRAW"), "NURSE"),
+    (("NOW", "NURSE", "BLOOD-DRAW"), "NURSE"),
+    (("DOCTOR", "COME"), "DOCTOR"),
+    (("PLEASE", "WAIT", "DOCTOR", "COME", "SOON"), "DOCTOR"),
 ])
-@pytest.mark.parametrize("override_mode", ["default", "replace", "disable"])
+@pytest.mark.parametrize("override_mode", ["default", "replace", "patched_default", "disable"])
 def test_departure_override_trims_source_only_and_knob_works(
-        glosses, gloss, library_end, default_end, replacement_end, override_mode, words):
-    overrides, expected = {"default": (None, default_end),
-                           "replace": ({gloss: replacement_end}, replacement_end),
-                           "disable": ({}, library_end)}[override_mode]
+        glosses, gloss, override_mode, words, temporary_departure_overrides, monkeypatch):
+    library_start, library_end = words[gloss]["sign_frames"]
+    replacement_end = library_end - 2
+    if override_mode != "default":
+        monkeypatch.setattr(transitions, "SOURCE_END_FRAME_OVERRIDES", temporary_departure_overrides)
+    overrides = {"default": None, "replace": {gloss: replacement_end},
+                 "patched_default": None, "disable": {}}[override_mode]
+    expected_overrides = (temporary_departure_overrides if override_mode == "patched_default"
+                          else overrides or {})
+    expected = expected_overrides.get(gloss, library_end)
     motion, report = plan_sentence(glosses, clearance=clear, source_end_frame_overrides=overrides)
-    assert report["source_end_frame_overrides"] == (
-        {"NURSE": 57, "DOCTOR": 87} if overrides is None else overrides)
+    assert report["source_end_frame_overrides"] == expected_overrides
     word = next(s for s in report["word_segments"] if s["gloss"] == gloss)
     transition = next(s for s in report["transitions"] if s["from_gloss"] == gloss)
-    assert words[gloss]["sign_frames"] == [24, library_end]  # Library metadata stays intact.
+    assert words[gloss]["sign_frames"] == [library_start, library_end]
     assert word["source_end_frame"] == transition["source_start_frame"] == expected
     if expected != library_end:
-        assert words[gloss]["core_frames"][0] <= expected <= words[gloss]["core_frames"][1]
+        core_start, core_end = words[gloss]["core_frames"]
+        assert max(core_start, library_start) <= expected <= core_end
         assert expected < library_end
+        assert (library_end - expected) / (core_end - core_start + 1) <= 0.10
     with np.load(ROOT / words[gloss]["motion"], allow_pickle=False) as source:
-        start = 0 if glosses[0] == gloss else 24
+        start = 0 if glosses[0] == gloss else library_start
         assert word["source_start_frame"] == start
         np.testing.assert_array_equal(
             motion["positions"][word["start_frame"]:word["end_frame"] + 1],
@@ -209,19 +230,22 @@ def test_departure_override_trims_source_only_and_knob_works(
                                       source["positions"][expected])
         if glosses[0] != gloss:
             arrival = next(s for s in report["transitions"] if s["to_gloss"] == gloss)
-            assert arrival["target_start_frame"] == 24
+            assert arrival["target_start_frame"] == library_start
             np.testing.assert_array_equal(motion["positions"][arrival["end_frame"]],
-                                          source["positions"][24])
-    if gloss == "DOCTOR":
-        assert transition["target_start_frame"] == 66
-        with np.load(ROOT / words["COME"]["motion"], allow_pickle=False) as target:
-            np.testing.assert_array_equal(motion["positions"][transition["end_frame"]],
-                                          target["positions"][66])
+                                          source["positions"][library_start])
+    target_word = words[transition["to_gloss"]]
+    target_start = target_word["sign_frames"][0]
+    assert transition["target_start_frame"] == target_start
+    with np.load(ROOT / target_word["motion"], allow_pickle=False) as target:
+        np.testing.assert_array_equal(motion["positions"][transition["end_frame"]],
+                                      target["positions"][target_start])
 
 
 @pytest.mark.parametrize("glosses", [("NURSE",), ("NOW", "NURSE"), ("DOCTOR",), ("WAIT", "DOCTOR")])
-def test_departure_override_keeps_final_return_and_singleton(glosses, words):
-    motion, report = plan_sentence(glosses, clearance=clear)
+def test_departure_override_keeps_final_return_and_singleton(
+        glosses, words, temporary_departure_overrides):
+    motion, report = plan_sentence(glosses, clearance=clear,
+                                   source_end_frame_overrides=temporary_departure_overrides)
     word = report["word_segments"][-1]
     with np.load(ROOT / words[glosses[-1]]["motion"], allow_pickle=False) as source:
         assert word["source_end_frame"] == len(source["positions"]) - 1
@@ -229,49 +253,64 @@ def test_departure_override_keeps_final_return_and_singleton(glosses, words):
                                       source["positions"][word["source_start_frame"]:])
 
 
-@pytest.mark.parametrize("gloss,target,invalid_frames", [
-    ("NURSE", "BLOOD-DRAW", [23, 60, 76, 57.5, True]),
-    ("DOCTOR", "COME", [23, 89, 106, 87.5, True]),
-])
-@pytest.mark.parametrize("index", range(5))
+@pytest.mark.parametrize("gloss,target", [("NURSE", "BLOOD-DRAW"), ("DOCTOR", "COME")])
+@pytest.mark.parametrize("invalid_kind", ["before_start", "sign_end", "after_core", "fractional", "boolean"])
 def test_departure_override_rejects_out_of_core_or_non_trim_frames(
-        gloss, target, invalid_frames, index, words):
+        gloss, target, invalid_kind, words):
+    sign_start, sign_end = words[gloss]["sign_frames"]
+    core_start, core_end = words[gloss]["core_frames"]
+    frame = {"before_start": max(core_start, sign_start) - 1, "sign_end": sign_end,
+             "after_core": core_end + 1, "fractional": sign_end - 0.5,
+             "boolean": True}[invalid_kind]
     with pytest.raises(ValueError, match="source-end override.*inside core_frames/sign_frames"):
         plan_sentence([gloss, target], clearance=clear,
-                      source_end_frame_overrides={gloss: invalid_frames[index]})
+                      source_end_frame_overrides={gloss: frame})
 
 
-def test_doctor_departure_trim_stays_within_ten_percent_core(words):
+def test_doctor_departure_trim_stays_within_ten_percent_core(words, monkeypatch):
     word = words["DOCTOR"]
-    assert word["core_frames"] == [24, 105]
-    assert word["sign_frames"] == [24, 89]
-    departure = source_end_frame(word)
-    assert departure == 87
-    trim_frames = word["sign_frames"][1] - departure
     core_len = word["core_frames"][1] - word["core_frames"][0] + 1
-    assert (trim_frames, core_len) == (2, 82)
-    assert trim_frames / core_len <= 0.10
-    assert 100 * trim_frames / core_len == pytest.approx(2.4390243902439024)
+    max_trim_frames = core_len // 10
+    # Exercise the largest whole-frame trim allowed by policy, using current
+    # metadata only. This test override is not a proposed collision repair.
+    frame = word["sign_frames"][1] - max_trim_frames
+    monkeypatch.setattr(transitions, "SOURCE_END_FRAME_OVERRIDES", {"DOCTOR": frame})
+    departure = source_end_frame(word)
+    assert departure == frame
+    assert max(word["core_frames"][0], word["sign_frames"][0]) <= departure <= word["core_frames"][1]
+    trim_frames = word["sign_frames"][1] - departure
+    assert trim_frames == max_trim_frames
+    assert 0 < trim_frames / core_len <= 0.10
+    assert (trim_frames + 1) / core_len > 0.10
 
 
-def test_departure_override_is_general_and_honors_core_boundary():
-    word = {"gloss": "TEST", "sign_frames": [2, 8], "core_frames": [3, 9]}
-    assert source_end_frame(word, overrides={"TEST": 3}) == 3
-    assert source_end_frame(word, overrides={}) == 8
-    with pytest.raises(ValueError, match="source-end override"):
-        source_end_frame(word, overrides={"TEST": 2})
-
-
-@pytest.mark.parametrize("glosses,gloss,replacement_end", [
-    (("NOW", "NURSE", "BLOOD-DRAW"), "NURSE", 56),
-    (("PLEASE", "WAIT", "DOCTOR", "COME", "SOON"), "DOCTOR", 86),
+@pytest.mark.parametrize("sign_frames,core_frames,valid_frame,invalid_frame", [
+    ([2, 8], [3, 52], 3, 2),  # Core start is the lower bound; trim is exactly 10%.
+    ([3, 8], [2, 51], 3, 2),  # Sign start is the lower bound.
+    ([2, 52], [3, 50], 50, 51),  # Core end is the upper bound.
 ])
-@pytest.mark.parametrize("override_mode", ["default", "replace", "disable"])
-def test_verifier_rechecks_departure_policy_and_rejects_false_library_end(
-        glosses, gloss, replacement_end, override_mode, words, tmp_path, monkeypatch, evaluation_script):
-    import sign_robot.transitions as transitions
+def test_departure_override_is_general_and_honors_core_boundary(
+        sign_frames, core_frames, valid_frame, invalid_frame):
+    word = {"gloss": "TEST", "sign_frames": sign_frames, "core_frames": core_frames}
+    assert source_end_frame(word, overrides={"TEST": valid_frame}) == valid_frame
+    assert source_end_frame(word, overrides={}) == sign_frames[1]
+    assert (sign_frames[1] - valid_frame) / (core_frames[1] - core_frames[0] + 1) <= 0.10
+    with pytest.raises(ValueError, match="source-end override"):
+        source_end_frame(word, overrides={"TEST": invalid_frame})
 
-    overrides = {"default": None, "replace": {gloss: replacement_end}, "disable": {}}[override_mode]
+
+@pytest.mark.parametrize("glosses,gloss", [
+    (("NOW", "NURSE", "BLOOD-DRAW"), "NURSE"),
+    (("PLEASE", "WAIT", "DOCTOR", "COME", "SOON"), "DOCTOR"),
+])
+@pytest.mark.parametrize("override_mode", ["default", "replace", "patched_default", "disable"])
+def test_verifier_rechecks_departure_policy_and_rejects_false_departure(
+        glosses, gloss, override_mode, words, temporary_departure_overrides,
+        tmp_path, monkeypatch, evaluation_script):
+    if override_mode != "default":
+        monkeypatch.setattr(transitions, "SOURCE_END_FRAME_OVERRIDES", temporary_departure_overrides)
+    overrides = {"default": None, "replace": {gloss: words[gloss]["sign_frames"][1] - 2},
+                 "patched_default": None, "disable": {}}[override_mode]
     motion, report = plan_sentence(glosses, clearance=clear,
                                    source_end_frame_overrides=overrides)
     path = tmp_path / "departure.npz"
@@ -279,22 +318,22 @@ def test_verifier_rechecks_departure_policy_and_rejects_false_library_end(
     report["output_npz"] = str(path)
     monkeypatch.setattr(evaluation_script, "MujocoClearance", lambda *args: clear)
     # Rechecking uses the recorded policy even if the current default changes.
-    monkeypatch.setattr(transitions, "SOURCE_END_FRAME_OVERRIDES", {"NURSE": 55, "DOCTOR": 85})
+    monkeypatch.setattr(transitions, "SOURCE_END_FRAME_OVERRIDES", {
+        name: end - 2 for name, end in temporary_departure_overrides.items()})
     assert evaluation_script.verify_saved_sentence(report, None)["passed"]
-    if overrides == {}:
+    trimmed = gloss in report["source_end_frame_overrides"]
+    if not report["source_end_frame_overrides"]:
         del report["source_end_frame_overrides"]  # Legacy report: no departure trim.
         assert evaluation_script.verify_saved_sentence(report, None)["passed"]
-    else:
-        segment = next(s for s in report["transitions"] if s["from_gloss"] == gloss)
-        segment["source_start_frame"] = words[gloss]["sign_frames"][1]
-        with pytest.raises(AssertionError):
-            evaluation_script.verify_saved_sentence(report, None)
+    segment = next(s for s in report["transitions"] if s["from_gloss"] == gloss)
+    segment["source_start_frame"] = (words[gloss]["sign_frames"][1] if trimmed
+                                     else temporary_departure_overrides[gloss])
+    with pytest.raises(AssertionError):
+        evaluation_script.verify_saved_sentence(report, None)
 
 
 def test_departure_override_retract_and_handoff_use_trimmed_frame(
-        words, monkeypatch, tmp_path, evaluation_script):
-    import sign_robot.transitions as transitions
-
+        words, temporary_departure_overrides, monkeypatch, tmp_path, evaluation_script):
     monkeypatch.setattr(transitions, "ik_via_candidates", lambda *args: [])
     monkeypatch.setattr(transitions, "ik_dual_via_candidates", lambda *args: [])
     monkeypatch.setattr(transitions, "neutral_pose", lambda names, model=None: np.zeros(len(names)))
@@ -304,16 +343,18 @@ def test_departure_override_retract_and_handoff_use_trimmed_frame(
         checked.append(q.copy())
         return distance_result(0.001 if len(q) == 1 else -0.01, q, frame=0)
 
-    motion, report = plan_sentence(["NURSE", "BLOOD-DRAW"], clearance=clearance)
+    departure = temporary_departure_overrides["NURSE"]
+    motion, report = plan_sentence(["NURSE", "BLOOD-DRAW"], clearance=clearance,
+                                   source_end_frame_overrides=temporary_departure_overrides)
     segment, = report["transitions"]
     assert segment["status"] == "FAILED" and segment["method"] == "retract_approach"
-    assert segment["source_retract_frames"] == [57, 99]
-    assert segment["target_approach_frames"] == [0, 31]
+    assert segment["target_approach_frames"] == [0, words["BLOOD-DRAW"]["sign_frames"][0]]
     assert not segment["rrt_attempted"]
-    assert any(hit["word"] == "NURSE" and hit["frame"] == 57
+    assert any(hit["word"] == "NURSE" and hit["frame"] == departure
                for hit in report["source_near_handoff"])
     with np.load(ROOT / words["NURSE"]["motion"], allow_pickle=False) as source:
-        assert any(np.array_equal(q, source["positions"][57:]) for q in checked)
+        assert segment["source_retract_frames"] == [departure, len(source["positions"]) - 1]
+        assert any(np.array_equal(q, source["positions"][departure:]) for q in checked)
     path = tmp_path / "trimmed_retract.npz"
     np.savez_compressed(path, **motion)
     report["output_npz"] = str(path)
@@ -1400,14 +1441,19 @@ def test_group2_handoff_keeps_endpoint_and_adds_both_library_slice_defects(words
         retract = source["positions"][words["MEDICINE"]["sign_frames"][1]:].copy()
     with np.load(ROOT / words["MORNING"]["motion"]) as target:
         approach = target["positions"][:words["MORNING"]["sign_frames"][0] + 1].copy()
+    # Inject interior slice defects using valid current-library frame indices.
+    departure = words["MEDICINE"]["sign_frames"][1]
+    retract_hit_index = len(retract) // 2
+    retract_hit_frame = departure + retract_hit_index
+    approach_hit_frame = len(approach) // 2
 
     def clearance(q):
         if np.array_equal(q, retract):
-            result = distance_result(-0.067599238, q, frame=145 - words["MEDICINE"]["sign_frames"][1])
+            result = distance_result(-0.067599238, q, frame=retract_hit_index)
             result.worst_contact["bodies"] = ["fixed_mount", "left_wrist_yaw_link"]
             return result
         if np.array_equal(q, approach):
-            result = distance_result(-0.044832, q, frame=28)
+            result = distance_result(-0.044832, q, frame=approach_hit_frame)
             result.worst_contact["bodies"] = ["R_thumb_proximal", "left_wrist_yaw_link"]
             return result
         return distance_result(-0.0008 if len(q) == 1 else -0.056, q)
@@ -1417,11 +1463,11 @@ def test_group2_handoff_keeps_endpoint_and_adds_both_library_slice_defects(words
     assert report["failed_count"] == report["needs_group2_fix_count"] == 1
     assert report["accepted_count"] == report["source_near_count"] == 0
     handoff = {(item["word"], item["frame"]): item for item in report["source_near_handoff"]}
-    assert ("MEDICINE", 119) in handoff
-    assert handoff["MEDICINE", 145]["clearance_mm"] == pytest.approx(-67.599238)
-    assert handoff["MEDICINE", 145]["bodies"] == ["fixed_mount", "left_wrist_yaw_link"]
-    assert handoff["MORNING", 28]["clearance_mm"] == pytest.approx(-44.832)
-    assert handoff["MORNING", 28]["bodies"] == ["R_thumb_proximal", "left_wrist_yaw_link"]
+    assert ("MEDICINE", departure) in handoff
+    assert handoff["MEDICINE", retract_hit_frame]["clearance_mm"] == pytest.approx(-67.599238)
+    assert handoff["MEDICINE", retract_hit_frame]["bodies"] == ["fixed_mount", "left_wrist_yaw_link"]
+    assert handoff["MORNING", approach_hit_frame]["clearance_mm"] == pytest.approx(-44.832)
+    assert handoff["MORNING", approach_hit_frame]["bodies"] == ["R_thumb_proximal", "left_wrist_yaw_link"]
     assert "except an in-slice collision" in report["failed_trajectory_policy"]
 
 
