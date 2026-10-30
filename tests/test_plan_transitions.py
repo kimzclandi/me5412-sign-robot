@@ -192,9 +192,9 @@ def test_sentence_boundaries_rates_and_source_frames(glosses, words):
             )
 
 
-def test_round13_default_departures_keep_nurse_doctor_and_need_sign_ends(words):
-    assert SOURCE_END_FRAME_OVERRIDES == {"MEDICINE": 73, "NIGHT": 61, "HURT": 66}
-    for gloss in ("NURSE", "DOCTOR", "NEED"):
+def test_round13c_default_departures_keep_doctor_and_need_sign_ends(words):
+    assert SOURCE_END_FRAME_OVERRIDES == {"MEDICINE": 73, "NIGHT": 61, "HURT": 66, "NURSE": 80}
+    for gloss in ("DOCTOR", "NEED"):
         assert source_end_frame(words[gloss]) == words[gloss]["sign_frames"][1]
 
 
@@ -210,6 +210,25 @@ def test_round13_default_departure_is_inside_sign_core_and_trims_at_most_ten_per
     trim_frames = sign_end - departure
     core_len = core_end - core_start + 1
     assert 0 < trim_frames / core_len <= 0.10
+
+
+def test_round13c_nurse_total_trim_keeps_arrival_and_inclusive_core_budget(words):
+    word = words["NURSE"]
+    assert word["sign_frames"] == [24, 88] and word["core_frames"] == [24, 102]
+    core_len = word["core_frames"][1] - word["core_frames"][0] + 1
+    arrival, departure = target_start_frame(word), source_end_frame(word)
+    assert arrival == 24 and departure == 80
+    assert "NURSE" not in TARGET_START_FRAME_OVERRIDES
+    assert max(word["core_frames"][0], word["sign_frames"][0]) <= departure <= min(
+        word["core_frames"][1], word["sign_frames"][1])
+    total_trim = arrival - word["sign_frames"][0] + word["sign_frames"][1] - departure
+    assert total_trim == 8 and core_len == 79
+    assert total_trim / core_len == pytest.approx(8 / 79)
+    assert 100 * total_trim / core_len == pytest.approx(10.126582278481013)
+    # Thomas's <=10% cap is rounded up to whole frames: ceil(7.9) = 8.
+    # Exact trim is 8/79, allowing clear f80; f81 penetrates the torso by 28 mm.
+    assert 0 < total_trim <= math.ceil(0.10 * core_len)
+    assert total_trim + 1 > math.ceil(0.10 * core_len)
 
 
 def test_round13b_default_arrival_trims_interpreter_at_most_ten_percent(words):
@@ -412,7 +431,10 @@ def test_departure_override_trims_source_only_and_knob_works(
         core_start, core_end = words[gloss]["core_frames"]
         assert max(core_start, library_start) <= expected <= core_end
         assert expected < library_end
-        assert (library_end - expected) / (core_end - core_start + 1) <= 0.10
+        if gloss == "NURSE":
+            assert library_end - expected <= math.ceil(0.10 * (core_end - core_start + 1))
+        else:
+            assert (library_end - expected) / (core_end - core_start + 1) <= 0.10
     with np.load(ROOT / words[gloss]["motion"], allow_pickle=False) as source:
         start = 0 if glosses[0] == gloss else library_start
         assert word["source_start_frame"] == start
@@ -673,6 +695,38 @@ def test_via1_and_via2_compete_on_whole_path_clearance(single_margin, dual_margi
         assert plan.via_direction is None
         assert plan.via_directions == ["neutral_retreat", "out"]
         np.testing.assert_array_equal(plan.positions, paths[2])
+
+
+@pytest.mark.parametrize("pair,preferred_clearance,method", [
+    (("NOW", "NURSE"), 0.003, "via2"),
+    (("now", "nurse"), 0.003, "via2"),
+    (("NOW", "NURSE"), 0.001, "via1"),  # An unsafe preferred route cannot win.
+    (("NURSE", "NOW"), 0.003, "via1"),
+    (("MEDICINE", "MORNING"), 0.003, "via1"),
+    (("YOU", "BUY"), 0.003, "via1"),
+])
+def test_now_nurse_route_preference_is_pair_scoped_and_requires_passing_candidate(
+        pair, preferred_clearance, method):
+    names = ["right_shoulder_pitch_joint", "R_index_proximal_joint"]
+    start, end = np.zeros(2), np.ones(2)
+    checked = []
+
+    def clearance(q):
+        if len(q) == 1:
+            return clear(q)
+        checked.append(q.copy())
+        return distance_result([-0.01, 0.01, preferred_clearance][len(checked) - 1], q)
+
+    plan = plan_transition(
+        start, end, names, clearance=clearance, from_gloss=pair[0], to_gloss=pair[1],
+        via_factory=lambda *args: [("out+up", start + 0.4)],
+        via2_factory=lambda *args: [(["out+up+forward", "out+up+forward"],
+                                    [start + 0.2, start + 0.8])])
+    assert plan.status == "PASS" and plan.method == method
+    assert [a["kind"] for a in plan.attempts] == ["direct", "via1", "via2"]
+    np.testing.assert_array_equal(plan.positions, checked[2 if method == "via2" else 1])
+    np.testing.assert_array_equal(plan.positions[[0, -1]], [start, end])
+    assert np.all(np.abs(np.diff(plan.positions, axis=0)) * FPS <= joint_rate_limits(names) + 1e-10)
 
 
 def test_hub_fallback_selected_only_after_mocked_vias_fail_and_both_legs_clear():
@@ -1628,7 +1682,49 @@ def test_bilingual_tables_cap_endpoint_route_and_hub_without_changing_raw_json(
         assert "clearance_capped=true" in content and "JSON" in content
         assert "RRT_PAIRS" in content
         assert "MEDICINE→MORNING" in content and "NURSE→BLOOD-DRAW" in content
+        assert "minimum-jerk edges" in content if filename.endswith(".en.md") else "逐边最小跃度" in content
     assert json.dumps(report, sort_keys=True) == raw_json
+
+
+@pytest.mark.parametrize("minimum_jerk_edges", [False, True])
+def test_verifier_rechecks_nurse_rrt_timing_and_preserves_legacy_linear_reports(
+        minimum_jerk_edges, monkeypatch, tmp_path, evaluation_script):
+    # Mock geometry to isolate saved timing/metadata verification. Actual f80
+    # moving-pair clearance is checked separately by the focused smoke run.
+    monkeypatch.setattr(transitions, "ik_via_candidates", lambda *args: [])
+    monkeypatch.setattr(transitions, "ik_dual_via_candidates", lambda *args: [])
+    monkeypatch.setattr(transitions, "neutral_pose", lambda names, model=None: np.zeros(len(names)))
+
+    def search(a, b, names, **kwargs):
+        assert kwargs["minimum_jerk_edges"] is True  # Only the new planner dispatch.
+        knots = np.stack([a, b])
+        q = (transitions.minimum_jerk_rrt_path(knots, names) if minimum_jerk_edges else
+             timescale_to_rate_limits(knots, names))
+        info = {"rrt_seed": transitions.RRT_SEED, "rrt_budget_s": transitions.RRT_BUDGET_S,
+                "rrt_nodes": 2, "rrt_runtime_s": 0.0, "rrt_found": True, "smoothed": False,
+                "rrt_outcome": "found", "rrt_path_knots": knots.tolist()}
+        if minimum_jerk_edges:
+            info.update(rrt_interpolation="minimum_jerk_per_edge", rrt_minimum_duration_s=1.0)
+        return transitions.RRTResult(q, clear(q), info)
+
+    monkeypatch.setattr(transitions, "rrt_connect", search)
+    model = load_model()
+    motion, report = plan_sentence(["NURSE", "BLOOD-DRAW"], model=model,
+        clearance=lambda q: distance_result(0.01 if len(q) == 1 else -0.01, q))
+    segment, = report["transitions"]
+    assert segment["status"] == "PASS" and segment["method"] == "rrt_connect"
+    path = tmp_path / "nurse_rrt.npz"
+    np.savez_compressed(path, **motion)
+    report["output_npz"] = str(path)
+    monkeypatch.setattr(evaluation_script, "MujocoClearance", lambda *args: clear)
+    assert evaluation_script.verify_saved_sentence(report, model)["passed"]
+    chosen = segment["attempts"][segment["selected_attempt"]]
+    # Reinterpreting either saved curve with the other timing must fail.
+    chosen["rrt_interpolation"] = segment["rrt_interpolation"] = (
+        "linear" if minimum_jerk_edges else "minimum_jerk_per_edge")
+    chosen["rrt_minimum_duration_s"] = segment["rrt_minimum_duration_s"] = 1.0
+    with pytest.raises(AssertionError):
+        evaluation_script.verify_saved_sentence(report, model)
 
 
 def test_group2_handoff_keeps_endpoint_and_adds_both_library_slice_defects(words, monkeypatch):

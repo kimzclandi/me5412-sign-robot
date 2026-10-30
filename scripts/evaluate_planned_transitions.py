@@ -34,7 +34,8 @@ from sign_robot.transitions import (ENDPOINT_NEAR_M, FPS, MIN_LEG_DURATION_S,
                                     joint_rate_limits, lookup_words, source_end_frame, target_start_frame,
                                     RRT_PAIRS,
                                     RRT_SEED, RRT_BUDGET_S, rrt_arm_space,
-                                    RRT_EDGE_RESOLUTION_RAD, timescale_to_rate_limits)
+                                    RRT_EDGE_RESOLUTION_RAD, timescale_to_rate_limits,
+                                    NURSE_RRT_PAIR, NURSE_RRT_MIN_DURATION_S, minimum_jerk_rrt_path)
 
 OUT = ROOT / "results/planned_transitions"
 PREVIEWS = ROOT / "results/mocap_previews"
@@ -173,7 +174,19 @@ def verify_saved_sentence(report, model):
                 assert np.all(clip[:, columns] >= bounds[:, 0])
                 assert np.all(clip[:, columns] <= bounds[:, 1])
                 knots = np.array(chosen["rrt_path_knots"])
-                np.testing.assert_array_equal(clip, timescale_to_rate_limits(knots, names))
+                interpolation = chosen.get("rrt_interpolation", "linear")
+                if interpolation == "minimum_jerk_per_edge":
+                    assert (segment["from_gloss"], segment["to_gloss"]) == NURSE_RRT_PAIR
+                    assert segment["rrt_interpolation"] == interpolation
+                    assert (chosen["rrt_minimum_duration_s"] == segment["rrt_minimum_duration_s"]
+                            == NURSE_RRT_MIN_DURATION_S)
+                    assert (len(clip) - 1) / FPS >= NURSE_RRT_MIN_DURATION_S
+                    np.testing.assert_array_equal(clip, minimum_jerk_rrt_path(knots, names))
+                else:
+                    # Old NURSE reports and all MEDICINE reports retain their
+                    # recorded linear timing; never reinterpret old artifacts.
+                    assert interpolation == "linear"
+                    np.testing.assert_array_equal(clip, timescale_to_rate_limits(knots, names))
                 delta = clip[-1, columns] - clip[0, columns]
                 progress = (np.clip((knots[:, columns] - clip[0, columns]) @ delta / (delta @ delta), 0, 1)
                             if delta @ delta else np.zeros(len(knots)))
@@ -442,6 +455,7 @@ def write_tables(reports):
                  "Retract/approach requires the worse-endpoint floor for its whole route and original slices, including clear endpoints. "
                  "An in-slice failure selects that route for diagnosis even if an earlier failed candidate has greater clearance. "
                  "The RRT_PAIRS allowlist (MEDICINE→MORNING and NURSE→BLOOD-DRAW) may then get one arm-only RRT-Connect attempt per transition (seed 5412, 120 s total cap), including in-slice failure; "
+                 "new NURSE→BLOOD-DRAW RRT output alone uses minimum-jerk edges and at least 1 s total duration; MEDICINE keeps linear edges and the 0.3 s floor. "
                  "it keeps the same endpoint-relative floor and rechecks smoothing and rate-scaled output. Failed smoothing retains the checked unsmoothed path. "
                  "RRT failure is needs_group2_fix (included in failed_count), with the prior checked diagnostic and Group 2 handoff retained. "
                  "Other FAILED searches retain the candidate with greatest minimum clearance. "
@@ -460,6 +474,7 @@ def write_tables(reports):
                  "原生静态配对一次扩大检测至全场景，再用 mj_geomDistance 复测，另列为原厂结构缝，不影响 PASS/source_near/FAILED。"
                  "每段均可依次尝试直连、最优 via1/via2、模型 qpos0 hub、源收回/目标接近。收回/接近的全路径和原始切片均须达到较差端点下限，两端清晰时也适用。"
                  "切片内失败时选择该路线供诊断，即使先前失败候选间隙更大。RRT_PAIRS 白名单（MEDICINE→MORNING 和 NURSE→BLOOD-DRAW）在此后每段可作一次仅手臂的 RRT-Connect（种子 5412、总上限 120 秒），包括切片失败情形；"
+                 "仅新生成的 NURSE→BLOOD-DRAW RRT 输出使用逐边最小跃度、总时长至少 1 秒；MEDICINE 保持逐边线性及 0.3 秒下限。"
                  "保持端点相对下限，平滑后及速率缩放后复查；平滑失败保留已检查的未平滑路线。RRT 失败标为 needs_group2_fix（计入 failed_count），保留原诊断与第二组交接。其他 FAILED 搜索保留最小间隙最大的候选。"
                  "运动对间隙达到或超过 9.5 mm 时显示为 >=9.5（clearance_capped=true），JSON 保留原始测量数值。"
                  "第二组 source_near 交接清单同时包含端点接近与原始动作库切片缺陷。"

@@ -80,16 +80,64 @@ def test_rrt_arm_indices_use_exact_contract_and_never_search_fingers():
     assert (len(found.positions) - 1) / transitions.FPS >= 0.3
 
 
-def test_rrt_smoothing_recheck_failure_keeps_feasible_unsmoothed_path(monkeypatch):
+@pytest.mark.parametrize("minimum_jerk_edges", [False, True])
+def test_rrt_smoothing_recheck_failure_keeps_feasible_unsmoothed_path(monkeypatch, minimum_jerk_edges):
     # Emulate a broken shortcut implementation accepting the obstructed direct edge.
     monkeypatch.setattr(transitions, "shortcut_rrt_path", lambda path, *args, **kwargs: path[[0, -1]])
-    found = run_search()
+    found = run_search(minimum_jerk_edges=minimum_jerk_edges)
     assert found.info["rrt_found"]
     assert not found.info["smoothed"]
     assert found.info["rrt_smoothing_recheck_passed"] is False
     assert found.info["rrt_smoothing_fallback"] == "checked_unsmoothed"
     assert obstacle(found.positions).min_distance_m >= 0.002
     assert len(found.positions) > 2
+    if minimum_jerk_edges:
+        assert (len(found.positions) - 1) / transitions.FPS >= 1.0
+
+
+@pytest.mark.parametrize("knots", [2, 3, 6])
+def test_nurse_rrt_minimum_jerk_preserves_knots_and_rate_safe_duration(knots):
+    path = np.linspace(START, GOAL, knots)
+    # A corner must survive even when the entire path's duration stretches.
+    if knots > 2:
+        path[1, 1] = 0.7
+    q = transitions.minimum_jerk_rrt_path(path, NAMES)
+    assert (len(q) - 1) / transitions.FPS >= transitions.NURSE_RRT_MIN_DURATION_S == 1.0
+    assert transitions.MIN_LEG_DURATION_S == 0.3
+    np.testing.assert_array_equal(q[[0, -1]], [START, GOAL])
+    knot_indices = [next(i for i, row in enumerate(q) if np.array_equal(row, knot)) for knot in path]
+    assert knot_indices == sorted(knot_indices)
+    for left, right in zip(knot_indices, knot_indices[1:]):
+        u = np.arange(right - left + 1)[:, None] / (right - left)
+        s = 10 * u**3 - 15 * u**4 + 6 * u**5
+        np.testing.assert_allclose(q[left:right + 1], q[left] + s * (q[right] - q[left]), atol=1e-12)
+        assert not np.allclose(q[left + 1], q[left] + (q[right] - q[left]) / (right - left))
+        assert np.all(1.875 * np.abs(q[right] - q[left]) * transitions.FPS / (right - left)
+                      <= transitions.joint_rate_limits(NAMES) + 1e-12)
+    assert np.all(np.abs(np.diff(q, axis=0)) * transitions.FPS
+                  <= transitions.joint_rate_limits(NAMES) + 1e-10)
+
+
+def test_nurse_rrt_rechecks_exact_minimum_jerk_output_and_default_stays_linear():
+    checked = []
+
+    def clearance(q):
+        checked.append(q.copy())
+        return obstacle(q)
+
+    found = transitions.rrt_connect(
+        START, GOAL, NAMES, model=tiny_model(), clearance=clearance,
+        required_clearance_m=0.002, clock=lambda: 0.0, minimum_jerk_edges=True)
+    assert found.info["rrt_found"]
+    assert found.info["rrt_interpolation"] == "minimum_jerk_per_edge"
+    assert found.info["rrt_minimum_duration_s"] == 1.0
+    np.testing.assert_array_equal(found.positions, transitions.minimum_jerk_rrt_path(
+        found.info["rrt_path_knots"], NAMES))
+    assert any(np.array_equal(found.positions, q) for q in checked)
+    default = run_search()
+    assert "rrt_interpolation" not in default.info and "rrt_minimum_duration_s" not in default.info
+    np.testing.assert_array_equal(default.positions, transitions.timescale_to_rate_limits(
+        default.info["rrt_path_knots"], NAMES))
 
 
 def test_rrt_accepts_negative_endpoint_relative_floor_without_relaxing_normal_gate():
@@ -124,7 +172,7 @@ def test_rrt_timeout_needs_group2_fix_once_only_for_allowlisted_pairs(pair, expe
     tick = iter(range(100))
 
     def timed_search(*args, **kwargs):
-        calls.append(1)
+        calls.append(kwargs)
         return transitions.rrt_connect(*args, **kwargs, clock=lambda: float(next(tick)), budget_s=0.1)
 
     def colliding(q):
@@ -137,6 +185,8 @@ def test_rrt_timeout_needs_group2_fix_once_only_for_allowlisted_pairs(pair, expe
         source_retract=[START, START / 2], target_approach=[GOAL / 2, GOAL],
         from_gloss=pair[0], to_gloss=pair[1], rrt_factory=timed_search)
     assert len(calls) == expected_calls
+    if calls:
+        assert calls[0].get("minimum_jerk_edges", False) == (tuple(g.upper() for g in pair) == ("NURSE", "BLOOD-DRAW"))
     assert sum(a["kind"] == "rrt_connect" for a in plan.attempts) == expected_calls
     chosen = plan.attempts[plan.selected_attempt]
     if expected_calls:

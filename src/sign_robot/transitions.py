@@ -52,6 +52,12 @@ VIA_DIRECTIONS = (
     ("up+forward", (1, 0, 1)),
     ("out+up+forward", (1, 1, 1)),
 )
+# Round 13c: only NOW->NURSE prefers this existing, fully checked route.
+# It keeps the HF reversal proxy at 0/0/0 and second differences below 100
+# rad/s^2 without trimming NURSE's arrival. Other pairs keep clearance ranking.
+PAIR_VIA_PREFERENCES = {
+    ("NOW", "NURSE"): ("via2", ("out+up+forward", "out+up+forward")),
+}
 # Signed distance: positive separation, negative penetration. Normal paths
 # require distance >= this unchanged physical 2 mm threshold.
 PENETRATION_TOLERANCE_M = 0.002
@@ -65,11 +71,14 @@ MOTION_LIBRARY_PATH = ROOT / "motions/hospital_v1_motions.json"
 # Source-only stitch trims; library metadata/assets and arrival frames stay intact.
 # Round 13 bcdefc4 scans (_scratch/r13_source_scan.json): MEDICINE:73 trims
 # 1/70 = 1.4%, NIGHT:61 trims 3/55 = 5.5%, HURT:66 trims 4/68 = 5.9%.
-# Each is inside core/sign and <=10% of inclusive core length (focused tests).
+# Round 13c (_scratch/nurse_diag_summary.json, bcdefc4/video 39089): NURSE:80
+# trims 8/79 = 10.126582% from sign_end=88 (inclusive core f24..102), no start
+# trim. Thomas's <=10% cap uses whole frames: ceil(0.10 * 79) = 8. This reaches
+# the clear pre-slam endpoint; f81 penetrates the torso by 28.426881 mm, making
+# absolute +2 mm PASS impossible there. Each override is inside core/sign;
+# MEDICINE/NIGHT/HURT still satisfy the strict <=10% fraction (focused tests).
 # Pre-bcdefc4 Round 11 NURSE:57 and Round 12 DOCTOR:87 stay cleared.
-# NEED->INTERPRETER is an arrival defect; NURSE->BLOOD-DRAW is a post-core
-# retract/approach defect. Neither is a source-end trim.
-SOURCE_END_FRAME_OVERRIDES = {"MEDICINE": 73, "NIGHT": 61, "HURT": 66}
+SOURCE_END_FRAME_OVERRIDES = {"MEDICINE": 73, "NIGHT": 61, "HURT": 66, "NURSE": 80}
 # Arrival-only stitch trim from the R13b scan (_scratch/r13b_diagnosis_scan.json):
 # INTERPRETER:25 trims 1/54 = 1.85% of inclusive core from library sign_start=24.
 # f24 is -26.745 mm; f25 is +4.856 mm. Library assets/metadata stay intact.
@@ -82,6 +91,12 @@ CLEARANCE_CAP_TOL_M = 1e-9
 POSE_MATCH_TOL_RAD = 1e-9
 # One invocation per allowlisted pair, only after all earlier routes fail.
 RRT_PAIRS = frozenset({("MEDICINE", "MORNING"), ("NURSE", "BLOOD-DRAW")})
+# NURSE's clear f80 endpoint still needs RRT: ordinary routes fail, including
+# retract/approach. After those failures this pair alone uses minimum-jerk
+# edges with a >=1 s total duration floor.
+# MEDICINE retains the original linear retimer and global 0.3 s floor.
+NURSE_RRT_PAIR = ("NURSE", "BLOOD-DRAW")
+NURSE_RRT_MIN_DURATION_S = 1.0
 # Compatibility for callers that imported the former single-pair constant;
 # planner/evaluator gating uses RRT_PAIRS above.
 RRT_GLOSSES = ("MEDICINE", "MORNING")
@@ -143,12 +158,15 @@ class RRTResult:
 
 
 def rrt_connect(a, b, joint_names, *, model, clearance, required_clearance_m,
-                seed=RRT_SEED, budget_s=RRT_BUDGET_S, clock=None, rng_factory=None):
+                seed=RRT_SEED, budget_s=RRT_BUDGET_S, clock=None, rng_factory=None,
+                minimum_jerk_edges=False):
     """One bounded bidirectional arm-only search, with a fixed non-arm policy.
 
     Each arm knot sets progress to its clipped projection onto the start→goal
     arm vector. Non-arm coordinates are a + progress*(b-a); between knots all
-    coordinates interpolate linearly. Progress is derived, never sampled. This
+    coordinates interpolate linearly by default. NURSE's pair-scoped opt-in
+    changes only edge timing to minimum jerk, with >=1 s total duration.
+    Progress is derived, never sampled. This
     makes edges reversible and both trees use the same deterministic policy.
     Every edge is sampled at <=0.04 rad in every coordinate through the existing
     clearance callable. This is sampled geometry, not continuous certification.
@@ -168,6 +186,10 @@ def rrt_connect(a, b, joint_names, *, model, clearance, required_clearance_m,
             "smoothed": False, "rrt_outcome": "timeout",
             "rrt_edge_resolution_rad": RRT_EDGE_RESOLUTION_RAD,
             "rrt_non_arm_policy": "clipped arm start-goal projection at knots; linear non-arm interpolation along each edge"}
+    if minimum_jerk_edges:
+        info.update(rrt_interpolation="minimum_jerk_per_edge",
+                    rrt_minimum_duration_s=NURSE_RRT_MIN_DURATION_S,
+                    rrt_non_arm_policy="clipped arm start-goal projection at knots; minimum-jerk interpolation along each edge")
 
     class Deadline(Exception):
         pass
@@ -270,7 +292,8 @@ def rrt_connect(a, b, joint_names, *, model, clearance, required_clearance_m,
             # by the exact output of the shared rate retimer.
             if not all(edge_ok(left, right) for left, right in zip(path, path[1:])):
                 return None, None
-            timed = timescale_to_rate_limits(path, joint_names)
+            timed = (minimum_jerk_rrt_path(path, joint_names) if minimum_jerk_edges else
+                     timescale_to_rate_limits(path, joint_names))
             check_time()
             result = clearance(timed)
             check_time()
@@ -434,25 +457,44 @@ def build_retract_approach_route(retract, approach, joint_names):
     return timed, info
 
 
-def minimum_jerk_blend(a, b, joint_names):
-    """Include both endpoints with at least 0.3 s per min-jerk leg at 30 fps.
+def minimum_jerk_blend(a, b, joint_names, *, minimum_duration_s=MIN_LEG_DURATION_S):
+    """Include both endpoints with a default 0.3 s min-jerk leg floor at 30 fps.
 
     s'(u) peaks at 15/8. Thus ceil(fps * 15/8 * max(|b-a|/rate))
     is the shortest rate-safe integer duration, subject to the 0.3 s floor.
-    Never change the rate limits.
+    Callers may request a larger minimum_duration_s; rate limits never change.
     """
     a, b = np.asarray(a, dtype=float), np.asarray(b, dtype=float)
     if a.shape != b.shape or a.shape != (len(joint_names),):
         raise ValueError("Transition endpoints must match joint_names")
     if not np.isfinite(a).all() or not np.isfinite(b).all():
         raise ValueError("Transition endpoints must be finite")
-    intervals = max(int(np.ceil(FPS * MIN_LEG_DURATION_S)),
+    intervals = max(int(np.ceil(FPS * max(MIN_LEG_DURATION_S, minimum_duration_s))),
                     int(np.ceil(FPS * 1.875 * np.max(np.abs(b - a) / joint_rate_limits(joint_names), initial=0))))
     u = np.linspace(0, 1, intervals + 1)[:, None]
     s = 10 * u**3 - 15 * u**4 + 6 * u**5
     q = a + s * (b - a)
     q[0], q[-1] = a, b  # Preserve exact source values, including floating-point bits.
     return q
+
+
+def minimum_jerk_rrt_path(positions, joint_names):
+    """NURSE-only RRT timing: exact knots, rate-safe edges, >=1 s in total.
+
+    Each edge reuses minimum_jerk_blend, including its unchanged 0.3 s leg floor
+    and analytic 15/8 peak-rate bound. Dividing the total floor over the edges
+    also covers a two-knot shortcut; this never pads with stationary frames or
+    interpolates across corners. RRT rechecks this exact output before accepting
+    raw or smoothed paths, retaining its checked raw fallback on smoothing failure.
+    """
+    q = np.asarray(positions, dtype=float)
+    if len(q) < 2:
+        raise ValueError("Minimum-jerk RRT timing requires at least two knots")
+    per_edge_minimum_s = NURSE_RRT_MIN_DURATION_S / (len(q) - 1)
+    legs = [minimum_jerk_blend(left, right, joint_names,
+                               minimum_duration_s=per_edge_minimum_s)
+            for left, right in zip(q, q[1:])]
+    return np.vstack([legs[0]] + [leg[1:] for leg in legs[1:]])
 
 
 def same_hand(bodies):
@@ -886,7 +928,8 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
     Normal direct/via/hub paths require signed clearance >= 2 mm.
     Retract/approach always requires the smaller endpoint clearance, even
     for clear endpoints; its original slices are checked against that floor.
-    All passing one-/two-via candidates compete on minimum signed clearance.
+    Passing one-/two-via candidates compete on minimum signed clearance, except
+    the pair-scoped PAIR_VIA_PREFERENCES among already passing candidates.
     Hub clearance is checked on both legs as well as the complete path. After
     hub failure, the general retract/approach route uses the source word's
     frames from departure onward and the target word's frames through arrival.
@@ -902,7 +945,8 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
     endpoint_floor = endpoint_min if endpoint_near else None
     required_clearance = endpoint_min if endpoint_near else PENETRATION_TOLERANCE_M
     attempts = []
-    rrt_enabled = (str(from_gloss).upper(), str(to_gloss).upper()) in RRT_PAIRS
+    pair = (str(from_gloss).upper(), str(to_gloss).upper())
+    rrt_enabled = pair in RRT_PAIRS
 
     def assess(q, kind, leg_intervals, directions=(), legs=(), *, floor=None, result=None):
         floor = required_clearance if floor is None else floor
@@ -989,7 +1033,13 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
         if not passing:
             return finish(direct_choice, ["wrist undershoot retained: no via passed both height and collision checks"])
     if passing:
-        return finish(max(passing, key=score))
+        # A pair preference can only choose among routes that passed all
+        # existing clearance/endpoint gates (and height for sag-only searches).
+        # Keep the original ranking and fallback for every other pair.
+        preference = PAIR_VIA_PREFERENCES.get(pair)
+        preferred = [c for c in passing if
+                     (attempts[c[0]]["kind"], tuple(attempts[c[0]]["via_directions"])) == preference]
+        return finish(max(preferred or passing, key=score))
     hub = hub_factory(joint_names) if hub_factory is not None else neutral_pose(joint_names, model)
     hub_choice = through([a, hub, b], "hub", check_legs=True)
     if attempts[hub_choice[0]]["status"] != "FAILED":
@@ -1066,8 +1116,9 @@ def plan_transition(a, b, joint_names, *, clearance: Callable,
 
     if rrt_enabled and retract_choice is not None:
         search = rrt_connect if rrt_factory is None else rrt_factory
+        timing = {"minimum_jerk_edges": True} if pair == NURSE_RRT_PAIR else {}
         rrt = search(a, b, joint_names, model=model if model is not None else load_model(),
-                     clearance=clearance, required_clearance_m=required_clearance)
+                     clearance=clearance, required_clearance_m=required_clearance, **timing)
         if rrt.positions is not None:
             choice = assess(rrt.positions, "rrt_connect", [len(rrt.positions) - 1], result=rrt.clearance)
             attempts[choice[0]].update(rrt.info)
@@ -1336,6 +1387,10 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None,
               "escalation_order": ["direct", "best_via1_or_via2", "hub", "source_retract_approach", "FAILED"],
               "rrt_override": {"pairs": [list(pair) for pair in sorted(RRT_PAIRS)], "after": "all prior routes fail, including in-slice collision",
                                "seed": RRT_SEED, "budget_s": RRT_BUDGET_S,
+                               "pair_min_jerk": {"pair": list(NURSE_RRT_PAIR),
+                                                 "interpolation": "minimum_jerk_per_edge",
+                                                 "minimum_duration_s": NURSE_RRT_MIN_DURATION_S,
+                                                 "other_pairs": "linear timescale_to_rate_limits; global minimum leg 0.3 s"},
                                "failure_status": "needs_group2_fix", "search": "ARM_SUFFIXES only, within MuJoCo limits"},
               "clearance_display_cap_m": CLEARANCE_DISPLAY_CAP_M,
               "clearance_cap_note": "separations >= 9.5 mm display as >=9.5; verified true elbow/wrist_pitch mesh gap (~9.50015 mm via mj_geomDistance distmax=1.0), not a distmax clip",
@@ -1344,7 +1399,7 @@ def plan_sentence(glosses, *, root=ROOT, model=None, clearance=None,
               "clearance_derivation": getattr(clearance, "derivation", None),
               "vendor_structural_gaps": getattr(clearance, "vendor_structural_gaps", []),
               "sentence_peak_rates": peak_rates(q, names),
-              "failed_trajectory_policy": "FAILED emits the checked candidate with greatest minimum clearance, except an in-slice collision selects retract_approach to expose the library defect; RRT_PAIRS (MEDICINE->MORNING, NURSE->BLOOD-DRAW) may continue to one RRT-Connect attempt, whose failure is needs_group2_fix with the checked retract/approach diagnostic; failed_count includes needs_group2_fix; all failed output is diagnostic only; source_near is not absolute 2 mm certification",
+              "failed_trajectory_policy": "FAILED emits the checked candidate with greatest minimum clearance, except an in-slice collision selects retract_approach to expose the library defect; RRT_PAIRS (MEDICINE->MORNING, NURSE->BLOOD-DRAW) may continue to one RRT-Connect attempt, whose failure is needs_group2_fix with the checked retract/approach diagnostic; NURSE->BLOOD-DRAW RRT output uses minimum_jerk_per_edge with a 1.0 s total floor while MEDICINE->MORNING remains linear; failed_count includes needs_group2_fix; all failed output is diagnostic only; source_near is not absolute 2 mm certification",
               "source_near_handoff": handoff,
               "word_segments": segments, "transitions": transitions}
     return motion, report
