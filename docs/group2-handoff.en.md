@@ -2,7 +2,9 @@
 
 [中文](group2-handoff.md) · **English** · [Method details](mocap-retargeting.en.md)
 
-Status (2026-10-27): all 35 glosses of Group 1's hospital vocabulary have G1 joint trajectories (see section 0); the original 27 words are also converted. Code, data, videos and tests are in PR [#5](https://github.com/kimzclandi/me5412-sign-robot/pull/5) (branch `group2/fbx-retarget-you`), not yet merged into `master`.
+Status (2026-10-27): all 35 glosses of Group 1's hospital vocabulary have G1 joint trajectories (see section 0); the original 27 words are also converted. Code, data, videos and tests are in PR [#5](https://github.com/kimzclandi/me5412-sign-robot/pull/5) (branch `group2/fbx-retarget-you`), merged into `master`.
+
+**For the live demo see [hospital-demo.en.md](hospital-demo.en.md)**: one command from an English sentence to robot motion, offline by default, no API key needed.
 
 ## 0. Update 2026-10-27: Group 1's 35-word hospital vocabulary
 
