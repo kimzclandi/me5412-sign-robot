@@ -1,6 +1,47 @@
-# 第三组：衔接规划器，第九轮
+# 第三组：衔接规划器，第十三轮
 
 **中文** · [English](transition-planner.en.md)
+
+## 第十三轮：重基到 bcdefc4 后重新规划
+
+本轮重基到第二组 `bcdefc4`，保留规划器的 cherry-pick 提交，排除 wrist-fix 提交。旧的 `NURSE:57` / `DOCTOR:87` 来自重基前的动作帧号，已由 `ac67b76` 清除；随后 `a2b2379` 依据当前动作扫描加入三项源端提前离开覆盖：
+
+| 源词及离开帧 | 裁剪帧数 / 含端点核心长度 | 裁剪比例 | 对应过渡结果 |
+|---|---:|---:|---|
+| MEDICINE:73 | 1/70 | 1.4% | MEDICINE → MORNING：PASS / via2 |
+| NIGHT:61 | 3/55 | 5.5% | NIGHT → TAKE：PASS / direct |
+| HURT:66 | 4/68 | 5.9% | HURT → WHERE：PASS / direct |
+
+三项离开帧均在当前 `core_frames ∩ sign_frames` 内，裁剪量均 **≤10% 核心长度**。覆盖仅用于拼接时源词的离开帧，不修改动作库资产、元数据或到达帧；旧 NURSE / DOCTOR 覆盖保持清除。
+
+### 第十三轮实际结果与边界
+
+pass1 的十句报告为 **19 段 = 17 PASS / 1 source_near / 1 FAILED**。报告位于本地 `results/planned_transitions/round13/report.json`，受 gitignore 排除，未随文档提交。剩余两段均不是源词离开端问题，本轮不进行第二轮覆盖：
+
+| 过渡 | 状态 / 方法 | 剩余问题 |
+|---|---|---|
+| NEED → INTERPRETER | source_near / via2 | 到达端 INTERPRETER 接近／穿透；不是 NEED 源端问题。 |
+| NURSE → BLOOD-DRAW | FAILED / retract_approach | 回撤／接近路径的途中、词核后段有缺陷；NURSE sign_end 已清晰。 |
+
+门槛保持为**手臂 15 rad/s、手指 10 rad/s、PASS 运动对间隙至少 +2 mm**，并保留第九轮的端点附着单调检查。仅在 17 个 PASS 中统计：最小间隙为 **2.178434 mm（MORNING → NIGHT）**；最大手臂速率为 **14.49875 rad/s（MORNING → NIGHT）**；最大手指速率为 **9.502528 rad/s（APPOINTMENT → HAVE）**。
+
+已有全量 pytest 实际结果为 **477 passed / 6 failed（17.73 秒）**，失败 ID 与六项已知基线一致，没有新增失败；见本地 `_scratch/r13_pytest.txt`。MEDICINE 在 `bcdefc4` 上的 HF 抖动代理检查记录为 **PASS，arm_rev=4 / wrist_rev=4**，仅统计相邻帧速度变号且两侧 `|v|>0.1 rad/s` 的次数；见本地 `_scratch/r13_medicine_jitter.json`。两段剩余问题的诊断见本地 `_scratch/r13_diagnosis.md`。这些原始记录保持原样；本次文档交付核对已有报告与日志，没有重跑规划器或 pytest。
+
+`source_near` 仅通过端点相对下限及附加几何检查，仍可保留到达端穿透；FAILED 轨迹只供诊断。上述结果是开发者回归与采样几何检查，不是冻结独立评测或真人评审，也不验证连续无碰撞、词内动作、动力学、硬件、ASL 含义或使用者理解。
+
+### 第十三轮复现入口
+
+从仓库根目录使用已有 `.venv`，先按下方[第九轮启动节](#第九轮启动与再生成)设置线程环境和 `check_mem`（至少 2 GiB 可用），重任务串行执行。以下命令写入独立 `round13_recheck/`，保留本轮 `round13/` 和历史产物；本次文档交付未执行这些命令：
+
+```bash
+check_mem && .venv/bin/python scripts/plan_transitions.py --all --out-dir results/planned_transitions/round13_recheck --report results/planned_transitions/round13_recheck/report.json
+check_mem && .venv/bin/python scripts/evaluate_planned_transitions.py --report results/planned_transitions/round13_recheck/report.json --out-dir results/planned_transitions/round13_recheck
+check_mem && .venv/bin/python -m pytest -q
+```
+
+规划器即使有失败段也可能退出 0，须读取报告状态。双语文档交付记录见 [_scratch/sol_r13_docs_result.md](../_scratch/sol_r13_docs_result.md)。以下保留第九轮及更早记录，其结果仅适用于各自当时的基线。
+
+## 第九轮历史记录
 
 第九轮增加**低于 2 mm 样本的端点连续附着与单调退出验收**，在原有较差端点相对下限之外实施。运动对 `ENDPOINT_NEAR_M = 0.002 m`、手臂 15 rad/s、手指 10 rad/s 不变；RRT-Connect 仍仅用于 MEDICINE→MORNING。重新生成目录为 `results/planned_transitions/round9/`，第八轮 Step 3 与更早原始产物保留。以下是开发者几何验收，不代表已验证 ASL；单词句零次过渡检查不证明词内动作通过。
 

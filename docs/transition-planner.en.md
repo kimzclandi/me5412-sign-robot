@@ -1,6 +1,47 @@
-# Group 3 transition planner, round 9
+# Group 3 transition planner, round 13
 
 [中文](transition-planner.md) · **English**
+
+## Round 13: replan after rebasing onto bcdefc4
+
+This round rebases onto Group 2 `bcdefc4`, retaining the planner cherry-picks and excluding the wrist-fix commits. The old `NURSE:57` / `DOCTOR:87` entries used motion frame numbers from before the rebase and were cleared in `ac67b76`. Commit `a2b2379` then added three source-end early-departure overrides based on scans of the current motions:
+
+| Source word and departure frame | Trimmed frames / inclusive core length | Trim percentage | Corresponding transition result |
+|---|---:|---:|---|
+| MEDICINE:73 | 1/70 | 1.4% | MEDICINE → MORNING: PASS / via2 |
+| NIGHT:61 | 3/55 | 5.5% | NIGHT → TAKE: PASS / direct |
+| HURT:66 | 4/68 | 5.9% | HURT → WHERE: PASS / direct |
+
+All three departure frames lie within the current `core_frames ∩ sign_frames`, with trims **≤10% of core length**. Overrides affect only the departing source frame during stitching; motion-library assets, metadata and arrival frames stay intact. The old NURSE / DOCTOR overrides remain cleared.
+
+### Round 13 actual results and limits
+
+The pass1 report for ten sentences gives **19 transitions = 17 PASS / 1 source_near / 1 FAILED**. The report is local at `results/planned_transitions/round13/report.json`, is gitignored, and is excluded from this documentation commit. Neither remaining issue is at the departing word's source end, so this round performs no second override round:
+
+| Transition | Status / method | Remaining issue |
+|---|---|---|
+| NEED → INTERPRETER | source_near / via2 | Near/penetrating INTERPRETER arrival endpoint; not a NEED source-end issue. |
+| NURSE → BLOOD-DRAW | FAILED / retract_approach | Defect along the retract/approach path, after the core; NURSE sign_end is already clear. |
+
+Limits remain **15 rad/s for arms, 10 rad/s for fingers, and at least +2 mm moving-pair clearance for PASS**, with the round 9 monotonic endpoint-attachment gate retained. Across the 17 PASS transitions only, the minimum clearance is **2.178434 mm (MORNING → NIGHT)**; the maximum arm rate is **14.49875 rad/s (MORNING → NIGHT)**; the maximum finger rate is **9.502528 rad/s (APPOINTMENT → HAVE)**.
+
+The existing full pytest run actually completed with **477 passed / 6 failed (17.73 s)**. Failed IDs match the six known baseline failures, with no new failures; see local `_scratch/r13_pytest.txt`. The MEDICINE HF jitter proxy check on `bcdefc4` records **PASS, arm_rev=4 / wrist_rev=4**, counting only consecutive-frame velocity sign flips with `|v|>0.1 rad/s` on both sides; see local `_scratch/r13_medicine_jitter.json`. The two remaining issues are diagnosed in local `_scratch/r13_diagnosis.md`. These raw records remain intact. This documentation delivery checked existing reports and logs without rerunning the planner or pytest.
+
+`source_near` passes only the endpoint-relative floor and additional geometry gate and may retain arrival-end penetration; FAILED trajectories are diagnostic only. These are developer regression and sampled geometry checks, not frozen independent evaluation or human review. They do not validate continuous collision freedom, word cores, dynamics, hardware, ASL meaning or user comprehension.
+
+### Round 13 reproduction entry point
+
+From the repository root, use the existing `.venv` and first set the thread environment and `check_mem` (at least 2 GiB available) from the [round 9 startup section](#round-9-startup-and-regeneration) below. Run heavy tasks sequentially. These commands write to a separate `round13_recheck/` directory, preserving this round's `round13/` and historical artifacts. They were not executed during this documentation delivery:
+
+```bash
+check_mem && .venv/bin/python scripts/plan_transitions.py --all --out-dir results/planned_transitions/round13_recheck --report results/planned_transitions/round13_recheck/report.json
+check_mem && .venv/bin/python scripts/evaluate_planned_transitions.py --report results/planned_transitions/round13_recheck/report.json --out-dir results/planned_transitions/round13_recheck
+check_mem && .venv/bin/python -m pytest -q
+```
+
+The planner may exit 0 even with failed transitions, so inspect report statuses. The bilingual documentation delivery record is [_scratch/sol_r13_docs_result.md](../_scratch/sol_r13_docs_result.md). Round 9 and earlier records remain below; their results apply only to their original baselines.
+
+## Round 9 historical record
 
 Round 9 adds **endpoint-attached, monotonic exit verification for samples below 2 mm**, in addition to the existing worse-endpoint relative floor. Moving-pair `ENDPOINT_NEAR_M = 0.002 m`, arm 15 rad/s and finger 10 rad/s limits stay unchanged; RRT-Connect remains limited to MEDICINE→MORNING. Regenerated artifacts use `results/planned_transitions/round9/`; round 8 Step 3 and older raw artifacts remain intact. These are developer geometry checks, not ASL validation. Singleton sentences have no transition checks and do not certify word cores.
 
