@@ -1,0 +1,21 @@
+id,type,sentence,expected,question
+s1,脚本原句,"Hello, do you have an appointment?",HELLO YOU APPOINTMENT HAVE,true
+s2,脚本原句,Do you need an interpreter?,YOU NEED INTERPRETER,true
+s3,脚本原句,"Please wait, the doctor will come soon.",PLEASE WAIT DOCTOR COME SOON,false
+s4,脚本原句,Where does it hurt?,YOU HURT WHERE,true
+s5,脚本原句,Take a deep breath.,BREATHE-DEEP,false
+s6,脚本原句,The nurse will draw your blood now.,NOW NURSE BLOOD-DRAW,false
+s7,脚本原句,Take this medicine in the morning and at night.,MEDICINE MORNING NIGHT TAKE,false
+s8,脚本原句,Do you understand?,YOU UNDERSTAND,true
+s9,脚本原句,Thank you.,THANK-YOU,false
+p1,换说法,Where is the pain?,YOU HURT WHERE|HURT WHERE,true
+p2,换说法,"Hi, have you booked an appointment?",HELLO YOU APPOINTMENT HAVE,true
+p3,换说法,"The doctor will be here shortly, please wait.",DOCTOR COME SOON PLEASE WAIT|PLEASE WAIT DOCTOR COME SOON,false
+p4,换说法,Is an interpreter needed?,YOU NEED INTERPRETER|INTERPRETER NEED,true
+p5,换说法,Take your pills every morning and every night.,MEDICINE MORNING NIGHT TAKE|MORNING NIGHT MEDICINE TAKE,false
+p6,换说法,"Sorry, I don't understand. Can you write it down?",SORRY ME UNDERSTAND NOT PLEASE WRITE|SORRY ME UNDERSTAND NOT YOU WRITE,true
+o1,库外,Do you need an X-ray?,unsupported,true
+o2,库外,Please show me your insurance card.,unsupported,false
+o3,库外,Your appointment is at 3:30 pm.,unsupported,false
+o4,库外,Are you allergic to penicillin?,unsupported,true
+o5,库外,Please fill in this form.,unsupported,false
