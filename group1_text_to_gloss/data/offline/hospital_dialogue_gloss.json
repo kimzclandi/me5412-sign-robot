@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "note_zh": "9 句脚本对话的在线 Gemini 输出，供演示断网或 API 失败时直接读取；不是新的模型结果，也不是独立测试。",
+  "note_en": "Live Gemini output for the 9 scripted dialogue lines, read directly when the demo is offline or the API fails; not a new model result and not an independent test.",
+  "model": "gemini-3.1-flash-lite",
+  "test_time": "2026-10-31T03:10:50.015972+08:00",
+  "source_report": "20261031T031050_015912+0800.json",
+  "vocab": "data/vocab/hospital_v1.json",
+  "lines": [
+    {
+      "id": "s1",
+      "sentence": "Hello, do you have an appointment?",
+      "glosses": [
+        "HELLO",
+        "YOU",
+        "APPOINTMENT",
+        "HAVE"
+      ],
+      "question": true,
+      "verdict": "PASS",
+      "latency_ms": 1453.972
+    },
+    {
+      "id": "s2",
+      "sentence": "Do you need an interpreter?",
+      "glosses": [
+        "YOU",
+        "NEED",
+        "INTERPRETER"
+      ],
+      "question": true,
+      "verdict": "PASS",
+      "latency_ms": 959.87
+    },
+    {
+      "id": "s3",
+      "sentence": "Please wait, the doctor will come soon.",
+      "glosses": [
+        "PLEASE",
+        "WAIT",
+        "DOCTOR",
+        "COME",
+        "SOON"
+      ],
+      "question": false,
+      "verdict": "PASS",
+      "latency_ms": 1268.87
+    },
+    {
+      "id": "s4",
+      "sentence": "Where does it hurt?",
+      "glosses": [
+        "YOU",
+        "HURT",
+        "WHERE"
+      ],
+      "question": true,
+      "verdict": "PASS",
+      "latency_ms": 1129.384
+    },
+    {
+      "id": "s5",
+      "sentence": "Take a deep breath.",
+      "glosses": [
+        "BREATHE-DEEP"
+      ],
+      "question": false,
+      "verdict": "PASS",
+      "latency_ms": 1399.817
+    },
+    {
+      "id": "s6",
+      "sentence": "The nurse will draw your blood now.",
+      "glosses": [
+        "NOW",
+        "NURSE",
+        "BLOOD-DRAW"
+      ],
+      "question": false,
+      "verdict": "PASS",
+      "latency_ms": 1301.238
+    },
+    {
+      "id": "s7",
+      "sentence": "Take this medicine in the morning and at night.",
+      "glosses": [
+        "MEDICINE",
+        "MORNING",
+        "NIGHT",
+        "TAKE"
+      ],
+      "question": false,
+      "verdict": "PASS",
+      "latency_ms": 1053.311
+    },
+    {
+      "id": "s8",
+      "sentence": "Do you understand?",
+      "glosses": [
+        "YOU",
+        "UNDERSTAND"
+      ],
+      "question": true,
+      "verdict": "PASS",
+      "latency_ms": 8930.442
+    },
+    {
+      "id": "s9",
+      "sentence": "Thank you.",
+      "glosses": [
+        "THANK-YOU"
+      ],
+      "question": false,
+      "verdict": "PASS",
+      "latency_ms": 1196.795
+    }
+  ]
+}
