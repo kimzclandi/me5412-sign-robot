@@ -1,0 +1,14 @@
+{
+  "word": "BLOOD-DRAW",
+  "source_fbx": "SG ASL Blood Draw 2 2024-5-15 No Mesh Full.fbx",
+  "source_sha256": "22fa53104a452d872b89bc73d81bc9ec5d91614cbee650a6e204ce07f346b129",
+  "blender_version": "4.2.3 LTS",
+  "source_fps": 60.0,
+  "frames": 337,
+  "frame_range": [
+    1,
+    337
+  ],
+  "frame": "Blender world, Z up, metres",
+  "bone_aliases": {}
+}

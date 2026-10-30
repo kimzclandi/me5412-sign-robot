@@ -1,0 +1,14 @@
+{
+  "word": "COME",
+  "source_fbx": "SG ASL Come 2025-3-27 No Mesh Full.fbx",
+  "source_sha256": "26baf8004c35fb7a834b960b896c34f2d4282ad107566a599a8b940c012562f6",
+  "blender_version": "4.2.3 LTS",
+  "source_fps": 25.0,
+  "frames": 130,
+  "frame_range": [
+    1,
+    130
+  ],
+  "frame": "Blender world, Z up, metres",
+  "bone_aliases": {}
+}

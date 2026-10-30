@@ -1,0 +1,14 @@
+{
+  "word": "COOK",
+  "source_fbx": "SG ASL Cook 2025-7-2 No Mesh Full.fbx",
+  "source_sha256": "b6cc2811b2d1e556592fce2992a0c95d47a5e99d31a4e2f6222fb3952babd29c",
+  "blender_version": "4.2.3 LTS",
+  "source_fps": 25.0,
+  "frames": 133,
+  "frame_range": [
+    1,
+    133
+  ],
+  "frame": "Blender world, Z up, metres",
+  "bone_aliases": {}
+}

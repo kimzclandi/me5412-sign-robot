@@ -17,3 +17,12 @@ deliverables/.build/
 !.env.example
 .sites-runtime/
 website/.openai/
+
+# Raw mocap sources (re-fetch from the pinned Studio Galt commit)
+data/mocap/*/raw/
+results/mocap_previews/*.log
+
+# Third-party sign videos and MediaPipe outputs per frame stay local
+data/video/*/raw/
+data/video/wlasl/WLASL_v0.3.json
+results/video_previews/*.log

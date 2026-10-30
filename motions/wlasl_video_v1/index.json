@@ -1,0 +1,589 @@
+{
+  "schema_version": 1,
+  "fps": 30,
+  "neutral_start_end": true,
+  "source": "WLASL v0.3 index (C-UDA) -> third-party ASL dictionary videos -> MediaPipe -> G1 retargeting",
+  "status_scale": {
+    "usable": "not used for video-derived clips",
+    "approximate": "recognisable motion from a single-camera estimate",
+    "poor": "noticeably wrong; fix or replace before a demo"
+  },
+  "words": [
+    {
+      "gloss": "COME",
+      "motion": "motions/wlasl_video_v1/COME.npz",
+      "duration_s": 2.933,
+      "core_frames": [
+        24,
+        64
+      ],
+      "sign_frames": [
+        24,
+        60
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "11877",
+      "video_url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20To%20Come-T815w96_jns.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "DEAF",
+      "motion": "motions/wlasl_video_v1/DEAF.npz",
+      "duration_s": 3.767,
+      "core_frames": [
+        24,
+        89
+      ],
+      "sign_frames": [
+        24,
+        66
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "14888",
+      "video_url": "https://media.asldeafined.com/vocabulary/1522766619.2346.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "DOCTOR",
+      "motion": "motions/wlasl_video_v1/DOCTOR.npz",
+      "duration_s": 4.0,
+      "core_frames": [
+        24,
+        96
+      ],
+      "sign_frames": [
+        24,
+        78
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "17015",
+      "video_url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/doctor.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "HAVE",
+      "motion": "motions/wlasl_video_v1/HAVE.npz",
+      "duration_s": 3.433,
+      "core_frames": [
+        24,
+        79
+      ],
+      "sign_frames": [
+        24,
+        61
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "69360",
+      "video_url": "http://aslbricks.org/New/ASL-Videos/have.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "HEADACHE",
+      "motion": "motions/wlasl_video_v1/HEADACHE.npz",
+      "duration_s": 4.267,
+      "core_frames": [
+        24,
+        104
+      ],
+      "sign_frames": [
+        24,
+        88
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "26837",
+      "video_url": "https://media.asldeafined.com/vocabulary/1468580092.2901.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "HELLO",
+      "motion": "motions/wlasl_video_v1/HELLO.npz",
+      "duration_s": 3.467,
+      "core_frames": [
+        24,
+        80
+      ],
+      "sign_frames": [
+        24,
+        62
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "27173",
+      "video_url": "https://media.asldeafined.com/vocabulary/1468580623.2588.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "HURT",
+      "motion": "motions/wlasl_video_v1/HURT.npz",
+      "duration_s": 3.833,
+      "core_frames": [
+        24,
+        91
+      ],
+      "sign_frames": [
+        24,
+        70
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "28441",
+      "video_url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Hurt-_st2tPdAvgQ.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "INTERPRETER",
+      "motion": "motions/wlasl_video_v1/INTERPRETER.npz",
+      "duration_s": 3.367,
+      "core_frames": [
+        24,
+        77
+      ],
+      "sign_frames": [
+        24,
+        64
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "30257",
+      "video_url": "https://media.spreadthesign.com/video/mp4/13/51869.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "LATER",
+      "motion": "motions/wlasl_video_v1/LATER.npz",
+      "duration_s": 2.7,
+      "core_frames": [
+        24,
+        57
+      ],
+      "sign_frames": [
+        24,
+        54
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "32321",
+      "video_url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Later%202-UlcQ5965pNk.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "ME",
+      "motion": "motions/wlasl_video_v1/ME.npz",
+      "duration_s": 4.467,
+      "core_frames": [
+        24,
+        110
+      ],
+      "sign_frames": [
+        24,
+        87
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "35546",
+      "video_url": "https://media.asldeafined.com/vocabulary/1468714358.3817.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "MEDICINE",
+      "motion": "motions/wlasl_video_v1/MEDICINE.npz",
+      "duration_s": 3.9,
+      "core_frames": [
+        24,
+        93
+      ],
+      "sign_frames": [
+        24,
+        74
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "35456",
+      "video_url": "https://media.asldeafined.com/vocabulary/1546574540.142.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "MORNING",
+      "motion": "motions/wlasl_video_v1/MORNING.npz",
+      "duration_s": 4.067,
+      "core_frames": [
+        24,
+        98
+      ],
+      "sign_frames": [
+        24,
+        79
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "36858",
+      "video_url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/morning.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "NEED",
+      "motion": "motions/wlasl_video_v1/NEED.npz",
+      "duration_s": 4.7,
+      "core_frames": [
+        24,
+        117
+      ],
+      "sign_frames": [
+        24,
+        102
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "37884",
+      "video_url": "https://media.asldeafined.com/vocabulary/1468718141.8252.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "NIGHT",
+      "motion": "motions/wlasl_video_v1/NIGHT.npz",
+      "duration_s": 3.4,
+      "core_frames": [
+        24,
+        78
+      ],
+      "sign_frames": [
+        35,
+        64
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "38337",
+      "video_url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20Night-sXPC0bQ0y2g.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "NO",
+      "motion": "motions/wlasl_video_v1/NO.npz",
+      "duration_s": 5.1,
+      "core_frames": [
+        24,
+        129
+      ],
+      "sign_frames": [
+        24,
+        118
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "38529",
+      "video_url": "https://media.asldeafined.com/vocabulary/1468719269.5533.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "NOT",
+      "motion": "motions/wlasl_video_v1/NOT.npz",
+      "duration_s": 3.667,
+      "core_frames": [
+        24,
+        86
+      ],
+      "sign_frames": [
+        24,
+        70
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "38858",
+      "video_url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/not.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "NOW",
+      "motion": "motions/wlasl_video_v1/NOW.npz",
+      "duration_s": 3.433,
+      "core_frames": [
+        24,
+        79
+      ],
+      "sign_frames": [
+        24,
+        57
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "38994",
+      "video_url": "https://signstock.blob.core.windows.net/signschool/videos/db_uploads/SignSchool%20now-0wcuocGAvNU.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "NURSE",
+      "motion": "motions/wlasl_video_v1/NURSE.npz",
+      "duration_s": 4.2,
+      "core_frames": [
+        24,
+        102
+      ],
+      "sign_frames": [
+        24,
+        88
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "39089",
+      "video_url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/nurse.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "PLEASE",
+      "motion": "motions/wlasl_video_v1/PLEASE.npz",
+      "duration_s": 4.133,
+      "core_frames": [
+        24,
+        100
+      ],
+      "sign_frames": [
+        24,
+        86
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "43217",
+      "video_url": "https://s3-us-west-1.amazonaws.com/files.startasl.com/asldictionary/please.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "SOON",
+      "motion": "motions/wlasl_video_v1/SOON.npz",
+      "duration_s": 4.967,
+      "core_frames": [
+        24,
+        125
+      ],
+      "sign_frames": [
+        24,
+        94
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "53292",
+      "video_url": "https://media.spreadthesign.com/video/mp4/13/50817.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "SORRY",
+      "motion": "motions/wlasl_video_v1/SORRY.npz",
+      "duration_s": 6.233,
+      "core_frames": [
+        24,
+        163
+      ],
+      "sign_frames": [
+        24,
+        132
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "53365",
+      "video_url": "https://media.spreadthesign.com/video/mp4/13/94029.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "STOMACH",
+      "motion": "motions/wlasl_video_v1/STOMACH.npz",
+      "duration_s": 3.7,
+      "core_frames": [
+        24,
+        87
+      ],
+      "sign_frames": [
+        24,
+        66
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "54880",
+      "video_url": "https://media.asldeafined.com/vocabulary/1468896442.4103.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "TAKE",
+      "motion": "motions/wlasl_video_v1/TAKE.npz",
+      "duration_s": 4.2,
+      "core_frames": [
+        24,
+        102
+      ],
+      "sign_frames": [
+        24,
+        83
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "69500",
+      "video_url": "http://aslbricks.org/New/ASL-Videos/take.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "THANK-YOU",
+      "motion": "motions/wlasl_video_v1/THANK-YOU.npz",
+      "duration_s": 3.8,
+      "core_frames": [
+        24,
+        90
+      ],
+      "sign_frames": [
+        24,
+        80
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "57656",
+      "video_url": "https://media.asldeafined.com/vocabulary/1468944231.2757.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "TOMORROW",
+      "motion": "motions/wlasl_video_v1/TOMORROW.npz",
+      "duration_s": 3.733,
+      "core_frames": [
+        24,
+        88
+      ],
+      "sign_frames": [
+        24,
+        75
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "58808",
+      "video_url": "https://media.asldeafined.com/vocabulary/1468945920.1211.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "UNDERSTAND",
+      "motion": "motions/wlasl_video_v1/UNDERSTAND.npz",
+      "duration_s": 4.133,
+      "core_frames": [
+        24,
+        100
+      ],
+      "sign_frames": [
+        24,
+        85
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "60548",
+      "video_url": "https://media.asldeafined.com/vocabulary/1522767381.9090.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "WAIT",
+      "motion": "motions/wlasl_video_v1/WAIT.npz",
+      "duration_s": 4.333,
+      "core_frames": [
+        24,
+        106
+      ],
+      "sign_frames": [
+        24,
+        93
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "62103",
+      "video_url": "https://media.asldeafined.com/vocabulary/1468926839.9265.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "WHERE",
+      "motion": "motions/wlasl_video_v1/WHERE.npz",
+      "duration_s": 5.033,
+      "core_frames": [
+        24,
+        127
+      ],
+      "sign_frames": [
+        24,
+        120
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "63084",
+      "video_url": "https://media.asldeafined.com/vocabulary/1468928023.2600.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "WRITE",
+      "motion": "motions/wlasl_video_v1/WRITE.npz",
+      "duration_s": 4.367,
+      "core_frames": [
+        24,
+        107
+      ],
+      "sign_frames": [
+        24,
+        94
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "64060",
+      "video_url": "https://media.asldeafined.com/vocabulary/1468929385.6917.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "YES",
+      "motion": "motions/wlasl_video_v1/YES.npz",
+      "duration_s": 3.8,
+      "core_frames": [
+        24,
+        90
+      ],
+      "sign_frames": [
+        24,
+        76
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "64287",
+      "video_url": "https://media.asldeafined.com/vocabulary/1468774983.6377.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "YOU",
+      "motion": "motions/wlasl_video_v1/YOU.npz",
+      "duration_s": 4.2,
+      "core_frames": [
+        24,
+        102
+      ],
+      "sign_frames": [
+        24,
+        93
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "64383",
+      "video_url": "https://media.asldeafined.com/vocabulary/1468775230.7358.mp4",
+      "asl_reviewed": false
+    },
+    {
+      "gloss": "YOUR",
+      "motion": "motions/wlasl_video_v1/YOUR.npz",
+      "duration_s": 4.4,
+      "core_frames": [
+        24,
+        108
+      ],
+      "sign_frames": [
+        24,
+        91
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "video_id": "64430",
+      "video_url": "https://media.asldeafined.com/vocabulary/1468775332.5006.mp4",
+      "asl_reviewed": false
+    }
+  ]
+}

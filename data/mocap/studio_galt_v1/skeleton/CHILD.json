@@ -1,0 +1,14 @@
+{
+  "word": "CHILD",
+  "source_fbx": "SG ASL Child 2025-1-9 No Mesh Full.fbx",
+  "source_sha256": "87c76cbe48a2d104c7909c3c9b556c851e197460bf5952b4dc8ddeeb4c9c20be",
+  "blender_version": "4.2.3 LTS",
+  "source_fps": 60.0,
+  "frames": 131,
+  "frame_range": [
+    1,
+    131
+  ],
+  "frame": "Blender world, Z up, metres",
+  "bone_aliases": {}
+}

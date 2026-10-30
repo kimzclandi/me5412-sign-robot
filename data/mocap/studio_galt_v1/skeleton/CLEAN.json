@@ -1,0 +1,14 @@
+{
+  "word": "CLEAN",
+  "source_fbx": "SG ASL Clean 2025-2-27 No Mesh Full.fbx",
+  "source_sha256": "0a03ed36e7bf78f1c804f83b6c4ca938e8f8d3043503150188ad8b3bf1daf722",
+  "blender_version": "4.2.3 LTS",
+  "source_fps": 60.0,
+  "frames": 121,
+  "frame_range": [
+    1,
+    121
+  ],
+  "frame": "Blender world, Z up, metres",
+  "bone_aliases": {}
+}

@@ -1,0 +1,608 @@
+{
+  "schema_version": 1,
+  "vocab_file": "hospital_v1_vocab_snapshot.json",
+  "vocab_sha256": "d999ca625f13c6714aa7e9760ff179ca60ee3914d392442974d9554538519b54",
+  "motion_libraries": [
+    "motions/studio_galt_v1",
+    "motions/wlasl_video_v1"
+  ],
+  "fps": 30,
+  "motion_ready_count": 35,
+  "glosses": [
+    {
+      "gloss": "HELLO",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/HELLO.npz",
+      "core_frames": [
+        24,
+        89
+      ],
+      "sign_frames": [
+        33,
+        77
+      ],
+      "robot_status": "approximate",
+      "robot_note": "salute starts beside the head, not at the forehead: elbow (max ~120 deg) and wrist joints reach their limits",
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "PLEASE",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/PLEASE.npz",
+      "core_frames": [
+        24,
+        84
+      ],
+      "sign_frames": [
+        35,
+        76
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "THANK-YOU",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/THANK-YOU.npz",
+      "core_frames": [
+        24,
+        90
+      ],
+      "sign_frames": [
+        24,
+        80
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "SORRY",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/SORRY.npz",
+      "core_frames": [
+        24,
+        163
+      ],
+      "sign_frames": [
+        24,
+        132
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "YES",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/YES.npz",
+      "core_frames": [
+        24,
+        90
+      ],
+      "sign_frames": [
+        24,
+        76
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "NO",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/NO.npz",
+      "core_frames": [
+        24,
+        129
+      ],
+      "sign_frames": [
+        24,
+        118
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "YOU",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/YOU.npz",
+      "core_frames": [
+        24,
+        118
+      ],
+      "sign_frames": [
+        42,
+        98
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "YOUR",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/YOUR.npz",
+      "core_frames": [
+        24,
+        108
+      ],
+      "sign_frames": [
+        24,
+        91
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "ME",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/ME.npz",
+      "core_frames": [
+        24,
+        110
+      ],
+      "sign_frames": [
+        24,
+        87
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "DEAF",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/DEAF.npz",
+      "core_frames": [
+        24,
+        89
+      ],
+      "sign_frames": [
+        24,
+        66
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "DOCTOR",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/DOCTOR.npz",
+      "core_frames": [
+        24,
+        96
+      ],
+      "sign_frames": [
+        24,
+        78
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "NURSE",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/NURSE.npz",
+      "core_frames": [
+        24,
+        102
+      ],
+      "sign_frames": [
+        24,
+        88
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "INTERPRETER",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/INTERPRETER.npz",
+      "core_frames": [
+        24,
+        77
+      ],
+      "sign_frames": [
+        24,
+        64
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "APPOINTMENT",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/APPOINTMENT.npz",
+      "core_frames": [
+        24,
+        162
+      ],
+      "sign_frames": [
+        55,
+        147
+      ],
+      "robot_status": "approximate",
+      "robot_note": "hands meet higher and further forward than the source; left fingers touch the right wrist (19 mm overlap)",
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "MEDICINE",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/MEDICINE.npz",
+      "core_frames": [
+        24,
+        93
+      ],
+      "sign_frames": [
+        24,
+        74
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "STOMACH",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/STOMACH.npz",
+      "core_frames": [
+        24,
+        87
+      ],
+      "sign_frames": [
+        24,
+        66
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "HEADACHE",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/HEADACHE.npz",
+      "core_frames": [
+        24,
+        104
+      ],
+      "sign_frames": [
+        24,
+        88
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "HAVE",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/HAVE.npz",
+      "core_frames": [
+        24,
+        79
+      ],
+      "sign_frames": [
+        24,
+        61
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "NEED",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/NEED.npz",
+      "core_frames": [
+        24,
+        117
+      ],
+      "sign_frames": [
+        24,
+        102
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "WAIT",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/WAIT.npz",
+      "core_frames": [
+        24,
+        106
+      ],
+      "sign_frames": [
+        24,
+        93
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "COME",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/COME.npz",
+      "core_frames": [
+        24,
+        176
+      ],
+      "sign_frames": [
+        66,
+        161
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "HURT",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/HURT.npz",
+      "core_frames": [
+        24,
+        91
+      ],
+      "sign_frames": [
+        24,
+        70
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "BREATHE-DEEP",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/BREATHE-DEEP.npz",
+      "core_frames": [
+        24,
+        114
+      ],
+      "sign_frames": [
+        31,
+        102
+      ],
+      "robot_status": "approximate",
+      "robot_note": "hand positions match (14 mm) but the large robot hands overlap visually on the chest",
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "BLOOD-DRAW",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/BLOOD-DRAW.npz",
+      "core_frames": [
+        24,
+        191
+      ],
+      "sign_frames": [
+        31,
+        180
+      ],
+      "robot_status": "approximate",
+      "robot_note": "tap at the inner left elbow only roughly reproduced (wrist offset up to 7 cm)",
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "TAKE",
+      "motion_ready": true,
+      "planned_source": "studio_galt",
+      "motion": "motions/studio_galt_v1/TAKE.npz",
+      "core_frames": [
+        24,
+        91
+      ],
+      "sign_frames": [
+        46,
+        84
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "UNDERSTAND",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/UNDERSTAND.npz",
+      "core_frames": [
+        24,
+        100
+      ],
+      "sign_frames": [
+        24,
+        85
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "WRITE",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/WRITE.npz",
+      "core_frames": [
+        24,
+        107
+      ],
+      "sign_frames": [
+        24,
+        94
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "NOT",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/NOT.npz",
+      "core_frames": [
+        24,
+        86
+      ],
+      "sign_frames": [
+        24,
+        70
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "NOW",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/NOW.npz",
+      "core_frames": [
+        24,
+        79
+      ],
+      "sign_frames": [
+        24,
+        57
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "SOON",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/SOON.npz",
+      "core_frames": [
+        24,
+        125
+      ],
+      "sign_frames": [
+        24,
+        94
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "LATER",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/LATER.npz",
+      "core_frames": [
+        24,
+        57
+      ],
+      "sign_frames": [
+        24,
+        54
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "TOMORROW",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/TOMORROW.npz",
+      "core_frames": [
+        24,
+        88
+      ],
+      "sign_frames": [
+        24,
+        75
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "MORNING",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/MORNING.npz",
+      "core_frames": [
+        24,
+        98
+      ],
+      "sign_frames": [
+        24,
+        79
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "NIGHT",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/wlasl_video_v1/NIGHT.npz",
+      "core_frames": [
+        24,
+        78
+      ],
+      "sign_frames": [
+        35,
+        64
+      ],
+      "robot_status": "approximate",
+      "robot_note": "video-derived (single camera): depth and finger shapes less reliable than mocap",
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "WHERE",
+      "motion_ready": true,
+      "planned_source": "signavatars",
+      "motion": "motions/studio_galt_v1/WHERE.npz",
+      "core_frames": [
+        24,
+        111
+      ],
+      "sign_frames": [
+        40,
+        94
+      ],
+      "robot_status": "usable",
+      "robot_note": null,
+      "library": "motions/studio_galt_v1"
+    }
+  ]
+}

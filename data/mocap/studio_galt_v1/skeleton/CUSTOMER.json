@@ -1,0 +1,14 @@
+{
+  "word": "CUSTOMER",
+  "source_fbx": "SG ASL Customer 2025-12-8 No Mesh Full.fbx",
+  "source_sha256": "8bc9e29244631643e00df5fac31c0d1ae64fbe1f61aa692854c294f55079d632",
+  "blender_version": "4.2.3 LTS",
+  "source_fps": 25.0,
+  "frames": 101,
+  "frame_range": [
+    1,
+    101
+  ],
+  "frame": "Blender world, Z up, metres",
+  "bone_aliases": {}
+}

@@ -1,0 +1,14 @@
+{
+  "word": "BREATHE-DEEP",
+  "source_fbx": "SG ASL Breathe Deep 2024-7-24 No Mesh Full.fbx",
+  "source_sha256": "d2287b248e473036d68b5c342111ef02dee57546e2a1818d4f1ba4ce50e75e7e",
+  "blender_version": "4.2.3 LTS",
+  "source_fps": 60.0,
+  "frames": 184,
+  "frame_range": [
+    1,
+    184
+  ],
+  "frame": "Blender world, Z up, metres",
+  "bone_aliases": {}
+}

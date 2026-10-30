@@ -1,0 +1,14 @@
+{
+  "word": "BUSY",
+  "source_fbx": "SG ASL Busy 2024-9-3 No Mesh Full.fbx",
+  "source_sha256": "33c0c7323c2267debebb50051ebc1739944abe10dd2000fe39c735fa1eb5e44b",
+  "blender_version": "4.2.3 LTS",
+  "source_fps": 60.0,
+  "frames": 228,
+  "frame_range": [
+    1,
+    228
+  ],
+  "frame": "Blender world, Z up, metres",
+  "bone_aliases": {}
+}

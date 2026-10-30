@@ -1,0 +1,14 @@
+{
+  "word": "CLOSE",
+  "source_fbx": "SG ASL Close 2025-2-8 No Mesh Full.fbx",
+  "source_sha256": "b3e7fd46aa4d1c235b2a3d1973f1fbcf9f5c83244bb9ea8ccc7477573b4a4275",
+  "blender_version": "4.2.3 LTS",
+  "source_fps": 60.0,
+  "frames": 113,
+  "frame_range": [
+    1,
+    113
+  ],
+  "frame": "Blender world, Z up, metres",
+  "bone_aliases": {}
+}
