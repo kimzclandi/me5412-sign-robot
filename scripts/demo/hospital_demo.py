@@ -2,6 +2,7 @@
 
     MUJOCO_GL=egl .venv/bin/python scripts/demo/hospital_demo.py --line s4 --render   # one scripted line
     MUJOCO_GL=egl .venv/bin/python scripts/demo/hospital_demo.py --all --render       # all 9 scripted lines
+    MUJOCO_GL=egl .venv/bin/python scripts/demo/hospital_demo.py --acts               # plus one video per demo act
     .venv/bin/python scripts/demo/hospital_demo.py "Where does it hurt?" --view       # interactive viewer (macOS: .venv/bin/mjpython)
     .venv/bin/python scripts/demo/hospital_demo.py "Where is the pain?" --live        # call Group 1's Gemini module
 
@@ -32,6 +33,9 @@ GROUP1 = ROOT / "group1_text_to_gloss"
 CACHE = GROUP1 / "data/offline/hospital_dialogue_gloss.json"
 OUT = ROOT / "results/demo"
 FPS = 30
+# The four acts of the demo slides (13-16): one patient's visit from registration to discharge.
+ACTS = {"act1_registration": ["s1", "s2"], "act2_consultation": ["s3", "s4", "s5"],
+        "act3_treatment": ["s6", "s7"], "act4_discharge": ["s8", "s9"]}
 
 
 def normalize(sentence):
@@ -163,14 +167,17 @@ def main():
     which.add_argument("sentence", nargs="?", help="English sentence (cached line, or any sentence with --live)")
     which.add_argument("--line", help="scripted line id, e.g. s4")
     which.add_argument("--all", action="store_true", help="all scripted lines in the offline cache")
+    which.add_argument("--acts", action="store_true", help="all lines plus one video per demo act (implies --render)")
     parser.add_argument("--live", action="store_true", help="call Group 1's Gemini module (needs network and group1_text_to_gloss/.env)")
     parser.add_argument("--transition", type=float, default=0.5, help="blend seconds between words")
     parser.add_argument("--render", action="store_true", help="write a captioned .mp4")
     parser.add_argument("--view", action="store_true", help="play in the interactive MuJoCo viewer")
     args = parser.parse_args()
-    keys = [l["id"] for l in cached_lines()] if args.all else [args.line or args.sentence]
+    args.render = args.render or args.acts
+    batch = args.all or args.acts
+    keys = [l["id"] for l in cached_lines()] if batch else [args.line or args.sentence]
     for key in keys:
-        line = resolve(key, args.live and not args.all)
+        line = resolve(key, args.live and not batch)
         motion, meta = build(line, args.transition)
         name = name_for(line)
         print(f"{name}: {meta['sentence']!r} -> {' '.join(line['glosses'])} [{line['gloss_source']}], "
@@ -180,9 +187,13 @@ def main():
             print(f"  wrote {OUT / name}.mp4")
         if args.view:
             view(motion)
-    if args.all and args.render:
+    if batch and args.render:
         concat([OUT / f"{key}.mp4" for key in keys], OUT / "hospital_dialogue.mp4")
         print(f"wrote {OUT / 'hospital_dialogue.mp4'}")
+    if args.acts:
+        for act, ids in ACTS.items():
+            concat([OUT / f"{key}.mp4" for key in ids], OUT / f"{act}.mp4")
+            print(f"wrote {OUT / act}.mp4 ({', '.join(ids)})")
 
 
 def concat(paths, out, gap_s=1.0):
