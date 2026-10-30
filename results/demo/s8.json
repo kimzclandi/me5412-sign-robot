@@ -1,0 +1,33 @@
+{
+  "id": "s8",
+  "sentence": "Do you understand?",
+  "glosses": [
+    "YOU",
+    "UNDERSTAND"
+  ],
+  "question": true,
+  "gloss_source": "offline_cache",
+  "stitching": "baseline: sign_frames cut + fixed smoothstep blend (scripts/mocap/stitch_baseline.py)",
+  "transition_s": 0.5,
+  "frames": 214,
+  "duration_s": 7.1,
+  "words": [
+    {
+      "gloss": "YOU",
+      "frames": [
+        0,
+        98
+      ],
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "UNDERSTAND",
+      "frames": [
+        113,
+        213
+      ],
+      "library": "motions/wlasl_video_v1"
+    }
+  ],
+  "note": "Candidate robot signing, not reviewed by ASL users; video-derived words are approximate."
+}

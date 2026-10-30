@@ -32,7 +32,8 @@ def blend(a, b, seconds, fps):
     return a + u * (b - a)
 
 
-def stitch(glosses, transition_s=0.5):
+def stitch(glosses, transition_s=0.5, spans=None):
+    """spans, if given a list, receives (gloss, first_frame, last_frame) per word in the output."""
     words = {}
     if HOSPITAL.exists():
         words.update({g["gloss"]: g for g in json.loads(HOSPITAL.read_text())["glosses"] if g["motion_ready"]})
@@ -56,6 +57,9 @@ def stitch(glosses, transition_s=0.5):
         segment = q[start:end]
         if pieces:
             pieces.append(blend(pieces[-1][-1], segment[0], transition_s, fps))
+        if spans is not None:
+            first = sum(len(p) for p in pieces)
+            spans.append((gloss, first, first + len(segment) - 1))
         pieces.append(segment)
     q = np.vstack(pieces)
     return {"timestamps_s": np.arange(len(q)) / fps, "joint_names": names, "positions": q}

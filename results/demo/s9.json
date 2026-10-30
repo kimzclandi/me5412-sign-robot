@@ -1,0 +1,24 @@
+{
+  "id": "s9",
+  "sentence": "Thank you.",
+  "glosses": [
+    "THANK-YOU"
+  ],
+  "question": false,
+  "gloss_source": "offline_cache",
+  "stitching": "baseline: sign_frames cut + fixed smoothstep blend (scripts/mocap/stitch_baseline.py)",
+  "transition_s": 0.5,
+  "frames": 115,
+  "duration_s": 3.8,
+  "words": [
+    {
+      "gloss": "THANK-YOU",
+      "frames": [
+        0,
+        114
+      ],
+      "library": "motions/wlasl_video_v1"
+    }
+  ],
+  "note": "Candidate robot signing, not reviewed by ASL users; video-derived words are approximate."
+}

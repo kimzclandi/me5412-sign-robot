@@ -1,0 +1,60 @@
+{
+  "id": "s3",
+  "sentence": "Please wait, the doctor will come soon.",
+  "glosses": [
+    "PLEASE",
+    "WAIT",
+    "DOCTOR",
+    "COME",
+    "SOON"
+  ],
+  "question": false,
+  "gloss_source": "offline_cache",
+  "stitching": "baseline: sign_frames cut + fixed smoothstep blend (scripts/mocap/stitch_baseline.py)",
+  "transition_s": 0.5,
+  "frames": 480,
+  "duration_s": 15.967,
+  "words": [
+    {
+      "gloss": "PLEASE",
+      "frames": [
+        0,
+        76
+      ],
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "WAIT",
+      "frames": [
+        91,
+        160
+      ],
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "DOCTOR",
+      "frames": [
+        175,
+        229
+      ],
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "COME",
+      "frames": [
+        244,
+        339
+      ],
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "SOON",
+      "frames": [
+        354,
+        479
+      ],
+      "library": "motions/wlasl_video_v1"
+    }
+  ],
+  "note": "Candidate robot signing, not reviewed by ASL users; video-derived words are approximate."
+}
