@@ -3,7 +3,7 @@
     "gloss": "HELLO",
     "category": null,
     "source": "studio_galt",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "hello",
       "hi",
@@ -14,7 +14,7 @@
     "gloss": "PLEASE",
     "category": null,
     "source": "studio_galt",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "please"
     ]
@@ -23,7 +23,7 @@
     "gloss": "THANK-YOU",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "thank you",
       "thanks"
@@ -33,7 +33,7 @@
     "gloss": "SORRY",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "sorry",
       "apologize",
@@ -44,7 +44,7 @@
     "gloss": "YES",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "yes",
       "yeah",
@@ -55,7 +55,7 @@
     "gloss": "NO",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "no",
       "nope"
@@ -74,7 +74,7 @@
     "gloss": "YOUR",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "your",
       "yours"
@@ -84,7 +84,7 @@
     "gloss": "ME",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "I",
       "me",
@@ -95,7 +95,7 @@
     "gloss": "DEAF",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "deaf"
     ]
@@ -104,7 +104,7 @@
     "gloss": "DOCTOR",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "doctor",
       "physician",
@@ -115,7 +115,7 @@
     "gloss": "NURSE",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "nurse"
     ]
@@ -124,7 +124,7 @@
     "gloss": "INTERPRETER",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "interpreter",
       "sign language interpreter",
@@ -135,7 +135,7 @@
     "gloss": "APPOINTMENT",
     "category": null,
     "source": "studio_galt",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "appointment",
       "booking",
@@ -146,7 +146,7 @@
     "gloss": "MEDICINE",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "medicine",
       "medication",
@@ -159,7 +159,7 @@
     "gloss": "STOMACH",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "stomach",
       "belly",
@@ -170,7 +170,7 @@
     "gloss": "HEADACHE",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "headache"
     ]
@@ -179,7 +179,7 @@
     "gloss": "HAVE",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "have",
       "has",
@@ -190,7 +190,7 @@
     "gloss": "NEED",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "need",
       "must",
@@ -202,7 +202,7 @@
     "gloss": "WAIT",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "wait",
       "hold on",
@@ -225,7 +225,7 @@
     "gloss": "HURT",
     "category": "verb",
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "hurt",
       "pain",
@@ -238,7 +238,7 @@
     "gloss": "BREATHE-DEEP",
     "category": null,
     "source": "studio_galt",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "take a deep breath",
       "breathe deeply",
@@ -249,7 +249,7 @@
     "gloss": "BLOOD-DRAW",
     "category": null,
     "source": "studio_galt",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "draw blood",
       "blood test",
@@ -269,7 +269,7 @@
     "gloss": "UNDERSTAND",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "understand",
       "get it"
@@ -279,7 +279,7 @@
     "gloss": "WRITE",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "write",
       "write down",
@@ -290,7 +290,7 @@
     "gloss": "NOT",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "not",
       "don't",
@@ -302,7 +302,7 @@
     "gloss": "NOW",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "now",
       "right now",
@@ -313,7 +313,7 @@
     "gloss": "SOON",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "soon",
       "shortly",
@@ -325,7 +325,7 @@
     "gloss": "LATER",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "later",
       "after a while"
@@ -335,7 +335,7 @@
     "gloss": "TOMORROW",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "tomorrow"
     ]
@@ -344,7 +344,7 @@
     "gloss": "MORNING",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "morning",
       "in the morning"
@@ -354,7 +354,7 @@
     "gloss": "NIGHT",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "night",
       "evening",
@@ -366,7 +366,7 @@
     "gloss": "WHERE",
     "category": null,
     "source": "signavatars",
-    "motion_ready": false,
+    "motion_ready": true,
     "english": [
       "where"
     ]
