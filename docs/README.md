@@ -9,7 +9,7 @@ Current target: ten fixed intents → ID-conditioned learned motions. The implem
 | 最新六人实施指南 / Current team guide | [中文](ten-intent-learning-guide.md) | [English](ten-intent-learning-guide.en.md) |
 | GitHub 分支协作 / GitHub workflow | [中文](github-collaboration.md) | [English](github-collaboration.en.md) |
 | 代码依赖 / Dependencies | [中文](code-dependencies.md) | [English](code-dependencies.en.md) |
-| 第三组衔接规划：R13c NURSE:80（烟测 PASS/PASS） / Group 3 transitions: R13c NURSE:80 (smoke PASS/PASS) | [中文](transition-planner.md) | [English](transition-planner.en.md) |
+| 第三组衔接规划：R13c-f80x NURSE:80 命名例外，PASS/PASS / Group 3 transitions: R13c-f80x named NURSE:80 exception, PASS/PASS | [中文](transition-planner.md) | [English](transition-planner.en.md) |
 | 历史任务卡 / Historical handoff | [中文](six-person-handoff.md) | [English](six-person-handoff.en.md) |
 | 实施路线 / Roadmap | [中文](实施路线.md) | [English](实施路线.en.md) |
 | 学习模型 / Learned model | [中文](学习型轨迹模型.md) | [English](学习型轨迹模型.en.md) |
@@ -26,9 +26,9 @@ Current target: ten fixed intents → ID-conditioned learned motions. The implem
 | v3 讲稿 / v3 speaker notes | [中文](../deliverables/course-report-v1/speaker-notes.zh-CN.txt) | [English](../deliverables/course-report-v1/speaker-notes.en.txt) |
 | v3 使用说明 / v3 usage | [中文](../deliverables/course-report-v1/使用说明.txt) | [English](../deliverables/course-report-v1/README.en.txt) |
 
-R13c：NURSE:80 只裁离开端 **8/79 = 10.126582278481013%**，无起点裁剪。Thomas 的 ≤10% 上限按整帧向上取整：`trim_frames <= ceil(0.10 * core_len)`，即 `ceil(7.9)=8`；f81 穿透约 −28 mm，无法绝对 PASS。NURSE→BLOOD-DRAW 在普通路线全部失败后使用逐边最小跃度 RRT（至少 1 秒），烟测两段均 PASS。详见上方成对规划器说明。
+R13c-f80x：保留 NURSE:80，仅裁离开端 **8/79 = 10.126582278481013%**，无起点裁剪。生产入口默认严格执行 `trim_frames / core_len <= 0.10`；唯一精确帧例外为 `TRIM_CAP_EXCEPTIONS = {"NURSE": 80}`，**10.13%，待 Thomas 确认**。MEDICINE/NIGHT/HURT 无例外；移除例外后 NURSE:80 抛错。新烟测 NOW→NURSE 为 **PASS / +9.365600 mm**，NURSE→BLOOD-DRAW 为 **PASS / +3.470359 mm**，后者实际使用逐边最小跃度 RRT，时长 1 秒。248 项聚焦测试通过；启动命令、保存轨迹复查与限制见上方成对说明。
 
-R13c: NURSE:80 trims only the departure, **8/79 = 10.126582278481013%**, with no start trim. Thomas's ≤10% cap rounds up to whole frames: `trim_frames <= ceil(0.10 * core_len)`, giving `ceil(7.9)=8`; f81 has about −28 mm signed clearance and cannot achieve absolute PASS. NURSE→BLOOD-DRAW uses minimum-jerk RRT edges (at least 1 s) after all ordinary routes fail; both smoke transitions PASS. See the paired planner documentation above.
+R13c-f80x: NURSE:80 trims only the departure, **8/79 = 10.126582278481013%**, with no start trim. Production defaults to strict `trim_frames / core_len <= 0.10`; the sole exact-frame exception is `TRIM_CAP_EXCEPTIONS = {"NURSE": 80}`, **10.13%, pending Thomas's confirmation**. MEDICINE/NIGHT/HURT have no exceptions; NURSE:80 raises without its exception. The new smoke gives **PASS / +9.365600 mm** for NOW→NURSE and **PASS / +3.470359 mm** for NURSE→BLOOD-DRAW; the latter actually uses minimum-jerk RRT edges for 1 s. All 248 focused tests pass; startup commands, the saved-trajectory recheck, and limitations are in the paired documentation above.
 
 PR 模板本身双语 / The [PR template](../.github/PULL_REQUEST_TEMPLATE.md) contains both languages.
 

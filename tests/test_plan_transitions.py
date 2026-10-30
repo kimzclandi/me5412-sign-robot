@@ -16,6 +16,7 @@ from sign_robot.transitions import (
     PENETRATION_TOLERANCE_M,
     SOURCE_END_FRAME_OVERRIDES,
     TARGET_START_FRAME_OVERRIDES,
+    TRIM_CAP_EXCEPTIONS,
     VIA_DIRECTIONS,
     VIA_DISPLACEMENT_M,
     ClearanceResult,
@@ -194,12 +195,14 @@ def test_sentence_boundaries_rates_and_source_frames(glosses, words):
 
 def test_round13c_default_departures_keep_doctor_and_need_sign_ends(words):
     assert SOURCE_END_FRAME_OVERRIDES == {"MEDICINE": 73, "NIGHT": 61, "HURT": 66, "NURSE": 80}
+    assert TRIM_CAP_EXCEPTIONS == {"NURSE": 80}
     for gloss in ("DOCTOR", "NEED"):
         assert source_end_frame(words[gloss]) == words[gloss]["sign_frames"][1]
 
 
 @pytest.mark.parametrize("gloss", ["MEDICINE", "NIGHT", "HURT"])
 def test_round13_default_departure_is_inside_sign_core_and_trims_at_most_ten_percent(gloss):
+    assert gloss not in TRIM_CAP_EXCEPTIONS
     library = json.loads((ROOT / "motions/hospital_v1_motions.json").read_text())
     word = next(row for row in library["glosses"] if row["gloss"] == gloss)
     sign_start, sign_end = word["sign_frames"]
@@ -212,7 +215,7 @@ def test_round13_default_departure_is_inside_sign_core_and_trims_at_most_ten_per
     assert 0 < trim_frames / core_len <= 0.10
 
 
-def test_round13c_nurse_total_trim_keeps_arrival_and_inclusive_core_budget(words):
+def test_round13c_nurse_total_trim_keeps_arrival_and_uses_exact_exception(words):
     word = words["NURSE"]
     assert word["sign_frames"] == [24, 88] and word["core_frames"] == [24, 102]
     core_len = word["core_frames"][1] - word["core_frames"][0] + 1
@@ -225,10 +228,37 @@ def test_round13c_nurse_total_trim_keeps_arrival_and_inclusive_core_budget(words
     assert total_trim == 8 and core_len == 79
     assert total_trim / core_len == pytest.approx(8 / 79)
     assert 100 * total_trim / core_len == pytest.approx(10.126582278481013)
-    # Thomas's <=10% cap is rounded up to whole frames: ceil(7.9) = 8.
-    # Exact trim is 8/79, allowing clear f80; f81 penetrates the torso by 28 mm.
-    assert 0 < total_trim <= math.ceil(0.10 * core_len)
-    assert total_trim + 1 > math.ceil(0.10 * core_len)
+    assert total_trim / core_len > 0.10
+    assert math.floor(0.10 * core_len) == 7 < total_trim
+    assert TRIM_CAP_EXCEPTIONS == {"NURSE": departure}
+
+
+@pytest.mark.parametrize("gloss", ["MEDICINE", "NIGHT", "HURT", "DOCTOR"])
+def test_nonexception_departure_rejects_trim_above_strict_ten_percent(gloss, words):
+    assert gloss not in TRIM_CAP_EXCEPTIONS
+    word = words[gloss]
+    core_len = word["core_frames"][1] - word["core_frames"][0] + 1
+    frame = word["sign_frames"][1] - math.floor(0.10 * core_len) - 1
+    with pytest.raises(ValueError, match="source-end override exceeds strict 10% trim cap"):
+        source_end_frame(word, overrides={gloss: frame})
+
+
+@pytest.mark.parametrize("exceptions", [{}, {"NURSE": 81}])
+def test_nurse_f80_requires_matching_exception(exceptions, words, monkeypatch):
+    monkeypatch.setattr(transitions, "TRIM_CAP_EXCEPTIONS", exceptions)
+    for overrides in (None, {"NURSE": 80}):
+        with pytest.raises(ValueError, match="source-end override exceeds strict 10% trim cap"):
+            source_end_frame(words["NURSE"], overrides=overrides)
+    with pytest.raises(ValueError, match="source-end override exceeds strict 10% trim cap"):
+        plan_sentence(["NOW", "NURSE", "BLOOD-DRAW"], clearance=clear)
+    # The strict floor still permits f81 without an exception.
+    assert source_end_frame(words["NURSE"], overrides={"NURSE": 81}) == 81
+
+
+def test_nurse_exception_does_not_allow_another_over_budget_frame(words):
+    assert source_end_frame(words["NURSE"], overrides={"NURSE": 80}) == 80
+    with pytest.raises(ValueError, match="source-end override exceeds strict 10% trim cap"):
+        source_end_frame(words["NURSE"], overrides={"NURSE": 79})
 
 
 def test_round13b_default_arrival_trims_interpreter_at_most_ten_percent(words):
@@ -431,10 +461,12 @@ def test_departure_override_trims_source_only_and_knob_works(
         core_start, core_end = words[gloss]["core_frames"]
         assert max(core_start, library_start) <= expected <= core_end
         assert expected < library_end
-        if gloss == "NURSE":
-            assert library_end - expected <= math.ceil(0.10 * (core_end - core_start + 1))
+        trim_fraction = (library_end - expected) / (core_end - core_start + 1)
+        if gloss == "NURSE" and expected == 80:
+            assert TRIM_CAP_EXCEPTIONS == {"NURSE": expected}
+            assert trim_fraction == pytest.approx(8 / 79) and trim_fraction > 0.10
         else:
-            assert (library_end - expected) / (core_end - core_start + 1) <= 0.10
+            assert 0 < trim_fraction <= 0.10
     with np.load(ROOT / words[gloss]["motion"], allow_pickle=False) as source:
         start = 0 if glosses[0] == gloss else library_start
         assert word["source_start_frame"] == start

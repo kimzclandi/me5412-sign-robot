@@ -2,36 +2,32 @@
 
 **中文** · [English](transition-planner.en.md)
 
-## 第十三轮 c 修正：NURSE:80，烟测 PASS / PASS
+## 第十三轮 c-f80x：NURSE:80 命名例外，烟测 PASS / PASS
 
-源端默认使用 `NURSE:80`，保留 `MEDICINE:73`、`NIGHT:61`、`HURT:66`，不恢复 DOCTOR。依据 [nurse_diag](../_scratch/nurse_diag_summary.json) 与本轮[端点／候选扫描](../_scratch/r13c_candidate_scan.json)，`bcdefc4` / 视频 39089 的 NURSE 为 sign=f24–88、core=f24–102，含端点核心长度为 79。离开端裁去 **8/79 = 10.126582278481013%**；Thomas 的 ≤10% 上限按整帧向上取整，聚焦测试使用 **`trim_frames <= math.ceil(0.10 * core_len)`**，即 `ceil(7.9)=8`，使清晰的末次腕部下落前 f80 可用。这是整帧预算，实际比例不声称 ≤10%；MEDICINE/NIGHT/HURT 仍保留严格比例 ≤0.10 的断言。NURSE 起点仍为 f24，无到达端裁剪，总裁剪为 **(0+8)/79**。词内保留的样本逐位来自第二组原动作。
+源端默认保留 `NURSE:80`、`MEDICINE:73`、`NIGHT:61`、`HURT:66`，不恢复 DOCTOR。`bcdefc4` / 视频 39089 的 NURSE 为 sign=f24–88、core=f24–102，含端点核心长度 79。NURSE 起点仍为 f24，无到达端裁剪；离开端裁去 **8/79 = 10.126582278481013%**，超过严格 10% 上限。生产入口 `source_end_frame` 默认强制 **`trim_frames / core_len <= 0.10`**，等价整帧上限 `floor(0.10 * core_len)`，NURSE 此处最多 7 帧。
 
-f80 的源端间隙为 **+9.500561 mm**。首版 f81 为 **−28.426881 mm（left_wrist_pitch_link / torso_link）**，普通 `source_near / via2 out+forward` 先被接受，使 RRT 未执行；任何保留 f81 的路线或计时都无法达到绝对 +2 mm PASS。host 的 [f80 非 RRT 探针](../_scratch/r13c_f80_probe/report.json)仍为 `FAILED / retract_approach`，最小间隙 **−91.695417 mm**，所以仅修正离开帧仍不足以通过。原始扫描、host 探针与[首版烟测副本](../_scratch/r13c_f81_delivery/smoke/verification.json)保留。
+**唯一例外为 `TRIM_CAP_EXCEPTIONS = {"NURSE": 80}`**，源代码注释为 `NURSE exception 10.13%, pending Thomas's confirmation`（NURSE 10.13% 例外，待 Thomas 确认）。只有 gloss 和离开帧均精确匹配时才能越过比例门槛；移除或改成不匹配的例外后，NURSE:80 抛出 `ValueError`，NURSE:79 仍拒绝。MEDICINE、NIGHT、HURT 无例外，其他词也保持严格 10% 检查。此实现不声称 Thomas 已确认，也不把 8/79 声称为 ≤10%。core/sign 整数帧范围检查始终有效；动作库资产、元数据和保留的原始词内样本不变。
 
-`RRT_PAIRS` 保留 MEDICINE→MORNING 与 NURSE→BLOOD-DRAW。**本次 f80 烟测中，NURSE→BLOOD-DRAW 在 direct、via1/via2、hub、retract/approach 全部失败后，实际使用最小跃度 RRT 回退并得到 PASS。** 仅此对传入 `minimum_jerk_edges=True`：重建及捷径后的每条边复用 `minimum_jerk_blend`，保留节点，按 `NURSE_RRT_MIN_DURATION_S = 1.0` 将总时长下限平均分配到各边，并保留逐腿 0.3 s 下限和 15/8 连续峰速上界。密集边检查、实际计时采样复查、平滑失败回退及单次预算不变。报告记录 `rrt_interpolation="minimum_jerk_per_edge"` / `rrt_minimum_duration_s=1.0`，evaluator 按记录复查；旧 NURSE 报告仍按原线性计时验证。MEDICINE 保持原线性逐边计时和全段 0.3 s 下限；重跑与 `64c7ffa` 的默认 RRT 数组／元数据及真实 MEDICINE/MORNING 端点插值逐位对照通过，见[兼容性记录](../_scratch/r13c_medicine_compat.json)。
+本工作树实际运行 `NOW NURSE BLOOD-DRAW` 的[烟测报告](../_scratch/r13c_f80x_smoke/report.json)与[保存轨迹复查](../_scratch/r13c_f80x_smoke/verification.json)，得到 **2 段 = 2 PASS / 0 source_near / 0 failed**：
 
-`PAIR_VIA_PREFERENCES` 仅为 NOW→NURSE 优先选择现有 **via2 `out+up+forward → out+up+forward`**。它只在已经通过原间隙／端点门槛（以及纯下垂搜索的高度门槛）的候选中生效；候选不通过则保留原选择／升级。全局 `VIA_DIRECTIONS`、其他过渡的获胜规则及原动作不变。
+| 过渡 | 方法／状态 | 时长 s | 最小有符号间隙 mm | 源端／目标端间隙 mm |
+|---|---|---:|---:|---|
+| NOW→NURSE | via2 / PASS | 1.033333 | +9.365600 | +9.502134 / +9.365600 |
+| NURSE→BLOOD-DRAW | rrt_connect / PASS | 1.000000 | +3.470359 | +9.500561 / +9.500673 |
 
-仅运行 `NOW NURSE BLOOD-DRAW` 的[保存轨迹复查](../_scratch/r13c_smoke/verification.json)得到 **2 段 = 2 PASS / 0 source_near / 0 failed**：
+两段采样过渡均无负间隙或 `source_near`。`PAIR_VIA_PREFERENCES` 仍仅为 NOW→NURSE 优先选择已通过原间隙／端点门槛的 via2 `out+up+forward → out+up+forward`。`RRT_PAIRS` 仍包含 MEDICINE→MORNING 和 NURSE→BLOOD-DRAW。此次 NURSE→BLOOD-DRAW 在 direct、via1/via2、hub、retract/approach 全部失败后，实际使用逐边最小跃度 RRT：`rrt_interpolation="minimum_jerk_per_edge"`、`rrt_minimum_duration_s=1.0`，实测时长 1 秒。逐腿 0.3 秒下限、15/8 连续峰速上界、密集边及实际计时采样复查、平滑失败回退和单次预算保留。MEDICINE 保留原线性逐边计时和全段 0.3 秒下限。
 
-| 过渡 | 方法／状态 | 时长 s | 最小间隙 mm | 手臂／手指峰速 rad/s | HF 反向：手臂／腕／手指 | 手臂／腕二阶差分峰值 rad/s² |
-|---|---|---:|---:|---|---|---:|
-| NOW→NURSE | via2 / PASS | 1.033333 | 9.365600 | 13.855921 / 5.134376 | 0 / 0 / 0 | 96.553227 |
-| NURSE→BLOOD-DRAW | rrt_connect / PASS | 1.000000 | 3.470359 | 7.108095 / 2.437301 | 0 / 0 / 0 | 43.193391 |
+严格上限变体的 NURSE:81 源端为 **−28.426881 mm（left_wrist_pitch_link / torso_link）**，可能被接受为 `source_near`，但不满足绝对 +2 mm PASS。保持穿透端点时，via2 或 RRT 都无法消除该端点穿透。本变体使用明确待确认的 f80 例外取得上述采样结果。
 
-HF 反向沿用 [R13 指标记录](../_scratch/r13_medicine_jitter.json)：仅计相邻速度变号且两侧 `|v|>0.1 rad/s`；二阶差分为 `diff(q,n=2) × 30²`，含过渡端点。本轮同时保留原脚本的 `eps=1e-6` 非零转向计数；NOW→NURSE 的该项为 17/8/0，不能与 HF 0/0/0 混称。NOW→NURSE 达到 HF 与 ≤100 二阶差分目标，但腕峰速 **13.855921** 未改善原来的 **11.007344**，仍低于 15；现有单 via 候选未同时满足两项主要质量目标，因此不裁 NURSE 起点。
-
-从仓库根目录使用现有 `.venv`，重任务串行；先按下方启动节检查至少 2 GiB 可用内存。实际执行：
+从本工作树根目录使用现有 `.venv`，重任务串行，先按下方启动节检查至少 2 GiB 可用内存。实际执行：
 
 ```bash
-export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 MUJOCO_GL=egl
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 MUJOCO_GL=egl PYTHONDONTWRITEBYTECODE=1
 .venv/bin/python -m pytest -q tests/test_plan_transitions.py tests/test_transition_endpoint_gate.py tests/test_rrt_connect.py
-.venv/bin/python scripts/plan_transitions.py NOW NURSE BLOOD-DRAW --out-dir _scratch/r13c_smoke --report _scratch/r13c_smoke/report.json
-.venv/bin/python _scratch/r13c_verify_smoke.py
-.venv/bin/python _scratch/r13c_compat_check.py
+.venv/bin/python scripts/plan_transitions.py NOW NURSE BLOOD-DRAW --out-dir _scratch/r13c_f80x_smoke --report _scratch/r13c_f80x_smoke/report.json
 ```
 
-聚焦 pytest 为 **241 passed / 0 failed（5.92 秒）**，记录见 [_scratch/sol_r13c_pytest.txt](../_scratch/sol_r13c_pytest.txt)；两段 HF 均为 0/0/0，手臂及腕二阶差分均 ≤100。完整交付包含两段前后对照，见 [_scratch/sol_r13c_result.md](../_scratch/sol_r13c_result.md)。`_scratch` 均为本地开发记录，不随 Git 交付。未重规划 19 段、运行全量 pytest 或渲染；提交与 19 段验收由 host 执行。几何采样／开发者回归不验证连续无碰撞、词内动作、动力学、硬件、ASL 含义或使用者理解。以下为历史记录。
+聚焦 pytest 为 **248 passed / 0 failed（8.08 秒）**，见 [_scratch/r13c_f80x_pytest.txt](../_scratch/r13c_f80x_pytest.txt)。测试覆盖唯一例外、MEDICINE/NIGHT/HURT 无例外、非例外超限拒绝、NURSE:80 无匹配例外时拒绝、NURSE:79 拒绝，以及原有 via2/RRT 回归。另通过现有 `verify_saved_sentence` 复查此单句保存的 NPZ、端点、速率、计时、RRT 密集边和间隙状态。`_scratch` 是未提交的本地开发记录。未运行全量规划、全量 pytest 或渲染，未推送；本轮仅本地提交。开发者回归与几何采样不验证连续无碰撞、词内动作、动力学、硬件、ASL 含义或真实使用者理解。以下为历史记录。
 
 ## 第十三轮 b 历史记录：延后到达与 RRT 白名单
 

@@ -2,36 +2,32 @@
 
 [中文](transition-planner.md) · **English**
 
-## Round 13c fix-up: NURSE:80, smoke PASS / PASS
+## Round 13c-f80x: named NURSE:80 exception, smoke PASS / PASS
 
-Departure defaults use `NURSE:80`, retaining `MEDICINE:73`, `NIGHT:61`, and `HURT:66`, with no DOCTOR override. The [nurse_diag](../_scratch/nurse_diag_summary.json) and this round's [endpoint/candidate scan](../_scratch/r13c_candidate_scan.json) identify NURSE on `bcdefc4` / video 39089 as sign=f24–88, core=f24–102, with inclusive core length 79. Departure trims **8/79 = 10.126582278481013%**. Thomas's ≤10% cap is rounded up to whole frames: focused tests use **`trim_frames <= math.ceil(0.10 * core_len)`**, giving `ceil(7.9)=8`, so the clear f80 endpoint before the final wrist descent is reachable. This is a whole-frame budget; the exact fraction is not claimed to be ≤10%. MEDICINE/NIGHT/HURT retain strict fraction ≤0.10 assertions. NURSE still arrives at f24 with no start trim; total trimming is **(0+8)/79**. Retained word samples come bit-exactly from Group 2's original motion.
+Departure defaults retain `NURSE:80`, `MEDICINE:73`, `NIGHT:61`, and `HURT:66`, with no DOCTOR override. NURSE on `bcdefc4` / video 39089 has sign=f24–88 and core=f24–102, an inclusive core length of 79. Arrival stays at f24 with no start trim; departure trims **8/79 = 10.126582278481013%**, exceeding the strict 10% cap. The production entry point `source_end_frame` enforces **`trim_frames / core_len <= 0.10`** by default, equivalent to `floor(0.10 * core_len)` whole frames, or 7 frames here for NURSE.
 
-The f80 source clearance is **+9.500561 mm**. The first delivery's f81 endpoint measured **−28.426881 mm (left_wrist_pitch_link / torso_link)**; the ordinary `source_near / via2 out+forward` route was accepted before RRT. No route or timing change preserving f81 can reach absolute +2 mm PASS. The host's [f80 probe without RRT](../_scratch/r13c_f80_probe/report.json) still gives `FAILED / retract_approach`, minimum **−91.695417 mm**, so changing departure alone is insufficient. The original scan, host probes, and [first-delivery smoke snapshot](../_scratch/r13c_f81_delivery/smoke/verification.json) are preserved.
+**The sole exception is `TRIM_CAP_EXCEPTIONS = {"NURSE": 80}`**, with the source comment `NURSE exception 10.13%, pending Thomas's confirmation`. Both gloss and departure frame must match exactly to bypass the fraction gate. Removing the exception or making it mismatch causes NURSE:80 to raise `ValueError`; NURSE:79 remains rejected. MEDICINE, NIGHT, and HURT have no exceptions, and all other words retain the strict 10% check. This implementation does not claim Thomas has confirmed the exception or that 8/79 is ≤10%. Integer core/sign bounds always apply. Library assets, metadata, and retained original word samples stay intact.
 
-`RRT_PAIRS` retains MEDICINE→MORNING and NURSE→BLOOD-DRAW. **In this f80 smoke, NURSE→BLOOD-DRAW actually uses the minimum-jerk RRT fallback after direct, via1/via2, hub, and retract/approach all fail, and achieves PASS.** Only this pair passes `minimum_jerk_edges=True`: each reconstructed/shortcut edge reuses `minimum_jerk_blend`, preserves knots, divides the `NURSE_RRT_MIN_DURATION_S = 1.0` total floor over its edges, and retains the 0.3 s per-leg floor and 15/8 continuous peak-rate bound. Dense edge checks, exact timed-sample rechecks, checked raw fallback on smoothing failure, and the one-shot budget remain intact. Reports record `rrt_interpolation="minimum_jerk_per_edge"` / `rrt_minimum_duration_s=1.0`; the evaluator rechecks the recorded timing and still verifies old NURSE reports with their original linear timing. MEDICINE retains its original linear edge retimer and 0.3 s total floor. Rerun bit-exact comparisons against `64c7ffa` passed for default RRT arrays/metadata and real MEDICINE/MORNING endpoint primitives; see the [compatibility record](../_scratch/r13c_medicine_compat.json).
+This worktree's actual `NOW NURSE BLOOD-DRAW` [smoke report](../_scratch/r13c_f80x_smoke/report.json) and [saved-trajectory recheck](../_scratch/r13c_f80x_smoke/verification.json) give **2 transitions = 2 PASS / 0 source_near / 0 failed**:
 
-`PAIR_VIA_PREFERENCES` prefers the existing **via2 `out+up+forward → out+up+forward`** only for NOW→NURSE. It chooses only among candidates already passing the original clearance/endpoint gates, plus the height gate for sag-only searches. If it fails, the original selection/escalation remains. Global `VIA_DIRECTIONS`, other pairs' winners, and original word motions are unchanged.
+| Transition | Method / status | Duration s | Minimum signed clearance mm | Source / target clearance mm |
+|---|---|---:|---:|---|
+| NOW→NURSE | via2 / PASS | 1.033333 | +9.365600 | +9.502134 / +9.365600 |
+| NURSE→BLOOD-DRAW | rrt_connect / PASS | 1.000000 | +3.470359 | +9.500561 / +9.500673 |
 
-The saved-trajectory [recheck](../_scratch/r13c_smoke/verification.json) for only `NOW NURSE BLOOD-DRAW` gives **2 transitions = 2 PASS / 0 source_near / 0 failed**:
+Neither sampled transition has negative clearance or `source_near` status. `PAIR_VIA_PREFERENCES` still prefers the existing via2 `out+up+forward → out+up+forward` only for NOW→NURSE among candidates passing the original clearance/endpoint gates. `RRT_PAIRS` still contains MEDICINE→MORNING and NURSE→BLOOD-DRAW. Here NURSE→BLOOD-DRAW actually uses minimum-jerk RRT edges after direct, via1/via2, hub, and retract/approach all fail: `rrt_interpolation="minimum_jerk_per_edge"`, `rrt_minimum_duration_s=1.0`, and an actual duration of 1 s. The 0.3 s per-leg floor, 15/8 continuous peak-rate bound, dense edge and timed-sample rechecks, checked fallback on smoothing failure, and one-shot budget remain. MEDICINE retains its original linear edge timing and 0.3 s total floor.
 
-| Transition | Method / status | Duration s | Minimum clearance mm | Peak arm / finger rad/s | HF reversals: arm / wrist / finger | Peak arm / wrist second diff rad/s² |
-|---|---|---:|---:|---|---|---:|
-| NOW→NURSE | via2 / PASS | 1.033333 | 9.365600 | 13.855921 / 5.134376 | 0 / 0 / 0 | 96.553227 |
-| NURSE→BLOOD-DRAW | rrt_connect / PASS | 1.000000 | 3.470359 | 7.108095 / 2.437301 | 0 / 0 / 0 | 43.193391 |
+The strict-cap variant's NURSE:81 endpoint measures **−28.426881 mm (left_wrist_pitch_link / torso_link)**. It can be accepted as `source_near` but does not meet absolute +2 mm PASS. Neither via2 nor RRT can remove penetration while retaining that endpoint. This variant obtains the sampled results above using the explicit f80 exception pending confirmation.
 
-HF reversals use the existing [R13 metric record](../_scratch/r13_medicine_jitter.json): consecutive velocity sign flips with `|v|>0.1 rad/s` on both sides. Second differences are `diff(q,n=2) × 30²`, including transition endpoints. This round also retains the original script's `eps=1e-6` nonzero direction-change counts: NOW→NURSE has 17/8/0 by that definition, which must not be confused with HF 0/0/0. NOW→NURSE meets the HF and ≤100 second-difference goals, but its **13.855921** peak wrist rate does not improve on **11.007344**, while remaining below 15. Existing single-via candidates did not simultaneously meet both main quality goals, so no NURSE start trim was added.
-
-From the repository root, use the existing `.venv`, run heavy tasks sequentially, and first check for at least 2 GiB available memory as in the startup section below. Actually executed:
+From this worktree's root, use the existing `.venv`, run heavy tasks sequentially, and first check for at least 2 GiB available memory as in the startup section below. Actually executed:
 
 ```bash
-export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 MUJOCO_GL=egl
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 MUJOCO_GL=egl PYTHONDONTWRITEBYTECODE=1
 .venv/bin/python -m pytest -q tests/test_plan_transitions.py tests/test_transition_endpoint_gate.py tests/test_rrt_connect.py
-.venv/bin/python scripts/plan_transitions.py NOW NURSE BLOOD-DRAW --out-dir _scratch/r13c_smoke --report _scratch/r13c_smoke/report.json
-.venv/bin/python _scratch/r13c_verify_smoke.py
-.venv/bin/python _scratch/r13c_compat_check.py
+.venv/bin/python scripts/plan_transitions.py NOW NURSE BLOOD-DRAW --out-dir _scratch/r13c_f80x_smoke --report _scratch/r13c_f80x_smoke/report.json
 ```
 
-Focused pytest: **241 passed / 0 failed (5.92 s)**, recorded in [_scratch/sol_r13c_pytest.txt](../_scratch/sol_r13c_pytest.txt). Both segments have HF 0/0/0 and arm/wrist second differences ≤100. The [delivery record](../_scratch/sol_r13c_result.md) includes before/after comparisons for both transitions. `_scratch` artifacts are local development records and are not included in Git delivery. No 19-transition replan, full pytest, or rendering was performed; the host owns the commit and 19-transition acceptance. Sampled geometry/developer regression does not validate continuous collision freedom, word cores, dynamics, hardware, ASL meaning, or user comprehension. Historical records follow.
+Focused pytest: **248 passed / 0 failed (8.08 s)**, recorded in [_scratch/r13c_f80x_pytest.txt](../_scratch/r13c_f80x_pytest.txt). Tests cover the sole exception, no MEDICINE/NIGHT/HURT exceptions, rejection of excess trims elsewhere, rejection of NURSE:80 without a matching exception, rejection of NURSE:79, and the existing via2/RRT regressions. The existing `verify_saved_sentence` also rechecked this sentence's saved NPZ, endpoints, rates, timing, dense RRT edges, and clearance statuses. `_scratch` contains uncommitted local developer records. No full-batch planning, full pytest, rendering, or push was performed; this round uses local commits only. Developer regression and sampled geometry do not validate continuous collision freedom, word cores, dynamics, hardware, ASL meaning, or actual user comprehension. Historical records follow.
 
 ## Round 13b historical record: late arrival and RRT allowlist
 
