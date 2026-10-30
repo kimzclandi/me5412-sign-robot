@@ -2,7 +2,9 @@
 
 **中文** · [English](group2-handoff.en.md) · [方法细节](mocap-retargeting.md)
 
-状态（2026-10-27）：第一组医院词表的 35 个词全部有 G1 机器人关节轨迹（见第〇节）；最初的 27 个词也已全部转换。代码、数据、视频和测试都在 PR [#5](https://github.com/kimzclandi/me5412-sign-robot/pull/5)（分支 `group2/fbx-retarget-you`），尚未合并到 `master`。
+状态（2026-10-27）：第一组医院词表的 35 个词全部有 G1 机器人关节轨迹（见第〇节）；最初的 27 个词也已全部转换。代码、数据、视频和测试都在 PR [#5](https://github.com/kimzclandi/me5412-sign-robot/pull/5)（分支 `group2/fbx-retarget-you`），已合并到 `master`。
+
+**现场演示看 [hospital-demo.md](hospital-demo.md)**：一条命令从英文句子到机器人动作，默认离线，不需要 API key。
 
 ## 〇、2026-10-27 更新：第一组的 35 词医院词表
 

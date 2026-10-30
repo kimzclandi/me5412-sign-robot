@@ -1,0 +1,24 @@
+{
+  "id": "s5",
+  "sentence": "Take a deep breath.",
+  "glosses": [
+    "BREATHE-DEEP"
+  ],
+  "question": false,
+  "gloss_source": "offline_cache",
+  "stitching": "baseline: sign_frames cut + fixed smoothstep blend (scripts/mocap/stitch_baseline.py)",
+  "transition_s": 0.5,
+  "frames": 139,
+  "duration_s": 4.6,
+  "words": [
+    {
+      "gloss": "BREATHE-DEEP",
+      "frames": [
+        0,
+        138
+      ],
+      "library": "motions/studio_galt_v1"
+    }
+  ],
+  "note": "Candidate robot signing, not reviewed by ASL users; video-derived words are approximate."
+}

@@ -1,0 +1,51 @@
+{
+  "id": "s1",
+  "sentence": "Hello, do you have an appointment?",
+  "glosses": [
+    "HELLO",
+    "YOU",
+    "APPOINTMENT",
+    "HAVE"
+  ],
+  "question": true,
+  "gloss_source": "offline_cache",
+  "stitching": "baseline: sign_frames cut + fixed smoothstep blend (scripts/mocap/stitch_baseline.py)",
+  "transition_s": 0.5,
+  "frames": 350,
+  "duration_s": 11.633,
+  "words": [
+    {
+      "gloss": "HELLO",
+      "frames": [
+        0,
+        77
+      ],
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "YOU",
+      "frames": [
+        92,
+        148
+      ],
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "APPOINTMENT",
+      "frames": [
+        163,
+        255
+      ],
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "HAVE",
+      "frames": [
+        270,
+        349
+      ],
+      "library": "motions/wlasl_video_v1"
+    }
+  ],
+  "note": "Candidate robot signing, not reviewed by ASL users; video-derived words are approximate."
+}
