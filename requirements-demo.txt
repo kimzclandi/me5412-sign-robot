@@ -1,0 +1,11 @@
+# Minimal pinned set for the hospital demo (scripts/demo/hospital_demo.py) and its tests;
+# versions match requirements-lock.txt. openai/python-dotenv are only needed for --live.
+numpy==2.5.3
+scipy==1.18.1
+mujoco==3.15.0
+pillow==12.3.0
+imageio==2.38.0
+imageio-ffmpeg==0.6.0
+pytest==9.1.1
+openai==3.37.0
+python-dotenv==1.2.4
