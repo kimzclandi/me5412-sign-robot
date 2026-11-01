@@ -1,0 +1,75 @@
+{"verified": 4, "total": 4, "pair_id": "NURSE__NURSE", "status": "BLOCKED_INPUT"}
+{
+  "run_dir": "/home/kingderman/Documents/ME5412-github-latest/results/all_pairs/handoff_v2_dev_20261031_002",
+  "summary": {
+    "schema_version": 2,
+    "run_id": "handoff_v2_dev_20261031_002",
+    "identity": {
+      "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+      "code_hash": "66ad34ae22b633f1956edd5abdf0e0dded6bed3274f29cbdaf65aeef908b67c8",
+      "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+      "identity_hash": "184918f52da32f087bb63841f7e1e98cf844a812b4525d3e075b8494601f566c",
+      "library_version": "hospital_v1@39ba7e88ff8645aafdd3000f75db8e5a1deaff324ccc7e0155a3a68afc98ae71",
+      "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+      "policy_hash": "7b73c2946fcd348272e899ae71ad536bd4359ede69fdced7c5e47d2da36917ae"
+    },
+    "groups": {
+      "all": {
+        "denominator": 1225,
+        "status_counts": {
+          "NOT_RUN": 1221,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 4,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 0,
+          "TIMEOUT": 0,
+          "ERROR": 0
+        },
+        "scanned": 4,
+        "pass_sim_rate": 0.0
+      },
+      "non_self": {
+        "denominator": 1190,
+        "status_counts": {
+          "NOT_RUN": 1188,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 2,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 0,
+          "TIMEOUT": 0,
+          "ERROR": 0
+        },
+        "scanned": 2,
+        "pass_sim_rate": 0.0
+      },
+      "self": {
+        "denominator": 35,
+        "status_counts": {
+          "NOT_RUN": 33,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 2,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 0,
+          "TIMEOUT": 0,
+          "ERROR": 0
+        },
+        "scanned": 2,
+        "pass_sim_rate": 0.0
+      }
+    },
+    "saved_candidates": 0,
+    "saved_attempts": 4,
+    "verified_records": 4,
+    "planning_complete": false,
+    "verification_complete": false,
+    "L2_complete": false,
+    "acceptance_level": "v2_development_pending_real_approvals",
+    "formal_acceptance_enabled": false
+  }
+}

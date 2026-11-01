@@ -1,0 +1,17 @@
+{
+  "scope": "measured full preview checks only; no PASS_SIM",
+  "pair_ids": [
+    "COME__COME",
+    "COME__NOW",
+    "NOW__COME",
+    "NOW__NOW",
+    "NO__COME",
+    "NO__NOW",
+    "SOON__COME",
+    "SOON__NOW",
+    "WAIT__COME",
+    "WAIT__NOW",
+    "WHERE__COME",
+    "WHERE__NOW"
+  ]
+}

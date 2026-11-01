@@ -1,0 +1,11 @@
+{
+  "run_id": "all_pairs_dev_20261031_v2",
+  "checkpoints_unchanged": true,
+  "trajectories_unchanged": true,
+  "verification_unchanged": true,
+  "counts": {
+    "checkpoints": 1225,
+    "trajectories": 899,
+    "verification": 1225
+  }
+}

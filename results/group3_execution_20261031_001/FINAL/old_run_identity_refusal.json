@@ -1,0 +1,8 @@
+{
+  "expected_exit_code": 1,
+  "actual_exit_code": 1,
+  "reason": "Current code identity differs; resume is correctly rejected before writes",
+  "checked_files": 32,
+  "changed_files": [],
+  "passed": true
+}

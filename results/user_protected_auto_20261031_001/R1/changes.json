@@ -1,0 +1,14 @@
+[
+  {
+    "file": "/home/kingderman/Documents/ME5412-github-latest/HANDOFF.md",
+    "relative": "HANDOFF.md",
+    "before_sha256": "366169ea7bfb0ada24b87f7a2196397b02a50d7dc946bcfeebdb417daa7c383e",
+    "after_sha256": "bced8901d62fd0e058adef56d51f4450cc44835829723ad1f4e08533c80d5c6b"
+  },
+  {
+    "file": "/home/kingderman/Documents/ME5412-github-latest/HANDOFF.en.md",
+    "relative": "HANDOFF.en.md",
+    "before_sha256": "6cde929f7f43b090d784d954111305ba43d268af7b67bff9f1804379a84c3499",
+    "after_sha256": "340be9ca3aee230638b6b989eb51fdc181b8e48576772483f5bc1ef1fd9e12dc"
+  }
+]

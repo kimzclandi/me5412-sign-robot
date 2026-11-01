@@ -1,0 +1,19 @@
+{
+  "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+  "argv": [
+    "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+    "/tmp/me5412-execution-20261031/final_acceptance_check.py",
+    "--root",
+    "/home/kingderman/Documents/ME5412-github-latest",
+    "--baseline",
+    "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/baseline-content.json",
+    "--output",
+    "/tmp/me5412-execution-20261031/restored-baseline/results/group3_execution_20261031_001/FINAL/final_acceptance_checklist.json",
+    "--test-artifacts",
+    "/tmp/me5412-execution-20261031/restored-baseline/results/group3_execution_20261031_001/FINAL/known_test_outputs.json",
+    "--supplemental-evidence",
+    "/tmp/me5412-execution-20261031/restored-baseline/results/group3_execution_20261031_001/FINAL"
+  ],
+  "exit_code": 0,
+  "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/final_integrity_audit.log"
+}

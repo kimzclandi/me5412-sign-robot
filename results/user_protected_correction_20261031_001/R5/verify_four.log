@@ -1,0 +1,88 @@
+{"verified": 4, "total": 4, "pair_id": "NOW__NOW", "status": "TIMEOUT"}
+{
+  "run_dir": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/runs/user_protected_corrected_pilot_20261031_001",
+  "summary": {
+    "schema_version": 2,
+    "run_id": "user_protected_corrected_pilot_20261031_001",
+    "identity": {
+      "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+      "code_hash": "4e814bbe6acc34fbf769a01e1bf6699257234761ad77d59f72ebd5010fddfee4",
+      "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+      "identity_hash": "3c28fb7f2e2879debf1f1f85894ac44a12ba09f12dc7e8c82b1ea554d33f31db",
+      "library_version": "hospital_v1@deec3cf046ca993798081b8f5aa48d82c18a2e10a199590fae860d001f0c46d1",
+      "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+      "policy_hash": "7546122cc5cce3e0c0294a60ad721d28a9445eccaec0ead8f83b69bdbfc3a0ed"
+    },
+    "groups": {
+      "all": {
+        "denominator": 1225,
+        "status_counts": {
+          "NOT_RUN": 1221,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 0,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 2,
+          "TIMEOUT": 2,
+          "ERROR": 0
+        },
+        "scanned": 4,
+        "pass_sim_rate": 0.0
+      },
+      "non_self": {
+        "denominator": 1190,
+        "status_counts": {
+          "NOT_RUN": 1188,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 0,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 1,
+          "TIMEOUT": 1,
+          "ERROR": 0
+        },
+        "scanned": 2,
+        "pass_sim_rate": 0.0
+      },
+      "self": {
+        "denominator": 35,
+        "status_counts": {
+          "NOT_RUN": 33,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 0,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 1,
+          "TIMEOUT": 1,
+          "ERROR": 0
+        },
+        "scanned": 2,
+        "pass_sim_rate": 0.0
+      }
+    },
+    "saved_candidates": 84,
+    "saved_attempts": 126,
+    "verified_records": 4,
+    "planning_complete": false,
+    "verification_complete": false,
+    "L2_complete": false,
+    "acceptance_level": "v2_development_pending_real_approvals",
+    "formal_acceptance_enabled": false,
+    "executed_development_scope": {
+      "denominator": 4,
+      "pair_ids": [
+        "COME__COME",
+        "COME__NOW",
+        "NOW__COME",
+        "NOW__NOW"
+      ],
+      "numerical_pass_count": 0,
+      "formal_pass_sim_count": 0,
+      "selection_rule": "numerical_pass_then_smoothness_total_duration_v1",
+      "window_provenance": "algorithm"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "task": "P1-4",
+  "strategies": [
+    "synchronous",
+    "early",
+    "late"
+  ],
+  "final_tests_passed": 81,
+  "formal_acceptance_enabled": false,
+  "original_words_changed": false,
+  "source_sha256": "0985cfc584c491239063a9ce0d840cc4fb10503aed47767588f10efbecfba632",
+  "contract_sha256": "8ee8714ca0e67ae333cee3e19c7b88ecb42f31b85ebd15da65b46c7baf472bb9",
+  "policy_sha256": "0889fec8ae3056a01b949dcd75b4ad740ad94ead7d7364e5a5e9c0a8cce6ead9"
+}

@@ -1,0 +1,9 @@
+{
+  "installed_source_verified": true,
+  "engineering_checks": 62,
+  "initial_installed_files": 956,
+  "regression_tests_passed": 799,
+  "pilot_numerical_pass_count": 0,
+  "pilot_denominator": 4,
+  "goal_complete": false
+}

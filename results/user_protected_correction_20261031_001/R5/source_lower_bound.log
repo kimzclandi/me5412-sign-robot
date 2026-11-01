@@ -1,0 +1,38 @@
+{
+  "COME__NOW": {
+    "per_instance_interior_contributions": [
+      1479272.6946308068,
+      38213419.33855339
+    ],
+    "full_motion_lower_bound_rad2_s5": 39692692.0331842,
+    "frozen_full_motion_limit_rad2_s5": 1000000.0,
+    "lower_bound_exceeds_limit": true
+  },
+  "NOW__COME": {
+    "per_instance_interior_contributions": [
+      38213419.33855339,
+      1479272.6946308068
+    ],
+    "full_motion_lower_bound_rad2_s5": 39692692.0331842,
+    "frozen_full_motion_limit_rad2_s5": 1000000.0,
+    "lower_bound_exceeds_limit": true
+  },
+  "COME__COME": {
+    "per_instance_interior_contributions": [
+      1479272.6946308068,
+      1479272.6946308068
+    ],
+    "full_motion_lower_bound_rad2_s5": 2958545.3892616136,
+    "frozen_full_motion_limit_rad2_s5": 1000000.0,
+    "lower_bound_exceeds_limit": true
+  },
+  "NOW__NOW": {
+    "per_instance_interior_contributions": [
+      38213419.33855339,
+      38213419.33855339
+    ],
+    "full_motion_lower_bound_rad2_s5": 76426838.67710678,
+    "frozen_full_motion_limit_rad2_s5": 1000000.0,
+    "lower_bound_exceeds_limit": true
+  }
+}

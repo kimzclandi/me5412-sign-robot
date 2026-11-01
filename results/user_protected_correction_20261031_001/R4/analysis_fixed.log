@@ -1,0 +1,26 @@
+{
+  "COME__NOW": {
+    "planning_status": "TIMEOUT",
+    "candidate_count": 0,
+    "attempt_count": 11,
+    "artifact_count": 77
+  },
+  "NOW__COME": {
+    "planning_status": "FAILED_QUALITY",
+    "candidate_count": 20,
+    "attempt_count": 30,
+    "artifact_count": 115
+  },
+  "COME__COME": {
+    "planning_status": "FAILED_QUALITY",
+    "candidate_count": 64,
+    "attempt_count": 74,
+    "artifact_count": 155
+  },
+  "NOW__NOW": {
+    "planning_status": "TIMEOUT",
+    "candidate_count": 0,
+    "attempt_count": 11,
+    "artifact_count": 79
+  }
+}

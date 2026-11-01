@@ -1,0 +1,14 @@
+[
+  {
+    "file": "/home/kingderman/Documents/ME5412-github-latest/STATE.md",
+    "relative": "STATE.md",
+    "before_sha256": "321ad0c0855a88c53a15e2a7e551d9a07c5f85e47d389932cfbf662f9453bce7",
+    "after_sha256": "2e6935290030d04328fee3933976aa69692f5e8c6923b5c034f5fd0cfdf174f1"
+  },
+  {
+    "file": "/home/kingderman/Documents/ME5412-github-latest/STATE.en.md",
+    "relative": "STATE.en.md",
+    "before_sha256": "a5d2f7a1b84575db9666b69459b5a02cfaa117d28641a25ef75d7a635b286304",
+    "after_sha256": "781647f6398c3c1486d2cf882f594f3b74503b55a899977808f3925a2b755978"
+  }
+]

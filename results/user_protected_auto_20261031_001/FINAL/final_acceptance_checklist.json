@@ -1,0 +1,459 @@
+{
+  "engineering_delivery_checks_passed": true,
+  "checks": [
+    {
+      "check": "engineering_policy_hash_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "existing_numerical_limits_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "formal_acceptance_disabled",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "algorithm_not_human_approval",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "fresh_code_model_input_environment_identity",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "full_library_denominators_preserved",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "exact_four_real_pairs_executed",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_eligible_candidates_independently_reviewed",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "no_false_pass_or_selected_candidate",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "remaining_library_not_run",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "protected_source_failure_proven_without_connectors",
+      "passed": true,
+      "details": {
+        "COME": {
+          "evaluated_interior_frames": [
+            30,
+            138
+          ],
+          "exceeds_frozen_limit": true,
+          "integral_basis": "nonnegative interior contribution, excluding all outer slices and added connectors",
+          "limit": 1000000.0,
+          "motion": "motions/studio_galt_v1/COME.npz",
+          "motion_sha256": "75d6455408ce6584043baedbd0e049cbeabcad534eda65ef561d2c7293b477a4",
+          "peak_metrics": [
+            {
+              "joint": "R_middle_proximal_joint",
+              "limit": 120.0,
+              "metric": "peak_acceleration_rad_s2",
+              "original_time_s": 1.8333333333333333,
+              "source_frame": 55,
+              "value": 97.14313876659725
+            },
+            {
+              "joint": "R_middle_proximal_joint",
+              "limit": 3000.0,
+              "metric": "peak_jerk_rad_s3",
+              "original_time_s": 1.8,
+              "source_frame": 54,
+              "value": 1363.24114114688
+            }
+          ],
+          "protected_core_frames": [
+            27,
+            141
+          ],
+          "same_result_required_in_any_unretimed_preserved_instance": true,
+          "squared_jerk_integral_rad2_s5": 1850853.2614938505,
+          "stencil": "nested gradient edge_order=2; use only >=3 original frames from each protected boundary",
+          "top_joint_integral_contributions": [
+            {
+              "joint": "R_middle_intermediate_joint",
+              "value": 358071.4681292564
+            },
+            {
+              "joint": "R_middle_proximal_joint",
+              "value": 358071.4681292564
+            },
+            {
+              "joint": "R_pinky_intermediate_joint",
+              "value": 269801.99205946433
+            },
+            {
+              "joint": "R_pinky_proximal_joint",
+              "value": 269801.99205946433
+            },
+            {
+              "joint": "R_ring_intermediate_joint",
+              "value": 221789.00516504314
+            }
+          ],
+          "top_power_frames": [
+            {
+              "original_time_s": 1.8666666666666667,
+              "source_frame": 56,
+              "sum_squared_jerk": 7460125.520454162
+            },
+            {
+              "original_time_s": 1.9,
+              "source_frame": 57,
+              "sum_squared_jerk": 7306601.057313995
+            },
+            {
+              "original_time_s": 1.8,
+              "source_frame": 54,
+              "sum_squared_jerk": 6397233.336388961
+            },
+            {
+              "original_time_s": 1.6,
+              "source_frame": 48,
+              "sum_squared_jerk": 4548495.320447205
+            },
+            {
+              "original_time_s": 1.7333333333333334,
+              "source_frame": 52,
+              "sum_squared_jerk": 3666351.4985420806
+            }
+          ]
+        },
+        "NOW": {
+          "evaluated_interior_frames": [
+            6,
+            99
+          ],
+          "exceeds_frozen_limit": true,
+          "integral_basis": "nonnegative interior contribution, excluding all outer slices and added connectors",
+          "limit": 1000000.0,
+          "motion": "motions/wlasl_video_v1/NOW.npz",
+          "motion_sha256": "2d494c13fdf1b44bb11e97004e7b212ea5c45b7b0f8d0b972bd3589ae63e15e3",
+          "peak_metrics": [
+            {
+              "joint": "right_wrist_roll_joint",
+              "limit": 120.0,
+              "metric": "peak_acceleration_rad_s2",
+              "original_time_s": 1.0333333333333334,
+              "source_frame": 31,
+              "value": 206.81740670767846
+            },
+            {
+              "joint": "R_pinky_proximal_joint",
+              "limit": 3000.0,
+              "metric": "peak_jerk_rad_s3",
+              "original_time_s": 1.2333333333333334,
+              "source_frame": 37,
+              "value": 4889.644865251803
+            }
+          ],
+          "protected_core_frames": [
+            3,
+            102
+          ],
+          "same_result_required_in_any_unretimed_preserved_instance": true,
+          "squared_jerk_integral_rad2_s5": 38239278.289875604,
+          "stencil": "nested gradient edge_order=2; use only >=3 original frames from each protected boundary",
+          "top_joint_integral_contributions": [
+            {
+              "joint": "L_middle_proximal_joint",
+              "value": 3527492.3964172853
+            },
+            {
+              "joint": "L_middle_intermediate_joint",
+              "value": 3527492.3964172853
+            },
+            {
+              "joint": "right_wrist_roll_joint",
+              "value": 3388398.217486349
+            },
+            {
+              "joint": "R_pinky_proximal_joint",
+              "value": 2274714.2641011896
+            },
+            {
+              "joint": "R_pinky_intermediate_joint",
+              "value": 2274714.2641011896
+            }
+          ],
+          "top_power_frames": [
+            {
+              "original_time_s": 1.4666666666666666,
+              "source_frame": 44,
+              "sum_squared_jerk": 114285501.9302584
+            },
+            {
+              "original_time_s": 1.0666666666666667,
+              "source_frame": 32,
+              "sum_squared_jerk": 80576432.49443871
+            },
+            {
+              "original_time_s": 1.1,
+              "source_frame": 33,
+              "sum_squared_jerk": 76861178.53242385
+            },
+            {
+              "original_time_s": 1.2333333333333334,
+              "source_frame": 37,
+              "sum_squared_jerk": 67797514.67663133
+            },
+            {
+              "original_time_s": 1.9,
+              "source_frame": 57,
+              "sum_squared_jerk": 65553307.63961716
+            }
+          ]
+        }
+      }
+    },
+    {
+      "check": "four_comparison_videos",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__COME:diagnostic_label",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__COME:all_media_hashes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__COME:video_decode_frame_count",
+      "passed": true,
+      "details": {
+        "decoded": 402,
+        "expected": 402
+      }
+    },
+    {
+      "check": "COME__COME:protected_poses_and_timing_in_export",
+      "passed": true,
+      "details": [
+        {
+          "instance_id": "COME#0",
+          "protected_frames": 115,
+          "max_position_error": 0.0,
+          "bitwise_equal": true
+        },
+        {
+          "instance_id": "COME#1",
+          "protected_frames": 115,
+          "max_position_error": 0.0,
+          "bitwise_equal": true
+        }
+      ]
+    },
+    {
+      "check": "COME__COME:two_distinct_instances",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__COME:complete_failed_saved_curve_verification",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__NOW:diagnostic_label",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__NOW:all_media_hashes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__NOW:video_decode_frame_count",
+      "passed": true,
+      "details": {
+        "decoded": 305,
+        "expected": 305
+      }
+    },
+    {
+      "check": "COME__NOW:protected_poses_and_timing_in_export",
+      "passed": true,
+      "details": [
+        {
+          "instance_id": "COME#0",
+          "protected_frames": 115,
+          "max_position_error": 0.0,
+          "bitwise_equal": true
+        },
+        {
+          "instance_id": "NOW#1",
+          "protected_frames": 100,
+          "max_position_error": 0.0,
+          "bitwise_equal": true
+        }
+      ]
+    },
+    {
+      "check": "COME__NOW:two_distinct_instances",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__NOW:complete_failed_saved_curve_verification",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__COME:diagnostic_label",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__COME:all_media_hashes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__COME:video_decode_frame_count",
+      "passed": true,
+      "details": {
+        "decoded": 305,
+        "expected": 305
+      }
+    },
+    {
+      "check": "NOW__COME:protected_poses_and_timing_in_export",
+      "passed": true,
+      "details": [
+        {
+          "instance_id": "NOW#0",
+          "protected_frames": 100,
+          "max_position_error": 0.0,
+          "bitwise_equal": true
+        },
+        {
+          "instance_id": "COME#1",
+          "protected_frames": 115,
+          "max_position_error": 0.0,
+          "bitwise_equal": true
+        }
+      ]
+    },
+    {
+      "check": "NOW__COME:two_distinct_instances",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__COME:complete_failed_saved_curve_verification",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__NOW:diagnostic_label",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__NOW:all_media_hashes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__NOW:video_decode_frame_count",
+      "passed": true,
+      "details": {
+        "decoded": 210,
+        "expected": 210
+      }
+    },
+    {
+      "check": "NOW__NOW:protected_poses_and_timing_in_export",
+      "passed": true,
+      "details": [
+        {
+          "instance_id": "NOW#0",
+          "protected_frames": 100,
+          "max_position_error": 0.0,
+          "bitwise_equal": true
+        },
+        {
+          "instance_id": "NOW#1",
+          "protected_frames": 100,
+          "max_position_error": 0.0,
+          "bitwise_equal": true
+        }
+      ]
+    },
+    {
+      "check": "NOW__NOW:two_distinct_instances",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__NOW:complete_failed_saved_curve_verification",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_baseline_motion_and_model_files_unchanged",
+      "passed": true,
+      "details": {
+        "count": 465,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "all_baseline_historical_results_unchanged",
+      "passed": true,
+      "details": []
+    },
+    {
+      "check": "all_atomic_reports_bilingual",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "project_state_bilingual",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "pilot_numerical_pass_count": 0,
+  "pilot_denominator": 4,
+  "formal_pass_sim_count": 0,
+  "full_library_denominator": 1225,
+  "full_library_acceptance_complete": false,
+  "goal_complete": false,
+  "identity": {
+    "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+    "code_hash": "4c8606e50b00ea38ab4ccea89fb130e979406a50cb59e6e915fbca75f615fbd3",
+    "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+    "identity_hash": "f530bd737079f2865e9ec50997f3e7d61d74c09c99740b9043c8522635edeef8",
+    "library_version": "hospital_v1@1f143d46f27e1eb9d5cc2f20d38d328e72214defc3a8d80616c7a8a60f5bdc47",
+    "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+    "policy_hash": "08c853654e4c9b8e916376123a004018237bc0623fe1ca2dbd5b64f6da156c17"
+  },
+  "blocking_cause": "unchanged protected-source quality exceeds unchanged engineering limits"
+}

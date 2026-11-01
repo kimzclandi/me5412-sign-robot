@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "proposal_id": "quality-v2-proposal-20261031",
+  "freeze_status": "pending",
+  "approval_evidence": null,
+  "boundary_derivative_method": "exact one-sided linear replay secant velocity; one-sided interval acceleration zero; analytic connector derivatives",
+  "limits": {
+    "velocity_jump_arm_rad_s": 1e-05,
+    "velocity_jump_finger_rad_s": 1e-05,
+    "acceleration_jump_arm_rad_s2": 0.0001,
+    "acceleration_jump_finger_rad_s2": 0.0001,
+    "peak_acceleration_rad_s2": 120.0,
+    "peak_jerk_rad_s3": 3000.0,
+    "jerk_integral_rad2_s5": 1000000.0,
+    "maximum_transition_duration_s": 6.0
+  },
+  "reference_curve": {
+    "distance_rad": 1.0,
+    "duration_s": 0.3,
+    "peak_acceleration_rad_s2": 64.15002990995843,
+    "peak_jerk_rad_s3": 2222.2222222222226,
+    "jerk_integral_rad2_s5": 296296.29629629635
+  },
+  "basis": "finite numerical matching tolerances; rounded development engineering caps above a one-joint 1 rad/0.3 s reference; not hardware or human-smoothness limits and not chosen to pass observed candidates",
+  "full_clip_method": "unfiltered 30 Hz np.gradient edge_order=2 twice for acceleration and once more for jerk; trapezoidal squared-jerk integral",
+  "analytic_connector_method": "per-piece derivative extrema and exact squared-polynomial jerk integral; check separately under the same finite caps",
+  "source_replay_limitation": "linear replay has undefined impulsive acceleration/jerk at internal knots; finite difference caps do not certify globally continuous derivatives",
+  "pending_decisions": [
+    "actual protected core and windows",
+    "source continuous-derivative versus finite-difference acceptance",
+    "source retiming/continuousization permission",
+    "formal numerical caps and hardware limits",
+    "collision coverage approval"
+  ]
+}

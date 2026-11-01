@@ -1,0 +1,11 @@
+{
+  "source": "/home/kingderman/Documents/ME5412-github-latest",
+  "work": "/tmp/me5412_auto_cuts_20261031_001/repository",
+  "archive": "/home/kingderman/Documents/ME5412/execution_evidence/auto_cuts_20261031_001/baseline.tar",
+  "archive_bytes": 863150080,
+  "archive_sha256": "501e2e75d05bad81f93a70e24b76b121370c345f45ee4973dd33ec6ea733d22f",
+  "entries": 7585,
+  "source_unchanged": true,
+  "restore_matches": true,
+  "symlinks_preserved_not_dereferenced": true
+}

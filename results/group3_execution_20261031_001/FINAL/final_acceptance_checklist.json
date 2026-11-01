@@ -1,0 +1,212 @@
+{
+  "scope": "engineering closeout, not formal all-pairs acceptance",
+  "checklist": {
+    "known_test_outputs_match_explicit_hashes": true,
+    "prior_development_run_001_preserved": true,
+    "baseline_files_preserved_except_explicit_changes": true,
+    "all_changes_match_latest_task_install_hashes": true,
+    "no_unexpected_new_files": true,
+    "original_assets_and_motions_unchanged": true,
+    "legacy_3378_files_intact": true,
+    "legacy_1225_unique_pairs_intact": true,
+    "legacy_status_counts_preserved": true,
+    "development_run_inventory_intact": true,
+    "development_run_resume_32_files_unchanged": true,
+    "development_run_identity_matches_installed_code_and_inputs": true,
+    "development_denominators_fixed": true,
+    "development_4_blocked_1221_not_run_zero_pass": true,
+    "formal_acceptance_remains_disabled": true
+  },
+  "engineering_integrity_passed": true,
+  "baseline": {
+    "entries": 7052,
+    "original_asset_and_motion_files_checked": 465,
+    "missing_files": [],
+    "altered_files": [
+      "docs/README.en.md",
+      "docs/README.md",
+      "scripts/plan_all_pairs.py",
+      "scripts/summarize_all_pairs.py",
+      "scripts/verify_all_pairs.py",
+      "src/sign_robot/all_pairs.py",
+      "src/sign_robot/pair_contract.py",
+      "src/sign_robot/pair_verification.py",
+      "src/sign_robot/project_overview.py"
+    ],
+    "unauthorized_alterations": [],
+    "type_mismatches": [],
+    "symlink_mismatches": [],
+    "new_file_count": 347,
+    "unexpected_new_files": [],
+    "installed_output_hash_mismatches": []
+  },
+  "known_test_outputs": [
+    {
+      "path": "results/session_logs/service-33841.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-33841.log",
+      "sha256": "0f8dd96b7a5a4e80b4beb9fb4c364661222e78b9fd2f6be2efbf40d4bf8b91a2",
+      "bytes": 168,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-45105.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-45105.log",
+      "sha256": "c71cff9dace85946103ce221388abfbd0b366755b9ae962d3de621ea9f550e75",
+      "bytes": 168,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-47841.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-54749.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    }
+  ],
+  "retained_development_run_001": {
+    "file_count": 32,
+    "bad_files": []
+  },
+  "task_install_specs": [
+    "results/group3_execution_20261031_001/TASK-01/changes.json",
+    "results/group3_execution_20261031_001/TASK-02/changes.json",
+    "results/group3_execution_20261031_001/TASK-03/changes.json",
+    "results/group3_execution_20261031_001/TASK-04/changes.json",
+    "results/group3_execution_20261031_001/TASK-05/changes.json",
+    "results/group3_execution_20261031_001/TASK-06/changes.json",
+    "results/group3_execution_20261031_001/TASK-07/changes.json",
+    "results/group3_execution_20261031_001/TASK-08/changes.json",
+    "results/group3_execution_20261031_001/TASK-09/changes.json",
+    "results/group3_execution_20261031_001/TASK-10/changes.json",
+    "results/group3_execution_20261031_001/TASK-11/changes.json",
+    "results/group3_execution_20261031_001/TASK-12/changes.json",
+    "results/group3_execution_20261031_001/TASK-13/changes.json",
+    "results/group3_execution_20261031_001/TASK-14-COMPAT/changes.json"
+  ],
+  "legacy": {
+    "checked_files": 3378,
+    "bad_files": [],
+    "unique_pairs": 1225,
+    "status_counts": {
+      "FAILED_QUALITY": 513,
+      "BLOCKED_ENDPOINT": 326,
+      "FAILED_SEARCH": 386
+    }
+  },
+  "development_run": {
+    "run_id": "handoff_v2_dev_20261031_002",
+    "identity": {
+      "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+      "code_hash": "66ad34ae22b633f1956edd5abdf0e0dded6bed3274f29cbdaf65aeef908b67c8",
+      "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+      "identity_hash": "184918f52da32f087bb63841f7e1e98cf844a812b4525d3e075b8494601f566c",
+      "library_version": "hospital_v1@39ba7e88ff8645aafdd3000f75db8e5a1deaff324ccc7e0155a3a68afc98ae71",
+      "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+      "policy_hash": "7b73c2946fcd348272e899ae71ad536bd4359ede69fdced7c5e47d2da36917ae"
+    },
+    "bad_files": [],
+    "resume_changed_files": [],
+    "summary": {
+      "L2_complete": false,
+      "acceptance_level": "v2_development_pending_real_approvals",
+      "formal_acceptance_enabled": false,
+      "groups": {
+        "all": {
+          "denominator": 1225,
+          "pass_sim_rate": 0.0,
+          "scanned": 4,
+          "status_counts": {
+            "BLOCKED_ENDPOINT": 0,
+            "BLOCKED_INPUT": 4,
+            "ERROR": 0,
+            "FAILED_QUALITY": 0,
+            "FAILED_SEARCH": 0,
+            "NOT_RUN": 1221,
+            "PASS_SIM": 0,
+            "SOURCE_NEAR": 0,
+            "TIMEOUT": 0
+          }
+        },
+        "non_self": {
+          "denominator": 1190,
+          "pass_sim_rate": 0.0,
+          "scanned": 2,
+          "status_counts": {
+            "BLOCKED_ENDPOINT": 0,
+            "BLOCKED_INPUT": 2,
+            "ERROR": 0,
+            "FAILED_QUALITY": 0,
+            "FAILED_SEARCH": 0,
+            "NOT_RUN": 1188,
+            "PASS_SIM": 0,
+            "SOURCE_NEAR": 0,
+            "TIMEOUT": 0
+          }
+        },
+        "self": {
+          "denominator": 35,
+          "pass_sim_rate": 0.0,
+          "scanned": 2,
+          "status_counts": {
+            "BLOCKED_ENDPOINT": 0,
+            "BLOCKED_INPUT": 2,
+            "ERROR": 0,
+            "FAILED_QUALITY": 0,
+            "FAILED_SEARCH": 0,
+            "NOT_RUN": 33,
+            "PASS_SIM": 0,
+            "SOURCE_NEAR": 0,
+            "TIMEOUT": 0
+          }
+        }
+      },
+      "identity": {
+        "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+        "code_hash": "66ad34ae22b633f1956edd5abdf0e0dded6bed3274f29cbdaf65aeef908b67c8",
+        "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+        "identity_hash": "184918f52da32f087bb63841f7e1e98cf844a812b4525d3e075b8494601f566c",
+        "library_version": "hospital_v1@39ba7e88ff8645aafdd3000f75db8e5a1deaff324ccc7e0155a3a68afc98ae71",
+        "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+        "policy_hash": "7b73c2946fcd348272e899ae71ad536bd4359ede69fdced7c5e47d2da36917ae"
+      },
+      "planning_complete": false,
+      "run_id": "handoff_v2_dev_20261031_002",
+      "saved_attempts": 4,
+      "saved_candidates": 0,
+      "schema_version": 2,
+      "verification_complete": false,
+      "verified_records": 4
+    }
+  },
+  "formal_acceptance": {
+    "L2_complete": false,
+    "all_1225_pass_sim": false,
+    "actual_approval_inputs_present": false,
+    "triple_42875_compatibility_complete": false,
+    "frozen_multiword_sequences_passed": false,
+    "actual_human_review_complete": false,
+    "fresh_environment_reproduction_complete": false
+  },
+  "head": "2875e499d79b7264b3fe0414318b30ca8aab1f4d"
+}

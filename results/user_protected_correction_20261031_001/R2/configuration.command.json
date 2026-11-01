@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "python3",
+    "/tmp/me5412_configure_correction.py"
+  ],
+  "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "MUJOCO_GL": "egl",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "exit_code": 0,
+  "elapsed_s": 0.026774168014526367,
+  "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R2/configuration.log"
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "documentation_updated_after_actual_source_verification",
+  "files": [
+    {
+      "relative": "STATE.md",
+      "before_sha256": "271a0f013b5e18735e358687fee0143dbe0215a3c0d52ddaf4f20c24e4991022",
+      "after_sha256": "49800ee06be1b8dc2e83e3da842eafd965464818aa834f206f5405149fd64ea0"
+    },
+    {
+      "relative": "STATE.en.md",
+      "before_sha256": "c5acf0184835d9a3fd112510791d23b31ae664f3d2da4882a5021c1e96aef591",
+      "after_sha256": "081fe398e13145bfb100229df45aa517da8e9941c5e28aa3df1557125dd11a93"
+    },
+    {
+      "relative": "TASK-22.md",
+      "before_sha256": "b43b71d9550cd6d788e93ec42ad7dd6461877ee5cea36a0f4febc5fd21bef5fc",
+      "after_sha256": "bb54b3def4c9f12abc794ce59949f2b3bd5cc8a942cbd81f68379690558a6494"
+    },
+    {
+      "relative": "TASK-22.en.md",
+      "before_sha256": "dcef2892d43918b35c49a40d337ba9d60dd38a4e5d7568591360abe0e2f1b7a6",
+      "after_sha256": "aa20642d94b92339e2e9f8439396331b3921a7acde589e95909367e3c6ba74ef"
+    }
+  ],
+  "code_policy_or_motion_changes": false,
+  "source_acceptance_exit_code": 0
+}

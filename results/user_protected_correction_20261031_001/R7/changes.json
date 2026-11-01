@@ -1,0 +1,26 @@
+[
+  {
+    "relative": "TASK-22.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-22.md",
+    "before_sha256": null,
+    "after_sha256": "bb54b3def4c9f12abc794ce59949f2b3bd5cc8a942cbd81f68379690558a6494"
+  },
+  {
+    "relative": "TASK-22.en.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-22.en.md",
+    "before_sha256": null,
+    "after_sha256": "aa20642d94b92339e2e9f8439396331b3921a7acde589e95909367e3c6ba74ef"
+  },
+  {
+    "relative": "STATE.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/STATE.md",
+    "before_sha256": "2e6935290030d04328fee3933976aa69692f5e8c6923b5c034f5fd0cfdf174f1",
+    "after_sha256": "49800ee06be1b8dc2e83e3da842eafd965464818aa834f206f5405149fd64ea0"
+  },
+  {
+    "relative": "STATE.en.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/STATE.en.md",
+    "before_sha256": "781647f6398c3c1486d2cf882f594f3b74503b55a899977808f3925a2b755978",
+    "after_sha256": "081fe398e13145bfb100229df45aa517da8e9941c5e28aa3df1557125dd11a93"
+  }
+]

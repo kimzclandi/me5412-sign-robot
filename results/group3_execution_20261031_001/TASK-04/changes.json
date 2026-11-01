@@ -1,0 +1,79 @@
+{
+  "task": "TASK-04",
+  "task_id": "P0-4",
+  "changes": [
+    {
+      "path": "docs/group3-quality-metrics.md",
+      "before_sha256": null,
+      "after_sha256": "16f041ca6fa9ab555ef6deb650abd144823aec2397acd2efe47fe91005e3d1a4"
+    },
+    {
+      "path": "docs/group3-quality-metrics.en.md",
+      "before_sha256": null,
+      "after_sha256": "58854f28a2159eb9a39239b3269909668e43b49362e483b26b33e53c81a35e95"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P0-4/analytic_metric_checks.json",
+      "before_sha256": null,
+      "after_sha256": "f22a691c07bb9b8d5dc1015248de10e5ccbbb3842091e2407caa4fa7fa6929f3"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P0-4/audit_evidence.py",
+      "before_sha256": null,
+      "after_sha256": "97396eb1a741c9af5d0c36b06909167a5e3f3e264a0e7f430fa7562daa0892f0"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P0-4/quality_audit.command.json",
+      "before_sha256": null,
+      "after_sha256": "8c9ff2202fa42abc550f0ede98a1435563a5ddb4a7605fa0e187870cb7abf7a3"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P0-4/quality_audit.log",
+      "before_sha256": null,
+      "after_sha256": "452702ac435d3697e2dd19109d05200957e29385e174814a1d9ab3ec21ff74e4"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P0-4/quality_metrics_recomputed.json",
+      "before_sha256": null,
+      "after_sha256": "9e8aa41506cdf8e6294bcc8f7568c4cb6ea042c74f2775bf93ecd53783d703e7"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P0-4/quality_threshold_proposal.json",
+      "before_sha256": null,
+      "after_sha256": "b7ebea9c610d89fb9dd0334c7d4bacd709bcbc854467ea666e3252f76f0ff4e9"
+    },
+    {
+      "path": "TASK-04.md",
+      "before_sha256": null,
+      "after_sha256": "11f8a8870a7c661d275f22363b4e8ea789b6e9adf3601e7a71dc0636cfac8d1e"
+    },
+    {
+      "path": "TASK-04.en.md",
+      "before_sha256": null,
+      "after_sha256": "8ba52be5feba0278704bec88ebc37d0fc8a2461a62ed632730f49c93bd2e308b"
+    },
+    {
+      "path": "STATE.md",
+      "before_sha256": "72c42fb7a966d7212a165b594b619c25abeace292797e830d0b7f3be4ea03e3d",
+      "after_sha256": "3996f6252f6028b08b44f05bd9f7f0ca72c7e84b021a94c79b7f77f978ac46d3"
+    },
+    {
+      "path": "STATE.en.md",
+      "before_sha256": "2939980ecb8ec423fc160ab2cd36b1b75849e575a5342c026a635fc982a09dbc",
+      "after_sha256": "ae01f7081ba9e8d4ece9bab36120cba1bbd1be697e699dcae92fe8c18cf4aa24"
+    },
+    {
+      "path": "docs/README.md",
+      "before_sha256": "9aea54494c67526ca41ac4caaa5489557dd4b513d5c7107dbab8f06ab5308720",
+      "after_sha256": "1de2ee5ee35fa365825a0c4a0b1522dae0670e2ac0ad27668dcf0e84e3e15168"
+    },
+    {
+      "path": "docs/README.en.md",
+      "before_sha256": "c17cffb30d9945305ef917a806972b373e2139fa487625a9c122eeaea6f86495",
+      "after_sha256": "3d22416860851e4c9fd2cd379cca3c3f9f5b16703327dc3116c9e8de517fbe26"
+    }
+  ],
+  "installed": true,
+  "source": "/home/kingderman/Documents/ME5412-github-latest",
+  "backup": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/TASK-04/before"
+}

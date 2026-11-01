@@ -1,0 +1,94 @@
+{
+  "task": "TASK-05",
+  "task_id": "P0-5",
+  "changes": [
+    {
+      "path": "src/sign_robot/pair_contract.py",
+      "before_sha256": "ee6d4e48fd38afb315efaa1f076766e0107c85a6be3cb9aa7d2dd0e6618c000b",
+      "after_sha256": "602dd7b990644fa7d001bc645f5b9a54f24d7733b50e575021a4331f3086ed2d"
+    },
+    {
+      "path": "config/transition_policy_v2.json",
+      "before_sha256": null,
+      "after_sha256": "22888f671e7399638ae67fa12979cf00068f3e8586a6be2e49acdf0f571a5feb"
+    },
+    {
+      "path": "contracts/all_pairs_v2.json",
+      "before_sha256": null,
+      "after_sha256": "ec5c1c20ce4ceff76a9fc1d8bd7c391c7872f2209edbcb43f7d44c97860be96a"
+    },
+    {
+      "path": "tests/test_pair_contract_v2.py",
+      "before_sha256": null,
+      "after_sha256": "986d223e520579323c34340da67cced41139509394fa162495b8c28aefe4a3c9"
+    },
+    {
+      "path": "docs/group3-v2-contract.md",
+      "before_sha256": null,
+      "after_sha256": "af09bcf495428b04074e94b0e1381ffade3e7482caecaffe36c22ded584c5bae"
+    },
+    {
+      "path": "docs/group3-v2-contract.en.md",
+      "before_sha256": null,
+      "after_sha256": "612b7694ac23f7813c5eef2c17f96e91d8e309a91a380138f2bc11e9382a8aa4"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P0-5/pytest_contract_final.command.json",
+      "before_sha256": null,
+      "after_sha256": "2c2cd1f349d2f7856ef5a2b9a5d8a07e3240f808c3f05a8019783a2b6795dde2"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P0-5/pytest_contract_final.log",
+      "before_sha256": null,
+      "after_sha256": "3a4b61ad27782f5d64b596e6fb361dd5e092b59a84fda6947ffeb0b03c76b1b5"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P0-5/pytest_contract_initial.command.json",
+      "before_sha256": null,
+      "after_sha256": "3a87cf2f1029f102d5e4b7b07668790a3606964291761818ef5081f572045c51"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P0-5/pytest_contract_initial.log",
+      "before_sha256": null,
+      "after_sha256": "f5c97b956552308ed1ec5156ff538412ff48081c6ffc736a252a66c6b4f5699d"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P0-5/v2_hash_manifest.json",
+      "before_sha256": null,
+      "after_sha256": "affe1bf6cf7b9b7420413a09f7dd0a574954c87e88cd58a20c782387e454991a"
+    },
+    {
+      "path": "TASK-05.md",
+      "before_sha256": null,
+      "after_sha256": "f09de5bdec22c0a8af93db82d1c552f9ef908274e7b2568fbf1f3d3a2c35ff02"
+    },
+    {
+      "path": "TASK-05.en.md",
+      "before_sha256": null,
+      "after_sha256": "855a19cba0301689ed3c981e25f6a7fc26e2e032b18d7b1606b0d2dbf4eaff90"
+    },
+    {
+      "path": "STATE.md",
+      "before_sha256": "3996f6252f6028b08b44f05bd9f7f0ca72c7e84b021a94c79b7f77f978ac46d3",
+      "after_sha256": "6352b791d66331980e5e3dd175de8460c481d724fb01c1afe631482ae1f76aa1"
+    },
+    {
+      "path": "STATE.en.md",
+      "before_sha256": "ae01f7081ba9e8d4ece9bab36120cba1bbd1be697e699dcae92fe8c18cf4aa24",
+      "after_sha256": "6cfd30e3d75f2cbe54b62984acc7216f8f18b05538dacc9a1330ff9e5f4ff754"
+    },
+    {
+      "path": "docs/README.md",
+      "before_sha256": "1de2ee5ee35fa365825a0c4a0b1522dae0670e2ac0ad27668dcf0e84e3e15168",
+      "after_sha256": "5ad193dc821ffad83844219f9739919bac08f5c7da331322761bd9d1782f7a4a"
+    },
+    {
+      "path": "docs/README.en.md",
+      "before_sha256": "3d22416860851e4c9fd2cd379cca3c3f9f5b16703327dc3116c9e8de517fbe26",
+      "after_sha256": "5323d6de9c19881932d58c298644558ed72566492f95ccd2e2c0ef9127db2a75"
+    }
+  ],
+  "installed": true,
+  "source": "/home/kingderman/Documents/ME5412-github-latest",
+  "backup": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/TASK-05/before"
+}

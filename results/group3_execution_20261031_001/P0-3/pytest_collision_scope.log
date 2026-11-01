@@ -1,0 +1,11 @@
+........................................................................ [ 31%]
+........................................................................ [ 62%]
+........................................................................ [ 93%]
+..............                                                           [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/_pytest/cacheprovider.py:469
+  /home/kingderman/Documents/ME5412-github-latest/.venv/lib/python3.12/site-packages/_pytest/cacheprovider.py:469: PytestCacheWarning: could not create cache path /home/kingderman/Documents/ME5412-github-latest/.pytest_cache/v/cache/nodeids: [Errno 30] Read-only file system: '/home/kingderman/Documents/ME5412-github-latest/pytest-cache-files-nu8671nf'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+230 passed, 1 warning in 3.09s

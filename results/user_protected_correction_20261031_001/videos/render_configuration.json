@@ -1,0 +1,12 @@
+{
+  "kind": "raster_render_settings_only",
+  "shadows": false,
+  "reflections": false,
+  "offscreen_multisamples": 0,
+  "shadow_map_size": 512,
+  "native_robot_geometry_unchanged": true,
+  "trajectory_code_and_validation_policy_unchanged": true,
+  "script_sha256": "df4ec73f423de6f19a6c3a0d9729dee13a22fb82d1471dc851ec36dcdca3d238",
+  "frozen_entrypoint": "scripts/render_user_protected_pairs.py",
+  "frozen_entrypoint_sha256": "2caea8135a77bc713f24da7921e658c940056e5e4d61e0254198e3b076ae8b92"
+}

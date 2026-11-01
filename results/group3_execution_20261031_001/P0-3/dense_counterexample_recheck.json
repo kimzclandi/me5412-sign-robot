@@ -1,0 +1,831 @@
+{
+  "rechecked": 11,
+  "failures": [
+    {
+      "pair_id": "DOCTOR__NURSE",
+      "coarse_clearance_mm": 8.011922386203274,
+      "measured_dense_clearance_mm": -25.851033771719173,
+      "historical_dense_clearance_mm": -25.851033771719067,
+      "dense_matches_historical_atol_mm_1e_6": true,
+      "resolutions": [
+        {
+          "factor": 1,
+          "sample_count": 134,
+          "min_clearance_mm": -25.851033771719173,
+          "worst_contact": {
+            "bodies": [
+              "L_middle_intermediate",
+              "right_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_73",
+              "geom_97"
+            ],
+            "geom_ids": [
+              73,
+              97
+            ],
+            "distance_m": -0.025851033771719174,
+            "frame": 78,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 2,
+          "sample_count": 134,
+          "min_clearance_mm": -25.851033771719173,
+          "worst_contact": {
+            "bodies": [
+              "L_middle_intermediate",
+              "right_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_73",
+              "geom_97"
+            ],
+            "geom_ids": [
+              73,
+              97
+            ],
+            "distance_m": -0.025851033771719174,
+            "frame": 78,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 4,
+          "sample_count": 134,
+          "min_clearance_mm": -25.851033771719173,
+          "worst_contact": {
+            "bodies": [
+              "L_middle_intermediate",
+              "right_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_73",
+              "geom_97"
+            ],
+            "geom_ids": [
+              73,
+              97
+            ],
+            "distance_m": -0.025851033771719174,
+            "frame": 78,
+            "location": "interior"
+          }
+        }
+      ]
+    },
+    {
+      "pair_id": "HAVE__DOCTOR",
+      "coarse_clearance_mm": 2.857123217454332,
+      "measured_dense_clearance_mm": 0.40708177237654564,
+      "historical_dense_clearance_mm": 0.40708177237655646,
+      "dense_matches_historical_atol_mm_1e_6": true,
+      "resolutions": [
+        {
+          "factor": 1,
+          "sample_count": 55,
+          "min_clearance_mm": 0.40708177237654564,
+          "worst_contact": {
+            "bodies": [
+              "L_pinky_proximal",
+              "R_thumb_intermediate"
+            ],
+            "geoms": [
+              "geom_79",
+              "geom_103"
+            ],
+            "geom_ids": [
+              79,
+              103
+            ],
+            "distance_m": 0.00040708177237654564,
+            "frame": 22,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 2,
+          "sample_count": 55,
+          "min_clearance_mm": 0.40708177237654564,
+          "worst_contact": {
+            "bodies": [
+              "L_pinky_proximal",
+              "R_thumb_intermediate"
+            ],
+            "geoms": [
+              "geom_79",
+              "geom_103"
+            ],
+            "geom_ids": [
+              79,
+              103
+            ],
+            "distance_m": 0.00040708177237654564,
+            "frame": 22,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 4,
+          "sample_count": 55,
+          "min_clearance_mm": 0.40708177237654564,
+          "worst_contact": {
+            "bodies": [
+              "L_pinky_proximal",
+              "R_thumb_intermediate"
+            ],
+            "geoms": [
+              "geom_79",
+              "geom_103"
+            ],
+            "geom_ids": [
+              79,
+              103
+            ],
+            "distance_m": 0.00040708177237654564,
+            "frame": 22,
+            "location": "interior"
+          }
+        }
+      ]
+    },
+    {
+      "pair_id": "HAVE__TAKE",
+      "coarse_clearance_mm": 6.779122787480329,
+      "measured_dense_clearance_mm": -0.9619021880032368,
+      "historical_dense_clearance_mm": -0.9619021880032143,
+      "dense_matches_historical_atol_mm_1e_6": true,
+      "resolutions": [
+        {
+          "factor": 1,
+          "sample_count": 79,
+          "min_clearance_mm": -0.9619021880032368,
+          "worst_contact": {
+            "bodies": [
+              "L_pinky_proximal",
+              "R_thumb_proximal"
+            ],
+            "geoms": [
+              "geom_79",
+              "geom_101"
+            ],
+            "geom_ids": [
+              79,
+              101
+            ],
+            "distance_m": -0.0009619021880032368,
+            "frame": 22,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 2,
+          "sample_count": 79,
+          "min_clearance_mm": -0.9619021880032368,
+          "worst_contact": {
+            "bodies": [
+              "L_pinky_proximal",
+              "R_thumb_proximal"
+            ],
+            "geoms": [
+              "geom_79",
+              "geom_101"
+            ],
+            "geom_ids": [
+              79,
+              101
+            ],
+            "distance_m": -0.0009619021880032368,
+            "frame": 22,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 4,
+          "sample_count": 79,
+          "min_clearance_mm": -0.9619021880032368,
+          "worst_contact": {
+            "bodies": [
+              "L_pinky_proximal",
+              "R_thumb_proximal"
+            ],
+            "geoms": [
+              "geom_79",
+              "geom_101"
+            ],
+            "geom_ids": [
+              79,
+              101
+            ],
+            "distance_m": -0.0009619021880032368,
+            "frame": 22,
+            "location": "interior"
+          }
+        }
+      ]
+    },
+    {
+      "pair_id": "HEADACHE__NURSE",
+      "coarse_clearance_mm": 2.6390933482142445,
+      "measured_dense_clearance_mm": 1.41058763170564,
+      "historical_dense_clearance_mm": 1.4105876317054167,
+      "dense_matches_historical_atol_mm_1e_6": true,
+      "resolutions": [
+        {
+          "factor": 1,
+          "sample_count": 76,
+          "min_clearance_mm": 1.41058763170564,
+          "worst_contact": {
+            "bodies": [
+              "left_wrist_yaw_link",
+              "right_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_57",
+              "geom_95"
+            ],
+            "geom_ids": [
+              57,
+              95
+            ],
+            "distance_m": 0.00141058763170564,
+            "frame": 20,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 2,
+          "sample_count": 76,
+          "min_clearance_mm": 1.41058763170564,
+          "worst_contact": {
+            "bodies": [
+              "left_wrist_yaw_link",
+              "right_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_57",
+              "geom_95"
+            ],
+            "geom_ids": [
+              57,
+              95
+            ],
+            "distance_m": 0.00141058763170564,
+            "frame": 20,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 4,
+          "sample_count": 76,
+          "min_clearance_mm": 1.41058763170564,
+          "worst_contact": {
+            "bodies": [
+              "left_wrist_yaw_link",
+              "right_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_57",
+              "geom_95"
+            ],
+            "geom_ids": [
+              57,
+              95
+            ],
+            "distance_m": 0.00141058763170564,
+            "frame": 20,
+            "location": "interior"
+          }
+        }
+      ]
+    },
+    {
+      "pair_id": "ME__HEADACHE",
+      "coarse_clearance_mm": 5.862329136498288,
+      "measured_dense_clearance_mm": 1.7646568450320341,
+      "historical_dense_clearance_mm": 1.7646568450319722,
+      "dense_matches_historical_atol_mm_1e_6": true,
+      "resolutions": [
+        {
+          "factor": 1,
+          "sample_count": 67,
+          "min_clearance_mm": 1.7646568450320341,
+          "worst_contact": {
+            "bodies": [
+              "L_thumb_distal",
+              "R_thumb_proximal"
+            ],
+            "geoms": [
+              "geom_65",
+              "geom_101"
+            ],
+            "geom_ids": [
+              65,
+              101
+            ],
+            "distance_m": 0.0017646568450320342,
+            "frame": 34,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 2,
+          "sample_count": 67,
+          "min_clearance_mm": 1.7646568450320341,
+          "worst_contact": {
+            "bodies": [
+              "L_thumb_distal",
+              "R_thumb_proximal"
+            ],
+            "geoms": [
+              "geom_65",
+              "geom_101"
+            ],
+            "geom_ids": [
+              65,
+              101
+            ],
+            "distance_m": 0.0017646568450320342,
+            "frame": 34,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 4,
+          "sample_count": 67,
+          "min_clearance_mm": 1.7646568450320341,
+          "worst_contact": {
+            "bodies": [
+              "L_thumb_distal",
+              "R_thumb_proximal"
+            ],
+            "geoms": [
+              "geom_65",
+              "geom_101"
+            ],
+            "geom_ids": [
+              65,
+              101
+            ],
+            "distance_m": 0.0017646568450320342,
+            "frame": 34,
+            "location": "interior"
+          }
+        }
+      ]
+    },
+    {
+      "pair_id": "NOW__SOON",
+      "coarse_clearance_mm": 8.151426048837116,
+      "measured_dense_clearance_mm": -0.2534130321014327,
+      "historical_dense_clearance_mm": -0.25341303210139454,
+      "dense_matches_historical_atol_mm_1e_6": true,
+      "resolutions": [
+        {
+          "factor": 1,
+          "sample_count": 81,
+          "min_clearance_mm": -0.2534130321014327,
+          "worst_contact": {
+            "bodies": [
+              "L_thumb_distal",
+              "R_ring_intermediate"
+            ],
+            "geoms": [
+              "geom_65",
+              "geom_117"
+            ],
+            "geom_ids": [
+              65,
+              117
+            ],
+            "distance_m": -0.0002534130321014327,
+            "frame": 42,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 2,
+          "sample_count": 81,
+          "min_clearance_mm": -0.2534130321014327,
+          "worst_contact": {
+            "bodies": [
+              "L_thumb_distal",
+              "R_ring_intermediate"
+            ],
+            "geoms": [
+              "geom_65",
+              "geom_117"
+            ],
+            "geom_ids": [
+              65,
+              117
+            ],
+            "distance_m": -0.0002534130321014327,
+            "frame": 42,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 4,
+          "sample_count": 81,
+          "min_clearance_mm": -0.2534130321014327,
+          "worst_contact": {
+            "bodies": [
+              "L_thumb_distal",
+              "R_ring_intermediate"
+            ],
+            "geoms": [
+              "geom_65",
+              "geom_117"
+            ],
+            "geom_ids": [
+              65,
+              117
+            ],
+            "distance_m": -0.0002534130321014327,
+            "frame": 42,
+            "location": "interior"
+          }
+        }
+      ]
+    },
+    {
+      "pair_id": "SORRY__BREATHE-DEEP",
+      "coarse_clearance_mm": 5.734585426218899,
+      "measured_dense_clearance_mm": -6.05180492852792,
+      "historical_dense_clearance_mm": -6.05180492852792,
+      "dense_matches_historical_atol_mm_1e_6": true,
+      "resolutions": [
+        {
+          "factor": 1,
+          "sample_count": 83,
+          "min_clearance_mm": -6.05180492852792,
+          "worst_contact": {
+            "bodies": [
+              "L_thumb_distal",
+              "right_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_65",
+              "geom_97"
+            ],
+            "geom_ids": [
+              65,
+              97
+            ],
+            "distance_m": -0.00605180492852792,
+            "frame": 39,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 2,
+          "sample_count": 83,
+          "min_clearance_mm": -6.05180492852792,
+          "worst_contact": {
+            "bodies": [
+              "L_thumb_distal",
+              "right_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_65",
+              "geom_97"
+            ],
+            "geom_ids": [
+              65,
+              97
+            ],
+            "distance_m": -0.00605180492852792,
+            "frame": 39,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 4,
+          "sample_count": 83,
+          "min_clearance_mm": -6.05180492852792,
+          "worst_contact": {
+            "bodies": [
+              "L_thumb_distal",
+              "right_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_65",
+              "geom_97"
+            ],
+            "geom_ids": [
+              65,
+              97
+            ],
+            "distance_m": -0.00605180492852792,
+            "frame": 39,
+            "location": "interior"
+          }
+        }
+      ]
+    },
+    {
+      "pair_id": "TAKE__APPOINTMENT",
+      "coarse_clearance_mm": 2.159112349301648,
+      "measured_dense_clearance_mm": -1.3289233862959198,
+      "historical_dense_clearance_mm": -1.3289233862959284,
+      "dense_matches_historical_atol_mm_1e_6": true,
+      "resolutions": [
+        {
+          "factor": 1,
+          "sample_count": 59,
+          "min_clearance_mm": -1.3289233862959198,
+          "worst_contact": {
+            "bodies": [
+              "left_hip_roll_link",
+              "left_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_7",
+              "geom_57"
+            ],
+            "geom_ids": [
+              7,
+              57
+            ],
+            "distance_m": -0.0013289233862959198,
+            "frame": 21,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 2,
+          "sample_count": 59,
+          "min_clearance_mm": -1.3289233862959198,
+          "worst_contact": {
+            "bodies": [
+              "left_hip_roll_link",
+              "left_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_7",
+              "geom_57"
+            ],
+            "geom_ids": [
+              7,
+              57
+            ],
+            "distance_m": -0.0013289233862959198,
+            "frame": 21,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 4,
+          "sample_count": 59,
+          "min_clearance_mm": -1.3289233862959198,
+          "worst_contact": {
+            "bodies": [
+              "left_hip_roll_link",
+              "left_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_7",
+              "geom_57"
+            ],
+            "geom_ids": [
+              7,
+              57
+            ],
+            "distance_m": -0.0013289233862959198,
+            "frame": 21,
+            "location": "interior"
+          }
+        }
+      ]
+    },
+    {
+      "pair_id": "TAKE__HURT",
+      "coarse_clearance_mm": 9.500145275131363,
+      "measured_dense_clearance_mm": -10.167007015624012,
+      "historical_dense_clearance_mm": -10.167007015623971,
+      "dense_matches_historical_atol_mm_1e_6": true,
+      "resolutions": [
+        {
+          "factor": 1,
+          "sample_count": 108,
+          "min_clearance_mm": -10.167007015624012,
+          "worst_contact": {
+            "bodies": [
+              "L_pinky_intermediate",
+              "R_middle_intermediate"
+            ],
+            "geoms": [
+              "geom_81",
+              "geom_113"
+            ],
+            "geom_ids": [
+              81,
+              113
+            ],
+            "distance_m": -0.010167007015624013,
+            "frame": 64,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 2,
+          "sample_count": 108,
+          "min_clearance_mm": -10.167007015624012,
+          "worst_contact": {
+            "bodies": [
+              "L_pinky_intermediate",
+              "R_middle_intermediate"
+            ],
+            "geoms": [
+              "geom_81",
+              "geom_113"
+            ],
+            "geom_ids": [
+              81,
+              113
+            ],
+            "distance_m": -0.010167007015624013,
+            "frame": 64,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 4,
+          "sample_count": 108,
+          "min_clearance_mm": -10.167007015624012,
+          "worst_contact": {
+            "bodies": [
+              "L_pinky_intermediate",
+              "R_middle_intermediate"
+            ],
+            "geoms": [
+              "geom_81",
+              "geom_113"
+            ],
+            "geom_ids": [
+              81,
+              113
+            ],
+            "distance_m": -0.010167007015624013,
+            "frame": 64,
+            "location": "interior"
+          }
+        }
+      ]
+    },
+    {
+      "pair_id": "THANK-YOU__YOU",
+      "coarse_clearance_mm": 2.9685882879871923,
+      "measured_dense_clearance_mm": 1.6960610671355667,
+      "historical_dense_clearance_mm": 1.6960610671356096,
+      "dense_matches_historical_atol_mm_1e_6": true,
+      "resolutions": [
+        {
+          "factor": 1,
+          "sample_count": 131,
+          "min_clearance_mm": 1.6960610671355667,
+          "worst_contact": {
+            "bodies": [
+              "left_hip_roll_link",
+              "left_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_7",
+              "geom_57"
+            ],
+            "geom_ids": [
+              7,
+              57
+            ],
+            "distance_m": 0.0016960610671355666,
+            "frame": 27,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 2,
+          "sample_count": 131,
+          "min_clearance_mm": 1.6960610671355667,
+          "worst_contact": {
+            "bodies": [
+              "left_hip_roll_link",
+              "left_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_7",
+              "geom_57"
+            ],
+            "geom_ids": [
+              7,
+              57
+            ],
+            "distance_m": 0.0016960610671355666,
+            "frame": 27,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 4,
+          "sample_count": 131,
+          "min_clearance_mm": 1.6960610671355667,
+          "worst_contact": {
+            "bodies": [
+              "left_hip_roll_link",
+              "left_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_7",
+              "geom_57"
+            ],
+            "geom_ids": [
+              7,
+              57
+            ],
+            "distance_m": 0.0016960610671355666,
+            "frame": 27,
+            "location": "interior"
+          }
+        }
+      ]
+    },
+    {
+      "pair_id": "WAIT__SORRY",
+      "coarse_clearance_mm": 6.336910177324538,
+      "measured_dense_clearance_mm": -0.707873602657204,
+      "historical_dense_clearance_mm": -0.7078736026573922,
+      "dense_matches_historical_atol_mm_1e_6": true,
+      "resolutions": [
+        {
+          "factor": 1,
+          "sample_count": 126,
+          "min_clearance_mm": -0.707873602657204,
+          "worst_contact": {
+            "bodies": [
+              "L_thumb_distal",
+              "right_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_65",
+              "geom_97"
+            ],
+            "geom_ids": [
+              65,
+              97
+            ],
+            "distance_m": -0.000707873602657204,
+            "frame": 31,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 2,
+          "sample_count": 126,
+          "min_clearance_mm": -0.707873602657204,
+          "worst_contact": {
+            "bodies": [
+              "L_thumb_distal",
+              "right_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_65",
+              "geom_97"
+            ],
+            "geom_ids": [
+              65,
+              97
+            ],
+            "distance_m": -0.000707873602657204,
+            "frame": 31,
+            "location": "interior"
+          }
+        },
+        {
+          "factor": 4,
+          "sample_count": 126,
+          "min_clearance_mm": -0.707873602657204,
+          "worst_contact": {
+            "bodies": [
+              "L_thumb_distal",
+              "right_wrist_yaw_link"
+            ],
+            "geoms": [
+              "geom_65",
+              "geom_97"
+            ],
+            "geom_ids": [
+              65,
+              97
+            ],
+            "distance_m": -0.000707873602657204,
+            "frame": 31,
+            "location": "interior"
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "analytic v1 connectors only; not an all-pairs rerun or continuous collision certification"
+}

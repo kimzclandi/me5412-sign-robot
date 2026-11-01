@@ -1,0 +1,252 @@
+[
+  {
+    "gloss": "HURT",
+    "role": "source",
+    "frame": 70,
+    "clearance_mm": -13.417172167217686,
+    "affected_edges": 35,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_thumb_distal",
+        "right_wrist_yaw_link"
+      ],
+      "distance_m": -0.013417172167217686,
+      "frame": 0,
+      "geom_ids": [
+        65,
+        95
+      ],
+      "geoms": [
+        "geom_65",
+        "geom_95"
+      ],
+      "location": "start_endpoint"
+    },
+    "motion_hash": "a17641061df3e08fab2a5178950c71cae01edca2791072e029590a2ae892e09d"
+  },
+  {
+    "gloss": "INTERPRETER",
+    "role": "target",
+    "frame": 24,
+    "clearance_mm": -26.744698453574383,
+    "affected_edges": 35,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_index_intermediate",
+        "right_wrist_yaw_link"
+      ],
+      "distance_m": -0.026744698453574384,
+      "frame": 0,
+      "geom_ids": [
+        69,
+        97
+      ],
+      "geoms": [
+        "geom_69",
+        "geom_97"
+      ],
+      "location": "start_endpoint"
+    },
+    "motion_hash": "3a159a8bd9af71563d85fe25cf69dbf7dc8d62dcd1b76ac2fdee0e099495662c"
+  },
+  {
+    "gloss": "MEDICINE",
+    "role": "source",
+    "frame": 74,
+    "clearance_mm": 1.9637830269959522,
+    "affected_edges": 35,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_ring_intermediate",
+        "R_thumb_distal"
+      ],
+      "distance_m": 0.001963783026995952,
+      "frame": 0,
+      "geom_ids": [
+        77,
+        105
+      ],
+      "geoms": [
+        "geom_77",
+        "geom_105"
+      ],
+      "location": "start_endpoint"
+    },
+    "motion_hash": "b8c5e0b7ade5c7a30c19d0cb8f938214956e69754087bbb42889d3f0f2f7bfa6"
+  },
+  {
+    "gloss": "NIGHT",
+    "role": "source",
+    "frame": 64,
+    "clearance_mm": 0.42453939302180804,
+    "affected_edges": 35,
+    "closest_collision_pair": {
+      "bodies": [
+        "left_wrist_yaw_link",
+        "right_wrist_pitch_link"
+      ],
+      "distance_m": 0.00042453939302180806,
+      "frame": 0,
+      "geom_ids": [
+        57,
+        93
+      ],
+      "geoms": [
+        "geom_57",
+        "geom_93"
+      ],
+      "location": "start_endpoint"
+    },
+    "motion_hash": "20dece3ae28795bfa9321f4922c3291efc0e979deab9f77f4c314ca9d8a8c4cd"
+  },
+  {
+    "gloss": "NOT",
+    "role": "target",
+    "frame": 24,
+    "clearance_mm": -16.15617908296664,
+    "affected_edges": 35,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_thumb_distal",
+        "left_hip_pitch_link"
+      ],
+      "distance_m": -0.01615617908296664,
+      "frame": 0,
+      "geom_ids": [
+        65,
+        5
+      ],
+      "geoms": [
+        "geom_65",
+        "geom_5"
+      ],
+      "location": "start_endpoint"
+    },
+    "motion_hash": "13b8b2c32a83d761114348853b458af71c4a74b9ef0d4ec08c00eb3ee8c810cf"
+  },
+  {
+    "gloss": "STOMACH",
+    "role": "target",
+    "frame": 24,
+    "clearance_mm": -17.206276299258132,
+    "affected_edges": 35,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_thumb_distal",
+        "left_hip_roll_link"
+      ],
+      "distance_m": -0.01720627629925813,
+      "frame": 0,
+      "geom_ids": [
+        65,
+        7
+      ],
+      "geoms": [
+        "geom_65",
+        "geom_7"
+      ],
+      "location": "start_endpoint"
+    },
+    "motion_hash": "23bb66ab1be21b944e11f6e599a2044b3e37636c1ce0ed109d04e6e3fe6d37e0"
+  },
+  {
+    "gloss": "TOMORROW",
+    "role": "target",
+    "frame": 24,
+    "clearance_mm": -30.864838735028872,
+    "affected_edges": 35,
+    "closest_collision_pair": {
+      "bodies": [
+        "left_hip_pitch_link",
+        "left_wrist_yaw_link"
+      ],
+      "distance_m": -0.030864838735028873,
+      "frame": 0,
+      "geom_ids": [
+        5,
+        57
+      ],
+      "geoms": [
+        "geom_5",
+        "geom_57"
+      ],
+      "location": "start_endpoint"
+    },
+    "motion_hash": "0228a0538c2007b1bb770b18207323a5c8413f999f4146e1f910559f011a934b"
+  },
+  {
+    "gloss": "WRITE",
+    "role": "target",
+    "frame": 24,
+    "clearance_mm": -24.888588924978627,
+    "affected_edges": 35,
+    "closest_collision_pair": {
+      "bodies": [
+        "left_wrist_yaw_link",
+        "right_wrist_yaw_link"
+      ],
+      "distance_m": -0.024888588924978628,
+      "frame": 0,
+      "geom_ids": [
+        57,
+        97
+      ],
+      "geoms": [
+        "geom_57",
+        "geom_97"
+      ],
+      "location": "start_endpoint"
+    },
+    "motion_hash": "a93d1bc2c5e9cea4ec0edaf7480acc75c9eea059f772117b461127468d57c124"
+  },
+  {
+    "gloss": "YES",
+    "role": "target",
+    "frame": 24,
+    "clearance_mm": -41.43748771611604,
+    "affected_edges": 35,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_thumb_proximal",
+        "left_hip_pitch_link"
+      ],
+      "distance_m": -0.04143748771611604,
+      "frame": 0,
+      "geom_ids": [
+        61,
+        5
+      ],
+      "geoms": [
+        "geom_61",
+        "geom_5"
+      ],
+      "location": "start_endpoint"
+    },
+    "motion_hash": "dd29f2430c76ef96a4530147def04625283f30ff057b588b8cbe95a080eedefe"
+  },
+  {
+    "gloss": "YOUR",
+    "role": "source",
+    "frame": 91,
+    "clearance_mm": -7.838877624862352,
+    "affected_edges": 35,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_thumb_distal",
+        "left_hip_roll_link"
+      ],
+      "distance_m": -0.007838877624862352,
+      "frame": 0,
+      "geom_ids": [
+        65,
+        7
+      ],
+      "geoms": [
+        "geom_65",
+        "geom_7"
+      ],
+      "location": "start_endpoint"
+    },
+    "motion_hash": "7e0b5dbdad5ccdbcd514129851de0f38ad6cdf3b3081ea3c5d1b14a43db98e6c"
+  }
+]

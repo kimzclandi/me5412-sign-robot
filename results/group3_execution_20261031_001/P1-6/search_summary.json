@@ -1,0 +1,10 @@
+{
+  "task": "P1-6",
+  "final_tests_passed": 56,
+  "pair_allowlist": null,
+  "actual_formal_run_executed": false,
+  "formal_acceptance_enabled": false,
+  "search_source_sha256": "6ed73b810fdc2e0dce5c4c39cf0445d7c2857a8c3f010538786168870312b8fa",
+  "contract_sha256": "df8d2c5bbc5749458783f819081269c2d3d61c1aa8006292184ea2b9e0e8cc7b",
+  "policy_sha256": "c30d60f28782c4d05ae82cc81c6dd5dfe230971e7a6e74f5a7b43824d35b55f6"
+}

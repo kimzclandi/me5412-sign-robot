@@ -1,0 +1,48 @@
+{
+  "COME": {
+    "protected_core_frames": [
+      27,
+      132
+    ],
+    "motion_sha256": "75d6455408ce6584043baedbd0e049cbeabcad534eda65ef561d2c7293b477a4",
+    "coordinate_errors": {
+      "joint_limit_error": 0.0,
+      "coupling_error": 0.0
+    },
+    "joint_limit_violations": [],
+    "peak_internal_speed": {
+      "ratio": 0.9738167299426733,
+      "value_rad_s": 9.738167299426733,
+      "limit_rad_s": 10.0,
+      "source_edge_frames": [
+        54,
+        55
+      ],
+      "original_time_s": 1.8,
+      "joint": "R_middle_proximal_joint"
+    }
+  },
+  "NOW": {
+    "protected_core_frames": [
+      3,
+      76
+    ],
+    "motion_sha256": "2d494c13fdf1b44bb11e97004e7b212ea5c45b7b0f8d0b972bd3589ae63e15e3",
+    "coordinate_errors": {
+      "joint_limit_error": 0.0,
+      "coupling_error": 0.0
+    },
+    "joint_limit_violations": [],
+    "peak_internal_speed": {
+      "ratio": 1.0000000000000038,
+      "value_rad_s": 10.000000000000037,
+      "limit_rad_s": 10.0,
+      "source_edge_frames": [
+        31,
+        32
+      ],
+      "original_time_s": 1.0333333333333334,
+      "joint": "R_index_proximal_joint"
+    }
+  }
+}

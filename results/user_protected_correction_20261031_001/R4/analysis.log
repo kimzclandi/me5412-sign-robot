@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R4/analyze_plan.py", line 29, in <module>
+    atomic_json(path, {'identity': store.manifest['identity'], 'pairs': pairs,
+  File "/tmp/me5412_corrected_intervals_20261031_001/repository/src/sign_robot/pair_contract.py", line 86, in atomic_json
+    atomic_bytes(path, json_bytes(value))
+                       ^^^^^^^^^^^^^^^^^
+  File "/tmp/me5412_corrected_intervals_20261031_001/repository/src/sign_robot/pair_contract.py", line 37, in json_bytes
+    return (json.dumps(value, ensure_ascii=False, sort_keys=True, allow_nan=False,
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'str' and 'NoneType'

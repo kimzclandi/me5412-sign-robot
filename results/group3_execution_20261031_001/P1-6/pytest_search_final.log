@@ -1,0 +1,89 @@
+.......FF...............................................                 [100%]
+=================================== FAILURES ===================================
+___________ test_search_wall_clock_limit_is_distinct_and_cooperative ___________
+
+context = namespace(policy={'schema_version': 2, 'policy_id': 'group3-all-pairs-development-v2', 'fps': 30, 'joint_count': 53, '...bject at 0x71c03cfa0080>, clearance=<test_pair_search_v2.Geometry object at 0x71c03cfa3980>, library={'couplings': []})
+a = array([-0.8,  0. ]), b = array([0.8, 0. ])
+names = array(['left_shoulder_roll_joint', 'right_elbow_joint'], dtype='<U24')
+budget = <sign_robot.pair_routes.PairWorkBudget object at 0x71c03cfc56a0>
+seed = 5412
+
+    def bounded_rrt_path_v2(context, a, b, names, budget, *, seed):
+        """No gloss allowlist. A finite failure is never an infeasibility proof."""
+        started = time.monotonic()
+        deadline = min(budget.deadline, started + context.policy["planner"]["rrt"]["wall_time_s"])
+        search_deadline = started + 0.8 * (deadline - started)
+        info = {"method": "rrt_connect", "method_version": 2, "seed": int(seed), "outcome": "not_started",
+                "iterations": 0, "path_found": False, "shortcut_checked": False,
+                "infeasibility_proven": False, "continuous_collision_certified": False}
+        raw = shortcut = None
+        def check(limit=deadline):
+            budget.check()
+            if time.monotonic() >= limit:
+                raise PlanningBudgetExceeded("RRT_WALL_TIME_LIMIT")
+        def done():
+            info.update(runtime_s=time.monotonic() - started, budget=budget.snapshot())
+            return SearchPathV2(raw, shortcut, info)
+        try:
+>           check()
+
+src/sign_robot/pair_search.py:115: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/sign_robot/pair_search.py:108: in check
+    budget.check()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sign_robot.pair_routes.PairWorkBudget object at 0x71c03cfc56a0>
+
+    def check(self):
+        if time.monotonic() >= self.deadline:
+>           raise PlanningBudgetExceeded("PAIR_WALL_TIME_LIMIT")
+E           sign_robot.pair_routes.PlanningBudgetExceeded: PAIR_WALL_TIME_LIMIT
+
+src/sign_robot/pair_routes.py:37: PlanningBudgetExceeded
+
+During handling of the above exception, another exception occurred:
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x71c03c964440>
+
+    def test_search_wall_clock_limit_is_distinct_and_cooperative(monkeypatch):
+        names = np.array(["left_shoulder_roll_joint", "right_elbow_joint"])
+        ctx = small_context(names, lambda q: True)
+        ticks = iter([0.0, 31.0, 31.0, 31.0])
+        monkeypatch.setattr(search.time, "monotonic", lambda: next(ticks))
+>       result = search.bounded_rrt_path_v2(ctx, np.array([-0.8, 0]), np.array([0.8, 0]), names,
+                                            PairWorkBudget(ctx.policy), seed=5412)
+
+tests/test_pair_search_v2.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/sign_robot/pair_search.py:202: in bounded_rrt_path_v2
+    return done()
+           ^^^^^^
+src/sign_robot/pair_search.py:112: in done
+    info.update(runtime_s=time.monotonic() - started, budget=budget.snapshot())
+                                                             ^^^^^^^^^^^^^^^^^
+src/sign_robot/pair_routes.py:59: in snapshot
+    "nodes_used": self.nodes, "wall_time_s": time.monotonic() - self.started,
+                                             ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   monkeypatch.setattr(search.time, "monotonic", lambda: next(ticks))
+                                                          ^^^^^^^^^^^
+E   StopIteration
+
+tests/test_pair_search_v2.py:140: StopIteration
+______ test_invalid_control_endpoints_and_fixed_coordinates_are_rejected _______
+
+    def test_invalid_control_endpoints_and_fixed_coordinates_are_rejected():
+        names = np.array(["left_shoulder_roll_joint", "right_elbow_joint"])
+        ctx = small_context(names)
+        with pytest.raises(ValueError, match="outside"):
+            search.control_space_v2(ctx, np.array([-2.0, 0]), np.array([0.8, 0]), names)
+>       with pytest.raises(ValueError, match="non-actuated"):
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_pair_search_v2.py:152: Failed
+=========================== short test summary info ============================
+FAILED tests/test_pair_search_v2.py::test_search_wall_clock_limit_is_distinct_and_cooperative
+FAILED tests/test_pair_search_v2.py::test_invalid_control_endpoints_and_fixed_coordinates_are_rejected
+2 failed, 54 passed in 13.29s

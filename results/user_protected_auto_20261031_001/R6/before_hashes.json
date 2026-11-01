@@ -1,0 +1,8 @@
+{
+  "scripts/render_user_protected_pairs.py": null,
+  "tests/test_user_protected_render.py": null,
+  "src/sign_robot/pair_contract.py": "8c06ff348600347e2c37e0f604e2ddd423150fc8ad7993360f01cc00f62414ef",
+  "src/sign_robot/project_overview.py": "d68af6a107b3229273c3d8f9100355a144b71360c7e8101e8c69eaa685fb1bc1",
+  "docs/README.md": "76916148974f8f40822d96705d84951ce86cf224f73444d66d91fbb1d68ce37b",
+  "docs/README.en.md": "790ed022e648c222fe5aa04df4af135f6a550da89fcd98a99d6aec2a959fdc06"
+}

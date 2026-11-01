@@ -1,0 +1,38 @@
+{
+  "COME__NOW": {
+    "status": "TIMEOUT",
+    "candidates": 0,
+    "full_jerk_integral": 42085845.013943784,
+    "acceleration": 206.81740670767982,
+    "jerk": 4889.644865251818,
+    "min_clearance_mm": 7.803863453976445,
+    "video": "results/user_protected_correction_20261031_001/videos/COME__NOW/comparison.mp4"
+  },
+  "NOW__COME": {
+    "status": "FAILED_QUALITY",
+    "candidates": 20,
+    "full_jerk_integral": 40424094.846728556,
+    "acceleration": 206.81740670767843,
+    "jerk": 4889.644865251799,
+    "min_clearance_mm": 8.085210487729835,
+    "video": "results/user_protected_correction_20261031_001/videos/NOW__COME/comparison.mp4"
+  },
+  "COME__COME": {
+    "status": "FAILED_QUALITY",
+    "candidates": 64,
+    "full_jerk_integral": 5154693.781190257,
+    "acceleration": 97.14313876659719,
+    "jerk": 2196.3904478225577,
+    "min_clearance_mm": 8.702362192689279,
+    "video": "results/user_protected_correction_20261031_001/videos/COME__COME/comparison.mp4"
+  },
+  "NOW__NOW": {
+    "status": "TIMEOUT",
+    "candidates": 0,
+    "full_jerk_integral": 79085919.07929827,
+    "acceleration": 206.81740670767843,
+    "jerk": 4889.644865251799,
+    "min_clearance_mm": 4.705173590029785,
+    "video": "results/user_protected_correction_20261031_001/videos/NOW__NOW/comparison.mp4"
+  }
+}

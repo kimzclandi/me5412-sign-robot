@@ -1,0 +1,30 @@
+{
+  "argv": [
+    ".venv/bin/python",
+    "scripts/screen_user_protected_cuts.py",
+    "--policy",
+    "config/transition_policy_user_protected_v1.json",
+    "--output",
+    "results/user_protected_auto_20261031_001/R3/cut_screen_with_tangents.json",
+    "--pair",
+    "COME__NOW",
+    "--pair",
+    "NOW__COME",
+    "--pair",
+    "COME__COME",
+    "--pair",
+    "NOW__NOW"
+  ],
+  "cwd": "/tmp/me5412_auto_cuts_20261031_001/repository",
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "MUJOCO_GL": "egl",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "exit_code": 0,
+  "elapsed_s": 0.9848835468292236,
+  "log": "/tmp/me5412_auto_cuts_20261031_001/repository/results/user_protected_auto_20261031_001/R3/real_cut_screen_with_tangents.log"
+}

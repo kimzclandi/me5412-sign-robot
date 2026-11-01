@@ -1,0 +1,25 @@
+{
+  "purpose": "Synchronize exactly two static allowlist SHA-256 literals for required bilingual documentation indexes; preserve all other existing source edits.",
+  "path": "src/sign_robot/project_overview.py",
+  "before_initial_compatibility_sha256": "a2a81a8d529e6d0a30340d450f8f3df9ae127f8c540fa4ee874b030e1b27386c",
+  "after_initial_compatibility_sha256": "eef24532715ebb804ca7a4505c2b4d3a49d1f8b88aa7e654b729a68e86c4b400",
+  "final_sha256": "d68af6a107b3229273c3d8f9100355a144b71360c7e8101e8c69eaa685fb1bc1",
+  "hash_references": [
+    {
+      "key": "docs-index",
+      "path": "docs/README.md",
+      "before_sha256": "5a63bca6679ac401be853c3cc09541fd3f06d9cb64afa3814511e467e9beaaad",
+      "after_sha256": "76916148974f8f40822d96705d84951ce86cf224f73444d66d91fbb1d68ce37b"
+    },
+    {
+      "key": "docs-index-en",
+      "path": "docs/README.en.md",
+      "before_sha256": "de3b7ea3a2932f18e57c3bda03614a3769d4f56ab8a8cfcaaa96dba4905e9d2d",
+      "after_sha256": "790ed022e648c222fe5aa04df4af135f6a550da89fcd98a99d6aec2a959fdc06"
+    }
+  ],
+  "baseline_hash_references_already_stale": true,
+  "baseline_backup": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/before_compatibility/src/sign_robot/project_overview.py",
+  "report_rounding_correction": "acceleration_jump p50: 104.73539413070189 -> 104.735394 in paired docs; frozen raw JSON untouched",
+  "run_version_rule": "retain handoff_v2_dev_20261031_001; new code requires handoff_v2_dev_20261031_002"
+}

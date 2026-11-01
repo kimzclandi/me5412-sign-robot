@@ -1,0 +1,109 @@
+{
+  "task": "TASK-08",
+  "task_id": "P1-3",
+  "changes": [
+    {
+      "path": "src/sign_robot/pair_timing.py",
+      "before_sha256": null,
+      "after_sha256": "b2e6c78ab52b27e5dff22b0c89692419ff23f3ab3a2f8704f9fd1a8b175b0787"
+    },
+    {
+      "path": "tests/test_pair_timing_v2.py",
+      "before_sha256": null,
+      "after_sha256": "d84dd1ac364ad31033185b9b6ac5a3832cc4f84a82704288367f5859a4b321f7"
+    },
+    {
+      "path": "tests/test_pair_verification_v2.py",
+      "before_sha256": "fe582b15c74bbd67a0c300d4992dc7918c4fed035922879a85080905169ed35e",
+      "after_sha256": "c0e0237584670a8cfdfcbc478ff9a6d46e1be8527e68d96f43e79cabae8134bc"
+    },
+    {
+      "path": "contracts/all_pairs_v2.json",
+      "before_sha256": "b0473f155457bdc6faf124e658a54d1315291f8223d64adc709dbbc8cd778b55",
+      "after_sha256": "24894e2f165028e3f885f744fa7bec41f46fa9cd5c14a816a5ab4d4a9c128339"
+    },
+    {
+      "path": "config/transition_policy_v2.json",
+      "before_sha256": "2f5b87821859f98593e4d25fe596d356cd50d5bae89100f6dffb720a3faf3c07",
+      "after_sha256": "10186234316b69ce1cc913342e4aeb51c6cc982060cd7328a2d1216644eb31cb"
+    },
+    {
+      "path": "docs/group3-pair-timing-v2.md",
+      "before_sha256": null,
+      "after_sha256": "5ec73e65f6a88e31b0d99dca1e44498d478915fe2fc4145d1099c8aad1ce00b6"
+    },
+    {
+      "path": "docs/group3-pair-timing-v2.en.md",
+      "before_sha256": null,
+      "after_sha256": "8514a6d985aadf231b71f7c58ef349b14e720f9042a6f84ea12c56804cf1881b"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P1-3/pytest_timing_final.command.json",
+      "before_sha256": null,
+      "after_sha256": "cbb921076667d94177e227862487fc41aa56359d0b562842c757e5aaabd5c4b7"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P1-3/pytest_timing_final.log",
+      "before_sha256": null,
+      "after_sha256": "b5a3963f9c9cbfb906ac1ad5cfee179e18da542848e23a5d3455e88130827f93"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P1-3/pytest_timing_initial.command.json",
+      "before_sha256": null,
+      "after_sha256": "218953f4a9fc521322a634b3a94dd7ce482a9e4b1650d9f697736be19cbe552e"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P1-3/pytest_timing_initial.log",
+      "before_sha256": null,
+      "after_sha256": "7f30d7a46699da1a0783a6e1d8a2396a782d972a1ef730c013d6313a1a556b82"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P1-3/pytest_timing_reviewed.command.json",
+      "before_sha256": null,
+      "after_sha256": "80d3f07bd29e9b95db49731fc09956a1ae96c053849ebaac251654287a5119ab"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P1-3/pytest_timing_reviewed.log",
+      "before_sha256": null,
+      "after_sha256": "352497ab70e88d82b6ec3a72a4bf3cb2bba05e5e1b1a09bd86e3936c0173bf7a"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P1-3/timing_summary.json",
+      "before_sha256": null,
+      "after_sha256": "a3f89acb3e3d9a72a1d533b2de8f88fce7e504635991d9f0d968865b06ed91c2"
+    },
+    {
+      "path": "TASK-08.md",
+      "before_sha256": null,
+      "after_sha256": "53c0b56e8ddfb00b62d4bdb2038fabd7619dc940fbb0deb4a1be4a17b1e40735"
+    },
+    {
+      "path": "TASK-08.en.md",
+      "before_sha256": null,
+      "after_sha256": "7477580d58241e560482005fd65012f6f719268a203ff684d72c44e0052709ee"
+    },
+    {
+      "path": "STATE.md",
+      "before_sha256": "7c9107bddee733ed9660969fc3a1c80f022ff72738f4febd071502b5f2c9f6e4",
+      "after_sha256": "43db18ba51e6b9e9af8b2816b1065a41e7cb394164cdb2979bd04e01c8432403"
+    },
+    {
+      "path": "STATE.en.md",
+      "before_sha256": "cc303611ec0840c37713d785c71ee5d5930fd57334e326fd75e121e8da1eb4b6",
+      "after_sha256": "a14b1a7ea07fda057b568fb33bfe507cb1a0cd2f6c2f1d466749d61d4ec9a3e3"
+    },
+    {
+      "path": "docs/README.md",
+      "before_sha256": "f50fc4dd02922fa9d04c73349555f5a14bda734269cbb45b6c45b9f3646f548a",
+      "after_sha256": "9cebc3d441250944c2436fdbefe415dbfab68a262cf813cd4df78bc73c5e4c7a"
+    },
+    {
+      "path": "docs/README.en.md",
+      "before_sha256": "497e441f0093f78254cf89a1e1d924d6ef2747e31f9fb5fefdc299184b73c233",
+      "after_sha256": "6adced905674a6dd8bbd14813c9e5d6c15b2b9b64977cc7ba852e2777553f597"
+    }
+  ],
+  "installed": true,
+  "source": "/home/kingderman/Documents/ME5412-github-latest",
+  "backup": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/TASK-08/before"
+}

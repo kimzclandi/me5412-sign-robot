@@ -1,0 +1,9 @@
+{
+  "real_approval_bundle_configured": false,
+  "real_status": "BLOCKED_INPUT",
+  "reason_code": "MISSING_APPROVAL_BUNDLE",
+  "synthetic_tests_only": true,
+  "human_authenticity_verified": false,
+  "policy_sha256": "34cf31b16c7fb3f38734c02cc2ac7a6edd8c2aa50020b1233de57dd4e8f1971f",
+  "contract_sha256": "b2e9e7877a7b5386cfd64b875cd88b2ace40b96a71fc3a1be517a811caf61de4"
+}

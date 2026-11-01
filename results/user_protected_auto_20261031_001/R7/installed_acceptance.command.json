@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+    "results/user_protected_auto_20261031_001/FINAL/acceptance.py",
+    "--root",
+    "/home/kingderman/Documents/ME5412-github-latest",
+    "--output",
+    "results/user_protected_auto_20261031_001/FINAL/final_acceptance_checklist.json"
+  ],
+  "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+  "exit_code": 0,
+  "elapsed_s": 1.768388032913208,
+  "log": "/home/kingderman/Documents/ME5412-github-latest/results/user_protected_auto_20261031_001/R7/installed_acceptance.log"
+}

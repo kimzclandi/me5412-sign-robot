@@ -1,0 +1,16 @@
+{
+  "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+  "argv": [
+    "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_pair_search_v2.py",
+    "tests/test_rrt_connect.py",
+    "tests/test_pair_timing_v2.py"
+  ],
+  "exit_code": 0,
+  "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-6/pytest_search_initial.log"
+}

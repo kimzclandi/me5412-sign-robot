@@ -1,0 +1,20 @@
+{
+  "task": "P0-2",
+  "word_count": 35,
+  "endpoint_blockers": 10,
+  "words_with_internal_collision": 30,
+  "words_with_speed_excess": 8,
+  "affected_pairs": 326,
+  "files": [
+    "TASK-02.md",
+    "TASK-02.en.md",
+    "STATE.md",
+    "STATE.en.md",
+    "docs/README.md",
+    "docs/README.en.md",
+    "docs/group3-all-pairs-word-issues.md",
+    "docs/group3-all-pairs-word-issues.en.md",
+    "results/group3_execution_20261031_001/P0-2/word_issue_manifest.json",
+    "results/group3_execution_20261031_001/P0-2/group2_review_template.json"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+  "argv": [
+    "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_plan_transitions.py",
+    "tests/test_transition_endpoint_gate.py"
+  ],
+  "exit_code": 0,
+  "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-3/pytest_collision_scope.log"
+}

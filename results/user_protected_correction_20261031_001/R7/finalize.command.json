@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "python3",
+    "/home/kingderman/Documents/ME5412-github-latest/results/user_protected_correction_20261031_001/tooling/finish_installed.py"
+  ],
+  "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+  "exit_code": 0,
+  "elapsed_s": 1.8720523369993316,
+  "operation": "append actual installed verification to bilingual reports; regenerate diffs, manifests and final inventory"
+}
