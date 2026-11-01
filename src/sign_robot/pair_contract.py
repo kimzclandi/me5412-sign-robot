@@ -36,6 +36,10 @@ TRANSITION_SCOPE_METHOD_V3 = "finite_difference_30hz_outside_protected_cores_and
 CONNECTOR_ONLY_METHOD_V4 = "connector_only_interior_fd_and_analytic_connector_v4"
 TRANSITION_SCOPES = (TRANSITION_SCOPE_METHOD_V3, CONNECTOR_ONLY_METHOD_V4)
 CONNECTOR_STENCIL_FRAMES = 3
+# Optional timing fallback: when a route cannot be timed with the source/target boundary
+# velocity carried straight into it, stop first (and start from rest on entry) over a
+# fixed short segment, so the overshoot no longer grows with the connector duration.
+BOUNDARY_BRAKING_V1 = "stop_and_go_v1"
 # v2 cut generator ranks cut pairs by the squared-jerk integral of the
 # retained non-protected source edges before boundary speed.
 EDGE_AWARE_CUT_GENERATOR = "protected_cut_search_v2"
@@ -493,7 +497,18 @@ def validate_policy_v2(policy):
     inside(ROOT, policy["contract"]["path"])
     _v2_hash(policy["contract"]["sha256"], "contract hash")
     planner = policy["planner"]
-    _v2_fields(planner, ("method", "methods", "seed", "minimum_duration_s", "budget", "rrt"), "planner")
+    _v2_fields(planner, ("method", "methods", "seed", "minimum_duration_s", "budget", "rrt"), "planner",
+               optional=("boundary_braking",))
+    if "boundary_braking" in planner:
+        braking = planner["boundary_braking"]
+        _v2_fields(braking, ("version", "min_speed_rad_s", "limit_fraction", "max_frames"), "boundary braking")
+        if braking["version"] != BOUNDARY_BRAKING_V1:
+            raise ValueError("Unknown boundary braking version")
+        _v2_number(braking["min_speed_rad_s"], "braking minimum speed", minimum=0)
+        _v2_number(braking["limit_fraction"], "braking limit fraction", positive=True)
+        _v2_integer(braking["max_frames"], "braking maximum frames", minimum=1)
+        if braking["limit_fraction"] > 1:
+            raise ValueError("Braking cannot use more than the connector limits")
     if planner["method"] != "multi_candidate_v2" or planner["methods"] != list(V2_METHODS):
         raise ValueError("Unknown or incomplete v2 method dispatch")
     _v2_integer(planner["seed"], "seed")

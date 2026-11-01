@@ -285,14 +285,33 @@ def endpoint_pairs_v1(context, selection):
                     float(displacement), retained, a, b)
         return (round(estimated_violation, 10), max(measurements['source'][a]['boundary_speed_ratio'], measurements['target'][b]['boundary_speed_ratio']),
                 float(displacement), retained, a, b)
-    return sorted(itertools.product(source["valid_frames"], target["valid_frames"]), key=score)[:8]
+    ranked = sorted(itertools.product(source["valid_frames"], target["valid_frames"]), key=score)
+    if "boundary_braking" not in context.policy["planner"]:
+        return ranked[:8]
+    # Braking fallback: the ranking above prefers cuts next to the protected core, where the
+    # source may still move fast toward a joint limit and cannot be stopped within the limits.
+    # Interleave that shortlist with up to 8 cut pairs that both sides can brake (fewest braking
+    # frames first, ties keep the ranking above), so every method family reaches a brakeable cut
+    # within its time slice; the top-ranked pair stays first.
+    from sign_robot.pair_timing import _boundary_rest_v1
+    names = context.library["joint_names"]
+    stops = {}
+    for role, item in (("source", source), ("target", target)):
+        for frame in item["valid_frames"]:
+            rest = _boundary_rest_v1(measurements[role][frame]["boundary_state"], role, names, bound,
+                                     context.policy, context.library["couplings"])
+            stops[role, frame] = 0 if rest is None else (rest["frames"] if rest["feasible"] else None)
+    brakeable = [p for p in ranked[8:] if stops["source", p[0]] is not None and stops["target", p[1]] is not None]
+    brakeable.sort(key=lambda p: stops["source", p[0]] + stops["target", p[1]])
+    head, extra = ranked[:8], brakeable[:8]
+    return [p for pair in itertools.zip_longest(head, extra) for p in pair if p is not None]
 
 
 def _iter_auto_deterministic_v1(context, selection, seed, budget, base):
     yield CandidateAttemptV2(None, {**base, "event": "algorithm_window_screen", "status": "FAILED_QUALITY",
         "reason_codes": ["ALGORITHM_ENDPOINT_SCREEN_ONLY"], "endpoint_selection": selection,
         "endpoint_pair_shortlist": [list(p) for p in endpoint_pairs_v1(context, selection)],
-        "shortlist_limit": 8, "budget": budget.snapshot()})
+        "shortlist_limit": 16 if "boundary_braking" in context.policy["planner"] else 8, "budget": budget.snapshot()})
     first, second = (context.clips[selection[role]["gloss"]] for role in ("source", "target"))
     names = first["joint_names"]
     bounds = np.array([context.model.joint(str(name)).range for name in names])

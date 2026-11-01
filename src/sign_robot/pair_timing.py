@@ -7,7 +7,7 @@ import time
 
 import numpy as np
 
-from sign_robot.pair_contract import json_hash, rate_limits
+from sign_robot.pair_contract import BOUNDARY_BRAKING_V1, json_hash, rate_limits
 
 
 @dataclass
@@ -157,19 +157,45 @@ def time_route_v2(knots, start, end, names, bounds, policy, *, start_time_s=0.0,
             if np.any(np.abs(state["acceleration"]) > policy["quality"]["limits"]["peak_acceleration_rad_s2"]):
                 return finish(None, ["BOUNDARY_ACCELERATION_LIMIT_EXCEEDED"])
         rates = rate_limits(names, policy)
-        initial = np.maximum(policy["planner"]["minimum_duration_s"], 1.875 * np.max(np.abs(np.diff(q, axis=0)) / rates, axis=1))
-        intervals = np.maximum(1, np.ceil(initial * 30 - 1e-12).astype(int))
-        for attempt in range(budget["max_time_attempts"]):
-            if time.monotonic() >= deadline:
-                return finish(None, ["TIMING_WALL_TIME_LIMIT"], "TIMEOUT")
-            durations = intervals / 30
-            if float(np.sum(durations)) > policy["quality"]["limits"]["maximum_transition_duration_s"] + 1e-12:
-                return finish(None, ["TIMING_MAXIMUM_DURATION_REACHED"])
+
+        def initial_intervals(knots_):
+            initial = np.maximum(policy["planner"]["minimum_duration_s"],
+                                 1.875 * np.max(np.abs(np.diff(knots_, axis=0)) / rates, axis=1))
+            return np.maximum(1, np.ceil(initial * 30 - 1e-12).astype(int))
+
+        def schedule(knots_, intervals, fixed, variant):
+            """Retry with longer free edges; fixed (braking) edges keep their duration."""
+            for _ in range(budget["max_time_attempts"]):
+                if time.monotonic() >= deadline:
+                    return None, ["TIMING_WALL_TIME_LIMIT"], "TIMEOUT"
+                durations = intervals / 30
+                if float(np.sum(durations)) > policy["quality"]["limits"]["maximum_transition_duration_s"] + 1e-12:
+                    return None, ["TIMING_MAXIMUM_DURATION_REACHED"], "TIMING_FAILED"
+                segments, metrics, errors, geometry, finger_evidence = timed_curve(knots_, durations)
+                entry = {"attempt": len(diagnostics["attempts"]) + 1, "durations_s": durations.tolist(),
+                         "metrics": metrics, "reason_codes": errors, "geometry": geometry,
+                         "finger_strategy": finger_evidence, "curve_hash": json_hash(segments)}
+                if "boundary_braking" in policy["planner"]:
+                    entry["variant"] = variant
+                diagnostics["attempts"].append(entry)
+                if geometry is not None and geometry.get("budget_exhausted"):
+                    return None, [geometry["budget_exhausted"]], "TIMEOUT"
+                if time.monotonic() >= deadline:
+                    return None, ["TIMING_WALL_TIME_LIMIT"], "TIMEOUT"
+                if not errors:
+                    return segments, [], "TIMED_CANDIDATE"
+                # This is a bounded proposal step, not an assumption that the
+                # nonzero-boundary curve simply scales with time. Every retry solves.
+                grown = np.maximum(intervals + 1, np.ceil(intervals * 1.25).astype(int))
+                intervals = np.where(fixed, intervals, grown)
+            return None, ["TIMING_BOUNDED_ATTEMPTS_EXHAUSTED"], "TIMING_FAILED"
+
+        def timed_curve(knots_, durations):
             cursor = float(start_time_s)
             segments = []
             for edge, duration in enumerate(durations):
-                first = start if edge == 0 else {"position": q[edge].tolist(), "velocity": np.zeros(len(names)).tolist(), "acceleration": np.zeros(len(names)).tolist()}
-                last = end if edge == len(durations) - 1 else {"position": q[edge + 1].tolist(), "velocity": np.zeros(len(names)).tolist(), "acceleration": np.zeros(len(names)).tolist()}
+                first = start if edge == 0 else {"position": knots_[edge].tolist(), "velocity": np.zeros(len(names)).tolist(), "acceleration": np.zeros(len(names)).tolist()}
+                last = end if edge == len(durations) - 1 else {"position": knots_[edge + 1].tolist(), "velocity": np.zeros(len(names)).tolist(), "acceleration": np.zeros(len(names)).tolist()}
                 coefficients = quintic_coefficients_v2(first, last, float(duration))
                 segments.append({"kind": "polynomial_v2", "start_time_s": cursor,
                                  "end_time_s": cursor + float(duration), "coefficients": coefficients.tolist()})
@@ -199,19 +225,92 @@ def time_route_v2(knots, start, end, names, bounds, policy, *, start_time_s=0.0,
                     raise ValueError("Geometry callback must return an explicit passed boolean and evidence")
                 if not geometry["passed"]:
                     errors.append("GEOMETRY_AFTER_TIMING_FAILED")
-            diagnostics["attempts"].append({"attempt": attempt + 1, "durations_s": durations.tolist(),
-                                             "metrics": metrics, "reason_codes": errors, "geometry": geometry,
-                                             "finger_strategy": finger_evidence, "curve_hash": json_hash(segments)})
-            if geometry is not None and geometry.get("budget_exhausted"):
-                return finish(None, [geometry["budget_exhausted"]], "TIMEOUT")
-            if time.monotonic() >= deadline:
-                return finish(None, ["TIMING_WALL_TIME_LIMIT"], "TIMEOUT")
-            if not errors:
-                return finish(segments, [], "TIMED_CANDIDATE")
-            # This is a bounded proposal step, not an assumption that the
-            # nonzero-boundary curve simply scales with time. Every retry solves.
-            intervals = np.maximum(intervals + 1, np.ceil(intervals * 1.25).astype(int))
-        return finish(None, ["TIMING_BOUNDED_ATTEMPTS_EXHAUSTED"])
+            return segments, metrics, errors, geometry, finger_evidence
+
+        segments, reasons, status = schedule(q, initial_intervals(q), np.zeros(len(q) - 1, dtype=bool),
+                                             "carry_boundary_velocity")
+        braking = policy["planner"].get("boundary_braking")
+        if segments is None and braking is not None and status != "TIMEOUT":
+            rests = {role: _boundary_rest_v1(state, role, names, bounds, policy, couplings)
+                     for role, state in (("source", start), ("target", end))}
+            diagnostics["boundary_braking"] = {"version": braking["version"], **{
+                role: (None if rest is None else {k: v for k, v in rest.items() if k != "rest"})
+                for role, rest in rests.items()}}
+            usable = [rest for rest in rests.values() if rest is not None]
+            if not usable or not all(rest["feasible"] for rest in usable):
+                reasons = [*reasons, "BOUNDARY_BRAKING_INFEASIBLE"]
+            elif len(q) + len(usable) - 1 > budget["max_segments"]:
+                reasons = [*reasons, "BOUNDARY_BRAKING_SEGMENT_BUDGET"]
+            else:
+                braked = [q[0]]
+                if rests["source"] is not None:
+                    braked.append(np.asarray(rests["source"]["rest"]["position"]))
+                braked.extend(q[1:-1])
+                if rests["target"] is not None:
+                    braked.append(np.asarray(rests["target"]["rest"]["position"]))
+                braked = np.asarray([*braked, q[-1]])
+                intervals = initial_intervals(braked)
+                fixed = np.zeros(len(braked) - 1, dtype=bool)
+                if rests["source"] is not None:
+                    fixed[0], intervals[0] = True, rests["source"]["frames"]
+                if rests["target"] is not None:
+                    fixed[-1], intervals[-1] = True, rests["target"]["frames"]
+                braked_segments, braked_reasons, braked_status = schedule(braked, intervals, fixed, BOUNDARY_BRAKING_V1)
+                if braked_segments is not None:
+                    return finish(braked_segments, [], "TIMED_CANDIDATE")
+                reasons = [*reasons, *("BRAKED_" + r for r in braked_reasons)]
+                status = "TIMEOUT" if braked_status == "TIMEOUT" else status
+        return finish(segments, reasons, status)
     except (ValueError, KeyError, TypeError, OverflowError, FloatingPointError, np.linalg.LinAlgError) as exc:
         diagnostics["details"] = {"type": type(exc).__name__, "message": str(exc)}
         return finish(None, ["INVALID_TIMING_INPUT"])
+
+
+def _boundary_rest_v1(state, role, names, bounds, policy, couplings):
+    """Shortest whole-frame stop (source) or start-from-rest (target) that meets every connector limit.
+
+    Unclamped, p(u) = p0 + v0 T (u - u^3 + u^4 / 2) is monotone from v0 to rest over
+    exactly v0 T / 2 with zero boundary accelerations (peaks 1.5 |v0| / T and
+    6 |v0| / T^2). A joint whose rest would pass its limit stops at the limit instead
+    (coupled children follow their parent); the resulting harder stop is accepted
+    only if the curve keeps every joint-limit, speed, coupling, acceleration and jerk
+    limit (acceleration/jerk within ``limit_fraction``).
+    """
+    braking = policy["planner"]["boundary_braking"]
+    p, v = np.asarray(state["position"], dtype=float), np.asarray(state["velocity"], dtype=float)
+    if float(np.max(np.abs(v))) <= braking["min_speed_rad_s"]:
+        return None
+    limits = policy["quality"]["limits"]
+    bounds = np.asarray(bounds, dtype=float)
+    columns = {str(name): index for index, name in enumerate(names)}
+    tolerance = policy["constraints"]["joint_limit_tolerance_rad"]
+    zeros = np.zeros(len(p)).tolist()
+    sign = 1.0 if role == "source" else -1.0
+    last_errors = ["BRAKING_LIMITS_NOT_MET"]
+    for frames in range(1, braking["max_frames"] + 1):
+        duration = frames / 30
+        target = p + sign * v * duration / 2
+        rest_position = np.clip(target, bounds[:, 0] + tolerance, bounds[:, 1] - tolerance)
+        rest_position = np.where((p < bounds[:, 0]) | (p > bounds[:, 1]), target, rest_position)
+        for coupling in couplings:
+            parent, child = columns[coupling["parent"]], columns[coupling["child"]]
+            rest_position[child] = coupling["multiplier"] * rest_position[parent] + coupling["offset"]
+        clamped = int(np.count_nonzero(np.abs(rest_position - target) > 1e-12))
+        rest = {"position": rest_position.tolist(), "velocity": zeros, "acceleration": zeros}
+        first, last = (state, rest) if role == "source" else (rest, state)
+        segment = {"kind": "polynomial_v2", "start_time_s": 0.0, "end_time_s": duration,
+                   "coefficients": quintic_coefficients_v2(first, last, duration).tolist()}
+        metrics, errors = connector_quality_v2([segment], bounds, names, policy, couplings)
+        hard = [e for e in errors if e in ("TIMED_CURVE_JOINT_LIMIT_VIOLATION", "TIMED_CURVE_SPEED_VIOLATION",
+                                           "TIMED_CURVE_COUPLING_VIOLATION")]
+        if hard:
+            last_errors = hard
+            continue
+        if (metrics["peak_acceleration_rad_s2"] <= braking["limit_fraction"] * limits["peak_acceleration_rad_s2"]
+                and metrics["peak_jerk_rad_s3"] <= braking["limit_fraction"] * limits["peak_jerk_rad_s3"]):
+            return {"feasible": True, "frames": frames, "rest": rest, "clamped_joints": clamped,
+                    "travel_rad": float(np.max(np.abs(rest_position - p))),
+                    "peak_acceleration_rad_s2": metrics["peak_acceleration_rad_s2"],
+                    "peak_jerk_rad_s3": metrics["peak_jerk_rad_s3"]}
+        last_errors = ["BRAKING_LIMITS_NOT_MET"]
+    return {"feasible": False, "frames": braking["max_frames"], "reason_codes": last_errors}
