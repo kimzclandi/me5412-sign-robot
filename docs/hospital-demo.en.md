@@ -63,6 +63,22 @@ Measured 2026-10-31: all 9 lines correct online, most in 1–2 s, one request re
 
 Stitching is currently the simplest baseline: each word cut to `sign_frames`, a fixed 0.5 s smooth blend between words, so the arms dip briefly between words. When Group 3's transition method is ready, replace the `stitch(...)` call in `hospital_demo.py`; the rest of the pipeline stays the same, and the baseline remains the "direct playback" comparison.
 
+**Group 3 delivery format** (same as every trajectory in the repository; once it matches, integration takes about half an hour):
+
+- One `.npz` per line, named by line id `s1.npz` … `s9.npz`; or a function with the same signature as `stitch(glosses, transition_s, spans)`.
+- Fields: `timestamps_s[T]` (seconds, strictly increasing, 30 fps), `joint_names[53]` (the same 53 joint names as `results/demo/s1.npz`), `positions[T,53]` (radians).
+- Coupled thumb and finger joints follow `couplings` in `assets/robot/model_info.json`; start and end at the same neutral pose (elbow 0.25, thumb yaw 0.35, pitch 0.08, all others 0).
+
+**Comparison with the baseline** (numbers and figures for slide 11):
+
+```bash
+MUJOCO_GL=egl .venv/bin/python scripts/demo/compare_stitching.py <group3_folder> --label group3_v1
+```
+
+Writes `results/stitch_compare/group3_v1/`: `summary.md`, `summary.json` and one comparison plot per line (higher wrist height and peak arm joint speed over time). Metrics: format checks (53 joints, 30 fps, joint limits, couplings, neutral start/end), duration, peak and 95th-percentile arm and finger speed, RMS arm jerk (lower is smoother), the fraction of the signing span and number of times both hands sink back to rest height (the baseline's dip), and the deepest collision-geometry penetration. A sign's own downward movement also counts as a dip, so compare the change between methods, not absolute values.
+
+Baseline today (9 lines): neither the blends between words nor the motion to and from the neutral pose are collision-checked, with penetration up to 79 mm (s1, right wrist into the hip at the end); during signing up to 41 mm, from video words (their filtering and speed limits run after inverse kinematics and can reintroduce small overlaps). Both are things a transition method can improve.
+
 ## 6. Limitations
 
 - Robot motions are candidate signs, not reviewed by ASL users; the 26 video-derived words are graded "approximate".

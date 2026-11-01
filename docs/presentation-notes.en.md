@@ -52,7 +52,7 @@ For the "Text to Gloss (slides 6–7)" and "Gloss to Motion (slides 8–11)" par
 
 **Script**: human and robot bodies and joints differ, so angles cannot be copied; we first align hand position and orientation, then solve within the robot's own joint limits.
 
-**Numbers**: mocap library of 33 words: 16 "usable", 17 "approximate"; every "usable" word has sign-phase wrist error below 2 cm; penetration at most 19 mm (upstream collision geometry only).
+**Numbers**: mocap library of 33 words: 16 "usable", 17 "approximate"; every "usable" word has sign-phase wrist error below 2 cm; penetration at most 19 mm (upstream collision geometry only, **mocap words during signing only**). In stitched sentences, the baseline's blends between words and motion to and from neutral are not collision-checked, reaching 79 mm across the 9 lines; video words reach 41 mm while signing. The "≤ 19 mm" on slide 17 needs this qualifier.
 
 ## Slide 10 · Problems with video data and the fixes
 
