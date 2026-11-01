@@ -19,6 +19,10 @@ The code repository is **private on GitHub** for team collaboration; the demonst
 
 The repository preserves original commits, frozen experiments, failures, and the approximately 3 MB regression checkpoint trained by this project. Third-party MiniLM/LLM pretrained weights, robot vendor meshes, virtual environments, session logs, and private machine configuration are excluded. Fixed-source scripts restore base dependencies. How2Sign text indexes are used for noncommercial course research under the recorded CC BY-NC 4.0 scope; source videos are excluded. See [third-party notices and robot BSD license](THIRD_PARTY_NOTICES.en.txt).
 
+## Group 3 all-pairs development entry point
+
+The 35-word vocabulary has a separate freeze/audit, direct-candidate scan, resume and saved-artifact verification workflow for 1,225 ordered pairs, including 35 self-pairs. See [running and verification](docs/group3-all-pairs-startup.en.md) and the [execution record](docs/group3-all-pairs-progress.en.md). This is a development scan; this version cannot emit PASS_SIM, and general search and L2 acceptance remain incomplete.
+
 ## Open on the current computer
 
 Double-click `run_demo.command`, or run this in the project directory. Repeated starts reuse a healthy process belonging to this project:
