@@ -37,9 +37,10 @@ results/you_hurt_where_baseline_vs_planned*.mp4
 # All-pairs candidate trajectories and per-pair raw evidence remain local.
 results/all_pairs/
 
-# Raw pair-run stores stay local (hospital35 alone is ~1.6 GB); only the nine-sentence run is kept (2026-11-01).
+# Raw pair-run stores stay local (hospital35 alone is ~1.6 GB); only the nine-sentence runs are kept (2026-11-01).
 results/**/pair_runs/
 !results/hospital_sentences_20261101_001/pair_runs/
+!results/hospital_sentences_20261101_002/pair_runs/
 
 # New videos stay local (user decision 2026-11-01); videos committed before then remain tracked.
 *.mp4
