@@ -228,14 +228,14 @@ def finger_arrival_plan_v1(clip, target_frame, names, bounds, policy, couplings)
     or infeasible, and timing proceeds unchanged. An infeasible plan is
     returned with feasible=False so shortlists can rank it last.
     """
-    from sign_robot.pair_timing import _extrema, boundary_state_v2, quintic_coefficients_v2
+    from sign_robot.pair_timing import _extrema, cut_boundary_state_v2, quintic_coefficients_v2
     from sign_robot.pair_contract import rate_limits
     index, ordered, children = _couplings(names, couplings)
     bounds = np.asarray(bounds, dtype=float)
     drivers = np.asarray([i for i, name in enumerate(names) if str(name).startswith(("L_", "R_")) and str(name) not in children], dtype=int)
     if not len(drivers) or target_frame < 1:
         return None
-    end = boundary_state_v2(clip, target_frame, "target")
+    end = cut_boundary_state_v2(clip, target_frame, "target", policy, bounds)
     p, v = np.asarray(end["position"])[drivers], np.asarray(end["velocity"])[drivers]
     room = np.where(v > 0, p - bounds[drivers, 0], bounds[drivers, 1] - p)
     reach = 0.4 * np.abs(v) * policy["planner"]["minimum_duration_s"]

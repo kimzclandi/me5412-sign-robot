@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
+from concurrent.futures import ProcessPoolExecutor
 import json
 import os
 from pathlib import Path
@@ -30,10 +31,46 @@ for variable in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "
 
 from sign_robot.pair_contract import atomic_json, file_hash, freeze_library, json_hash, read_json, run_identity
 from sign_robot.sequence_assembly import SequenceAssemblyError, assemble_sequence, combinations, load_candidate_pools
-from sign_robot.sequence_contract import load_sequence_policy, save_sequence, sequence_glosses, sequence_identity
+from sign_robot.sequence_contract import (
+    load_sequence_policy, rest_tail_config, save_sequence, sequence_glosses, sequence_identity,
+)
 from sign_robot.sequence_verification import verify_saved_sequence_v1
 
 GIB = 1024 ** 3
+_TAIL_CONTEXT = None
+
+
+def _tail_worker_init(pair_policy):
+    global _TAIL_CONTEXT
+    from sign_robot.pair_routes import build_pair_context_v2
+    _TAIL_CONTEXT = build_pair_context_v2(ROOT, pair_policy)
+
+
+def _plan_tail(gloss, config):
+    from sign_robot.sequence_rest import plan_rest_tail_v1
+    started = time.monotonic()
+    record = plan_rest_tail_v1(_TAIL_CONTEXT, gloss, config)
+    record["wall_time_s"] = time.monotonic() - started
+    return record
+
+
+def plan_rest_tails(glosses, config, pair_policy, folder, workers):
+    """One planned rest tail per distinct last word; each record is saved and hash-bound before any case uses it."""
+    folder.mkdir(parents=True)
+    with ProcessPoolExecutor(max_workers=max(1, min(workers, len(glosses))), initializer=_tail_worker_init,
+                             initargs=(pair_policy,)) as pool:
+        records = dict(zip(glosses, pool.map(_plan_tail, glosses, [config] * len(glosses))))
+    tails = {}
+    for gloss, record in records.items():
+        path = folder / f"{gloss}.json"
+        atomic_json(path, record)
+        tails[gloss] = {"gloss": gloss, "file": _relative(path), "file_sha256": file_hash(path),
+                        "selected": record["selected"], "status": record["status"]}
+        print(json.dumps({"rest_tail": gloss, "status": record["status"], "attempts": len(record["attempts"]),
+                          "selected": None if record["selected"] is None else
+                          {k: record["selected"][k] for k in ("exit_frame", "method", "connector_frames", "core_gap_frames")},
+                          "wall_time_s": round(record["wall_time_s"], 1)}), flush=True)
+    return tails
 
 
 def _relative(path):
@@ -64,13 +101,19 @@ def prior_attempts(prior_outputs, case):
 
 
 def run_case(case, *, policy, policy_path, pools, states, implementation, folder, prior, budget, case_budget_s,
-             clock=time.monotonic):
+             clock=time.monotonic, rest_tails=None):
     glosses = sequence_glosses(case, policy)
     edges = [f"{a}__{b}" for a, b in zip(glosses, glosses[1:])]
     record = {"sequence_id": case, "word_count": len(glosses), "attempts": [], "selected_attempt": None,
               "selected_output": None, "status": "NOT_RUN", "numerical_checks_passed": None,
               "formal_status": "NOT_ENABLED", "dependencies": {edge: states[edge] for edge in edges}}
     blocked = sorted({states[edge] for edge in edges if states[edge] != "READY"})
+    tail = None
+    if rest_tail_config(policy) is not None:
+        tail = (rest_tails or {}).get(glosses[-1])
+        record["rest_tail"] = None if tail is None else {k: tail[k] for k in ("file", "file_sha256", "status")}
+        if tail is None or tail["selected"] is None:
+            blocked.append("REST_TAIL_UNAVAILABLE")
     if blocked:
         record.update(status="BLOCKED_DEPENDENCY", blocking_reasons=blocked)
         return record, None
@@ -99,7 +142,7 @@ def run_case(case, *, policy, policy_path, pools, states, implementation, folder
             break
         try:
             sequence = assemble_sequence(case, [pools[e][r] for e, r in zip(edges, ranks)],
-                                         policy=policy, sequence_identity=implementation)
+                                         policy=policy, sequence_identity=implementation, rest_tail=tail)
         except SequenceAssemblyError as exc:
             entry.update(status="ASSEMBLY_REJECTED", reason_codes=[exc.code], details=str(exc.details))
             record["attempts"].append(entry)
@@ -170,6 +213,7 @@ def main(argv=None):
     parser.add_argument("--stop-file", type=Path, help="Graceful stop at the next attempt once this file exists")
     parser.add_argument("--resume-from", type=Path, action="append", default=[],
                         help="Earlier output of the same identity, in order; read only")
+    parser.add_argument("--tail-workers", type=int, default=1, help="Processes for planning rest tails (policy rest_tail)")
     args = parser.parse_args(argv)
     output = args.output.resolve()
     if output.exists():
@@ -238,6 +282,10 @@ def main(argv=None):
         return None
 
     budget = Budget(args.soft_wall_time_s, budgets["min_free_bytes"], output, stop_file=args.stop_file, drift=drift)
+    rest_tails = None
+    if rest_tail_config(policy) is not None:
+        lasts = sorted({sequence_glosses(case, policy)[-1] for case in cases})
+        rest_tails = plan_rest_tails(lasts, rest_tail_config(policy), pair_policy, output / "rest_tails", args.tail_workers)
     signal.signal(signal.SIGTERM, lambda *_: setattr(budget, "requested", True))
     records, stop = [], None
     for case in cases:
@@ -249,7 +297,8 @@ def main(argv=None):
             continue
         record, stop = run_case(case, policy=policy, policy_path=args.sequence_policy, pools=pools, states=states,
                                 implementation=implementation, folder=output / "sequences" / case,
-                                prior=checkpoint[case], budget=budget, case_budget_s=args.case_budget_s)
+                                prior=checkpoint[case], budget=budget, case_budget_s=args.case_budget_s,
+                                rest_tails=rest_tails)
         records.append(record)
         print(json.dumps({k: record[k] for k in ("sequence_id", "status", "selected_attempt")}
                          | {"attempts": len(record["attempts"])}), flush=True)

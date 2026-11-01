@@ -7,7 +7,10 @@ from pathlib import Path
 
 from sign_robot.pair_contract import file_hash, inside, json_hash, read_pair_trajectory
 from sign_robot.pair_runner_v2 import V2RunStore
-from sign_robot.sequence_contract import AUTO_ENDPOINT_MODE, BOUNDARY_METHOD, SEQUENCE_REPRESENTATION, sequence_glosses
+from sign_robot.sequence_contract import (
+    AUTO_ENDPOINT_MODE, BOUNDARY_METHOD, REST_POSE_V1, REST_TAIL_FINGER_STRATEGY, REST_TAIL_V1, SEQUENCE_REPRESENTATION,
+    rest_tail_config, sequence_glosses,
+)
 
 _OCCURRENCE_FIELDS = ("gloss", "motion_sha256", "protected_core_frames", "protection_id", "protection_sha256",
                       "window_provenance")
@@ -102,8 +105,12 @@ def _occurrence(word, instance_id, position, entry, exit_):
             "source_frames": [entry, exit_]}
 
 
-def assemble_sequence(sequence_id, candidates, *, policy, sequence_identity):
-    """candidates[i] joins occurrence i to i + 1; coefficients and durations are copied."""
+def assemble_sequence(sequence_id, candidates, *, policy, sequence_identity, rest_tail=None):
+    """candidates[i] joins occurrence i to i + 1; coefficients and durations are copied.
+
+    ``rest_tail`` ({"gloss", "file", "file_sha256", "selected"}) is required exactly when the
+    policy asks for one; the last slice then runs to the tail's exit frame and the tail follows.
+    """
     glosses = sequence_glosses(sequence_id, policy)
     if len(candidates) != len(glosses) - 1:
         raise SequenceAssemblyError("EDGE_COUNT_MISMATCH", sequence_id)
@@ -118,6 +125,12 @@ def assemble_sequence(sequence_id, candidates, *, policy, sequence_identity):
             raise SequenceAssemblyError("EDGE_SOURCE_INCONSISTENT", index)
     if sequence_identity["pair_identity_hash"] != first["identity"]["identity_hash"]:
         raise SequenceAssemblyError("PAIR_IDENTITY_MISMATCH", sequence_id)
+    if (rest_tail_config(policy) is None) != (rest_tail is None):
+        raise SequenceAssemblyError("REST_TAIL_POLICY_MISMATCH", sequence_id)
+    tail = rest_tail
+    selected = tail["selected"] if tail is not None else None
+    if tail is not None and (selected is None or tail["gloss"] != glosses[-1]):
+        raise SequenceAssemblyError("REST_TAIL_UNAVAILABLE", glosses[-1])
     instances = []
     for position in range(len(glosses)):
         incoming = trajectories[position - 1]["word_instances"][1] if position else None
@@ -127,7 +140,7 @@ def assemble_sequence(sequence_id, candidates, *, policy, sequence_identity):
         word = outgoing or incoming
         c0, c1 = word["protected_core_frames"]
         entry = incoming["source_frames"][0] if incoming else c0
-        exit_ = outgoing["source_frames"][1] if outgoing else c1
+        exit_ = outgoing["source_frames"][1] if outgoing else (selected["exit_frame"] if tail is not None else c1)
         if not entry <= c0 <= c1 <= exit_ or entry >= exit_:
             raise SequenceAssemblyError("INCOMPATIBLE_SLICE", {"position": position, "entry": entry, "exit": exit_})
         instances.append(_occurrence(word, f"o{position}_{word['gloss']}", position, entry, exit_))
@@ -141,17 +154,8 @@ def assemble_sequence(sequence_id, candidates, *, policy, sequence_identity):
         if position == len(trajectories):
             break
         candidate, trajectory = candidates[position], trajectories[position]
-        polynomials = trajectory["segments"][1:-1]
-        origin = polynomials[0]["start_time_s"]
-        duration = polynomials[-1]["end_time_s"] - origin
-        intervals = round(duration * 30)
         first_index = len(segments)
-        for index, polynomial in enumerate(polynomials):
-            shifted = copy.deepcopy(polynomial)
-            shifted["start_time_s"] = frame / 30 + (polynomial["start_time_s"] - origin) if index else frame / 30
-            shifted["end_time_s"] = ((frame + intervals) / 30 if index == len(polynomials) - 1
-                                     else frame / 30 + (polynomial["end_time_s"] - origin))
-            segments.append(shifted)
+        intervals = _append_shifted(segments, trajectory["segments"][1:-1], frame)
         edges.append({"edge_index": position, "from_instance_id": word["instance_id"],
                       "to_instance_id": instances[position + 1]["instance_id"], "pair_id": trajectory["pair_id"],
                       "exit_frame": exit_, "entry_frame": instances[position + 1]["source_frames"][0],
@@ -164,7 +168,32 @@ def assemble_sequence(sequence_id, candidates, *, policy, sequence_identity):
                                  "candidate_file_sha256": candidate["candidate_file_sha256"],
                                  "candidate_trajectory_hash": json_hash(trajectory)}})
         frame += intervals
-    return {"schema_version": 1, "representation": SEQUENCE_REPRESENTATION, "sequence_id": sequence_id, "fps": 30,
-            "joint_names": list(first["joint_names"]), "endpoint_mode": AUTO_ENDPOINT_MODE,
-            "boundary_method": BOUNDARY_METHOD, "word_instances": instances, "edges": edges, "segments": segments,
-            "pair_identity": copy.deepcopy(first["identity"]), "sequence_identity": copy.deepcopy(sequence_identity)}
+    sequence = {"schema_version": 1, "representation": SEQUENCE_REPRESENTATION, "sequence_id": sequence_id, "fps": 30,
+                "joint_names": list(first["joint_names"]), "endpoint_mode": AUTO_ENDPOINT_MODE,
+                "boundary_method": BOUNDARY_METHOD, "word_instances": instances, "edges": edges, "segments": segments,
+                "pair_identity": copy.deepcopy(first["identity"]), "sequence_identity": copy.deepcopy(sequence_identity)}
+    if tail is not None:
+        first_index = len(segments)
+        _append_shifted(segments, selected["segments"], frame)
+        sequence["rest_tail"] = {
+            "version": REST_TAIL_V1, "from_instance_id": instances[-1]["instance_id"], "gloss": glosses[-1],
+            "exit_frame": selected["exit_frame"], "segment_indices": [first_index, len(segments) - 1],
+            "finger_strategy": dict(REST_TAIL_FINGER_STRATEGY),
+            "planner": {"method": selected["method"], "route_name": selected["route_name"], "version": REST_TAIL_V1},
+            "boundary": copy.deepcopy(selected["boundary"]),
+            "rest_pose": {"version": REST_POSE_V1, "position": list(selected["boundary"]["end"]["position"])},
+            "source": {"file": tail["file"], "file_sha256": tail["file_sha256"], "selected_hash": json_hash(selected)}}
+    return sequence
+
+
+def _append_shifted(segments, polynomials, frame):
+    """Copy a connector's coefficients and internal timing to start at replay ``frame``; returns its frame count."""
+    origin = polynomials[0]["start_time_s"]
+    intervals = round((polynomials[-1]["end_time_s"] - origin) * 30)
+    for index, polynomial in enumerate(polynomials):
+        shifted = copy.deepcopy(polynomial)
+        shifted["start_time_s"] = frame / 30 + (polynomial["start_time_s"] - origin) if index else frame / 30
+        shifted["end_time_s"] = ((frame + intervals) / 30 if index == len(polynomials) - 1
+                                 else frame / 30 + (polynomial["end_time_s"] - origin))
+        segments.append(shifted)
+    return intervals

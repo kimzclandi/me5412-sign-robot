@@ -82,7 +82,11 @@ def render(sequence, evidence, clips, folder, renderer, model, data, cameras, fo
         moment = index / 30
         segment = next(s for s in sequence['segments'] if s['start_time_s'] - 1e-10 <= moment <= s['end_time_s'] + 1e-10)
         if segment['kind'] == 'polynomial_v2':
-            edge = next(e for e in sequence['edges'] if e['segment_indices'][0] <= sequence['segments'].index(segment) <= e['segment_indices'][1])
+            position = sequence['segments'].index(segment)
+            tail = sequence.get('rest_tail')
+            if tail is not None and tail['segment_indices'][0] <= position <= tail['segment_indices'][1]:
+                return 'transition', 'ADDED return to rest / 新增回到初始姿态'
+            edge = next(e for e in sequence['edges'] if e['segment_indices'][0] <= position <= e['segment_indices'][1])
             return 'transition', f"ADDED transition {edge['edge_index']} / 新增过渡"
         word = next(w for w in words if w['instance_id'] == segment['word_instance_id'])
         frame = round(segment['source_frames'][0] + (moment - segment['start_time_s']) * 30)
@@ -91,7 +95,8 @@ def render(sequence, evidence, clips, folder, renderer, model, data, cameras, fo
     title = sequence['sequence_id'].replace('__', ' → ')
     status = ('NUMERICAL PASS / 数值通过 · FORMAL OFF / 正式关闭' if numerical
               else 'FAILED DIAGNOSTIC / 失败诊断 · NOT SELECTED / 未选用')
-    picks = {round(sequence['segments'][e['segment_indices'][0]]['start_time_s'] * 30) for e in sequence['edges']}
+    picks = {round(sequence['segments'][e['segment_indices'][0]]['start_time_s'] * 30)
+             for e in [*sequence['edges'], *([sequence['rest_tail']] if 'rest_tail' in sequence else [])]}
     stills = []
     with imageio.get_writer(folder / 'comparison.mp4', fps=30, codec='libx264', quality=8, macro_block_size=16,
                             pixelformat='yuv420p', ffmpeg_params=['-threads', '1']) as writer:

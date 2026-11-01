@@ -9,7 +9,7 @@ import math
 from pathlib import Path
 
 from sign_robot.pair_contract import (
-    STATUSES, acceptance_pending, atomic_bytes, atomic_json, file_hash, inside,
+    AUTO_SELECTION_RULES, CORE_GAP_SELECTION_V1, STATUSES, acceptance_pending, atomic_bytes, atomic_json, file_hash, inside,
     json_bytes, json_hash, pair_universe, read_json, read_pair_trajectory,
     run_identity, run_directory, validate_policy_v2,
 )
@@ -602,14 +602,21 @@ class V2RunStore:
             entry = next(a for a in attempts if a["attempt_id"] == review["attempt_id"])
             trajectory = read_pair_trajectory(inside(self.run_dir, entry["candidate_file"]), schema_version=2)
             duration = trajectory["segments"][-2]["end_time_s"] - trajectory["segments"][1]["start_time_s"]
-            if self.policy["selection_rule"] == "numerical_pass_then_smoothness_total_duration_v1":
+            if self.policy["selection_rule"] in AUTO_SELECTION_RULES:
                 evidence = read_json(inside(self.run_dir, review["path"]))["evidence"]
                 metrics, limits = evidence["metrics"], self.policy["quality"]["limits"]
-                return (metrics["peak_jerk_rad_s3"] / limits["peak_jerk_rad_s3"],
+                gap = ()
+                if self.policy["selection_rule"] == CORE_GAP_SELECTION_V1:
+                    source, target = trajectory["word_instances"]
+                    gap = ((source["source_frames"][1] - source["protected_core_frames"][1]) + round(duration * 30)
+                           + (target["protected_core_frames"][0] - target["source_frames"][0]),)
+                return (*gap, metrics["peak_jerk_rad_s3"] / limits["peak_jerk_rad_s3"],
                         metrics["peak_acceleration_rad_s2"] / limits["peak_acceleration_rad_s2"],
                         metrics["analytic_connector_jerk_integral_rad2_s5"], trajectory["segments"][-1]["end_time_s"],
-                        method_rank[trajectory["planner"]["method"]], json_hash(trajectory), review["attempt_id"])
-            return duration, method_rank[trajectory["planner"]["method"]], json_hash(trajectory), review["attempt_id"]
+                        method_rank.get(trajectory["planner"]["method"], len(method_rank)), json_hash(trajectory),
+                        review["attempt_id"])
+            return (duration, method_rank.get(trajectory["planner"]["method"], len(method_rank)), json_hash(trajectory),
+                    review["attempt_id"])
         return min(positive, key=score)["attempt_id"]
 
     def summarize(self):

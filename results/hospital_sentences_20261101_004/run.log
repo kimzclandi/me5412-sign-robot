@@ -1,0 +1,67 @@
+== start 2026-11-01T20:43:58+08:00
+worker 0 hospital_sentences_20261101_004_01 cpu0 pid 1852
+worker 1 hospital_sentences_20261101_004_02 cpu1 pid 1858
+worker 2 hospital_sentences_20261101_004_03 cpu2 pid 1864
+worker 3 hospital_sentences_20261101_004_04 cpu3 pid 1870
+worker 4 hospital_sentences_20261101_004_05 cpu4 pid 1876
+worker 5 hospital_sentences_20261101_004_06 cpu5 pid 1882
+worker 6 hospital_sentences_20261101_004_07 cpu6 pid 1888
+worker 7 hospital_sentences_20261101_004_08 cpu7 pid 1894
+worker 8 hospital_sentences_20261101_004_09 cpu8 pid 1900
+worker 9 hospital_sentences_20261101_004_10 cpu9 pid 1906
+worker 10 hospital_sentences_20261101_004_11 cpu10 pid 1912
+worker 11 hospital_sentences_20261101_004_12 cpu11 pid 1918
+worker 12 hospital_sentences_20261101_004_13 cpu12 pid 1924
+worker 13 hospital_sentences_20261101_004_14 cpu13 pid 1930
+worker 14 hospital_sentences_20261101_004_15 cpu14 pid 1936
+worker 15 hospital_sentences_20261101_004_16 cpu15 pid 1942
+worker 0 exit 0 2026-11-01T20:52:22+08:00
+worker 1 exit 0 2026-11-01T20:52:42+08:00
+worker 2 exit 0 2026-11-01T20:52:56+08:00
+worker 3 exit 0 2026-11-01T20:52:56+08:00
+worker 4 exit 0 2026-11-01T20:54:33+08:00
+worker 5 exit 0 2026-11-01T20:54:33+08:00
+worker 6 exit 0 2026-11-01T20:54:33+08:00
+worker 7 exit 0 2026-11-01T20:54:33+08:00
+worker 8 exit 0 2026-11-01T20:54:37+08:00
+worker 9 exit 0 2026-11-01T20:55:45+08:00
+worker 10 exit 0 2026-11-01T20:55:45+08:00
+worker 11 exit 0 2026-11-01T20:55:47+08:00
+worker 12 exit 0 2026-11-01T20:55:47+08:00
+worker 13 exit 0 2026-11-01T20:57:28+08:00
+worker 14 exit 0 2026-11-01T21:00:43+08:00
+worker 15 exit 0 2026-11-01T21:09:36+08:00
+recheck 04 exit 0
+recheck 06 exit 0
+recheck 13 exit 0
+recheck 08 exit 0
+recheck 05 exit 0
+recheck 10 exit 0
+recheck 07 exit 0
+recheck 03 exit 0
+recheck 11 exit 0
+recheck 02 exit 0
+recheck 12 exit 0
+recheck 14 exit 0
+recheck 09 exit 0
+recheck 15 exit 0
+recheck 01 exit 0
+recheck 16 exit 0
+{"rest_tail": "BLOOD-DRAW", "status": "TIMED_CANDIDATE", "attempts": 182, "selected": {"exit_frame": 178, "method": "direct", "connector_frames": 19, "core_gap_frames": 32}, "wall_time_s": 114.5}
+{"rest_tail": "HAVE", "status": "TIMED_CANDIDATE", "attempts": 130, "selected": {"exit_frame": 57, "method": "direct", "connector_frames": 15, "core_gap_frames": 18}, "wall_time_s": 59.1}
+{"rest_tail": "INTERPRETER", "status": "TIMED_CANDIDATE", "attempts": 338, "selected": {"exit_frame": 67, "method": "direct", "connector_frames": 15, "core_gap_frames": 22}, "wall_time_s": 374.1}
+{"rest_tail": "SOON", "status": "TIMED_CANDIDATE", "attempts": 104, "selected": {"exit_frame": 88, "method": "direct", "connector_frames": 12, "core_gap_frames": 13}, "wall_time_s": 38.2}
+{"rest_tail": "TAKE", "status": "TIMED_CANDIDATE", "attempts": 130, "selected": {"exit_frame": 78, "method": "direct", "connector_frames": 17, "core_gap_frames": 17}, "wall_time_s": 46.6}
+{"rest_tail": "UNDERSTAND", "status": "TIMED_CANDIDATE", "attempts": 156, "selected": {"exit_frame": 78, "method": "direct", "connector_frames": 15, "core_gap_frames": 15}, "wall_time_s": 66.5}
+{"rest_tail": "WHERE", "status": "TIMED_CANDIDATE", "attempts": 78, "selected": {"exit_frame": 81, "method": "direct", "connector_frames": 12, "core_gap_frames": 12}, "wall_time_s": 7.1}
+{"sequence_id": "HELLO__YOU__APPOINTMENT__HAVE", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "YOU__NEED__INTERPRETER", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "PLEASE__WAIT__DOCTOR__COME__SOON", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "YOU__HURT__WHERE", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__NURSE__BLOOD-DRAW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "MEDICINE__MORNING__NIGHT__TAKE", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "YOU__UNDERSTAND", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"denominator": 7, "numerical_pass_count": 7, "status_counts": {"NUMERICAL_PASS": 7}, "stop_reason": null}
+plan_sequences exit 0
+verify_sequences exit 0
+== end 2026-11-01T21:18:55+08:00

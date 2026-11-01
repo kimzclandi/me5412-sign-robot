@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "NIGHT__APPOINTMENT",
+    "NIGHT__MEDICINE",
+    "NIGHT__STOMACH",
+    "NIGHT__HEADACHE",
+    "NIGHT__HAVE",
+    "NIGHT__NEED",
+    "NIGHT__WAIT",
+    "NIGHT__COME",
+    "NIGHT__HURT",
+    "NIGHT__BREATHE-DEEP",
+    "NIGHT__BLOOD-DRAW",
+    "NIGHT__UNDERSTAND",
+    "NIGHT__WRITE",
+    "NIGHT__NOT",
+    "NIGHT__NOW",
+    "NIGHT__SOON"
+  ]
+}

@@ -8,13 +8,13 @@ import time
 
 import numpy as np
 
-from sign_robot.pair_contract import acceptance_pending, coordinate_errors, json_hash
+from sign_robot.pair_contract import acceptance_pending, coordinate_errors, json_hash, staged_exit_config
 from sign_robot.pair_fingers import _couplings, coupling_error_v2
 from sign_robot.pair_routes import (
     CandidateAttemptV2, PairWorkBudget, PlanningBudgetExceeded, _sampled_clearance,
     assemble_pair_trajectory_v2, check_timed_route_v2, endpoint_pairs_v1, target_finger_arrival_v1, valid_endpoint_choices_v2,
 )
-from sign_robot.pair_timing import boundary_state_v2, time_route_v2
+from sign_robot.pair_timing import cut_boundary_state_v2, time_route_v2
 from sign_robot.pair_windows import WindowApprovalError
 
 
@@ -214,6 +214,8 @@ def bounded_rrt_path_v2(context, a, b, names, budget, *, seed):
 def iter_rrt_attempts_v2(context, source, target, *, seed, budget=None):
     budget = PairWorkBudget(context.policy) if budget is None else budget
     base = {"schema_version": 2, "pair_id": f"{source}__{target}", "method": "rrt_connect", "method_version": 2}
+    if staged_exit_config(context.policy, source) is not None:
+        return  # a staged exit replaces every generic route family, RRT included
     if source not in context.clips or target not in context.clips:
         yield CandidateAttemptV2(None, {**base, "status": "BLOCKED_INPUT", "reason_codes": ["UNKNOWN_GLOSS"], "budget": budget.snapshot()})
         return
@@ -254,8 +256,9 @@ def iter_rrt_attempts_v2(context, source, target, *, seed, budget=None):
             for variant, knots in variants:
                 for strategy in context.policy["finger_strategies"]:
                     budget.candidate()
-                    timed = time_route_v2(knots, boundary_state_v2(first, source_frame, "source"),
-                                           boundary_state_v2(second, target_frame, "target"), names, bounds, context.policy,
+                    timed = time_route_v2(knots, cut_boundary_state_v2(first, source_frame, "source", context.policy, bounds),
+                                           cut_boundary_state_v2(second, target_frame, "target", context.policy, bounds),
+                                           names, bounds, context.policy,
                                            start_time_s=(source_frame - selection["source"].get("retained_outer_frame", 0)) / 30,
                                            couplings=context.library["couplings"], finger_strategy=strategy,
                                            deadline=budget.deadline, validate_curve=lambda segments: check_timed_route_v2(context, segments, budget),

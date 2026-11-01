@@ -32,6 +32,17 @@ def boundary_state_v2(clip, frame, role):
             "acceleration": np.zeros(q.shape[1]).tolist()}
 
 
+def cut_boundary_state_v2(clip, frame, role, policy, bounds):
+    """boundary_state_v2, with clamped stop joints at rest when the policy enables clamped_joint_stop_v1."""
+    from sign_robot.pair_contract import clamped_stop_joints
+    state = boundary_state_v2(clip, frame, role)
+    if not policy["endpoints"].get("clamped_joint_stop"):
+        return state
+    velocity = np.asarray(state["velocity"])
+    velocity[clamped_stop_joints(state["position"], velocity, role, bounds)] = 0.0
+    return {**state, "velocity": velocity.tolist()}
+
+
 def quintic_coefficients_v2(start, end, duration_s):
     """Ascending normalized-u coefficients, recomputed for this exact duration."""
     if type(duration_s) not in (int, float) or not np.isfinite(duration_s) or duration_s <= 0:

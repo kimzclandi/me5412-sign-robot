@@ -9,14 +9,16 @@ import numpy as np
 from sign_robot.motion import load_model
 from sign_robot.pair_contract import (
     CONNECTOR_ONLY_METHOD_V4, acceptance_pending, canonical_array_hash, coordinate_errors, file_hash, freeze_library,
-    inside, json_hash, rate_limits, read_motion, read_pair_trajectory, run_identity, validate_policy_v2,
+    clamped_stop_joints, inside, json_hash, rate_limits, read_json, retained_edge_contacts, read_motion, read_pair_trajectory, run_identity, validate_policy_v2,
 )
 from sign_robot.pair_verification_v2 import (
     VerificationBudgetExceeded, _Budget, _analytic_metrics, _evaluate_polynomial, _full_replay, _masked_trapezoid,
     _protected_source_audit, _sample_times, _source_values, connector_masks,
 )
 from sign_robot.pair_windows import WindowApprovalError, load_window_inputs
-from sign_robot.sequence_contract import load_sequence_policy, read_sequence, sequence_identity
+from sign_robot.sequence_contract import (
+    library_rest_pose_v1, load_sequence_policy, read_sequence, sequence_identity,
+)
 from sign_robot.transitions import MujocoClearance
 
 REGION_LIMITS = ("peak_acceleration_rad_s2", "peak_jerk_rad_s3", "jerk_integral_rad2_s5")
@@ -59,6 +61,31 @@ def _check_sources(candidate_root, sequence, instances, identity):
     return checks
 
 
+def _check_rest_tail(candidate_root, sequence, tail, library_clips):
+    """The tail must equal its hash-bound planning record and end on the fresh library rest pose."""
+    path = inside(candidate_root, tail["source"]["file"])
+    if file_hash(path) != tail["source"]["file_sha256"]:
+        raise ValueError("Rest-tail record differs from its recorded hash")
+    record = read_json(path)
+    selected = record["selected"]
+    if (selected is None or json_hash(selected) != tail["source"]["selected_hash"] or record["gloss"] != tail["gloss"]
+            or selected["exit_frame"] != tail["exit_frame"] or selected["boundary"] != tail["boundary"]):
+        raise ValueError("Rest tail differs from its planning record")
+    rest = library_rest_pose_v1(library_clips)
+    if not np.array_equal(np.asarray(tail["rest_pose"]["position"]), rest):
+        raise ValueError("Saved rest pose differs from the fresh library rest pose")
+    first, last = tail["segment_indices"]
+    copied, original = sequence["segments"][first:last + 1], selected["segments"]
+    offset = copied[0]["start_time_s"] - original[0]["start_time_s"]
+    if (len(copied) != len(original) or any(c["coefficients"] != o["coefficients"] for c, o in zip(copied, original))
+            or any(abs(c["start_time_s"] - o["start_time_s"] - offset) > 1e-9
+                   or abs((c["end_time_s"] - c["start_time_s"]) - (o["end_time_s"] - o["start_time_s"])) > 1e-9
+                   for c, o in zip(copied, original))):
+        raise ValueError("Rest-tail coefficients, durations or internal timing changed")
+    return {"file": tail["source"]["file"], "file_sha256": tail["source"]["file_sha256"], "coefficients_identical": True,
+            "rest_pose_equals_library_first_frames": True, "library_clip_count": len(library_clips)}, rest
+
+
 def _protected_mask(sequence, times):
     mask = np.zeros(len(times), dtype=bool)
     spans = []
@@ -92,7 +119,7 @@ def verify_saved_sequence_v1(root, sequence_path, policy_path, *, candidate_root
         sequence = read_sequence(path, policy)
         evidence.update(sequence_id=sequence["sequence_id"], sequence_file_sha256=file_hash(path),
                         sequence_hash=json_hash(sequence), artifact_contract_passed=True)
-        library, _ = freeze_library(root, pair_policy)
+        library, library_clips = freeze_library(root, pair_policy)
         if library["input_errors"] or any(w.get("input_errors") for w in library["words"]):
             evidence.update(status="BLOCKED_INPUT", reason_codes=["FROZEN_INPUT_INVALID"])
             return evidence
@@ -122,6 +149,10 @@ def verify_saved_sequence_v1(root, sequence_path, policy_path, *, candidate_root
             if word["source_frames"][1] >= len(clips[gloss]["positions"]):
                 raise ValueError("Source slice exceeds its motion")
         evidence["source_candidate_checks"] = _check_sources(Path(candidate_root or root).resolve(), sequence, instances, identity)
+        tail, rest = sequence.get("rest_tail"), None
+        if tail is not None:
+            evidence["rest_tail_source_check"], rest = _check_rest_tail(
+                Path(candidate_root or root).resolve(), sequence, tail, library_clips)
         evidence["input_checks_passed"] = True
         budget.check_time()
         model = load_model(root)
@@ -141,7 +172,7 @@ def verify_saved_sequence_v1(root, sequence_path, policy_path, *, candidate_root
         on_connector = np.ones(len(t), dtype=bool)
         if connector_only:
             on_connector = np.zeros(len(t), dtype=bool)
-            for edge in sequence["edges"]:
+            for edge in [*sequence["edges"], *([tail] if tail is not None else [])]:
                 first, last = edge["segment_indices"]
                 on_connector |= connector_masks(sequence["segments"][first:last + 1], t)[0]
         evidence["protected_source_audit"] = {}
@@ -157,6 +188,16 @@ def verify_saved_sequence_v1(root, sequence_path, policy_path, *, candidate_root
                 source_findings.append("CHAIN_JOINT_LIMIT_VIOLATION")
             if whole["coupling_error"] > constraints["coupling_tolerance_rad"]:
                 source_findings.append("CHAIN_COUPLING_VIOLATION")
+        if pair_policy["endpoints"].get("retained_edge_screen"):
+            evidence["retained_edge_screen"] = {"version": pair_policy["endpoints"]["retained_edge_screen"], "instances": {}}
+            for word in sequence["word_instances"]:
+                clip = clips[word["gloss"]]
+                bounds = np.array([model.joint(str(n)).range for n in clip["joint_names"]])
+                flagged = retained_edge_contacts(clip, word["protected_core_frames"], bounds, word["source_frames"],
+                                                 pair_policy["endpoints"]["retained_edge_screen"])
+                evidence["retained_edge_screen"]["instances"][word["instance_id"]] = {"flagged_frames": flagged}
+                if flagged:
+                    errors.append(f"{word['instance_id'].upper()}_RETAINED_EDGE_NEW_ARM_LIMIT_CONTACT")
         coordinates = coordinate_errors(q[on_connector], names, model, library["couplings"])
         if coordinates["joint_limit_error"] > constraints["joint_limit_tolerance_rad"]:
             errors.append("CONNECTOR_JOINT_LIMIT_VIOLATION" if connector_only else "CHAIN_JOINT_LIMIT_VIOLATION")
@@ -179,8 +220,9 @@ def verify_saved_sequence_v1(root, sequence_path, policy_path, *, candidate_root
         fingers = np.array([str(n).startswith(("L_", "R_")) for n in names])
         columns = {str(n): i for i, n in enumerate(names)}
         transitions, covered = [], np.zeros(len(t), dtype=bool)
-        for edge in sequence["edges"]:
-            code = f"EDGE_{edge['edge_index']}_"
+        for edge in [*sequence["edges"], *([tail] if tail is not None else [])]:
+            is_tail = edge is tail
+            code = "REST_TAIL_" if is_tail else f"EDGE_{edge['edge_index']}_"
             first, last = edge["segment_indices"]
             polynomials = sequence["segments"][first:last + 1]
             analytic = _analytic_metrics(polynomials)
@@ -196,15 +238,24 @@ def verify_saved_sequence_v1(root, sequence_path, policy_path, *, candidate_root
                     residual[0] -= coupling["offset"]
                     if np.sum(np.abs(residual)) > constraints["coupling_tolerance_rad"]:
                         errors.append(code + "CONNECTOR_ANALYTIC_COUPLING_VIOLATION")
-            jumps = {}
+            jumps, clamped = {}, {}
             for role, frame, polynomial, moment in (
                     ("exit", edge["exit_frame"], polynomials[0], polynomials[0]["start_time_s"]),
-                    ("entry", edge["entry_frame"], polynomials[-1], polynomials[-1]["end_time_s"])):
-                word = instances[edge["from_instance_id"] if role == "exit" else edge["to_instance_id"]]
-                clip = clips[word["gloss"]]
-                left, right = (frame - 1, frame) if role == "exit" else (frame, frame + 1)
-                slope = (clip["positions"][right] - clip["positions"][left]) / (clip["timestamps_s"][right] - clip["timestamps_s"][left])
-                position = np.abs(_evaluate_polynomial(polynomial, [moment])[0] - clip["positions"][frame])
+                    ("entry", None if is_tail else edge["entry_frame"], polynomials[-1], polynomials[-1]["end_time_s"])):
+                if frame is None:  # a rest tail ends on the held rest pose
+                    expected, slope = rest, np.zeros(len(rest))
+                else:
+                    word = instances[edge["from_instance_id"] if role == "exit" else edge["to_instance_id"]]
+                    clip = clips[word["gloss"]]
+                    left, right = (frame - 1, frame) if role == "exit" else (frame, frame + 1)
+                    slope = (clip["positions"][right] - clip["positions"][left]) / (clip["timestamps_s"][right] - clip["timestamps_s"][left])
+                    expected = clip["positions"][frame]
+                    if pair_policy["endpoints"].get("clamped_joint_stop"):
+                        stopped = clamped_stop_joints(expected, slope, "source" if role == "exit" else "target",
+                                                      np.column_stack([lower, upper]))
+                        clamped[role] = [str(n) for n in np.asarray(names)[stopped]]
+                        slope = np.where(stopped, 0.0, slope)
+                position = np.abs(_evaluate_polynomial(polynomial, [moment])[0] - expected)
                 velocity = np.abs(_evaluate_polynomial(polynomial, [moment], 1)[0] - slope)
                 accel = np.abs(_evaluate_polynomial(polynomial, [moment], 2)[0])
                 jumps[role] = {"position_jump_rad": float(position.max()),
@@ -261,11 +312,15 @@ def verify_saved_sequence_v1(root, sequence_path, policy_path, *, candidate_root
             for key in REGION_LIMITS:
                 if metrics["analytic_connector_" + key] > limits[key]:
                     errors.append(code + "QUALITY_LIMIT_ANALYTIC_CONNECTOR_" + key.upper())
-            transitions.append({"edge_index": edge["edge_index"], "pair_id": edge["pair_id"],
-                                "region_time_s": [float(region_start), float(region_end)],
-                                "scored_replay_frames": int(region.sum()), "connector_time_s":
-                                [polynomials[0]["start_time_s"], polynomials[-1]["end_time_s"]],
-                                "metrics": metrics, "boundary": jumps, "finger_phase_recheck": phase_record})
+            scored = {"region_time_s": [float(region_start), float(region_end)],
+                      "scored_replay_frames": int(region.sum()), "connector_time_s":
+                      [polynomials[0]["start_time_s"], polynomials[-1]["end_time_s"]],
+                      "metrics": metrics, "boundary": jumps, "finger_phase_recheck": phase_record,
+                      **({"clamped_stop_joints": clamped} if clamped else {})}
+            if is_tail:
+                evidence["rest_tail"] = {"gloss": tail["gloss"], "exit_frame": tail["exit_frame"], **scored}
+            else:
+                transitions.append({"edge_index": edge["edge_index"], "pair_id": edge["pair_id"], **scored})
         if not connector_only and not np.array_equal(covered, ~protected):
             raise ValueError("Transition regions do not exactly cover the frames outside protected cores")
         evidence["transitions"] = transitions
@@ -347,6 +402,7 @@ def verify_saved_sequence_v1(root, sequence_path, policy_path, *, candidate_root
                         formal_pending_reasons=[r for r in pending if r not in LEGACY_FORMAL_WORDING],
                         legacy_formal_wording_not_a_precondition=[r for r in pending if r in LEGACY_FORMAL_WORDING],
                         word_occurrences=len(sequence["word_instances"]), connector_groups=len(sequence["edges"]),
+                        rest_tail_present=tail is not None,
                         reconstructed_motion_canonical_hash=canonical_array_hash(motion),
                         replay_frame_count=len(q), replay_duration_s=float(t[-1]),
                         source_replay_continuous_derivatives_certified=False)

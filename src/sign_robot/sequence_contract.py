@@ -7,7 +7,7 @@ import re
 import numpy as np
 
 from sign_robot.pair_contract import (
-    V2_FINGER_STRATEGIES, V2_IDENTITY_KEYS, _v2_fields, _v2_hash, _v2_integer, _v2_number, _v2_vector,
+    CONNECTOR_ONLY_METHOD_V4, V2_FINGER_STRATEGIES, V2_IDENTITY_KEYS, _v2_fields, _v2_hash, _v2_integer, _v2_number, _v2_vector,
     atomic_json, file_hash, inside, json_bytes, json_hash, load_policy, polynomial_boundary_v2, read_json,
 )
 
@@ -21,6 +21,36 @@ SEQUENCE_ENTRYPOINTS = ("scripts/plan_sequences.py", "scripts/verify_sequences.p
 SEQUENCE_IDENTITY_KEYS = ("pair_identity_hash", "sequence_policy_hash", "sequence_code_hash", "identity_hash")
 _FINGER_PHASES = {"synchronous": (0.0, 1.0), "early": (0.0, 0.65), "late": (0.35, 1.0)}
 _GLOSS = re.compile(r"[A-Z0-9]+(?:-[A-Z0-9]+)*")
+# Optional planned return from the last word to the library rest pose (assembly.rest_tail).
+REST_TAIL_V1 = "rest_tail_v1"
+REST_POSE_V1 = "library_first_frame_v1"
+REST_TAIL_CONFIG_KEYS = ("version", "rest_pose", "max_exit_frames")
+REST_TAIL_FINGER_STRATEGY = {"name": "synchronous", "version": 2, "start_fraction": 0.0, "end_fraction": 1.0}
+
+
+def library_rest_pose_v1(clips):
+    """The first frame shared bitwise by every library clip (the retargeted hands-down pose)."""
+    poses = [np.asarray(clip["positions"][0]) for clip in clips.values()]
+    if not poses or any(not np.array_equal(pose, poses[0]) for pose in poses):
+        raise ValueError("Library clips do not share one rest pose")
+    return poses[0].copy()
+
+
+def rest_state_v1(rest):
+    zeros = np.zeros(len(rest)).tolist()
+    return {"position": np.asarray(rest).tolist(), "velocity": zeros, "acceleration": list(zeros)}
+
+
+def rest_tail_config(policy):
+    """The policy's rest-tail settings, or None for sequences that end on the last protected core."""
+    config = policy["assembly"].get("rest_tail")
+    if config is None:
+        return None
+    _v2_fields(config, REST_TAIL_CONFIG_KEYS, "rest tail")
+    if config["version"] != REST_TAIL_V1 or config["rest_pose"] != REST_POSE_V1:
+        raise ValueError("Unknown rest-tail version")
+    _v2_integer(config["max_exit_frames"], "rest-tail exit frames", minimum=1)
+    return config
 
 
 def load_sequence_policy(root, path):
@@ -37,6 +67,8 @@ def load_sequence_policy(root, path):
         raise ValueError("Sequences require user-protected automatic windows")
     if pair_policy["formal_acceptance_enabled"] is not False:
         raise ValueError("Sequence development policy cannot run with formal acceptance enabled")
+    if rest_tail_config(policy) is not None and pair_policy["quality"]["full_clip_method"] != CONNECTOR_ONLY_METHOD_V4:
+        raise ValueError("A rest tail is scored as a connector; it needs the connector-only pair scope")
     return policy, pair_policy
 
 
@@ -55,6 +87,7 @@ def validate_sequence_policy(policy):
     if policy["quality"]["method"] != SEQUENCE_QUALITY_METHOD:
         raise ValueError("Unknown sequence quality method")
     _v2_integer(policy["assembly"]["max_combinations_per_case"], "combination budget", minimum=1)
+    rest_tail_config(policy)
     validation = policy["validation"]
     for key in ("max_sampled_poses", "max_native_collision_calls", "max_subdivision_depth"):
         _v2_integer(validation[key], key, minimum=1)
@@ -117,7 +150,7 @@ def validate_sequence_v1(sequence, policy):
     """Structure, ordering and analytic continuity; not geometry or quality."""
     _v2_fields(sequence, ("schema_version", "representation", "sequence_id", "fps", "joint_names", "endpoint_mode",
                           "boundary_method", "word_instances", "edges", "segments", "pair_identity",
-                          "sequence_identity"), "sequence")
+                          "sequence_identity"), "sequence", optional=("rest_tail",))
     if (type(sequence["schema_version"]) is not int or sequence["schema_version"] != 1
             or sequence["representation"] != SEQUENCE_REPRESENTATION or sequence["endpoint_mode"] != AUTO_ENDPOINT_MODE
             or sequence["boundary_method"] != BOUNDARY_METHOD or type(sequence["fps"]) is not int or sequence["fps"] != 30):
@@ -135,6 +168,8 @@ def validate_sequence_v1(sequence, policy):
     instances = sequence["word_instances"]
     if not isinstance(instances, list) or [w.get("gloss") if isinstance(w, dict) else None for w in instances] != glosses:
         raise ValueError("Word occurrences differ from the ordered sequence identity")
+    if (rest_tail_config(policy) is None) != ("rest_tail" not in sequence):
+        raise ValueError("The sequence policy and the saved sequence disagree about the rest tail")
     ids = set()
     for index, word in enumerate(instances):
         _v2_fields(word, ("instance_id", "position", "gloss", "motion_sha256", "source_frames", "protected_core_frames",
@@ -156,7 +191,8 @@ def validate_sequence_v1(sequence, policy):
         c0, c1 = word["protected_core_frames"]
         if not entry <= c0 <= c1 <= exit_ or entry >= exit_:
             raise ValueError("Each occurrence slice must contain its whole protected core once")
-        if (index == 0 and entry != c0) or (index == len(instances) - 1 and exit_ != c1):
+        # With a rest tail the last slice runs on to the tail's exit frame (checked below).
+        if (index == 0 and entry != c0) or (index == len(instances) - 1 and exit_ != c1 and "rest_tail" not in sequence):
             raise ValueError("Sequences start and end on protected cores; no implicit neutral")
     edges, segments = sequence["edges"], sequence["segments"]
     if not isinstance(edges, list) or len(edges) != len(instances) - 1 or not isinstance(segments, list):
@@ -196,42 +232,67 @@ def validate_sequence_v1(sequence, policy):
                                     "candidate_trajectory_hash"), "edge source")
         for key in ("candidate_file_sha256", "candidate_trajectory_hash"):
             _v2_hash(edge["source"][key], key)
-        first = cursor
-        polynomials = []
-        while cursor < len(segments) and isinstance(segments[cursor], dict) and segments[cursor].get("kind") != "source_slice_v2":
-            segment = segments[cursor]
-            _v2_fields(segment, ("kind", "start_time_s", "end_time_s", "coefficients"), "polynomial segment")
-            start, end = _v2_number(segment["start_time_s"], "segment start", minimum=0), _v2_number(segment["end_time_s"], "segment end", positive=True)
-            if segment["kind"] != "polynomial_v2" or not isinstance(segment["coefficients"], list) or len(segment["coefficients"]) != 53:
-                raise ValueError("Unsupported segment representation or coordinate count")
-            if not np.isclose(start, previous_end, atol=1e-10, rtol=0) or end <= start:
-                raise ValueError("Segments must form a positive, contiguous timeline from zero")
-            for row in segment["coefficients"]:
-                _v2_vector(row, 6, "normalized-u quintic coefficients")
-            if polynomials:
-                left, right = polynomial_boundary_v2(polynomials[-1], "end"), polynomial_boundary_v2(segment, "start")
-                if any(not np.allclose(left[k], right[k], atol=1e-7, rtol=0) for k in left):
-                    raise ValueError("Connector segments must preserve position, velocity and acceleration continuity")
-            polynomials.append(segment)
-            previous_end, cursor = end, cursor + 1
-        if not polynomials or edge["segment_indices"] != [first, cursor - 1]:
-            raise ValueError("Each edge requires its own nonempty connector segment range")
-        intervals = (polynomials[-1]["end_time_s"] - polynomials[0]["start_time_s"]) * 30
-        if not np.isclose(intervals, round(intervals), atol=1e-8, rtol=0):
-            raise ValueError("Each complete connector must fit the 30 Hz playback grid")
-        _v2_fields(edge["boundary"], ("start", "end", "method"), "edge boundary")
-        if edge["boundary"]["method"] != BOUNDARY_METHOD:
-            raise ValueError("Unknown boundary derivative method")
-        for endpoint, segment in (("start", polynomials[0]), ("end", polynomials[-1])):
-            declared = edge["boundary"][endpoint]
-            _v2_fields(declared, ("position", "velocity", "acceleration"), "boundary state")
-            actual = polynomial_boundary_v2(segment, endpoint)
-            for key in declared:
-                if not np.allclose(_v2_vector(declared[key], 53, key), actual[key], atol=1e-7, rtol=0):
-                    raise ValueError("Declared boundary differs from saved coefficients")
+        cursor, previous_end = _connector_group(edge, segments, cursor, previous_end)
+    tail = sequence.get("rest_tail")
+    if tail is not None:
+        last = instances[-1]
+        _v2_fields(tail, ("version", "from_instance_id", "gloss", "exit_frame", "segment_indices", "finger_strategy",
+                          "planner", "boundary", "rest_pose", "source"), "rest tail")
+        _v2_fields(tail["rest_pose"], ("version", "position"), "rest pose")
+        _v2_fields(tail["source"], ("file", "file_sha256", "selected_hash"), "rest tail source")
+        for key in ("file_sha256", "selected_hash"):
+            _v2_hash(tail["source"][key], key)
+        if (tail["version"] != REST_TAIL_V1 or tail["rest_pose"]["version"] != REST_POSE_V1
+                or tail["from_instance_id"] != last["instance_id"] or tail["gloss"] != last["gloss"]
+                or tail["exit_frame"] != last["source_frames"][1] or tail["finger_strategy"] != REST_TAIL_FINGER_STRATEGY):
+            raise ValueError("Rest tail differs from the last occurrence or its version")
+        cursor, previous_end = _connector_group(tail, segments, cursor, previous_end)
+        rest = _v2_vector(tail["rest_pose"]["position"], 53, "rest pose")
+        end = tail["boundary"]["end"]
+        if (not np.array_equal(_v2_vector(end["position"], 53, "rest position"), rest)
+                or any(v != 0 for key in ("velocity", "acceleration") for v in end[key])):
+            raise ValueError("A rest tail must end at the rest pose with zero velocity and acceleration")
     if cursor != len(segments):
         raise ValueError("Unexpected trailing segments")
     return sequence
+
+
+def _connector_group(group, segments, cursor, previous_end):
+    """Contiguous polynomial segments of one edge or tail; checks continuity, grid fit and declared boundaries."""
+    first = cursor
+    polynomials = []
+    while cursor < len(segments) and isinstance(segments[cursor], dict) and segments[cursor].get("kind") != "source_slice_v2":
+        segment = segments[cursor]
+        _v2_fields(segment, ("kind", "start_time_s", "end_time_s", "coefficients"), "polynomial segment")
+        start, end = _v2_number(segment["start_time_s"], "segment start", minimum=0), _v2_number(segment["end_time_s"], "segment end", positive=True)
+        if segment["kind"] != "polynomial_v2" or not isinstance(segment["coefficients"], list) or len(segment["coefficients"]) != 53:
+            raise ValueError("Unsupported segment representation or coordinate count")
+        if not np.isclose(start, previous_end, atol=1e-10, rtol=0) or end <= start:
+            raise ValueError("Segments must form a positive, contiguous timeline from zero")
+        for row in segment["coefficients"]:
+            _v2_vector(row, 6, "normalized-u quintic coefficients")
+        if polynomials:
+            left, right = polynomial_boundary_v2(polynomials[-1], "end"), polynomial_boundary_v2(segment, "start")
+            if any(not np.allclose(left[k], right[k], atol=1e-7, rtol=0) for k in left):
+                raise ValueError("Connector segments must preserve position, velocity and acceleration continuity")
+        polynomials.append(segment)
+        previous_end, cursor = end, cursor + 1
+    if not polynomials or group["segment_indices"] != [first, cursor - 1]:
+        raise ValueError("Each edge requires its own nonempty connector segment range")
+    intervals = (polynomials[-1]["end_time_s"] - polynomials[0]["start_time_s"]) * 30
+    if not np.isclose(intervals, round(intervals), atol=1e-8, rtol=0):
+        raise ValueError("Each complete connector must fit the 30 Hz playback grid")
+    _v2_fields(group["boundary"], ("start", "end", "method"), "edge boundary")
+    if group["boundary"]["method"] != BOUNDARY_METHOD:
+        raise ValueError("Unknown boundary derivative method")
+    for endpoint, segment in (("start", polynomials[0]), ("end", polynomials[-1])):
+        declared = group["boundary"][endpoint]
+        _v2_fields(declared, ("position", "velocity", "acceleration"), "boundary state")
+        actual = polynomial_boundary_v2(segment, endpoint)
+        for key in declared:
+            if not np.allclose(_v2_vector(declared[key], 53, key), actual[key], atol=1e-7, rtol=0):
+                raise ValueError("Declared boundary differs from saved coefficients")
+    return cursor, previous_end
 
 
 def save_sequence(path, sequence, policy):

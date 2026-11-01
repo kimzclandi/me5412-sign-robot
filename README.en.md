@@ -1,5 +1,20 @@
 # ME5412 Robot Signing Research Bench
 
+> **Group 3 public delivery update (2026-11-02)**
+>
+> This branch contains the implementation and results through round 6, plus round-7 development code, policies and launch scripts. The latest completed round records 7/7 multi-word sentences passing numerical checks, 17/17 connector rechecks agreeing and 24/24 protected cores unchanged. Formal acceptance remains disabled. See the [round-6 report](results/hospital_sentences_20261101_006/README.en.md).
+>
+> Round 7 adds a staged NURSE exit and revised MORNING/NURSE protection intervals. No round-7 planning or acceptance result was present in this publication snapshot. Its input builder is `results/hospital_sentences_20261102_007/make_inputs.py`; round-6 results do not validate round 7.
+>
+> Raw candidates, attempts, checkpoints, per-candidate verification and timing trajectories under `results/**/pair_runs/` and `results/user_protected_*/runs/` are excluded from the current public tree and remain in the local source worktree. Compact summaries, matrices and frozen configuration are preserved in each experiment's `run_summaries/`. Sequence outputs, independent rechecks, test logs and result images are retained.
+>
+> Original candidate paths and hashes in saved reports are unchanged. The public copy alone cannot recheck every historical candidate or resume a historical run. Use the local raw stores, or regenerate under a new run ID after restoring the required dependencies and robot assets. Example entry points: `.venv/bin/python results/hospital_sentences_20261102_007/make_inputs.py` (only when its inputs do not yet exist), then `bash results/hospital_sentences_20261102_007/run.sh` after checking its machine-specific path.
+>
+> Publication validation: seven existing regression modules and five mocked staged-exit smoke tests, **146 passed** in 32.92 seconds. The full suite and round-7 real planning were not rerun. See the [publication validation summary](results/publication_validation_20261102/summary.json).
+>
+> This ordinary commit removes raw stores from the current branch tree without rewriting earlier public history. Source revisions, overlaid-file hashes and the retained-summary inventory are recorded in [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json). The remainder includes historical prototype documentation.
+
+
 [中文](README.md) · **English** · [Bilingual documentation index](docs/README.md)
 
 > **Next stage: ten fixed intents → learned conditional motions.** Reuse free local MiniLM for intent selection and train an ID-conditioned trajectory model. Six people work in pairs on text intent understanding, demonstrations-to-robot, and learned motion. Everyone implements and tests; UI, report, slides, and integration are shared. The target is fixed healthcare expressions. Develop in parallel on task branches, merge stable versions, and select one primary presentation format at the end. Online site rebuilding is deferred. Ten classes are a development target; the current implementation still contains the three-class prototype documented below.

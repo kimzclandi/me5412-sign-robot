@@ -40,6 +40,34 @@ CONNECTOR_STENCIL_FRAMES = 3
 # velocity carried straight into it, stop first (and start from rest on entry) over a
 # fixed short segment, so the overshoot no longer grows with the connector duration.
 BOUNDARY_BRAKING_V1 = "stop_and_go_v1"
+# Candidate selection for user-protected windows. The smoothness rule prefers the lowest
+# peak jerk, which favours long, slow connectors. The core-gap rule prefers the fewest
+# replay frames between the two protected cores (retained source edges + connector),
+# then the same smoothness keys as tie-breakers.
+SMOOTHNESS_SELECTION_V1 = "numerical_pass_then_smoothness_total_duration_v1"
+CORE_GAP_SELECTION_V1 = "numerical_pass_then_core_gap_then_smoothness_v1"
+AUTO_SELECTION_RULES = (SMOOTHNESS_SELECTION_V1, CORE_GAP_SELECTION_V1)
+# Optional cut screen (endpoints.retained_edge_screen). Source frames kept strictly between a protected
+# core and its cut must not press an arm joint against a hard limit that the core itself never touches:
+# in the retargeted library that marks an IK flip (e.g. NURSE after its core: left shoulder yaw swings to
+# its -2.62 rad stop at the 15 rad/s cap and the forearm visibly twists). The cut pose itself may touch
+# such a limit; it is the connector's start or end, and the endpoint tangent check already forbids
+# moving further outward from it.
+RETAINED_EDGE_SCREEN_V1 = "no_new_arm_limit_contact_v1"
+# v2 (round 6): v1 also flagged wrists merely resting on a stop (MEDICINE, DOCTOR), which look like their
+# neighbours and blocked two sentences. v2 flags only the flip itself: every frame of a run in which a
+# shoulder or elbow joint has left the core's range of that joint and reaches a stop the core never
+# touches. The cut frame must be clear too, so the connector starts before the swing (NURSE: 80 or 81).
+RETAINED_EDGE_SCREEN_V2 = "no_proximal_limit_excursion_v1"
+RETAINED_EDGE_SCREENS = (RETAINED_EDGE_SCREEN_V1, RETAINED_EDGE_SCREEN_V2)
+RETAINED_EDGE_LIMIT_MARGIN_RAD = 1e-3
+# Optional cut rule (endpoints.clamped_joint_stop). The retargeted library clamps joints just inside their
+# hard limits (1e-6 rad). At a cut, a joint resting on such a stop whose replay slope runs into it (exit)
+# or comes off it (entry) cannot be carried by any in-limit connector, so that cut used to be rejected.
+# Under this rule the joint is taken as resting on its stop instead (boundary velocity 0); the verifiers
+# accept the velocity step on exactly these joints and list them. Every other joint keeps its slope.
+CLAMPED_JOINT_STOP_V1 = "clamped_joint_stop_v1"
+CLAMPED_STOP_MARGIN_RAD = 1e-5
 # v2 cut generator ranks cut pairs by the squared-jerk integral of the
 # retained non-protected source edges before boundary speed.
 EDGE_AWARE_CUT_GENERATOR = "protected_cut_search_v2"
@@ -347,6 +375,68 @@ def freeze_library(root, policy):
     return result, clips
 
 
+def new_arm_limit_frames(clip, core, bounds):
+    """Per frame: True where an arm joint is within the margin of a hard limit that no protected-core frame reaches."""
+    q = np.asarray(clip["positions"])
+    bounds = np.asarray(bounds, dtype=float)
+    arms = np.array([any(k in str(n) for k in ("shoulder", "elbow", "wrist")) for n in clip["joint_names"]])
+    low = q <= bounds[:, 0] + RETAINED_EDGE_LIMIT_MARGIN_RAD
+    high = q >= bounds[:, 1] - RETAINED_EDGE_LIMIT_MARGIN_RAD
+    c0, c1 = core
+    new = (low & ~low[c0:c1 + 1].any(axis=0)) | (high & ~high[c0:c1 + 1].any(axis=0))
+    return np.any(new & arms, axis=1)
+
+
+def proximal_limit_excursion_frames(clip, core, bounds):
+    """Per frame: True inside a run where a shoulder/elbow joint is outside its protected-core range and the run
+    reaches a hard stop that no core frame touches."""
+    q = np.asarray(clip["positions"])
+    bounds = np.asarray(bounds, dtype=float)
+    c0, c1 = core
+    flagged = np.zeros(len(q), dtype=bool)
+    for j, name in enumerate(clip["joint_names"]):
+        if not any(k in str(name) for k in ("shoulder", "elbow")):
+            continue
+        x, inner = q[:, j], q[c0:c1 + 1, j]
+        low, high = x <= bounds[j, 0] + RETAINED_EDGE_LIMIT_MARGIN_RAD, x >= bounds[j, 1] - RETAINED_EDGE_LIMIT_MARGIN_RAD
+        contact = (low & ~low[c0:c1 + 1].any()) | (high & ~high[c0:c1 + 1].any())
+        outside = (x < inner.min()) | (x > inner.max())
+        start = None
+        for frame in range(len(x) + 1):
+            if frame < len(x) and outside[frame]:
+                start = frame if start is None else start
+            elif start is not None:
+                if contact[start:frame].any():
+                    flagged[start:frame] = True
+                start = None
+    return flagged
+
+
+def retained_edge_flags(clip, core, bounds, screen):
+    """(per-frame flags, whether the cut frames themselves are screened) for a retained-edge screen version."""
+    if screen == RETAINED_EDGE_SCREEN_V1:
+        return new_arm_limit_frames(clip, core, bounds), False
+    if screen == RETAINED_EDGE_SCREEN_V2:
+        return proximal_limit_excursion_frames(clip, core, bounds), True
+    raise ValueError("Unknown retained-edge screen")
+
+
+def retained_edge_contacts(clip, core, bounds, slice_frames, screen=RETAINED_EDGE_SCREEN_V1):
+    """Flagged frames between an occurrence's cuts and its protected core (cut frames included from v2)."""
+    flagged, cuts = retained_edge_flags(clip, core, bounds, screen)
+    (first, last), (c0, c1) = slice_frames, core
+    first, last = (first, last) if cuts else (first + 1, last - 1)
+    return [int(f) for f in (*range(first, c0), *range(c1 + 1, last + 1)) if flagged[f]]
+
+
+def clamped_stop_joints(position, velocity, role, bounds):
+    """Joints on a hard stop whose one-sided replay slope points beyond it as seen from the connector."""
+    p, v, bounds = np.asarray(position, dtype=float), np.asarray(velocity, dtype=float), np.asarray(bounds, dtype=float)
+    directed = v * (1.0 if role == "source" else -1.0)
+    return (((p <= bounds[:, 0] + CLAMPED_STOP_MARGIN_RAD) & (directed < 0))
+            | ((p >= bounds[:, 1] - CLAMPED_STOP_MARGIN_RAD) & (directed > 0)))
+
+
 def run_identity(library, policy):
     value = {"library_version": library["library_version"], "model_hash": library["model_hash"],
              "code_commit": library["code_commit"], "code_hash": library["code_hash"],
@@ -428,6 +518,41 @@ def acceptance_pending(policy):
 # until a runner and verifier for this representation are implemented together.
 V2_REPRESENTATION = "piecewise_polynomial_v2"
 V2_METHODS = ("direct", "neutral", "ik_via1", "ik_via2", "retract_approach", "rrt_connect")
+# Optional per-word exit choreography (planner.staged_exits, staged_exit_v1). For a configured source word the
+# connector leaves exactly at the protected core end and runs through stop-and-go knots that move one joint group
+# at a time (e.g. NURSE: first the right arm away, then the left wrist straight), then on to the target entry.
+# Only these routes are tried for that word, so the generic route families and RRT are skipped.
+STAGED_EXIT_V1 = "staged_exit_v1"
+STAGED_EXIT_METHOD = "staged_exit"
+STAGED_EXIT_GROUPS = {"right_arm": ("right_shoulder", "right_elbow", "right_wrist", "R_"),
+                      "left_arm": ("left_shoulder", "left_elbow", "left_wrist", "L_"),
+                      "right_upper_arm": ("right_shoulder", "right_elbow"),
+                      "left_upper_arm": ("left_shoulder", "left_elbow"),
+                      "left_wrist": ("left_wrist",), "right_wrist": ("right_wrist",)}
+# Stage targets: the library rest pose, the target entry pose, zero, or "ik:<direction>:<steps>" (the group's side
+# wrist displaced <steps> times along a transitions.VIA_DIRECTIONS direction by arm IK; only the group's joints move).
+STAGED_EXIT_TARGETS = ("rest", "target", "zero")
+STAGED_EXIT_IK_DIRECTIONS = ("out", "up", "forward", "out+up", "out+forward", "up+forward", "out+up+forward")
+
+
+def staged_target_valid(to):
+    if to in STAGED_EXIT_TARGETS:
+        return True
+    parts = to.split(":") if isinstance(to, str) else []
+    return (len(parts) == 3 and parts[0] == "ik" and parts[1] in STAGED_EXIT_IK_DIRECTIONS
+            and parts[2].isdigit() and 1 <= int(parts[2]) <= 4)
+V2_TRAJECTORY_METHODS = (*V2_METHODS, STAGED_EXIT_METHOD)
+
+
+def staged_exit_config(policy, gloss):
+    """The staged exit for a source word, or None."""
+    staged = policy["planner"].get("staged_exits")
+    return None if staged is None else staged["words"].get(gloss)
+
+
+def staged_group_mask(names, group):
+    prefixes = STAGED_EXIT_GROUPS[group]
+    return np.array([str(name).startswith(prefixes) for name in names])
 V2_FINGER_STRATEGIES = ("synchronous", "early", "late")
 V2_IDENTITY_KEYS = ("library_version", "model_hash", "code_commit", "code_hash", "policy_hash", "environment_id", "identity_hash")
 
@@ -498,7 +623,7 @@ def validate_policy_v2(policy):
     _v2_hash(policy["contract"]["sha256"], "contract hash")
     planner = policy["planner"]
     _v2_fields(planner, ("method", "methods", "seed", "minimum_duration_s", "budget", "rrt"), "planner",
-               optional=("boundary_braking",))
+               optional=("boundary_braking", "staged_exits"))
     if "boundary_braking" in planner:
         braking = planner["boundary_braking"]
         _v2_fields(braking, ("version", "min_speed_rad_s", "limit_fraction", "max_frames"), "boundary braking")
@@ -509,6 +634,21 @@ def validate_policy_v2(policy):
         _v2_integer(braking["max_frames"], "braking maximum frames", minimum=1)
         if braking["limit_fraction"] > 1:
             raise ValueError("Braking cannot use more than the connector limits")
+    if "staged_exits" in planner:
+        staged = planner["staged_exits"]
+        _v2_fields(staged, ("version", "words"), "staged exits")
+        if staged["version"] != STAGED_EXIT_V1 or not isinstance(staged["words"], dict) or not staged["words"]:
+            raise ValueError("Unknown staged-exit version")
+        for gloss, config in staged["words"].items():
+            _v2_fields(config, ("stages",), "staged exit")
+            if gloss not in policy["scope"]["expected_glosses"] or not isinstance(config["stages"], list) or not config["stages"]:
+                raise ValueError("A staged exit needs a library word and at least one stage")
+            for stage in config["stages"]:
+                _v2_fields(stage, ("group", "to"), "exit stage")
+                if (stage["group"] not in STAGED_EXIT_GROUPS or not isinstance(stage["to"], list) or not stage["to"]
+                        or not all(staged_target_valid(t) for t in stage["to"]) or len(set(stage["to"])) != len(stage["to"])
+                        or (any(t.startswith("ik:") for t in stage["to"]) and stage["group"] in ("left_wrist", "right_wrist"))):
+                    raise ValueError("Unknown staged-exit group or stage target")
     if planner["method"] != "multi_candidate_v2" or planner["methods"] != list(V2_METHODS):
         raise ValueError("Unknown or incomplete v2 method dispatch")
     _v2_integer(planner["seed"], "seed")
@@ -532,7 +672,12 @@ def validate_policy_v2(policy):
     endpoints = policy["endpoints"]
     automatic = endpoints["strategy"] == "user_protected_auto_windows_v1"
     auto_fields = ("protection_file", "protection_bundle_sha256", "generator_version") if automatic else ()
-    _v2_fields(endpoints, ("strategy", "window_version", "review_status", "approval_file", "approval_bundle_sha256", *auto_fields), "endpoints")
+    _v2_fields(endpoints, ("strategy", "window_version", "review_status", "approval_file", "approval_bundle_sha256", *auto_fields), "endpoints",
+               optional=("retained_edge_screen", "clamped_joint_stop") if automatic else ())
+    if endpoints.get("retained_edge_screen", RETAINED_EDGE_SCREEN_V1) not in RETAINED_EDGE_SCREENS:
+        raise ValueError("Unknown retained-edge screen")
+    if endpoints.get("clamped_joint_stop", CLAMPED_JOINT_STOP_V1) != CLAMPED_JOINT_STOP_V1:
+        raise ValueError("Unknown clamped-joint stop rule")
     if endpoints["strategy"] not in ("approved_core_windows_v2", "user_protected_auto_windows_v1") or endpoints["review_status"] not in ("pending", "approved"):
         raise ValueError("Unsupported endpoint contract")
     if automatic:
@@ -579,9 +724,9 @@ def validate_policy_v2(policy):
         raise ValueError("Frozen quality requires approval evidence")
     if validation["approval_status"] == "approved" and not validation["approval_evidence"]:
         raise ValueError("Approved collision scope requires approval evidence")
-    selection_rule = "numerical_pass_then_smoothness_total_duration_v1" if automatic else "numerical_pass_then_duration_method_hash_v2"
+    selection_rules = AUTO_SELECTION_RULES if automatic else ("numerical_pass_then_duration_method_hash_v2",)
     if (policy["finger_strategies"] != list(V2_FINGER_STRATEGIES)
-            or policy["selection_rule"] != selection_rule):
+            or policy["selection_rule"] not in selection_rules):
         raise ValueError("Unknown finger or candidate-selection version")
     return policy
 
@@ -658,7 +803,7 @@ def validate_trajectory_v2(trajectory):
         raise ValueError("Pair identity differs from its ordered word occurrences")
     planner = trajectory["planner"]
     _v2_fields(planner, ("method", "method_version", "seed", "budget"), "trajectory planner")
-    if planner["method"] not in V2_METHODS or type(planner["method_version"]) is not int or planner["method_version"] != 2:
+    if planner["method"] not in V2_TRAJECTORY_METHODS or type(planner["method_version"]) is not int or planner["method_version"] != 2:
         raise ValueError("Unsupported v2 candidate method/version")
     _v2_integer(planner["seed"], "seed")
     validate_work_budget_v2(planner["budget"])

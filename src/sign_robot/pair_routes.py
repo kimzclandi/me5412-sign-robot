@@ -11,10 +11,11 @@ import numpy as np
 
 from sign_robot.motion import load_model
 from sign_robot.pair_contract import (
-    EDGE_AWARE_CUT_GENERATORS, LIFT_OFF_ARRIVAL_GENERATOR, acceptance_pending, coordinate_errors, freeze_library, json_hash, rate_limits, run_identity,
+    EDGE_AWARE_CUT_GENERATORS, LIFT_OFF_ARRIVAL_GENERATOR, acceptance_pending, coordinate_errors, freeze_library, json_hash,
+    STAGED_EXIT_METHOD, rate_limits, retained_edge_flags, run_identity, staged_exit_config, staged_group_mask,
     validate_policy_v2, validate_trajectory_v2,
 )
-from sign_robot.pair_timing import _extrema, boundary_state_v2, time_route_v2
+from sign_robot.pair_timing import _extrema, cut_boundary_state_v2, time_route_v2
 from sign_robot.pair_windows import WindowApprovalError, load_window_inputs, select_pair_windows
 from sign_robot.transitions import (
     MujocoClearance, ik_dual_via_candidates, ik_via_candidates, neutral_pose,
@@ -103,6 +104,10 @@ def build_pair_context_v2(root, policy):
     return PairContextV2(root, policy, library, clips, model, clearance, approvals, blockers)
 
 
+def _model_bounds(context, clip):
+    return np.asarray([context.model.joint(str(n)).range for n in clip["joint_names"]])
+
+
 def _sampled_clearance(context, q, budget, *, label):
     minimum, worst = float("inf"), None
     for start in range(0, len(q), 16):
@@ -152,12 +157,17 @@ def valid_endpoint_choices_v2(context, source, target, budget):
             item.update(retained_outer_frame=item["protected_core_frames"][0 if role == "source" else 1],
                         outer_cut_rule="protection_bounds_v1")
         checks, valid = [], []
+        screened = None
+        if automatic and context.policy["endpoints"].get("retained_edge_screen"):
+            bounds = np.asarray([context.model.joint(str(n)).range for n in clip["joint_names"]])
+            screened, cuts = retained_edge_flags(clip, item["protected_core_frames"], bounds,
+                                                 context.policy["endpoints"]["retained_edge_screen"])
         for frame in item["allowed_frames"]:
             pose = clip["positions"][frame:frame + 1]
             measured = _sampled_clearance(context, pose, budget, label=f"{role}:{frame}")
             coordinates = coordinate_errors(pose, clip["joint_names"], context.model, context.library["couplings"])
             limits = context.policy["constraints"]
-            state = boundary_state_v2(clip, frame, role)
+            state = cut_boundary_state_v2(clip, frame, role, context.policy, _model_bounds(context, clip))
             speed_ratio = float(np.max(np.abs(state["velocity"]) / rate_limits(clip["joint_names"], context.policy)))
             boundary_valid = bool(np.all(np.abs(state["velocity"]) <= rate_limits(clip["joint_names"], context.policy) + limits["speed_tolerance_rad_s"]))
             bound = np.asarray([context.model.joint(str(n)).range for n in clip["joint_names"]])
@@ -166,17 +176,29 @@ def valid_endpoint_choices_v2(context, source, target, budget):
             tangent_bad = limited & (((pose[0] <= bound[:, 0] + limits["joint_limit_tolerance_rad"]) & (directed_v < -limits["speed_tolerance_rad_s"]))
                                      | ((pose[0] >= bound[:, 1] - limits["joint_limit_tolerance_rad"]) & (directed_v > limits["speed_tolerance_rad_s"])))
             tangent_valid = not np.any(tangent_bad)
+            edge_valid = True
+            if screened is not None:
+                c0, c1 = item["protected_core_frames"]
+                if role == "source":
+                    edge_valid = not screened[c1 + 1:frame + 1 if cuts else frame].any()
+                else:
+                    edge_valid = not screened[frame if cuts else frame + 1:c0].any()
             good = (measured["passed"] and coordinates["joint_limit_error"] <= limits["joint_limit_tolerance_rad"]
                     and coordinates["coupling_error"] <= limits["coupling_tolerance_rad"]
-                    and ((boundary_valid and tangent_valid) or not automatic))
+                    and ((boundary_valid and tangent_valid) or not automatic) and edge_valid)
             checks.append({"frame": frame, "engineering_valid": bool(good), **measured, **coordinates,
                            "boundary_state": state, "boundary_speed_ratio": speed_ratio,
                            "boundary_speed_valid": bool(boundary_valid),
                            "boundary_limit_viable": bool(tangent_valid),
                            "outward_limit_joints": [str(n) for n in clip["joint_names"][tangent_bad]],
+                           **({} if screened is None else {"retained_edge_valid": bool(edge_valid)}),
                            "original_time_s": float(clip["timestamps_s"][frame])})
             if good:
                 valid.append(frame)
+        if automatic and role == "source" and staged_exit_config(context.policy, item["gloss"]) is not None:
+            # A staged exit leaves exactly at the protected core end.
+            valid = [frame for frame in valid if frame == item["protected_core_frames"][1]]
+            item["staged_exit"] = True
         if automatic:
             measurements = {c["frame"]: c for c in checks}
             valid.sort(key=lambda frame: (measurements[frame]["boundary_speed_ratio"],
@@ -213,8 +235,9 @@ def assemble_pair_trajectory_v2(context, selection, source_frame, target_frame, 
         ],
         "finger_strategy": {"name": strategy, "version": 2, "start_fraction": phase[0], "end_fraction": phase[1]},
         "planner": {"method": method, "method_version": 2, "seed": int(seed), "budget": dict(context.policy["planner"]["budget"])},
-        "boundary": {"method": "linear_replay_one_sided_v2", "start": boundary_state_v2(first, source_frame, "source"),
-                     "end": boundary_state_v2(second, target_frame, "target")},
+        "boundary": {"method": "linear_replay_one_sided_v2",
+                     "start": cut_boundary_state_v2(first, source_frame, "source", context.policy, _model_bounds(context, first)),
+                     "end": cut_boundary_state_v2(second, target_frame, "target", context.policy, _model_bounds(context, second))},
         "identity": run_identity(context.library, context.policy),
     }
     if automatic:
@@ -312,6 +335,10 @@ def _iter_auto_deterministic_v1(context, selection, seed, budget, base):
         "reason_codes": ["ALGORITHM_ENDPOINT_SCREEN_ONLY"], "endpoint_selection": selection,
         "endpoint_pair_shortlist": [list(p) for p in endpoint_pairs_v1(context, selection)],
         "shortlist_limit": 16 if "boundary_braking" in context.policy["planner"] else 8, "budget": budget.snapshot()})
+    staged = staged_exit_config(context.policy, selection["source"]["gloss"])
+    if staged is not None:
+        yield from _iter_staged_exit_v1(context, selection, seed, budget, base, staged)
+        return
     first, second = (context.clips[selection[role]["gloss"]] for role in ("source", "target"))
     names = first["joint_names"]
     bounds = np.array([context.model.joint(str(name)).range for name in names])
@@ -348,7 +375,8 @@ def _iter_auto_deterministic_v1(context, selection, seed, budget, base):
                         continue
                     record["route_hash"] = json_hash({"joint_names": names.tolist(), "knots": knots.tolist()})
                     start_time = (source_frame - selection["source"]["retained_outer_frame"]) / 30
-                    timed = time_route_v2(knots, boundary_state_v2(first, source_frame, "source"), boundary_state_v2(second, target_frame, "target"),
+                    timed = time_route_v2(knots, cut_boundary_state_v2(first, source_frame, "source", context.policy, bounds),
+                        cut_boundary_state_v2(second, target_frame, "target", context.policy, bounds),
                         names, bounds, context.policy, start_time_s=start_time, couplings=context.library["couplings"],
                         finger_strategy=strategy, deadline=min(budget.deadline, family_deadline),
                         validate_curve=lambda segments: check_timed_route_v2(context, segments, budget),
@@ -361,6 +389,74 @@ def _iter_auto_deterministic_v1(context, selection, seed, budget, base):
                         timing=timed.diagnostics, candidate_available=trajectory is not None,
                         planner_geometry_passed=trajectory is not None, budget=budget.snapshot())
                     yield CandidateAttemptV2(trajectory, record, curves)
+
+
+def staged_exit_knots(a, b, rest, names, staged, model):
+    """(route name, knots) per combination of stage targets: each stage moves only its joint group."""
+    from sign_robot.retarget import G1Retargeter
+    from sign_robot.transitions import VIA_DIRECTIONS, _ik_wrist_offset
+    solver, directions = None, dict(VIA_DIRECTIONS)
+    for targets in itertools.product(*(stage["to"] for stage in staged["stages"])):
+        q, knots = np.asarray(a, dtype=float), [np.asarray(a, dtype=float)]
+        for stage, to in zip(staged["stages"], targets):
+            mask = staged_group_mask(names, stage["group"])
+            q = q.copy()
+            if to.startswith("ik:"):
+                _, direction, steps = to.split(":")
+                solver = solver or G1Retargeter(model, [])
+                side = "left" if stage["group"].startswith("left") else "right"
+                moved = q
+                for _ in range(int(steps)):
+                    moved = _ik_wrist_offset(solver, moved, names, directions[direction], offset_sides=(side,))
+                q[mask] = moved[mask]
+            else:
+                q[mask] = {"rest": np.asarray(rest)[mask], "target": np.asarray(b)[mask], "zero": 0.0}[to]
+            if not np.array_equal(q, knots[-1]):
+                knots.append(q)
+        if not np.array_equal(knots[-1], b):
+            knots.append(np.asarray(b, dtype=float))
+        yield "+".join(f"{s['group']}:{t}" for s, t in zip(staged["stages"], targets)), np.stack(knots)
+
+
+def _iter_staged_exit_v1(context, selection, seed, budget, base, staged):
+    """Staged routes only, synchronous fingers, from the core end to each valid entry."""
+    from sign_robot.sequence_contract import library_rest_pose_v1
+    first, second = (context.clips[selection[role]["gloss"]] for role in ("source", "target"))
+    names = first["joint_names"]
+    bounds = np.array([context.model.joint(str(name)).range for name in names])
+    rest = library_rest_pose_v1(context.clips)
+    # The exit is the single core-end frame, so try every valid entry, nearest the target core first (fewest
+    # retained frames, as the core-gap selection prefers) instead of the generic cut-pair shortlist.
+    pairs = [(source_frame, target_frame) for source_frame in selection["source"]["valid_frames"]
+             for target_frame in sorted(selection["target"]["valid_frames"], reverse=True)]
+    for source_frame, target_frame in pairs:
+        a, b = first["positions"][source_frame], second["positions"][target_frame]
+        for route_name, knots in staged_exit_knots(a, b, rest, names, staged, context.model):
+            if time.monotonic() >= budget.deadline:
+                return
+            budget.candidate()
+            record = {**base, "method": STAGED_EXIT_METHOD, "route_name": route_name, "finger_strategy": "synchronous",
+                      "exit_frame": source_frame, "entry_frame": target_frame,
+                      "route_parameters": {"stages": staged["stages"]}, "route_knots": knots.tolist(),
+                      "route_hash": json_hash({"joint_names": names.tolist(), "knots": knots.tolist()}), "prechecks": []}
+            start_time = (source_frame - selection["source"]["retained_outer_frame"]) / 30
+            timed = time_route_v2(knots, cut_boundary_state_v2(first, source_frame, "source", context.policy, bounds),
+                                  cut_boundary_state_v2(second, target_frame, "target", context.policy, bounds),
+                                  names, bounds, context.policy, start_time_s=start_time,
+                                  couplings=context.library["couplings"], finger_strategy="synchronous",
+                                  deadline=budget.deadline,
+                                  validate_curve=lambda segments: check_timed_route_v2(context, segments, budget),
+                                  finger_arrival=target_finger_arrival_v1(context, second, target_frame))
+            curves = [assemble_pair_trajectory_v2(context, selection, source_frame, target_frame, segments,
+                                                  STAGED_EXIT_METHOD, "synchronous", seed)
+                      for segments in timed.attempt_segments]
+            trajectory = curves[-1] if timed.segments is not None else None
+            record.update(status="FAILED_QUALITY" if trajectory is not None else "FAILED_SEARCH",
+                          reason_codes=(["INDEPENDENT_RECHECK_REQUIRED", *acceptance_pending(context.policy)]
+                                        if trajectory is not None else timed.diagnostics["reason_codes"]),
+                          timing=timed.diagnostics, candidate_available=trajectory is not None,
+                          planner_geometry_passed=trajectory is not None, budget=budget.snapshot())
+            yield CandidateAttemptV2(trajectory, record, curves)
 
 
 def _guide_clearance(context, values, budget, label):
@@ -465,8 +561,9 @@ def iter_deterministic_attempts_v2(context, source, target, *, seed, budget=None
                         record.update(status="FAILED_SEARCH", reason_codes=["RETRACT_OR_APPROACH_GUIDE_COLLISION"], budget=budget.snapshot())
                         yield CandidateAttemptV2(None, record)
                         continue
-                    timed = time_route_v2(knots, boundary_state_v2(first, source_frame, "source"),
-                                           boundary_state_v2(second, target_frame, "target"), names, bounds, context.policy,
+                    timed = time_route_v2(knots, cut_boundary_state_v2(first, source_frame, "source", context.policy, bounds),
+                                           cut_boundary_state_v2(second, target_frame, "target", context.policy, bounds),
+                                           names, bounds, context.policy,
                                            start_time_s=source_frame / 30, couplings=context.library["couplings"],
                                            finger_strategy=strategy, deadline=budget.deadline,
                                            validate_curve=lambda segments: check_timed_route_v2(context, segments, budget))

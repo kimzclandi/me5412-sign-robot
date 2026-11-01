@@ -11,7 +11,8 @@ from sign_robot.motion import load_model
 from sign_robot.pair_contract import (
     CONNECTOR_ONLY_METHOD_V4, CONNECTOR_STENCIL_FRAMES, QUALITY_LIMITS, TRANSITION_SCOPES, acceptance_pending,
     canonical_array_hash, coordinate_errors, file_hash, freeze_library,
-    inside, json_hash, rate_limits, read_motion, read_pair_trajectory, run_identity,
+    clamped_stop_joints, inside, json_hash, rate_limits, read_motion, read_pair_trajectory, retained_edge_contacts,
+    run_identity,
     validate_policy_v2,
 )
 from sign_robot.pair_windows import WindowApprovalError, load_window_inputs
@@ -357,6 +358,16 @@ def verify_saved_pair_v2(root, trajectory_path, policy):
                 source_findings.append("FULL_CLIP_JOINT_LIMIT_VIOLATION")
             if whole["coupling_error"] > policy["constraints"]["coupling_tolerance_rad"]:
                 source_findings.append("FULL_CLIP_COUPLING_VIOLATION")
+        if automatic and policy["endpoints"].get("retained_edge_screen"):
+            evidence["retained_edge_screen"] = {"version": policy["endpoints"]["retained_edge_screen"], "instances": {}}
+            for word in trajectory["word_instances"]:
+                clip = clips[word["gloss"]]
+                bounds = np.array([model.joint(str(n)).range for n in clip["joint_names"]])
+                flagged = retained_edge_contacts(clip, word["protected_core_frames"], bounds, word["source_frames"],
+                                                 policy["endpoints"]["retained_edge_screen"])
+                evidence["retained_edge_screen"]["instances"][word["instance_id"]] = {"flagged_frames": flagged}
+                if flagged:
+                    errors.append(f"{word['instance_id'].upper()}_RETAINED_EDGE_NEW_ARM_LIMIT_CONTACT")
         coordinates = coordinate_errors(q[span], names, model, library["couplings"])
         constraints = policy["constraints"]
         if coordinates["joint_limit_error"] > constraints["joint_limit_tolerance_rad"]:
@@ -397,6 +408,11 @@ def verify_saved_pair_v2(root, trajectory_path, policy):
             frame = word["source_frames"][1 if index == 0 else 0]
             left, right = (frame - 1, frame) if index == 0 else (frame, frame + 1)
             actual_velocity = (clip["positions"][right] - clip["positions"][left]) / (clip["timestamps_s"][right] - clip["timestamps_s"][left])
+            if automatic and policy["endpoints"].get("clamped_joint_stop"):
+                bounds = np.array([model.joint(str(n)).range for n in names])
+                stopped = clamped_stop_joints(clip["positions"][frame], actual_velocity, "source" if index == 0 else "target", bounds)
+                evidence.setdefault("clamped_stop_joints", {})[endpoint] = [str(n) for n in np.asarray(names)[stopped]]
+                actual_velocity = np.where(stopped, 0.0, actual_velocity)
             polynomial = polynomials[0 if index == 0 else -1]
             moment = polynomial["start_time_s"] if index == 0 else polynomial["end_time_s"]
             positions.append(float(np.max(np.abs(_evaluate_polynomial(polynomial, [moment])[0] - clip["positions"][frame]))))

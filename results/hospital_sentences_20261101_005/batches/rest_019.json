@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "ME__MEDICINE",
+    "ME__STOMACH",
+    "ME__HEADACHE",
+    "ME__HAVE",
+    "ME__NEED",
+    "ME__WAIT",
+    "ME__COME",
+    "ME__HURT",
+    "ME__BREATHE-DEEP",
+    "ME__BLOOD-DRAW",
+    "ME__TAKE",
+    "ME__UNDERSTAND",
+    "ME__WRITE",
+    "ME__NOT",
+    "ME__NOW",
+    "ME__SOON"
+  ]
+}

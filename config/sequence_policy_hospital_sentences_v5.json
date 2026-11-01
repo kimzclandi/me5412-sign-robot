@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "kind": "user_protected_sequence_policy_v1",
+  "policy_id": "group3-hospital-sentences-sequence-v5",
+  "freeze_status": "development_pending_review",
+  "pair_policy": {
+    "path": "config/transition_policy_hospital_sentences_fast_v3.json",
+    "sha256": "b6ef4b3f87660f77a4a2314d23684ea0f29231a13bb0d6e50a179b26b35974cd"
+  },
+  "words": {
+    "minimum": 2,
+    "maximum": 5,
+    "neutral_start_end": false
+  },
+  "assembly": {
+    "method": "one_slice_per_occurrence_v1",
+    "connector_source": "pair_candidate_connector_unchanged_v1",
+    "candidate_pool": "pair_run_independent_numerical_pass_v1",
+    "candidate_order": "pair_run_selection_rule_rank_v1",
+    "combination_order": "lexicographic_rank_sum_then_edges_v1",
+    "max_combinations_per_case": 64,
+    "rest_tail": {
+      "version": "rest_tail_v1",
+      "rest_pose": "library_first_frame_v1",
+      "max_exit_frames": 60
+    }
+  },
+  "quality": {
+    "method": "per_transition_region_outside_protected_cores_v1",
+    "region_definition": "replay frames strictly between the previous occurrence's protected core end and the next occurrence's protected core start",
+    "finite_difference": "np.gradient on the full 30 Hz chain replay, edge_order=2, then masked per region",
+    "integral_attribution": "trapezoid interval counted for a region only when both endpoints belong to that region",
+    "per_transition_limits_from_pair_policy": [
+      "peak_acceleration_rad_s2",
+      "peak_jerk_rad_s3",
+      "jerk_integral_rad2_s5",
+      "maximum_transition_duration_s"
+    ],
+    "maximum_transition_duration_scope": "connector only",
+    "analytic_connector_limits": "each connector independently against the pair-policy peak and integral limits",
+    "chain_total_jerk_integral": "reported only",
+    "chain_wide_gates": [
+      "joint_limit",
+      "coupling",
+      "speed",
+      "boundary_position_velocity_acceleration",
+      "finger_phase",
+      "sampled_geometry"
+    ],
+    "protected_source_defects": "reported; acceleration and jerk inside protected cores are informational as in v5"
+  },
+  "validation": {
+    "dense_factors": [
+      1,
+      2,
+      4
+    ],
+    "maximum_step_rad": 0.04,
+    "maximum_time_step_s": 0.008333333333333333,
+    "max_sampled_poses": 65536,
+    "max_native_collision_calls": 327680,
+    "max_subdivision_depth": 16,
+    "wall_time_s": 120.0,
+    "budget_note": "Pair limits except wall time: a five-word chain is about 2.5x a pair replay; frozen before any sequence was verified.",
+    "protected_relative_timing_tolerance_s": 1e-12,
+    "continuous_collision_certified": false
+  },
+  "cases": [
+    "HELLO__YOU__APPOINTMENT__HAVE",
+    "YOU__NEED__INTERPRETER",
+    "PLEASE__WAIT__DOCTOR__COME__SOON",
+    "YOU__HURT__WHERE",
+    "NOW__NURSE__BLOOD-DRAW",
+    "MEDICINE__MORNING__NIGHT__TAKE",
+    "YOU__UNDERSTAND"
+  ],
+  "case_note": "The user's nine hospital sentences (2026-11-01), round 6 (round 3/4 plus the retained-edge screen v2): the pair run selects the candidate with the fewest frames between the two protected cores, and every case ends with a planned return to the library rest pose (hands down). Single-word BREATHE-DEEP and THANK-YOU need no connector and are not cases. Connector-only scope: source-motion findings are reported, never gated. Not verified ASL; no human review.",
+  "formal_acceptance_enabled": false
+}

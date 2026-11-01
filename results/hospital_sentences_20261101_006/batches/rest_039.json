@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "HAVE__BLOOD-DRAW",
+    "HAVE__TAKE",
+    "HAVE__UNDERSTAND",
+    "HAVE__WRITE",
+    "HAVE__NOT",
+    "HAVE__NOW",
+    "HAVE__SOON",
+    "HAVE__LATER",
+    "HAVE__TOMORROW",
+    "HAVE__MORNING",
+    "HAVE__NIGHT",
+    "HAVE__WHERE",
+    "NEED__HELLO",
+    "NEED__PLEASE",
+    "NEED__THANK-YOU",
+    "NEED__SORRY"
+  ]
+}
