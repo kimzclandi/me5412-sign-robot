@@ -77,7 +77,7 @@ MUJOCO_GL=egl .venv/bin/python scripts/demo/compare_stitching.py <group3_folder>
 
 Writes `results/stitch_compare/group3_v1/`: `summary.md`, `summary.json` and one comparison plot per line (higher wrist height and peak arm joint speed over time). Metrics: format checks (53 joints, 30 fps, joint limits, couplings, neutral start/end), duration, peak and 95th-percentile arm and finger speed, RMS arm jerk (lower is smoother), the fraction of the signing span and number of times both hands sink back to rest height (the baseline's dip), and the deepest collision-geometry penetration. A sign's own downward movement also counts as a dip, so compare the change between methods, not absolute values.
 
-Baseline today (9 lines): neither the blends between words nor the motion to and from the neutral pose are collision-checked, with penetration up to 79 mm (s1, right wrist into the hip at the end); during signing up to 41 mm, from video words (their filtering and speed limits run after inverse kinematics and can reintroduce small overlaps). Both are things a transition method can improve.
+Baseline today (9 lines, after the 2026-11-01 collision repair of video words): the 0.5 s blends between words are not collision-checked, with penetration up to 70 mm (s6, NURSE → BLOOD-DRAW), the main thing a transition method should improve; during signing up to 19 mm (s1, APPOINTMENT, the known finger–wrist overlap of a mocap word), video words 0–3 mm. Before the repair, video words reached 41 mm while signing and 92 mm over the whole clip.
 
 ## 6. Limitations
 

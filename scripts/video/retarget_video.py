@@ -52,7 +52,7 @@ def run(gloss, video, render):
     name = f"{gloss}__{video['video_id']}"
     meta = write_clip(name, sk, source, OUT / "candidates", METHOD, LIMITATIONS + VIDEO_LIMITATIONS,
                       render=render, preview_dir=PREVIEWS, finger_speed_limit=FINGER_SPEED_LIMIT,
-                      arm_speed_limit=ARM_SPEED_LIMIT, median_frames=MEDIAN_FRAMES)
+                      arm_speed_limit=ARM_SPEED_LIMIT, median_frames=MEDIAN_FRAMES, collision_repair=True)
     # Coverage of the dominant (more raised) hand drives the choice of video.
     sign = meta["ik_error_sign_phase"]
     active = [s for s in ("left", "right") if sign[s]["frames"]]
@@ -60,12 +60,31 @@ def run(gloss, video, render):
     error = max((sign[s]["wrist_position_m"]["max"] for s in active), default=1.0)
     return name, coverage, error
 
+def render_chosen(gloss, manifest):
+    """Re-render the comparison video of the chosen clip without re-running IK."""
+    from sign_robot.motion import load_model
+    from render_comparison import render as render_video
+    meta = json.loads((OUT / f"{gloss}.json").read_text())
+    video = next(v for v in manifest[gloss] if v["video_id"] == meta["source"]["video_id"])
+    data = np.load(LANDMARKS / gloss / f"{video['video_id']}.npz")
+    i0, i1 = meta["source"]["source_frames_used"]
+    sk = VideoSkeleton(data["times_s"], data["pose"], data["hands"], data["pose_vis"]).crop(i0, i1)
+    with np.load(OUT / f"{gloss}.npz") as clip:
+        motion = {k: clip[k] for k in ("timestamps_s", "joint_names", "positions")}
+    render_video(f"{gloss}__{video['video_id']}", load_model(), motion, sk, meta["core_frames"], out=PREVIEWS)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("glosses", nargs="+")
     parser.add_argument("--render", action="store_true")
+    parser.add_argument("--render-only", action="store_true", help="only re-render the chosen clips' comparison videos")
     args = parser.parse_args()
     manifest = json.loads(MANIFEST.read_text())["videos"]
+    if args.render_only:
+        for gloss in [g.upper() for g in args.glosses]:
+            render_chosen(gloss, manifest)
+        return
     for gloss in [g.upper() for g in args.glosses]:
         results = []
         for video in manifest[gloss]:

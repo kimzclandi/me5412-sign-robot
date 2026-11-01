@@ -211,6 +211,43 @@ class G1Retargeter:
         arm = lambda side: self._geoms([f"{side}_{p}_link" for p in ("shoulder_yaw", "elbow", "wrist_roll")] + self._hand_bodies(side, fingers=True))
         return [(a, b, 0.0) for a in arm("right") for b in arm("left")]
 
+    def repair_collisions(self, q_traj, max_step, tol=0.001):
+        """Re-solve the arms on frames that penetrate, after filtering has moved them off the IK solution.
+
+        Each frame keeps its own wrist, elbow and palm pose as the goal. A frame is kept as is
+        when it is clear (no pair deeper than `tol`) and within `max_step` of the previous
+        output frame; otherwise both arms are solved from the previous output frame, which is
+        clear, so the clearance penalty acts from outside. Fingers are unchanged.
+        """
+        pairs = self.clearance_pairs("left") + self.clearance_pairs("right") + self.hand_pairs()
+        ids = np.concatenate([self.robot[side]["ids"] for side in SIDES])
+        bodies = {side: (self.m.body(f"{side}_wrist_yaw_link").id, self.m.body(f"{side}_elbow_link").id, self.m.site(f"{side}_palm").id) for side in SIDES}
+        out = q_traj.copy()
+        before = after = 0.0
+        moved, repaired = 0.0, 0
+        for t in range(len(out)):
+            depth = max(0.0, -self._min_distance(q_traj[t], pairs))
+            before = max(before, depth)
+            if t == 0 or (depth <= tol and np.abs(q_traj[t, ids] - out[t - 1, ids]).max() <= max_step):
+                after = max(after, depth)
+                continue
+            goals = {side: (self.d.xpos[w].copy(), self.d.xpos[e].copy(), self.d.site_xmat[s].reshape(3, 3).copy())
+                     for side, (w, e, s) in bodies.items()}  # FK of q_traj[t], left by _min_distance
+            q = q_traj[t].copy()
+            previous = {side: out[t - 1, self.robot[side]["ids"]].copy() for side in SIDES}
+            for side in SIDES:
+                q[self.robot[side]["ids"]] = previous[side]
+            x, _ = self.solve_arms(q, list(SIDES), goals, previous, pairs, max_step)
+            for side in SIDES:
+                q[self.robot[side]["ids"]] = x[side]
+            out[t] = self.couple(q)
+            self._min_distance(out[t], pairs)
+            moved = max(moved, max(float(np.linalg.norm(self.d.xpos[w] - goals[side][0])) for side, (w, _, _) in bodies.items()))
+            after = max(after, max(0.0, -self._min_distance(out[t], pairs)))
+            repaired += 1
+        return out, {"frames_repaired": repaired, "penetration_before_m": before, "penetration_after_m": after,
+                     "max_wrist_shift_m": moved, "tolerance_m": tol}
+
     def _min_distance(self, q, pairs):
         self.d.qpos[:] = q
         mujoco.mj_forward(self.m, self.d)

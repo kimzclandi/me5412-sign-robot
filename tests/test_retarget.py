@@ -123,3 +123,6 @@ def test_video_clip_matches_motion_contract(entry, model):
     assert entry["robot_status"] in ("approximate", "poor")  # never "usable" from a single camera
     meta = json.loads((ROOT / entry["motion"]).with_suffix(".json").read_text())
     assert meta["source"]["url"].startswith("http") and meta["asl_reviewed"] is False
+    # Filtering after IK can push hands into the body; the repair pass must leave at most a few mm.
+    assert meta["collision_repair"]["penetration_after_m"] <= 0.005
+    assert meta["max_joint_speed_rad_s"] <= 15.0 + 1e-6
