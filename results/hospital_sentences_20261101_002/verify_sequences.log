@@ -1,0 +1,8 @@
+{"sequence_id": "HELLO__YOU__APPOINTMENT__HAVE", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "YOU__NEED__INTERPRETER", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "PLEASE__WAIT__DOCTOR__COME__SOON", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "YOU__HURT__WHERE", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "NOW__NURSE__BLOOD-DRAW", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "MEDICINE__MORNING__NIGHT__TAKE", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "YOU__UNDERSTAND", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"cases": 7, "rechecked": 7, "numerical_pass": 7, "retained_from_prior_output": 0, "rechecked_agree": 7, "planning_status_counts": {"NUMERICAL_PASS": 7}, "word_occurrences": 24, "protected_instances_unchanged": 24, "connector_groups": 17, "all_agree_with_planning": true, "formal_pass": 0}
