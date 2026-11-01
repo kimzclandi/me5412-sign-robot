@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "YES__HAVE",
+    "YES__NEED",
+    "YES__WAIT",
+    "YES__HURT",
+    "YES__BREATHE-DEEP",
+    "YES__BLOOD-DRAW",
+    "YES__TAKE",
+    "YES__UNDERSTAND",
+    "YES__WRITE",
+    "YES__NOT",
+    "YES__SOON",
+    "YES__LATER",
+    "YES__TOMORROW",
+    "YES__MORNING",
+    "YES__NIGHT",
+    "YES__WHERE"
+  ]
+}

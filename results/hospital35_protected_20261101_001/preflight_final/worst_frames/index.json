@@ -1,0 +1,266 @@
+{
+ "kinematic_stills_only": true,
+ "frames": [
+  {
+   "gloss": "APPOINTMENT",
+   "frame": 74,
+   "metric": "sampled_core_clearance_mm",
+   "value": -8.886840633896222,
+   "bodies": [
+    "left_wrist_pitch_link",
+    "right_wrist_pitch_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "BLOOD-DRAW",
+   "frame": 65,
+   "metric": "sampled_core_clearance_mm",
+   "value": -49.08836089051215,
+   "bodies": [
+    "left_wrist_yaw_link",
+    "right_wrist_yaw_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "BREATHE-DEEP",
+   "frame": 77,
+   "metric": "sampled_core_clearance_mm",
+   "value": -12.439724784001033,
+   "bodies": [
+    "L_thumb_proximal",
+    "right_wrist_pitch_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "DOCTOR",
+   "frame": 43,
+   "metric": "sampled_core_clearance_mm",
+   "value": -2.443128863454951,
+   "bodies": [
+    "left_wrist_pitch_link",
+    "torso_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "HAVE",
+   "frame": 41,
+   "metric": "sampled_core_clearance_mm",
+   "value": -19.202514638476885,
+   "bodies": [
+    "R_pinky_intermediate",
+    "left_wrist_yaw_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "HELLO",
+   "frame": 29,
+   "metric": "sampled_core_clearance_mm",
+   "value": 1.101527216876182,
+   "bodies": [
+    "right_hip_roll_link",
+    "right_wrist_yaw_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "HURT",
+   "frame": 33,
+   "metric": "sampled_core_clearance_mm",
+   "value": -4.136913968666748,
+   "bodies": [
+    "left_wrist_pitch_link",
+    "torso_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "INTERPRETER",
+   "frame": 31,
+   "metric": "sampled_core_clearance_mm",
+   "value": -14.825921509180416,
+   "bodies": [
+    "L_middle_intermediate",
+    "R_thumb_intermediate"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "LATER",
+   "frame": 33,
+   "metric": "sampled_core_clearance_mm",
+   "value": -4.157486789911272,
+   "bodies": [
+    "left_hip_roll_link",
+    "left_wrist_yaw_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "ME",
+   "frame": 71,
+   "metric": "sampled_core_clearance_mm",
+   "value": -2.0891785016738176,
+   "bodies": [
+    "R_index_intermediate",
+    "torso_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "MEDICINE",
+   "frame": 32,
+   "metric": "sampled_core_clearance_mm",
+   "value": -34.036300149092924,
+   "bodies": [
+    "R_thumb_intermediate",
+    "left_wrist_yaw_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "MORNING",
+   "frame": 44,
+   "metric": "sampled_core_clearance_mm",
+   "value": -25.771109563925275,
+   "bodies": [
+    "L_ring_intermediate",
+    "right_wrist_yaw_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "NEED",
+   "frame": 40,
+   "metric": "sampled_core_clearance_mm",
+   "value": 0.2496037468466693,
+   "bodies": [
+    "left_hip_roll_link",
+    "left_wrist_yaw_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "NIGHT",
+   "frame": 42,
+   "metric": "sampled_core_clearance_mm",
+   "value": -16.14897406512651,
+   "bodies": [
+    "left_wrist_pitch_link",
+    "torso_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "NURSE",
+   "frame": 78,
+   "metric": "sampled_core_clearance_mm",
+   "value": -45.77613202834675,
+   "bodies": [
+    "L_index_intermediate",
+    "left_hip_pitch_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "PLEASE",
+   "frame": 43,
+   "metric": "sampled_core_clearance_mm",
+   "value": -23.52275647030255,
+   "bodies": [
+    "left_hip_roll_link",
+    "left_wrist_yaw_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "SORRY",
+   "frame": 166,
+   "metric": "sampled_core_clearance_mm",
+   "value": -14.068621630464017,
+   "bodies": [
+    "L_thumb_distal",
+    "right_wrist_pitch_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "TAKE",
+   "frame": 73,
+   "metric": "speed_ratio",
+   "value": 1.6685648483918931,
+   "bodies": null,
+   "joint": "R_middle_proximal_joint"
+  },
+  {
+   "gloss": "THANK-YOU",
+   "frame": 28,
+   "metric": "sampled_core_clearance_mm",
+   "value": -30.0554667836692,
+   "bodies": [
+    "left_hip_roll_link",
+    "left_wrist_yaw_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "TOMORROW",
+   "frame": 24,
+   "metric": "sampled_core_clearance_mm",
+   "value": -30.864838735028872,
+   "bodies": [
+    "left_hip_pitch_link",
+    "left_wrist_yaw_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "UNDERSTAND",
+   "frame": 28,
+   "metric": "sampled_core_clearance_mm",
+   "value": -10.774651293796557,
+   "bodies": [
+    "left_hip_roll_link",
+    "left_wrist_yaw_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "WRITE",
+   "frame": 32,
+   "metric": "sampled_core_clearance_mm",
+   "value": -34.317008846692865,
+   "bodies": [
+    "L_thumb_intermediate",
+    "right_wrist_roll_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "YES",
+   "frame": 20,
+   "metric": "sampled_core_clearance_mm",
+   "value": -51.999837249273334,
+   "bodies": [
+    "L_thumb_proximal",
+    "left_hip_roll_link"
+   ],
+   "joint": null
+  },
+  {
+   "gloss": "YOUR",
+   "frame": 36,
+   "metric": "sampled_core_clearance_mm",
+   "value": -46.54660010677528,
+   "bodies": [
+    "L_thumb_distal",
+    "left_hip_roll_link"
+   ],
+   "joint": null
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "COME__HEADACHE",
+    "HEADACHE__COME",
+    "NOW__HEADACHE",
+    "HEADACHE__NOW",
+    "COME__HAVE",
+    "HAVE__COME",
+    "NOW__HAVE",
+    "HAVE__NOW",
+    "COME__NEED",
+    "NEED__COME",
+    "NOW__NEED",
+    "NEED__NOW",
+    "COME__WAIT",
+    "WAIT__COME",
+    "NOW__WAIT",
+    "WAIT__NOW"
+  ]
+}

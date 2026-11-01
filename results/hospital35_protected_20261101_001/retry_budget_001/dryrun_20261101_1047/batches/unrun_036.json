@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "HEADACHE__YES",
+    "HEADACHE__NO",
+    "HEADACHE__YOU",
+    "HEADACHE__YOUR",
+    "HEADACHE__ME",
+    "HEADACHE__DEAF",
+    "HEADACHE__DOCTOR",
+    "HEADACHE__NURSE",
+    "HEADACHE__INTERPRETER",
+    "HEADACHE__APPOINTMENT",
+    "HEADACHE__MEDICINE",
+    "HEADACHE__STOMACH",
+    "HEADACHE__HAVE",
+    "HEADACHE__NEED",
+    "HEADACHE__WAIT",
+    "HEADACHE__HURT"
+  ]
+}

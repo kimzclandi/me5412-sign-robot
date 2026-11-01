@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "HEADACHE__HEADACHE",
+    "HAVE__HAVE",
+    "NEED__NEED",
+    "WAIT__WAIT",
+    "HURT__HURT",
+    "BREATHE-DEEP__BREATHE-DEEP",
+    "BLOOD-DRAW__BLOOD-DRAW",
+    "TAKE__TAKE",
+    "UNDERSTAND__UNDERSTAND",
+    "WRITE__WRITE",
+    "NOT__NOT",
+    "SOON__SOON",
+    "LATER__LATER",
+    "TOMORROW__TOMORROW",
+    "MORNING__MORNING",
+    "NIGHT__NIGHT"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "WHERE__MEDICINE",
+    "WHERE__STOMACH",
+    "WHERE__HEADACHE",
+    "WHERE__HAVE",
+    "WHERE__NEED",
+    "WHERE__WAIT",
+    "WHERE__COME",
+    "WHERE__HURT",
+    "WHERE__BREATHE-DEEP",
+    "WHERE__BLOOD-DRAW",
+    "WHERE__TAKE",
+    "WHERE__UNDERSTAND",
+    "WHERE__WRITE",
+    "WHERE__NOT",
+    "WHERE__NOW",
+    "WHERE__SOON"
+  ]
+}

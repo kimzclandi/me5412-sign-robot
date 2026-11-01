@@ -1,0 +1,82 @@
+== .venv/bin/python scripts/run_hospital35_batches.py pairs --batch-manifest results/hospital35_protected_20261101_001/batches/manifest.json --batch-manifest-sha256 fb7c56187f6a1edded67b3c701fde6746a3c87d49eeff62af303ca19231ebf19 --batch regression_001 --run-id smoke_pairs_001 --results-root results/hospital35_protected_20261101_001/smoke_pre_freeze_002/pair_runs --control-dir results/hospital35_protected_20261101_001/smoke_pre_freeze_002/batch_control
+{"batch": "regression_001", "stop_reason": "BATCH_COMPLETE", "log": "results/hospital35_protected_20261101_001/smoke_pre_freeze_002/batch_control/pair_batches/regression_001/invocation_001.json", "selected": 4, "pairs": 4}
+exit 0
+== .venv/bin/python scripts/run_hospital35_batches.py pairs --batch-manifest results/hospital35_protected_20261101_001/batches/manifest.json --batch-manifest-sha256 fb7c56187f6a1edded67b3c701fde6746a3c87d49eeff62af303ca19231ebf19 --batch regression_001 --run-id smoke_pairs_001 --results-root results/hospital35_protected_20261101_001/smoke_pre_freeze_002/pair_runs --control-dir results/hospital35_protected_20261101_001/smoke_pre_freeze_002/batch_control
+{"batch": "regression_001", "stop_reason": "BATCH_COMPLETE", "log": "results/hospital35_protected_20261101_001/smoke_pre_freeze_002/batch_control/pair_batches/regression_001/invocation_002.json", "selected": 4, "pairs": 4}
+exit 0
+== .venv/bin/python scripts/run_hospital35_batches.py recheck-pairs --run-dir results/hospital35_protected_20261101_001/smoke_pre_freeze_002/pair_runs/smoke_pairs_001 --output results/hospital35_protected_20261101_001/smoke_pre_freeze_002/recheck
+{"pair_id": "COME__COME", "selected_candidate_id": "attempt_00003", "fresh_numerical_checks_passed": true, "agrees_with_saved_review": true}
+{"pair_id": "COME__NOW", "selected_candidate_id": "attempt_00008", "fresh_numerical_checks_passed": true, "agrees_with_saved_review": true}
+{"pair_id": "NOW__COME", "selected_candidate_id": "attempt_00012", "fresh_numerical_checks_passed": true, "agrees_with_saved_review": true}
+{"pair_id": "NOW__NOW", "selected_candidate_id": "attempt_00010", "fresh_numerical_checks_passed": true, "agrees_with_saved_review": true}
+exit 0
+== .venv/bin/python /tmp/claude-1000/-home-kingderman-Documents-ME5412-github-latest/19dd5746-dbff-4494-9cac-167e2ee2a16d/scratchpad/generate_case_manifest.py results/hospital35_protected_20261101_001/smoke_pre_freeze_002/case_manifest.json results/hospital35_protected_20261101_001/smoke_pre_freeze_002/sequences results/hospital35_protected_20261101_001/smoke_pre_freeze_002/pair_runs/smoke_pairs_001 results/hospital35_protected_20261101_001/smoke_pre_freeze_002/aggregate
+{"case_manifest": "results/hospital35_protected_20261101_001/smoke_pre_freeze_002/case_manifest.json", "sha256": "652ca9c4b75e93b1f7e2afb2a4eddb8ad3adcb2f7fde386e909dfc911cc8759b", "subbatches": 14, "pair_identity_hash": "c4624340015d9015ecc99231a969c1ab8b9f21aa0dc4844b4159747f59e21941", "sequence_identity_hash": "a3f11715bfcd12417d1133d9a27bdb438b14494ef372497c80ad765e5389db6a", "code_hash": "d5e179c27f447ad88208cabd9cd0e171535437fa43d03d42b7a6c77079250468"}
+exit 0
+== .venv/bin/python scripts/run_hospital35_batches.py sequences --sequence-policy config/sequence_policy_hospital35_v1.json --case-manifest results/hospital35_protected_20261101_001/smoke_pre_freeze_002/case_manifest.json --case-manifest-sha256 652ca9c4b75e93b1f7e2afb2a4eddb8ad3adcb2f7fde386e909dfc911cc8759b --subbatch s001 --control-dir results/hospital35_protected_20261101_001/smoke_pre_freeze_002/batch_control
+{"sequence_id": "COME__COME__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "COME__COME__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "COME__NOW__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "COME__NOW__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__COME__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__COME__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__NOW__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__NOW__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"denominator": 8, "numerical_pass_count": 8, "status_counts": {"NUMERICAL_PASS": 8}, "stop_reason": null}
+{"sequence_id": "COME__COME__COME", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "COME__COME__NOW", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "COME__NOW__COME", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "COME__NOW__NOW", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "NOW__COME__COME", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "NOW__COME__NOW", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "NOW__NOW__COME", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "NOW__NOW__NOW", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"cases": 8, "rechecked": 8, "numerical_pass": 8, "retained_from_prior_output": 0, "rechecked_agree": 8, "planning_status_counts": {"NUMERICAL_PASS": 8}, "word_occurrences": 24, "protected_instances_unchanged": 24, "connector_groups": 16, "all_agree_with_planning": true, "formal_pass": 0}
+exit 0
+== .venv/bin/python scripts/run_hospital35_batches.py sequences --sequence-policy config/sequence_policy_hospital35_v1.json --case-manifest results/hospital35_protected_20261101_001/smoke_pre_freeze_002/case_manifest.json --case-manifest-sha256 652ca9c4b75e93b1f7e2afb2a4eddb8ad3adcb2f7fde386e909dfc911cc8759b --subbatch s003 --control-dir results/hospital35_protected_20261101_001/smoke_pre_freeze_002/batch_control
+{"sequence_id": "NOW__PLEASE__COME", "status": "BLOCKED_DEPENDENCY", "selected_attempt": null, "attempts": 0}
+{"sequence_id": "PLEASE__PLEASE__PLEASE", "status": "BLOCKED_DEPENDENCY", "selected_attempt": null, "attempts": 0}
+{"sequence_id": "COME__THANK-YOU__NOW", "status": "BLOCKED_DEPENDENCY", "selected_attempt": null, "attempts": 0}
+{"sequence_id": "NOW__THANK-YOU__COME", "status": "BLOCKED_DEPENDENCY", "selected_attempt": null, "attempts": 0}
+{"sequence_id": "THANK-YOU__THANK-YOU__THANK-YOU", "status": "BLOCKED_DEPENDENCY", "selected_attempt": null, "attempts": 0}
+{"sequence_id": "COME__SORRY__NOW", "status": "BLOCKED_DEPENDENCY", "selected_attempt": null, "attempts": 0}
+{"sequence_id": "NOW__SORRY__COME", "status": "BLOCKED_DEPENDENCY", "selected_attempt": null, "attempts": 0}
+{"sequence_id": "SORRY__SORRY__SORRY", "status": "BLOCKED_DEPENDENCY", "selected_attempt": null, "attempts": 0}
+{"denominator": 8, "numerical_pass_count": 0, "status_counts": {"BLOCKED_DEPENDENCY": 8}, "stop_reason": null}
+{"sequence_id": "NOW__PLEASE__COME", "planning_status": "BLOCKED_DEPENDENCY", "recheck": "NOT_APPLICABLE", "agrees_with_planning": null}
+{"sequence_id": "PLEASE__PLEASE__PLEASE", "planning_status": "BLOCKED_DEPENDENCY", "recheck": "NOT_APPLICABLE", "agrees_with_planning": null}
+{"sequence_id": "COME__THANK-YOU__NOW", "planning_status": "BLOCKED_DEPENDENCY", "recheck": "NOT_APPLICABLE", "agrees_with_planning": null}
+{"sequence_id": "NOW__THANK-YOU__COME", "planning_status": "BLOCKED_DEPENDENCY", "recheck": "NOT_APPLICABLE", "agrees_with_planning": null}
+{"sequence_id": "THANK-YOU__THANK-YOU__THANK-YOU", "planning_status": "BLOCKED_DEPENDENCY", "recheck": "NOT_APPLICABLE", "agrees_with_planning": null}
+{"sequence_id": "COME__SORRY__NOW", "planning_status": "BLOCKED_DEPENDENCY", "recheck": "NOT_APPLICABLE", "agrees_with_planning": null}
+{"sequence_id": "NOW__SORRY__COME", "planning_status": "BLOCKED_DEPENDENCY", "recheck": "NOT_APPLICABLE", "agrees_with_planning": null}
+{"sequence_id": "SORRY__SORRY__SORRY", "planning_status": "BLOCKED_DEPENDENCY", "recheck": "NOT_APPLICABLE", "agrees_with_planning": null}
+{"cases": 8, "rechecked": 0, "numerical_pass": 0, "retained_from_prior_output": 0, "rechecked_agree": 0, "planning_status_counts": {"BLOCKED_DEPENDENCY": 8}, "word_occurrences": 0, "protected_instances_unchanged": 0, "connector_groups": 0, "all_agree_with_planning": false, "formal_pass": 0}
+exit 0
+== .venv/bin/python scripts/run_hospital35_batches.py sequences --sequence-policy config/sequence_policy_hospital35_v1.json --case-manifest results/hospital35_protected_20261101_001/smoke_pre_freeze_002/case_manifest.json --case-manifest-sha256 652ca9c4b75e93b1f7e2afb2a4eddb8ad3adcb2f7fde386e909dfc911cc8759b --subbatch s001 --control-dir results/hospital35_protected_20261101_001/smoke_pre_freeze_002/batch_control
+{"sequence_id": "COME__COME__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 0}
+{"sequence_id": "COME__COME__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 0}
+{"sequence_id": "COME__NOW__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 0}
+{"sequence_id": "COME__NOW__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 0}
+{"sequence_id": "NOW__COME__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 0}
+{"sequence_id": "NOW__COME__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 0}
+{"sequence_id": "NOW__NOW__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 0}
+{"sequence_id": "NOW__NOW__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 0}
+{"denominator": 8, "numerical_pass_count": 8, "status_counts": {"NUMERICAL_PASS": 8}, "stop_reason": null}
+{"sequence_id": "COME__COME__COME", "planning_status": "NUMERICAL_PASS", "recheck": "RETAINED_FROM_PRIOR_OUTPUT", "agrees_with_planning": null}
+{"sequence_id": "COME__COME__NOW", "planning_status": "NUMERICAL_PASS", "recheck": "RETAINED_FROM_PRIOR_OUTPUT", "agrees_with_planning": null}
+{"sequence_id": "COME__NOW__COME", "planning_status": "NUMERICAL_PASS", "recheck": "RETAINED_FROM_PRIOR_OUTPUT", "agrees_with_planning": null}
+{"sequence_id": "COME__NOW__NOW", "planning_status": "NUMERICAL_PASS", "recheck": "RETAINED_FROM_PRIOR_OUTPUT", "agrees_with_planning": null}
+{"sequence_id": "NOW__COME__COME", "planning_status": "NUMERICAL_PASS", "recheck": "RETAINED_FROM_PRIOR_OUTPUT", "agrees_with_planning": null}
+{"sequence_id": "NOW__COME__NOW", "planning_status": "NUMERICAL_PASS", "recheck": "RETAINED_FROM_PRIOR_OUTPUT", "agrees_with_planning": null}
+{"sequence_id": "NOW__NOW__COME", "planning_status": "NUMERICAL_PASS", "recheck": "RETAINED_FROM_PRIOR_OUTPUT", "agrees_with_planning": null}
+{"sequence_id": "NOW__NOW__NOW", "planning_status": "NUMERICAL_PASS", "recheck": "RETAINED_FROM_PRIOR_OUTPUT", "agrees_with_planning": null}
+{"cases": 8, "rechecked": 0, "numerical_pass": 0, "retained_from_prior_output": 8, "rechecked_agree": 0, "planning_status_counts": {"NUMERICAL_PASS": 8}, "word_occurrences": 0, "protected_instances_unchanged": 0, "connector_groups": 0, "all_agree_with_planning": false, "formal_pass": 0}
+exit 0
+== .venv/bin/python scripts/run_hospital35_batches.py aggregate --sequence-policy config/sequence_policy_hospital35_v1.json --case-manifest results/hospital35_protected_20261101_001/smoke_pre_freeze_002/case_manifest.json --case-manifest-sha256 652ca9c4b75e93b1f7e2afb2a4eddb8ad3adcb2f7fde386e909dfc911cc8759b
+{"aggregate": "results/hospital35_protected_20261101_001/smoke_pre_freeze_002/aggregate/invocation_001.json", "totals": {"all": {"denominator": 111, "independently_rechecked_pass": 8, "status_counts": {"BLOCKED_DEPENDENCY": 8, "NOT_RUN": 95, "NUMERICAL_PASS": 8}}, "original_12": {"denominator": 12, "independently_rechecked_pass": 8, "status_counts": {"NOT_RUN": 4, "NUMERICAL_PASS": 8}}, "new_99": {"denominator": 99, "independently_rechecked_pass": 0, "status_counts": {"BLOCKED_DEPENDENCY": 8, "NOT_RUN": 91}}}}
+exit 0
+== .venv/bin/python scripts/render_sequences.py --run-dir results/hospital35_protected_20261101_001/smoke_pre_freeze_002/sequences/s001 --output results/hospital35_protected_20261101_001/smoke_pre_freeze_002/videos --case COME__NOW__COME
+{"sequence": "COME__NOW__COME", "frames": 506, "protected_equal": true}
+exit 0
+== done

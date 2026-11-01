@@ -1,0 +1,662 @@
+{
+  "schema_version": 1,
+  "kind": "hospital35_pair_batches_v1",
+  "policy": {
+    "path": "config/transition_policy_user_protected_hospital35_retry_budget_v1.json",
+    "sha256": "bcef2e84c4d113ee69cd5241e2a7c6581998a1af522473e3517ff984a1cda774"
+  },
+  "group_counts": {
+    "retry": 20,
+    "unrun": 1205
+  },
+  "pair_universe_count": 1225,
+  "definition": {
+    "retry": "A | B of the retry rule in generate_retry_definitions.py, universe order",
+    "unrun": "every other pair; listed only because the manifest must cover the universe, never executed"
+  },
+  "source_progress": {
+    "path": "results/hospital35_protected_20261101_001/retry_budget_001/../P1-3/progress_20261101_104756.json",
+    "sha256": "f7f9018e0a4f49c4c5d18379fe234ce98bc8ffe6012acbe8064ecd69ea0a42cf"
+  },
+  "batches": [
+    {
+      "batch_id": "retry_001",
+      "group": "retry",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/retry_001.json",
+      "sha256": "6668f8b99483cb2527ba4de130e3247f5266dfddf8f6b5e9eec09170c6c139ba",
+      "pair_count": 8
+    },
+    {
+      "batch_id": "retry_002",
+      "group": "retry",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/retry_002.json",
+      "sha256": "a9233aa3e748f9049a146540de074a0ebaa8c5ba142422fa8dffa776d419e16c",
+      "pair_count": 8
+    },
+    {
+      "batch_id": "retry_003",
+      "group": "retry",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/retry_003.json",
+      "sha256": "464fb4031380530363fc3ade39600adc4e6ce2c85f06292e34c68985b1d05b0e",
+      "pair_count": 4
+    },
+    {
+      "batch_id": "unrun_001",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_001.json",
+      "sha256": "045886fd976b71a284ba5353f2d6977cdda6ca772d43f419b202f2627ab83f20",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_002",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_002.json",
+      "sha256": "e4452192f43b7076c0ab54173d4bc98fe7c269f88bbc102330e135aaa251f356",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_003",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_003.json",
+      "sha256": "4b205b612546b5c990424d0be355251aaa92bdef2c614ae4eb4e6cdeb25933c5",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_004",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_004.json",
+      "sha256": "61c1c40aaa068b67fa9bea2c740360667fa160a2ddb28b3546b0cfc598f20da5",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_005",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_005.json",
+      "sha256": "85fd10f0c4258a509f5bba43ba12dae8263b49b65ec0b8191be23f6c1534baaa",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_006",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_006.json",
+      "sha256": "950f4202c9d77b742f9c5c092b1b1cf9c9fcb797fb00bfb32d0ef71565d0b819",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_007",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_007.json",
+      "sha256": "c0637190eba616b4cd5b7f0e349cb6bc36199050d9a4a980771ad54a0e5b2b96",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_008",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_008.json",
+      "sha256": "fb29cc861a9f81ebedb2071c2005ed8db83dba92ce083d11b6d3565a92b72e72",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_009",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_009.json",
+      "sha256": "97a08b1c0c76b06a595497bc3be782d74aee2bbc88cab2ef330388f8ef32c684",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_010",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_010.json",
+      "sha256": "23e2728adccac61d53babc7ddbf190a5edc6ba03043401cdc252faf907959f99",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_011",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_011.json",
+      "sha256": "5443d686d861560375add0da58d1614fb87cb94d7cc5e520c11b83b78c4d5f9a",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_012",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_012.json",
+      "sha256": "9d7d2e485c6fb44fe7f145ed944ef447b1d342e540b871aee6d4b5cb7d939cdc",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_013",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_013.json",
+      "sha256": "0917716c7717cd5d7b6451a4f9d1a95dad0736f2f3fc73afddefcdb56f36bfec",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_014",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_014.json",
+      "sha256": "2fa2da115948c0310fcca1d632a195dcf7dc71ddadbb0cdab9c4bf3ffc7cea0d",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_015",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_015.json",
+      "sha256": "052ccf1427803a8c4140aebd3031fc50347b581cba4d30fcb169243bafa7a8ea",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_016",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_016.json",
+      "sha256": "2e0ada2920c91c182309bde1e6ea7f29fd67fd4b3d89acf7e0f557d3611b666f",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_017",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_017.json",
+      "sha256": "cca91c987ef6d80386bba318da54acf68c4ce289865294d3b02fd0a48cf380d9",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_018",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_018.json",
+      "sha256": "e846ce0bd82c8d97e440945811ce1ba984732cacc0baa239774f87ddd03f4495",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_019",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_019.json",
+      "sha256": "f58bc14dce709470e8deb27dfb3bb6ed779cc49548608e47d960599e9911f641",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_020",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_020.json",
+      "sha256": "085318c0206c3715e7910b2caf3ad19cf1873044f10e30c89c5f041117a5a8aa",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_021",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_021.json",
+      "sha256": "056f7164b9d7775fb3cafd56cdbb3989bcd7521710d1fcdcfd55b753594fd3ad",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_022",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_022.json",
+      "sha256": "1a0c0f4157700ad445e3a5460559a799b4f525ab5017cf0393fdb069e5714b6d",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_023",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_023.json",
+      "sha256": "bc721e09c96199c7fa07c1f710b788e732f0cb5436e889bd09831681457c6de4",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_024",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_024.json",
+      "sha256": "67b8c15797982f18ff5c7da6b17db5257dd7261756ca26f9ce98a10e70343652",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_025",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_025.json",
+      "sha256": "93381aa78ba65e35227fb8d881a4fda6e15e563274bd1a9fb97d21794033b28b",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_026",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_026.json",
+      "sha256": "c4b1a35d119a5f14d28727ba4c400ef232984a6266fa4ebadcb136ff83a2787b",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_027",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_027.json",
+      "sha256": "2f69f66e190c75bd46c2866c4fa04d657b37d1022baeffb261344e1456cb243d",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_028",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_028.json",
+      "sha256": "9393f2698207248c4b7e4e173eeb95c6cc12efe08c15b684852e1cea2c094307",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_029",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_029.json",
+      "sha256": "17aa399a002bc76d05a5f57ae40444304d764dd056d8f5752c3d46f9a9a8739e",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_030",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_030.json",
+      "sha256": "24756cbe6e83c72ec262518cd30242630d3ae6b94d57ffbf4b641d86353899be",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_031",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_031.json",
+      "sha256": "6d9d3693245761e414427bf21e9f87d9b74781b82f05f92f579d3a923a313a74",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_032",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_032.json",
+      "sha256": "36ea3678d7d72252ee511b345a467bb560969aee2f99ea0184d9b800935e554a",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_033",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_033.json",
+      "sha256": "666b8c37732423799cf47228ac5fb19957608372fce401e6b045e817d3781591",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_034",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_034.json",
+      "sha256": "a09552c57920bd1755bf1713655f0652a02d8beea170b0787430df1c8de4cc39",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_035",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_035.json",
+      "sha256": "561e78527c42ecfd9f0a37b2a3a840aac49ea01ff2b4ed4a6429eef574a923a3",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_036",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_036.json",
+      "sha256": "d8e614239930a6cd45e6c38b239fb4d2cbff8c501e1dd7a5f4e7b13e1a60b76d",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_037",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_037.json",
+      "sha256": "3e00b6e24c890735637b4b189ef1c95f9d54a3a5733a6b330b5e0f5e6e584d80",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_038",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_038.json",
+      "sha256": "a2eb2fcb87579a8f55efd43bd743762e478d6d68b2fc8e09fc7fe6ee322a7fee",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_039",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_039.json",
+      "sha256": "1151e97149e63843830a3a4735f79b182c3c1e5ad6581bfe1deabd2468869c60",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_040",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_040.json",
+      "sha256": "f20f50b8d4d170cd9f4eda75abeb2869cd4023b31b4f1140804e2f0920ebadca",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_041",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_041.json",
+      "sha256": "f51569b52d7e21f319ad95d764839b445b6c3702e4de1263dbe08e45c0e890ba",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_042",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_042.json",
+      "sha256": "dd60a9889f4c17a498d8e157180f887f1a48c68b637a799d17b8aadff224fcef",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_043",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_043.json",
+      "sha256": "f16f6e471dcef2fb684af8ff050ac36fe3cf66c48a1f04f17d5d863a130cdf9e",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_044",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_044.json",
+      "sha256": "9bc1fced2d20d884c09495ad45a30a83d6aa96718578640403d78c7f2757ef58",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_045",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_045.json",
+      "sha256": "2895fc2845be45f2a56137238bbb37b8d957447735d03732201c06f9703784b8",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_046",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_046.json",
+      "sha256": "5be181be615b3a620fec21bab8a721adde2555081fc3ebe9684a858468013706",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_047",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_047.json",
+      "sha256": "06063ba84d4706c62a34f5b3602a8771060232d768011648d56a85b6f4904d5e",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_048",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_048.json",
+      "sha256": "10e7562d01b759328f607882bd35a9596abee64222cba7dee7214b0529b3ab11",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_049",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_049.json",
+      "sha256": "c2b08b22b10a5786ee056b3bc3eefe12f5b45c19c82cb86d29c510da592538fa",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_050",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_050.json",
+      "sha256": "56aef7392940e3cc5b67a47c7335f58f35b19b1942574863c90fa375ed468dad",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_051",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_051.json",
+      "sha256": "ed031c194d15533b15a513c749ba7ac875982063a6d9c79b4f593982d4bc8dce",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_052",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_052.json",
+      "sha256": "89e4a22fbe69cdc19750ae1c3238d0aefa99ce60b6472549ee47637e48b4027f",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_053",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_053.json",
+      "sha256": "289f194336674109bab74ef1664eac72facdb8f425143defb4a3bd84b4c5cc9b",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_054",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_054.json",
+      "sha256": "fbc63b2adf2dc6a3d2f26ec19bea0c915a1c32ddfeedc5facbcde8f6540e7377",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_055",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_055.json",
+      "sha256": "d1293bdd3223c412d35fe4cb238fbf272982313c72a0ae30e6ccfb6faece42e7",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_056",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_056.json",
+      "sha256": "c7528e7192c9b3efcf5ac180eb9059ed8793a044f89e81a86bee27a224edfe94",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_057",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_057.json",
+      "sha256": "7d97162579032796d8a04dee093b15313ba6a9d818a16e1b828935c8a280a402",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_058",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_058.json",
+      "sha256": "9c867fd3f057309b0916795515d2776b732e6f6b9761e78b97d50a230d6ea801",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_059",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_059.json",
+      "sha256": "f9ed8a031be36194af18626401b28c3a1c2757d250f2283ed04a4ab6d7f4a992",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_060",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_060.json",
+      "sha256": "c270a105a1656ec0ac46cd89d81d5e4b839a4af527fefe0307a07ec6f7e4e98c",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_061",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_061.json",
+      "sha256": "7ffc5dd8b34a3ededbb65d81b95761f3fa9d75ab0374583753a933e7545f7e6c",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_062",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_062.json",
+      "sha256": "13cc1e4c57a25c86c560b40efbf5724b500d3740c6f63b065abfd3cdca463359",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_063",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_063.json",
+      "sha256": "05821f6742ebd97895395a9be3e432447b751d6f6889200db7cc9164c48f657e",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_064",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_064.json",
+      "sha256": "ae1d149c97b54e82a108aa5df923ceedcb8c5ba92f1d7e5c86ad73c8cc3083f7",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_065",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_065.json",
+      "sha256": "cadfa06d0804207b1d522d30f365b9e7999f49c3afdc680c2245d031d4eee6cc",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_066",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_066.json",
+      "sha256": "236653a2971c232a33ca6c3f25353276d811cd7bcd7678011e2f6aa19d50de8e",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_067",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_067.json",
+      "sha256": "793611b8daf32be279b3cad531e7d8b03d31a5a41e66ede7332c0f0a2eb2f6af",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_068",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_068.json",
+      "sha256": "8eb317dd56bff5b686a91b1882418b6b7f19cd1826f40b6aec3e917ed016661b",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_069",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_069.json",
+      "sha256": "d02861ae6e14bc88db51075183056209d8bb36b9c29de31ffb3af24d975a8e08",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_070",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_070.json",
+      "sha256": "0cfa8ef3e9208643f4d36b8849605818906b6ddcd3bb80aabad2a97f49a64e01",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_071",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_071.json",
+      "sha256": "3c173950209ae23f2fb665f31b26921ba579121c03cac0df95d0ea12d0de5b62",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_072",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_072.json",
+      "sha256": "a363976e51a57ac7e36cf3204012466a111ffdac96b85ac9be07e712cf947497",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_073",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_073.json",
+      "sha256": "2a6b180a1f977ee4819657ddfb5c987ae9164b0cfc0275f0f54a4fb285415711",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_074",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_074.json",
+      "sha256": "dfbbc7be0fc521f1419b33206610af05cd6aeaac0cf9bc84360f0bbc0fd6b6b4",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_075",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_075.json",
+      "sha256": "e0d2eeab116cd51b304c2e3fee363d8d87eb7cdfcfe251a0c273a1513e884c82",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "unrun_076",
+      "group": "unrun",
+      "file": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/unrun_076.json",
+      "sha256": "d7e839f7d4bc2a5daf65cef50e0babc1817e5d0befc0982f1c87423ede11037b",
+      "pair_count": 5
+    }
+  ],
+  "order": [
+    "retry_001",
+    "retry_002",
+    "retry_003",
+    "unrun_001",
+    "unrun_002",
+    "unrun_003",
+    "unrun_004",
+    "unrun_005",
+    "unrun_006",
+    "unrun_007",
+    "unrun_008",
+    "unrun_009",
+    "unrun_010",
+    "unrun_011",
+    "unrun_012",
+    "unrun_013",
+    "unrun_014",
+    "unrun_015",
+    "unrun_016",
+    "unrun_017",
+    "unrun_018",
+    "unrun_019",
+    "unrun_020",
+    "unrun_021",
+    "unrun_022",
+    "unrun_023",
+    "unrun_024",
+    "unrun_025",
+    "unrun_026",
+    "unrun_027",
+    "unrun_028",
+    "unrun_029",
+    "unrun_030",
+    "unrun_031",
+    "unrun_032",
+    "unrun_033",
+    "unrun_034",
+    "unrun_035",
+    "unrun_036",
+    "unrun_037",
+    "unrun_038",
+    "unrun_039",
+    "unrun_040",
+    "unrun_041",
+    "unrun_042",
+    "unrun_043",
+    "unrun_044",
+    "unrun_045",
+    "unrun_046",
+    "unrun_047",
+    "unrun_048",
+    "unrun_049",
+    "unrun_050",
+    "unrun_051",
+    "unrun_052",
+    "unrun_053",
+    "unrun_054",
+    "unrun_055",
+    "unrun_056",
+    "unrun_057",
+    "unrun_058",
+    "unrun_059",
+    "unrun_060",
+    "unrun_061",
+    "unrun_062",
+    "unrun_063",
+    "unrun_064",
+    "unrun_065",
+    "unrun_066",
+    "unrun_067",
+    "unrun_068",
+    "unrun_069",
+    "unrun_070",
+    "unrun_071",
+    "unrun_072",
+    "unrun_073",
+    "unrun_074",
+    "unrun_075",
+    "unrun_076"
+  ],
+  "limits": {
+    "max_pairs_per_batch": 8,
+    "soft_wall_time_s": 14400,
+    "min_free_gib": 5
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "COME__HURT",
+    "HURT__COME",
+    "NOW__HURT",
+    "HURT__NOW",
+    "COME__BREATHE-DEEP",
+    "BREATHE-DEEP__COME",
+    "NOW__BREATHE-DEEP",
+    "BREATHE-DEEP__NOW",
+    "COME__BLOOD-DRAW",
+    "BLOOD-DRAW__COME",
+    "NOW__BLOOD-DRAW",
+    "BLOOD-DRAW__NOW",
+    "COME__TAKE",
+    "TAKE__COME",
+    "NOW__TAKE",
+    "TAKE__NOW"
+  ]
+}

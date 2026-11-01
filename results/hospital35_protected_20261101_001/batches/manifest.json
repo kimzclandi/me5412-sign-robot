@@ -1,0 +1,662 @@
+{
+  "schema_version": 1,
+  "kind": "hospital35_pair_batches_v1",
+  "policy": {
+    "path": "config/transition_policy_user_protected_hospital35_v1.json",
+    "sha256": "d0bc6d9182a72bd1e13106c7732206083ae26acc377f8b60829ed431a5bc59c1"
+  },
+  "group_counts": {
+    "regression": 4,
+    "self": 33,
+    "hub": 132,
+    "rest": 1056
+  },
+  "pair_universe_count": 1225,
+  "definition": {
+    "regression": "the four COME/NOW ordered pairs",
+    "self": "every other word with itself, policy order",
+    "hub": "for each other word w: COME->w, w->COME, NOW->w, w->NOW",
+    "rest": "the 33x32 ordered pairs of the other words, universe order"
+  },
+  "batches": [
+    {
+      "batch_id": "regression_001",
+      "group": "regression",
+      "file": "results/hospital35_protected_20261101_001/batches/regression_001.json",
+      "sha256": "4009781a22a361ae2eaa9d73649f16dcd955f94272f4e657d2b569e279b46482",
+      "pair_count": 4
+    },
+    {
+      "batch_id": "self_001",
+      "group": "self",
+      "file": "results/hospital35_protected_20261101_001/batches/self_001.json",
+      "sha256": "a5f5a8096cf87211474ae2e33aa364013f829bb74ae1f6a2a505edd4c0043463",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "self_002",
+      "group": "self",
+      "file": "results/hospital35_protected_20261101_001/batches/self_002.json",
+      "sha256": "5b7a8c2f153dd1ebfce879f6b2600ccff8afffc2dfa54f36d46d1a36c524380a",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "self_003",
+      "group": "self",
+      "file": "results/hospital35_protected_20261101_001/batches/self_003.json",
+      "sha256": "765e5bfd8dedaa7ff08fcf5abf0fd2914fa54e535b90680d5719524478760770",
+      "pair_count": 1
+    },
+    {
+      "batch_id": "hub_001",
+      "group": "hub",
+      "file": "results/hospital35_protected_20261101_001/batches/hub_001.json",
+      "sha256": "634ab0df0912c5c941ded784ae612eff4b6188caa9cd261cf0497ce7af51ff6c",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "hub_002",
+      "group": "hub",
+      "file": "results/hospital35_protected_20261101_001/batches/hub_002.json",
+      "sha256": "61da47baec6ae00bc992206476eec11e07d364cd7f2043da593d55a1cca767be",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "hub_003",
+      "group": "hub",
+      "file": "results/hospital35_protected_20261101_001/batches/hub_003.json",
+      "sha256": "36d59e571c1c700afd7307a3dc74117ac9a9d7e2d28cb7307d6deb101ea45793",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "hub_004",
+      "group": "hub",
+      "file": "results/hospital35_protected_20261101_001/batches/hub_004.json",
+      "sha256": "9f7175cfac4f681a09038ee8ea255b5f19d28f503b1be6e337b30985a5fe7860",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "hub_005",
+      "group": "hub",
+      "file": "results/hospital35_protected_20261101_001/batches/hub_005.json",
+      "sha256": "e2a46d8b2e3d3b877ed59a34a56d97a98b71da0a95737585c40e89f0462a31b1",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "hub_006",
+      "group": "hub",
+      "file": "results/hospital35_protected_20261101_001/batches/hub_006.json",
+      "sha256": "60ae64949fe7b5a44260c57b8a56669703d51d294ea28fb3e6ccd19506ef4a4b",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "hub_007",
+      "group": "hub",
+      "file": "results/hospital35_protected_20261101_001/batches/hub_007.json",
+      "sha256": "40a04f6fc6489426f20404f7cc73b662d56d15ab1f14a4920fe00daaaf46610a",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "hub_008",
+      "group": "hub",
+      "file": "results/hospital35_protected_20261101_001/batches/hub_008.json",
+      "sha256": "01b9ddffa158c1bb79c7555ebd6fb806aa362d6558f801f9a35723d2cf9bd7dc",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "hub_009",
+      "group": "hub",
+      "file": "results/hospital35_protected_20261101_001/batches/hub_009.json",
+      "sha256": "3f11f289babb542a57ec71d4acf8f83dc8e03b9272159eee98010ebde6e9b31a",
+      "pair_count": 4
+    },
+    {
+      "batch_id": "rest_001",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_001.json",
+      "sha256": "61e1c8a0954c3caf7b85e7137949d54ed3fe7e1bedee4af9a39f7cbabf14e053",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_002",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_002.json",
+      "sha256": "c59f287683a6ceb07e228ab948a5bf3cbcf47caf0729039e2de15e1f1675e19d",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_003",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_003.json",
+      "sha256": "899353a333301e5c8e6aecaff43c3f844a903c79868b99c2eee4205979b0d1d9",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_004",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_004.json",
+      "sha256": "a04a7e6bd1f9ef5d1111eb4a1d1cd115024d968b63130160127da009bde1a4c9",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_005",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_005.json",
+      "sha256": "2bc78084146483f4c6581078c291ae8da32facbf522ef999cc24cc1c532537f9",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_006",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_006.json",
+      "sha256": "d3aedae8873c870cb7ba8ee963e7f5697a04601a08c320b828af8dc1a4f0b899",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_007",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_007.json",
+      "sha256": "99eb65fa524aefd8582d26c4d727ecabf548a390cd4844e70235bfbe5c2d3b2c",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_008",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_008.json",
+      "sha256": "e034aba41d1c74e2b9cf63b2aa83c476f59baaf91e8decb8de18a8b88f535f16",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_009",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_009.json",
+      "sha256": "cb942eb963578b8c781a0ef443d5e42199a373b72d4f32554b3429dcc814f17d",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_010",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_010.json",
+      "sha256": "fe3eef6f2fec2c638f31817525b4037f4641591283f2735b8dbb5fbd2fba9a9f",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_011",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_011.json",
+      "sha256": "754983046557497f276adb3fcad91a8283ff1ca15b5641d2bce5690c67226602",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_012",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_012.json",
+      "sha256": "1b640e6611d692ab99dfa4cb71fcfa205b83f907151e74e58397bb026349d6e0",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_013",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_013.json",
+      "sha256": "649b40251442f67f72ddee1fc4b14b71363e29b70fdb16283a2d704d5c4bc608",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_014",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_014.json",
+      "sha256": "c95c9cae8459dd3937b533d1c8767ad9999ad82b056e459a0d4968848d8dc57f",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_015",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_015.json",
+      "sha256": "8fad5fed092f4d29b10652bbf2fae0d6e7e7556f50e22c717536bc21cc488654",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_016",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_016.json",
+      "sha256": "6d14e5ad64cb6ea950ae057bdcbff46059dff389d497b65c86400d3d75a9db15",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_017",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_017.json",
+      "sha256": "43bdb67831ba34fd6d146c4d1805db775e7d9a84bb44cbd565d31798e96861b3",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_018",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_018.json",
+      "sha256": "91df39729c2071ac62052ba60250d2f306e399bc48bb8edb891ed27cce2a6000",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_019",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_019.json",
+      "sha256": "6093abc37d864863203b8731226962d02d5a05a1c862bc3cbe1ea5816a4c3867",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_020",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_020.json",
+      "sha256": "5c4cd4e1e86fcff2974b28fcbb32411230f6eeba7157a785007623f2ba8109ce",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_021",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_021.json",
+      "sha256": "1ceaaf512c631489bfae3527bd1bc5150231be3e7b9183c0e5863972bd7b32f4",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_022",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_022.json",
+      "sha256": "a9b84aca9e7c3db75d09938ee2840fb929b29578d9d2f5d026698bb615e4869c",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_023",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_023.json",
+      "sha256": "b23f3aca1f8b8caa4de8127ea63bbecb125645d7807c3ede992558f835e1bfa8",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_024",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_024.json",
+      "sha256": "debc3fe59b16dbaa618c3f93ba80c63db45b7e975cc505e80d745b0ca278afb7",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_025",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_025.json",
+      "sha256": "cd73a01b90d16d04c9d86fce4ebfc0b45455421a8695f9dd26a5dd56e402b5dc",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_026",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_026.json",
+      "sha256": "6fe68a43c885714fca5e417b24fc2547e6856f45655f702b69036126f63ce865",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_027",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_027.json",
+      "sha256": "ada4abb446b7fd95621a08a71edc6a62ab710e8b9a2e09b212b5c25339ba2e4b",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_028",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_028.json",
+      "sha256": "4eda5d29a69e032c0f1ba26c26a2799304a0f3e101e2581f100de4455223e3f9",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_029",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_029.json",
+      "sha256": "9a177c6cc9f45f6ff4abc0e5d60bf772b51cd9ae46b0ff3863672c03d3d21024",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_030",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_030.json",
+      "sha256": "e587a0fb0f2a53472dbbea8bbd0671b493940a25508f81cefa17f4ac12b370d6",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_031",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_031.json",
+      "sha256": "730a83ab12b131258564ab919b01eb570fe794ce331833f9ad63ff94bf2811e7",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_032",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_032.json",
+      "sha256": "cb781240afcaac24f359b4e80c90f7771190f45db05146140ddab6c016d0fbd9",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_033",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_033.json",
+      "sha256": "422b3d9865395fae0d1567f01e56aa87e6ca23ba5b7a068d44da610e0cbf996e",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_034",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_034.json",
+      "sha256": "6a619dcd76d731dfdd204eec64362113b80f508d18da26df39df0829777b5109",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_035",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_035.json",
+      "sha256": "4ef9de644972304c9d679c739934d886969393fc2f69dfe5a5134e8a1e8ec82c",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_036",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_036.json",
+      "sha256": "5b26e292e14f674e1bdc0c957b10a87a876ce32ba3a6aa198c495ce044f9a669",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_037",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_037.json",
+      "sha256": "2c818b23fc40d5b2c71ae3508f282d14b9a5d38262521c749c6b50440e2ac2e4",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_038",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_038.json",
+      "sha256": "12623593cf68a12c8668875a7a15aa3c9b6c2d716228acfaebb4c1df8a5c1bc4",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_039",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_039.json",
+      "sha256": "9517627810910d15d6e6b4bd18a72495cdd22fdab2c0241c6c7d1f493b1a933b",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_040",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_040.json",
+      "sha256": "ea1b2358316abfd197007c2e8adb4790f6a36cb5d5c2cab27d24077c54941700",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_041",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_041.json",
+      "sha256": "fd6f19eb080e69fedbd96ae394839b26a5b9aaba3e20908bca5199c03fdd3d55",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_042",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_042.json",
+      "sha256": "de02417c12e942755ab79ab79a65444305813d34691d7bbb16473ae3d713780c",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_043",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_043.json",
+      "sha256": "af98b6e88a0ba0d2e7e38fdb61d4ea9e4d46438028d20a5e90be29698c4ae341",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_044",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_044.json",
+      "sha256": "9d6db0b39a89bec5a60a09258c7ad337c519b3b91804e6668b92242d59202da9",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_045",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_045.json",
+      "sha256": "f9112fdf90c96742a4eb469b7d5193d952dfae5c6ad8fb3f3d610b7f7e68389a",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_046",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_046.json",
+      "sha256": "c0910312cc9acbb4ceb3e19f6cc3ca77c815203127d6553272e4c31608630599",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_047",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_047.json",
+      "sha256": "ee7e5bd11f26bc750db2d30bbdd1fe45ac3b4f84220029658c7e3f2c4bbc8cbf",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_048",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_048.json",
+      "sha256": "ba0c1ac51ebdef5f7c07c2bafa9051dc30f96928a94f0430b356825beeb635a0",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_049",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_049.json",
+      "sha256": "5dc021613cd9dcbb2da23f342d0ae502a0a674cee8673f4bd259a72707a5432a",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_050",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_050.json",
+      "sha256": "bdeebef266b491ff9fac791944dc7fa51d2fff7b2146ed98b2e3bf37d83f0341",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_051",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_051.json",
+      "sha256": "46c21a8c5b5075c48f0cb53c2add94c6ecd104eb0cd5c8c5d1f76eddb944556d",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_052",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_052.json",
+      "sha256": "5fd5b59eb42daee9a77e635722d033515f740e05686445698f7eb086b449ed27",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_053",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_053.json",
+      "sha256": "63406586ef6dc2b914bd8313a72ba8fb61fa59e598ab81ce728f0a7e954b2dfe",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_054",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_054.json",
+      "sha256": "655902528770dc8a5431f1e29b0bd92174567928572b3248b83271b189d9f522",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_055",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_055.json",
+      "sha256": "bc138f7da70a2d58bd64a5cc406d36f6aa68d036a964dc55fcfa663b19c880f2",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_056",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_056.json",
+      "sha256": "1b151bf359e066abe594aab293cf96059fc314427b0960364136f71fba85de0d",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_057",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_057.json",
+      "sha256": "0417b4abf776b5abdbad96ac29c5be27d72cd45f2693dac1119d86910b572572",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_058",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_058.json",
+      "sha256": "e2df5a84168eaa05cf4ecbc907b6208e8a445f1b4d9f4e68510786a6768011c2",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_059",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_059.json",
+      "sha256": "c34893d68db7c0893a9d419c6de24258fa880bc36fd605f31641d2cc64ec686f",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_060",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_060.json",
+      "sha256": "9121eeb4a0e153e0f3d693615a89930b61610452646661410172acd10dd67d44",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_061",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_061.json",
+      "sha256": "5e1de3e90529163290e1d92aa1dbda7d5015b8e4a23af84a3e47bc77996d52b0",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_062",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_062.json",
+      "sha256": "653a2c300c3f455ec966b1e278a253b05160144f3ffe20edba41f2f3812c4b1b",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_063",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_063.json",
+      "sha256": "2d5d8c4781567e8f4b60e71293a412b2f9ca7bc594b0a1a93f3f78c087caad71",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_064",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_064.json",
+      "sha256": "ebfc527d4728b4b35391a1bd38b0b60bd2c46e67fa3a9528a07d4e8c11324722",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_065",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_065.json",
+      "sha256": "b2089651d8afcdf5da68267b243b6d7bf90154998db573894f88e75afb292327",
+      "pair_count": 16
+    },
+    {
+      "batch_id": "rest_066",
+      "group": "rest",
+      "file": "results/hospital35_protected_20261101_001/batches/rest_066.json",
+      "sha256": "c2763b64243d102de7024ca4955c83742af5e6db9863f63c4b8ee7128e014b0a",
+      "pair_count": 16
+    }
+  ],
+  "order": [
+    "regression_001",
+    "self_001",
+    "self_002",
+    "self_003",
+    "hub_001",
+    "hub_002",
+    "hub_003",
+    "hub_004",
+    "hub_005",
+    "hub_006",
+    "hub_007",
+    "hub_008",
+    "hub_009",
+    "rest_001",
+    "rest_002",
+    "rest_003",
+    "rest_004",
+    "rest_005",
+    "rest_006",
+    "rest_007",
+    "rest_008",
+    "rest_009",
+    "rest_010",
+    "rest_011",
+    "rest_012",
+    "rest_013",
+    "rest_014",
+    "rest_015",
+    "rest_016",
+    "rest_017",
+    "rest_018",
+    "rest_019",
+    "rest_020",
+    "rest_021",
+    "rest_022",
+    "rest_023",
+    "rest_024",
+    "rest_025",
+    "rest_026",
+    "rest_027",
+    "rest_028",
+    "rest_029",
+    "rest_030",
+    "rest_031",
+    "rest_032",
+    "rest_033",
+    "rest_034",
+    "rest_035",
+    "rest_036",
+    "rest_037",
+    "rest_038",
+    "rest_039",
+    "rest_040",
+    "rest_041",
+    "rest_042",
+    "rest_043",
+    "rest_044",
+    "rest_045",
+    "rest_046",
+    "rest_047",
+    "rest_048",
+    "rest_049",
+    "rest_050",
+    "rest_051",
+    "rest_052",
+    "rest_053",
+    "rest_054",
+    "rest_055",
+    "rest_056",
+    "rest_057",
+    "rest_058",
+    "rest_059",
+    "rest_060",
+    "rest_061",
+    "rest_062",
+    "rest_063",
+    "rest_064",
+    "rest_065",
+    "rest_066"
+  ],
+  "limits": {
+    "max_pairs_per_batch": 16,
+    "soft_wall_time_s": 7200,
+    "min_free_gib": 5
+  }
+}

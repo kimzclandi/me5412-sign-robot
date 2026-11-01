@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "COME__LATER",
+    "LATER__COME",
+    "NOW__LATER",
+    "LATER__NOW",
+    "COME__TOMORROW",
+    "TOMORROW__COME",
+    "NOW__TOMORROW",
+    "TOMORROW__NOW",
+    "COME__MORNING",
+    "MORNING__COME",
+    "NOW__MORNING",
+    "MORNING__NOW",
+    "COME__NIGHT",
+    "NIGHT__COME",
+    "NOW__NIGHT",
+    "NIGHT__NOW"
+  ]
+}

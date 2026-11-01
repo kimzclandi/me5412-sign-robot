@@ -1,0 +1,35 @@
+usage: import_user_protections.py [-h] --ods ODS --expected-sha256
+                                  EXPECTED_SHA256 [--sheet SHEET]
+                                  [--base-policy BASE_POLICY]
+                                  [--bundle-output BUNDLE_OUTPUT]
+                                  [--policy-output POLICY_OUTPUT]
+                                  [--provenance-output PROVENANCE_OUTPUT]
+                                  [--bundle-id BUNDLE_ID]
+                                  [--window-version WINDOW_VERSION]
+                                  [--policy-id POLICY_ID]
+                                  [--protection-prefix PROTECTION_PREFIX]
+                                  [--check]
+
+Strictly import the user's 35-word protection sheet into a versioned bundle,
+pair policy and provenance. Only stored cell values are read: formulas, empty
+or non-numeric cells, non-finite values, duplicate/unknown/missing words, any
+content outside the declared range and display text that differs from the
+stored value are all rejected. Frames use zero-based inclusive outward
+rounding [floor(start*30), ceil(end*30)], computed with Decimal and cross-
+checked with the float rule of the existing loader. Outputs are never
+overwritten; --check rebuilds them in memory and compares bytes.
+
+options:
+  -h, --help            show this help message and exit
+  --ods ODS             Repository-relative ODS copy
+  --expected-sha256 EXPECTED_SHA256
+  --sheet SHEET
+  --base-policy BASE_POLICY
+  --bundle-output BUNDLE_OUTPUT
+  --policy-output POLICY_OUTPUT
+  --provenance-output PROVENANCE_OUTPUT
+  --bundle-id BUNDLE_ID
+  --window-version WINDOW_VERSION
+  --policy-id POLICY_ID
+  --protection-prefix PROTECTION_PREFIX
+  --check               Rebuild in memory and compare with existing outputs

@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "COME__UNDERSTAND",
+    "UNDERSTAND__COME",
+    "NOW__UNDERSTAND",
+    "UNDERSTAND__NOW",
+    "COME__WRITE",
+    "WRITE__COME",
+    "NOW__WRITE",
+    "WRITE__NOW",
+    "COME__NOT",
+    "NOT__COME",
+    "NOW__NOT",
+    "NOT__NOW",
+    "COME__SOON",
+    "SOON__COME",
+    "NOW__SOON",
+    "SOON__NOW"
+  ]
+}

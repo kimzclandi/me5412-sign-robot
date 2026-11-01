@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "DOCTOR__HELLO",
+    "DOCTOR__PLEASE",
+    "DOCTOR__THANK-YOU",
+    "DOCTOR__SORRY",
+    "DOCTOR__YES",
+    "DOCTOR__NO",
+    "DOCTOR__YOU",
+    "DOCTOR__YOUR",
+    "DOCTOR__ME",
+    "DOCTOR__DEAF",
+    "DOCTOR__NURSE",
+    "DOCTOR__INTERPRETER",
+    "DOCTOR__APPOINTMENT",
+    "DOCTOR__MEDICINE",
+    "DOCTOR__STOMACH",
+    "DOCTOR__HEADACHE"
+  ]
+}

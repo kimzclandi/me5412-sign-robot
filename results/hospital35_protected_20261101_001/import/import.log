@@ -1,0 +1,2 @@
+{"status": "WRITTEN", "files": {"config/user_protected_hospital35_v1.json": "d19fec39dcc28dd54fa3d93260dbe0bcbec81062cd190669f74681c5172e3ae0", "config/transition_policy_user_protected_hospital35_v1.json": "d0bc6d9182a72bd1e13106c7732206083ae26acc377f8b60829ed431a5bc59c1", "config/user_protected_hospital35_v1.provenance.json": "467a6d507786e593bbe26b4912ba5c415b2f79f80a56d520c983c36ee67b0310"}, "installed_check": {"input_errors": [], "word_input_errors": {}, "glosses_loaded": 35, "equals_policy_scope": true, "COME": [27, 132], "NOW": [27, 51]}}
+import exit 0

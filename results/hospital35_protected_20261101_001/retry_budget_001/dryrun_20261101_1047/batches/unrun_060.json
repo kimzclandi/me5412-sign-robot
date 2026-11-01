@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "NOT__INTERPRETER",
+    "NOT__APPOINTMENT",
+    "NOT__MEDICINE",
+    "NOT__STOMACH",
+    "NOT__HEADACHE",
+    "NOT__HAVE",
+    "NOT__NEED",
+    "NOT__WAIT",
+    "NOT__COME",
+    "NOT__HURT",
+    "NOT__BREATHE-DEEP",
+    "NOT__BLOOD-DRAW",
+    "NOT__TAKE",
+    "NOT__UNDERSTAND",
+    "NOT__WRITE",
+    "NOT__NOT"
+  ]
+}

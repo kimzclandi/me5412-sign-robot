@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "ME__HAVE",
+    "ME__NEED",
+    "ME__WAIT",
+    "ME__HURT",
+    "ME__BREATHE-DEEP",
+    "ME__BLOOD-DRAW",
+    "ME__TAKE",
+    "ME__UNDERSTAND",
+    "ME__WRITE",
+    "ME__NOT",
+    "ME__SOON",
+    "ME__LATER",
+    "ME__TOMORROW",
+    "ME__MORNING",
+    "ME__NIGHT",
+    "ME__WHERE"
+  ]
+}

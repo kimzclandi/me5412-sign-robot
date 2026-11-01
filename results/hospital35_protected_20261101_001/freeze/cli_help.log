@@ -1,0 +1,221 @@
+$ .venv/bin/python scripts/import_user_protections.py --help
+usage: import_user_protections.py [-h] --ods ODS --expected-sha256
+                                  EXPECTED_SHA256 [--sheet SHEET]
+                                  [--base-policy BASE_POLICY]
+                                  [--bundle-output BUNDLE_OUTPUT]
+                                  [--policy-output POLICY_OUTPUT]
+                                  [--provenance-output PROVENANCE_OUTPUT]
+                                  [--bundle-id BUNDLE_ID]
+                                  [--window-version WINDOW_VERSION]
+                                  [--policy-id POLICY_ID]
+                                  [--protection-prefix PROTECTION_PREFIX]
+                                  [--check]
+
+Strictly import the user's 35-word protection sheet into a versioned bundle,
+pair policy and provenance. Only stored cell values are read: formulas, empty
+or non-numeric cells, non-finite values, duplicate/unknown/missing words, any
+content outside the declared range and display text that differs from the
+stored value are all rejected. Frames use zero-based inclusive outward
+rounding [floor(start*30), ceil(end*30)], computed with Decimal and cross-
+checked with the float rule of the existing loader. Outputs are never
+overwritten; --check rebuilds them in memory and compares bytes.
+
+options:
+  -h, --help            show this help message and exit
+  --ods ODS             Repository-relative ODS copy
+  --expected-sha256 EXPECTED_SHA256
+  --sheet SHEET
+  --base-policy BASE_POLICY
+  --bundle-output BUNDLE_OUTPUT
+  --policy-output POLICY_OUTPUT
+  --provenance-output PROVENANCE_OUTPUT
+  --bundle-id BUNDLE_ID
+  --window-version WINDOW_VERSION
+  --policy-id POLICY_ID
+  --protection-prefix PROTECTION_PREFIX
+  --check               Rebuild in memory and compare with existing outputs
+exit 0
+$ .venv/bin/python scripts/preflight_hospital35.py --help
+usage: preflight_hospital35.py [-h] [--policy POLICY] --output OUTPUT
+
+Preflight every protected core and both endpoint roles before a library-wide
+pair run. Global input blockers, intrinsic protected-source defects (speed,
+joint limit, coupling and sampled geometry; acceleration and jerk inside cores
+are informational as in v5) and words without a usable exit or entry endpoint
+are reported separately. Budget exhaustion is INCOMPLETE, never a pass.
+Predicted pair impacts are diagnostics only; pairs are still planned and
+verified.
+
+options:
+  -h, --help       show this help message and exit
+  --policy POLICY
+  --output OUTPUT  New directory; never reused
+exit 0
+$ .venv/bin/python scripts/run_hospital35_batches.py --help
+usage: run_hospital35_batches.py [-h]
+                                 {pairs,recheck-pairs,sequences,aggregate} ...
+
+Single-writer, soft-budget driver for frozen hospital35 pair batches and sequence sub-batches.
+
+pairs          plan then independently review frozen pair batches (<=16 pairs) in one run
+recheck-pairs  fresh verify_saved_pair_v2 of every selected candidate into a new directory
+sequences      plan and recheck one frozen sequence sub-batch (<=8 cases) into its registered output
+aggregate      merge registered sequence outputs into a fixed-denominator table
+
+Budgets are checked only at saved breakpoints, so a stop is soft. Every
+invocation appends a new log with command, limits, resources and exit code.
+
+positional arguments:
+  {pairs,recheck-pairs,sequences,aggregate}
+    pairs               Frozen pair batches in one single-writer run
+    recheck-pairs       Fresh independent recheck of selected pair candidates
+
+options:
+  -h, --help            show this help message and exit
+exit 0
+$ .venv/bin/python scripts/run_hospital35_batches.py pairs --help
+usage: run_hospital35_batches.py pairs [-h] [--policy POLICY] --batch-manifest
+                                       BATCH_MANIFEST --batch-manifest-sha256
+                                       BATCH_MANIFEST_SHA256 [--batch BATCHES]
+                                       --run-id RUN_ID --results-root
+                                       RESULTS_ROOT --control-dir CONTROL_DIR
+                                       [--soft-wall-time-s SOFT_WALL_TIME_S]
+                                       [--min-free-gib MIN_FREE_GIB]
+
+options:
+  -h, --help            show this help message and exit
+  --policy POLICY
+  --batch-manifest BATCH_MANIFEST
+  --batch-manifest-sha256 BATCH_MANIFEST_SHA256
+  --batch BATCHES       Batch id in manifest order; may repeat
+  --run-id RUN_ID
+  --results-root RESULTS_ROOT
+  --control-dir CONTROL_DIR
+                        Locks and invocation logs, outside the run directory
+  --soft-wall-time-s SOFT_WALL_TIME_S
+  --min-free-gib MIN_FREE_GIB
+exit 0
+$ .venv/bin/python scripts/run_hospital35_batches.py recheck-pairs --help
+usage: run_hospital35_batches.py recheck-pairs [-h] --run-dir RUN_DIR --output
+                                               OUTPUT [--pair PAIRS]
+
+options:
+  -h, --help         show this help message and exit
+  --run-dir RUN_DIR
+  --output OUTPUT    New directory; never reused
+  --pair PAIRS
+exit 0
+$ .venv/bin/python scripts/run_hospital35_batches.py sequences --help
+usage: run_hospital35_batches.py sequences [-h] --sequence-policy
+                                           SEQUENCE_POLICY --case-manifest
+                                           CASE_MANIFEST
+                                           --case-manifest-sha256
+                                           CASE_MANIFEST_SHA256 --subbatch
+                                           SUBBATCH --control-dir CONTROL_DIR
+
+options:
+  -h, --help            show this help message and exit
+  --sequence-policy SEQUENCE_POLICY
+  --case-manifest CASE_MANIFEST
+  --case-manifest-sha256 CASE_MANIFEST_SHA256
+  --subbatch SUBBATCH
+  --control-dir CONTROL_DIR
+exit 0
+$ .venv/bin/python scripts/run_hospital35_batches.py aggregate --help
+usage: run_hospital35_batches.py aggregate [-h] --sequence-policy
+                                           SEQUENCE_POLICY --case-manifest
+                                           CASE_MANIFEST
+                                           --case-manifest-sha256
+                                           CASE_MANIFEST_SHA256
+
+options:
+  -h, --help            show this help message and exit
+  --sequence-policy SEQUENCE_POLICY
+  --case-manifest CASE_MANIFEST
+  --case-manifest-sha256 CASE_MANIFEST_SHA256
+exit 0
+$ .venv/bin/python scripts/plan_sequences.py --help
+usage: plan_sequences.py [-h] [--sequence-policy SEQUENCE_POLICY]
+                         --pair-run-dir PAIR_RUN_DIR --output OUTPUT
+                         [--case CASES] [--case-budget-s CASE_BUDGET_S]
+                         [--soft-wall-time-s SOFT_WALL_TIME_S]
+                         [--min-free-gib MIN_FREE_GIB]
+                         [--resume-from RESUME_FROM]
+
+Assemble frozen multi-word cases from one independently verified pair run,
+then verify each saved chain. Each case first checks its pair dependencies
+(not planned, planning or review unfinished, no numerical candidate) and is
+recorded as BLOCKED_DEPENDENCY instead of stopping the run; a stale or corrupt
+pair run still stops everything. Soft budgets (per case including
+verification, per invocation wall clock, free disk) are checked before each
+attempt: unstarted cases stay NOT_RUN and an interrupted attempt is never
+selected. --resume-from reads earlier outputs of the same identity: their
+passing selections are retained, their completely verified attempts are not
+repeated and all files stay.
+
+options:
+  -h, --help            show this help message and exit
+  --sequence-policy SEQUENCE_POLICY
+  --pair-run-dir PAIR_RUN_DIR
+  --output OUTPUT       New directory; never reused
+  --case CASES          Sequence id from the frozen policy; may repeat
+  --case-budget-s CASE_BUDGET_S
+                        Soft per-case budget, planning plus verification
+  --soft-wall-time-s SOFT_WALL_TIME_S
+  --min-free-gib MIN_FREE_GIB
+  --resume-from RESUME_FROM
+                        Earlier output of the same identity, in order; read
+                        only
+exit 0
+$ .venv/bin/python scripts/verify_sequences.py --help
+usage: verify_sequences.py [-h] --run-dir RUN_DIR
+
+Fresh independent recheck of every selected saved sequence; recounts cases,
+occurrences and connectors from files. Every case of the output keeps its row.
+Blocked, incomplete, not-run and unselected cases are counted separately and
+never as a pass or as agreement; a selection retained from an earlier output
+is rechecked there, not here.
+
+options:
+  -h, --help         show this help message and exit
+  --run-dir RUN_DIR
+exit 0
+$ .venv/bin/python scripts/plan_all_pairs.py --help
+usage: plan_all_pairs.py [-h] [--library {hospital_v1}] [--include-self]
+                         [--policy POLICY] --run-id RUN_ID
+                         [--results-root RESULTS_ROOT] [--resume]
+                         [--max-pairs MAX_PAIRS] [--pair PAIRS]
+                         [--pairs-file PAIRS_FILE] [--quiet]
+
+Run the frozen hospital vocabulary's ordered all-pairs development scan. This
+entry point is intentionally separate from ``plan_transitions.py --all``: the
+latter retains its ten demonstration sentences, while this command owns 35 x
+35 = 1,225 ordered pairs, including the 35 self-pairs.
+
+options:
+  -h, --help            show this help message and exit
+  --library {hospital_v1}
+  --include-self        Required for the frozen 1,225-pair scope
+  --policy POLICY
+  --run-id RUN_ID
+  --results-root RESULTS_ROOT
+  --resume
+  --max-pairs MAX_PAIRS
+  --pair PAIRS          Optional pair_id SOURCE__TARGET; may be repeated
+  --pairs-file PAIRS_FILE
+                        JSON object containing a frozen pair_ids list
+  --quiet
+exit 0
+$ .venv/bin/python scripts/verify_all_pairs.py --help
+usage: verify_all_pairs.py [-h] --run-id RUN_ID [--results-root RESULTS_ROOT]
+                           [--max-pairs MAX_PAIRS] [--quiet]
+
+Independently re-read all saved development candidates.
+
+options:
+  -h, --help            show this help message and exit
+  --run-id RUN_ID
+  --results-root RESULTS_ROOT
+  --max-pairs MAX_PAIRS
+  --quiet
+exit 0
