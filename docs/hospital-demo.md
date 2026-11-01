@@ -63,6 +63,22 @@ Windows 把 `.venv/bin/python` 换成 `.venv\Scripts\python`。完整原型（�
 
 拼接现在是最简单的基线：每个词裁到 `sign_frames`，词间固定 0.5 秒平滑过渡，词与词之间手臂会短暂下沉。第三组完成衔接方法后，替换 `hospital_demo.py` 里的 `stitch(...)` 调用即可，其余流程不变；基线保留作为“直接回放对照”。
 
+**第三组交付格式**（与仓库所有轨迹一致，对上后接入约半小时）：
+
+- 每句一个 `.npz`，按句子编号命名 `s1.npz` … `s9.npz`；或者交一个与 `stitch(glosses, transition_s, spans)` 同签名的函数。
+- 字段：`timestamps_s[T]`（秒，严格递增，30 fps）、`joint_names[53]`（与 `results/demo/s1.npz` 相同的 53 个关节名）、`positions[T,53]`（弧度）。
+- 拇指和手指的耦合关节按 `assets/robot/model_info.json` 的 `couplings` 计算；首尾为同一个中立姿势（肘 0.25、拇指 yaw 0.35、pitch 0.08，其余 0）。
+
+**和基线对比**（第 11 页的数字和图）：
+
+```bash
+MUJOCO_GL=egl .venv/bin/python scripts/demo/compare_stitching.py <第三组文件夹> --label group3_v1
+```
+
+输出 `results/stitch_compare/group3_v1/`：`summary.md`、`summary.json` 和每句的对比图（手腕高度、手臂最大关节速度随时间变化）。指标：格式检查（53 个关节、30 fps、关节限位、耦合、首尾中立）、时长、手臂和手指的峰值与 95 分位速度、手臂 RMS jerk（越小越平滑）、打手语过程中手回落到休息高度的时间比例和次数（基线的“下沉”）、碰撞体最大穿模深度。单个手语自身的下落也会计入“回落”，因此比较两种方法的相对变化，不看绝对值。
+
+基线现状（9 句）：词间过渡和回到中立姿势的过程都没有做碰撞检查，穿模最大 79 mm（s1 结尾右手腕与胯部）；打手语阶段最大 41 mm，来自视频词（视频词的滤波和限速在逆运动学之后进行，可能重新引入少量重叠）。这两项都是衔接方法可以改进的地方。
+
 ## 6. 限制
 
 - 机器人动作是候选手语动作，未经 ASL 使用者评审；26 个视频词评为“近似”。
