@@ -52,7 +52,7 @@ For the "Text to Gloss (slides 6–7)" and "Gloss to Motion (slides 8–11)" par
 
 **Script**: human and robot bodies and joints differ, so angles cannot be copied; we first align hand position and orientation, then solve within the robot's own joint limits.
 
-**Numbers**: mocap library of 33 words: 16 "usable", 17 "approximate"; every "usable" word has sign-phase wrist error below 2 cm; penetration at most 19 mm (upstream collision geometry only, **mocap words during signing only**). Video words now have a collision repair, leaving 0–3 mm during signing (up to 41 mm before). In stitched sentences, the baseline's 0.5 s blends between words are not collision-checked, reaching 70 mm across the 9 lines, left for Group 3 to improve. The "≤ 19 mm" on slide 17 should say "single words while signing".
+**Numbers**: mocap library of 33 words: 16 "usable", 17 "approximate"; every "usable" word has sign-phase wrist error below 2 cm; penetration at most 19 mm (upstream collision geometry only, **mocap words during signing only**). In stitched sentences, the baseline's blends between words and motion to and from neutral are not collision-checked, reaching 79 mm across the 9 lines; video words reach 41 mm while signing. The "≤ 19 mm" on slide 17 needs this qualifier.
 
 ## Slide 10 · Problems with video data and the fixes
 
@@ -60,7 +60,6 @@ For the "Text to Gloss (slides 6–7)" and "Gloss to Motion (slides 8–11)" par
 - Problem 1, jitter: video estimates of thumb and wrist orientation flip suddenly (HURT's thumb briefly at 37.7 rad/s) → 5-frame median filter, fingers limited to 10 rad/s, arms to 15 rad/s
 - Problem 2, unequal arm lengths: an arm angled towards the camera looks shorter, by up to 1.9x, which magnifies one side's motion → both arms share one scale
 - Problem 3, wrong video choice: choosing by detection rate once picked a MEDICINE video with 22 cm error → now the lowest-error video among those with ≥ 50% detection
-- Problem 4, penetration after filtering: filtering and speed limits run after inverse kinematics and pushed hands into the body or the other hand (29 of 32 video words over 5 mm, up to 92 mm) → frames that penetrate are re-solved from the previous collision-free frame, leaving at most 3 mm; during signing the wrist moves only 0.6 mm on average
 - Result: MEDICINE error 192 mm → 6 mm; median error of the 26 video words 6 mm, 15 of them within 1 cm
 - All 26 video words are graded "approximate", never "usable"
 
@@ -77,6 +76,7 @@ For the "Text to Gloss (slides 6–7)" and "Gloss to Motion (slides 8–11)" par
 - One command goes from English sentence → gloss → motion → video: `scripts/demo/hospital_demo.py`
 - The 9 dialogue lines take 3.8–16 s each, about 91 s back to back (`results/demo/hospital_dialogue.mp4`)
 - Known issue: the arms dip briefly between words, which is exactly what Group 3's transition method should improve and be compared against
+- Group 3 round 8 comparison (`results/stitch_compare/group3_round8/`, 7 multi-word lines, same word clips): mean duration 10.5 → 7.9 s, dips to rest 3.1 → 2.0, max penetration 39 → 13.8 mm (NURSE→BLOOD-DRAW 70 → 3 mm), RMS jerk 1750 → 1470; s6 and s7 dip more often than the baseline. The demo videos now use Group 3's transitions.
 
 ## Limitations for every slide
 

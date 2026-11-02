@@ -105,7 +105,7 @@ MUJOCO_GL=egl PYTHONPATH=scripts/mocap .venv/bin/python scripts/mocap/retarget_t
 ### Key numbers
 
 - Hospital vocabulary: 35/35 glosses have motion (9 mocap, 26 video-derived, the latter all "approximate"); all 9 scripted dialogue lines can be stitched.
-- Mocap library, 33 words: 16 usable, 17 approximate, 0 poor; sign-phase wrist error below 2 cm for every usable word; penetration at most 19 mm (APPOINTMENT finger–wrist overlap; all others at most 16 mm; upstream collision geoms only). Video-word penetration had not been measured: on 2026-11-01, 29 of 32 video words exceeded 5 mm after filtering (up to 92 mm); a collision repair now leaves at most 3 mm. In the 9 baseline lines, signing reaches 19 mm (APPOINTMENT) and the 0.5 s blends between words 70 mm (not collision-checked, left for Group 3).
+- Mocap library, 33 words: 16 usable, 17 approximate, 0 poor; sign-phase wrist error below 2 cm for every usable word; penetration at most 19 mm (APPOINTMENT finger–wrist overlap; all others at most 16 mm; upstream collision geoms only). Video words and whole sentences had not been measured: on 2026-11-01 `scripts/demo/compare_stitching.py` found up to 41 mm during signing (video words) and up to 79 mm in the motion to and from neutral and between words (not collision-checked) across the 9 baseline lines.
 - Video library, 32 words: all converted; joint speed at most 15 rad/s.
 - 291 repository tests pass; the only failure, `test_project_overview`, also fails on `master` (doc edits without updated website allow-list hashes) and is unrelated to Group 2.
 

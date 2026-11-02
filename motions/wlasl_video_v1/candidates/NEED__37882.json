@@ -36,13 +36,6 @@
   "finger_speed_limit_rad_s": 10.0,
   "arm_speed_limit_rad_s": 15.0,
   "median_filter_frames": 5,
-  "collision_repair": {
-    "frames_repaired": 29,
-    "penetration_before_m": 0.05266100393299965,
-    "penetration_after_m": 0.0,
-    "max_wrist_shift_m": 0.09767086521603782,
-    "tolerance_m": 0.001
-  },
   "ik_error": {
     "left": {
       "wrist_position_m": {

@@ -61,9 +61,9 @@ Windows 把 `.venv/bin/python` 换成 `.venv\Scripts\python`。完整原型（�
 
 ## 5. 与第三组的衔接
 
-**2026-11-02 起默认使用第三组第 8 轮的规划衔接**（`results/hospital_sentences_20261102_008/render_inputs/<句子>/replay.npz`，7 个多词句）：前面接上第一个词自身从中立姿势抬起的一段（与片段逐帧相同，无跳变），s5、s9 单词句仍用单个片段。`--transitions baseline` 生成基线，输出到 `results/demo/baseline/`，也是对比脚本的参照。第 11 页对比结果见 `results/stitch_compare/group3_round8/`：7 句平均时长 10.5 → 7.9 s，回落次数 3.1 → 2.0，最大穿模 27.9 → 13.5 mm（s6 NURSE→BLOOD-DRAW 70 → 3 mm），RMS jerk 1820 → 1480；但 s6、s7 的回落次数增加，s7（30 mm）、s8（11 mm）的穿模高于基线，来自第三组使用的修复前单词片段。
+**2026-11-02 起默认使用第三组第 8 轮的规划衔接**（`results/hospital_sentences_20261102_008/render_inputs/<句子>/replay.npz`，7 个多词句）：前面接上第一个词自身从中立姿势抬起的一段（与片段逐帧相同，无跳变），s5、s9 单词句仍用单个片段。`--transitions baseline` 生成基线，输出到 `results/demo/baseline/`，也是对比脚本的参照。第 11 页对比结果见 `results/stitch_compare/group3_round8/`：7 句平均时长 10.5 → 7.9 s，回落次数 3.1 → 2.0，最大穿模 39 → 13.8 mm（s1 79 → 19 mm，s6 NURSE→BLOOD-DRAW 70 → 3 mm），RMS jerk 1750 → 1470；s7（33 mm）、s8（11 mm）与基线相同，穿模来自单词本身；s6、s7 的回落次数比基线多。
 
-第三组的规划基于 2026-10-30 的单词片段（提交 `bcdefc4`），其“保护核心”与当时的片段逐位一致；2026-11-01 视频词碰撞修复后，第三组的保护记录按哈希判定为过期（`STALE_USER_PROTECTION_MOTION`），需要第三组在新片段上重新绑定、重跑后才能完全对齐。
+第三组的规划基于 2026-10-30 的单词片段（提交 `bcdefc4`），其“保护核心”按哈希绑定当时的片段。为保持一致，视频词片段保留这个版本：2026-11-01 做过的视频词碰撞修复（最大穿模 92 → 3 mm）已于 2026-11-02 回退，代码保留在 `G1Retargeter.repair_collisions`，由 `scripts/video/retarget_video.py` 的 `COLLISION_REPAIR` 开关控制（当前关闭）。第三组在新片段上重新绑定、重跑后可以再打开。
 
 拼接现在是最简单的基线：每个词裁到 `sign_frames`，词间固定 0.5 秒平滑过渡，词与词之间手臂会短暂下沉。第三组完成衔接方法后，替换 `hospital_demo.py` 里的 `stitch(...)` 调用即可，其余流程不变；基线保留作为“直接回放对照”。
 
@@ -81,7 +81,7 @@ MUJOCO_GL=egl .venv/bin/python scripts/demo/compare_stitching.py <第三组文�
 
 输出 `results/stitch_compare/group3_v1/`：`summary.md`、`summary.json` 和每句的对比图（手腕高度、手臂最大关节速度随时间变化）。指标：格式检查（53 个关节、30 fps、关节限位、耦合、首尾中立）、时长、手臂和手指的峰值与 95 分位速度、手臂 RMS jerk（越小越平滑）、打手语过程中手回落到休息高度的时间比例和次数（基线的“下沉”）、碰撞体最大穿模深度。单个手语自身的下落也会计入“回落”，因此比较两种方法的相对变化，不看绝对值。
 
-基线现状（9 句，2026-11-01 视频词碰撞修复后）：词间的 0.5 秒过渡没有碰撞检查，穿模最大 70 mm（s6 NURSE → BLOOD-DRAW），这是衔接方法最应该改进的地方；打手语阶段最大 19 mm（s1 APPOINTMENT，动作捕捉词已知的手指与手腕重叠），视频词 0–3 mm。修复前视频词打手语阶段最大 41 mm、整段最大 92 mm。
+基线现状（9 句）：词间过渡和回到中立姿势的过程都没有做碰撞检查，穿模最大 79 mm（s1 结尾右手腕与胯部）；打手语阶段最大 41 mm，来自视频词（视频词的滤波和限速在逆运动学之后进行，可能重新引入少量重叠）。这两项都是衔接方法可以改进的地方。
 
 ## 6. 限制
 

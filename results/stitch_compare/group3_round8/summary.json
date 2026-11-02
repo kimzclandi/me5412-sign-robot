@@ -16,10 +16,10 @@
         "arm_speed_max": 25.0,
         "arm_speed_p95": 11.71,
         "finger_speed_max": 21.17,
-        "arm_jerk_rms": 2512.5,
+        "arm_jerk_rms": 2436.9,
         "rest_fraction_in_signing": 0.211,
         "dips_to_rest": 4,
-        "penetration_max_mm": 19.4
+        "penetration_max_mm": 78.7
       },
       "group3_round8": {
         "duration_s": 8.7,
@@ -50,12 +50,12 @@
         "start_from_neutral_rad": 0.0,
         "end_at_neutral_rad": 0.0,
         "arm_speed_max": 15.0,
-        "arm_speed_p95": 5.09,
+        "arm_speed_p95": 4.99,
         "finger_speed_max": 13.71,
-        "arm_jerk_rms": 1292.9,
+        "arm_jerk_rms": 1331.8,
         "rest_fraction_in_signing": 0.218,
         "dips_to_rest": 3,
-        "penetration_max_mm": 40.3
+        "penetration_max_mm": 35.7
       },
       "group3_round8": {
         "duration_s": 7.07,
@@ -86,9 +86,9 @@
         "start_from_neutral_rad": 0.0,
         "end_at_neutral_rad": 0.0,
         "arm_speed_max": 25.0,
-        "arm_speed_p95": 10.04,
+        "arm_speed_p95": 9.11,
         "finger_speed_max": 10.0,
-        "arm_jerk_rms": 1703.4,
+        "arm_jerk_rms": 1619.5,
         "rest_fraction_in_signing": 0.094,
         "dips_to_rest": 4,
         "penetration_max_mm": 22.3
@@ -122,9 +122,9 @@
         "start_from_neutral_rad": 0.0,
         "end_at_neutral_rad": 0.0,
         "arm_speed_max": 15.0,
-        "arm_speed_p95": 9.39,
+        "arm_speed_p95": 9.37,
         "finger_speed_max": 13.71,
-        "arm_jerk_rms": 1646.6,
+        "arm_jerk_rms": 1660.3,
         "rest_fraction_in_signing": 0.307,
         "dips_to_rest": 4,
         "penetration_max_mm": 22.6
@@ -158,9 +158,9 @@
         "start_from_neutral_rad": 0.0,
         "end_at_neutral_rad": 0.0,
         "arm_speed_max": 15.0,
-        "arm_speed_p95": 13.55,
+        "arm_speed_p95": 12.37,
         "finger_speed_max": 18.75,
-        "arm_jerk_rms": 2050.9,
+        "arm_jerk_rms": 1851.6,
         "rest_fraction_in_signing": 0.104,
         "dips_to_rest": 2,
         "penetration_max_mm": 70.2
@@ -194,12 +194,12 @@
         "start_from_neutral_rad": 0.0,
         "end_at_neutral_rad": 0.0,
         "arm_speed_max": 15.0,
-        "arm_speed_p95": 14.23,
+        "arm_speed_p95": 14.99,
         "finger_speed_max": 25.35,
-        "arm_jerk_rms": 2491.8,
+        "arm_jerk_rms": 2325.9,
         "rest_fraction_in_signing": 0.121,
         "dips_to_rest": 2,
-        "penetration_max_mm": 20.5
+        "penetration_max_mm": 32.8
       },
       "group3_round8": {
         "duration_s": 6.33,
@@ -213,10 +213,10 @@
         "arm_speed_max": 15.0,
         "arm_speed_p95": 12.36,
         "finger_speed_max": 16.69,
-        "arm_jerk_rms": 1734.8,
+        "arm_jerk_rms": 1620.4,
         "rest_fraction_in_signing": 0.375,
         "dips_to_rest": 4,
-        "penetration_max_mm": 30.4
+        "penetration_max_mm": 32.8
       }
     },
     "s8": {
@@ -230,12 +230,12 @@
         "start_from_neutral_rad": 0.0,
         "end_at_neutral_rad": 0.0,
         "arm_speed_max": 15.0,
-        "arm_speed_p95": 5.82,
+        "arm_speed_p95": 6.26,
         "finger_speed_max": 13.71,
-        "arm_jerk_rms": 1028.0,
+        "arm_jerk_rms": 1026.5,
         "rest_fraction_in_signing": 0.266,
         "dips_to_rest": 3,
-        "penetration_max_mm": 0.0
+        "penetration_max_mm": 10.8
       },
       "group3_round8": {
         "duration_s": 4.7,
