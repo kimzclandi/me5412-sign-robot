@@ -9,40 +9,41 @@
   ],
   "question": true,
   "gloss_source": "offline_cache",
-  "stitching": "baseline: sign_frames cut + fixed smoothstep blend (scripts/mocap/stitch_baseline.py)",
+  "stitching": "Group 3 round 8 planned transitions (results/hospital_sentences_20261102_008), first word's rise prepended",
+  "stitching_label": "Group 3 planned transitions",
   "transition_s": 0.5,
-  "frames": 350,
-  "duration_s": 11.633,
+  "frames": 262,
+  "duration_s": 8.7,
   "words": [
     {
       "gloss": "HELLO",
       "frames": [
         0,
-        77
+        75
       ],
       "library": "motions/studio_galt_v1"
     },
     {
       "gloss": "YOU",
       "frames": [
-        92,
-        148
+        76,
+        131
       ],
       "library": "motions/studio_galt_v1"
     },
     {
       "gloss": "APPOINTMENT",
       "frames": [
-        163,
-        255
+        132,
+        217
       ],
       "library": "motions/studio_galt_v1"
     },
     {
       "gloss": "HAVE",
       "frames": [
-        270,
-        349
+        218,
+        261
       ],
       "library": "motions/wlasl_video_v1"
     }

@@ -5,7 +5,7 @@
 CANDIDATE_DIR holds one trajectory per scripted line, named like the baseline
 (s1.npz ... s9.npz) in the repository motion format: timestamps_s[T],
 joint_names[53], positions[T,53] in radians at 30 fps. The baseline is
-results/demo/<id>.npz from scripts/demo/hospital_demo.py. Lines missing on
+results/demo/baseline/<id>.npz from hospital_demo.py --all --transitions baseline. Lines missing on
 either side are skipped and listed.
 
 Per line and method: format checks (53 named joints, 30 fps, joint limits,
@@ -27,7 +27,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 from sign_robot.motion import apply_frame, load_model, validate_motion
 
-BASELINE = ROOT / "results/demo"
+BASELINE = ROOT / "results/demo/baseline"
 OUT = ROOT / "results/stitch_compare"
 FPS = 30
 RAISED_M = 0.10  # same threshold as sign_frames: hand at least 10 cm above its lowest point

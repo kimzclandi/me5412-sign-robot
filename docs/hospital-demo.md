@@ -61,6 +61,10 @@ Windows 把 `.venv/bin/python` 换成 `.venv\Scripts\python`。完整原型（�
 
 ## 5. 与第三组的衔接
 
+**2026-11-02 起默认使用第三组第 8 轮的规划衔接**（`results/hospital_sentences_20261102_008/render_inputs/<句子>/replay.npz`，7 个多词句）：前面接上第一个词自身从中立姿势抬起的一段（与片段逐帧相同，无跳变），s5、s9 单词句仍用单个片段。`--transitions baseline` 生成基线，输出到 `results/demo/baseline/`，也是对比脚本的参照。第 11 页对比结果见 `results/stitch_compare/group3_round8/`：7 句平均时长 10.5 → 7.9 s，回落次数 3.1 → 2.0，最大穿模 27.9 → 13.5 mm（s6 NURSE→BLOOD-DRAW 70 → 3 mm），RMS jerk 1820 → 1480；但 s6、s7 的回落次数增加，s7（30 mm）、s8（11 mm）的穿模高于基线，来自第三组使用的修复前单词片段。
+
+第三组的规划基于 2026-10-30 的单词片段（提交 `bcdefc4`），其“保护核心”与当时的片段逐位一致；2026-11-01 视频词碰撞修复后，第三组的保护记录按哈希判定为过期（`STALE_USER_PROTECTION_MOTION`），需要第三组在新片段上重新绑定、重跑后才能完全对齐。
+
 拼接现在是最简单的基线：每个词裁到 `sign_frames`，词间固定 0.5 秒平滑过渡，词与词之间手臂会短暂下沉。第三组完成衔接方法后，替换 `hospital_demo.py` 里的 `stitch(...)` 调用即可，其余流程不变；基线保留作为“直接回放对照”。
 
 **第三组交付格式**（与仓库所有轨迹一致，对上后接入约半小时）：

@@ -10,9 +10,12 @@ Glosses come from Group 1's offline cache of the 9 scripted lines by default, so
 the demo needs no network or API key. --live runs group1_text_to_gloss in a
 subprocess (its package also is named sign_robot) with demo_only, so every gloss
 it accepts has a motion; if the API fails, a cached line is used and labelled as
-such, otherwise nothing is played. Words are joined by the baseline stitcher in
-scripts/mocap/stitch_baseline.py; Group 3's transition method replaces it.
-Output: results/demo/<name>.npz, .json and (with --render) .mp4 with captions.
+such, otherwise nothing is played. Words are joined by Group 3's planned
+transitions (round 8, results/hospital_sentences_20261102_008) when the sentence
+was planned, with the first word's own rise from neutral in front; otherwise, and
+with --transitions baseline, by scripts/mocap/stitch_baseline.py.
+Output: results/demo/<name>.npz, .json and (with --render) .mp4 with captions;
+baseline outputs go to results/demo/baseline/ (the reference of compare_stitching.py).
 """
 from pathlib import Path
 import argparse
@@ -32,7 +35,9 @@ from stitch_baseline import HOSPITAL, stitch
 GROUP1 = ROOT / "group1_text_to_gloss"
 CACHE = GROUP1 / "data/offline/hospital_dialogue_gloss.json"
 OUT = ROOT / "results/demo"
+PLANNED = ROOT / "results/hospital_sentences_20261102_008/render_inputs"  # Group 3, round 8
 FPS = 30
+LABELS = {"group3": "Group 3 planned transitions", "baseline": "baseline stitching"}
 # The four acts of the demo slides (13-16): one patient's visit from registration to discharge.
 ACTS = {"act1_registration": ["s1", "s2"], "act2_consultation": ["s3", "s4", "s5"],
         "act3_treatment": ["s6", "s7"], "act4_discharge": ["s8", "s9"]}
@@ -90,20 +95,51 @@ def name_for(line):
     return line["id"] or "sentence_" + "_".join(line["glosses"])
 
 
-def build(line, transition_s):
+def planned(glosses, spans):
+    """Group 3's planned sentence with the first word's rise from neutral in front, or None if not planned.
+
+    Planned sentences start at the first word's protected core; that frame is taken from the
+    word clip itself, so the clip's own frames up to it join without a jump."""
+    folder = PLANNED / "__".join(glosses)
+    if not (folder / "replay.npz").exists():
+        return None
+    with np.load(folder / "replay.npz") as f:
+        motion = {k: f[k] for k in ("timestamps_s", "joint_names", "positions")}
+    first = next(g for g in json.loads(HOSPITAL.read_text())["glosses"] if g["gloss"] == glosses[0])
+    with np.load(ROOT / first["motion"]) as clip:
+        assert [str(n) for n in clip["joint_names"]] == [str(n) for n in motion["joint_names"]]
+        rise = clip["positions"]
+    q = motion["positions"]
+    k = int(np.abs(rise - q[0]).max(axis=1).argmin())
+    if np.abs(rise[k] - q[0]).max() > 1e-6:
+        raise ValueError(f"{folder.name}: first frame is not a frame of the {glosses[0]} clip")
+    q = np.vstack([rise[:k], q])
+    plan = json.loads((folder / "render_plan.json").read_text())
+    starts = [0] + [c["replay_frames"][0] + k for c in plan["protected_instance_video_checks"][1:]] + [len(q)]
+    spans += [(g, a, b - 1) for g, a, b in zip(glosses, starts, starts[1:])]
+    return {"timestamps_s": np.arange(len(q)) / FPS, "joint_names": motion["joint_names"], "positions": q}
+
+
+def build(line, transition_s, transitions="group3"):
     spans = []
-    motion = stitch(line["glosses"], transition_s, spans)
+    motion = planned(line["glosses"], spans) if transitions == "group3" else None
+    method = "group3" if motion is not None else "baseline"
+    if motion is None:
+        motion = stitch(line["glosses"], transition_s, spans)
     validate_motion(motion)
     library = {g["gloss"]: g.get("library") for g in json.loads(HOSPITAL.read_text())["glosses"]}
-    OUT.mkdir(parents=True, exist_ok=True)
+    out = OUT if transitions == "group3" else OUT / "baseline"
+    out.mkdir(parents=True, exist_ok=True)
     name = name_for(line)
-    np.savez_compressed(OUT / f"{name}.npz", **motion)
-    meta = dict(line, stitching="baseline: sign_frames cut + fixed smoothstep blend (scripts/mocap/stitch_baseline.py)",
+    np.savez_compressed(out / f"{name}.npz", **motion)
+    stitching = {"group3": "Group 3 round 8 planned transitions (results/hospital_sentences_20261102_008), first word's rise prepended",
+                 "baseline": "baseline: sign_frames cut + fixed smoothstep blend (scripts/mocap/stitch_baseline.py)"}[method]
+    meta = dict(line, stitching=stitching, stitching_label=LABELS[method],
                 transition_s=transition_s, frames=len(motion["timestamps_s"]),
                 duration_s=round(float(motion["timestamps_s"][-1]), 3),
                 words=[{"gloss": g, "frames": [a, b], "library": library.get(g)} for g, a, b in spans],
                 note="Candidate robot signing, not reviewed by ASL users; video-derived words are approximate.")
-    (OUT / f"{name}.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n")
+    (out / f"{name}.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n")
     return motion, meta
 
 
@@ -136,7 +172,7 @@ def render(motion, meta, out):
             for k, word in enumerate(meta["words"]):
                 draw.text((x, 676), word["gloss"], font=big, fill=(255, 210, 60) if k == active else (150, 150, 150))
                 x += draw.textlength(word["gloss"], font=big) + 22
-            draw.text((16, 60), f"gloss: {meta['gloss_source']} | stitching: baseline | not ASL-reviewed",
+            draw.text((16, 60), f"gloss: {meta['gloss_source']} | {meta['stitching_label']} | not ASL-reviewed",
                       font=small, fill=(230, 230, 230))
             writer.append_data(np.asarray(image))
 
@@ -169,31 +205,34 @@ def main():
     which.add_argument("--all", action="store_true", help="all scripted lines in the offline cache")
     which.add_argument("--acts", action="store_true", help="all lines plus one video per demo act (implies --render)")
     parser.add_argument("--live", action="store_true", help="call Group 1's Gemini module (needs network and group1_text_to_gloss/.env)")
-    parser.add_argument("--transition", type=float, default=0.5, help="blend seconds between words")
+    parser.add_argument("--transitions", choices=["group3", "baseline"], default="group3",
+                        help="Group 3's planned transitions where available (default), or the baseline stitching")
+    parser.add_argument("--transition", type=float, default=0.5, help="baseline blend seconds between words")
     parser.add_argument("--render", action="store_true", help="write a captioned .mp4")
     parser.add_argument("--view", action="store_true", help="play in the interactive MuJoCo viewer")
     args = parser.parse_args()
     args.render = args.render or args.acts
     batch = args.all or args.acts
     keys = [l["id"] for l in cached_lines()] if batch else [args.line or args.sentence]
+    out = OUT if args.transitions == "group3" else OUT / "baseline"
     for key in keys:
         line = resolve(key, args.live and not batch)
-        motion, meta = build(line, args.transition)
+        motion, meta = build(line, args.transition, args.transitions)
         name = name_for(line)
-        print(f"{name}: {meta['sentence']!r} -> {' '.join(line['glosses'])} [{line['gloss_source']}], "
-              f"{meta['frames']} frames, {meta['duration_s']:.1f} s -> {OUT / name}.npz")
+        print(f"{name}: {meta['sentence']!r} -> {' '.join(line['glosses'])} [{line['gloss_source']}; {meta['stitching_label']}], "
+              f"{meta['frames']} frames, {meta['duration_s']:.1f} s -> {out / name}.npz")
         if args.render:
-            render(motion, meta, OUT / f"{name}.mp4")
-            print(f"  wrote {OUT / name}.mp4")
+            render(motion, meta, out / f"{name}.mp4")
+            print(f"  wrote {out / name}.mp4")
         if args.view:
             view(motion)
     if batch and args.render:
-        concat([OUT / f"{key}.mp4" for key in keys], OUT / "hospital_dialogue.mp4")
-        print(f"wrote {OUT / 'hospital_dialogue.mp4'}")
+        concat([out / f"{key}.mp4" for key in keys], out / "hospital_dialogue.mp4")
+        print(f"wrote {out / 'hospital_dialogue.mp4'}")
     if args.acts:
         for act, ids in ACTS.items():
-            concat([OUT / f"{key}.mp4" for key in ids], OUT / f"{act}.mp4")
-            print(f"wrote {OUT / act}.mp4 ({', '.join(ids)})")
+            concat([out / f"{key}.mp4" for key in ids], out / f"{act}.mp4")
+            print(f"wrote {out / act}.mp4 ({', '.join(ids)})")
 
 
 def concat(paths, out, gap_s=1.0):

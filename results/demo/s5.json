@@ -7,6 +7,7 @@
   "question": false,
   "gloss_source": "offline_cache",
   "stitching": "baseline: sign_frames cut + fixed smoothstep blend (scripts/mocap/stitch_baseline.py)",
+  "stitching_label": "baseline stitching",
   "transition_s": 0.5,
   "frames": 139,
   "duration_s": 4.6,

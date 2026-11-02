@@ -57,3 +57,17 @@ def test_demo_acts_cover_every_scripted_line_once_in_order():
     ids = [key for act in demo.ACTS.values() for key in act]
     assert ids == [l["id"] for l in demo.cached_lines()]
     assert list(demo.ACTS) == ["act1_registration", "act2_consultation", "act3_treatment", "act4_discharge"]
+
+
+def test_group3_sentence_starts_at_neutral_and_single_words_use_baseline(tmp_path, monkeypatch):
+    monkeypatch.setattr(demo, "OUT", tmp_path)
+    motion, meta = demo.build(demo.from_cache("s4"), 0.5)
+    base, _ = demo.build(demo.from_cache("s4"), 0.5, "baseline")
+    assert meta["stitching_label"] == "Group 3 planned transitions"
+    assert np.allclose(motion["positions"][0], base["positions"][0])  # rise from the same neutral pose
+    assert np.allclose(motion["positions"][-1], base["positions"][-1])
+    assert np.abs(np.diff(motion["positions"], axis=0)).max() * demo.FPS <= 25.0 + 1e-6  # no jump at the join
+    assert [w["gloss"] for w in meta["words"]] == ["YOU", "HURT", "WHERE"]
+    assert (tmp_path / "s4.npz").exists() and (tmp_path / "baseline/s4.npz").exists()
+    _, single = demo.build(demo.from_cache("s5"), 0.5)
+    assert single["stitching_label"] == "baseline stitching"

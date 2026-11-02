@@ -61,6 +61,10 @@ Measured 2026-10-31: all 9 lines correct online, most in 1–2 s, one request re
 
 ## 5. Hand-off to Group 3
 
+**Since 2026-11-02 the demo uses Group 3's round-8 planned transitions by default** (`results/hospital_sentences_20261102_008/render_inputs/<sentence>/replay.npz`, 7 multi-word lines): the first word's own rise from neutral is put in front (frame-identical to the clip, no jump), and the single-word lines s5 and s9 still use one clip. `--transitions baseline` writes the baseline to `results/demo/baseline/`, which is also the comparison script's reference. Slide 11 results are in `results/stitch_compare/group3_round8/`: over the 7 lines, mean duration 10.5 → 7.9 s, dips to rest 3.1 → 2.0, max penetration 27.9 → 13.5 mm (s6 NURSE→BLOOD-DRAW 70 → 3 mm), RMS jerk 1820 → 1480; but s6 and s7 dip more often, and s7 (30 mm) and s8 (11 mm) penetrate more than the baseline, from the pre-repair word clips Group 3 used.
+
+Group 3 planned on the word clips of 2026-10-30 (commit `bcdefc4`), and their "protected cores" match those clips bit for bit. After the 2026-11-01 collision repair of video words, Group 3's protection records are stale by hash (`STALE_USER_PROTECTION_MOTION`); Group 3 would need to rebind and re-run on the new clips to be fully aligned.
+
 Stitching is currently the simplest baseline: each word cut to `sign_frames`, a fixed 0.5 s smooth blend between words, so the arms dip briefly between words. When Group 3's transition method is ready, replace the `stitch(...)` call in `hospital_demo.py`; the rest of the pipeline stays the same, and the baseline remains the "direct playback" comparison.
 
 **Group 3 delivery format** (same as every trajectory in the repository; once it matches, integration takes about half an hour):
