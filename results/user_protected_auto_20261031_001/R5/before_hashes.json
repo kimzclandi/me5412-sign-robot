@@ -1,0 +1,5 @@
+{
+  "src/sign_robot/pair_verification_v2.py": "497525af11b9af9c937d209a7515fdb3466db56fb00309d091551482e1af579c",
+  "src/sign_robot/pair_runner_v2.py": "836713225453de3b8b617f624f289e1dc27c702ad45fda526aa2455c73646142",
+  "tests/test_user_protected_verification.py": null
+}

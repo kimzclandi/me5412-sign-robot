@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "NEED__HELLO",
+    "NEED__PLEASE",
+    "NEED__THANK-YOU",
+    "NEED__SORRY",
+    "NEED__YES",
+    "NEED__NO",
+    "NEED__YOU",
+    "NEED__YOUR",
+    "NEED__ME",
+    "NEED__DEAF",
+    "NEED__DOCTOR",
+    "NEED__NURSE",
+    "NEED__INTERPRETER",
+    "NEED__APPOINTMENT",
+    "NEED__MEDICINE",
+    "NEED__STOMACH"
+  ]
+}

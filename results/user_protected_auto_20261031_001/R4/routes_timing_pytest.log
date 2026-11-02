@@ -1,0 +1,53 @@
+FF.F.................................................................... [ 72%]
+............................                                             [100%]
+=================================== FAILURES ===================================
+_ test_real_direct_candidate_matches_original_boundary_and_two_protected_instances[COME-NOW] _
+
+actual = PairContextV2(root=PosixPath('/tmp/me5412_auto_cuts_20261031_001/repository'), policy={'schema_version': 2, 'policy_id..."retiming_allowed": false, "user_interval_s": [0.13, 3.37], "user_interval_text": "0.13～3.37 秒"}')}, input_blockers=[])
+source = 'COME', target = 'NOW'
+
+    @pytest.mark.parametrize('source,target',[('COME','NOW'),('NOW','COME'),('COME','COME'),('NOW','NOW')])
+    def test_real_direct_candidate_matches_original_boundary_and_two_protected_instances(actual,source,target):
+        stream = iter_deterministic_attempts_v2(actual,source,target,seed=5412)
+        screen = next(stream)
+        assert screen.diagnostic['event'] == 'algorithm_window_screen'
+        attempt = next((a for a in itertools.islice(stream,24) if a.trajectory is not None),None)
+>       assert attempt is not None
+E       assert None is not None
+
+tests/test_user_protected_routes.py:26: AssertionError
+_ test_real_direct_candidate_matches_original_boundary_and_two_protected_instances[NOW-COME] _
+
+actual = PairContextV2(root=PosixPath('/tmp/me5412_auto_cuts_20261031_001/repository'), policy={'schema_version': 2, 'policy_id..."retiming_allowed": false, "user_interval_s": [0.13, 3.37], "user_interval_text": "0.13～3.37 秒"}')}, input_blockers=[])
+source = 'NOW', target = 'COME'
+
+    @pytest.mark.parametrize('source,target',[('COME','NOW'),('NOW','COME'),('COME','COME'),('NOW','NOW')])
+    def test_real_direct_candidate_matches_original_boundary_and_two_protected_instances(actual,source,target):
+        stream = iter_deterministic_attempts_v2(actual,source,target,seed=5412)
+        screen = next(stream)
+        assert screen.diagnostic['event'] == 'algorithm_window_screen'
+        attempt = next((a for a in itertools.islice(stream,24) if a.trajectory is not None),None)
+>       assert attempt is not None
+E       assert None is not None
+
+tests/test_user_protected_routes.py:26: AssertionError
+_ test_real_direct_candidate_matches_original_boundary_and_two_protected_instances[NOW-NOW] _
+
+actual = PairContextV2(root=PosixPath('/tmp/me5412_auto_cuts_20261031_001/repository'), policy={'schema_version': 2, 'policy_id..."retiming_allowed": false, "user_interval_s": [0.13, 3.37], "user_interval_text": "0.13～3.37 秒"}')}, input_blockers=[])
+source = 'NOW', target = 'NOW'
+
+    @pytest.mark.parametrize('source,target',[('COME','NOW'),('NOW','COME'),('COME','COME'),('NOW','NOW')])
+    def test_real_direct_candidate_matches_original_boundary_and_two_protected_instances(actual,source,target):
+        stream = iter_deterministic_attempts_v2(actual,source,target,seed=5412)
+        screen = next(stream)
+        assert screen.diagnostic['event'] == 'algorithm_window_screen'
+        attempt = next((a for a in itertools.islice(stream,24) if a.trajectory is not None),None)
+>       assert attempt is not None
+E       assert None is not None
+
+tests/test_user_protected_routes.py:26: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_user_protected_routes.py::test_real_direct_candidate_matches_original_boundary_and_two_protected_instances[COME-NOW]
+FAILED tests/test_user_protected_routes.py::test_real_direct_candidate_matches_original_boundary_and_two_protected_instances[NOW-COME]
+FAILED tests/test_user_protected_routes.py::test_real_direct_candidate_matches_original_boundary_and_two_protected_instances[NOW-NOW]
+3 failed, 97 passed in 81.29s (0:01:21)

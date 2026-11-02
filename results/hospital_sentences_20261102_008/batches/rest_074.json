@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "NIGHT__LATER",
+    "NIGHT__TOMORROW",
+    "NIGHT__MORNING",
+    "NIGHT__NIGHT",
+    "NIGHT__WHERE",
+    "WHERE__HELLO",
+    "WHERE__PLEASE",
+    "WHERE__THANK-YOU",
+    "WHERE__SORRY",
+    "WHERE__YES",
+    "WHERE__NO",
+    "WHERE__YOU",
+    "WHERE__YOUR",
+    "WHERE__ME",
+    "WHERE__DEAF",
+    "WHERE__DOCTOR"
+  ]
+}

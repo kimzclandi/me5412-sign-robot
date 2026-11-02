@@ -1,0 +1,288 @@
+{
+  "task_id": "P1-8",
+  "source": "/home/kingderman/Documents/ME5412-github-latest",
+  "identity": {
+    "library_version": "hospital_v1@39ba7e88ff8645aafdd3000f75db8e5a1deaff324ccc7e0155a3a68afc98ae71",
+    "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+    "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+    "code_hash": "a490b730dd6b1b00fd1552d1d1d7399193cb933543b7996ec35c2036cd8adde0",
+    "policy_hash": "7b73c2946fcd348272e899ae71ad536bd4359ede69fdced7c5e47d2da36917ae",
+    "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+    "identity_hash": "22f3e2fb960c67080842731f407c47cea8b5c06aa1b359b124cf6ce0b1bd2cad"
+  },
+  "endpoints": {
+    "strategy": "approved_core_windows_v2",
+    "window_version": "hospital_v1-core-windows-v2-pending",
+    "review_status": "pending",
+    "approval_file": null,
+    "approval_bundle_sha256": null
+  },
+  "quality": {
+    "freeze_status": "pending",
+    "limits": {
+      "velocity_jump_arm_rad_s": 1e-05,
+      "velocity_jump_finger_rad_s": 1e-05,
+      "acceleration_jump_arm_rad_s2": 0.0001,
+      "acceleration_jump_finger_rad_s2": 0.0001,
+      "peak_acceleration_rad_s2": 120.0,
+      "peak_jerk_rad_s3": 3000.0,
+      "jerk_integral_rad2_s5": 1000000.0,
+      "maximum_transition_duration_s": 6.0
+    },
+    "approval_evidence": null,
+    "boundary_method": "linear_replay_one_sided_v2",
+    "full_clip_method": "finite_difference_30hz_and_analytic_connector_v2"
+  },
+  "validation": {
+    "dense_factors": [
+      1,
+      2,
+      4
+    ],
+    "maximum_step_rad": 0.04,
+    "maximum_time_step_s": 0.008333333333333333,
+    "max_sampled_poses": 65536,
+    "max_native_collision_calls": 327680,
+    "max_subdivision_depth": 16,
+    "wall_time_s": 30.0,
+    "approval_status": "pending",
+    "approval_evidence": null,
+    "continuous_collision_certified": false,
+    "scope": "native_moving_non_same_hand_v2"
+  },
+  "formal_acceptance_enabled": false,
+  "input_errors": [],
+  "approval_count": 0,
+  "approval_error": {
+    "type": "WindowApprovalError",
+    "code": "MISSING_APPROVAL_BUNDLE",
+    "details": "No actual group-2 review bundle is configured"
+  },
+  "motion_hash_comparison": [
+    {
+      "gloss": "HELLO",
+      "path": "motions/studio_galt_v1/HELLO.npz",
+      "sha256": "d26edc80c22c222c72afc2973746199de03245b9cdae040400c1fec8587f636a",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "PLEASE",
+      "path": "motions/studio_galt_v1/PLEASE.npz",
+      "sha256": "644c8699d245751fca2944b3dc57fb700c789dcf42a628fcd74fa7ee8f31166f",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "THANK-YOU",
+      "path": "motions/wlasl_video_v1/THANK-YOU.npz",
+      "sha256": "040c0cdea15d58744d32563d111ab2c85cd49293dda78c3183ff4225fe40818d",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "SORRY",
+      "path": "motions/wlasl_video_v1/SORRY.npz",
+      "sha256": "4404913c8cad98430d4a0cd7c94ef5b18adf46e06c9b86ec598c3dfba9bbff2e",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "YES",
+      "path": "motions/wlasl_video_v1/YES.npz",
+      "sha256": "dd29f2430c76ef96a4530147def04625283f30ff057b588b8cbe95a080eedefe",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "NO",
+      "path": "motions/wlasl_video_v1/NO.npz",
+      "sha256": "4c8af90a878fc4d0919a8d8f2bed4270b9beada6eb632b3c7c04518c714c7247",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "YOU",
+      "path": "motions/studio_galt_v1/YOU.npz",
+      "sha256": "ab42f2abccc3ad7275cb99fb518cd01627cfca5eb25664b95d2713abfb47649f",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "YOUR",
+      "path": "motions/wlasl_video_v1/YOUR.npz",
+      "sha256": "7e0b5dbdad5ccdbcd514129851de0f38ad6cdf3b3081ea3c5d1b14a43db98e6c",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "ME",
+      "path": "motions/wlasl_video_v1/ME.npz",
+      "sha256": "7470dbf5e39cf402c5bc16187646beab2f0d2ea4335b5ed61002b05b814c3d0c",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "DEAF",
+      "path": "motions/wlasl_video_v1/DEAF.npz",
+      "sha256": "073f5453e484f9a63c445f8fdfabcf85679b9d04b28f972fe651841cb9b4d908",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "DOCTOR",
+      "path": "motions/wlasl_video_v1/DOCTOR.npz",
+      "sha256": "639f93c6b9c6985e8a898a1a8f7a438584e94ab61f353a10823490b252364461",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "NURSE",
+      "path": "motions/wlasl_video_v1/NURSE.npz",
+      "sha256": "f75945f059ef18a5f8888c9499e9160ada02ad9aea5a37f2850fb9a4f4dd391f",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "INTERPRETER",
+      "path": "motions/wlasl_video_v1/INTERPRETER.npz",
+      "sha256": "3a159a8bd9af71563d85fe25cf69dbf7dc8d62dcd1b76ac2fdee0e099495662c",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "APPOINTMENT",
+      "path": "motions/studio_galt_v1/APPOINTMENT.npz",
+      "sha256": "a9ea24fd8be9e6044413a975f97bb8bd5619a54b25c3118c588605100883cdc2",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "MEDICINE",
+      "path": "motions/wlasl_video_v1/MEDICINE.npz",
+      "sha256": "b8c5e0b7ade5c7a30c19d0cb8f938214956e69754087bbb42889d3f0f2f7bfa6",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "STOMACH",
+      "path": "motions/wlasl_video_v1/STOMACH.npz",
+      "sha256": "23bb66ab1be21b944e11f6e599a2044b3e37636c1ce0ed109d04e6e3fe6d37e0",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "HEADACHE",
+      "path": "motions/wlasl_video_v1/HEADACHE.npz",
+      "sha256": "485f8cdef5773472c983a45f684096f4b55b11204cf0f30848f4dcbab6eb13ee",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "HAVE",
+      "path": "motions/wlasl_video_v1/HAVE.npz",
+      "sha256": "0991bf7c0d0406c9c3e4049ea4b4ee1502a20a483a764b8cede54e2e1a8e4867",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "NEED",
+      "path": "motions/wlasl_video_v1/NEED.npz",
+      "sha256": "c4ab9fc0ea73c2378b17eaf197ff46a2c5dbd937e22d84b99c11b3ed6e18c173",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "WAIT",
+      "path": "motions/wlasl_video_v1/WAIT.npz",
+      "sha256": "d02a3d7b07708ab4fd772ec6aa91ffdc10b5fcfaff7b3e79c703cac7c660a579",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "COME",
+      "path": "motions/studio_galt_v1/COME.npz",
+      "sha256": "75d6455408ce6584043baedbd0e049cbeabcad534eda65ef561d2c7293b477a4",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "HURT",
+      "path": "motions/wlasl_video_v1/HURT.npz",
+      "sha256": "a17641061df3e08fab2a5178950c71cae01edca2791072e029590a2ae892e09d",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "BREATHE-DEEP",
+      "path": "motions/studio_galt_v1/BREATHE-DEEP.npz",
+      "sha256": "b6d48bc7d01c0382ef8b3e3c449e0f8b5c8e2c046598b6eb0327c1ac41b70b16",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "BLOOD-DRAW",
+      "path": "motions/studio_galt_v1/BLOOD-DRAW.npz",
+      "sha256": "3a73dd8df7e4a925bf4a8d83bf4e101c009e784f1c28f0ee1255f44bf97da964",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "TAKE",
+      "path": "motions/studio_galt_v1/TAKE.npz",
+      "sha256": "d8d8d6f16ef1c3d388c5dd3582a912148d19d7bf90998f0afcbffea894a5167e",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "UNDERSTAND",
+      "path": "motions/wlasl_video_v1/UNDERSTAND.npz",
+      "sha256": "e50fee8ab9342dc6005a8cfd90ecf69d9ef90dbed3d347f76b9994e9aad58e3a",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "WRITE",
+      "path": "motions/wlasl_video_v1/WRITE.npz",
+      "sha256": "a93d1bc2c5e9cea4ec0edaf7480acc75c9eea059f772117b461127468d57c124",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "NOT",
+      "path": "motions/wlasl_video_v1/NOT.npz",
+      "sha256": "13b8b2c32a83d761114348853b458af71c4a74b9ef0d4ec08c00eb3ee8c810cf",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "NOW",
+      "path": "motions/wlasl_video_v1/NOW.npz",
+      "sha256": "2d494c13fdf1b44bb11e97004e7b212ea5c45b7b0f8d0b972bd3589ae63e15e3",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "SOON",
+      "path": "motions/wlasl_video_v1/SOON.npz",
+      "sha256": "0fe325e7186b5ddd21072d7d7f967eea7bf153f004ecf9d943d33fcd23dd6e97",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "LATER",
+      "path": "motions/wlasl_video_v1/LATER.npz",
+      "sha256": "b9722ab602e38fab95fc5b7e0c5e9a4c6eeeb9b9924675af4b77451d2deab3a8",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "TOMORROW",
+      "path": "motions/wlasl_video_v1/TOMORROW.npz",
+      "sha256": "0228a0538c2007b1bb770b18207323a5c8413f999f4146e1f910559f011a934b",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "MORNING",
+      "path": "motions/wlasl_video_v1/MORNING.npz",
+      "sha256": "88874e76d81466a7141badf0aa2a5bf98319036d76771a9c39f9b83609ad47f6",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "NIGHT",
+      "path": "motions/wlasl_video_v1/NIGHT.npz",
+      "sha256": "20dece3ae28795bfa9321f4922c3291efc0e979deab9f77f4c314ca9d8a8c4cd",
+      "matches_preserved_baseline": true
+    },
+    {
+      "gloss": "WHERE",
+      "path": "motions/studio_galt_v1/WHERE.npz",
+      "sha256": "187ee5ade8ecac185776511354022e32707035c3d277c71b739a710e4aa8a2e2",
+      "matches_preserved_baseline": true
+    }
+  ],
+  "returned_repairs_detected": false,
+  "missing_dependencies": [
+    "actual_group2_hash_bound_core_and_window_bundle_for_35_words",
+    "group2_repaired_motion_assets_and_reaudit_or_version_bound_dispositions",
+    "actual_quality_caps_and_linear_replay_derivative_scope_approval",
+    "actual_collision_filter_coverage_and_validation_budget_approval",
+    "actual_version_bound_nurse_f80_exception_decision"
+  ],
+  "state": "BLOCKED_EXTERNAL_APPROVALS",
+  "next_tasks_not_executed": [
+    "P1-9",
+    "P2-1",
+    "P2-2",
+    "P2-3"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "file": "results/user_protected_auto_20261031_001/runs/user_protected_pilot_20261031_001/candidates/COME__COME/attempt_00002.json",
+      "policy_version": 2,
+      "status": "ERROR",
+      "details": {
+        "type": "ValueError",
+        "message": "Saved trajectory identity differs from fresh frozen inputs"
+      }
+    },
+    {
+      "file": "results/user_protected_correction_20261031_001/runs/user_protected_corrected_pilot_20261031_001/candidates/COME__COME/attempt_00002.json",
+      "policy_version": 1,
+      "status": "ERROR",
+      "details": {
+        "type": "ValueError",
+        "message": "Saved trajectory identity differs from fresh frozen inputs"
+      }
+    }
+  ]
+}

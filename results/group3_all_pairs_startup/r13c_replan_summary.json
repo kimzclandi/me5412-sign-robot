@@ -1,0 +1,154 @@
+{
+  "scope": "legacy R13c fixed ten sentences; separate from all-pairs PASS_SIM",
+  "totals": {
+    "transition_count": 19,
+    "pass_count": 19,
+    "source_near_count": 0,
+    "failed_count": 0,
+    "needs_group2_fix_count": 0
+  },
+  "nurse_f80_approval": "pending",
+  "raw_report": {
+    "path": "results/all_pairs/r13c_baseline_20261031/report.json",
+    "sha256": "04133fa578668e3072af260b38c8153c28dc5f60b0c6f1d0e5ab79dffbb3326b",
+    "bytes": 11720065
+  },
+  "sentences": [
+    {
+      "glosses": [
+        "HELLO",
+        "YOU",
+        "APPOINTMENT",
+        "HAVE"
+      ],
+      "status": "PASS",
+      "transition_count": 3,
+      "methods": [
+        "direct",
+        "via1",
+        "direct"
+      ],
+      "output_npz": "results/all_pairs/r13c_baseline_20261031/trajectories/planned_sentence_HELLO_YOU_APPOINTMENT_HAVE.npz"
+    },
+    {
+      "glosses": [
+        "MEDICINE",
+        "MORNING",
+        "NIGHT",
+        "TAKE"
+      ],
+      "status": "PASS",
+      "transition_count": 3,
+      "methods": [
+        "via2",
+        "via2",
+        "direct"
+      ],
+      "output_npz": "results/all_pairs/r13c_baseline_20261031/trajectories/planned_sentence_MEDICINE_MORNING_NIGHT_TAKE.npz"
+    },
+    {
+      "glosses": [
+        "NOW",
+        "NURSE",
+        "BLOOD-DRAW"
+      ],
+      "status": "PASS",
+      "transition_count": 2,
+      "methods": [
+        "via2",
+        "rrt_connect"
+      ],
+      "output_npz": "results/all_pairs/r13c_baseline_20261031/trajectories/planned_sentence_NOW_NURSE_BLOOD-DRAW.npz"
+    },
+    {
+      "glosses": [
+        "PLEASE",
+        "WAIT",
+        "DOCTOR",
+        "COME",
+        "SOON"
+      ],
+      "status": "PASS",
+      "transition_count": 4,
+      "methods": [
+        "via2",
+        "via1",
+        "via2",
+        "direct"
+      ],
+      "output_npz": "results/all_pairs/r13c_baseline_20261031/trajectories/planned_sentence_PLEASE_WAIT_DOCTOR_COME_SOON.npz"
+    },
+    {
+      "glosses": [
+        "YOU",
+        "BUY",
+        "BOOK"
+      ],
+      "status": "PASS",
+      "transition_count": 2,
+      "methods": [
+        "via1",
+        "direct"
+      ],
+      "output_npz": "results/all_pairs/r13c_baseline_20261031/trajectories/planned_sentence_YOU_BUY_BOOK.npz"
+    },
+    {
+      "glosses": [
+        "YOU",
+        "HURT",
+        "WHERE"
+      ],
+      "status": "PASS",
+      "transition_count": 2,
+      "methods": [
+        "direct",
+        "direct"
+      ],
+      "output_npz": "results/all_pairs/r13c_baseline_20261031/trajectories/planned_sentence_YOU_HURT_WHERE.npz"
+    },
+    {
+      "glosses": [
+        "YOU",
+        "NEED",
+        "INTERPRETER"
+      ],
+      "status": "PASS",
+      "transition_count": 2,
+      "methods": [
+        "via1",
+        "via2"
+      ],
+      "output_npz": "results/all_pairs/r13c_baseline_20261031/trajectories/planned_sentence_YOU_NEED_INTERPRETER.npz"
+    },
+    {
+      "glosses": [
+        "YOU",
+        "UNDERSTAND"
+      ],
+      "status": "PASS",
+      "transition_count": 1,
+      "methods": [
+        "direct"
+      ],
+      "output_npz": "results/all_pairs/r13c_baseline_20261031/trajectories/planned_sentence_YOU_UNDERSTAND.npz"
+    },
+    {
+      "glosses": [
+        "BREATHE-DEEP"
+      ],
+      "status": "PASS",
+      "transition_count": 0,
+      "methods": [],
+      "output_npz": "results/all_pairs/r13c_baseline_20261031/trajectories/planned_sentence_BREATHE-DEEP.npz"
+    },
+    {
+      "glosses": [
+        "THANK-YOU"
+      ],
+      "status": "PASS",
+      "transition_count": 0,
+      "methods": [],
+      "output_npz": "results/all_pairs/r13c_baseline_20261031/trajectories/planned_sentence_THANK-YOU.npz"
+    }
+  ]
+}

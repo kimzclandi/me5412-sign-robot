@@ -1,0 +1,310 @@
+{
+ "old": {
+  "COME__NOW": {
+   "attempts": 17,
+   "candidates": 7,
+   "numerical_pass": 7,
+   "selected": "attempt_00016",
+   "method": "rrt_connect",
+   "finger": "synchronous",
+   "source_frames": [
+    [
+     27,
+     132
+    ],
+    [
+     2,
+     76
+    ]
+   ],
+   "protected": [
+    [
+     27,
+     132
+    ],
+    [
+     3,
+     76
+    ]
+   ],
+   "transition_s": [
+    3.5,
+    4.2333
+   ],
+   "total_s": 6.7,
+   "peak_acc": 21.34,
+   "peak_jerk": 214.0,
+   "region_integral": 61674,
+   "analytic_integral": 824671,
+   "clearance_mm": 7.616
+  },
+  "NOW__COME": {
+   "attempts": 27,
+   "candidates": 18,
+   "numerical_pass": 18,
+   "selected": "attempt_00013",
+   "method": "ik_via2",
+   "finger": "early",
+   "source_frames": [
+    [
+     3,
+     76
+    ],
+    [
+     27,
+     132
+    ]
+   ],
+   "protected": [
+    [
+     3,
+     76
+    ],
+    [
+     27,
+     132
+    ]
+   ],
+   "transition_s": [
+    2.4333,
+    4.8333
+   ],
+   "total_s": 8.3333,
+   "peak_acc": 31.83,
+   "peak_jerk": 315.3,
+   "region_integral": 253348,
+   "analytic_integral": 387259,
+   "clearance_mm": 8.085
+  },
+  "COME__COME": {
+   "attempts": 23,
+   "candidates": 13,
+   "numerical_pass": 13,
+   "selected": "attempt_00003",
+   "method": "direct",
+   "finger": "early",
+   "source_frames": [
+    [
+     27,
+     132
+    ],
+    [
+     27,
+     132
+    ]
+   ],
+   "protected": [
+    [
+     27,
+     132
+    ],
+    [
+     27,
+     132
+    ]
+   ],
+   "transition_s": [
+    3.5,
+    4.2333
+   ],
+   "total_s": 7.7333,
+   "peak_acc": 40.65,
+   "peak_jerk": 442.6,
+   "region_integral": 254410,
+   "analytic_integral": 469770,
+   "clearance_mm": 4.711
+  },
+  "NOW__NOW": {
+   "attempts": 18,
+   "candidates": 8,
+   "numerical_pass": 8,
+   "selected": "attempt_00015",
+   "method": "rrt_connect",
+   "finger": "late",
+   "source_frames": [
+    [
+     3,
+     76
+    ],
+    [
+     3,
+     76
+    ]
+   ],
+   "protected": [
+    [
+     3,
+     76
+    ],
+    [
+     3,
+     76
+    ]
+   ],
+   "transition_s": [
+    2.4333,
+    3.4333
+   ],
+   "total_s": 5.8667,
+   "peak_acc": 28.6,
+   "peak_jerk": 269.4,
+   "region_integral": 162443,
+   "analytic_integral": 580753,
+   "clearance_mm": 4.418
+  }
+ },
+ "new": {
+  "COME__NOW": {
+   "attempts": 31,
+   "candidates": 20,
+   "numerical_pass": 20,
+   "selected": "attempt_00009",
+   "method": "neutral",
+   "finger": "early",
+   "source_frames": [
+    [
+     27,
+     132
+    ],
+    [
+     27,
+     51
+    ]
+   ],
+   "protected": [
+    [
+     27,
+     132
+    ],
+    [
+     27,
+     51
+    ]
+   ],
+   "transition_s": [
+    3.5,
+    5.3667
+   ],
+   "total_s": 6.1667,
+   "peak_acc": 25.7,
+   "peak_jerk": 233.5,
+   "region_integral": 237120,
+   "analytic_integral": 382099,
+   "clearance_mm": 3.993
+  },
+  "NOW__COME": {
+   "attempts": 27,
+   "candidates": 18,
+   "numerical_pass": 18,
+   "selected": "attempt_00013",
+   "method": "ik_via2",
+   "finger": "synchronous",
+   "source_frames": [
+    [
+     27,
+     51
+    ],
+    [
+     27,
+     132
+    ]
+   ],
+   "protected": [
+    [
+     27,
+     51
+    ],
+    [
+     27,
+     132
+    ]
+   ],
+   "transition_s": [
+    0.8,
+    2.3667
+   ],
+   "total_s": 5.8667,
+   "peak_acc": 29.67,
+   "peak_jerk": 279.0,
+   "region_integral": 322229,
+   "analytic_integral": 485712,
+   "clearance_mm": 9.251
+  },
+  "COME__COME": {
+   "attempts": 23,
+   "candidates": 13,
+   "numerical_pass": 13,
+   "selected": "attempt_00003",
+   "method": "direct",
+   "finger": "early",
+   "source_frames": [
+    [
+     27,
+     132
+    ],
+    [
+     27,
+     132
+    ]
+   ],
+   "protected": [
+    [
+     27,
+     132
+    ],
+    [
+     27,
+     132
+    ]
+   ],
+   "transition_s": [
+    3.5,
+    4.2333
+   ],
+   "total_s": 7.7333,
+   "peak_acc": 40.65,
+   "peak_jerk": 442.6,
+   "region_integral": 254410,
+   "analytic_integral": 469770,
+   "clearance_mm": 4.711
+  },
+  "NOW__NOW": {
+   "attempts": 36,
+   "candidates": 25,
+   "numerical_pass": 25,
+   "selected": "attempt_00010",
+   "method": "neutral",
+   "finger": "early",
+   "source_frames": [
+    [
+     27,
+     51
+    ],
+    [
+     27,
+     51
+    ]
+   ],
+   "protected": [
+    [
+     27,
+     51
+    ],
+    [
+     27,
+     51
+    ]
+   ],
+   "transition_s": [
+    0.8,
+    2.6667
+   ],
+   "total_s": 3.4667,
+   "peak_acc": 25.69,
+   "peak_jerk": 246.8,
+   "region_integral": 294056,
+   "analytic_integral": 504454,
+   "clearance_mm": 3.993
+  }
+ }
+}

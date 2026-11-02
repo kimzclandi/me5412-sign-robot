@@ -1,0 +1,26 @@
+.F...................................................                    [100%]
+=================================== FAILURES ===================================
+_________ test_quintic_coefficients_match_all_nonzero_boundary_states __________
+
+    def test_quintic_coefficients_match_all_nonzero_boundary_states():
+        start = state([0.1, -0.2], [0.3, -0.4], [0.5, -0.6])
+        end = state([0.8, 0.4], [-0.2, 0.1], [-0.3, 0.2])
+        duration = 0.7
+        coefficients = quintic_coefficients_v2(start, end, duration)
+        def evaluate(order, u):
+            row = coefficients
+            for _ in range(order):
+                row = np.column_stack([k * row[:, k] for k in range(1, row.shape[1])])
+            return np.polynomial.polynomial.polyval(u, row) / duration**order
+>       np.testing.assert_allclose(evaluate(0, 0), start["position"])
+E       AssertionError: 
+E       Not equal to tolerance rtol=1e-07, atol=0
+E       
+E       (shapes (6,), (2,) mismatch)
+E        ACTUAL: array([ 0.1   ,  0.21  ,  0.1225,  5.859 , -9.2855,  3.794 ])
+E        DESIRED: array([ 0.1, -0.2])
+
+tests/test_pair_timing_v2.py:48: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_pair_timing_v2.py::test_quintic_coefficients_match_all_nonzero_boundary_states
+1 failed, 52 passed in 0.36s

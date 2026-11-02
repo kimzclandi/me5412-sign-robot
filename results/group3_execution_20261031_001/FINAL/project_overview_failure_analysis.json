@@ -1,0 +1,28 @@
+{
+  "failing_test": "tests/test_project_overview.py::test_real_overview_preserves_data_units_and_snapshot_scope",
+  "project_overview_source_unchanged_from_baseline": true,
+  "test_file_unchanged_from_baseline": true,
+  "unavailable_materials": [
+    {
+      "key": "docs-index",
+      "reason": "integrity_mismatch",
+      "path": "docs/README.md",
+      "frozen_expected_sha256": "12cb9d9d5f3e281cc917d37b5f02ea5257b2f262bba475e5f0e2c44adf33bb63",
+      "actual_sha256": "5a63bca6679ac401be853c3cc09541fd3f06d9cb64afa3814511e467e9beaaad",
+      "preserved_baseline_sha256": "ea37c5a0e4f626a3c09fc10cbb6c144fb79ea52d292843b3d3fe95a0320314c4",
+      "baseline_matched_expected": false
+    },
+    {
+      "key": "docs-index-en",
+      "reason": "integrity_mismatch",
+      "path": "docs/README.en.md",
+      "frozen_expected_sha256": "0c23a06ddf7264d1bada11bb6e23270c74a1dc99176fd115fe6dd079536f4398",
+      "actual_sha256": "de3b7ea3a2932f18e57c3bda03614a3769d4f56ab8a8cfcaaa96dba4905e9d2d",
+      "preserved_baseline_sha256": "8df9cb2bcca0452c1854f0646eb7d05a3734e108410127da7cb5302592f30764",
+      "baseline_matched_expected": false
+    }
+  ],
+  "root_cause": "The static download allowlist hashes for both bilingual documentation indexes already differed from the preserved baseline; required index edits also require synchronizing those references.",
+  "proposed_change": "Only the docs-index and docs-index-en sha256 literals in project_overview.py; preserve all other existing uncommitted content; new run_id after code identity changes.",
+  "analysis_script_initial_error": "KeyError: id while inspecting material metadata; actual key field was read and the analysis was corrected. No application file was changed by the failed inspection."
+}

@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "policy_id": "group3-all-pairs-development-v1",
+  "fps": 30,
+  "joint_count": 53,
+  "scope": {
+    "library": "hospital_v1",
+    "expected_glosses": [
+      "HELLO",
+      "PLEASE",
+      "THANK-YOU",
+      "SORRY",
+      "YES",
+      "NO",
+      "YOU",
+      "YOUR",
+      "ME",
+      "DEAF",
+      "DOCTOR",
+      "NURSE",
+      "INTERPRETER",
+      "APPOINTMENT",
+      "MEDICINE",
+      "STOMACH",
+      "HEADACHE",
+      "HAVE",
+      "NEED",
+      "WAIT",
+      "COME",
+      "HURT",
+      "BREATHE-DEEP",
+      "BLOOD-DRAW",
+      "TAKE",
+      "UNDERSTAND",
+      "WRITE",
+      "NOT",
+      "NOW",
+      "SOON",
+      "LATER",
+      "TOMORROW",
+      "MORNING",
+      "NIGHT",
+      "WHERE"
+    ],
+    "include_self": true
+  },
+  "planner": {
+    "method": "direct_minimum_jerk_v1",
+    "minimum_duration_s": 0.3,
+    "seed": 5412,
+    "max_collision_samples": 2048,
+    "wall_time_s": 30.0,
+    "max_candidates": 1,
+    "general_search_status": "not_implemented"
+  },
+  "constraints": {
+    "min_clearance_m": 0.002,
+    "position_tolerance_rad": 1e-06,
+    "joint_limit_tolerance_rad": 1e-08,
+    "coupling_tolerance_rad": 1e-08,
+    "arm_speed_rad_s": 15.0,
+    "finger_speed_rad_s": 10.0,
+    "fixed_joint_speed_rad_s": 1e-09,
+    "speed_tolerance_rad_s": 1e-08
+  },
+  "endpoints": {
+    "strategy": "original_sign_frames",
+    "window_version": "hospital_v1-original-sign-frames-v1",
+    "review_status": "pending",
+    "approved_windows": {},
+    "legacy_research_endpoints": [
+      {
+        "id": "r13c-medicine-source-f73",
+        "gloss": "MEDICINE",
+        "role": "source",
+        "frame": 73,
+        "motion_sha256": "b8c5e0b7ade5c7a30c19d0cb8f938214956e69754087bbb42889d3f0f2f7bfa6",
+        "approval_status": "pending"
+      },
+      {
+        "id": "r13c-night-source-f61",
+        "gloss": "NIGHT",
+        "role": "source",
+        "frame": 61,
+        "motion_sha256": "20dece3ae28795bfa9321f4922c3291efc0e979deab9f77f4c314ca9d8a8c4cd",
+        "approval_status": "pending"
+      },
+      {
+        "id": "r13c-hurt-source-f66",
+        "gloss": "HURT",
+        "role": "source",
+        "frame": 66,
+        "motion_sha256": "a17641061df3e08fab2a5178950c71cae01edca2791072e029590a2ae892e09d",
+        "approval_status": "pending"
+      },
+      {
+        "id": "r13c-nurse-source-f80",
+        "gloss": "NURSE",
+        "role": "source",
+        "frame": 80,
+        "motion_sha256": "f75945f059ef18a5f8888c9499e9160ada02ad9aea5a37f2850fb9a4f4dd391f",
+        "approval_status": "pending"
+      },
+      {
+        "id": "r13c-nurse-source-f81",
+        "gloss": "NURSE",
+        "role": "source",
+        "frame": 81,
+        "motion_sha256": "f75945f059ef18a5f8888c9499e9160ada02ad9aea5a37f2850fb9a4f4dd391f",
+        "approval_status": "pending"
+      },
+      {
+        "id": "r13c-interpreter-target-f25",
+        "gloss": "INTERPRETER",
+        "role": "target",
+        "frame": 25,
+        "motion_sha256": "3a159a8bd9af71563d85fe25cf69dbf7dc8d62dcd1b76ac2fdee0e099495662c",
+        "approval_status": "pending"
+      }
+    ]
+  },
+  "validation": {
+    "dense_factors": [
+      1,
+      2,
+      4
+    ],
+    "maximum_step_rad": 0.04,
+    "original_word_audit_factor": 1,
+    "continuous_collision_certified": false
+  },
+  "quality": {
+    "freeze_status": "pending",
+    "derivative_window_frames": 5,
+    "limits": {
+      "velocity_jump_arm_rad_s": null,
+      "velocity_jump_finger_rad_s": null,
+      "acceleration_jump_arm_rad_s2": null,
+      "acceleration_jump_finger_rad_s2": null,
+      "peak_acceleration_rad_s2": null,
+      "peak_jerk_rad_s3": null,
+      "jerk_integral_rad2_s5": null,
+      "maximum_transition_duration_s": null
+    }
+  },
+  "pending_decisions": [
+    "group2_semantic_core_and_windows",
+    "nurse_f80_exact_hash_approval",
+    "quality_thresholds_T03",
+    "adaptive_collision_sampling_policy",
+    "learning_model_requirement",
+    "course_deadline_confirmation",
+    "language_and_hardware_reviews"
+  ]
+}

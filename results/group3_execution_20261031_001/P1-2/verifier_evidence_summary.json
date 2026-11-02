@@ -1,0 +1,12 @@
+{
+  "schema_version": 2,
+  "staging_test_count": 91,
+  "staging_test_status": "passed",
+  "continuous_collision_certified": false,
+  "formal_acceptance_enabled": false,
+  "contract_sha256": "b0473f155457bdc6faf124e658a54d1315291f8223d64adc709dbbc8cd778b55",
+  "policy_sha256": "2f5b87821859f98593e4d25fe596d356cd50d5bae89100f6dffb720a3faf3c07",
+  "source_sha256": "1fa03a9b48539e0d2690307456d3739d41502268da4e165b284cae9dfc50b291",
+  "real_v2_run_executed": false,
+  "expected_real_input_blocker": "MISSING_APPROVAL_BUNDLE"
+}

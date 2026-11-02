@@ -1,0 +1,149 @@
+....................................................FF.................. [ 96%]
+...                                                                      [100%]
+=================================== FAILURES ===================================
+___ test_real_independent_verifier_reconstructs_saved_runner_outputs[False] ____
+
+run_context = (PosixPath('/tmp/pytest-of-kingderman/pytest-7/test_real_independent_verifier0'), {'schema_version': 2, 'policy_id': '...ixture; not a real reviewer", "status": "approved", "valid_until": "2026-11-02T00:00:00+00:00"}')}, input_blockers=[]))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7e921828f8c0>
+self_pair = False
+
+    @pytest.mark.parametrize("self_pair", [False, True])
+    def test_real_independent_verifier_reconstructs_saved_runner_outputs(run_context, monkeypatch, self_pair):
+        import sign_robot.pair_verification_v2 as verifier
+        from test_pair_routes_v2 import Model, Clearance
+        root, policy, context = run_context
+        monkeypatch.setattr(verifier, "freeze_library", lambda root, policy: (context.library, context.clips))
+        monkeypatch.setattr(verifier, "load_model", lambda root: Model(context.library["joint_names"]))
+        monkeypatch.setattr(verifier, "MujocoClearance", Clearance)
+        monkeypatch.setattr(runner, "build_pair_context_v2", lambda *args: context)
+        store = create_store(run_context, root)
+        target = "HELLO" if self_pair else "PLEASE"
+        record = store.run_pair("HELLO", target, context, seed=5412)
+>       summary = runner.verify_run_v2(root, store.run_dir)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_pair_runner_v2.py:345: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/sign_robot/pair_runner_v2.py:687: in verify_run_v2
+    reviewed = store.verify_pair(pair["pair_id"])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/sign_robot/pair_runner_v2.py:564: in verify_pair
+    "evidence": evidence, "evidence_hash": json_hash(evidence)})
+                                           ^^^^^^^^^^^^^^^^^^^
+src/sign_robot/pair_contract.py:42: in json_hash
+    return hashlib.sha256(json_bytes(value)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^
+src/sign_robot/pair_contract.py:37: in json_bytes
+    return (json.dumps(value, ensure_ascii=False, sort_keys=True, allow_nan=False,
+/usr/lib/python3.12/json/__init__.py:238: in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+/usr/lib/python3.12/json/encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/json/encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.encoder.JSONEncoder object at 0x7e92591eb320>, o = np.False_
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type bool is not JSON serializable
+
+/usr/lib/python3.12/json/encoder.py:180: TypeError
+____ test_real_independent_verifier_reconstructs_saved_runner_outputs[True] ____
+
+run_context = (PosixPath('/tmp/pytest-of-kingderman/pytest-7/test_real_independent_verifier1'), {'schema_version': 2, 'policy_id': '...ixture; not a real reviewer", "status": "approved", "valid_until": "2026-11-02T00:00:00+00:00"}')}, input_blockers=[]))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7e92197d5a60>
+self_pair = True
+
+    @pytest.mark.parametrize("self_pair", [False, True])
+    def test_real_independent_verifier_reconstructs_saved_runner_outputs(run_context, monkeypatch, self_pair):
+        import sign_robot.pair_verification_v2 as verifier
+        from test_pair_routes_v2 import Model, Clearance
+        root, policy, context = run_context
+        monkeypatch.setattr(verifier, "freeze_library", lambda root, policy: (context.library, context.clips))
+        monkeypatch.setattr(verifier, "load_model", lambda root: Model(context.library["joint_names"]))
+        monkeypatch.setattr(verifier, "MujocoClearance", Clearance)
+        monkeypatch.setattr(runner, "build_pair_context_v2", lambda *args: context)
+        store = create_store(run_context, root)
+        target = "HELLO" if self_pair else "PLEASE"
+        record = store.run_pair("HELLO", target, context, seed=5412)
+>       summary = runner.verify_run_v2(root, store.run_dir)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_pair_runner_v2.py:345: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/sign_robot/pair_runner_v2.py:687: in verify_run_v2
+    reviewed = store.verify_pair(pair["pair_id"])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/sign_robot/pair_runner_v2.py:564: in verify_pair
+    "evidence": evidence, "evidence_hash": json_hash(evidence)})
+                                           ^^^^^^^^^^^^^^^^^^^
+src/sign_robot/pair_contract.py:42: in json_hash
+    return hashlib.sha256(json_bytes(value)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^
+src/sign_robot/pair_contract.py:37: in json_bytes
+    return (json.dumps(value, ensure_ascii=False, sort_keys=True, allow_nan=False,
+/usr/lib/python3.12/json/__init__.py:238: in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+/usr/lib/python3.12/json/encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/json/encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.encoder.JSONEncoder object at 0x7e925a711490>, o = np.False_
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type bool is not JSON serializable
+
+/usr/lib/python3.12/json/encoder.py:180: TypeError
+=========================== short test summary info ============================
+FAILED tests/test_pair_runner_v2.py::test_real_independent_verifier_reconstructs_saved_runner_outputs[False]
+FAILED tests/test_pair_runner_v2.py::test_real_independent_verifier_reconstructs_saved_runner_outputs[True]
+2 failed, 73 passed in 16.10s

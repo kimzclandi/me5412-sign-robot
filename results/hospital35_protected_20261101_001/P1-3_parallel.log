@@ -1,0 +1,6 @@
+== start 2026-11-01T11:26:43+08:00
+{"open_batches": 50, "slices": [13, 13, 12, 12]}
+worker 0 hospital35_protected_20261101_001 cpu0 pid 135000
+worker 1 hospital35_protected_20261101_002 cpu1 pid 135004
+worker 2 hospital35_protected_20261101_003 cpu2 pid 135015
+worker 3 hospital35_protected_20261101_004 cpu3 pid 135019

@@ -1,0 +1,53 @@
+{
+  "task": "TASK-01",
+  "changes": [
+    {
+      "path": "TASK-01.md",
+      "before_sha256": null,
+      "after_sha256": "90e90bd15e3014087e916f2a38e0d3acd4a733a87736c9b9aab9d72a22a73348"
+    },
+    {
+      "path": "TASK-01.en.md",
+      "before_sha256": null,
+      "after_sha256": "b126cf236cba190a207c94824574bdd2a154e65a957a61c74b1ddd506fe72d23"
+    },
+    {
+      "path": "STATE.md",
+      "before_sha256": null,
+      "after_sha256": "26b0b6dd34d52e11daf1c3982acd9cedd000ae56dc3dbb7a0c5cd54bbbfe789a"
+    },
+    {
+      "path": "STATE.en.md",
+      "before_sha256": null,
+      "after_sha256": "4ca46a7c72c645a3ea2bb1f14c54421ddd2eccfedea0ce5825d87dc670715b38"
+    },
+    {
+      "path": "docs/README.md",
+      "before_sha256": "ea37c5a0e4f626a3c09fc10cbb6c144fb79ea52d292843b3d3fe95a0320314c4",
+      "after_sha256": "5be1f65bcbc63d6469d630057cac214611a7c112354c61fd718d187f5ddd8dfd"
+    },
+    {
+      "path": "docs/README.en.md",
+      "before_sha256": "8df9cb2bcca0452c1854f0646eb7d05a3734e108410127da7cb5302592f30764",
+      "after_sha256": "af6e2b10a22c3c45bc8dbdb2968ba8d3e5dc9d73e336d269e086310ba168736a"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P0-1/preservation.json",
+      "before_sha256": null,
+      "after_sha256": "defbaaa051c83c4731275ba2ae54d71c75810adbec734dc73d635aba5e81132c"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P0-1/frozen-input-check.json",
+      "before_sha256": null,
+      "after_sha256": "01a73b61ad55156717eeefa4e2c01e07796739f3412de76c5c0fc90ad02c0b49"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P0-1/commands.json",
+      "before_sha256": null,
+      "after_sha256": "334c54a60a75b9728420ec3b81369724b4f24fc9a0f1b5fdb451214da4a0ad33"
+    }
+  ],
+  "installed": true,
+  "source": "/home/kingderman/Documents/ME5412-github-latest",
+  "backup": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/TASK-01/before"
+}

@@ -1,0 +1,7 @@
+$ .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_user_protected_windows.py tests/test_user_protected_correction.py tests/test_pair_runner_v2.py tests/test_lift_off_arrival_v5.py tests/test_sequence_v1.py tests/test_hospital35_protection_import.py tests/test_hospital35_preflight.py tests/test_hospital35_batches.py tests/test_sequence_combinations.py tests/test_sequence_blockers.py tests/test_hospital35_freeze.py
+........................................................................ [ 32%]
+........................................................................ [ 65%]
+........................................................................ [ 98%]
+....                                                                     [100%]
+220 passed in 52.92s
+exit 0

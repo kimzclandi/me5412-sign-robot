@@ -1,5 +1,18 @@
 # ME5412 Robot Signing Research Bench
 
+> **Group 3 public delivery: round 8 (2026-11-02)**
+>
+> Current project records: [TASK-28](TASK-28.en.md), [STATE](STATE.en.md), [HANDOFF](HANDOFF.en.md). This publication starts from clean public commit `86428693` and synchronizes non-raw content from WSL source commit `dfe4bacde`. It does not import the history of the source repository's round-7 or round-8 raw-store commits.
+>
+> Round 8 is complete: 7/7 multi-word sentences pass numerical checks, 17/17 connector rechecks agree and 24/24 protected cores are unchanged. Interior connector stops fell from round 7's 16 to 0. See the [round-8 report](results/hospital_sentences_20261102_008/README.en.md). The recorded full-suite result is 1014 passed; formal acceptance remains disabled and human video review is pending.
+>
+> This publication copy passed **121 focused checks** in 25.31 seconds, covering smooth timing, staged exits and the documentation index. No full-suite rerun or new planning run was performed. See the [publication validation summary](results/publication_validation_round8_20261102/summary.json).
+>
+> Raw candidates, attempts, checkpoints and timing stores under `results/**/pair_runs/` and `results/user_protected_*/runs/` remain local. Compact summaries and frozen configuration are copied to each experiment's `run_summaries/`; sequence outputs, independent rechecks, test logs and result images are retained. New videos remain excluded.
+>
+> Original paths and hashes in saved reports are preserved, so this public copy cannot independently recheck every candidate or resume historical runs. Use the local raw stores, or follow TASK-28 with the required dependencies and model assets to generate a new version and run. Source revisions, metadata hashes and publication checks are in [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json). Earlier public history is unchanged. The remainder describes the early prototype.
+
+
 [中文](README.md) · **English** · [Bilingual documentation index](docs/README.md)
 
 > **Current demo: English → ASL robot signing in a hospital scenario.** A deaf patient visits a hospital with no interpreter present: a nurse or doctor types English, Group 1 turns it into ASL glosses with an online LLM plus vocabulary validation, Group 2 provides a Unitree G1 + Inspire hand joint trajectory for each gloss, and Group 3 handles transitions and playback. Scope: one scenario, 35 glosses, 9 scripted dialogue lines.
@@ -29,6 +42,10 @@ The code repository is now **public on GitHub**; teammates contribute as collabo
 - [Website source](website/README.en.md): the static demonstration and standalone preview command. GitHub pushes do not automatically publish the website.
 
 The repository preserves original commits, frozen experiments, failures, and the approximately 3 MB regression checkpoint trained by this project. Third-party MiniLM/LLM pretrained weights, robot vendor meshes, virtual environments, session logs, and private machine configuration are excluded. Fixed-source scripts restore base dependencies. How2Sign text indexes are used for noncommercial course research under the recorded CC BY-NC 4.0 scope; source videos are excluded. See [third-party notices and robot BSD license](THIRD_PARTY_NOTICES.en.txt).
+
+## Group 3 all-pairs development entry point
+
+The 35-word vocabulary has a separate freeze/audit, direct-candidate scan, resume and saved-artifact verification workflow for 1,225 ordered pairs, including 35 self-pairs. See [running and verification](docs/group3-all-pairs-startup.en.md) and the [execution record](docs/group3-all-pairs-progress.en.md). This is a development scan; this version cannot emit PASS_SIM, and general search and L2 acceptance remain incomplete.
 
 ## Open on the current computer
 

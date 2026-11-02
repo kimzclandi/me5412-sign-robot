@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "STOMACH__SOON",
+    "STOMACH__LATER",
+    "STOMACH__TOMORROW",
+    "STOMACH__MORNING",
+    "STOMACH__NIGHT",
+    "STOMACH__WHERE",
+    "HEADACHE__HELLO",
+    "HEADACHE__PLEASE",
+    "HEADACHE__THANK-YOU",
+    "HEADACHE__SORRY",
+    "HEADACHE__YES",
+    "HEADACHE__NO",
+    "HEADACHE__YOU",
+    "HEADACHE__YOUR",
+    "HEADACHE__ME",
+    "HEADACHE__DEAF"
+  ]
+}

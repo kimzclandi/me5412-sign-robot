@@ -1,0 +1,54 @@
+{
+  "task": "TASK-14-COMPAT",
+  "task_id": "FINAL-documentation-compatibility",
+  "changes": [
+    {
+      "path": "docs/README.md",
+      "before_sha256": "5a63bca6679ac401be853c3cc09541fd3f06d9cb64afa3814511e467e9beaaad",
+      "after_sha256": "76916148974f8f40822d96705d84951ce86cf224f73444d66d91fbb1d68ce37b"
+    },
+    {
+      "path": "docs/README.en.md",
+      "before_sha256": "de3b7ea3a2932f18e57c3bda03614a3769d4f56ab8a8cfcaaa96dba4905e9d2d",
+      "after_sha256": "790ed022e648c222fe5aa04df4af135f6a550da89fcd98a99d6aec2a959fdc06"
+    },
+    {
+      "path": "docs/group3-quality-metrics.md",
+      "before_sha256": "16f041ca6fa9ab555ef6deb650abd144823aec2397acd2efe47fe91005e3d1a4",
+      "after_sha256": "725eb59fb9a035fd66b003e2dfa0866e9feabd980dbb7ba5b334f51e52cd7fa2"
+    },
+    {
+      "path": "docs/group3-quality-metrics.en.md",
+      "before_sha256": "58854f28a2159eb9a39239b3269909668e43b49362e483b26b33e53c81a35e95",
+      "after_sha256": "26ad796bd86b4c5bf20edfa1f4a025bbaee5c0b26f0a4b3f901b4f056165a17b"
+    },
+    {
+      "path": "docs/group3-multicandidate-runner-v2.md",
+      "before_sha256": "7065c3a72f6edcb0a4e366b8ca7ac5a2f455527627a1fce0cc97abe642865193",
+      "after_sha256": "d30065832b5e1437ce978ae3366aa278b5fbd7e1da0a57b0d582382b50d4e39c"
+    },
+    {
+      "path": "docs/group3-multicandidate-runner-v2.en.md",
+      "before_sha256": "7f7bdce12dcd135de8eda83f704b9fc32a88fdde27244f78eb9b836d6e45f448",
+      "after_sha256": "7a83c11a94a94e011e6502a93455c737e9560cd812eb437f0e2f3eb42577396b"
+    },
+    {
+      "path": "src/sign_robot/project_overview.py",
+      "before_sha256": "eef24532715ebb804ca7a4505c2b4d3a49d1f8b88aa7e654b729a68e86c4b400",
+      "after_sha256": "d68af6a107b3229273c3d8f9100355a144b71360c7e8101e8c69eaa685fb1bc1"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/FINAL/documentation_compatibility_change.json",
+      "before_sha256": null,
+      "after_sha256": "4d89b75dddd338298a4286fc9345fbe9d09595b91e3a62159ad447fd035135d3"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/FINAL/before_compatibility/src/sign_robot/project_overview.py",
+      "before_sha256": null,
+      "after_sha256": "a2a81a8d529e6d0a30340d450f8f3df9ae127f8c540fa4ee874b030e1b27386c"
+    }
+  ],
+  "installed": true,
+  "source": "/home/kingderman/Documents/ME5412-github-latest",
+  "backup": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/TASK-14-COMPAT/before"
+}

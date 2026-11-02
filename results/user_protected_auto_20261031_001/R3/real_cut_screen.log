@@ -1,0 +1,4 @@
+  File "/tmp/me5412_auto_cuts_20261031_001/repository/scripts/screen_user_protected_cuts.py", line 33
+    print(json.dumps({'output':str(args.output),'pairs':{p:{role:len(x['selection'][role]['valid_frames']) for role in ('source','target')} for p,x in pairs.items()}))
+                                                                                                                                                                     ^
+SyntaxError: closing parenthesis ')' does not match opening parenthesis '{'

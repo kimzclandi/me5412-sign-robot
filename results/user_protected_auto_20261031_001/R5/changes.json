@@ -1,0 +1,14 @@
+[
+  {
+    "file": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_verification_v2.py",
+    "relative": "src/sign_robot/pair_verification_v2.py",
+    "before_sha256": "497525af11b9af9c937d209a7515fdb3466db56fb00309d091551482e1af579c",
+    "after_sha256": "b9c75fd29f6186a7e1c5a9dbecd174bbdde4ea7063c4679be0df8d778f70c443"
+  },
+  {
+    "file": "/home/kingderman/Documents/ME5412-github-latest/tests/test_user_protected_verification.py",
+    "relative": "tests/test_user_protected_verification.py",
+    "before_sha256": null,
+    "after_sha256": "c2a827b4c59c61ab7d1457aac6019b9854cd36b0299fbf2939a5d7320e6aa2c6"
+  }
+]

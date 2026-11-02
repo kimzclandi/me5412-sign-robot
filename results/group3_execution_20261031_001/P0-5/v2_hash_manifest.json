@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "task": "P0-5",
+  "policy_path": "config/transition_policy_v2.json",
+  "policy_sha256": "22888f671e7399638ae67fa12979cf00068f3e8586a6be2e49acdf0f571a5feb",
+  "contract_path": "contracts/all_pairs_v2.json",
+  "contract_sha256": "ec5c1c20ce4ceff76a9fc1d8bd7c391c7872f2209edbcb43f7d44c97860be96a",
+  "contract_bound_sha256": "ec5c1c20ce4ceff76a9fc1d8bd7c391c7872f2209edbcb43f7d44c97860be96a",
+  "pair_contract_source_sha256": "602dd7b990644fa7d001bc645f5b9a54f24d7733b50e575021a4331f3086ed2d",
+  "v2_tests_sha256": "986d223e520579323c34340da67cced41139509394fa162495b8c28aefe4a3c9",
+  "formal_acceptance_enabled": false,
+  "v1_default_load_policy": true,
+  "v2_explicit_dispatch": true,
+  "approval_status": {
+    "endpoints": "pending",
+    "validation": "pending",
+    "quality": "pending"
+  },
+  "supported_segment_kinds": [
+    "source_slice_v2",
+    "polynomial_v2"
+  ],
+  "finger_strategies": [
+    "synchronous",
+    "early",
+    "late"
+  ],
+  "planner_methods": [
+    "direct",
+    "neutral",
+    "ik_via1",
+    "ik_via2",
+    "retract_approach",
+    "rrt_connect"
+  ]
+}

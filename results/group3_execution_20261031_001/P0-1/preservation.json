@@ -1,0 +1,57 @@
+{
+  "task": "P0-1",
+  "time": "2026-10-31T02:58:23.179815+08:00",
+  "source": "/home/kingderman/Documents/ME5412-github-latest",
+  "branch": "codex/group3-all-pairs-v1",
+  "head": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+  "archive": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/baseline.tar",
+  "archive_sha256": "a4c6732f38b25939e407bbbe06c57c9350f7cae98460a07052d976dfd3f29e70",
+  "archive_bytes": 858275840,
+  "content_manifest_sha256": "3937cca12139306465932570bb4035cae529a806948b4e8e9d309deb42d58481",
+  "restored_copy": "/tmp/me5412-execution-20261031/restored-baseline",
+  "entry_count": 7052,
+  "file_count": 6919,
+  "byte_count": 845766665,
+  "restore_mismatches": [],
+  "source_changed_during_preservation": [],
+  "git_status_unchanged": true,
+  "restored_git_status_matches": true,
+  "frozen_checks": {
+    "run_files": {
+      "checked": 3378,
+      "mismatches": []
+    },
+    "frozen_run_files": {
+      "checked": 4,
+      "mismatches": []
+    },
+    "source_files": {
+      "checked": 22,
+      "mismatches": []
+    },
+    "input_and_model_files": {
+      "checked": 142,
+      "mismatches": []
+    },
+    "summary_evidence_files": {
+      "checked": 32,
+      "mismatches": []
+    }
+  },
+  "run_id": "all_pairs_dev_20261031_v2",
+  "pair_count": 1225,
+  "non_self_count": 1190,
+  "self_count": 35,
+  "unique_pair_ids": 1225,
+  "saved_candidates": 899,
+  "verification_count": 1225,
+  "status_counts": {
+    "BLOCKED_ENDPOINT": 326,
+    "FAILED_QUALITY": 513,
+    "FAILED_SEARCH": 386
+  },
+  "external_symlinks": {
+    ".venv": "/home/kingderman/Documents/Codex/2026-10-13/new-chat/me5412-sign-robot/.venv"
+  },
+  "execution_location_status": "original_checkout_requires_sandbox_escalation"
+}

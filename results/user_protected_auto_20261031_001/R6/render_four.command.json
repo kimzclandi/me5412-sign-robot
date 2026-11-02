@@ -1,0 +1,29 @@
+{
+  "argv": [
+    ".venv/bin/python",
+    "scripts/render_user_protected_pairs.py",
+    "--run-dir",
+    "results/user_protected_auto_20261031_001/runs/user_protected_pilot_20261031_001",
+    "--output",
+    "results/user_protected_auto_20261031_001/videos",
+    "--pair",
+    "COME__NOW",
+    "--pair",
+    "NOW__COME",
+    "--pair",
+    "COME__COME",
+    "--pair",
+    "NOW__NOW"
+  ],
+  "exit_code": 143,
+  "signal": "SIGTERM",
+  "cause": "not established",
+  "partial_output_preserved": true,
+  "completed_pairs": [
+    "COME__NOW"
+  ],
+  "partial_pairs": [
+    "NOW__COME"
+  ],
+  "replacement_output": "videos_complete"
+}

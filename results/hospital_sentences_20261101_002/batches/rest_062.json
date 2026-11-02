@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "NOW__DOCTOR",
+    "NOW__INTERPRETER",
+    "NOW__APPOINTMENT",
+    "NOW__MEDICINE",
+    "NOW__STOMACH",
+    "NOW__HEADACHE",
+    "NOW__HAVE",
+    "NOW__NEED",
+    "NOW__WAIT",
+    "NOW__COME",
+    "NOW__HURT",
+    "NOW__BREATHE-DEEP",
+    "NOW__BLOOD-DRAW",
+    "NOW__TAKE",
+    "NOW__UNDERSTAND",
+    "NOW__WRITE"
+  ]
+}

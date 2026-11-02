@@ -1,0 +1,1379 @@
+{
+  "scope": "union of explicit task install paths, excluding task backup directories; runtime side outputs are separately listed",
+  "files": [
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/STATE.en.md",
+      "relative_path": "STATE.en.md",
+      "sha256": "a5d2f7a1b84575db9666b69459b5a02cfaa117d28641a25ef75d7a635b286304",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/STATE.md",
+      "relative_path": "STATE.md",
+      "sha256": "321ad0c0855a88c53a15e2a7e551d9a07c5f85e47d389932cfbf662f9453bce7",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-01.en.md",
+      "relative_path": "TASK-01.en.md",
+      "sha256": "b126cf236cba190a207c94824574bdd2a154e65a957a61c74b1ddd506fe72d23",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-01.md",
+      "relative_path": "TASK-01.md",
+      "sha256": "90e90bd15e3014087e916f2a38e0d3acd4a733a87736c9b9aab9d72a22a73348",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-02.en.md",
+      "relative_path": "TASK-02.en.md",
+      "sha256": "1d7175120115b31d08b2dc975869c5d5d14e3ac9518f676a53f71bd5a128b336",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-02.md",
+      "relative_path": "TASK-02.md",
+      "sha256": "54888eb3d9c6234724c2e47b922c151b2a58d86f29985657763fad1e8fd5c015",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-03.en.md",
+      "relative_path": "TASK-03.en.md",
+      "sha256": "b517c169f518e4a528e6c65591f2b3036f3681668601bfc5756bdfc507cba474",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-03.md",
+      "relative_path": "TASK-03.md",
+      "sha256": "619886157faf77d55b03cb29cd4904c5e5ff8959d0c3575171e3c8383e10a7b3",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-04.en.md",
+      "relative_path": "TASK-04.en.md",
+      "sha256": "8ba52be5feba0278704bec88ebc37d0fc8a2461a62ed632730f49c93bd2e308b",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-04.md",
+      "relative_path": "TASK-04.md",
+      "sha256": "11f8a8870a7c661d275f22363b4e8ea789b6e9adf3601e7a71dc0636cfac8d1e",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-05.en.md",
+      "relative_path": "TASK-05.en.md",
+      "sha256": "855a19cba0301689ed3c981e25f6a7fc26e2e032b18d7b1606b0d2dbf4eaff90",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-05.md",
+      "relative_path": "TASK-05.md",
+      "sha256": "f09de5bdec22c0a8af93db82d1c552f9ef908274e7b2568fbf1f3d3a2c35ff02",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-06.en.md",
+      "relative_path": "TASK-06.en.md",
+      "sha256": "164aa286024438faf1699d107e30712cf694452471050c9bfe057ab592177c15",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-06.md",
+      "relative_path": "TASK-06.md",
+      "sha256": "f3ee739b5c85c2385fa47c8cd4c8f65e47b0baeb34ccbce04342f333f3c50d47",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-07.en.md",
+      "relative_path": "TASK-07.en.md",
+      "sha256": "9436b0ceb08e678bf0580eed04cc88955e38c8a1725b54c19dea983adef3c821",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-07.md",
+      "relative_path": "TASK-07.md",
+      "sha256": "32f4ac5d52f195a63258088203e2551a8140ff3222404206b531450e79057ed9",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-08.en.md",
+      "relative_path": "TASK-08.en.md",
+      "sha256": "7477580d58241e560482005fd65012f6f719268a203ff684d72c44e0052709ee",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-08.md",
+      "relative_path": "TASK-08.md",
+      "sha256": "53c0b56e8ddfb00b62d4bdb2038fabd7619dc940fbb0deb4a1be4a17b1e40735",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-09.en.md",
+      "relative_path": "TASK-09.en.md",
+      "sha256": "d426a91db2b528cd0bbca589957df7bc01d1581175b275a2904e8d91d1ebe948",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-09.md",
+      "relative_path": "TASK-09.md",
+      "sha256": "303ac984cbddf08c377d0208a357e567fbe41cd11c4db6e564dc24151937775d",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-10.en.md",
+      "relative_path": "TASK-10.en.md",
+      "sha256": "9ecb31760e8188ce2cef7a8e3c277f2cce43ccd32bae0664f1292e1c8af5496b",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-10.md",
+      "relative_path": "TASK-10.md",
+      "sha256": "ebae54245b18ab29f91b2e2e0b2d994f2c3c85d5ed641d55851325623f763a16",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-11.en.md",
+      "relative_path": "TASK-11.en.md",
+      "sha256": "7e060d0c4c8b49234de5cd8b89467338d23ee2e361d1cd2937416aa8f96a16a0",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-11.md",
+      "relative_path": "TASK-11.md",
+      "sha256": "917a33fec1ac50c8f39203204ed2a3f4d317b173caf66d1dcaa8ea74bffcb45e",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-12.en.md",
+      "relative_path": "TASK-12.en.md",
+      "sha256": "b51d8f025b06f0cc91a3d681bb9817868138fc103cb739d587ca58d884737e50",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-12.md",
+      "relative_path": "TASK-12.md",
+      "sha256": "32e03bd73bf0de5540ce047c7963576bbccc30ab464a426c1297bebe1592bf41",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-13.en.md",
+      "relative_path": "TASK-13.en.md",
+      "sha256": "b14ad8418900f3067ac7e2a574b32f9612f3afa81635eae9b548345a879be7dd",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-13.md",
+      "relative_path": "TASK-13.md",
+      "sha256": "3c76bdafc85b8fd8d4d117b87c2ea4ccfaebe182f2a34362c385f6af39acc2d6",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-14.en.md",
+      "relative_path": "TASK-14.en.md",
+      "sha256": "fe0ea1cd9e74da275313d0503b768fdb31461a172e5806831ca568ad6c1d722e",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/TASK-14.md",
+      "relative_path": "TASK-14.md",
+      "sha256": "b12d978abd8b3ccea5f510c21d2858793c4abbf04b22738ddc21520072c86c58",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/config/transition_policy_v2.json",
+      "relative_path": "config/transition_policy_v2.json",
+      "sha256": "5d453048aa9b62387fd6dba2279872eb01fc033033f338a6a37293f75a45fc42",
+      "purpose": "versioned development policy/contract"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/contracts/all_pairs_v2.json",
+      "relative_path": "contracts/all_pairs_v2.json",
+      "sha256": "978606f4ab97575984f7f5be23a98f340c962b8b86f2d3ffe864df00821f7512",
+      "purpose": "versioned development policy/contract"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/README.en.md",
+      "relative_path": "docs/README.en.md",
+      "sha256": "790ed022e648c222fe5aa04df4af135f6a550da89fcd98a99d6aec2a959fdc06",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/README.md",
+      "relative_path": "docs/README.md",
+      "sha256": "76916148974f8f40822d96705d84951ce86cf224f73444d66d91fbb1d68ce37b",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-all-pairs-word-issues.en.md",
+      "relative_path": "docs/group3-all-pairs-word-issues.en.md",
+      "sha256": "4858bfbc9641014115a74245a3c33550b94c73361cb7f2a2699b5b1f4fa327f8",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-all-pairs-word-issues.md",
+      "relative_path": "docs/group3-all-pairs-word-issues.md",
+      "sha256": "94acd3a127df30ff92c66076b2bcc70607e933b84a026ed16f2673d4a0d64c68",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-bounded-search-v2.en.md",
+      "relative_path": "docs/group3-bounded-search-v2.en.md",
+      "sha256": "5c23ddc3cca159bcfabd50a20523cf1650966df33af46cd7e61aeaa52854a31a",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-bounded-search-v2.md",
+      "relative_path": "docs/group3-bounded-search-v2.md",
+      "sha256": "8bca268b552629d804538e6d5e50177743686353763a2fa29237f0cbc1d4a70f",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-collision-scope.en.md",
+      "relative_path": "docs/group3-collision-scope.en.md",
+      "sha256": "a9a37c1592077ffb94f83c99cdec4ff01437a9dd44b18ec9f7839e2849ef4178",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-collision-scope.md",
+      "relative_path": "docs/group3-collision-scope.md",
+      "sha256": "085162c0cf77c69a2e37674e6abcefaf90dc1c66fda2a9be480b0d3c49fa9ff0",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-deterministic-routes-v2.en.md",
+      "relative_path": "docs/group3-deterministic-routes-v2.en.md",
+      "sha256": "ad9769f6637de8d1531fd7379edd7adcbd3ebfe18503128455ead6c8625c76e6",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-deterministic-routes-v2.md",
+      "relative_path": "docs/group3-deterministic-routes-v2.md",
+      "sha256": "7ee8b71f2f6a750e4efa2822460b1aa3545df23e70320131259fabc0760e1dea",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-finger-strategies-v2.en.md",
+      "relative_path": "docs/group3-finger-strategies-v2.en.md",
+      "sha256": "67899b984b12b343553f1079e9c0a219792f5bd28dcc9c0a6665eedaa222c070",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-finger-strategies-v2.md",
+      "relative_path": "docs/group3-finger-strategies-v2.md",
+      "sha256": "8f5f6c9281ac855303b43e265451e367805626ce106c8ed1cb211d575ef32dd3",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-independent-verifier-v2.en.md",
+      "relative_path": "docs/group3-independent-verifier-v2.en.md",
+      "sha256": "3b72cc7bb6e74b56dcf800e5fedc129f09b4b2b24178fdc27f19da65d23da962",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-independent-verifier-v2.md",
+      "relative_path": "docs/group3-independent-verifier-v2.md",
+      "sha256": "1bcfd8657236e0e0bfecb4bbf387deadc0dede67a2295b7ddeaf96b99a9d9964",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-multicandidate-runner-v2.en.md",
+      "relative_path": "docs/group3-multicandidate-runner-v2.en.md",
+      "sha256": "7a83c11a94a94e011e6502a93455c737e9560cd812eb437f0e2f3eb42577396b",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-multicandidate-runner-v2.md",
+      "relative_path": "docs/group3-multicandidate-runner-v2.md",
+      "sha256": "d30065832b5e1437ce978ae3366aa278b5fbd7e1da0a57b0d582382b50d4e39c",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-pair-timing-v2.en.md",
+      "relative_path": "docs/group3-pair-timing-v2.en.md",
+      "sha256": "8514a6d985aadf231b71f7c58ef349b14e720f9042a6f84ea12c56804cf1881b",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-pair-timing-v2.md",
+      "relative_path": "docs/group3-pair-timing-v2.md",
+      "sha256": "5ec73e65f6a88e31b0d99dca1e44498d478915fe2fc4145d1099c8aad1ce00b6",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-quality-metrics.en.md",
+      "relative_path": "docs/group3-quality-metrics.en.md",
+      "sha256": "26ad796bd86b4c5bf20edfa1f4a025bbaee5c0b26f0a4b3f901b4f056165a17b",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-quality-metrics.md",
+      "relative_path": "docs/group3-quality-metrics.md",
+      "sha256": "725eb59fb9a035fd66b003e2dfa0866e9feabd980dbb7ba5b334f51e52cd7fa2",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-v2-contract.en.md",
+      "relative_path": "docs/group3-v2-contract.en.md",
+      "sha256": "83737660e3f2d4fd04666fdc7a1ddde5e95aea8b0eae11830b5045fdd79dfa1c",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-v2-contract.md",
+      "relative_path": "docs/group3-v2-contract.md",
+      "sha256": "2c346c3bf6fce969b8fd1f75def6e52298d105034140b6a6b4359f4c8bb2f1c7",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-window-approval.en.md",
+      "relative_path": "docs/group3-window-approval.en.md",
+      "sha256": "2cb08a48e1297ac0781d9a9daf4494ec71d473690bbb42f32f2b2581c56d63f9",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/docs/group3-window-approval.md",
+      "relative_path": "docs/group3-window-approval.md",
+      "sha256": "088fa1e8cf6098768ad2f4817e31e2bdfefbedd14d90f178b9406b8ce55bb468",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/archive_integrity.command.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/archive_integrity.command.json",
+      "sha256": "9ab24bfcaf545660935b4bf612df9dc8ae4e683e99e91e4de4be116c7936ca98",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/archive_integrity.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/archive_integrity.json",
+      "sha256": "af66003353cc065fc60e7a69df7eb61bc958aa47a4d2e3bf4688f5cee4dd4ad0",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/archive_integrity.log",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/archive_integrity.log",
+      "sha256": "38b47ef8025a74c49a53647cda84cc49e99d5a0a6d5bc208f8731951783a1edc",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/before_compatibility/src/sign_robot/project_overview.py",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/before_compatibility/src/sign_robot/project_overview.py",
+      "sha256": "a2a81a8d529e6d0a30340d450f8f3df9ae127f8c540fa4ee874b030e1b27386c",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/documentation_compatibility_change.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/documentation_compatibility_change.json",
+      "sha256": "4d89b75dddd338298a4286fc9345fbe9d09595b91e3a62159ad447fd035135d3",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/documentation_review.command.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/documentation_review.command.json",
+      "sha256": "1138404670bda213ea695a001b08993afa235832921feba0525b8a7193644578",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/documentation_review.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/documentation_review.json",
+      "sha256": "24d080a91bcac29b44e7cf69c66c779f597d29a6b7bf04bca41b1bf49a917915",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/documentation_review.log",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/documentation_review.log",
+      "sha256": "24d080a91bcac29b44e7cf69c66c779f597d29a6b7bf04bca41b1bf49a917915",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/execution_report.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/execution_report.json",
+      "sha256": "611e1ae0aec463b69735e226fdbcdcbb15991c1c7e73380cca609b19a4aa5eac",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/final_acceptance_check.py",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/final_acceptance_check.py",
+      "sha256": "eac0fae0a0530a033148048d30acf0f3393ca184fcfaacaca9b35bd88c4e2406",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/final_acceptance_checklist.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/final_acceptance_checklist.json",
+      "sha256": "f7d30a0e904149525292c5dd05c4206e5d29db935b2d5b72c26b266c33aaf10f",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/final_integrity_audit.command.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/final_integrity_audit.command.json",
+      "sha256": "a72c90170aec7ba8d178cacee83435bcc9e71c9774f90eed3038cf1ef890a904",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/final_integrity_audit.log",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/final_integrity_audit.log",
+      "sha256": "ed933c6d227fda8fa6c191ac0d2ad269614568e61e75ebba598a5fee97adbeea",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/final_source_v2_diagnosis.py",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/final_source_v2_diagnosis.py",
+      "sha256": "41b04a9617717eb7269ee66aa913f4987f69fcdfbeb638931097a6eed56278fc",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/full_pytest.command.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/full_pytest.command.json",
+      "sha256": "19c2e4929781d969426ee55fd432d7abb60fe68b44c38785e2a1e9a1f62f0c8a",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/full_pytest.log",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/full_pytest.log",
+      "sha256": "0ded5cd3b8d7226324ec52fc4519414bfa0d141792632e5f4937c640be1302a0",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/full_pytest_after_compatibility_fix.command.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/full_pytest_after_compatibility_fix.command.json",
+      "sha256": "c3ab1290888b22e296bb31e3f8eba747b7abf16b92782b37d4b5272a99dc53fc",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/full_pytest_after_compatibility_fix.log",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/full_pytest_after_compatibility_fix.log",
+      "sha256": "a8431077d2757b96a19fd410983a6ba0a55947f8e1e153a47fe6d97552ec1e21",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/integrity_audit.command.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/integrity_audit.command.json",
+      "sha256": "48b870a1cb7ccf48b9f5199f5af95978a6314240d0de192e30c2d14f6c470c6c",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/integrity_audit.log",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/integrity_audit.log",
+      "sha256": "efc5e3daf8b6a03227ad3815af79d1be0501dbf97c3fc49cdaad1cac4825b7f3",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/integrity_audit_with_test_artifacts.command.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/integrity_audit_with_test_artifacts.command.json",
+      "sha256": "0446f49fc8da09ad26e54884f5661ff4b525c0b028dbfe26e86f24a4e243237a",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/integrity_audit_with_test_artifacts.log",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/integrity_audit_with_test_artifacts.log",
+      "sha256": "398f355cdfe08f0b3dc096181cff0f877be3fe7700afef6e205c4b2f162d059a",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/known_test_outputs.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/known_test_outputs.json",
+      "sha256": "090985239ece831851e138098efbf237b04f0f0c0274d17f5d358835b28fddb7",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/old_run_identity_refusal.command.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/old_run_identity_refusal.command.json",
+      "sha256": "8cb1c556bd90d5c5aa75883b4053e774882631fba1ceb5034996fbff98335931",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/old_run_identity_refusal.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/old_run_identity_refusal.json",
+      "sha256": "9b6108da936b1541b44bf88d6708f8137d8733fe647e9832abedec8e5c3ce499",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/old_run_identity_refusal.log",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/old_run_identity_refusal.log",
+      "sha256": "4cadf1be3dd6eccb0c96eb051003fdc78e655f83e6c2037717a0b06fea0a5c76",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/project_overview_failure_analysis.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/project_overview_failure_analysis.json",
+      "sha256": "0a6cbf6caec81a57b907d9c11c0f2ad4d321567e0a313bb81a1f25c018dbabf0",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/project_overview_failure_reproduction.command.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/project_overview_failure_reproduction.command.json",
+      "sha256": "de82209967d7a546477dcf2a74f4077b0886fb8d428306e00e7b597c0b7f54c6",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/project_overview_failure_reproduction.log",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/project_overview_failure_reproduction.log",
+      "sha256": "195bf364114334b0fa0cb7632e1d32a7df98c5d29135d4da24c89b427e3158c9",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_before_resume_hashes.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/source_before_resume_hashes.json",
+      "sha256": "357f4f861d8d507f964f43d42d44a8c2c6228574755d3e74372313ad786ac2e4",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_development_diagnosis.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/source_development_diagnosis.json",
+      "sha256": "81085d85eb76505542a734dce68900fb0c3fa6001d54b5f757e6f72e66d9e889",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_plan_four.command.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/source_plan_four.command.json",
+      "sha256": "58057a9ec18f42febcba09cdae567384ea8e165a7e22db53f06f2445ae6e17d9",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_plan_four.log",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/source_plan_four.log",
+      "sha256": "51a93d291280b32b4a9ee0bc81a779d3d022c6a021bf5d8446fb1868a48e7be1",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_resume_four.command.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/source_resume_four.command.json",
+      "sha256": "3c97ef09d26934431d3fb88b503ed480f65e230b26277744f47eeb395d0f849a",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_resume_four.log",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/source_resume_four.log",
+      "sha256": "95d22ddee206d7a39d223411470712189de58dbaa05e4d661154a5c8a4d528cc",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_summarize_four.command.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/source_summarize_four.command.json",
+      "sha256": "04d9928423a460f4e9a3b637477ef95810f6a73a27ae0e9c1a8ad246295fd3b9",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_summarize_four.log",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/source_summarize_four.log",
+      "sha256": "bbe8e16c8a8b9c0efb256162292d2915c090ffc1996951a38319c89c190b123f",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_verify_four.command.json",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/source_verify_four.command.json",
+      "sha256": "8ea8e2409d01bae2872ec0cfe14575bb3f4d2ab9c6cc5c80edf644b5c48cfc9f",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_verify_four.log",
+      "relative_path": "results/group3_execution_20261031_001/FINAL/source_verify_four.log",
+      "sha256": "85f2f89db1c6402c64cccdfa4210c2c5b558d14ccb72b3e355488d8c988ac203",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-1/commands.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-1/commands.json",
+      "sha256": "334c54a60a75b9728420ec3b81369724b4f24fc9a0f1b5fdb451214da4a0ad33",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-1/frozen-input-check.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-1/frozen-input-check.json",
+      "sha256": "01a73b61ad55156717eeefa4e2c01e07796739f3412de76c5c0fc90ad02c0b49",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-1/preservation.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-1/preservation.json",
+      "sha256": "defbaaa051c83c4731275ba2ae54d71c75810adbec734dc73d635aba5e81132c",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-2/command.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-2/command.json",
+      "sha256": "edb2d70332c3d788d0cc923f00021bf28936c8aac88e7c9c40dba1c37df26332",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-2/generate_evidence.py",
+      "relative_path": "results/group3_execution_20261031_001/P0-2/generate_evidence.py",
+      "sha256": "9299abc2ae7dcd0140617ea6390eb4039a0caab7ad1830d43a7a44b36a95104d",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-2/generation.log",
+      "relative_path": "results/group3_execution_20261031_001/P0-2/generation.log",
+      "sha256": "987ae4b172f87cc198295ee2b6987e9654de673aaac87e973e07ea951ff4b30f",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-2/group2_review_template.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-2/group2_review_template.json",
+      "sha256": "d8380cb23338e77f5ad69ece344de8d2aa42fcc7645415d7af06d717b758ef60",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-2/word_issue_manifest.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-2/word_issue_manifest.json",
+      "sha256": "f4b22d2fcf52e5dcaa00f577123f2687813eb3d436f6a39ee815deedbc0ff277",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-3/audit_evidence.py",
+      "relative_path": "results/group3_execution_20261031_001/P0-3/audit_evidence.py",
+      "sha256": "6bc5a6283177d8c1d883c7e0962053799a27c3198c5ff75b0bc7fe703eaafe60",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-3/collision_audit.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-3/collision_audit.command.json",
+      "sha256": "f31a40002dde117d52a1bf1c2eea3e811d13df14bf601ef330ec8ba0196263aa",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-3/collision_audit.log",
+      "relative_path": "results/group3_execution_20261031_001/P0-3/collision_audit.log",
+      "sha256": "96022f2df96dc0774346d1185cb0a175371be6165e4ded949971671d15c0c8bb",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-3/collision_inventory.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-3/collision_inventory.json",
+      "sha256": "c56253f9afc0e84316156412e67d5566efa3a6241ec7dd2c63450f5c9de31bff",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-3/dense_counterexample_recheck.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-3/dense_counterexample_recheck.json",
+      "sha256": "35a2a8062c78fcedf5f33deec106f756bd0337b51465dad04b4f27f93b68d5c7",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-3/pytest_collision_scope.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-3/pytest_collision_scope.command.json",
+      "sha256": "8efb86ebba8fbc2af0e73930666e6abdf9d15457d30757044281eacb9d47c3c1",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-3/pytest_collision_scope.log",
+      "relative_path": "results/group3_execution_20261031_001/P0-3/pytest_collision_scope.log",
+      "sha256": "5dfb691affa09b19179cb0cd1236deda61036604cde9be8f46d1706e152bcff4",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-3/sampling_proposal.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-3/sampling_proposal.json",
+      "sha256": "77367820fc32f5672af4f92c2f178e365ed2b36260c14836fc63c7c38fbba88d",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-4/analytic_metric_checks.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-4/analytic_metric_checks.json",
+      "sha256": "f22a691c07bb9b8d5dc1015248de10e5ccbbb3842091e2407caa4fa7fa6929f3",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-4/audit_evidence.py",
+      "relative_path": "results/group3_execution_20261031_001/P0-4/audit_evidence.py",
+      "sha256": "97396eb1a741c9af5d0c36b06909167a5e3f3e264a0e7f430fa7562daa0892f0",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-4/quality_audit.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-4/quality_audit.command.json",
+      "sha256": "8c9ff2202fa42abc550f0ede98a1435563a5ddb4a7605fa0e187870cb7abf7a3",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-4/quality_audit.log",
+      "relative_path": "results/group3_execution_20261031_001/P0-4/quality_audit.log",
+      "sha256": "452702ac435d3697e2dd19109d05200957e29385e174814a1d9ab3ec21ff74e4",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-4/quality_metrics_recomputed.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-4/quality_metrics_recomputed.json",
+      "sha256": "9e8aa41506cdf8e6294bcc8f7568c4cb6ea042c74f2775bf93ecd53783d703e7",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-4/quality_threshold_proposal.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-4/quality_threshold_proposal.json",
+      "sha256": "b7ebea9c610d89fb9dd0334c7d4bacd709bcbc854467ea666e3252f76f0ff4e9",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-5/pytest_contract_final.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-5/pytest_contract_final.command.json",
+      "sha256": "2c2cd1f349d2f7856ef5a2b9a5d8a07e3240f808c3f05a8019783a2b6795dde2",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-5/pytest_contract_final.log",
+      "relative_path": "results/group3_execution_20261031_001/P0-5/pytest_contract_final.log",
+      "sha256": "3a4b61ad27782f5d64b596e6fb361dd5e092b59a84fda6947ffeb0b03c76b1b5",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-5/pytest_contract_initial.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-5/pytest_contract_initial.command.json",
+      "sha256": "3a87cf2f1029f102d5e4b7b07668790a3606964291761818ef5081f572045c51",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-5/pytest_contract_initial.log",
+      "relative_path": "results/group3_execution_20261031_001/P0-5/pytest_contract_initial.log",
+      "sha256": "f5c97b956552308ed1ec5156ff538412ff48081c6ffc736a252a66c6b4f5699d",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-5/v2_hash_manifest.json",
+      "relative_path": "results/group3_execution_20261031_001/P0-5/v2_hash_manifest.json",
+      "sha256": "affe1bf6cf7b9b7420413a09f7dd0a574954c87e88cd58a20c782387e454991a",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-1/approval_state.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-1/approval_state.json",
+      "sha256": "924b8c1aec6e1ae8883d7c74170bf08607a67e3ee26ba68ed765ed3530f81868",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-1/pytest_windows_final.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-1/pytest_windows_final.command.json",
+      "sha256": "02c59fe5e7414ff7c47ad9743d6fa07ff0cbeab1f243cfe99106a2c1c0940ed1",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-1/pytest_windows_final.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-1/pytest_windows_final.log",
+      "sha256": "2ba62fb92db1dacce2d1517edfbd412cc57318d78976fd2c736218bf058d1ddc",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-1/pytest_windows_initial.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-1/pytest_windows_initial.command.json",
+      "sha256": "e2df63a2503481131ef3455ff751cea699ff7821855f635fe103f03d7964e7cc",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-1/pytest_windows_initial.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-1/pytest_windows_initial.log",
+      "sha256": "36fa1b0c45e167caeeee1e677e133addea61aa141db0581cf9cccb3239fe4d23",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_final.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-2/pytest_verifier_final.command.json",
+      "sha256": "21a499b1d1d1bdd9dabc0926c6474211cc9621ba7e040024f3122ed3b9b2d989",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_final.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-2/pytest_verifier_final.log",
+      "sha256": "6516ec6eb62a229a8a36fefc3234993064bb1aedd79d98eb98039909d8eef991",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_initial.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-2/pytest_verifier_initial.command.json",
+      "sha256": "a76c2228dfe4d983c0aca6789ba6955dd26643f92c95f9ecac6ba413c0ee3102",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_initial.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-2/pytest_verifier_initial.log",
+      "sha256": "449affc0379e93fdbad7d3595a99b2c2abf04c62cf5aa1e5e4285b8a9b281098",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_reviewed.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-2/pytest_verifier_reviewed.command.json",
+      "sha256": "302f78cc380e78250f3f34e2f1fdc4b7a8d9527b07cec56e53243eb5b4955713",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_reviewed.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-2/pytest_verifier_reviewed.log",
+      "sha256": "931b00cd5343efbd0aada787aa114dfc287e16273e02cfa4fd6e1edbb06d39bd",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_reviewed_final.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-2/pytest_verifier_reviewed_final.command.json",
+      "sha256": "9cac12fe0a04daf77a9dc69dd10cbb78ef757eab9dccabc4c90b8d8d2df210f3",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_reviewed_final.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-2/pytest_verifier_reviewed_final.log",
+      "sha256": "a359e94becc1401a5cc7a39ccaf5c7a7d05acf72f8dcd7d1b97bd5f476faeb3e",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/verifier_contract_hashes.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-2/verifier_contract_hashes.json",
+      "sha256": "881f261169bf6377f94fe66ac0aabebc618c21d1fc2b41fa1b82f318bc688f67",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/verifier_evidence_summary.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-2/verifier_evidence_summary.json",
+      "sha256": "0f4d6791ab19c2734348c59299b91c75ff4ee8bc5d8f063f15ec731426177bbf",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-3/pytest_timing_final.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-3/pytest_timing_final.command.json",
+      "sha256": "cbb921076667d94177e227862487fc41aa56359d0b562842c757e5aaabd5c4b7",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-3/pytest_timing_final.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-3/pytest_timing_final.log",
+      "sha256": "b5a3963f9c9cbfb906ac1ad5cfee179e18da542848e23a5d3455e88130827f93",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-3/pytest_timing_initial.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-3/pytest_timing_initial.command.json",
+      "sha256": "218953f4a9fc521322a634b3a94dd7ce482a9e4b1650d9f697736be19cbe552e",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-3/pytest_timing_initial.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-3/pytest_timing_initial.log",
+      "sha256": "7f30d7a46699da1a0783a6e1d8a2396a782d972a1ef730c013d6313a1a556b82",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-3/pytest_timing_reviewed.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-3/pytest_timing_reviewed.command.json",
+      "sha256": "80d3f07bd29e9b95db49731fc09956a1ae96c053849ebaac251654287a5119ab",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-3/pytest_timing_reviewed.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-3/pytest_timing_reviewed.log",
+      "sha256": "352497ab70e88d82b6ec3a72a4bf3cb2bba05e5e1b1a09bd86e3936c0173bf7a",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-3/timing_summary.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-3/timing_summary.json",
+      "sha256": "a3f89acb3e3d9a72a1d533b2de8f88fce7e504635991d9f0d968865b06ed91c2",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/finger_summary.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-4/finger_summary.json",
+      "sha256": "b38c9aadfc476f327f2404ca438618ebedeb256cfcb3144ef48bb72df0421bf6",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_final.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-4/pytest_fingers_final.command.json",
+      "sha256": "356b0efb4633a9e37518537c72674c33fd6ace50b650d7b51e097961292ad914",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_final.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-4/pytest_fingers_final.log",
+      "sha256": "62631a09f5ba17597efe872a802ebf5c60f81ed4de7b2509eb8fd6127d458557",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_initial.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-4/pytest_fingers_initial.command.json",
+      "sha256": "25add1d5823184f1d20f2d831f522201b42e633065ab858b73bc6761ceb8b5f1",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_initial.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-4/pytest_fingers_initial.log",
+      "sha256": "3c85c3441958b2fa39adc5039ea198dde805afaecbfb47f9b35cda8949db1294",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_polynomial.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-4/pytest_fingers_polynomial.command.json",
+      "sha256": "9874bc761bce05704c6bffcbe1077420e202a1ad8b4ab92e58520730b0718cde",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_polynomial.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-4/pytest_fingers_polynomial.log",
+      "sha256": "04b8ad543b4bdd1072f552da413d7d5fb1fcda174a3575188d991c85ac5d2ad8",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_reviewed.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-4/pytest_fingers_reviewed.command.json",
+      "sha256": "090bb3e1669bd7abf578d9424cb734da7854f3a9891496454e637666bdacb790",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_reviewed.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-4/pytest_fingers_reviewed.log",
+      "sha256": "1b913e70e0a0556c8b04ca5330804f9a3b87136ed9c718753101cc628dd3c5d7",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-5/pytest_routes_final.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-5/pytest_routes_final.command.json",
+      "sha256": "da0b9361b603671ed3306e3a77d35f187fb07f91e982338464c118f212d225f6",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-5/pytest_routes_final.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-5/pytest_routes_final.log",
+      "sha256": "e58b2987ae97ba5cb9f0e545776adaf097e81cc796cba592879bc64534ad938a",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-5/pytest_routes_initial.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-5/pytest_routes_initial.command.json",
+      "sha256": "803efdc62d7c0d5316735b8c2451539afc80ce4985ac23010bb1b8b6731132cc",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-5/pytest_routes_initial.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-5/pytest_routes_initial.log",
+      "sha256": "b377b801aaa03782e5e8c238808decbba1f38f11f27813e4e4b39bafcb140e43",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-5/pytest_routes_reviewed.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-5/pytest_routes_reviewed.command.json",
+      "sha256": "594b91d4560671e3fbae87cc13f5d40aecb79c1cc97b79b6520240e05e9a12c2",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-5/pytest_routes_reviewed.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-5/pytest_routes_reviewed.log",
+      "sha256": "e58b2987ae97ba5cb9f0e545776adaf097e81cc796cba592879bc64534ad938a",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-5/route_summary.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-5/route_summary.json",
+      "sha256": "df7ca2bbc05f836b9c145653827bda8fd991358f45a86a7f2f94a9e17e5782bb",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-6/pytest_search_final.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-6/pytest_search_final.command.json",
+      "sha256": "eaf71214280575beed071adcfa2af8a6c1589fa2d4444e735819d78705ede134",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-6/pytest_search_final.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-6/pytest_search_final.log",
+      "sha256": "cef2460f86d2572e2e2bce67ef0b6f4afed74f4a1dc7ae927856f711f733a011",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-6/pytest_search_initial.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-6/pytest_search_initial.command.json",
+      "sha256": "452d650fc6477458b4598f0a6552bd7f2990d563b21a306f94d3b22d65cb7b0e",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-6/pytest_search_initial.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-6/pytest_search_initial.log",
+      "sha256": "8dc4aed9db3f049f019805c4c50893d266a530982057f31932e1b53e7ef5a017",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-6/pytest_search_reviewed_final.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-6/pytest_search_reviewed_final.command.json",
+      "sha256": "00a432bdca29ff74f7a48a9af639a99063a3ec22b9c2651bb572be408746ec47",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-6/pytest_search_reviewed_final.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-6/pytest_search_reviewed_final.log",
+      "sha256": "ba05a3e0d14cdfbbf38c66eec6daae97e351a18f0b3197da90e16d678adaca31",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-6/search_summary.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-6/search_summary.json",
+      "sha256": "c35cbb8fb38b941667fc101b68583bad4e076f40353fb181f6ad64301dc346c2",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/pytest_runner_initial.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/pytest_runner_initial.command.json",
+      "sha256": "0f35815c4cebb20a99cfaa83563d0cc5cf66f33d64cdfe001d9fca1fe8611560",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/pytest_runner_initial.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/pytest_runner_initial.log",
+      "sha256": "efb6b50ef07592d537c155ac5cfdadfc5bb140b48acafd29484238c7f47ff296",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/runner_fault_cases.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/runner_fault_cases.command.json",
+      "sha256": "3d8a945ea7f935d5b6bd7e271db6340d8d927cdb1af533e4fba059a99a2a6822",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/runner_fault_cases.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/runner_fault_cases.log",
+      "sha256": "23fe3e523b338073927ca3a6c44ec954568cb81880c76bfba3fb7f6f29620190",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/runner_fault_cases_v2.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/runner_fault_cases_v2.command.json",
+      "sha256": "08f73bd88107d6edf2bea93f528bd65d963878a52bcbbb7683603d561d3bfef5",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/runner_fault_cases_v2.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/runner_fault_cases_v2.log",
+      "sha256": "a43c54e8cca2832f24e0c974c081b029599441bc6e231c5d44339dbbf019caaa",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/runner_pre_review.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/runner_pre_review.command.json",
+      "sha256": "818e76582a17101606aa88c2c9e7d9b99c8e4b5a5a94279e3a29684ab828489c",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/runner_pre_review.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/runner_pre_review.log",
+      "sha256": "6406522dfcf1f8ef4bdf1a3d4ca03b4e43b0d19a9de51df8d44444042dee5464",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/runner_summary.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/runner_summary.json",
+      "sha256": "f047cf0f79f662cd2ea12324e57ae53d081f203045552596e38cf8b2a46f15d9",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_before_resume_hashes.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/source_before_resume_hashes.json",
+      "sha256": "3e2abfd0e3509b85b9016ab6b3e0e2c600742acb948531072c0b313b510e45db",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_development_diagnosis.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/source_development_diagnosis.json",
+      "sha256": "2f2c571b1fcdb7e045e67f595a204409e4cce663d338030db4e905c44fb48901",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_plan_four.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/source_plan_four.command.json",
+      "sha256": "84a77d014d21c7b29686d9183fbbf61d53dbf6229c0ab43a9c430376a14a8166",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_plan_four.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/source_plan_four.log",
+      "sha256": "76f69f470f63de32a1d235ffe686721e2d23a328f4c3e32e47c2059e0a4de5c8",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_post_install_regression.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/source_post_install_regression.command.json",
+      "sha256": "eed6778ba64d9c0b13b1e394ecbfbbea966e3ca68b30eb705d6f5808bb681d0a",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_post_install_regression.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/source_post_install_regression.log",
+      "sha256": "7aa05acad5e9be98f744a3e8c7291f72f3db63a910e14ce79d25e761237557db",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_resume_four.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/source_resume_four.command.json",
+      "sha256": "db62086f7aaf70a96e2c59f942d548e6334adf5a277d43e1d2ae1e9ea1b47254",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_resume_four.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/source_resume_four.log",
+      "sha256": "b23e877388a1e1f75b49e9080db9b3a461f4529fb6a79f00cc4f3e9e6716cda5",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_summarize_four.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/source_summarize_four.command.json",
+      "sha256": "57196b75c4d4720978fe6bfd5399ff47aefeb1e419d4723177b62de31df43f4c",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_summarize_four.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/source_summarize_four.log",
+      "sha256": "f03fb3f730d4bbd7e35c8c108e80a69654f0a5f062ea00a1b6bf7394670f1245",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_verify_four.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/source_verify_four.command.json",
+      "sha256": "917e4ee6c22a825c921751ed87bc47f287c8850587de1f2ab96070fb6531b87a",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_verify_four.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/source_verify_four.log",
+      "sha256": "41aa04508b8aab90c5c3291a2a4b54aa222078bc17a29cf390762ece387abf21",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/v1_pipeline_regression.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/v1_pipeline_regression.command.json",
+      "sha256": "ddc5c4a679e75325556bfe014a282ac04bd9c523e17f3b2389d4e847d2fbee36",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/v1_pipeline_regression.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/v1_pipeline_regression.log",
+      "sha256": "f07089b2a0b9d50849266f00cdfcb98563a07bb6d8efdb2b6bd4b27be88f7a89",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/v2_integration_tests.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/v2_integration_tests.command.json",
+      "sha256": "586612bd9065d18e1ff585bf4dbb1c287995176d7d130c191c1ac5e87c309de7",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/v2_integration_tests.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-7/v2_integration_tests.log",
+      "sha256": "e43b16af5a7a5072623fb44dc63f6d3995d736a5bbd7aead982360d8837f4417",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-8/approval_dependency_audit.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-8/approval_dependency_audit.command.json",
+      "sha256": "de7497a41c172358aebb5a35848ca27da5b1a87bf979dce5fe2a360310c07d21",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-8/approval_dependency_audit.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-8/approval_dependency_audit.json",
+      "sha256": "e15ee8c4d22adf1821524163f59a871caaf95b7f2b82300da73a39f58f63b028",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-8/approval_dependency_audit.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-8/approval_dependency_audit.log",
+      "sha256": "c7cab240e47a622a4a66d021680ea5dc20d35f6a1a1530068e7b75910b7ceffe",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-8/minimal_reproduction.command.json",
+      "relative_path": "results/group3_execution_20261031_001/P1-8/minimal_reproduction.command.json",
+      "sha256": "082c7e09ef0d316ad9fa9367bd0e517a8c0ab2015b413d549c8dabbc9d978ac9",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-8/minimal_reproduction.log",
+      "relative_path": "results/group3_execution_20261031_001/P1-8/minimal_reproduction.log",
+      "sha256": "1f278c50b1596fcd7fa9bb44e0b1a9212fdd96e7312593675369ebf32c452946",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-8/reproduce_missing_approval.py",
+      "relative_path": "results/group3_execution_20261031_001/P1-8/reproduce_missing_approval.py",
+      "sha256": "312cd08827c4bdc93480dc7495140acf99e8a901af825f61c6680b17c9571257",
+      "purpose": "actual evidence, logs, checks or preservation metadata"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/scripts/plan_all_pairs.py",
+      "relative_path": "scripts/plan_all_pairs.py",
+      "sha256": "516de961a1b09f21ad2aafc6ea69826948eda579944bbff1fbf3b744dda511f2",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/scripts/summarize_all_pairs.py",
+      "relative_path": "scripts/summarize_all_pairs.py",
+      "sha256": "b10678ea27b4d38b2f5a6cbbf269ef934c3837d7d449bc6ae2be97da4bdb33f9",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/scripts/verify_all_pairs.py",
+      "relative_path": "scripts/verify_all_pairs.py",
+      "sha256": "57c9959e4ec805a7587454b98421c6d3234af9474d10f0c58bbf3f4d990214dc",
+      "purpose": "paired documentation, task report, state or index"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/all_pairs.py",
+      "relative_path": "src/sign_robot/all_pairs.py",
+      "sha256": "965aa253a93071b4ea1db7411849b3957bd89ebd7168639a5f04e3c61c2d70ff",
+      "purpose": "implementation or explicit compatibility update"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_contract.py",
+      "relative_path": "src/sign_robot/pair_contract.py",
+      "sha256": "4f88979d06ccde306ede2c71e2984b4f66d0fa9b5b3f49011904c81444a2f618",
+      "purpose": "implementation or explicit compatibility update"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_fingers.py",
+      "relative_path": "src/sign_robot/pair_fingers.py",
+      "sha256": "0985cfc584c491239063a9ce0d840cc4fb10503aed47767588f10efbecfba632",
+      "purpose": "implementation or explicit compatibility update"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_routes.py",
+      "relative_path": "src/sign_robot/pair_routes.py",
+      "sha256": "111bf52b5fc94a6f3d97a11d71dec58b655c2016bd66634385fc2218016a8dab",
+      "purpose": "implementation or explicit compatibility update"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_runner_v2.py",
+      "relative_path": "src/sign_robot/pair_runner_v2.py",
+      "sha256": "e23d63869d800453ee4777c2177aff693a90ce42435ffc3ca87d3eeb36182c67",
+      "purpose": "implementation or explicit compatibility update"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_search.py",
+      "relative_path": "src/sign_robot/pair_search.py",
+      "sha256": "6ed73b810fdc2e0dce5c4c39cf0445d7c2857a8c3f010538786168870312b8fa",
+      "purpose": "implementation or explicit compatibility update"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_timing.py",
+      "relative_path": "src/sign_robot/pair_timing.py",
+      "sha256": "da53371380c34a87c49fd2395eb7ebbd67fbc2e19c9e53e819835234faa9fe29",
+      "purpose": "implementation or explicit compatibility update"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_verification.py",
+      "relative_path": "src/sign_robot/pair_verification.py",
+      "sha256": "f0bcf39ec48a7de10db19605d795a1ddee80ae2db8d86ef838053bfcacb7ac22",
+      "purpose": "implementation or explicit compatibility update"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_verification_v2.py",
+      "relative_path": "src/sign_robot/pair_verification_v2.py",
+      "sha256": "497525af11b9af9c937d209a7515fdb3466db56fb00309d091551482e1af579c",
+      "purpose": "implementation or explicit compatibility update"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_windows.py",
+      "relative_path": "src/sign_robot/pair_windows.py",
+      "sha256": "12d20562a29a92ce7a3833bc4994b61bb680a5b05eec4673b57bd542fe5b0d49",
+      "purpose": "implementation or explicit compatibility update"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/project_overview.py",
+      "relative_path": "src/sign_robot/project_overview.py",
+      "sha256": "d68af6a107b3229273c3d8f9100355a144b71360c7e8101e8c69eaa685fb1bc1",
+      "purpose": "implementation or explicit compatibility update"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/tests/pair_v2_fixtures.py",
+      "relative_path": "tests/pair_v2_fixtures.py",
+      "sha256": "b353ff1c5951d41ab7e83e7e4b0f33b29bdf2c8f855f99d35dab638da6475aca",
+      "purpose": "regression tests or synthetic fixtures"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/tests/test_pair_contract_v2.py",
+      "relative_path": "tests/test_pair_contract_v2.py",
+      "sha256": "986d223e520579323c34340da67cced41139509394fa162495b8c28aefe4a3c9",
+      "purpose": "regression tests or synthetic fixtures"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/tests/test_pair_fingers_v2.py",
+      "relative_path": "tests/test_pair_fingers_v2.py",
+      "sha256": "9894ea3625a190d68c43469e079c33181a52f577d0bcc31df5b01cd34ca97898",
+      "purpose": "regression tests or synthetic fixtures"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/tests/test_pair_routes_v2.py",
+      "relative_path": "tests/test_pair_routes_v2.py",
+      "sha256": "a978d30a81a8b2c22662790bc6638e96606f21afecfa65b0144f18b1314a67bc",
+      "purpose": "regression tests or synthetic fixtures"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/tests/test_pair_runner_v2.py",
+      "relative_path": "tests/test_pair_runner_v2.py",
+      "sha256": "93af276bc63454765c086e4b9cb29c8ebf323f8daf6d8d9f0aae9d95aa49654e",
+      "purpose": "regression tests or synthetic fixtures"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/tests/test_pair_search_v2.py",
+      "relative_path": "tests/test_pair_search_v2.py",
+      "sha256": "b69594eb8da167da6782ac7ef04e2fa105e2b53983994e51c8923904c036ad32",
+      "purpose": "regression tests or synthetic fixtures"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/tests/test_pair_timing_v2.py",
+      "relative_path": "tests/test_pair_timing_v2.py",
+      "sha256": "d84dd1ac364ad31033185b9b6ac5a3832cc4f84a82704288367f5859a4b321f7",
+      "purpose": "regression tests or synthetic fixtures"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/tests/test_pair_verification_v2.py",
+      "relative_path": "tests/test_pair_verification_v2.py",
+      "sha256": "ac89a02a313f91a2c3dedde540875b52b84a9443bd2a528c4a8c5d0b76372e55",
+      "purpose": "regression tests or synthetic fixtures"
+    },
+    {
+      "path": "/home/kingderman/Documents/ME5412-github-latest/tests/test_pair_windows_v2.py",
+      "relative_path": "tests/test_pair_windows_v2.py",
+      "sha256": "9cf5dc9951030cbcbe20fbec8d72258c5259f63abcb7c55d916ed490ff88c422",
+      "purpose": "regression tests or synthetic fixtures"
+    }
+  ],
+  "known_test_outputs": [
+    {
+      "path": "results/session_logs/service-33841.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-33841.log",
+      "sha256": "0f8dd96b7a5a4e80b4beb9fb4c364661222e78b9fd2f6be2efbf40d4bf8b91a2",
+      "bytes": 168,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-45105.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-45105.log",
+      "sha256": "c71cff9dace85946103ce221388abfbd0b366755b9ae962d3de621ea9f550e75",
+      "bytes": 168,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-47841.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-54749.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    }
+  ],
+  "separate_new_run_directories": [
+    "/home/kingderman/Documents/ME5412-github-latest/results/all_pairs/handoff_v2_dev_20261031_001",
+    "/home/kingderman/Documents/ME5412-github-latest/results/all_pairs/handoff_v2_dev_20261031_002"
+  ]
+}

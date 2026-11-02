@@ -1,0 +1,778 @@
+[
+  {
+    "record_file": "R1/preservation.command.json",
+    "argv": [
+      "python3",
+      "/tmp/me5412_preserve_correction.py"
+    ],
+    "cwd": "/home/kingderman/Documents/ME5412",
+    "exit_code": 0,
+    "operation": "archive current installed repository, restore fresh stage, compare full inventories"
+  },
+  {
+    "record_file": "R2/configuration.command.json",
+    "argv": [
+      "python3",
+      "/tmp/me5412_configure_correction.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 0.026774168014526367,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R2/configuration.log"
+  },
+  {
+    "record_file": "R2/targeted_tests.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_user_protected_correction.py",
+      "tests/test_user_protected_windows.py",
+      "tests/test_pair_windows_v2.py",
+      "tests/test_pair_contract_v2.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 8.643624782562256,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R2/targeted_tests.log"
+  },
+  {
+    "record_file": "R3/endpoint_screen.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "scripts/screen_user_protected_cuts.py",
+      "--policy",
+      "config/transition_policy_user_protected_v2.json",
+      "--output",
+      "results/user_protected_correction_20261031_001/R3/endpoint_screen.json",
+      "--pair",
+      "COME__NOW",
+      "--pair",
+      "NOW__COME",
+      "--pair",
+      "COME__COME",
+      "--pair",
+      "NOW__NOW"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 1.1179609298706055,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R3/endpoint_screen.log"
+  },
+  {
+    "record_file": "R3/screen_checks.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/R3/check_endpoint_screen.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 0.06193709373474121,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R3/screen_checks.log"
+  },
+  {
+    "record_file": "R3/targeted_tests.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_user_protected_cuts.py",
+      "tests/test_user_protected_correction.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 8.88072657585144,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R3/targeted_tests.log"
+  },
+  {
+    "record_file": "R4/analysis.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/R4/analyze_plan.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 1,
+    "elapsed_s": 1.6366839408874512,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R4/analysis.log"
+  },
+  {
+    "record_file": "R4/analysis_fixed.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/R4/analyze_plan.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 1.672332525253296,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R4/analysis_fixed.log"
+  },
+  {
+    "record_file": "R4/plan_four.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "scripts/plan_all_pairs.py",
+      "--library",
+      "hospital_v1",
+      "--include-self",
+      "--policy",
+      "config/transition_policy_user_protected_v2.json",
+      "--run-id",
+      "user_protected_corrected_pilot_20261031_001",
+      "--results-root",
+      "results/user_protected_correction_20261031_001/runs",
+      "--pair",
+      "COME__NOW",
+      "--pair",
+      "NOW__COME",
+      "--pair",
+      "COME__COME",
+      "--pair",
+      "NOW__NOW"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 123.55902075767517,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R4/plan_four.log"
+  },
+  {
+    "record_file": "R4/targeted_tests.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_user_protected_routes.py",
+      "tests/test_pair_routes_v2.py",
+      "tests/test_pair_search_v2.py",
+      "tests/test_pair_timing_v2.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 21.040098428726196,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R4/targeted_tests.log"
+  },
+  {
+    "record_file": "R5/analysis.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/R5/analyze_verification.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 0.9636220932006836,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R5/analysis.log"
+  },
+  {
+    "record_file": "R5/coordinate_audit.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/R5/localize_protected_limits.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 0.32120466232299805,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R5/coordinate_audit.log"
+  },
+  {
+    "record_file": "R5/resume_check.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/R5/check_completed_resume.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 6.582968473434448,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R5/resume_check.log"
+  },
+  {
+    "record_file": "R5/resume_plan.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "scripts/plan_all_pairs.py",
+      "--library",
+      "hospital_v1",
+      "--include-self",
+      "--policy",
+      "config/transition_policy_user_protected_v2.json",
+      "--run-id",
+      "user_protected_corrected_pilot_20261031_001",
+      "--results-root",
+      "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/runs",
+      "--pair",
+      "COME__NOW",
+      "--pair",
+      "NOW__COME",
+      "--pair",
+      "COME__COME",
+      "--pair",
+      "NOW__NOW",
+      "--resume"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "elapsed_s": 3.187596056000075,
+    "environment": "inherits frozen command wrapper overrides",
+    "exit_code": 0,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R5/resume_plan.log"
+  },
+  {
+    "record_file": "R5/resume_verify.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "scripts/verify_all_pairs.py",
+      "--run-id",
+      "user_protected_corrected_pilot_20261031_001",
+      "--results-root",
+      "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/runs"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "elapsed_s": 3.2413913869995667,
+    "environment": "inherits frozen command wrapper overrides",
+    "exit_code": 0,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R5/resume_verify.log"
+  },
+  {
+    "record_file": "R5/source_audit.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/R5/audit_protected_sources.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 0.09164834022521973,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R5/source_audit.log"
+  },
+  {
+    "record_file": "R5/source_lower_bound.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/R5/prove_source_lower_bound.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 0.08480286598205566,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R5/source_lower_bound.log"
+  },
+  {
+    "record_file": "R5/targeted_tests.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_user_protected_verification.py",
+      "tests/test_pair_verification_v2.py",
+      "tests/test_user_protected_correction.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 16.371562004089355,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R5/targeted_tests.log"
+  },
+  {
+    "record_file": "R5/verify_four.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "scripts/verify_all_pairs.py",
+      "--run-id",
+      "user_protected_corrected_pilot_20261031_001",
+      "--results-root",
+      "results/user_protected_correction_20261031_001/runs"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 593.8317492008209,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R5/verify_four.log"
+  },
+  {
+    "record_file": "R5/version_isolation.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/R5/check_version_isolation.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 0.18523287773132324,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R5/version_isolation.log"
+  },
+  {
+    "record_file": "R6/analysis.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/R6/analyze_videos.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 0.09434247016906738,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R6/analysis.log"
+  },
+  {
+    "record_file": "R6/media_checks.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/R6/check_media.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 0.6553943157196045,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R6/media_checks.log"
+  },
+  {
+    "record_file": "R6/render_four.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/R6/fast_render.py",
+      "--run-dir",
+      "results/user_protected_correction_20261031_001/runs/user_protected_corrected_pilot_20261031_001",
+      "--output",
+      "results/user_protected_correction_20261031_001/videos",
+      "--pair",
+      "COME__NOW",
+      "--pair",
+      "NOW__COME",
+      "--pair",
+      "COME__COME",
+      "--pair",
+      "NOW__NOW"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 90.22717642784119,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R6/render_four.log"
+  },
+  {
+    "record_file": "R6/targeted_tests.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_user_protected_render.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 0.20877480506896973,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R6/targeted_tests.log"
+  },
+  {
+    "record_file": "R7/final_stage_acceptance.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/FINAL/acceptance.py",
+      "--root",
+      "/tmp/me5412_corrected_intervals_20261031_001/repository",
+      "--output",
+      "results/user_protected_correction_20261031_001/FINAL/final_stage_acceptance.json"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 1.8511781692504883,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R7/final_stage_acceptance.log"
+  },
+  {
+    "record_file": "R7/finalize.command.json",
+    "argv": [
+      "python3",
+      "/home/kingderman/Documents/ME5412-github-latest/results/user_protected_correction_20261031_001/tooling/finish_installed.py"
+    ],
+    "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+    "exit_code": 0,
+    "elapsed_s": 1.8720523369993316,
+    "operation": "append actual installed verification to bilingual reports; regenerate diffs, manifests and final inventory"
+  },
+  {
+    "record_file": "R7/full_tests.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 68.3197832107544,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R7/full_tests.log"
+  },
+  {
+    "record_file": "R7/install.command.json",
+    "argv": [
+      "python3",
+      "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/tooling/install.py"
+    ],
+    "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 4.994730270999753,
+    "log": "/home/kingderman/Documents/ME5412-github-latest/results/user_protected_correction_20261031_001/R7/install.log"
+  },
+  {
+    "record_file": "R7/installed_acceptance.command.json",
+    "argv": [
+      "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+      "results/user_protected_correction_20261031_001/FINAL/acceptance.py",
+      "--root",
+      "/home/kingderman/Documents/ME5412-github-latest",
+      "--output",
+      "results/user_protected_correction_20261031_001/FINAL/final_acceptance_checklist.json"
+    ],
+    "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+    "exit_code": 0,
+    "elapsed_s": 1.8561211840005853,
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "log": "/home/kingderman/Documents/ME5412-github-latest/results/user_protected_correction_20261031_001/R7/installed_acceptance.log",
+    "initial_delivery_hashes_verified": 955
+  },
+  {
+    "record_file": "R7/package.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/tooling/prepare_delivery.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 0.7271509170532227,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R7/package.log"
+  },
+  {
+    "record_file": "R7/package_final.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/tooling/prepare_delivery.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 0.7184398174285889,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R7/package_final.log"
+  },
+  {
+    "record_file": "R7/post_report_acceptance.command.json",
+    "argv": [
+      "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+      "results/user_protected_correction_20261031_001/FINAL/acceptance.py",
+      "--root",
+      "/home/kingderman/Documents/ME5412-github-latest",
+      "--output",
+      "results/user_protected_correction_20261031_001/FINAL/post_report_acceptance.json"
+    ],
+    "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+    "exit_code": 0,
+    "elapsed_s": 1.8660873049993825,
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "log": "/home/kingderman/Documents/ME5412-github-latest/results/user_protected_correction_20261031_001/R7/post_report_acceptance.log"
+  },
+  {
+    "record_file": "R7/stage_acceptance.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/FINAL/acceptance.py",
+      "--root",
+      "/tmp/me5412_corrected_intervals_20261031_001/repository",
+      "--output",
+      "results/user_protected_correction_20261031_001/FINAL/stage_acceptance.json"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 1.8259878158569336,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R7/stage_acceptance.log"
+  },
+  {
+    "record_file": "R7/verify_install.command.json",
+    "argv": [
+      "python3",
+      "/home/kingderman/Documents/ME5412-github-latest/results/user_protected_correction_20261031_001/tooling/verify_installed.py"
+    ],
+    "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 1.9055645579992415,
+    "log": "/home/kingderman/Documents/ME5412-github-latest/results/user_protected_correction_20261031_001/R7/verify_install.log"
+  },
+  {
+    "record_file": "R7/write_reports.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/tooling/write_reports.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 0.025563478469848633,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R7/write_reports.log"
+  },
+  {
+    "record_file": "R7/write_reports_corrected_counts.command.json",
+    "argv": [
+      ".venv/bin/python",
+      "results/user_protected_correction_20261031_001/tooling/write_reports.py"
+    ],
+    "cwd": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MUJOCO_GL": "egl",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "elapsed_s": 0.02839183807373047,
+    "log": "/tmp/me5412_corrected_intervals_20261031_001/repository/results/user_protected_correction_20261031_001/R7/write_reports_corrected_counts.log"
+  }
+]

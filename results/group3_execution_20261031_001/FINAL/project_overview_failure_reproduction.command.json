@@ -1,0 +1,14 @@
+{
+  "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+  "argv": [
+    "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_project_overview.py::test_real_overview_preserves_data_units_and_snapshot_scope"
+  ],
+  "exit_code": 1,
+  "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/project_overview_failure_reproduction.log"
+}

@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "kind": "hospital35_sequence_cases_v1",
+  "sequence_policy": {
+    "path": "config/sequence_policy_hospital35_v1.json",
+    "sha256": "a37615d852d8db7fcdbdb1fb8c589cc7c21eec33bf9783bc5daa1f27fd4420a6"
+  },
+  "pair_run_dir": "results/hospital35_protected_20261101_001/smoke_pre_freeze/pair_runs/smoke_pairs_001",
+  "expected_identity": {
+    "pair_identity_hash": "24a666fc16686fb0a80cd6f585260d61b77e452f78d1e9b45ce56ffb405ad024",
+    "sequence_identity_hash": "4138955f52de18a7b055e473753c5856d7031d5f8553809d4a2a6d3eccb98c37"
+  },
+  "denominator": 111,
+  "groups": {
+    "original_12": [
+      "COME__COME__COME",
+      "COME__COME__NOW",
+      "COME__NOW__COME",
+      "COME__NOW__NOW",
+      "NOW__COME__COME",
+      "NOW__COME__NOW",
+      "NOW__NOW__COME",
+      "NOW__NOW__NOW",
+      "COME__COME__COME__COME__COME",
+      "NOW__NOW__NOW__NOW__NOW",
+      "COME__NOW__COME__NOW__COME",
+      "NOW__COME__NOW__COME__NOW"
+    ],
+    "new_99": [
+      "COME__HELLO__NOW",
+      "NOW__HELLO__COME",
+      "HELLO__HELLO__HELLO",
+      "COME__PLEASE__NOW",
+      "NOW__PLEASE__COME",
+      "PLEASE__PLEASE__PLEASE",
+      "COME__THANK-YOU__NOW",
+      "NOW__THANK-YOU__COME",
+      "THANK-YOU__THANK-YOU__THANK-YOU",
+      "COME__SORRY__NOW",
+      "NOW__SORRY__COME",
+      "SORRY__SORRY__SORRY",
+      "COME__YES__NOW",
+      "NOW__YES__COME",
+      "YES__YES__YES",
+      "COME__NO__NOW",
+      "NOW__NO__COME",
+      "NO__NO__NO",
+      "COME__YOU__NOW",
+      "NOW__YOU__COME",
+      "YOU__YOU__YOU",
+      "COME__YOUR__NOW",
+      "NOW__YOUR__COME",
+      "YOUR__YOUR__YOUR",
+      "COME__ME__NOW",
+      "NOW__ME__COME",
+      "ME__ME__ME",
+      "COME__DEAF__NOW",
+      "NOW__DEAF__COME",
+      "DEAF__DEAF__DEAF",
+      "COME__DOCTOR__NOW",
+      "NOW__DOCTOR__COME",
+      "DOCTOR__DOCTOR__DOCTOR",
+      "COME__NURSE__NOW",
+      "NOW__NURSE__COME",
+      "NURSE__NURSE__NURSE",
+      "COME__INTERPRETER__NOW",
+      "NOW__INTERPRETER__COME",
+      "INTERPRETER__INTERPRETER__INTERPRETER",
+      "COME__APPOINTMENT__NOW",
+      "NOW__APPOINTMENT__COME",
+      "APPOINTMENT__APPOINTMENT__APPOINTMENT",
+      "COME__MEDICINE__NOW",
+      "NOW__MEDICINE__COME",
+      "MEDICINE__MEDICINE__MEDICINE",
+      "COME__STOMACH__NOW",
+      "NOW__STOMACH__COME",
+      "STOMACH__STOMACH__STOMACH",
+      "COME__HEADACHE__NOW",
+      "NOW__HEADACHE__COME",
+      "HEADACHE__HEADACHE__HEADACHE",
+      "COME__HAVE__NOW",
+      "NOW__HAVE__COME",
+      "HAVE__HAVE__HAVE",
+      "COME__NEED__NOW",
+      "NOW__NEED__COME",
+      "NEED__NEED__NEED",
+      "COME__WAIT__NOW",
+      "NOW__WAIT__COME",
+      "WAIT__WAIT__WAIT",
+      "COME__HURT__NOW",
+      "NOW__HURT__COME",
+      "HURT__HURT__HURT",
+      "COME__BREATHE-DEEP__NOW",
+      "NOW__BREATHE-DEEP__COME",
+      "BREATHE-DEEP__BREATHE-DEEP__BREATHE-DEEP",
+      "COME__BLOOD-DRAW__NOW",
+      "NOW__BLOOD-DRAW__COME",
+      "BLOOD-DRAW__BLOOD-DRAW__BLOOD-DRAW",
+      "COME__TAKE__NOW",
+      "NOW__TAKE__COME",
+      "TAKE__TAKE__TAKE",
+      "COME__UNDERSTAND__NOW",
+      "NOW__UNDERSTAND__COME",
+      "UNDERSTAND__UNDERSTAND__UNDERSTAND",
+      "COME__WRITE__NOW",
+      "NOW__WRITE__COME",
+      "WRITE__WRITE__WRITE",
+      "COME__NOT__NOW",
+      "NOW__NOT__COME",
+      "NOT__NOT__NOT",
+      "COME__SOON__NOW",
+      "NOW__SOON__COME",
+      "SOON__SOON__SOON",
+      "COME__LATER__NOW",
+      "NOW__LATER__COME",
+      "LATER__LATER__LATER",
+      "COME__TOMORROW__NOW",
+      "NOW__TOMORROW__COME",
+      "TOMORROW__TOMORROW__TOMORROW",
+      "COME__MORNING__NOW",
+      "NOW__MORNING__COME",
+      "MORNING__MORNING__MORNING",
+      "COME__NIGHT__NOW",
+      "NOW__NIGHT__COME",
+      "NIGHT__NIGHT__NIGHT",
+      "COME__WHERE__NOW",
+      "NOW__WHERE__COME",
+      "WHERE__WHERE__WHERE"
+    ]
+  },
+  "subbatches": [
+    {
+      "subbatch_id": "s001",
+      "cases": [
+        "COME__COME__COME",
+        "COME__COME__NOW",
+        "COME__NOW__COME",
+        "COME__NOW__NOW",
+        "NOW__COME__COME",
+        "NOW__COME__NOW",
+        "NOW__NOW__COME",
+        "NOW__NOW__NOW"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s001"
+    },
+    {
+      "subbatch_id": "s002",
+      "cases": [
+        "COME__COME__COME__COME__COME",
+        "NOW__NOW__NOW__NOW__NOW",
+        "COME__NOW__COME__NOW__COME",
+        "NOW__COME__NOW__COME__NOW",
+        "COME__HELLO__NOW",
+        "NOW__HELLO__COME",
+        "HELLO__HELLO__HELLO",
+        "COME__PLEASE__NOW"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s002"
+    },
+    {
+      "subbatch_id": "s003",
+      "cases": [
+        "NOW__PLEASE__COME",
+        "PLEASE__PLEASE__PLEASE",
+        "COME__THANK-YOU__NOW",
+        "NOW__THANK-YOU__COME",
+        "THANK-YOU__THANK-YOU__THANK-YOU",
+        "COME__SORRY__NOW",
+        "NOW__SORRY__COME",
+        "SORRY__SORRY__SORRY"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s003"
+    },
+    {
+      "subbatch_id": "s004",
+      "cases": [
+        "COME__YES__NOW",
+        "NOW__YES__COME",
+        "YES__YES__YES",
+        "COME__NO__NOW",
+        "NOW__NO__COME",
+        "NO__NO__NO",
+        "COME__YOU__NOW",
+        "NOW__YOU__COME"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s004"
+    },
+    {
+      "subbatch_id": "s005",
+      "cases": [
+        "YOU__YOU__YOU",
+        "COME__YOUR__NOW",
+        "NOW__YOUR__COME",
+        "YOUR__YOUR__YOUR",
+        "COME__ME__NOW",
+        "NOW__ME__COME",
+        "ME__ME__ME",
+        "COME__DEAF__NOW"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s005"
+    },
+    {
+      "subbatch_id": "s006",
+      "cases": [
+        "NOW__DEAF__COME",
+        "DEAF__DEAF__DEAF",
+        "COME__DOCTOR__NOW",
+        "NOW__DOCTOR__COME",
+        "DOCTOR__DOCTOR__DOCTOR",
+        "COME__NURSE__NOW",
+        "NOW__NURSE__COME",
+        "NURSE__NURSE__NURSE"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s006"
+    },
+    {
+      "subbatch_id": "s007",
+      "cases": [
+        "COME__INTERPRETER__NOW",
+        "NOW__INTERPRETER__COME",
+        "INTERPRETER__INTERPRETER__INTERPRETER",
+        "COME__APPOINTMENT__NOW",
+        "NOW__APPOINTMENT__COME",
+        "APPOINTMENT__APPOINTMENT__APPOINTMENT",
+        "COME__MEDICINE__NOW",
+        "NOW__MEDICINE__COME"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s007"
+    },
+    {
+      "subbatch_id": "s008",
+      "cases": [
+        "MEDICINE__MEDICINE__MEDICINE",
+        "COME__STOMACH__NOW",
+        "NOW__STOMACH__COME",
+        "STOMACH__STOMACH__STOMACH",
+        "COME__HEADACHE__NOW",
+        "NOW__HEADACHE__COME",
+        "HEADACHE__HEADACHE__HEADACHE",
+        "COME__HAVE__NOW"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s008"
+    },
+    {
+      "subbatch_id": "s009",
+      "cases": [
+        "NOW__HAVE__COME",
+        "HAVE__HAVE__HAVE",
+        "COME__NEED__NOW",
+        "NOW__NEED__COME",
+        "NEED__NEED__NEED",
+        "COME__WAIT__NOW",
+        "NOW__WAIT__COME",
+        "WAIT__WAIT__WAIT"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s009"
+    },
+    {
+      "subbatch_id": "s010",
+      "cases": [
+        "COME__HURT__NOW",
+        "NOW__HURT__COME",
+        "HURT__HURT__HURT",
+        "COME__BREATHE-DEEP__NOW",
+        "NOW__BREATHE-DEEP__COME",
+        "BREATHE-DEEP__BREATHE-DEEP__BREATHE-DEEP",
+        "COME__BLOOD-DRAW__NOW",
+        "NOW__BLOOD-DRAW__COME"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s010"
+    },
+    {
+      "subbatch_id": "s011",
+      "cases": [
+        "BLOOD-DRAW__BLOOD-DRAW__BLOOD-DRAW",
+        "COME__TAKE__NOW",
+        "NOW__TAKE__COME",
+        "TAKE__TAKE__TAKE",
+        "COME__UNDERSTAND__NOW",
+        "NOW__UNDERSTAND__COME",
+        "UNDERSTAND__UNDERSTAND__UNDERSTAND",
+        "COME__WRITE__NOW"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s011"
+    },
+    {
+      "subbatch_id": "s012",
+      "cases": [
+        "NOW__WRITE__COME",
+        "WRITE__WRITE__WRITE",
+        "COME__NOT__NOW",
+        "NOW__NOT__COME",
+        "NOT__NOT__NOT",
+        "COME__SOON__NOW",
+        "NOW__SOON__COME",
+        "SOON__SOON__SOON"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s012"
+    },
+    {
+      "subbatch_id": "s013",
+      "cases": [
+        "COME__LATER__NOW",
+        "NOW__LATER__COME",
+        "LATER__LATER__LATER",
+        "COME__TOMORROW__NOW",
+        "NOW__TOMORROW__COME",
+        "TOMORROW__TOMORROW__TOMORROW",
+        "COME__MORNING__NOW",
+        "NOW__MORNING__COME"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s013"
+    },
+    {
+      "subbatch_id": "s014",
+      "cases": [
+        "MORNING__MORNING__MORNING",
+        "COME__NIGHT__NOW",
+        "NOW__NIGHT__COME",
+        "NIGHT__NIGHT__NIGHT",
+        "COME__WHERE__NOW",
+        "NOW__WHERE__COME",
+        "WHERE__WHERE__WHERE"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s014"
+    }
+  ],
+  "limits": {
+    "max_cases_per_subbatch": 8,
+    "case_budget_s": 600,
+    "soft_wall_time_s": 7200,
+    "min_free_gib": 5,
+    "max_combinations_per_case": 64
+  },
+  "aggregate_directory": "results/hospital35_protected_20261101_001/smoke_pre_freeze/aggregate",
+  "resume_rule": "a resume writes <canonical_output>_resume_NN (01..99) in order and names every earlier output it read",
+  "theoretical_full_pass": {
+    "word_instances": 341,
+    "connector_groups": 230
+  },
+  "formal_acceptance_enabled": false
+}

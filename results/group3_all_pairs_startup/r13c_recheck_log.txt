@@ -1,0 +1,11 @@
+{
+  "totals": {
+    "transition_count": 19,
+    "pass_count": 19,
+    "source_near_count": 0,
+    "failed_count": 0,
+    "needs_group2_fix_count": 0
+  },
+  "saved_sentence_checks_passed": 10,
+  "all_saved_checks_passed": true
+}

@@ -1,0 +1,51 @@
+{
+  "sequence_id": "NOW__NURSE__BLOOD-DRAW",
+  "source_sequence": "results/hospital_sentences_20261101_002/sequences/sequences/NOW__NURSE__BLOOD-DRAW/attempt_0001.json",
+  "source_sequence_sha256": "2f30e26534274264b8bc51f023c4806f5ba2ceecc8a51c8bb2fad1322dc2fd86",
+  "numerical_checks_passed": true,
+  "verification": "saved independent recheck reused (export_render_inputs.py checks its sequence hash)",
+  "formal_acceptance_enabled": false,
+  "playback_eligible": false,
+  "fps": 30,
+  "video_frames": 447,
+  "video_duration_s": 14.9,
+  "replay_duration_s": 13.466666666666667,
+  "layout": "original full clips top, sequence bottom; front left, side right; shorter row holds end",
+  "protected_instance_video_checks": [
+    {
+      "instance_id": "o0_NOW",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        0,
+        24
+      ]
+    },
+    {
+      "instance_id": "o1_NURSE",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        156,
+        197
+      ]
+    },
+    {
+      "instance_id": "o2_BLOOD-DRAW",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        275,
+        404
+      ]
+    }
+  ],
+  "renderer": {
+    "gl_renderer": "NVIDIA GeForce RTX 5060/PCIe/SSE2",
+    "mujoco": "3.15.0",
+    "model_tree_sha256": "d4c772ade61d9b98d6a8c60feec91e854740d364e47cbfa14bc87add00ec4e33",
+    "label_font": "C:/Windows/Fonts/msyh.ttc",
+    "render_wall_time_s": 13.26
+  },
+  "files": {
+    "comparison.mp4": "7e2739a1a06e96a6d701e9b2bec4f2fd00176f9f21248deb73a4ba3d4da8d42b",
+    "contact_sheet.png": "eae3c34d258c9deed46f8af6a02db1700895ef8372c04e835fce12130601a2fb"
+  }
+}

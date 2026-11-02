@@ -1,0 +1,29 @@
+{
+  "argv": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_user_protected_routes.py",
+    "tests/test_user_protected_cuts.py",
+    "tests/test_pair_routes_v2.py",
+    "tests/test_pair_search_v2.py",
+    "tests/test_pair_timing_v2.py",
+    "tests/test_pair_fingers_v2.py",
+    "tests/test_pair_runner_v2.py"
+  ],
+  "cwd": "/tmp/me5412_auto_cuts_20261031_001/repository",
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "MUJOCO_GL": "egl",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "exit_code": 0,
+  "elapsed_s": 29.38233184814453,
+  "log": "/tmp/me5412_auto_cuts_20261031_001/repository/results/user_protected_auto_20261031_001/R4/routes_timing_fixed_pytest.log"
+}

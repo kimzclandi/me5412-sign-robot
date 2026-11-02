@@ -1,0 +1,21 @@
+{"batch": "rest_020", "stop_reason": "BATCH_COMPLETE", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_020/invocation_001.json", "selected": 3, "pairs": 16}
+{"batch": "rest_024", "stop_reason": "BATCH_COMPLETE", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_024/invocation_001.json", "selected": 0, "pairs": 16}
+{"batch": "rest_028", "stop_reason": "BATCH_COMPLETE", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_028/invocation_001.json", "selected": 0, "pairs": 16}
+{"batch": "rest_032", "stop_reason": "BATCH_COMPLETE", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_032/invocation_001.json", "selected": 3, "pairs": 16}
+{"batch": "rest_064", "stop_reason": "BACKLOG_NOT_CLEARED", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_064/invocation_001.json", "selected": 0, "pairs": 16}
+{"batch": "rest_020", "stop_reason": "BACKLOG_NOT_CLEARED", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_020/invocation_002.json", "selected": 3, "pairs": 16}
+Traceback (most recent call last):
+  File "/home/kingderman/Documents/ME5412-github-latest/scripts/run_hospital35_batches.py", line 229, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/kingderman/Documents/ME5412-github-latest/scripts/run_hospital35_batches.py", line 221, in main
+    return {"pairs": pairs_command, "recheck-pairs": recheck_pairs_command, "sequences": sequences_command,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kingderman/Documents/ME5412-github-latest/scripts/run_hospital35_batches.py", line 73, in pairs_command
+    result = run_pair_batch(store, context, batches[batch_id], budget=budget, seed_base=policy["planner"]["seed"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/batch_control.py", line 188, in run_pair_batch
+    store.run_pair(pair["source_gloss"], pair["target_gloss"], context, seed=seed_base + index)
+  File "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_runner_v2.py", line 499, in run_pair
+    raise RunIntegrityError("In-progress deterministic replay differs; saved results retained")
+sign_robot.pair_runner_v2.RunIntegrityError: In-progress deterministic replay differs; saved results retained

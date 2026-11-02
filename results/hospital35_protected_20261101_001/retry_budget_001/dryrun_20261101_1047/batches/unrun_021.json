@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "DEAF__ME",
+    "DEAF__DEAF",
+    "DEAF__DOCTOR",
+    "DEAF__NURSE",
+    "DEAF__INTERPRETER",
+    "DEAF__APPOINTMENT",
+    "DEAF__MEDICINE",
+    "DEAF__STOMACH",
+    "DEAF__HEADACHE",
+    "DEAF__HAVE",
+    "DEAF__NEED",
+    "DEAF__WAIT",
+    "DEAF__COME",
+    "DEAF__HURT",
+    "DEAF__BREATHE-DEEP",
+    "DEAF__BLOOD-DRAW"
+  ]
+}

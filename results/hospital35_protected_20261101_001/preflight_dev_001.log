@@ -1,0 +1,40 @@
+{"gloss": "HELLO", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "PLEASE", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "THANK-YOU", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "SORRY", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "YES", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "NO", "labels": ["PREFLIGHT_CLEAR"]}
+{"gloss": "YOU", "labels": ["PREFLIGHT_CLEAR"]}
+{"gloss": "YOUR", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "ME", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "DEAF", "labels": ["PREFLIGHT_CLEAR"]}
+{"gloss": "DOCTOR", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "NURSE", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "INTERPRETER", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "APPOINTMENT", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "MEDICINE", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "STOMACH", "labels": ["PREFLIGHT_CLEAR"]}
+{"gloss": "HEADACHE", "labels": ["PREFLIGHT_CLEAR"]}
+{"gloss": "HAVE", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "NEED", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "WAIT", "labels": ["PREFLIGHT_CLEAR"]}
+{"gloss": "COME", "labels": ["PREFLIGHT_CLEAR"]}
+{"gloss": "HURT", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "BREATHE-DEEP", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "BLOOD-DRAW", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "TAKE", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "UNDERSTAND", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "WRITE", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "NOT", "labels": ["PREFLIGHT_CLEAR"]}
+{"gloss": "NOW", "labels": ["PREFLIGHT_CLEAR"]}
+{"gloss": "SOON", "labels": ["PREFLIGHT_CLEAR"]}
+{"gloss": "LATER", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "TOMORROW", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "MORNING", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "NIGHT", "labels": ["CORE_SOURCE_DEFECT"]}
+{"gloss": "WHERE", "labels": ["PREFLIGHT_CLEAR"]}
+{"status": "COMPLETE", "label_counts": {"CORE_SOURCE_DEFECT": 24, "PREFLIGHT_CLEAR": 11}, "affected_pairs": {"core_source_defect": 1104, "no_exit_endpoint": 0, "no_entry_endpoint": 0, "incomplete": 0, "any": 1104, "unaffected_count": 121, "denominator": 1225}, "global_input_blockers": []}
+
+real	0m43.314s
+user	0m43.745s
+sys	0m0.276s

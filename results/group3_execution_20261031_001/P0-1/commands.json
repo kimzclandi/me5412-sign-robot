@@ -1,0 +1,122 @@
+[
+  {
+    "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "-c",
+      "core.fsmonitor=false",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exit_code": 0,
+    "stdout": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-head.txt",
+    "stderr": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-head.txt.stderr"
+  },
+  {
+    "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "-c",
+      "core.fsmonitor=false",
+      "branch",
+      "--show-current"
+    ],
+    "exit_code": 0,
+    "stdout": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-branch.txt",
+    "stderr": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-branch.txt.stderr"
+  },
+  {
+    "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "-c",
+      "core.fsmonitor=false",
+      "diff",
+      "--binary"
+    ],
+    "exit_code": 0,
+    "stdout": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-worktree.patch",
+    "stderr": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-worktree.patch.stderr"
+  },
+  {
+    "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "-c",
+      "core.fsmonitor=false",
+      "diff",
+      "--cached",
+      "--binary"
+    ],
+    "exit_code": 0,
+    "stdout": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-index.patch",
+    "stderr": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-index.patch.stderr"
+  },
+  {
+    "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "-c",
+      "core.fsmonitor=false",
+      "ls-files",
+      "-z",
+      "--others",
+      "--exclude-standard"
+    ],
+    "exit_code": 0,
+    "stdout": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-untracked.zlist",
+    "stderr": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-untracked.zlist.stderr"
+  },
+  {
+    "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "-c",
+      "core.fsmonitor=false",
+      "ls-files",
+      "-z",
+      "--others",
+      "--ignored",
+      "--exclude-standard"
+    ],
+    "exit_code": 0,
+    "stdout": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-ignored.zlist",
+    "stderr": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-ignored.zlist.stderr"
+  },
+  {
+    "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "-c",
+      "core.fsmonitor=false",
+      "status",
+      "--porcelain=v1",
+      "--untracked-files=all"
+    ],
+    "exit_code": 0,
+    "stdout": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-status.after.txt",
+    "stderr": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-status.after.txt.stderr"
+  },
+  {
+    "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "-c",
+      "core.fsmonitor=false",
+      "status",
+      "--porcelain=v1",
+      "--untracked-files=all"
+    ],
+    "exit_code": 0,
+    "stdout": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-status.restored.txt",
+    "stderr": "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/git-status.restored.txt.stderr"
+  }
+]

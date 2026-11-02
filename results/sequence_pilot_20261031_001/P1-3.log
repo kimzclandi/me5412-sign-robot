@@ -1,0 +1,135 @@
+== pairs plan
+{
+  "run_dir": "/home/kingderman/Documents/ME5412-github-latest/results/sequence_pilot_20261031_001/pair_runs/sequence_pilot_pairs_20261031_001",
+  "summary": {
+    "schema_version": 2,
+    "run_id": "sequence_pilot_pairs_20261031_001",
+    "identity": {
+      "library_version": "hospital_v1@deec3cf046ca993798081b8f5aa48d82c18a2e10a199590fae860d001f0c46d1",
+      "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+      "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+      "code_hash": "4080b98e73a121c866115882483ef5b7631532d9add4bed4ff5dfbe214ad9cef",
+      "policy_hash": "839cbf14ecf37baece107fde30e9cc190501f700943663c6345a5f852e22c850",
+      "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+      "identity_hash": "412032f121203b1896e853b279591fa5270e17580be37f2beb2821b7d66d4607"
+    },
+    "groups": {
+      "all": {
+        "denominator": 1225,
+        "status_counts": {
+          "NOT_RUN": 1221,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 0,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 4,
+          "TIMEOUT": 0,
+          "ERROR": 0
+        },
+        "scanned": 4,
+        "pass_sim_rate": 0.0
+      },
+      "non_self": {
+        "denominator": 1190,
+        "status_counts": {
+          "NOT_RUN": 1188,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 0,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 2,
+          "TIMEOUT": 0,
+          "ERROR": 0
+        },
+        "scanned": 2,
+        "pass_sim_rate": 0.0
+      },
+      "self": {
+        "denominator": 35,
+        "status_counts": {
+          "NOT_RUN": 33,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 0,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 2,
+          "TIMEOUT": 0,
+          "ERROR": 0
+        },
+        "scanned": 2,
+        "pass_sim_rate": 0.0
+      }
+    },
+    "saved_candidates": 46,
+    "saved_attempts": 85,
+    "verified_records": 0,
+    "planning_complete": false,
+    "verification_complete": false,
+    "L2_complete": false,
+    "acceptance_level": "v2_development_pending_real_approvals",
+    "formal_acceptance_enabled": false,
+    "executed_development_scope": {
+      "denominator": 4,
+      "pair_ids": [
+        "COME__COME",
+        "COME__NOW",
+        "NOW__COME",
+        "NOW__NOW"
+      ],
+      "numerical_pass_count": 0,
+      "formal_pass_sim_count": 0,
+      "selection_rule": "numerical_pass_then_smoothness_total_duration_v1",
+      "window_provenance": "algorithm"
+    }
+  }
+}
+exit 0
+== pairs verify
+exit 0
+== sequences plan
+{"sequence_id": "COME__COME__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "COME__COME__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "COME__NOW__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "COME__NOW__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__COME__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__COME__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__NOW__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__NOW__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "COME__COME__COME__COME__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__NOW__NOW__NOW__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "COME__NOW__COME__NOW__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__COME__NOW__COME__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"denominator": 12, "numerical_pass_count": 12}
+exit 0
+== sequences recheck
+{"sequence_id": "COME__COME__COME", "status": "NUMERICAL_PASS", "agrees_with_planning": true}
+{"sequence_id": "COME__COME__NOW", "status": "NUMERICAL_PASS", "agrees_with_planning": true}
+{"sequence_id": "COME__NOW__COME", "status": "NUMERICAL_PASS", "agrees_with_planning": true}
+{"sequence_id": "COME__NOW__NOW", "status": "NUMERICAL_PASS", "agrees_with_planning": true}
+{"sequence_id": "NOW__COME__COME", "status": "NUMERICAL_PASS", "agrees_with_planning": true}
+{"sequence_id": "NOW__COME__NOW", "status": "NUMERICAL_PASS", "agrees_with_planning": true}
+{"sequence_id": "NOW__NOW__COME", "status": "NUMERICAL_PASS", "agrees_with_planning": true}
+{"sequence_id": "NOW__NOW__NOW", "status": "NUMERICAL_PASS", "agrees_with_planning": true}
+{"sequence_id": "COME__COME__COME__COME__COME", "status": "NUMERICAL_PASS", "agrees_with_planning": true}
+{"sequence_id": "NOW__NOW__NOW__NOW__NOW", "status": "NUMERICAL_PASS", "agrees_with_planning": true}
+{"sequence_id": "COME__NOW__COME__NOW__COME", "status": "NUMERICAL_PASS", "agrees_with_planning": true}
+{"sequence_id": "NOW__COME__NOW__COME__NOW", "status": "NUMERICAL_PASS", "agrees_with_planning": true}
+{"cases": 12, "numerical_pass": 12, "word_occurrences": 44, "protected_instances_unchanged": 44, "connector_groups": 32, "all_agree_with_planning": true, "formal_pass": 0}
+exit 0
+== render
+{"sequence": "COME__COME__COME", "frames": 603, "protected_equal": true}
+{"sequence": "COME__COME__NOW", "frames": 506, "protected_equal": true}
+{"sequence": "COME__NOW__COME", "frames": 506, "protected_equal": true}
+{"sequence": "COME__NOW__NOW", "frames": 409, "protected_equal": true}
+{"sequence": "NOW__COME__COME", "frames": 506, "protected_equal": true}
+{"sequence": "NOW__COME__NOW", "frames": 409, "protected_equal": true}
+{"sequence": "NOW__NOW__COME", "frames": 409, "protected_equal": true}
+{"sequence": "NOW__NOW__NOW", "frames": 312, "protected_equal": true}
+{"sequence": "COME__COME__COME__COME__COME", "frames": 1005, "protected_equal": true}
+{"sequence": "NOW__NOW__NOW__NOW__NOW", "frames": 520, "protected_equal": true}
+{"sequence": "COME__NOW__COME__NOW__COME", "frames": 811, "protected_equal": true}
+{"sequence": "NOW__COME__NOW__COME__NOW", "frames": 714, "protected_equal": true}
+exit 0

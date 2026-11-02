@@ -1,0 +1,184 @@
+{"done": 1, "total": 1225, "pair_id": "COME__COME", "status": "FAILED_QUALITY", "reason_codes": ["INDEPENDENT_RECHECK_REQUIRED", "V2_FORMAL_ACCEPTANCE_NOT_ENABLED", "QUALITY_THRESHOLDS_NOT_FROZEN", "COLLISION_SCOPE_NOT_APPROVED", "ALGORITHM_WINDOWS_NOT_HUMAN_REVIEWED"]}
+{"done": 2, "total": 1225, "pair_id": "COME__NOW", "status": "FAILED_QUALITY", "reason_codes": ["INDEPENDENT_RECHECK_REQUIRED", "V2_FORMAL_ACCEPTANCE_NOT_ENABLED", "QUALITY_THRESHOLDS_NOT_FROZEN", "COLLISION_SCOPE_NOT_APPROVED", "ALGORITHM_WINDOWS_NOT_HUMAN_REVIEWED"]}
+{"done": 3, "total": 1225, "pair_id": "NOW__COME", "status": "FAILED_QUALITY", "reason_codes": ["INDEPENDENT_RECHECK_REQUIRED", "V2_FORMAL_ACCEPTANCE_NOT_ENABLED", "QUALITY_THRESHOLDS_NOT_FROZEN", "COLLISION_SCOPE_NOT_APPROVED", "ALGORITHM_WINDOWS_NOT_HUMAN_REVIEWED"]}
+{"done": 4, "total": 1225, "pair_id": "NOW__NOW", "status": "FAILED_QUALITY", "reason_codes": ["INDEPENDENT_RECHECK_REQUIRED", "V2_FORMAL_ACCEPTANCE_NOT_ENABLED", "QUALITY_THRESHOLDS_NOT_FROZEN", "COLLISION_SCOPE_NOT_APPROVED", "ALGORITHM_WINDOWS_NOT_HUMAN_REVIEWED"]}
+{
+  "run_dir": "/home/kingderman/Documents/ME5412-github-latest/results/user_protected_lift_off_arrival_20261031_001/runs/lift_off_arrival_pilot_20261031_001",
+  "summary": {
+    "schema_version": 2,
+    "run_id": "lift_off_arrival_pilot_20261031_001",
+    "identity": {
+      "library_version": "hospital_v1@deec3cf046ca993798081b8f5aa48d82c18a2e10a199590fae860d001f0c46d1",
+      "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+      "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+      "code_hash": "fee78f2afd3f071445229f175d55c6d47b8207ab0e34b3167fd7de40551f39ac",
+      "policy_hash": "839cbf14ecf37baece107fde30e9cc190501f700943663c6345a5f852e22c850",
+      "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+      "identity_hash": "2b3b68dc6cd2263ada3f5ae2522d444d735220850739e553ea31116a4ed16d39"
+    },
+    "groups": {
+      "all": {
+        "denominator": 1225,
+        "status_counts": {
+          "NOT_RUN": 1221,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 0,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 4,
+          "TIMEOUT": 0,
+          "ERROR": 0
+        },
+        "scanned": 4,
+        "pass_sim_rate": 0.0
+      },
+      "non_self": {
+        "denominator": 1190,
+        "status_counts": {
+          "NOT_RUN": 1188,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 0,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 2,
+          "TIMEOUT": 0,
+          "ERROR": 0
+        },
+        "scanned": 2,
+        "pass_sim_rate": 0.0
+      },
+      "self": {
+        "denominator": 35,
+        "status_counts": {
+          "NOT_RUN": 33,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 0,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 2,
+          "TIMEOUT": 0,
+          "ERROR": 0
+        },
+        "scanned": 2,
+        "pass_sim_rate": 0.0
+      }
+    },
+    "saved_candidates": 45,
+    "saved_attempts": 85,
+    "verified_records": 0,
+    "planning_complete": false,
+    "verification_complete": false,
+    "L2_complete": false,
+    "acceptance_level": "v2_development_pending_real_approvals",
+    "formal_acceptance_enabled": false,
+    "executed_development_scope": {
+      "denominator": 4,
+      "pair_ids": [
+        "COME__COME",
+        "COME__NOW",
+        "NOW__COME",
+        "NOW__NOW"
+      ],
+      "numerical_pass_count": 0,
+      "formal_pass_sim_count": 0,
+      "selection_rule": "numerical_pass_then_smoothness_total_duration_v1",
+      "window_provenance": "algorithm"
+    }
+  }
+}
+{"verified": 4, "total": 4, "pair_id": "NOW__NOW", "status": "FAILED_QUALITY"}
+{
+  "run_dir": "/home/kingderman/Documents/ME5412-github-latest/results/user_protected_lift_off_arrival_20261031_001/runs/lift_off_arrival_pilot_20261031_001",
+  "summary": {
+    "schema_version": 2,
+    "run_id": "lift_off_arrival_pilot_20261031_001",
+    "identity": {
+      "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+      "code_hash": "fee78f2afd3f071445229f175d55c6d47b8207ab0e34b3167fd7de40551f39ac",
+      "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+      "identity_hash": "2b3b68dc6cd2263ada3f5ae2522d444d735220850739e553ea31116a4ed16d39",
+      "library_version": "hospital_v1@deec3cf046ca993798081b8f5aa48d82c18a2e10a199590fae860d001f0c46d1",
+      "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+      "policy_hash": "839cbf14ecf37baece107fde30e9cc190501f700943663c6345a5f852e22c850"
+    },
+    "groups": {
+      "all": {
+        "denominator": 1225,
+        "status_counts": {
+          "NOT_RUN": 1221,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 0,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 4,
+          "TIMEOUT": 0,
+          "ERROR": 0
+        },
+        "scanned": 4,
+        "pass_sim_rate": 0.0
+      },
+      "non_self": {
+        "denominator": 1190,
+        "status_counts": {
+          "NOT_RUN": 1188,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 0,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 2,
+          "TIMEOUT": 0,
+          "ERROR": 0
+        },
+        "scanned": 2,
+        "pass_sim_rate": 0.0
+      },
+      "self": {
+        "denominator": 35,
+        "status_counts": {
+          "NOT_RUN": 33,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 0,
+          "FAILED_SEARCH": 0,
+          "FAILED_QUALITY": 2,
+          "TIMEOUT": 0,
+          "ERROR": 0
+        },
+        "scanned": 2,
+        "pass_sim_rate": 0.0
+      }
+    },
+    "saved_candidates": 45,
+    "saved_attempts": 85,
+    "verified_records": 4,
+    "planning_complete": false,
+    "verification_complete": false,
+    "L2_complete": false,
+    "acceptance_level": "v2_development_pending_real_approvals",
+    "formal_acceptance_enabled": false,
+    "executed_development_scope": {
+      "denominator": 4,
+      "pair_ids": [
+        "COME__COME",
+        "COME__NOW",
+        "NOW__COME",
+        "NOW__NOW"
+      ],
+      "numerical_pass_count": 4,
+      "formal_pass_sim_count": 0,
+      "selection_rule": "numerical_pass_then_smoothness_total_duration_v1",
+      "window_provenance": "algorithm"
+    }
+  }
+}
+
+real	6m29.314s
+user	6m18.376s
+sys	0m3.938s
+exit=0

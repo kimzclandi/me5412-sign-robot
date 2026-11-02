@@ -1,0 +1,17 @@
+{
+  "policy_file": "config/transition_policy_user_protected_v1.json",
+  "policy_file_sha256": "b58d90b5c3f8213af9eafb0080074004e3ba459c31e58737c382b942c9a563d4",
+  "baseline": "config/transition_policy_v2.json",
+  "unchanged_fields": [
+    "constraints",
+    "quality",
+    "validation",
+    "planner",
+    "fps",
+    "joint_count",
+    "finger_strategies",
+    "scope"
+  ],
+  "formal_acceptance_enabled": false,
+  "frozen_for_development_before_pilot": true
+}

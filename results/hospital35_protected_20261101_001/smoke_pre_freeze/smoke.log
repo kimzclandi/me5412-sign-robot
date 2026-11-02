@@ -1,0 +1,41 @@
+== .venv/bin/python scripts/run_hospital35_batches.py pairs --batch-manifest results/hospital35_protected_20261101_001/batches/manifest.json --batch-manifest-sha256 fb7c56187f6a1edded67b3c701fde6746a3c87d49eeff62af303ca19231ebf19 --batch regression_001 --run-id smoke_pairs_001 --results-root results/hospital35_protected_20261101_001/smoke_pre_freeze/pair_runs --control-dir results/hospital35_protected_20261101_001/smoke_pre_freeze/batch_control
+{"batch": "regression_001", "stop_reason": "BATCH_COMPLETE", "log": "results/hospital35_protected_20261101_001/smoke_pre_freeze/batch_control/pair_batches/regression_001/invocation_001.json", "selected": 2, "pairs": 4}
+exit 0
+== .venv/bin/python scripts/run_hospital35_batches.py recheck-pairs --run-dir results/hospital35_protected_20261101_001/smoke_pre_freeze/pair_runs/smoke_pairs_001 --output results/hospital35_protected_20261101_001/smoke_pre_freeze/recheck
+{"pair_id": "COME__COME", "selected_candidate_id": "attempt_00003", "fresh_numerical_checks_passed": null, "agrees_with_saved_review": false}
+{"pair_id": "COME__NOW", "selected_candidate_id": "attempt_00002", "fresh_numerical_checks_passed": null, "agrees_with_saved_review": false}
+{"pair_id": "NOW__COME", "selected_candidate_id": null, "fresh_numerical_checks_passed": null, "agrees_with_saved_review": null}
+{"pair_id": "NOW__NOW", "selected_candidate_id": null, "fresh_numerical_checks_passed": null, "agrees_with_saved_review": null}
+exit 1
+== .venv/bin/python /tmp/claude-1000/-home-kingderman-Documents-ME5412-github-latest/19dd5746-dbff-4494-9cac-167e2ee2a16d/scratchpad/generate_case_manifest.py results/hospital35_protected_20261101_001/smoke_pre_freeze/case_manifest.json results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences results/hospital35_protected_20261101_001/smoke_pre_freeze/pair_runs/smoke_pairs_001 results/hospital35_protected_20261101_001/smoke_pre_freeze/aggregate
+{"case_manifest": "results/hospital35_protected_20261101_001/smoke_pre_freeze/case_manifest.json", "sha256": "fcc317a7458ad5182de712ca8ef6be664e8998671a21afe011d1b85e8d851096", "subbatches": 14, "pair_identity_hash": "24a666fc16686fb0a80cd6f585260d61b77e452f78d1e9b45ce56ffb405ad024", "sequence_identity_hash": "4138955f52de18a7b055e473753c5856d7031d5f8553809d4a2a6d3eccb98c37", "code_hash": "c89ead1b5aa46ba2a654e4e102ac6c3be320c30418c169fa1cd7793a0d4cf0b5"}
+exit 0
+== .venv/bin/python scripts/run_hospital35_batches.py sequences --sequence-policy config/sequence_policy_hospital35_v1.json --case-manifest results/hospital35_protected_20261101_001/smoke_pre_freeze/case_manifest.json --case-manifest-sha256 fcc317a7458ad5182de712ca8ef6be664e8998671a21afe011d1b85e8d851096 --subbatch s001 --control-dir results/hospital35_protected_20261101_001/smoke_pre_freeze/batch_control
+Pair run identity differs from current code/inputs; use a fresh pair run
+exit 1
+== .venv/bin/python scripts/run_hospital35_batches.py sequences --sequence-policy config/sequence_policy_hospital35_v1.json --case-manifest results/hospital35_protected_20261101_001/smoke_pre_freeze/case_manifest.json --case-manifest-sha256 fcc317a7458ad5182de712ca8ef6be664e8998671a21afe011d1b85e8d851096 --subbatch s003 --control-dir results/hospital35_protected_20261101_001/smoke_pre_freeze/batch_control
+Pair run identity differs from current code/inputs; use a fresh pair run
+exit 1
+== .venv/bin/python scripts/run_hospital35_batches.py aggregate --sequence-policy config/sequence_policy_hospital35_v1.json --case-manifest results/hospital35_protected_20261101_001/smoke_pre_freeze/case_manifest.json --case-manifest-sha256 fcc317a7458ad5182de712ca8ef6be664e8998671a21afe011d1b85e8d851096
+{"aggregate": "results/hospital35_protected_20261101_001/smoke_pre_freeze/aggregate/invocation_001.json", "totals": {"all": {"denominator": 111, "independently_rechecked_pass": 0, "status_counts": {"NOT_RUN": 111}}, "original_12": {"denominator": 12, "independently_rechecked_pass": 0, "status_counts": {"NOT_RUN": 12}}, "new_99": {"denominator": 99, "independently_rechecked_pass": 0, "status_counts": {"NOT_RUN": 99}}}}
+exit 0
+== .venv/bin/python scripts/render_sequences.py --run-dir results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s001 --output results/hospital35_protected_20261101_001/smoke_pre_freeze/videos --case COME__NOW__COME
+Traceback (most recent call last):
+  File "/home/kingderman/Documents/ME5412-github-latest/scripts/render_sequences.py", line 204, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/kingderman/Documents/ME5412-github-latest/scripts/render_sequences.py", line 146, in main
+    manifest = read_json(run_dir / 'manifest.json')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_contract.py", line 66, in read_json
+    return json.loads(Path(path).read_text(encoding="utf-8"))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1029, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1015, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/kingderman/Documents/ME5412-github-latest/results/hospital35_protected_20261101_001/smoke_pre_freeze/sequences/s001/manifest.json'
+exit 1
+== done

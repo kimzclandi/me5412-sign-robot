@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "DEAF__TAKE",
+    "DEAF__UNDERSTAND",
+    "DEAF__WRITE",
+    "DEAF__NOT",
+    "DEAF__NOW",
+    "DEAF__SOON",
+    "DEAF__LATER",
+    "DEAF__TOMORROW",
+    "DEAF__MORNING",
+    "DEAF__NIGHT",
+    "DEAF__WHERE",
+    "DOCTOR__HELLO",
+    "DOCTOR__PLEASE",
+    "DOCTOR__THANK-YOU",
+    "DOCTOR__SORRY",
+    "DOCTOR__YES"
+  ]
+}

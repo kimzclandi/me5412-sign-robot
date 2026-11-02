@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "case": "quadratic_source",
+      "expected_velocity_rad_s": 3,
+      "expected_acceleration_rad_s2": 8,
+      "actual_velocity": [
+        2.9999999999999942
+      ],
+      "actual_acceleration": [
+        7.999999999999892
+      ]
+    },
+    {
+      "case": "quadratic_target",
+      "expected_velocity_rad_s": 3,
+      "expected_acceleration_rad_s2": 8,
+      "actual_velocity": [
+        3.0000000000000253
+      ],
+      "actual_acceleration": [
+        7.999999999999708
+      ]
+    },
+    {
+      "case": "one_rad_one_second_quintic",
+      "expected": {
+        "analytic_connector_peak_speed_rad_s": 1.875,
+        "analytic_connector_peak_acceleration_rad_s2": 5.773502691896258,
+        "analytic_connector_peak_jerk_rad_s3": 60,
+        "analytic_connector_jerk_integral_rad2_s5": 720
+      },
+      "actual": {
+        "analytic_connector_peak_speed_rad_s": 1.875,
+        "analytic_connector_peak_acceleration_rad_s2": 5.773502691896258,
+        "analytic_connector_peak_jerk_rad_s3": 60.0,
+        "analytic_connector_jerk_integral_rad2_s5": 720.0
+      },
+      "independent_quadrature_jerk_integral_rad2_s5": 720.0000007199999
+    }
+  ]
+}

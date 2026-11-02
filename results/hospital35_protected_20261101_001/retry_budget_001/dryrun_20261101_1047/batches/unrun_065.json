@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "SOON__NOT",
+    "SOON__LATER",
+    "SOON__TOMORROW",
+    "SOON__MORNING",
+    "SOON__NIGHT",
+    "SOON__WHERE",
+    "LATER__HELLO",
+    "LATER__PLEASE",
+    "LATER__THANK-YOU",
+    "LATER__SORRY",
+    "LATER__YES",
+    "LATER__NO",
+    "LATER__YOU",
+    "LATER__YOUR",
+    "LATER__ME",
+    "LATER__DEAF"
+  ]
+}

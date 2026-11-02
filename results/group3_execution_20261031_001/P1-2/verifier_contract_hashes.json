@@ -1,0 +1,8 @@
+{
+  "phase": "final-reviewed-implementation",
+  "contract_sha256": "b0473f155457bdc6faf124e658a54d1315291f8223d64adc709dbbc8cd778b55",
+  "policy_sha256": "2f5b87821859f98593e4d25fe596d356cd50d5bae89100f6dffb720a3faf3c07",
+  "verifier_sha256": "1fa03a9b48539e0d2690307456d3739d41502268da4e165b284cae9dfc50b291",
+  "tests_sha256": "fe582b15c74bbd67a0c300d4992dc7918c4fed035922879a85080905169ed35e",
+  "formal_acceptance_enabled": false
+}

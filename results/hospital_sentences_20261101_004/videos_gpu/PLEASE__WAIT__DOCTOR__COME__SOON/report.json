@@ -1,0 +1,67 @@
+{
+  "sequence_id": "PLEASE__WAIT__DOCTOR__COME__SOON",
+  "source_sequence": "results/hospital_sentences_20261101_004/sequences/sequences/PLEASE__WAIT__DOCTOR__COME__SOON/attempt_0001.json",
+  "source_sequence_sha256": "6b9c4299fda61ef5aa8fd196b66ae9ddb3acd4ce7ef86b83b593da96292b3325",
+  "numerical_checks_passed": true,
+  "verification": "saved independent recheck reused (export_render_inputs.py checks its sequence hash)",
+  "formal_acceptance_enabled": false,
+  "playback_eligible": false,
+  "fps": 30,
+  "video_frames": 712,
+  "video_duration_s": 23.733333333333334,
+  "replay_duration_s": 14.666666666666666,
+  "layout": "original full clips top, sequence bottom; front left, side right; shorter row holds end",
+  "protected_instance_video_checks": [
+    {
+      "instance_id": "o0_PLEASE",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        0,
+        39
+      ]
+    },
+    {
+      "instance_id": "o1_WAIT",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        98,
+        155
+      ]
+    },
+    {
+      "instance_id": "o2_DOCTOR",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        212,
+        235
+      ]
+    },
+    {
+      "instance_id": "o3_COME",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        250,
+        355
+      ]
+    },
+    {
+      "instance_id": "o4_SOON",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        367,
+        427
+      ]
+    }
+  ],
+  "renderer": {
+    "gl_renderer": "NVIDIA GeForce RTX 5060/PCIe/SSE2",
+    "mujoco": "3.15.0",
+    "model_tree_sha256": "d4c772ade61d9b98d6a8c60feec91e854740d364e47cbfa14bc87add00ec4e33",
+    "label_font": "C:/Windows/Fonts/msyh.ttc",
+    "render_wall_time_s": 14.74
+  },
+  "files": {
+    "comparison.mp4": "43fd9de06039369cc8705f3eed4fef4716e1e77d05d03a81ad4ac31081cce4be",
+    "contact_sheet.png": "12b84e74015b06ee212b67bde9cff665432052b5f98dccd6ed901da6a1fdc339"
+  }
+}

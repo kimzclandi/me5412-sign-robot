@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "kind": "hospital35_sequence_cases_v1",
+  "sequence_policy": {
+    "path": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/sequence_policy_dryrun.json",
+    "sha256": "c1330d7c466662a50516c8acee0cf5b1c1955ab89f752caaa8e1e158a1dd25b4"
+  },
+  "pair_run_dir": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/pair_runs/hospital35_retry_budget_001",
+  "expected_identity": {
+    "pair_identity_hash": "76df3aff17da823cf9c7dbf7fbb21906d8a9924e9575a3d753fa57e884cf91f3",
+    "sequence_identity_hash": "238ff05729804cf08fb36e9d4a254bea9b3cd898c863009126ea79c02d54d9c5"
+  },
+  "denominator": 10,
+  "groups": {
+    "retry_cases": [
+      "NOW__STOMACH__COME",
+      "COME__HEADACHE__NOW",
+      "NOW__HEADACHE__COME",
+      "HEADACHE__HEADACHE__HEADACHE",
+      "COME__WAIT__NOW",
+      "NOW__WAIT__COME",
+      "WAIT__WAIT__WAIT",
+      "COME__SOON__NOW",
+      "NOW__SOON__COME",
+      "SOON__SOON__SOON"
+    ]
+  },
+  "subbatches": [
+    {
+      "subbatch_id": "s001",
+      "cases": [
+        "NOW__STOMACH__COME",
+        "COME__HEADACHE__NOW",
+        "NOW__HEADACHE__COME",
+        "HEADACHE__HEADACHE__HEADACHE",
+        "COME__WAIT__NOW",
+        "NOW__WAIT__COME",
+        "WAIT__WAIT__WAIT",
+        "COME__SOON__NOW"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/sequences_001/s001"
+    },
+    {
+      "subbatch_id": "s002",
+      "cases": [
+        "NOW__SOON__COME",
+        "SOON__SOON__SOON"
+      ],
+      "canonical_output": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/sequences_001/s002"
+    }
+  ],
+  "limits": {
+    "max_cases_per_subbatch": 8,
+    "case_budget_s": 600,
+    "soft_wall_time_s": 7200,
+    "min_free_gib": 5,
+    "max_combinations_per_case": 64
+  },
+  "aggregate_directory": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/sequences_001/aggregate",
+  "resume_rule": "a resume writes <canonical_output>_resume_NN (01..99) in order and names every earlier output it read",
+  "theoretical_full_pass": {
+    "word_instances": 30,
+    "connector_groups": 20
+  },
+  "formal_acceptance_enabled": false
+}

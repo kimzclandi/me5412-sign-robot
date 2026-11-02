@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "videos": {
+    "COME__NOW": {
+      "decoded_frames": 305,
+      "fps": 30.0,
+      "size": [
+        640,
+        880
+      ],
+      "video_sha256": "7255b14e611f0cf8d18cb82b56bfdeb948686cfffe8d90de7967ad9520ef3e2c",
+      "all_export_hashes_match": true,
+      "contact_sheet_image_tool_inspection": "Failure/algorithm labels visible. Original protected f102/f118/f127; auto protected f129, retained f145 and added transition shown in front/side views."
+    },
+    "NOW__COME": {
+      "decoded_frames": 305,
+      "fps": 30.0,
+      "size": [
+        640,
+        880
+      ],
+      "video_sha256": "cfdcf37dfe2dbd4aafef211116c14011c201fcc5fde4b01a9ed36afcd6ff04be",
+      "all_export_hashes_match": true,
+      "contact_sheet_image_tool_inspection": "Failure/algorithm labels visible. Original protected f74 and cut f89/f100; auto retained f77, added transition and COME protected f34 shown."
+    },
+    "COME__COME": {
+      "decoded_frames": 402,
+      "fps": 30.0,
+      "size": [
+        640,
+        880
+      ],
+      "video_sha256": "ee9e0701e8bac60ad749f5e4e4449a7bcacf5d8873de3e60fa3a18a6db4891d2",
+      "all_export_hashes_match": true,
+      "contact_sheet_image_tool_inspection": "Failure/algorithm labels visible. Original COME f134/f150/f159 marked retained beyond corrected core end132; auto f161/f177 and added transition shown."
+    },
+    "NOW__NOW": {
+      "decoded_frames": 208,
+      "fps": 30.0,
+      "size": [
+        640,
+        880
+      ],
+      "video_sha256": "3b15d8a0d692e088609d0c6fd6fcc2ada9994f9654526f32816896360a977216",
+      "all_export_hashes_match": true,
+      "contact_sheet_image_tool_inspection": "Failure/algorithm labels visible. Original f79/f82 retained and f88 cut; auto f82 retained and added transition shown."
+    }
+  }
+}

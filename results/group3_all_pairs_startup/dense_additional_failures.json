@@ -1,0 +1,244 @@
+[
+  {
+    "pair_id": "DOCTOR__NURSE",
+    "playback_min_clearance_mm": 8.011922386203274,
+    "dense_min_clearance_mm": -25.851033771719067,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_middle_intermediate",
+        "right_wrist_yaw_link"
+      ],
+      "distance_m": -0.025851033771719066,
+      "frame": 78,
+      "geom_ids": [
+        73,
+        97
+      ],
+      "geoms": [
+        "geom_73",
+        "geom_97"
+      ],
+      "location": "interior"
+    }
+  },
+  {
+    "pair_id": "HAVE__DOCTOR",
+    "playback_min_clearance_mm": 2.857123217454332,
+    "dense_min_clearance_mm": 0.40708177237655646,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_pinky_proximal",
+        "R_thumb_intermediate"
+      ],
+      "distance_m": 0.0004070817723765565,
+      "frame": 22,
+      "geom_ids": [
+        79,
+        103
+      ],
+      "geoms": [
+        "geom_79",
+        "geom_103"
+      ],
+      "location": "interior"
+    }
+  },
+  {
+    "pair_id": "HAVE__TAKE",
+    "playback_min_clearance_mm": 6.779122787480329,
+    "dense_min_clearance_mm": -0.9619021880032143,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_pinky_proximal",
+        "R_thumb_proximal"
+      ],
+      "distance_m": -0.0009619021880032143,
+      "frame": 22,
+      "geom_ids": [
+        79,
+        101
+      ],
+      "geoms": [
+        "geom_79",
+        "geom_101"
+      ],
+      "location": "interior"
+    }
+  },
+  {
+    "pair_id": "HEADACHE__NURSE",
+    "playback_min_clearance_mm": 2.6390933482142445,
+    "dense_min_clearance_mm": 1.4105876317054167,
+    "closest_collision_pair": {
+      "bodies": [
+        "left_wrist_yaw_link",
+        "right_wrist_yaw_link"
+      ],
+      "distance_m": 0.0014105876317054167,
+      "frame": 20,
+      "geom_ids": [
+        57,
+        95
+      ],
+      "geoms": [
+        "geom_57",
+        "geom_95"
+      ],
+      "location": "interior"
+    }
+  },
+  {
+    "pair_id": "ME__HEADACHE",
+    "playback_min_clearance_mm": 5.862329136498288,
+    "dense_min_clearance_mm": 1.7646568450319722,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_thumb_distal",
+        "R_thumb_proximal"
+      ],
+      "distance_m": 0.0017646568450319722,
+      "frame": 34,
+      "geom_ids": [
+        65,
+        101
+      ],
+      "geoms": [
+        "geom_65",
+        "geom_101"
+      ],
+      "location": "interior"
+    }
+  },
+  {
+    "pair_id": "NOW__SOON",
+    "playback_min_clearance_mm": 8.151426048837116,
+    "dense_min_clearance_mm": -0.25341303210139454,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_thumb_distal",
+        "R_ring_intermediate"
+      ],
+      "distance_m": -0.00025341303210139454,
+      "frame": 42,
+      "geom_ids": [
+        65,
+        117
+      ],
+      "geoms": [
+        "geom_65",
+        "geom_117"
+      ],
+      "location": "interior"
+    }
+  },
+  {
+    "pair_id": "SORRY__BREATHE-DEEP",
+    "playback_min_clearance_mm": 5.734585426218899,
+    "dense_min_clearance_mm": -6.05180492852792,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_thumb_distal",
+        "right_wrist_yaw_link"
+      ],
+      "distance_m": -0.00605180492852792,
+      "frame": 39,
+      "geom_ids": [
+        65,
+        97
+      ],
+      "geoms": [
+        "geom_65",
+        "geom_97"
+      ],
+      "location": "interior"
+    }
+  },
+  {
+    "pair_id": "TAKE__APPOINTMENT",
+    "playback_min_clearance_mm": 2.159112349301648,
+    "dense_min_clearance_mm": -1.3289233862959284,
+    "closest_collision_pair": {
+      "bodies": [
+        "left_hip_roll_link",
+        "left_wrist_yaw_link"
+      ],
+      "distance_m": -0.0013289233862959285,
+      "frame": 21,
+      "geom_ids": [
+        7,
+        57
+      ],
+      "geoms": [
+        "geom_7",
+        "geom_57"
+      ],
+      "location": "interior"
+    }
+  },
+  {
+    "pair_id": "TAKE__HURT",
+    "playback_min_clearance_mm": 9.500145275131363,
+    "dense_min_clearance_mm": -10.167007015623971,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_pinky_intermediate",
+        "R_middle_intermediate"
+      ],
+      "distance_m": -0.010167007015623971,
+      "frame": 64,
+      "geom_ids": [
+        81,
+        113
+      ],
+      "geoms": [
+        "geom_81",
+        "geom_113"
+      ],
+      "location": "interior"
+    }
+  },
+  {
+    "pair_id": "THANK-YOU__YOU",
+    "playback_min_clearance_mm": 2.9685882879871923,
+    "dense_min_clearance_mm": 1.6960610671356096,
+    "closest_collision_pair": {
+      "bodies": [
+        "left_hip_roll_link",
+        "left_wrist_yaw_link"
+      ],
+      "distance_m": 0.0016960610671356096,
+      "frame": 27,
+      "geom_ids": [
+        7,
+        57
+      ],
+      "geoms": [
+        "geom_7",
+        "geom_57"
+      ],
+      "location": "interior"
+    }
+  },
+  {
+    "pair_id": "WAIT__SORRY",
+    "playback_min_clearance_mm": 6.336910177324538,
+    "dense_min_clearance_mm": -0.7078736026573922,
+    "closest_collision_pair": {
+      "bodies": [
+        "L_thumb_distal",
+        "right_wrist_yaw_link"
+      ],
+      "distance_m": -0.0007078736026573922,
+      "frame": 31,
+      "geom_ids": [
+        65,
+        97
+      ],
+      "geoms": [
+        "geom_65",
+        "geom_97"
+      ],
+      "location": "interior"
+    }
+  }
+]

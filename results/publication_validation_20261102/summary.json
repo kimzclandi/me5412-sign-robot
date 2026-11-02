@@ -1,0 +1,17 @@
+{
+  "passed": 146,
+  "failed": 0,
+  "elapsed_seconds": 32.92,
+  "scope": "seven existing regression modules plus five mocked staged-exit smoke tests",
+  "full_suite_rerun": false,
+  "round7_full_planning_run": false,
+  "raw_storage_paths_tracked": 0,
+  "source_raw_files_deleted": false,
+  "pair_routes_sha256": "8ae664b9553be4a90fe2da8d57a1e72835c24e220a88ef3bafca28b5ffe9acbb",
+  "logs": [
+    "results/publication_validation_20261102/focused_regression.log",
+    "results/publication_validation_20261102/focused_regression.xml"
+  ],
+  "smoke_harness": "results/publication_validation_20261102/smoke_harness.py.txt",
+  "smoke_harness_note": "Archival copy; the import-root assertion names this publication workspace. Mocked checks do not establish real geometry acceptance."
+}

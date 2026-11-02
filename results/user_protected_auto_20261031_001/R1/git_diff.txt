@@ -1,0 +1,183 @@
+diff --git a/.gitignore b/.gitignore
+index 382df57..405a33e 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,4 +1,5 @@
+ .venv/
++.venv
+ __pycache__/
+ .pytest_cache/
+ *.egg-info/
+@@ -32,3 +33,6 @@ results/mocap_previews/planned_sentence_*.npz
+ results/mocap_previews/planned_sentence_*.mp4
+ results/planned_transitions/
+ results/you_hurt_where_baseline_vs_planned*.mp4
++
++# All-pairs candidate trajectories and per-pair raw evidence remain local.
++results/all_pairs/
+diff --git a/README.en.md b/README.en.md
+index f730ab2..1c960da 100644
+--- a/README.en.md
++++ b/README.en.md
+@@ -19,6 +19,10 @@ The code repository is **private on GitHub** for team collaboration; the demonst
+ 
+ The repository preserves original commits, frozen experiments, failures, and the approximately 3 MB regression checkpoint trained by this project. Third-party MiniLM/LLM pretrained weights, robot vendor meshes, virtual environments, session logs, and private machine configuration are excluded. Fixed-source scripts restore base dependencies. How2Sign text indexes are used for noncommercial course research under the recorded CC BY-NC 4.0 scope; source videos are excluded. See [third-party notices and robot BSD license](THIRD_PARTY_NOTICES.en.txt).
+ 
++## Group 3 all-pairs development entry point
++
++The 35-word vocabulary has a separate freeze/audit, direct-candidate scan, resume and saved-artifact verification workflow for 1,225 ordered pairs, including 35 self-pairs. See [running and verification](docs/group3-all-pairs-startup.en.md) and the [execution record](docs/group3-all-pairs-progress.en.md). This is a development scan; this version cannot emit PASS_SIM, and general search and L2 acceptance remain incomplete.
++
+ ## Open on the current computer
+ 
+ Double-click `run_demo.command`, or run this in the project directory. Repeated starts reuse a healthy process belonging to this project:
+diff --git a/README.md b/README.md
+index 34abc9b..67f4e27 100644
+--- a/README.md
++++ b/README.md
+@@ -20,6 +20,10 @@
+ 
+ 仓库保留原始提交、冻结实验及失败记录，并包括本项目训练得到的约 3 MB 回归检查点。第三方 MiniLM／LLM 预训练权重、机器人 vendor 网格、虚拟环境、运行会话日志和本机私有配置均不上传；基础依赖使用固定来源脚本恢复。How2Sign 文本索引按已记录的 CC BY-NC 4.0 范围用于非商业课程研究，未包含源视频。第三方来源和机器人 BSD 许可见 [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt)。
+ 
++## 第三组全词对开发入口
++
++35 词的 1,225 个有向组合（含 35 个同词重复）已有独立的冻结、逐词审计、直接候选扫描、续跑和文件复核入口。启动命令与当前边界见 [全词对运行说明](docs/group3-all-pairs-startup.md)，本轮实际结果见 [实施记录](docs/group3-all-pairs-progress.md)。这是开发扫描；本版不输出 PASS_SIM，通用搜索与 L2 验收仍待完成。
++
+ ## 在当前电脑打开
+ 
+ 双击 `run_demo.command`，或在本目录执行（重复运行会复用健康的本项目进程）：
+diff --git a/docs/README.en.md b/docs/README.en.md
+index 522bb96..f77d20b 100644
+--- a/docs/README.en.md
++++ b/docs/README.en.md
+@@ -10,6 +10,25 @@ Current target: ten fixed intents → ID-conditioned learned motions. The implem
+ | GitHub 分支协作 / GitHub workflow | [中文](github-collaboration.md) | [English](github-collaboration.en.md) |
+ | 代码依赖 / Dependencies | [中文](code-dependencies.md) | [English](code-dependencies.en.md) |
+ | 第三组衔接规划：R9 端点单调退出验收 / Group 3 transitions: R9 monotonic endpoint exit verification | [中文](transition-planner.md) | [English](transition-planner.en.md) |
++| 第三组任意词对衔接任务规划 / Group 3 all-pairs transition task plan | [中文](group3-all-pairs-transition-plan.md) | [English](group3-all-pairs-transition-plan.en.md) |
++| 执行模型简化交接 / Concise execution-model handoff | [中文](../HANDOFF.md) | [English](../HANDOFF.en.md) |
++| 执行状态与原子任务报告 / Execution state and atomic task reports | [中文](../STATE.md) | [English](../STATE.en.md) |
++| P0-1 基线保全 / Baseline preservation | [中文](../TASK-01.md) | [English](../TASK-01.en.md) |
++| P0-2 逐词问题清单 / Per-word issue list | [中文](group3-all-pairs-word-issues.md) | [English](group3-all-pairs-word-issues.en.md) |
++| FINAL 最终验收与执行报告 / Final verification and execution report | [中文](../TASK-14.md) | [English](../TASK-14.en.md) |
++| P1-8 真实审批依赖阻塞 / Blocked on real approval inputs | [中文](../TASK-13.md) | [English](../TASK-13.en.md) |
++| P1-7 多候选运行器与续跑 / Multi-candidate runner and resume | [中文](../TASK-12.md) | [English](../TASK-12.en.md) |
++| v2 多候选运行与恢复 / v2 multi-candidate running and recovery | [中文](group3-multicandidate-runner-v2.md) | [English](group3-multicandidate-runner-v2.en.md) |
++| P1-6 通用有界 RRT / General bounded RRT | [中文](../TASK-11.md) | [English](../TASK-11.en.md) |
++| P1-5 确定性候选适配 / Deterministic candidate adapters | [中文](../TASK-10.md) | [English](../TASK-10.en.md) |
++| P1-4 手指时间策略与耦合 / Finger timing and coupling | [中文](../TASK-09.md) | [English](../TASK-09.en.md) |
++| P1-3 边界导数与时间参数化 / Boundary derivatives and timing | [中文](../TASK-08.md) | [English](../TASK-08.en.md) |
++| P1-2 v2 独立复核 / independent v2 verifier | [中文](../TASK-07.md) | [English](../TASK-07.en.md) |
++| P1-1 批准窗口读取与选择 / Approved-window loading and selection | [中文](../TASK-06.md) | [English](../TASK-06.en.md) |
++| P0-5 v2 轨迹与输入合同 / v2 trajectory and input contract | [中文](../TASK-05.md) | [English](../TASK-05.en.md) |
++| P0-4 质量指标与阈值提案 / Quality metrics and threshold proposal | [中文](../TASK-04.md) | [English](../TASK-04.en.md) |
++| P0-3 碰撞范围与采样审计 / Collision coverage and sampling audit | [中文](../TASK-03.md) | [English](../TASK-03.en.md) |
++| 第三组全词对开发扫描：运行、复核与执行记录 / Group 3 all-pairs development scan | [中文](group3-all-pairs-startup.md) | [English](group3-all-pairs-startup.en.md) |
+ | 历史任务卡 / Historical handoff | [中文](six-person-handoff.md) | [English](six-person-handoff.en.md) |
+ | 实施路线 / Roadmap | [中文](实施路线.md) | [English](实施路线.en.md) |
+ | 学习模型 / Learned model | [中文](学习型轨迹模型.md) | [English](学习型轨迹模型.en.md) |
+diff --git a/docs/README.md b/docs/README.md
+index e82ebc0..27ff157 100644
+--- a/docs/README.md
++++ b/docs/README.md
+@@ -10,6 +10,25 @@ Current target: ten fixed intents → ID-conditioned learned motions. The implem
+ | GitHub 分支协作 / GitHub workflow | [中文](github-collaboration.md) | [English](github-collaboration.en.md) |
+ | 代码依赖 / Dependencies | [中文](code-dependencies.md) | [English](code-dependencies.en.md) |
+ | 第三组衔接规划：R13c-f80x NURSE:80 命名例外，PASS/PASS / Group 3 transitions: R13c-f80x named NURSE:80 exception, PASS/PASS | [中文](transition-planner.md) | [English](transition-planner.en.md) |
++| 第三组任意词对衔接任务规划 / Group 3 all-pairs transition task plan | [中文](group3-all-pairs-transition-plan.md) | [English](group3-all-pairs-transition-plan.en.md) |
++| 执行模型简化交接 / Concise execution-model handoff | [中文](../HANDOFF.md) | [English](../HANDOFF.en.md) |
++| 执行状态与原子任务报告 / Execution state and atomic task reports | [中文](../STATE.md) | [English](../STATE.en.md) |
++| P0-1 基线保全 / Baseline preservation | [中文](../TASK-01.md) | [English](../TASK-01.en.md) |
++| P0-2 逐词问题清单 / Per-word issue list | [中文](group3-all-pairs-word-issues.md) | [English](group3-all-pairs-word-issues.en.md) |
++| FINAL 最终验收与执行报告 / Final verification and execution report | [中文](../TASK-14.md) | [English](../TASK-14.en.md) |
++| P1-8 真实审批依赖阻塞 / Blocked on real approval inputs | [中文](../TASK-13.md) | [English](../TASK-13.en.md) |
++| P1-7 多候选运行器与续跑 / Multi-candidate runner and resume | [中文](../TASK-12.md) | [English](../TASK-12.en.md) |
++| v2 多候选运行与恢复 / v2 multi-candidate running and recovery | [中文](group3-multicandidate-runner-v2.md) | [English](group3-multicandidate-runner-v2.en.md) |
++| P1-6 通用有界 RRT / General bounded RRT | [中文](../TASK-11.md) | [English](../TASK-11.en.md) |
++| P1-5 确定性候选适配 / Deterministic candidate adapters | [中文](../TASK-10.md) | [English](../TASK-10.en.md) |
++| P1-4 手指时间策略与耦合 / Finger timing and coupling | [中文](../TASK-09.md) | [English](../TASK-09.en.md) |
++| P1-3 边界导数与时间参数化 / Boundary derivatives and timing | [中文](../TASK-08.md) | [English](../TASK-08.en.md) |
++| P1-2 v2 独立复核 / independent v2 verifier | [中文](../TASK-07.md) | [English](../TASK-07.en.md) |
++| P1-1 批准窗口读取与选择 / Approved-window loading and selection | [中文](../TASK-06.md) | [English](../TASK-06.en.md) |
++| P0-5 v2 轨迹与输入合同 / v2 trajectory and input contract | [中文](../TASK-05.md) | [English](../TASK-05.en.md) |
++| P0-4 质量指标与阈值提案 / Quality metrics and threshold proposal | [中文](../TASK-04.md) | [English](../TASK-04.en.md) |
++| P0-3 碰撞范围与采样审计 / Collision coverage and sampling audit | [中文](../TASK-03.md) | [English](../TASK-03.en.md) |
++| 第三组全词对开发扫描：运行、复核与执行记录 / Group 3 all-pairs development scan | [中文](group3-all-pairs-startup.md) | [English](group3-all-pairs-startup.en.md) |
+ | 历史任务卡 / Historical handoff | [中文](six-person-handoff.md) | [English](six-person-handoff.en.md) |
+ | 实施路线 / Roadmap | [中文](实施路线.md) | [English](实施路线.en.md) |
+ | 学习模型 / Learned model | [中文](学习型轨迹模型.md) | [English](学习型轨迹模型.en.md) |
+diff --git a/src/sign_robot/project_overview.py b/src/sign_robot/project_overview.py
+index 9e8fa19..e32fc85 100644
+--- a/src/sign_robot/project_overview.py
++++ b/src/sign_robot/project_overview.py
+@@ -229,7 +229,7 @@ FILES = {'report-pdf': {'path': 'deliverables/course-report-v4/ME5412_Text_to_Ro
+                   'category': '说明',
+                   'mime': 'text/markdown; charset=utf-8',
+                   'disposition': 'attachment',
+-                  'sha256': 'f3108a7268f2f8269c27912850d3ca619c2b34446cc775b1fbb9081fa8b8c05f',
++                  'sha256': '1fd91993ffc3ce86a0fce59555f549c8a867481c718b8c12876a3fe94dec5bbf',
+                   'language': 'zh-CN'},
+  'github-guide': {'path': 'docs/github-collaboration.md',
+                   'title': 'GitHub 分支协作',
+@@ -239,7 +239,7 @@ FILES = {'report-pdf': {'path': 'deliverables/course-report-v4/ME5412_Text_to_Ro
+                   'category': '说明',
+                   'mime': 'text/markdown; charset=utf-8',
+                   'disposition': 'attachment',
+-                  'sha256': 'aa0ee06761c2079127429e486c8116f3f13a2ab43dce02531b0f98e938ba7089',
++                  'sha256': '23057827c6ba7e9c83acb85950ae74f83745f75ff6e36ee8b1d49e8c4e81a05f',
+                   'language': 'zh-CN'},
+  'dependencies': {'path': 'docs/code-dependencies.md',
+                   'title': '代码依赖图',
+@@ -250,7 +250,7 @@ FILES = {'report-pdf': {'path': 'deliverables/course-report-v4/ME5412_Text_to_Ro
+                   'category': '说明',
+                   'mime': 'text/markdown; charset=utf-8',
+                   'disposition': 'attachment',
+-                  'sha256': '4143063b7f5667e9e11efa2d9f98cb1be6a8c3e3493bd3b07e6d5637b7a69940',
++                  'sha256': '107f1fc5e6266b0682918ecc2e52f6012eadb6545d11f996e2e70c1a2c666dd2',
+                   'language': 'zh-CN'},
+  'source-guide': {'path': 'docs/source-review.md',
+                   'title': '来源与评价记录',
+@@ -290,7 +290,7 @@ FILES = {'report-pdf': {'path': 'deliverables/course-report-v4/ME5412_Text_to_Ro
+                 'category': '说明',
+                 'mime': 'text/markdown; charset=utf-8',
+                 'disposition': 'attachment',
+-                'sha256': 'ea2c81caf415f63fb8a8334a3a87b2292a92ecf3b6e6f94cf74fc5670e984803',
++                'sha256': '76916148974f8f40822d96705d84951ce86cf224f73444d66d91fbb1d68ce37b',
+                 'language': 'zh-CN'},
+  'speaker-notes-en': {'path': 'deliverables/course-report-v4/speaker-notes.en.txt',
+                       'sha256': '05f569b68c7d63bd5a879a7bad21a4341dc2ff5720812207cd68413a0a0ce13a',
+@@ -356,7 +356,7 @@ FILES = {'report-pdf': {'path': 'deliverables/course-report-v4/ME5412_Text_to_Ro
+                      'category': '说明',
+                      'mime': 'text/markdown; charset=utf-8',
+                      'disposition': 'attachment',
+-                     'sha256': 'f677016f3dc3a2cdaee29cc20b07041fc33b890d99480a5a8ad3677708d82e98',
++                     'sha256': 'f3f1506ccef5b2d36ecc0299a411eac2928b1f48e3a304b09532a59f9160233a',
+                      'language': 'en'},
+  'github-guide-en': {'path': 'docs/github-collaboration.en.md',
+                      'title': 'GitHub collaboration',
+@@ -366,7 +366,7 @@ FILES = {'report-pdf': {'path': 'deliverables/course-report-v4/ME5412_Text_to_Ro
+                      'category': '说明',
+                      'mime': 'text/markdown; charset=utf-8',
+                      'disposition': 'attachment',
+-                     'sha256': '6979a620a545645125e02dc376300e631193eb96be8c42d7b580e7fdd22ba381',
++                     'sha256': 'f9bb01fcf7ffe960692d2f646e0cf79514268b8bc51e2674de2736fab448bba1',
+                      'language': 'en'},
+  'dependencies-en': {'path': 'docs/code-dependencies.en.md',
+                      'title': 'Code dependencies',
+@@ -378,7 +378,7 @@ FILES = {'report-pdf': {'path': 'deliverables/course-report-v4/ME5412_Text_to_Ro
+                      'category': '说明',
+                      'mime': 'text/markdown; charset=utf-8',
+                      'disposition': 'attachment',
+-                     'sha256': 'c252839cdd0e395d15affc5bc0a1fea92a0dac1d7ab071b76fa92397f1ff62e9',
++                     'sha256': '7850731e7e92f13d942c23681d35d300a1b0f4b6048369a353379f9b34d98519',
+                      'language': 'en'},
+  'source-guide-en': {'path': 'docs/source-review.en.md',
+                      'title': 'Sources and evaluation',
+@@ -419,7 +419,7 @@ FILES = {'report-pdf': {'path': 'deliverables/course-report-v4/ME5412_Text_to_Ro
+                    'category': '说明',
+                    'mime': 'text/markdown; charset=utf-8',
+                    'disposition': 'attachment',
+-                   'sha256': 'ea2c81caf415f63fb8a8334a3a87b2292a92ecf3b6e6f94cf74fc5670e984803',
++                   'sha256': '790ed022e648c222fe5aa04df4af135f6a550da89fcd98a99d6aec2a959fdc06',
+                    'language': 'en'}}
+ 
+ 

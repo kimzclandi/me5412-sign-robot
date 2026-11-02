@@ -1,0 +1,961 @@
+{
+  "date": "2026-10-31",
+  "checkout": "/home/kingderman/Documents/ME5412-github-latest",
+  "branch": "codex/group3-all-pairs-v1",
+  "head": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+  "task_statuses": {
+    "P0-1": "complete",
+    "P0-2": "complete",
+    "P0-3": "complete",
+    "P0-4": "complete",
+    "P0-5": "complete",
+    "P1-1": "complete_engineering_scope",
+    "P1-2": "complete_engineering_scope",
+    "P1-3": "complete_engineering_scope",
+    "P1-4": "complete_engineering_scope",
+    "P1-5": "complete_engineering_scope",
+    "P1-6": "complete_engineering_scope",
+    "P1-7": "complete_engineering_scope",
+    "P1-8": "blocked_actual_approval_inputs",
+    "P1-9": "not_run_dependency_blocked",
+    "P2-1": "not_run_dependency_blocked",
+    "P2-2": "not_run_dependency_blocked",
+    "P2-3": "not_run_dependency_blocked"
+  },
+  "final_tests": {
+    "exit_code": 0,
+    "passed": 749,
+    "duration_s": 51.42,
+    "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/full_pytest_after_compatibility_fix.log"
+  },
+  "initial_full_tests": {
+    "exit_code": 1,
+    "passed": 748,
+    "failed": 1,
+    "duration_s": 50.97,
+    "reason": "stale bilingual index allowlist hashes; corrected only two literals"
+  },
+  "final_development_diagnosis": {
+    "run_id": "handoff_v2_dev_20261031_002",
+    "run_dir": "/home/kingderman/Documents/ME5412-github-latest/results/all_pairs/handoff_v2_dev_20261031_002",
+    "identity": {
+      "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+      "code_hash": "66ad34ae22b633f1956edd5abdf0e0dded6bed3274f29cbdaf65aeef908b67c8",
+      "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+      "identity_hash": "184918f52da32f087bb63841f7e1e98cf844a812b4525d3e075b8494601f566c",
+      "library_version": "hospital_v1@39ba7e88ff8645aafdd3000f75db8e5a1deaff324ccc7e0155a3a68afc98ae71",
+      "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+      "policy_hash": "7b73c2946fcd348272e899ae71ad536bd4359ede69fdced7c5e47d2da36917ae"
+    },
+    "summary": {
+      "L2_complete": false,
+      "acceptance_level": "v2_development_pending_real_approvals",
+      "formal_acceptance_enabled": false,
+      "groups": {
+        "all": {
+          "denominator": 1225,
+          "pass_sim_rate": 0.0,
+          "scanned": 4,
+          "status_counts": {
+            "BLOCKED_ENDPOINT": 0,
+            "BLOCKED_INPUT": 4,
+            "ERROR": 0,
+            "FAILED_QUALITY": 0,
+            "FAILED_SEARCH": 0,
+            "NOT_RUN": 1221,
+            "PASS_SIM": 0,
+            "SOURCE_NEAR": 0,
+            "TIMEOUT": 0
+          }
+        },
+        "non_self": {
+          "denominator": 1190,
+          "pass_sim_rate": 0.0,
+          "scanned": 2,
+          "status_counts": {
+            "BLOCKED_ENDPOINT": 0,
+            "BLOCKED_INPUT": 2,
+            "ERROR": 0,
+            "FAILED_QUALITY": 0,
+            "FAILED_SEARCH": 0,
+            "NOT_RUN": 1188,
+            "PASS_SIM": 0,
+            "SOURCE_NEAR": 0,
+            "TIMEOUT": 0
+          }
+        },
+        "self": {
+          "denominator": 35,
+          "pass_sim_rate": 0.0,
+          "scanned": 2,
+          "status_counts": {
+            "BLOCKED_ENDPOINT": 0,
+            "BLOCKED_INPUT": 2,
+            "ERROR": 0,
+            "FAILED_QUALITY": 0,
+            "FAILED_SEARCH": 0,
+            "NOT_RUN": 33,
+            "PASS_SIM": 0,
+            "SOURCE_NEAR": 0,
+            "TIMEOUT": 0
+          }
+        }
+      },
+      "identity": {
+        "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+        "code_hash": "66ad34ae22b633f1956edd5abdf0e0dded6bed3274f29cbdaf65aeef908b67c8",
+        "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+        "identity_hash": "184918f52da32f087bb63841f7e1e98cf844a812b4525d3e075b8494601f566c",
+        "library_version": "hospital_v1@39ba7e88ff8645aafdd3000f75db8e5a1deaff324ccc7e0155a3a68afc98ae71",
+        "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+        "policy_hash": "7b73c2946fcd348272e899ae71ad536bd4359ede69fdced7c5e47d2da36917ae"
+      },
+      "planning_complete": false,
+      "run_id": "handoff_v2_dev_20261031_002",
+      "saved_attempts": 4,
+      "saved_candidates": 0,
+      "schema_version": 2,
+      "verification_complete": false,
+      "verified_records": 4
+    },
+    "checked_file_count": 32,
+    "changed_files_after_resume": [],
+    "checks": {
+      "fixed_denominators": true,
+      "four_blocked_input": true,
+      "1221_not_run": true,
+      "zero_pass": true,
+      "zero_candidates": true,
+      "four_independent_diagnoses": true,
+      "all_run_bytes_unchanged_on_resume": true,
+      "formal_acceptance_disabled": true
+    },
+    "state": "PASS_DIAGNOSTIC_AND_RESUME",
+    "L2_complete": false
+  },
+  "integrity_checklist": {
+    "known_test_outputs_match_explicit_hashes": true,
+    "prior_development_run_001_preserved": true,
+    "baseline_files_preserved_except_explicit_changes": true,
+    "all_changes_match_latest_task_install_hashes": true,
+    "no_unexpected_new_files": true,
+    "original_assets_and_motions_unchanged": true,
+    "legacy_3378_files_intact": true,
+    "legacy_1225_unique_pairs_intact": true,
+    "legacy_status_counts_preserved": true,
+    "development_run_inventory_intact": true,
+    "development_run_resume_32_files_unchanged": true,
+    "development_run_identity_matches_installed_code_and_inputs": true,
+    "development_denominators_fixed": true,
+    "development_4_blocked_1221_not_run_zero_pass": true,
+    "formal_acceptance_remains_disabled": true
+  },
+  "commands": [
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/archive_integrity.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "sha256sum",
+        "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/baseline.tar"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/archive_integrity.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/final_integrity_audit.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/tmp/me5412-execution-20261031/final_acceptance_check.py",
+        "--root",
+        "/home/kingderman/Documents/ME5412-github-latest",
+        "--baseline",
+        "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/baseline-content.json",
+        "--output",
+        "/tmp/me5412-execution-20261031/restored-baseline/results/group3_execution_20261031_001/FINAL/final_acceptance_checklist.json",
+        "--test-artifacts",
+        "/tmp/me5412-execution-20261031/restored-baseline/results/group3_execution_20261031_001/FINAL/known_test_outputs.json",
+        "--supplemental-evidence",
+        "/tmp/me5412-execution-20261031/restored-baseline/results/group3_execution_20261031_001/FINAL"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/final_integrity_audit.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/full_pytest.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests"
+      ],
+      "exit_code": 1,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/full_pytest.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/full_pytest_after_compatibility_fix.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/full_pytest_after_compatibility_fix.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/integrity_audit.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/tmp/me5412-execution-20261031/final_acceptance_check.py",
+        "--root",
+        "/home/kingderman/Documents/ME5412-github-latest",
+        "--baseline",
+        "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/baseline-content.json",
+        "--output",
+        "/tmp/me5412-execution-20261031/restored-baseline/results/group3_execution_20261031_001/FINAL/final_acceptance_checklist.json"
+      ],
+      "exit_code": 1,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/integrity_audit.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/integrity_audit_with_test_artifacts.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/tmp/me5412-execution-20261031/final_acceptance_check.py",
+        "--root",
+        "/home/kingderman/Documents/ME5412-github-latest",
+        "--baseline",
+        "/home/kingderman/.codex/visualizations/2026/10/30/01a18e26-94c1-7160-ba35-a119ee7cf0fb/group3-execution-20261031-001/baseline-content.json",
+        "--output",
+        "/tmp/me5412-execution-20261031/restored-baseline/results/group3_execution_20261031_001/FINAL/final_acceptance_checklist.json"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/integrity_audit_with_test_artifacts.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/project_overview_failure_reproduction.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_project_overview.py::test_real_overview_preserves_data_units_and_snapshot_scope"
+      ],
+      "exit_code": 1,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/project_overview_failure_reproduction.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_plan_four.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/home/kingderman/Documents/ME5412-github-latest/scripts/plan_all_pairs.py",
+        "--include-self",
+        "--policy",
+        "/home/kingderman/Documents/ME5412-github-latest/config/transition_policy_v2.json",
+        "--run-id",
+        "handoff_v2_dev_20261031_002",
+        "--pair",
+        "HELLO__PLEASE",
+        "--pair",
+        "PLEASE__HELLO",
+        "--pair",
+        "HELLO__HELLO",
+        "--pair",
+        "NURSE__NURSE"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_plan_four.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_resume_four.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/home/kingderman/Documents/ME5412-github-latest/scripts/plan_all_pairs.py",
+        "--include-self",
+        "--policy",
+        "/home/kingderman/Documents/ME5412-github-latest/config/transition_policy_v2.json",
+        "--run-id",
+        "handoff_v2_dev_20261031_002",
+        "--pair",
+        "HELLO__PLEASE",
+        "--pair",
+        "PLEASE__HELLO",
+        "--pair",
+        "HELLO__HELLO",
+        "--pair",
+        "NURSE__NURSE",
+        "--resume"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_resume_four.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_summarize_four.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/home/kingderman/Documents/ME5412-github-latest/scripts/summarize_all_pairs.py",
+        "--run-id",
+        "handoff_v2_dev_20261031_002"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_summarize_four.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_verify_four.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/home/kingderman/Documents/ME5412-github-latest/scripts/verify_all_pairs.py",
+        "--run-id",
+        "handoff_v2_dev_20261031_002"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/FINAL/source_verify_four.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-3/collision_audit.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/tmp/me5412-execution-20261031/audit_p0_3.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-3/collision_audit.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-3/pytest_collision_scope.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_plan_transitions.py",
+        "tests/test_transition_endpoint_gate.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-3/pytest_collision_scope.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-4/quality_audit.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/tmp/me5412-execution-20261031/audit_p0_4.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-4/quality_audit.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-5/pytest_contract_final.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_contract_v2.py",
+        "tests/test_all_pairs_contract.py",
+        "tests/test_all_pairs_pipeline.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-5/pytest_contract_final.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-5/pytest_contract_initial.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_contract_v2.py",
+        "tests/test_all_pairs_contract.py",
+        "tests/test_all_pairs_pipeline.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-5/pytest_contract_initial.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-1/pytest_windows_final.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_windows_v2.py",
+        "tests/test_pair_contract_v2.py",
+        "tests/test_all_pairs_contract.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-1/pytest_windows_final.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-1/pytest_windows_initial.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_windows_v2.py",
+        "tests/test_pair_contract_v2.py",
+        "tests/test_all_pairs_contract.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-1/pytest_windows_initial.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_final.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_verification_v2.py",
+        "tests/test_pair_contract_v2.py",
+        "tests/test_pair_windows_v2.py",
+        "tests/test_all_pairs_pipeline.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_final.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_initial.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_verification_v2.py",
+        "tests/test_pair_contract_v2.py",
+        "tests/test_pair_windows_v2.py",
+        "tests/test_all_pairs_pipeline.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_initial.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_reviewed.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_verification_v2.py",
+        "tests/test_pair_contract_v2.py",
+        "tests/test_pair_windows_v2.py",
+        "tests/test_all_pairs_pipeline.py"
+      ],
+      "exit_code": 1,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_reviewed.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_reviewed_final.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_verification_v2.py",
+        "tests/test_pair_contract_v2.py",
+        "tests/test_pair_windows_v2.py",
+        "tests/test_all_pairs_pipeline.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-2/pytest_verifier_reviewed_final.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-3/pytest_timing_final.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_timing_v2.py",
+        "tests/test_pair_verification_v2.py",
+        "tests/test_pair_contract_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-3/pytest_timing_final.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-3/pytest_timing_initial.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_timing_v2.py",
+        "tests/test_pair_verification_v2.py",
+        "tests/test_pair_contract_v2.py"
+      ],
+      "exit_code": 1,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-3/pytest_timing_initial.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-3/pytest_timing_reviewed.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_timing_v2.py",
+        "tests/test_pair_verification_v2.py",
+        "tests/test_pair_contract_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-3/pytest_timing_reviewed.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_final.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_fingers_v2.py",
+        "tests/test_pair_timing_v2.py",
+        "tests/test_pair_verification_v2.py",
+        "tests/test_pair_contract_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_final.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_initial.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_fingers_v2.py"
+      ],
+      "exit_code": 1,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_initial.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_polynomial.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_fingers_v2.py",
+        "tests/test_pair_timing_v2.py",
+        "tests/test_pair_verification_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_polynomial.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_reviewed.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_fingers_v2.py",
+        "tests/test_pair_timing_v2.py",
+        "tests/test_pair_verification_v2.py",
+        "tests/test_pair_contract_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-4/pytest_fingers_reviewed.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-5/pytest_routes_final.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_routes_v2.py",
+        "tests/test_pair_timing_v2.py",
+        "tests/test_pair_verification_v2.py",
+        "tests/test_pair_contract_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-5/pytest_routes_final.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-5/pytest_routes_initial.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_routes_v2.py",
+        "tests/test_pair_timing_v2.py",
+        "tests/test_pair_verification_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-5/pytest_routes_initial.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-5/pytest_routes_reviewed.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_routes_v2.py",
+        "tests/test_pair_timing_v2.py",
+        "tests/test_pair_verification_v2.py",
+        "tests/test_pair_contract_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-5/pytest_routes_reviewed.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-6/pytest_search_final.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_search_v2.py",
+        "tests/test_rrt_connect.py",
+        "tests/test_pair_timing_v2.py",
+        "tests/test_pair_routes_v2.py"
+      ],
+      "exit_code": 1,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-6/pytest_search_final.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-6/pytest_search_initial.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_search_v2.py",
+        "tests/test_rrt_connect.py",
+        "tests/test_pair_timing_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-6/pytest_search_initial.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-6/pytest_search_reviewed_final.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_search_v2.py",
+        "tests/test_rrt_connect.py",
+        "tests/test_pair_timing_v2.py",
+        "tests/test_pair_routes_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-6/pytest_search_reviewed_final.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/pytest_runner_initial.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_runner_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/pytest_runner_initial.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/runner_fault_cases.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_runner_v2.py"
+      ],
+      "exit_code": 1,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/runner_fault_cases.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/runner_fault_cases_v2.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_runner_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/runner_fault_cases_v2.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/runner_pre_review.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_runner_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/runner_pre_review.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_plan_four.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/home/kingderman/Documents/ME5412-github-latest/scripts/plan_all_pairs.py",
+        "--include-self",
+        "--policy",
+        "/home/kingderman/Documents/ME5412-github-latest/config/transition_policy_v2.json",
+        "--run-id",
+        "handoff_v2_dev_20261031_001",
+        "--pair",
+        "HELLO__PLEASE",
+        "--pair",
+        "PLEASE__HELLO",
+        "--pair",
+        "HELLO__HELLO",
+        "--pair",
+        "NURSE__NURSE"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_plan_four.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_post_install_regression.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_runner_v2.py",
+        "tests/test_pair_contract_v2.py",
+        "tests/test_pair_windows_v2.py",
+        "tests/test_pair_verification_v2.py",
+        "tests/test_pair_timing_v2.py",
+        "tests/test_pair_fingers_v2.py",
+        "tests/test_pair_routes_v2.py",
+        "tests/test_pair_search_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_post_install_regression.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_resume_four.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/home/kingderman/Documents/ME5412-github-latest/scripts/plan_all_pairs.py",
+        "--include-self",
+        "--policy",
+        "/home/kingderman/Documents/ME5412-github-latest/config/transition_policy_v2.json",
+        "--run-id",
+        "handoff_v2_dev_20261031_001",
+        "--pair",
+        "HELLO__PLEASE",
+        "--pair",
+        "PLEASE__HELLO",
+        "--pair",
+        "HELLO__HELLO",
+        "--pair",
+        "NURSE__NURSE",
+        "--resume"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_resume_four.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_summarize_four.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/home/kingderman/Documents/ME5412-github-latest/scripts/summarize_all_pairs.py",
+        "--run-id",
+        "handoff_v2_dev_20261031_001"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_summarize_four.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_verify_four.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/home/kingderman/Documents/ME5412-github-latest/scripts/verify_all_pairs.py",
+        "--run-id",
+        "handoff_v2_dev_20261031_001"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_verify_four.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/v1_pipeline_regression.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_all_pairs_contract.py",
+        "tests/test_all_pairs_pipeline.py",
+        "tests/test_plan_transitions.py",
+        "tests/test_transition_endpoint_gate.py",
+        "tests/test_rrt_connect.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/v1_pipeline_regression.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/v2_integration_tests.command.json",
+      "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_pair_runner_v2.py",
+        "tests/test_pair_contract_v2.py",
+        "tests/test_pair_windows_v2.py",
+        "tests/test_pair_verification_v2.py",
+        "tests/test_pair_timing_v2.py",
+        "tests/test_pair_fingers_v2.py",
+        "tests/test_pair_routes_v2.py",
+        "tests/test_pair_search_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/v2_integration_tests.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-8/approval_dependency_audit.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/tmp/me5412-execution-20261031/audit_p1_8.py"
+      ],
+      "exit_code": 2,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-8/approval_dependency_audit.log"
+    },
+    {
+      "evidence_file": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-8/minimal_reproduction.command.json",
+      "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+      "argv": [
+        "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+        "/tmp/me5412-execution-20261031/restored-baseline/results/group3_execution_20261031_001/P1-8/reproduce_missing_approval.py",
+        "--root",
+        "/home/kingderman/Documents/ME5412-github-latest"
+      ],
+      "exit_code": 2,
+      "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-8/minimal_reproduction.log"
+    }
+  ],
+  "L2_complete": false,
+  "formal_acceptance_enabled": false,
+  "agent_used": {
+    "name": "audit_handoff",
+    "scope": "read-only path and completion-state audit; root serially implemented, tested and integrated"
+  },
+  "remaining_dependencies": [
+    "actual_group2_hash_bound_core_and_window_bundle_for_35_words",
+    "group2_repaired_motion_assets_and_reaudit_or_version_bound_dispositions",
+    "actual_quality_caps_and_linear_replay_derivative_scope_approval",
+    "actual_collision_filter_coverage_and_validation_budget_approval",
+    "actual_version_bound_nurse_f80_exception_decision"
+  ]
+}

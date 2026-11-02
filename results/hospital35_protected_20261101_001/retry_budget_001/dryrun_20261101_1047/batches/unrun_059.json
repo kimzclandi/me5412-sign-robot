@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "WRITE__TOMORROW",
+    "WRITE__MORNING",
+    "WRITE__NIGHT",
+    "WRITE__WHERE",
+    "NOT__HELLO",
+    "NOT__PLEASE",
+    "NOT__THANK-YOU",
+    "NOT__SORRY",
+    "NOT__YES",
+    "NOT__NO",
+    "NOT__YOU",
+    "NOT__YOUR",
+    "NOT__ME",
+    "NOT__DEAF",
+    "NOT__DOCTOR",
+    "NOT__NURSE"
+  ]
+}

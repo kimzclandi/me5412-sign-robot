@@ -1,0 +1,47 @@
+{
+  "files": [
+    {
+      "path": "results/session_logs/service-33841.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-33841.log",
+      "sha256": "0f8dd96b7a5a4e80b4beb9fb4c364661222e78b9fd2f6be2efbf40d4bf8b91a2",
+      "bytes": 168,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-45105.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-45105.log",
+      "sha256": "c71cff9dace85946103ce221388abfbd0b366755b9ae962d3de621ea9f550e75",
+      "bytes": 168,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-47841.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    },
+    {
+      "path": "results/session_logs/service-54749.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "origin": "tests/test_service.py lifecycle or occupied-port test; existing service.py writes results/session_logs",
+      "retained": true
+    }
+  ],
+  "scope": "explicit inspected test outputs only; other new runtime files remain errors"
+}

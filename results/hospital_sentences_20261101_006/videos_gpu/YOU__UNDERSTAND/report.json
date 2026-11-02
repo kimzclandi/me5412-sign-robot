@@ -1,0 +1,43 @@
+{
+  "sequence_id": "YOU__UNDERSTAND",
+  "source_sequence": "results/hospital_sentences_20261101_006/sequences/sequences/YOU__UNDERSTAND/attempt_0001.json",
+  "source_sequence_sha256": "959fe1b52c2693389d6698368960a54e5679ce941f9dd725bcac13756660c317",
+  "numerical_checks_passed": true,
+  "verification": "saved independent recheck reused (export_render_inputs.py checks its sequence hash)",
+  "formal_acceptance_enabled": false,
+  "playback_eligible": false,
+  "fps": 30,
+  "video_frames": 268,
+  "video_duration_s": 8.933333333333334,
+  "replay_duration_s": 3.533333333333333,
+  "layout": "original full clips top, sequence bottom; front left, side right; shorter row holds end",
+  "protected_instance_video_checks": [
+    {
+      "instance_id": "o0_YOU",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        0,
+        27
+      ]
+    },
+    {
+      "instance_id": "o1_UNDERSTAND",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        40,
+        91
+      ]
+    }
+  ],
+  "renderer": {
+    "gl_renderer": "NVIDIA GeForce RTX 5060/PCIe/SSE2",
+    "mujoco": "3.15.0",
+    "model_tree_sha256": "d4c772ade61d9b98d6a8c60feec91e854740d364e47cbfa14bc87add00ec4e33",
+    "label_font": "C:/Windows/Fonts/msyh.ttc",
+    "render_wall_time_s": 9.79
+  },
+  "files": {
+    "comparison.mp4": "43f352dc0e792e85b08f9a2bd654d88d343cd7135090fd897ae21aad4a5c4e8d",
+    "contact_sheet.png": "a3e3a28a533496b33efbaf6daee4be55a156dba37626ff23289a75e7344cb7da"
+  }
+}

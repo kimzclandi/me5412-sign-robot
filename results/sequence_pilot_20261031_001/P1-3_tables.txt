@@ -1,0 +1,18 @@
+PAIR COME__NOW 7/7 attempt_00016 same_as_run002_selection True curves_identical True
+PAIR NOW__NOW 8/8 attempt_00015 same_as_run002_selection True curves_identical True
+PAIR NOW__COME 18/18 attempt_00013 same_as_run002_selection False curves_identical False
+PAIR COME__COME 13/13 attempt_00003 same_as_run002_selection True curves_identical True
+SEQ COME__COME__COME dur 11.967 acc 40.65 jerk 442.6 int 254409 an_int 469770 total 508819 clr 4.711 terr 1.3e-15 poses 4872 wall 9.8 slices 
+SEQ COME__COME__NOW dur 10.933 acc 40.65 jerk 442.6 int 254409 an_int 824671 total 316084 clr 4.711 terr 1.3e-15 poses 4659 wall 8.7 slices 
+SEQ COME__NOW__COME dur 12.600 acc 31.83 jerk 315.3 int 253347 an_int 824671 total 315021 clr 7.616 terr 1.3e-15 poses 5256 wall 9.5 slices 
+SEQ COME__NOW__NOW dur 10.133 acc 28.60 jerk 269.4 int 162442 an_int 824671 total 224116 clr 4.418 terr 1.3e-15 poses 4557 wall 7.9 slices 
+SEQ NOW__COME__COME dur 12.567 acc 40.65 jerk 442.6 int 254409 an_int 469770 total 507757 clr 4.711 terr 1.3e-15 poses 5307 wall 9.7 slices 
+SEQ NOW__COME__NOW dur 11.533 acc 31.83 jerk 315.3 int 253347 an_int 824671 total 315021 clr 7.616 terr 1.3e-15 poses 5091 wall 8.8 slices 
+SEQ NOW__NOW__COME dur 11.767 acc 31.83 jerk 315.3 int 253347 an_int 580753 total 415790 clr 4.418 terr 1.3e-15 poses 5208 wall 9.0 slices 
+SEQ NOW__NOW__NOW dur 9.300 acc 28.60 jerk 269.4 int 162442 an_int 580753 total 324885 clr 4.418 terr 1.3e-15 poses 4506 wall 7.4 slices 
+SEQ COME__COME__COME__COME__COME dur 20.433 acc 40.65 jerk 442.6 int 254409 an_int 469770 total 1017639 clr 4.711 terr 3.1e-15 poses 8346 wall 16.0 slices 
+SEQ NOW__NOW__NOW__NOW__NOW dur 16.167 acc 28.60 jerk 269.4 int 162442 an_int 580753 total 649770 clr 4.418 terr 2.7e-15 poses 7764 wall 12.7 slices 
+SEQ COME__NOW__COME__NOW__COME dur 21.700 acc 31.83 jerk 315.3 int 253347 an_int 824671 total 630043 clr 7.616 terr 3.1e-15 poses 9114 wall 16.2 slices 
+SEQ NOW__COME__NOW__COME__NOW dur 20.633 acc 31.83 jerk 315.3 int 253347 an_int 824671 total 630043 clr 7.616 terr 3.1e-15 poses 8952 wall 15.4 slices 
+pools {'COME__COME': 13, 'COME__NOW': 7, 'NOW__COME': 18, 'NOW__NOW': 8}
+video 12 44 44

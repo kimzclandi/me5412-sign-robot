@@ -1,0 +1,12 @@
+{
+  "pair_ids": [
+    "WHERE__NOT",
+    "WHERE__NOW",
+    "WHERE__SOON",
+    "WHERE__LATER",
+    "WHERE__TOMORROW",
+    "WHERE__MORNING",
+    "WHERE__NIGHT",
+    "WHERE__WHERE"
+  ]
+}

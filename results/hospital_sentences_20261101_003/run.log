@@ -1,0 +1,67 @@
+== start 2026-11-01T19:56:47+08:00
+worker 0 hospital_sentences_20261101_003_01 cpu0 pid 2913
+worker 1 hospital_sentences_20261101_003_02 cpu1 pid 2919
+worker 2 hospital_sentences_20261101_003_03 cpu2 pid 2925
+worker 3 hospital_sentences_20261101_003_04 cpu3 pid 2931
+worker 4 hospital_sentences_20261101_003_05 cpu4 pid 2938
+worker 5 hospital_sentences_20261101_003_06 cpu5 pid 2944
+worker 6 hospital_sentences_20261101_003_07 cpu6 pid 2950
+worker 7 hospital_sentences_20261101_003_08 cpu7 pid 2956
+worker 8 hospital_sentences_20261101_003_09 cpu8 pid 2962
+worker 9 hospital_sentences_20261101_003_10 cpu9 pid 2968
+worker 10 hospital_sentences_20261101_003_11 cpu10 pid 2974
+worker 11 hospital_sentences_20261101_003_12 cpu11 pid 2981
+worker 12 hospital_sentences_20261101_003_13 cpu12 pid 2987
+worker 13 hospital_sentences_20261101_003_14 cpu13 pid 2993
+worker 14 hospital_sentences_20261101_003_15 cpu14 pid 2997
+worker 15 hospital_sentences_20261101_003_16 cpu15 pid 3005
+worker 0 exit 0 2026-11-01T20:05:14+08:00
+worker 1 exit 0 2026-11-01T20:05:40+08:00
+worker 2 exit 0 2026-11-01T20:05:55+08:00
+worker 3 exit 0 2026-11-01T20:05:55+08:00
+worker 4 exit 0 2026-11-01T20:07:26+08:00
+worker 5 exit 0 2026-11-01T20:07:26+08:00
+worker 6 exit 0 2026-11-01T20:07:26+08:00
+worker 7 exit 0 2026-11-01T20:07:26+08:00
+worker 8 exit 0 2026-11-01T20:07:41+08:00
+worker 9 exit 0 2026-11-01T20:08:38+08:00
+worker 10 exit 0 2026-11-01T20:08:38+08:00
+worker 11 exit 0 2026-11-01T20:08:55+08:00
+worker 12 exit 0 2026-11-01T20:08:55+08:00
+worker 13 exit 0 2026-11-01T20:10:40+08:00
+worker 14 exit 0 2026-11-01T20:13:11+08:00
+worker 15 exit 0 2026-11-01T20:22:32+08:00
+recheck 04 exit 0
+recheck 06 exit 0
+recheck 13 exit 0
+recheck 05 exit 0
+recheck 08 exit 0
+recheck 03 exit 0
+recheck 07 exit 0
+recheck 10 exit 0
+recheck 02 exit 0
+recheck 11 exit 0
+recheck 14 exit 0
+recheck 09 exit 0
+recheck 12 exit 0
+recheck 15 exit 0
+recheck 01 exit 0
+recheck 16 exit 0
+{"rest_tail": "BLOOD-DRAW", "status": "TIMED_CANDIDATE", "attempts": 182, "selected": {"exit_frame": 178, "method": "direct", "connector_frames": 19, "core_gap_frames": 32}, "wall_time_s": 109.3}
+{"rest_tail": "HAVE", "status": "TIMED_CANDIDATE", "attempts": 130, "selected": {"exit_frame": 57, "method": "direct", "connector_frames": 15, "core_gap_frames": 18}, "wall_time_s": 52.4}
+{"rest_tail": "INTERPRETER", "status": "TIMEOUT", "attempts": 48, "selected": null, "wall_time_s": 441.0}
+{"rest_tail": "SOON", "status": "TIMED_CANDIDATE", "attempts": 104, "selected": {"exit_frame": 88, "method": "direct", "connector_frames": 12, "core_gap_frames": 13}, "wall_time_s": 249.6}
+{"rest_tail": "TAKE", "status": "TIMED_CANDIDATE", "attempts": 130, "selected": {"exit_frame": 78, "method": "direct", "connector_frames": 17, "core_gap_frames": 17}, "wall_time_s": 40.1}
+{"rest_tail": "UNDERSTAND", "status": "TIMED_CANDIDATE", "attempts": 156, "selected": {"exit_frame": 78, "method": "direct", "connector_frames": 15, "core_gap_frames": 15}, "wall_time_s": 60.0}
+{"rest_tail": "WHERE", "status": "TIMED_CANDIDATE", "attempts": 78, "selected": {"exit_frame": 81, "method": "direct", "connector_frames": 12, "core_gap_frames": 12}, "wall_time_s": 5.8}
+{"sequence_id": "HELLO__YOU__APPOINTMENT__HAVE", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "YOU__NEED__INTERPRETER", "status": "BLOCKED_DEPENDENCY", "selected_attempt": null, "attempts": 0}
+{"sequence_id": "PLEASE__WAIT__DOCTOR__COME__SOON", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "YOU__HURT__WHERE", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__NURSE__BLOOD-DRAW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "MEDICINE__MORNING__NIGHT__TAKE", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "YOU__UNDERSTAND", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"denominator": 7, "numerical_pass_count": 6, "status_counts": {"BLOCKED_DEPENDENCY": 1, "NUMERICAL_PASS": 6}, "stop_reason": null}
+plan_sequences exit 0
+verify_sequences exit 0
+== end 2026-11-01T20:32:44+08:00

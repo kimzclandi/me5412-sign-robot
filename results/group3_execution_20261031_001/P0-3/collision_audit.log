@@ -1,0 +1,22 @@
+DOCTOR__NURSE playback=8.011922 mm dense=-25.851034 mm
+HAVE__DOCTOR playback=2.857123 mm dense=0.407082 mm
+HAVE__TAKE playback=6.779123 mm dense=-0.961902 mm
+HEADACHE__NURSE playback=2.639093 mm dense=1.410588 mm
+ME__HEADACHE playback=5.862329 mm dense=1.764657 mm
+NOW__SOON playback=8.151426 mm dense=-0.253413 mm
+SORRY__BREATHE-DEEP playback=5.734585 mm dense=-6.051805 mm
+TAKE__APPOINTMENT playback=2.159112 mm dense=-1.328923 mm
+TAKE__HURT playback=9.500145 mm dense=-10.167007 mm
+THANK-YOU__YOU playback=2.968588 mm dense=1.696061 mm
+WAIT__SORRY playback=6.336910 mm dense=-0.707874 mm
+{
+  "geom_count": 122,
+  "static_body_pairs": 136,
+  "measured_vendor_pairs": 47,
+  "reference_contact_classes": {
+    "static_measured_separately": 47,
+    "moving_gated": 840,
+    "same_hand_excluded": 174
+  },
+  "dense_counterexamples_reproduced": 11
+}

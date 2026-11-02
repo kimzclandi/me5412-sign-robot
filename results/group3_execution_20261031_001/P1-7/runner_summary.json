@@ -1,0 +1,24 @@
+{
+  "task_id": "P1-7",
+  "state": "implementation_and_staging_tests_complete",
+  "formal_acceptance_enabled": false,
+  "denominators": {
+    "all": 1225,
+    "non_self": 1190,
+    "self": 35
+  },
+  "tests": {
+    "runner": "38 passed in 11.35s",
+    "v2_integration": "160 passed in 26.49s",
+    "legacy_regression": "296 passed in 6.32s"
+  },
+  "overlap": "38 runner tests are included in 160 v2 tests; do not add overlapping counts",
+  "independent_e2e": "actual verifier function reads synthetic NPZ, approval evidence and saved polynomial files; freeze/model/clearance boundaries are synthetic fixtures",
+  "production_diagnostic": "not yet run; execute only after source installation and record separately",
+  "limitations": [
+    "physical power-loss durability untested",
+    "wall-time-dependent unfinished replay may be refused rather than merged",
+    "no formal approvals",
+    "no final L2 claim"
+  ]
+}

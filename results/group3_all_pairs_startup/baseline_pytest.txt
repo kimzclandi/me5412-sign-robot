@@ -1,0 +1,112 @@
+........................................................................ [ 13%]
+........................................................................ [ 26%]
+......FF...............FFF.............................................. [ 39%]
+........................................................................ [ 53%]
+........................................................................ [ 66%]
+...........................................F............................ [ 79%]
+........................................................................ [ 93%]
+.....................................                                    [100%]
+=================================== FAILURES ===================================
+____________ test_model_inference_does_not_load_demonstration_files ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x73d850c9f9b0>
+
+    def test_model_inference_does_not_load_demonstration_files(monkeypatch):
+        if not (lm.EXPERIMENT / "model.npz").exists(): pytest.skip("Single registered fit has not run yet")
+        original = np.load
+        accessed = []
+        def checked(path, *args, **kwargs):
+            accessed.append(str(path))
+            assert "/motions/" not in str(path)
+            return original(path, *args, **kwargs)
+        monkeypatch.setattr(np, "load", checked)
+        lm.load_checkpoint.cache_clear()
+        result = lm.generate("Hello")
+>       assert result["positions"].shape == (235, 53)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'NoneType' object has no attribute 'shape'
+
+tests/test_learned_motion.py:31: AttributeError
+_____________ test_slow_generation_changes_sampling_without_replay _____________
+
+    def test_slow_generation_changes_sampling_without_replay():
+        if not (lm.EXPERIMENT / "model.npz").exists(): pytest.skip("Single registered fit has not run yet")
+        ordinary, slow = lm.generate("Hello"), lm.generate("Hello", duration_s=7.8*1.2)
+>       assert len(slow["timestamps_s"]) > len(ordinary["timestamps_s"])
+                   ^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'timestamps_s'
+
+tests/test_learned_motion.py:39: KeyError
+__ test_real_adapter_pose_matches_generated_joint_frames[Hello-HELLO-1.0-7.8] __
+
+text = 'Hello', action = 'HELLO', scale = 1.0, duration = 7.8
+
+    @pytest.mark.parametrize("text,action,scale,duration", [
+        ("Hello", "HELLO", 1.0, 7.8),
+        ("Thank you", "THANK_YOU", 1.2, 9.6),
+        ("Please wait", "PLEASE_WAIT", 1.0, 8.5),
+    ])
+    def test_real_adapter_pose_matches_generated_joint_frames(text, action, scale, duration):
+        result = api.generate_request({"text": text, "duration_scale": scale})
+>       assert result["accepted"] is True and result["action_id"] == action
+               ^^^^^^^^^^^^^^^^^^
+E       KeyError: 'accepted'
+
+tests/test_learning_api.py:70: KeyError
+_ test_real_adapter_pose_matches_generated_joint_frames[Thank you-THANK_YOU-1.2-9.6] _
+
+text = 'Thank you', action = 'THANK_YOU', scale = 1.2, duration = 9.6
+
+    @pytest.mark.parametrize("text,action,scale,duration", [
+        ("Hello", "HELLO", 1.0, 7.8),
+        ("Thank you", "THANK_YOU", 1.2, 9.6),
+        ("Please wait", "PLEASE_WAIT", 1.0, 8.5),
+    ])
+    def test_real_adapter_pose_matches_generated_joint_frames(text, action, scale, duration):
+        result = api.generate_request({"text": text, "duration_scale": scale})
+>       assert result["accepted"] is True and result["action_id"] == action
+               ^^^^^^^^^^^^^^^^^^
+E       KeyError: 'accepted'
+
+tests/test_learning_api.py:70: KeyError
+_ test_real_adapter_pose_matches_generated_joint_frames[Please wait-PLEASE_WAIT-1.0-8.5] _
+
+text = 'Please wait', action = 'PLEASE_WAIT', scale = 1.0, duration = 8.5
+
+    @pytest.mark.parametrize("text,action,scale,duration", [
+        ("Hello", "HELLO", 1.0, 7.8),
+        ("Thank you", "THANK_YOU", 1.2, 9.6),
+        ("Please wait", "PLEASE_WAIT", 1.0, 8.5),
+    ])
+    def test_real_adapter_pose_matches_generated_joint_frames(text, action, scale, duration):
+        result = api.generate_request({"text": text, "duration_scale": scale})
+>       assert result["accepted"] is True and result["action_id"] == action
+               ^^^^^^^^^^^^^^^^^^
+E       KeyError: 'accepted'
+
+tests/test_learning_api.py:70: KeyError
+__________ test_real_overview_preserves_data_units_and_snapshot_scope __________
+
+    def test_real_overview_preserves_data_units_and_snapshot_scope():
+        result = project.overview()
+        assert result["metrics"] == {"supported_actions": 3, "independent_demonstrations": 3,
+                                     "metadata_rows": 35263, "motion_targets": 0, "historical_tests": 206}
+        assert result["evidence_snapshot"]["not_live"] is True
+        assert result["evidence_snapshot"]["created_utc"] == "2026-10-08T15:27:42.652545+00:00"
+        assert result["model"]["train_frames"] == 367 and result["model"]["validation_frames"] == 365
+        assert sum(item["metadata_rows"] for item in result["corpus"]["splits"]) == 35263
+        assert result["model"]["asl_reviewed"] is False
+        assert all(not item["asl_reviewed"] for item in result["generated_previews"])
+>       assert all(item["available"] for item in result["materials"])
+E       assert False
+E        +  where False = all(<generator object test_real_overview_preserves_data_units_and_snapshot_scope.<locals>.<genexpr> at 0x73d80747f780>)
+
+tests/test_project_overview.py:25: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_learned_motion.py::test_model_inference_does_not_load_demonstration_files
+FAILED tests/test_learned_motion.py::test_slow_generation_changes_sampling_without_replay
+FAILED tests/test_learning_api.py::test_real_adapter_pose_matches_generated_joint_frames[Hello-HELLO-1.0-7.8]
+FAILED tests/test_learning_api.py::test_real_adapter_pose_matches_generated_joint_frames[Thank you-THANK_YOU-1.2-9.6]
+FAILED tests/test_learning_api.py::test_real_adapter_pose_matches_generated_joint_frames[Please wait-PLEASE_WAIT-1.0-8.5]
+FAILED tests/test_project_overview.py::test_real_overview_preserves_data_units_and_snapshot_scope
+6 failed, 535 passed in 19.93s

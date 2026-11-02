@@ -1,0 +1,18 @@
+{
+  "cwd": "/tmp/me5412-execution-20261031/restored-baseline",
+  "argv": [
+    "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_all_pairs_contract.py",
+    "tests/test_all_pairs_pipeline.py",
+    "tests/test_plan_transitions.py",
+    "tests/test_transition_endpoint_gate.py",
+    "tests/test_rrt_connect.py"
+  ],
+  "exit_code": 0,
+  "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/v1_pipeline_regression.log"
+}
