@@ -1,18 +1,5 @@
 # ME5412 Robot Signing Research Bench
 
-> **Group 3 public delivery: round 8 (2026-11-02)**
->
-> Current project records: [TASK-28](TASK-28.en.md), [STATE](STATE.en.md), [HANDOFF](HANDOFF.en.md). This publication starts from clean public commit `86428693` and synchronizes non-raw content from WSL source commit `dfe4bacde`. It does not import the history of the source repository's round-7 or round-8 raw-store commits.
->
-> Round 8 is complete: 7/7 multi-word sentences pass numerical checks, 17/17 connector rechecks agree and 24/24 protected cores are unchanged. Interior connector stops fell from round 7's 16 to 0. See the [round-8 report](results/hospital_sentences_20261102_008/README.en.md). The recorded full-suite result is 1014 passed; formal acceptance remains disabled and human video review is pending.
->
-> This publication copy passed **121 focused checks** in 25.31 seconds, covering smooth timing, staged exits and the documentation index. No full-suite rerun or new planning run was performed. See the [publication validation summary](results/publication_validation_round8_20261102/summary.json).
->
-> Raw candidates, attempts, checkpoints and timing stores under `results/**/pair_runs/` and `results/user_protected_*/runs/` remain local. Compact summaries and frozen configuration are copied to each experiment's `run_summaries/`; sequence outputs, independent rechecks, test logs and result images are retained. New videos remain excluded.
->
-> Original paths and hashes in saved reports are preserved, so this public copy cannot independently recheck every candidate or resume historical runs. Use the local raw stores, or follow TASK-28 with the required dependencies and model assets to generate a new version and run. Source revisions, metadata hashes and publication checks are in [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json). Earlier public history is unchanged. The remainder describes the early prototype.
-
-
 [中文](README.md) · **English** · [Bilingual documentation index](docs/README.md)
 
 > **Current demo: English → ASL robot signing in a hospital scenario.** A deaf patient visits a hospital with no interpreter present: a nurse or doctor types English, Group 1 turns it into ASL glosses with an online LLM plus vocabulary validation, Group 2 provides a Unitree G1 + Inspire hand joint trajectory for each gloss, and Group 3 handles transitions and playback. Scope: one scenario, 35 glosses, 9 scripted dialogue lines.
@@ -23,10 +10,26 @@
 |---|---|
 | Group 1 English → gloss | `group1_text_to_gloss/`, Gemini API plus validation against the 35-gloss vocabulary; 20-sentence self-test all correct (original 9/9, paraphrases 6/6, out-of-vocabulary 5/5 rejected); offline results saved for the 9 dialogue lines |
 | Group 2 gloss → motion | 35/35 glosses have trajectories: 9 from Studio Galt mocap, 26 from public ASL dictionary videos + MediaPipe (graded "approximate") |
-| End to end | `scripts/demo/hospital_demo.py`; videos of the 9 lines and the 91 s full dialogue in `results/demo/` |
-| Group 3 transitions and playback | In progress; currently baseline stitching with a fixed 0.5 s blend |
+| End to end | `scripts/demo/hospital_demo.py`: sentence → gloss → motion → video; videos of the 9 lines, the 4 acts (demo slides) and the full dialogue in `results/demo/`, using Group 3's transitions by default |
+| Group 3 transitions and playback | Round 8 merged: planned transitions for the 7 multi-word lines (minimum-jerk curves, collision-avoiding routes, RRT detours, no stops inside transitions); comparison with the baseline in `results/stitch_compare/group3_round8/` (mean duration 10.5 → 7.9 s, max penetration 39 → 13.8 mm) |
 
 Robot motions are candidate signs, **not reviewed by ASL users**; Group 1's test is an in-group self-test, not an independent test.
+
+## Group 3 delivery record (round 8)
+
+The note below was submitted by Group 3 with their delivery and is kept as written. The root-level `TASK-*`, `STATE`, `HANDOFF`, `PLAN`, `PUBLICATION_MANIFEST.json`, `library_manifest.json`, `word_audit.json` and `migration/` are Group 3's working records; some are read by Group 3's code, so do not move them.
+
+> **Group 3 public delivery: round 8 (2026-11-02)**
+>
+> Current project records: [TASK-28](TASK-28.en.md), [STATE](STATE.en.md), [HANDOFF](HANDOFF.en.md). This publication starts from clean public commit `86428693` and synchronizes non-raw content from WSL source commit `dfe4bacde`. It does not import the history of the source repository's round-7 or round-8 raw-store commits.
+>
+> Round 8 is complete: 7/7 multi-word sentences pass numerical checks, 17/17 connector rechecks agree and 24/24 protected cores are unchanged. Interior connector stops fell from round 7's 16 to 0. See the [round-8 report](results/hospital_sentences_20261102_008/README.en.md). The recorded full-suite result is 1014 passed; formal acceptance remains disabled and human video review is pending.
+>
+> This publication copy passed **121 focused checks** in 25.31 seconds, covering smooth timing, staged exits and the documentation index. No full-suite rerun or new planning run was performed. See the [publication validation summary](results/publication_validation_round8_20261102/summary.json).
+>
+> Raw candidates, attempts, checkpoints and timing stores under `results/**/pair_runs/` and `results/user_protected_*/runs/` remain local. Compact summaries and frozen configuration are copied to each experiment's `run_summaries/`; sequence outputs, independent rechecks, test logs and result images are retained. New videos remain excluded.
+>
+> Original paths and hashes in saved reports are preserved, so this public copy cannot independently recheck every candidate or resume historical runs. Use the local raw stores, or follow TASK-28 with the required dependencies and model assets to generate a new version and run. Source revisions, metadata hashes and publication checks are in [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json). Earlier public history is unchanged.
 
 ## Earlier work: three-class web prototype
 
