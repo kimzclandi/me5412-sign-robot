@@ -1,0 +1,30 @@
+{
+  "COME__NOW": {
+    "status": "TIMEOUT",
+    "candidate_count": 0,
+    "complete_candidate_verifications": 0,
+    "numerical_pass_candidates": 0,
+    "verification_state": "DIAGNOSIS_ONLY"
+  },
+  "NOW__COME": {
+    "status": "FAILED_QUALITY",
+    "candidate_count": 20,
+    "complete_candidate_verifications": 20,
+    "numerical_pass_candidates": 0,
+    "verification_state": "COMPLETE"
+  },
+  "COME__COME": {
+    "status": "FAILED_QUALITY",
+    "candidate_count": 64,
+    "complete_candidate_verifications": 64,
+    "numerical_pass_candidates": 0,
+    "verification_state": "COMPLETE"
+  },
+  "NOW__NOW": {
+    "status": "TIMEOUT",
+    "candidate_count": 0,
+    "complete_candidate_verifications": 0,
+    "numerical_pass_candidates": 0,
+    "verification_state": "DIAGNOSIS_ONLY"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "src/sign_robot/pair_contract.py": "4f88979d06ccde306ede2c71e2984b4f66d0fa9b5b3f49011904c81444a2f618",
+  "src/sign_robot/pair_windows.py": "12d20562a29a92ce7a3833bc4994b61bb680a5b05eec4673b57bd542fe5b0d49",
+  "src/sign_robot/pair_routes.py": "111bf52b5fc94a6f3d97a11d71dec58b655c2016bd66634385fc2218016a8dab",
+  "tests/conftest.py": null,
+  "tests/test_user_protected_windows.py": null,
+  "contracts/all_pairs_user_protected_v1.json": null,
+  "config/transition_policy_user_protected_v1.json": null,
+  "config/user_protected_come_now_v1.json": null
+}

@@ -1,0 +1,98 @@
+{
+  "run_id": "handoff_v2_dev_20261031_002",
+  "run_dir": "/home/kingderman/Documents/ME5412-github-latest/results/all_pairs/handoff_v2_dev_20261031_002",
+  "identity": {
+    "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+    "code_hash": "66ad34ae22b633f1956edd5abdf0e0dded6bed3274f29cbdaf65aeef908b67c8",
+    "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+    "identity_hash": "184918f52da32f087bb63841f7e1e98cf844a812b4525d3e075b8494601f566c",
+    "library_version": "hospital_v1@39ba7e88ff8645aafdd3000f75db8e5a1deaff324ccc7e0155a3a68afc98ae71",
+    "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+    "policy_hash": "7b73c2946fcd348272e899ae71ad536bd4359ede69fdced7c5e47d2da36917ae"
+  },
+  "summary": {
+    "L2_complete": false,
+    "acceptance_level": "v2_development_pending_real_approvals",
+    "formal_acceptance_enabled": false,
+    "groups": {
+      "all": {
+        "denominator": 1225,
+        "pass_sim_rate": 0.0,
+        "scanned": 4,
+        "status_counts": {
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 4,
+          "ERROR": 0,
+          "FAILED_QUALITY": 0,
+          "FAILED_SEARCH": 0,
+          "NOT_RUN": 1221,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "TIMEOUT": 0
+        }
+      },
+      "non_self": {
+        "denominator": 1190,
+        "pass_sim_rate": 0.0,
+        "scanned": 2,
+        "status_counts": {
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 2,
+          "ERROR": 0,
+          "FAILED_QUALITY": 0,
+          "FAILED_SEARCH": 0,
+          "NOT_RUN": 1188,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "TIMEOUT": 0
+        }
+      },
+      "self": {
+        "denominator": 35,
+        "pass_sim_rate": 0.0,
+        "scanned": 2,
+        "status_counts": {
+          "BLOCKED_ENDPOINT": 0,
+          "BLOCKED_INPUT": 2,
+          "ERROR": 0,
+          "FAILED_QUALITY": 0,
+          "FAILED_SEARCH": 0,
+          "NOT_RUN": 33,
+          "PASS_SIM": 0,
+          "SOURCE_NEAR": 0,
+          "TIMEOUT": 0
+        }
+      }
+    },
+    "identity": {
+      "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+      "code_hash": "66ad34ae22b633f1956edd5abdf0e0dded6bed3274f29cbdaf65aeef908b67c8",
+      "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+      "identity_hash": "184918f52da32f087bb63841f7e1e98cf844a812b4525d3e075b8494601f566c",
+      "library_version": "hospital_v1@39ba7e88ff8645aafdd3000f75db8e5a1deaff324ccc7e0155a3a68afc98ae71",
+      "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+      "policy_hash": "7b73c2946fcd348272e899ae71ad536bd4359ede69fdced7c5e47d2da36917ae"
+    },
+    "planning_complete": false,
+    "run_id": "handoff_v2_dev_20261031_002",
+    "saved_attempts": 4,
+    "saved_candidates": 0,
+    "schema_version": 2,
+    "verification_complete": false,
+    "verified_records": 4
+  },
+  "checked_file_count": 32,
+  "changed_files_after_resume": [],
+  "checks": {
+    "fixed_denominators": true,
+    "four_blocked_input": true,
+    "1221_not_run": true,
+    "zero_pass": true,
+    "zero_candidates": true,
+    "four_independent_diagnoses": true,
+    "all_run_bytes_unchanged_on_resume": true,
+    "formal_acceptance_disabled": true
+  },
+  "state": "PASS_DIAGNOSTIC_AND_RESUME",
+  "L2_complete": false
+}

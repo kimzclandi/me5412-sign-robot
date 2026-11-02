@@ -1,0 +1,58 @@
+[
+  {
+    "key": "team-current",
+    "path": "docs/ten-intent-learning-guide.md",
+    "previous_sha256": "f3108a7268f2f8269c27912850d3ca619c2b34446cc775b1fbb9081fa8b8c05f",
+    "current_sha256": "1fd91993ffc3ce86a0fce59555f549c8a867481c718b8c12876a3fe94dec5bbf",
+    "reason": "explicit refresh of already allowlisted documentation after synchronized bilingual updates"
+  },
+  {
+    "key": "github-guide",
+    "path": "docs/github-collaboration.md",
+    "previous_sha256": "aa0ee06761c2079127429e486c8116f3f13a2ab43dce02531b0f98e938ba7089",
+    "current_sha256": "23057827c6ba7e9c83acb85950ae74f83745f75ff6e36ee8b1d49e8c4e81a05f",
+    "reason": "explicit refresh of already allowlisted documentation after synchronized bilingual updates"
+  },
+  {
+    "key": "dependencies",
+    "path": "docs/code-dependencies.md",
+    "previous_sha256": "4143063b7f5667e9e11efa2d9f98cb1be6a8c3e3493bd3b07e6d5637b7a69940",
+    "current_sha256": "107f1fc5e6266b0682918ecc2e52f6012eadb6545d11f996e2e70c1a2c666dd2",
+    "reason": "explicit refresh of already allowlisted documentation after synchronized bilingual updates"
+  },
+  {
+    "key": "docs-index",
+    "path": "docs/README.md",
+    "previous_sha256": "ea2c81caf415f63fb8a8334a3a87b2292a92ecf3b6e6f94cf74fc5670e984803",
+    "current_sha256": "12cb9d9d5f3e281cc917d37b5f02ea5257b2f262bba475e5f0e2c44adf33bb63",
+    "reason": "explicit refresh of already allowlisted documentation after synchronized bilingual updates"
+  },
+  {
+    "key": "team-current-en",
+    "path": "docs/ten-intent-learning-guide.en.md",
+    "previous_sha256": "f677016f3dc3a2cdaee29cc20b07041fc33b890d99480a5a8ad3677708d82e98",
+    "current_sha256": "f3f1506ccef5b2d36ecc0299a411eac2928b1f48e3a304b09532a59f9160233a",
+    "reason": "explicit refresh of already allowlisted documentation after synchronized bilingual updates"
+  },
+  {
+    "key": "github-guide-en",
+    "path": "docs/github-collaboration.en.md",
+    "previous_sha256": "6979a620a545645125e02dc376300e631193eb96be8c42d7b580e7fdd22ba381",
+    "current_sha256": "f9bb01fcf7ffe960692d2f646e0cf79514268b8bc51e2674de2736fab448bba1",
+    "reason": "explicit refresh of already allowlisted documentation after synchronized bilingual updates"
+  },
+  {
+    "key": "dependencies-en",
+    "path": "docs/code-dependencies.en.md",
+    "previous_sha256": "c252839cdd0e395d15affc5bc0a1fea92a0dac1d7ab071b76fa92397f1ff62e9",
+    "current_sha256": "7850731e7e92f13d942c23681d35d300a1b0f4b6048369a353379f9b34d98519",
+    "reason": "explicit refresh of already allowlisted documentation after synchronized bilingual updates"
+  },
+  {
+    "key": "docs-index-en",
+    "path": "docs/README.en.md",
+    "previous_sha256": "ea2c81caf415f63fb8a8334a3a87b2292a92ecf3b6e6f94cf74fc5670e984803",
+    "current_sha256": "0c23a06ddf7264d1bada11bb6e23270c74a1dc99176fd115fe6dd079536f4398",
+    "reason": "explicit refresh of already allowlisted documentation after synchronized bilingual updates"
+  }
+]

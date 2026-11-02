@@ -1,0 +1,131 @@
+{
+  "contract_id": "all-pairs-v2",
+  "schema_version": 2,
+  "representation": "piecewise_polynomial_v2",
+  "implementation": "sign_robot.pair_contract.validate_trajectory_v2",
+  "coefficient_convention": {
+    "array_shape": [
+      "joint_count",
+      6
+    ],
+    "power_order": "ascending",
+    "parameter": "u=(t-start_time_s)/(end_time_s-start_time_s)",
+    "position_unit": "rad",
+    "time_unit": "s",
+    "derivative_time_scaling": "divide normalized derivative order k by duration_s**k"
+  },
+  "word_replay": {
+    "representation": "source_slice_v2",
+    "interpolation": "linear",
+    "frame_bounds": "zero-based inclusive",
+    "time_scale": 1.0,
+    "word_occurrences": 2,
+    "self_pairs": "retain two distinct instance IDs",
+    "protected_core": "included in mapped source frames; hints alone are not approval"
+  },
+  "connector": {
+    "representation": "polynomial_v2",
+    "degree": 5,
+    "internal_continuity": "position, velocity and acceleration",
+    "boundary_method": "linear_replay_one_sided_v2",
+    "finger_phases": {
+      "synchronous": [
+        0.0,
+        1.0
+      ],
+      "early": [
+        0.0,
+        0.65
+      ],
+      "late": [
+        0.35,
+        1.0
+      ]
+    }
+  },
+  "approval_bundle": {
+    "schema_version": 2,
+    "bundle_fields": [
+      "bundle_id",
+      "schema_version",
+      "window_version",
+      "records"
+    ],
+    "record_fields": [
+      "approval_id",
+      "gloss",
+      "motion_sha256",
+      "frame_count",
+      "protected_core_frames",
+      "entry_window_frames",
+      "exit_window_frames",
+      "retiming_allowed",
+      "status",
+      "reviewer",
+      "reviewed_at",
+      "evidence_path",
+      "evidence_sha256"
+    ],
+    "role_rule": "source prefix ends after protected core; target suffix starts before protected core",
+    "authenticity": "verify external evidence file hash and matching review content; status string is insufficient",
+    "optional_record_fields": [
+      "valid_until",
+      "exceptions"
+    ],
+    "evidence_format": {
+      "schema_version": 2,
+      "kind": "group2_core_window_review",
+      "review": "exact semantic review payload excluding evidence_path/evidence_sha256 to avoid self-hash recursion"
+    },
+    "time_rules": "reviewed_at and valid_until must carry timezone; reject future or expired approvals; recheck expiry when selecting"
+  },
+  "hashing": {
+    "json": "sorted UTF-8 JSON with no NaN and trailing newline",
+    "npz": "v1 exact file and canonical numeric hashes remain separate",
+    "identity": "existing frozen library/model/code/commit/policy/environment identity",
+    "envelope": [
+      "schema_version",
+      "trajectory",
+      "trajectory_hash"
+    ]
+  },
+  "version_dispatch": {
+    "policy_default_supported_versions": [
+      1
+    ],
+    "v2_opt_in": [
+      1,
+      2
+    ],
+    "v1_trajectory": "read_pair_trajectory(...,schema_version=1) reads original NPZ",
+    "v2_trajectory": "read_pair_trajectory(...,schema_version=2) reads integrity-bound JSON",
+    "unknown_versions": "reject"
+  },
+  "approval_status": "pending",
+  "formal_acceptance_enabled": false,
+  "verification": {
+    "entrypoint": "sign_robot.pair_verification_v2.verify_saved_pair_v2",
+    "representation_dispatch": [
+      "source_slice_v2",
+      "polynomial_v2"
+    ],
+    "reconstruction": "fresh read of saved integrity envelope, original word NPZ and declared normalized-u polynomial coefficients",
+    "geometry": "fresh MuJoCo model/data and native moving non-same-hand checker; planner/search modules are not imported",
+    "quality": "full saved timeline finite differences plus analytic polynomial extrema/integral",
+    "budgets": "validation.max_sampled_poses, max_native_collision_calls, max_subdivision_depth and wall_time_s checked before allocation/query",
+    "incomplete_result_status": "TIMEOUT",
+    "continuous_collision_certified": false,
+    "pass_gate": "all artifact, approval, slice, boundary, quality, speed, coupling, limit, dense geometry and formal acceptance checks must be complete; current formal acceptance remains disabled"
+  },
+  "timing": {
+    "module": "sign_robot.pair_timing",
+    "boundary_method": "linear_replay_one_sided_v2",
+    "solver": "normalized-u quintic matches fixed p/v/a; resolve coefficients after every duration change",
+    "duration_grid_hz": 30,
+    "internal_knots": "zero velocity and acceleration; preserve explicit knots",
+    "checks": "analytic position/rate/acceleration/jerk/coupling plus optional per-attempt geometry callback",
+    "limits": "finite attempts, overall duration and shared wall deadline",
+    "word_retiming": "not performed",
+    "success_label": "TIMED_CANDIDATE, not PASS_SIM"
+  }
+}

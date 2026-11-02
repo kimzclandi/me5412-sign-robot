@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "SORRY__DEAF",
+    "SORRY__DOCTOR",
+    "SORRY__NURSE",
+    "SORRY__INTERPRETER",
+    "SORRY__APPOINTMENT",
+    "SORRY__MEDICINE",
+    "SORRY__STOMACH",
+    "SORRY__HEADACHE",
+    "SORRY__HAVE",
+    "SORRY__NEED",
+    "SORRY__WAIT",
+    "SORRY__COME",
+    "SORRY__HURT",
+    "SORRY__BREATHE-DEEP",
+    "SORRY__BLOOD-DRAW",
+    "SORRY__TAKE"
+  ]
+}

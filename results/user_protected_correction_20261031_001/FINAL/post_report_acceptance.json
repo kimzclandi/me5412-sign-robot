@@ -1,0 +1,408 @@
+{
+  "engineering_delivery_checks_passed": true,
+  "checks": [
+    {
+      "check": "current_installed_baseline_fully_preserved",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "engineering_policy_file_hash_frozen_before_pilot",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_engineering_thresholds_and_budgets_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "contract_semantics_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "formal_acceptance_remains_disabled",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "algorithm_windows_do_not_claim_human_approval",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "exact_user_correction_recorded",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "new_policy_and_protection_version_distinct",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "corrected_inclusive_outward_protection",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "legacy_config_contract_and_plan_preserved",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "fresh_installed_code_model_input_environment_identity",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "fixed_full_library_denominators",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "exact_four_real_pairs_executed",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_six_families_attempted_per_pair",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "actual_candidate_inventory",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_eligible_candidates_independently_reviewed",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_84_candidate_verifications_complete",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "candidate_inputs_protection_and_two_instances_preserved",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "algorithm_evidence_never_fabricates_approval",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "candidate_dense_geometry_checks_pass",
+      "passed": true,
+      "details": {
+        "minimum_mm": 3.4903016007936056
+      }
+    },
+    {
+      "check": "failed_numerical_results_reported_honestly",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "full_library_not_misrepresented_as_complete",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "zero_candidate_pairs_have_only_diagnosis",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "source_quality_recomputed_for_corrected_ranges",
+      "passed": true,
+      "details": {
+        "COME": 1479272.6946308068,
+        "NOW": 38213419.33855339
+      }
+    },
+    {
+      "check": "four_pair_protected_interior_lower_bounds_exceed_limit",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "saved_curve_version_isolation_negative_checks",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "completed_resume_preserves_all_run_bytes",
+      "passed": true,
+      "details": {
+        "file_count": 784
+      }
+    },
+    {
+      "check": "four_comparison_videos_exported",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__COME:failure_algorithm_labels",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__COME:export_hashes_match",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__COME:video_matches_saved_run_curve",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__COME:video_decodes_at_30hz",
+      "passed": true,
+      "details": {
+        "decoded_frames": 402,
+        "expected_frames": 402
+      }
+    },
+    {
+      "check": "COME__COME:protected_poses_and_timing_exported",
+      "passed": true,
+      "details": [
+        {
+          "instance_id": "COME#0",
+          "protected_frames": 106,
+          "poses_bitwise_equal": true,
+          "relative_time_error_s": 4.440892098500626e-16
+        },
+        {
+          "instance_id": "COME#1",
+          "protected_frames": 106,
+          "poses_bitwise_equal": true,
+          "relative_time_error_s": 1.3322676295501878e-15
+        }
+      ]
+    },
+    {
+      "check": "COME__COME:two_distinct_word_instances",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__COME:displayed_curve_fully_independently_verified",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__NOW:failure_algorithm_labels",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__NOW:export_hashes_match",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__NOW:video_matches_saved_run_curve",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__NOW:video_decodes_at_30hz",
+      "passed": true,
+      "details": {
+        "decoded_frames": 305,
+        "expected_frames": 305
+      }
+    },
+    {
+      "check": "COME__NOW:protected_poses_and_timing_exported",
+      "passed": true,
+      "details": [
+        {
+          "instance_id": "COME#0",
+          "protected_frames": 106,
+          "poses_bitwise_equal": true,
+          "relative_time_error_s": 4.440892098500626e-16
+        },
+        {
+          "instance_id": "NOW#1",
+          "protected_frames": 74,
+          "poses_bitwise_equal": true,
+          "relative_time_error_s": 8.881784197001252e-16
+        }
+      ]
+    },
+    {
+      "check": "COME__NOW:two_distinct_word_instances",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "COME__NOW:displayed_curve_fully_independently_verified",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__COME:failure_algorithm_labels",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__COME:export_hashes_match",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__COME:video_matches_saved_run_curve",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__COME:video_decodes_at_30hz",
+      "passed": true,
+      "details": {
+        "decoded_frames": 305,
+        "expected_frames": 305
+      }
+    },
+    {
+      "check": "NOW__COME:protected_poses_and_timing_exported",
+      "passed": true,
+      "details": [
+        {
+          "instance_id": "NOW#0",
+          "protected_frames": 74,
+          "poses_bitwise_equal": true,
+          "relative_time_error_s": 4.440892098500626e-16
+        },
+        {
+          "instance_id": "COME#1",
+          "protected_frames": 106,
+          "poses_bitwise_equal": true,
+          "relative_time_error_s": 8.881784197001252e-16
+        }
+      ]
+    },
+    {
+      "check": "NOW__COME:two_distinct_word_instances",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__COME:displayed_curve_fully_independently_verified",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__NOW:failure_algorithm_labels",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__NOW:export_hashes_match",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__NOW:video_matches_saved_run_curve",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__NOW:video_decodes_at_30hz",
+      "passed": true,
+      "details": {
+        "decoded_frames": 208,
+        "expected_frames": 208
+      }
+    },
+    {
+      "check": "NOW__NOW:protected_poses_and_timing_exported",
+      "passed": true,
+      "details": [
+        {
+          "instance_id": "NOW#0",
+          "protected_frames": 74,
+          "poses_bitwise_equal": true,
+          "relative_time_error_s": 4.440892098500626e-16
+        },
+        {
+          "instance_id": "NOW#1",
+          "protected_frames": 74,
+          "poses_bitwise_equal": true,
+          "relative_time_error_s": 4.440892098500626e-16
+        }
+      ]
+    },
+    {
+      "check": "NOW__NOW:two_distinct_word_instances",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NOW__NOW:displayed_curve_fully_independently_verified",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "image_tool_checks_never_called_human_approval",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "full_regression_passed",
+      "passed": true,
+      "details": {
+        "test_count": 799,
+        "exit_code": 0
+      }
+    },
+    {
+      "check": "all_original_motion_and_model_files_preserved",
+      "passed": true,
+      "details": {
+        "count": 476,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "all_historical_results_preserved",
+      "passed": true,
+      "details": []
+    },
+    {
+      "check": "bilingual_report_state_handoff_and_index",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "only_two_required_download_sha_literals_changed",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "pilot_numerical_pass_count": 0,
+  "pilot_denominator": 4,
+  "formal_pass_sim_count": 0,
+  "full_library_denominator": 1225,
+  "full_library_acceptance_complete": false,
+  "goal_complete": false,
+  "identity": {
+    "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+    "code_hash": "4e814bbe6acc34fbf769a01e1bf6699257234761ad77d59f72ebd5010fddfee4",
+    "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+    "identity_hash": "3c28fb7f2e2879debf1f1f85894ac44a12ba09f12dc7e8c82b1ea554d33f31db",
+    "library_version": "hospital_v1@deec3cf046ca993798081b8f5aa48d82c18a2e10a199590fae860d001f0c46d1",
+    "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+    "policy_hash": "7546122cc5cce3e0c0294a60ad721d28a9445eccaec0ead8f83b69bdbfc3a0ed"
+  },
+  "blocking_cause": "corrected protected-source quality exceeds unchanged engineering limits"
+}

@@ -1,0 +1,10 @@
+{
+  "docs/README.md": {
+    "before": "76916148974f8f40822d96705d84951ce86cf224f73444d66d91fbb1d68ce37b",
+    "after": "114e35b930e0c6a863aea8e1e5a015bee47c5935866159ead921c084290e4f3d"
+  },
+  "docs/README.en.md": {
+    "before": "790ed022e648c222fe5aa04df4af135f6a550da89fcd98a99d6aec2a959fdc06",
+    "after": "439bfa033cd9057fe59d3e0263c2a6b42a66ed1df6ad14cecbaae52d0aabb64c"
+  }
+}

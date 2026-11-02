@@ -1,0 +1,9 @@
+{
+  "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+  "argv": [
+    "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+    "/tmp/me5412-execution-20261031/audit_p0_3.py"
+  ],
+  "exit_code": 0,
+  "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P0-3/collision_audit.log"
+}

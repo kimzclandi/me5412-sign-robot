@@ -1,0 +1,230 @@
+[
+  {
+    "relative": "HANDOFF.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/HANDOFF.md",
+    "before_sha256": "366169ea7bfb0ada24b87f7a2196397b02a50d7dc946bcfeebdb417daa7c383e",
+    "after_sha256": "bced8901d62fd0e058adef56d51f4450cc44835829723ad1f4e08533c80d5c6b"
+  },
+  {
+    "relative": "HANDOFF.en.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/HANDOFF.en.md",
+    "before_sha256": "6cde929f7f43b090d784d954111305ba43d268af7b67bff9f1804379a84c3499",
+    "after_sha256": "340be9ca3aee230638b6b989eb51fdc181b8e48576772483f5bc1ef1fd9e12dc"
+  },
+  {
+    "relative": "STATE.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/STATE.md",
+    "before_sha256": "321ad0c0855a88c53a15e2a7e551d9a07c5f85e47d389932cfbf662f9453bce7",
+    "after_sha256": "2e6935290030d04328fee3933976aa69692f5e8c6923b5c034f5fd0cfdf174f1"
+  },
+  {
+    "relative": "STATE.en.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/STATE.en.md",
+    "before_sha256": "a5d2f7a1b84575db9666b69459b5a02cfaa117d28641a25ef75d7a635b286304",
+    "after_sha256": "781647f6398c3c1486d2cf882f594f3b74503b55a899977808f3925a2b755978"
+  },
+  {
+    "relative": "docs/README.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/docs/README.md",
+    "before_sha256": "76916148974f8f40822d96705d84951ce86cf224f73444d66d91fbb1d68ce37b",
+    "after_sha256": "114e35b930e0c6a863aea8e1e5a015bee47c5935866159ead921c084290e4f3d"
+  },
+  {
+    "relative": "docs/README.en.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/docs/README.en.md",
+    "before_sha256": "790ed022e648c222fe5aa04df4af135f6a550da89fcd98a99d6aec2a959fdc06",
+    "after_sha256": "439bfa033cd9057fe59d3e0263c2a6b42a66ed1df6ad14cecbaae52d0aabb64c"
+  },
+  {
+    "relative": "src/sign_robot/pair_contract.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_contract.py",
+    "before_sha256": "4f88979d06ccde306ede2c71e2984b4f66d0fa9b5b3f49011904c81444a2f618",
+    "after_sha256": "7ac5a20c060f8c93f92847ef0161cbe2d23abeb61bb97662737c11ab31c5c69b"
+  },
+  {
+    "relative": "src/sign_robot/pair_windows.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_windows.py",
+    "before_sha256": "12d20562a29a92ce7a3833bc4994b61bb680a5b05eec4673b57bd542fe5b0d49",
+    "after_sha256": "a6171726e2b9de4cabc3dd312e2eb49c1282c5cabe9bb59df1c36e42ca8139f9"
+  },
+  {
+    "relative": "src/sign_robot/pair_routes.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_routes.py",
+    "before_sha256": "111bf52b5fc94a6f3d97a11d71dec58b655c2016bd66634385fc2218016a8dab",
+    "after_sha256": "36f742241cc96a41e79fb5e1fc4442e703d1d85248938351ab026f4636c1a3e9"
+  },
+  {
+    "relative": "src/sign_robot/pair_search.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_search.py",
+    "before_sha256": "6ed73b810fdc2e0dce5c4c39cf0445d7c2857a8c3f010538786168870312b8fa",
+    "after_sha256": "78edc8693ae98ac379a20d4a23487d3392c9a4f590d54085015f465bebbc432a"
+  },
+  {
+    "relative": "src/sign_robot/pair_runner_v2.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_runner_v2.py",
+    "before_sha256": "e23d63869d800453ee4777c2177aff693a90ce42435ffc3ca87d3eeb36182c67",
+    "after_sha256": "836713225453de3b8b617f624f289e1dc27c702ad45fda526aa2455c73646142"
+  },
+  {
+    "relative": "src/sign_robot/pair_verification_v2.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_verification_v2.py",
+    "before_sha256": "497525af11b9af9c937d209a7515fdb3466db56fb00309d091551482e1af579c",
+    "after_sha256": "b9c75fd29f6186a7e1c5a9dbecd174bbdde4ea7063c4679be0df8d778f70c443"
+  },
+  {
+    "relative": "src/sign_robot/project_overview.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/project_overview.py",
+    "before_sha256": "d68af6a107b3229273c3d8f9100355a144b71360c7e8101e8c69eaa685fb1bc1",
+    "after_sha256": "7d318e21b73f7ac10a56a5a2e7ffb6bd8f8df6920b0fd71e96055a1a8dbdfdc9"
+  },
+  {
+    "relative": "config/user_protected_come_now_v1.json",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/config/user_protected_come_now_v1.json",
+    "before_sha256": null,
+    "after_sha256": "b051895637fe4df5a440e5638ebc8b241e3218376fe70354b66e9d6537c6101c"
+  },
+  {
+    "relative": "config/transition_policy_user_protected_v1.json",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/config/transition_policy_user_protected_v1.json",
+    "before_sha256": null,
+    "after_sha256": "b58d90b5c3f8213af9eafb0080074004e3ba459c31e58737c382b942c9a563d4"
+  },
+  {
+    "relative": "contracts/all_pairs_user_protected_v1.json",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/contracts/all_pairs_user_protected_v1.json",
+    "before_sha256": null,
+    "after_sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f"
+  },
+  {
+    "relative": "scripts/screen_user_protected_cuts.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/scripts/screen_user_protected_cuts.py",
+    "before_sha256": null,
+    "after_sha256": "6af5384b8786c98fc98e14cf721c86708f37fe9b6843e8bf3e216c9c60a7746f"
+  },
+  {
+    "relative": "scripts/render_user_protected_pairs.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/scripts/render_user_protected_pairs.py",
+    "before_sha256": null,
+    "after_sha256": "2caea8135a77bc713f24da7921e658c940056e5e4d61e0254198e3b076ae8b92"
+  },
+  {
+    "relative": "tests/conftest.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/tests/conftest.py",
+    "before_sha256": null,
+    "after_sha256": "52e3f7a0acd843923826ab20ee337670ff22e07b385dfbcf3f602280b224ee9a"
+  },
+  {
+    "relative": "tests/test_user_protected_windows.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/tests/test_user_protected_windows.py",
+    "before_sha256": null,
+    "after_sha256": "13a7f5810d510da3f68354fd0a20c20c16e472915927aa532c18ee8dc503806b"
+  },
+  {
+    "relative": "tests/test_user_protected_cuts.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/tests/test_user_protected_cuts.py",
+    "before_sha256": null,
+    "after_sha256": "9be3092ba13f266119b9f8f813face2ab9551b98c0c4b6cc87cdd3dc16a1ca9c"
+  },
+  {
+    "relative": "tests/test_user_protected_routes.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/tests/test_user_protected_routes.py",
+    "before_sha256": null,
+    "after_sha256": "35beecbea0048aad392b96cea1bed7e53cb28be388f6e95b7ddf440de33be238"
+  },
+  {
+    "relative": "tests/test_user_protected_verification.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/tests/test_user_protected_verification.py",
+    "before_sha256": null,
+    "after_sha256": "c2a827b4c59c61ab7d1457aac6019b9854cd36b0299fbf2939a5d7320e6aa2c6"
+  },
+  {
+    "relative": "tests/test_user_protected_render.py",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/tests/test_user_protected_render.py",
+    "before_sha256": null,
+    "after_sha256": "6daff41929423ebca8b74358755941401af04082129124d79adb51c2579de867"
+  },
+  {
+    "relative": "TASK-15.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-15.md",
+    "before_sha256": null,
+    "after_sha256": "4ed20150f6577725d48d12b9df9344200aa74c63ec97d75349db5d00d784e5f8"
+  },
+  {
+    "relative": "TASK-15.en.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-15.en.md",
+    "before_sha256": null,
+    "after_sha256": "d0eef24d707edf8e7f0db09965b8cbfadd8ef3336c712e24d39a2402736b2909"
+  },
+  {
+    "relative": "TASK-16.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-16.md",
+    "before_sha256": null,
+    "after_sha256": "7881e3d9c3fa0d982d5abf07b589bbf776a9ec99fc6790a1739859a7875c2248"
+  },
+  {
+    "relative": "TASK-16.en.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-16.en.md",
+    "before_sha256": null,
+    "after_sha256": "49f5f7daafd9c979521934e8eec1fa773fa7ea129165b4f26335a1d5f43cd68b"
+  },
+  {
+    "relative": "TASK-17.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-17.md",
+    "before_sha256": null,
+    "after_sha256": "1fb38f9fc5c384b9afc5d3eb66e5147af81cdf9f5780682a476bc4369c3ca645"
+  },
+  {
+    "relative": "TASK-17.en.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-17.en.md",
+    "before_sha256": null,
+    "after_sha256": "fbc1222d5baf14e2a4e1d627cc12eae3aadc5f5f9c3ca995ba078d9c0a80a7e2"
+  },
+  {
+    "relative": "TASK-18.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-18.md",
+    "before_sha256": null,
+    "after_sha256": "e17eb5e4f104bfab1f82717c56369698d17fccce5e0c16190f1e0f49297f5276"
+  },
+  {
+    "relative": "TASK-18.en.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-18.en.md",
+    "before_sha256": null,
+    "after_sha256": "24604b0b55999316544a557e588461ea3befc18040fbbf76f4e390847608cb35"
+  },
+  {
+    "relative": "TASK-19.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-19.md",
+    "before_sha256": null,
+    "after_sha256": "5d0c23e2dd3f84ab35ce7ea8215cd6cffa7565c17ebf25a9474208a30be9d526"
+  },
+  {
+    "relative": "TASK-19.en.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-19.en.md",
+    "before_sha256": null,
+    "after_sha256": "004897f842a91ac74d5b84cf30c2bc5b0791978b3990eb33ce79eb833e407965"
+  },
+  {
+    "relative": "TASK-20.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-20.md",
+    "before_sha256": null,
+    "after_sha256": "0f296eeea47a0244b89fb0aa1b274a2b3072cf95bb48f3658af9753fa4aca28c"
+  },
+  {
+    "relative": "TASK-20.en.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-20.en.md",
+    "before_sha256": null,
+    "after_sha256": "80b641b67e13a74883dd9962c9ab17f75626fd109a87ab9678b088d41a290866"
+  },
+  {
+    "relative": "TASK-21.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-21.md",
+    "before_sha256": null,
+    "after_sha256": "70ba2a033f37658669d8c3bd2d2886a674b3a0c5c9d8c4c976e76aed211a2fcb"
+  },
+  {
+    "relative": "TASK-21.en.md",
+    "file": "/home/kingderman/Documents/ME5412-github-latest/TASK-21.en.md",
+    "before_sha256": null,
+    "after_sha256": "3a972b440cf816b896911b747228b705658a5418d344109368ba444c9628ab05"
+  }
+]

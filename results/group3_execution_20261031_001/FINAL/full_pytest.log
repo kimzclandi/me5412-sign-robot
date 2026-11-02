@@ -1,0 +1,32 @@
+........................................................................ [  9%]
+........................................................................ [ 19%]
+........................................................................ [ 28%]
+........................................................................ [ 38%]
+........................................................................ [ 48%]
+........................................................................ [ 57%]
+........................................................................ [ 67%]
+........................................................................ [ 76%]
+...................................F.................................... [ 86%]
+........................................................................ [ 96%]
+.............................                                            [100%]
+=================================== FAILURES ===================================
+__________ test_real_overview_preserves_data_units_and_snapshot_scope __________
+
+    def test_real_overview_preserves_data_units_and_snapshot_scope():
+        result = project.overview()
+        assert result["metrics"] == {"supported_actions": 3, "independent_demonstrations": 3,
+                                     "metadata_rows": 35263, "motion_targets": 0, "historical_tests": 206}
+        assert result["evidence_snapshot"]["not_live"] is True
+        assert result["evidence_snapshot"]["created_utc"] == "2026-10-08T15:27:42.652545+00:00"
+        assert result["model"]["train_frames"] == 367 and result["model"]["validation_frames"] == 365
+        assert sum(item["metadata_rows"] for item in result["corpus"]["splits"]) == 35263
+        assert result["model"]["asl_reviewed"] is False
+        assert all(not item["asl_reviewed"] for item in result["generated_previews"])
+>       assert all(item["available"] for item in result["materials"])
+E       assert False
+E        +  where False = all(<generator object test_real_overview_preserves_data_units_and_snapshot_scope.<locals>.<genexpr> at 0x7cf2568fe9b0>)
+
+tests/test_project_overview.py:25: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_project_overview.py::test_real_overview_preserves_data_units_and_snapshot_scope
+1 failed, 748 passed in 50.97s

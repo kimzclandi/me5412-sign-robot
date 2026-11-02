@@ -1,5 +1,18 @@
 # ME5412 机器人手语表达实验台
 
+> **第三组公开交付：第八轮（2026-11-02）**
+>
+> 最新项目记录：[TASK-28](TASK-28.md)、[STATE](STATE.md)、[HANDOFF](HANDOFF.md)。本公开版本以干净提交 `86428693` 为基线，同步 WSL 源提交 `dfe4bacde` 的非原始内容；没有引入源仓库第七、八轮原始存储提交的历史。
+>
+> 第八轮已完成：7/7 多词句数值通过、17/17 衔接复核一致、24/24 保护核心不变；衔接内部停顿由第七轮的 16 次降到 0 次。见[第八轮报告](results/hospital_sentences_20261102_008/README.md)。1014 passed 是该轮保存的全套测试记录，正式验收仍关闭，视频仍待人工评审。
+>
+> 本次发布副本定向验证 **121 passed**（25.31 秒），包括新的平滑定时、分阶段退出和文档索引；未重跑全套测试或真实规划。见[发布验证摘要](results/publication_validation_round8_20261102/summary.json)。
+>
+> 原始候选、尝试、检查点和调时存储 `results/**/pair_runs/`、`results/user_protected_*/runs/` 仅保留在本机。小型汇总与冻结配置复制到各实验的 `run_summaries/`；序列输出、独立复核、测试日志和结果图保留。新视频继续不入库。
+>
+> 保存报告中的原始路径与哈希不改写，因此公开副本不能独自逐候选复核或续跑历史 run。需本地原始存储，或按 TASK-28 在具备依赖和模型资源的环境中创建新版本、新 run 重新生成。发布来源、摘要哈希和本次检查见 [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json)。之前的公开提交历史未改写。下文为早期原型说明。
+
+
 **中文** · [English](README.en.md) · [中英说明目录](docs/README.md)
 
 > **当前演示：医院场景的英文 → ASL 机器人手语。** 一位聋人患者就诊、现场没有手语翻译：护士或医生输入英文，第一组用在线 LLM 加词表校验转成 ASL gloss，第二组为每个 gloss 提供 Unitree G1 + Inspire 手的关节轨迹，第三组负责衔接与播放。范围是 1 个场景、35 个 gloss、9 句脚本对话。
@@ -29,6 +42,10 @@
 - **网站源码**：[website/README.md](website/README.md) 包含已经发布的静态展示版及独立预览命令；GitHub 推送不会自动重新发布网站。
 
 仓库保留原始提交、冻结实验及失败记录，并包括本项目训练得到的约 3 MB 回归检查点。第三方 MiniLM／LLM 预训练权重、机器人 vendor 网格、虚拟环境、运行会话日志和本机私有配置均不上传；基础依赖使用固定来源脚本恢复。How2Sign 文本索引按已记录的 CC BY-NC 4.0 范围用于非商业课程研究，未包含源视频。第三方来源和机器人 BSD 许可见 [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt)。
+
+## 第三组全词对开发入口
+
+35 词的 1,225 个有向组合（含 35 个同词重复）已有独立的冻结、逐词审计、直接候选扫描、续跑和文件复核入口。启动命令与当前边界见 [全词对运行说明](docs/group3-all-pairs-startup.md)，本轮实际结果见 [实施记录](docs/group3-all-pairs-progress.md)。这是开发扫描；本版不输出 PASS_SIM，通用搜索与 L2 验收仍待完成。
 
 ## 在当前电脑打开
 

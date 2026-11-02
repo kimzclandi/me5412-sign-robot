@@ -1,0 +1,172 @@
+{
+  "COME": {
+    "motion": "motions/studio_galt_v1/COME.npz",
+    "motion_sha256": "75d6455408ce6584043baedbd0e049cbeabcad534eda65ef561d2c7293b477a4",
+    "protected_core_frames": [
+      27,
+      132
+    ],
+    "evaluated_interior_frames": [
+      30,
+      129
+    ],
+    "squared_jerk_integral_rad2_s5": 1479272.6946308068,
+    "limit": 1000000.0,
+    "exceeds_frozen_limit": true,
+    "same_result_required_in_any_unretimed_preserved_instance": true,
+    "stencil": "nested gradient edge_order=2; use only >=3 original frames from each protected boundary",
+    "integral_basis": "nonnegative interior contribution, excluding all outer slices and added connectors",
+    "peak_metrics": [
+      {
+        "metric": "peak_acceleration_rad_s2",
+        "value": 97.14313876659725,
+        "limit": 120.0,
+        "source_frame": 55,
+        "original_time_s": 1.8333333333333333,
+        "joint": "R_middle_proximal_joint"
+      },
+      {
+        "metric": "peak_jerk_rad_s3",
+        "value": 1363.24114114688,
+        "limit": 3000.0,
+        "source_frame": 54,
+        "original_time_s": 1.8,
+        "joint": "R_middle_proximal_joint"
+      }
+    ],
+    "top_joint_integral_contributions": [
+      {
+        "joint": "R_middle_intermediate_joint",
+        "value": 281591.58837509376
+      },
+      {
+        "joint": "R_middle_proximal_joint",
+        "value": 281591.58837509376
+      },
+      {
+        "joint": "R_pinky_intermediate_joint",
+        "value": 196918.92976828784
+      },
+      {
+        "joint": "R_pinky_proximal_joint",
+        "value": 196918.92976828784
+      },
+      {
+        "joint": "R_ring_intermediate_joint",
+        "value": 187017.3991797063
+      }
+    ],
+    "top_power_frames": [
+      {
+        "source_frame": 56,
+        "original_time_s": 1.8666666666666667,
+        "sum_squared_jerk": 7460125.520454162
+      },
+      {
+        "source_frame": 57,
+        "original_time_s": 1.9,
+        "sum_squared_jerk": 7306601.057313995
+      },
+      {
+        "source_frame": 54,
+        "original_time_s": 1.8,
+        "sum_squared_jerk": 6397233.336388961
+      },
+      {
+        "source_frame": 48,
+        "original_time_s": 1.6,
+        "sum_squared_jerk": 4548495.320447205
+      },
+      {
+        "source_frame": 52,
+        "original_time_s": 1.7333333333333334,
+        "sum_squared_jerk": 3666351.4985420806
+      }
+    ]
+  },
+  "NOW": {
+    "motion": "motions/wlasl_video_v1/NOW.npz",
+    "motion_sha256": "2d494c13fdf1b44bb11e97004e7b212ea5c45b7b0f8d0b972bd3589ae63e15e3",
+    "protected_core_frames": [
+      3,
+      76
+    ],
+    "evaluated_interior_frames": [
+      6,
+      73
+    ],
+    "squared_jerk_integral_rad2_s5": 38213419.33855339,
+    "limit": 1000000.0,
+    "exceeds_frozen_limit": true,
+    "same_result_required_in_any_unretimed_preserved_instance": true,
+    "stencil": "nested gradient edge_order=2; use only >=3 original frames from each protected boundary",
+    "integral_basis": "nonnegative interior contribution, excluding all outer slices and added connectors",
+    "peak_metrics": [
+      {
+        "metric": "peak_acceleration_rad_s2",
+        "value": 206.81740670767846,
+        "limit": 120.0,
+        "source_frame": 31,
+        "original_time_s": 1.0333333333333334,
+        "joint": "right_wrist_roll_joint"
+      },
+      {
+        "metric": "peak_jerk_rad_s3",
+        "value": 4889.644865251803,
+        "limit": 3000.0,
+        "source_frame": 37,
+        "original_time_s": 1.2333333333333334,
+        "joint": "R_pinky_proximal_joint"
+      }
+    ],
+    "top_joint_integral_contributions": [
+      {
+        "joint": "L_middle_proximal_joint",
+        "value": 3526593.7592695807
+      },
+      {
+        "joint": "L_middle_intermediate_joint",
+        "value": 3526593.7592695807
+      },
+      {
+        "joint": "right_wrist_roll_joint",
+        "value": 3387136.425859768
+      },
+      {
+        "joint": "R_pinky_proximal_joint",
+        "value": 2274246.743077969
+      },
+      {
+        "joint": "R_pinky_intermediate_joint",
+        "value": 2274246.743077969
+      }
+    ],
+    "top_power_frames": [
+      {
+        "source_frame": 44,
+        "original_time_s": 1.4666666666666666,
+        "sum_squared_jerk": 114285501.9302584
+      },
+      {
+        "source_frame": 32,
+        "original_time_s": 1.0666666666666667,
+        "sum_squared_jerk": 80576432.49443871
+      },
+      {
+        "source_frame": 33,
+        "original_time_s": 1.1,
+        "sum_squared_jerk": 76861178.53242385
+      },
+      {
+        "source_frame": 37,
+        "original_time_s": 1.2333333333333334,
+        "sum_squared_jerk": 67797514.67663133
+      },
+      {
+        "source_frame": 57,
+        "original_time_s": 1.9,
+        "sum_squared_jerk": 65553307.63961716
+      }
+    ]
+  }
+}

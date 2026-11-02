@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "kind": "me5412_migration_snapshot_v1",
+  "taken_at_utc": "2026-11-01T04:46:33+00:00",
+  "git": {
+    "branch": "codex/group3-all-pairs-v1",
+    "head": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+    "status_lines": 179,
+    "note": "work is uncommitted on purpose: run identity includes the HEAD commit"
+  },
+  "environment": {
+    "python": "3.12.3",
+    "implementation": "CPython",
+    "system": "Linux",
+    "machine": "x86_64",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "mujoco": "3.15.0",
+      "Pillow": "12.3.0",
+      "imageio": "2.38.0",
+      "imageio-ffmpeg": "0.6.0"
+    },
+    "threads": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835"
+  },
+  "identity": {
+    "frozen": {
+      "library_version": "hospital_v1@e4d572a97911e967056b29d49a78d2dc9feea483367b6c2cc8dfde213ceecfd8",
+      "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+      "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+      "code_hash": "d5e179c27f447ad88208cabd9cd0e171535437fa43d03d42b7a6c77079250468",
+      "policy_hash": "3db83d4404293510e52e57ebd2ff30e3491d947cd02e2744109931455c2f9ba3",
+      "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+      "identity_hash": "c4624340015d9015ecc99231a969c1ab8b9f21aa0dc4844b4159747f59e21941"
+    },
+    "current": {
+      "library_version": "hospital_v1@e4d572a97911e967056b29d49a78d2dc9feea483367b6c2cc8dfde213ceecfd8",
+      "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+      "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+      "code_hash": "d5e179c27f447ad88208cabd9cd0e171535437fa43d03d42b7a6c77079250468",
+      "policy_hash": "3db83d4404293510e52e57ebd2ff30e3491d947cd02e2744109931455c2f9ba3",
+      "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+      "identity_hash": "c4624340015d9015ecc99231a969c1ab8b9f21aa0dc4844b4159747f59e21941"
+    },
+    "reproduces": true
+  },
+  "batches": {
+    "total": 79,
+    "complete": 46,
+    "open": [
+      {
+        "batch_id": "rest_034",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_035",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_036",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_037",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_038",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_039",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_040",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_041",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_042",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_043",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_044",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_045",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_046",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_047",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_048",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_049",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_050",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_051",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_052",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_053",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_054",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_055",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_056",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_057",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_058",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_059",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_060",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_061",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_062",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_063",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_064",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_065",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      },
+      {
+        "batch_id": "rest_066",
+        "stop_reason": "NOT_STARTED_OR_INTERRUPTED",
+        "run_id": null,
+        "invocations": 0
+      }
+    ]
+  },
+  "remaining_by_run": [
+    {
+      "run_id": "hospital35_protected_20261101_001",
+      "cpu": 0,
+      "open_batches": [
+        "rest_037",
+        "rest_041",
+        "rest_045",
+        "rest_049",
+        "rest_053",
+        "rest_057",
+        "rest_061",
+        "rest_065"
+      ]
+    },
+    {
+      "run_id": "hospital35_protected_20261101_002",
+      "cpu": 1,
+      "open_batches": [
+        "rest_034",
+        "rest_038",
+        "rest_042",
+        "rest_046",
+        "rest_050",
+        "rest_054",
+        "rest_058",
+        "rest_062",
+        "rest_066"
+      ]
+    },
+    {
+      "run_id": "hospital35_protected_20261101_003",
+      "cpu": 2,
+      "open_batches": [
+        "rest_035",
+        "rest_039",
+        "rest_043",
+        "rest_047",
+        "rest_051",
+        "rest_055",
+        "rest_059",
+        "rest_063"
+      ]
+    },
+    {
+      "run_id": "hospital35_protected_20261101_004",
+      "cpu": 3,
+      "open_batches": [
+        "rest_036",
+        "rest_040",
+        "rest_044",
+        "rest_048",
+        "rest_052",
+        "rest_056",
+        "rest_060",
+        "rest_064"
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "run_dir": "results/hospital35_protected_20261101_001/pair_runs/hospital35_protected_20261101_001",
+      "run_id": "hospital35_protected_20261101_001",
+      "identity_hash": "c4624340015d9015ecc99231a969c1ab8b9f21aa0dc4844b4159747f59e21941",
+      "heads": 507,
+      "files": 61060,
+      "bytes": 995540670,
+      "path_size_listing_sha256": "10c29861f6a9d7d17dbbcf1f90b9974bbd6bf91295665143c641706e2a98921e"
+    },
+    {
+      "run_dir": "results/hospital35_protected_20261101_001/pair_runs/hospital35_protected_20261101_002",
+      "run_id": "hospital35_protected_20261101_002",
+      "identity_hash": "c4624340015d9015ecc99231a969c1ab8b9f21aa0dc4844b4159747f59e21941",
+      "heads": 73,
+      "files": 7602,
+      "bytes": 124567226,
+      "path_size_listing_sha256": "4c841e0c81cb3c11982e750aa623be5afdb608acb14bbe837f20707038c5c96e"
+    },
+    {
+      "run_dir": "results/hospital35_protected_20261101_001/pair_runs/hospital35_protected_20261101_003",
+      "run_id": "hospital35_protected_20261101_003",
+      "identity_hash": "c4624340015d9015ecc99231a969c1ab8b9f21aa0dc4844b4159747f59e21941",
+      "heads": 78,
+      "files": 7264,
+      "bytes": 118756758,
+      "path_size_listing_sha256": "57f9eb23ca2d5888c6cdc931ca6daa2028f5f43d3e500fbaec8eb0bd8d2be1a7"
+    },
+    {
+      "run_dir": "results/hospital35_protected_20261101_001/pair_runs/hospital35_protected_20261101_004",
+      "run_id": "hospital35_protected_20261101_004",
+      "identity_hash": "c4624340015d9015ecc99231a969c1ab8b9f21aa0dc4844b4159747f59e21941",
+      "heads": 79,
+      "files": 8122,
+      "bytes": 136063082,
+      "path_size_listing_sha256": "8ecdeb2672964a85e1edf7922f79a61d357b5708ee1bb0357ea7de71b9252b99"
+    }
+  ],
+  "chain": {
+    "p1_3_final": false,
+    "p1_4": false,
+    "retry_definitions": false
+  },
+  "sha256_list": {
+    "path": "migration/windows_handoff_20261101/SHA256SUMS.txt",
+    "entries": 1261
+  },
+  "formal_acceptance_enabled": false
+}

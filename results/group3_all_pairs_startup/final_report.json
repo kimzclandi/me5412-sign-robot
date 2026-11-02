@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-31",
+  "run_id": "all_pairs_dev_20261031_v2",
+  "branch": "codex/group3-all-pairs-v1",
+  "identity": {
+    "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+    "code_hash": "2018f4a92c71f96a40fa0401847a65228cc391f0789d35766c23e039d4ff87d8",
+    "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+    "identity_hash": "017b96bd212534e866ea4f6c77a93b0ba0b98c737a4197b37d9e365d89c0c1f5",
+    "library_version": "hospital_v1@4888de783967786d4e2860cfb3e55df3b2ee50fb259a0ed0f90abc0180652c31",
+    "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+    "policy_hash": "4361c0c44ceacac7a2ebef571ee1cabd11d00193c45dd430eb098f17093ed741"
+  },
+  "achievement": "L1 development baseline coverage and diagnostics",
+  "L2_complete": false,
+  "groups": {
+    "all": {
+      "denominator": 1225,
+      "pass_sim_rate": 0.0,
+      "scanned": 1225,
+      "status_counts": {
+        "BLOCKED_ENDPOINT": 326,
+        "BLOCKED_INPUT": 0,
+        "ERROR": 0,
+        "FAILED_QUALITY": 513,
+        "FAILED_SEARCH": 386,
+        "NOT_RUN": 0,
+        "PASS_SIM": 0,
+        "SOURCE_NEAR": 0,
+        "TIMEOUT": 0
+      }
+    },
+    "non_self": {
+      "denominator": 1190,
+      "pass_sim_rate": 0.0,
+      "scanned": 1190,
+      "status_counts": {
+        "BLOCKED_ENDPOINT": 316,
+        "BLOCKED_INPUT": 0,
+        "ERROR": 0,
+        "FAILED_QUALITY": 496,
+        "FAILED_SEARCH": 378,
+        "NOT_RUN": 0,
+        "PASS_SIM": 0,
+        "SOURCE_NEAR": 0,
+        "TIMEOUT": 0
+      }
+    },
+    "self": {
+      "denominator": 35,
+      "pass_sim_rate": 0.0,
+      "scanned": 35,
+      "status_counts": {
+        "BLOCKED_ENDPOINT": 10,
+        "BLOCKED_INPUT": 0,
+        "ERROR": 0,
+        "FAILED_QUALITY": 17,
+        "FAILED_SEARCH": 8,
+        "NOT_RUN": 0,
+        "PASS_SIM": 0,
+        "SOURCE_NEAR": 0,
+        "TIMEOUT": 0
+      }
+    }
+  },
+  "saved_candidates": 899,
+  "verified_records": 1225,
+  "planning_status_counts": {
+    "FAILED_QUALITY": 524,
+    "BLOCKED_ENDPOINT": 326,
+    "FAILED_SEARCH": 375
+  },
+  "dense_additional_failures": 11,
+  "full_preview_numerical_checks_only_count": 12,
+  "resources": {
+    "planning": {
+      "wall_time_s": 37.83,
+      "peak_rss_kib": 740548
+    },
+    "verification": {
+      "wall_time_s": 248.02,
+      "peak_rss_kib": 779572
+    },
+    "trajectory_bytes": 31065410
+  },
+  "word_audit": {
+    "original_collision_words": 30,
+    "original_speed_excess_words": 8,
+    "invalid_exit_count": 4,
+    "invalid_entry_count": 6,
+    "unique_affected_pairs": 326,
+    "nurse_f80_approval": "pending"
+  },
+  "tests": {
+    "before_environment_restore": "535 passed, 6 failed",
+    "final": "589 passed",
+    "new_tests": 48,
+    "original_focused_tests": 248,
+    "pinned_resource_checks": 75
+  },
+  "resume": {
+    "run_id": "all_pairs_dev_20261031_v2",
+    "checkpoints_unchanged": true,
+    "trajectories_unchanged": true,
+    "verification_unchanged": true,
+    "counts": {
+      "checkpoints": 1225,
+      "trajectories": 899,
+      "verification": 1225
+    }
+  },
+  "reproducibility": {
+    "scope": "four direct candidates, same environment and fixed deterministic work budget; no cross-environment or general-search claim",
+    "pairs": [
+      {
+        "pair_id": "HELLO__PLEASE",
+        "reference_canonical_array_hash": "d88dcf1d0f913abc8e00ba88c970e337e2dfd7e032e7be04a603f7a865720e05",
+        "repeated_canonical_array_hash": "d88dcf1d0f913abc8e00ba88c970e337e2dfd7e032e7be04a603f7a865720e05",
+        "canonical_equal": true,
+        "file_sha256_equal": true
+      },
+      {
+        "pair_id": "APPOINTMENT__BLOOD-DRAW",
+        "reference_canonical_array_hash": "84a6eac1dd2aec50f691f24ca6420682888b7231f59f26873d4213f9f0cdba88",
+        "repeated_canonical_array_hash": "84a6eac1dd2aec50f691f24ca6420682888b7231f59f26873d4213f9f0cdba88",
+        "canonical_equal": true,
+        "file_sha256_equal": true
+      },
+      {
+        "pair_id": "YOU__YOU",
+        "reference_canonical_array_hash": "e119e887bee6ccab77c291b06f5b68b9f67f7e9d27dee562414025907f1139a8",
+        "repeated_canonical_array_hash": "e119e887bee6ccab77c291b06f5b68b9f67f7e9d27dee562414025907f1139a8",
+        "canonical_equal": true,
+        "file_sha256_equal": true
+      },
+      {
+        "pair_id": "NOW__NURSE",
+        "reference_canonical_array_hash": "6479cec986684ff6f099fdb11c4048f5b06bdc67c036243a9760f5db5551188c",
+        "repeated_canonical_array_hash": "6479cec986684ff6f099fdb11c4048f5b06bdc67c036243a9760f5db5551188c",
+        "canonical_equal": true,
+        "file_sha256_equal": true
+      }
+    ],
+    "passed": true
+  },
+  "legacy_r13c": {
+    "totals": {
+      "transition_count": 19,
+      "pass_count": 19,
+      "source_near_count": 0,
+      "failed_count": 0,
+      "needs_group2_fix_count": 0
+    },
+    "all_saved_checks_passed": true,
+    "scope": "legacy R13c recorded endpoint overrides and sampled transition gates; not all-pairs PASS_SIM and not full-word/language/hardware acceptance",
+    "nurse_f80_approval": "pending",
+    "artifacts": {
+      "summary": "r13c_replan_summary.json",
+      "verification": "r13c_verification.json",
+      "raw_report": {
+        "path": "results/all_pairs/r13c_baseline_20261031/report.json",
+        "sha256": "04133fa578668e3072af260b38c8153c28dc5f60b0c6f1d0e5ab79dffbb3326b",
+        "bytes": 11720065
+      }
+    }
+  },
+  "limitations": [
+    "direct minimum-jerk candidate only; general IK/RRT and retries remain unimplemented",
+    "T03 thresholds and Group 2 semantic core/window approvals remain pending",
+    "12 numerical preview passes are not PASS_SIM",
+    "collision filtering review, adaptive clearance sampling and continuous proof remain incomplete",
+    "no human language review, hardware controller or new-environment acceptance",
+    "raw result directories and source snapshots are local, not a remote delivery package"
+  ]
+}

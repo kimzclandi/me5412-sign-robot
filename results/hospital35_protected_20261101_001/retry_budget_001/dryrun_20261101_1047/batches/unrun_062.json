@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "NOW__DEAF",
+    "NOW__DOCTOR",
+    "NOW__NURSE",
+    "NOW__INTERPRETER",
+    "NOW__APPOINTMENT",
+    "NOW__MEDICINE",
+    "NOW__HAVE",
+    "NOW__NEED",
+    "NOW__COME",
+    "NOW__HURT",
+    "NOW__BREATHE-DEEP",
+    "NOW__BLOOD-DRAW",
+    "NOW__TAKE",
+    "NOW__UNDERSTAND",
+    "NOW__WRITE",
+    "NOW__NOT"
+  ]
+}

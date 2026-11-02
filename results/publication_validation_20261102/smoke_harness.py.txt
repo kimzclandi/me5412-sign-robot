@@ -1,0 +1,83 @@
+import time
+from pathlib import Path
+from types import SimpleNamespace
+import numpy as np
+import pytest
+
+import sign_robot
+import sign_robot.pair_contract as contract
+import sign_robot.pair_routes as routes
+import sign_robot.pair_search as search
+import sign_robot.pair_runner_v2 as runner
+import sign_robot.sequence_contract as sequence
+from sign_robot.motion import ROOT
+
+PUB = Path("/mnt/c/Users/23971/Documents/5412/_publish/group3-trajectory-planning-20261102").resolve()
+STAGED = {"stages": [{"group": "right_arm", "to": ["rest"]}, {"group": "left_wrist", "to": ["zero"]}]}
+POLICY = {"planner": {"staged_exits": {"words": {"NURSE": STAGED}}}}
+NAMES = np.array(["right_shoulder_pitch_joint", "right_elbow_joint", "R_index_proximal_joint", "left_wrist_roll_joint", "left_elbow_joint", "waist_yaw_joint"])
+
+def test_imports_are_the_published_snapshot():
+    assert ROOT.resolve() == PUB
+    for module in (sign_robot, contract, routes, search, runner):
+        assert Path(module.__file__).resolve().is_relative_to(PUB / "src")
+
+def test_nurse_staged_knots_move_right_arm_then_left_wrist_without_fixed_joint():
+    assert contract.staged_exit_config(POLICY, "NURSE") == STAGED
+    assert contract.staged_exit_config(POLICY, "OTHER") is None
+    a = np.array([1., 2., 3., 4., 5., 0.25])
+    b = np.array([6., 7., 8., 9., 10., 0.25])
+    rest = np.zeros_like(a)
+    [(label, knots)] = list(routes.staged_exit_knots(a, b, rest, NAMES, STAGED, None))
+    assert label == "right_arm:rest+left_wrist:zero"
+    assert len(knots) == 4
+    np.testing.assert_array_equal(knots[0], a)
+    np.testing.assert_array_equal(knots[1], [0., 0., 0., 4., 5., 0.25])
+    np.testing.assert_array_equal(knots[2], [0., 0., 0., 0., 5., 0.25])
+    np.testing.assert_array_equal(knots[3], b)
+    assert np.all(knots[:, -1] == a[-1])
+
+def test_nurse_source_cut_is_core_end_only(monkeypatch):
+    zeros = np.zeros((8, len(NAMES)))
+    clip = {"positions": zeros, "timestamps_s": np.arange(8) / 30, "joint_names": NAMES}
+    selection = {
+        "source": {"gloss": "NURSE", "window_provenance": "algorithm", "protected_core_frames": [1, 3], "allowed_frames": [2, 3, 4, 5]},
+        "target": {"gloss": "BLOOD-DRAW", "window_provenance": "algorithm", "protected_core_frames": [3, 5], "allowed_frames": [1, 2, 3]},
+    }
+    model = SimpleNamespace(joint=lambda name: SimpleNamespace(range=np.array([-10., 10.]), limited=np.array([True])))
+    policy = {**POLICY, "endpoints": {}, "constraints": {"joint_limit_tolerance_rad": 1e-8, "coupling_tolerance_rad": 1e-8, "speed_tolerance_rad_s": 1e-8, "arm_speed_rad_s": 15., "finger_speed_rad_s": 10., "fixed_joint_speed_rad_s": 1e-9}}
+    context = SimpleNamespace(approvals={}, library={"couplings": []}, clips={"NURSE": clip, "BLOOD-DRAW": clip}, model=model, policy=policy)
+    monkeypatch.setattr(routes, "select_pair_windows", lambda *a: selection)
+    monkeypatch.setattr(routes, "_sampled_clearance", lambda *a, **k: {"passed": True})
+    monkeypatch.setattr(routes, "coordinate_errors", lambda *a: {"joint_limit_error": 0., "coupling_error": 0.})
+    result = routes.valid_endpoint_choices_v2(context, "NURSE", "BLOOD-DRAW", object())
+    assert result["source"]["valid_frames"] == [3]
+    assert result["source"]["staged_exit"] is True
+    assert len(result["target"]["valid_frames"]) == 3
+
+def test_staged_exit_skips_rrt(monkeypatch):
+    context = SimpleNamespace(policy=POLICY)
+    monkeypatch.setattr(search, "bounded_rrt_path_v2", lambda *a, **k: pytest.fail("RRT must not run"))
+    assert list(search.iter_rrt_attempts_v2(context, "NURSE", "BLOOD-DRAW", seed=1, budget=object())) == []
+
+def test_staged_exit_uses_synchronous_fingers(monkeypatch):
+    a = np.array([1., 2., 3., 4., 5., 0.25])
+    b = np.array([6., 7., 8., 9., 10., 0.25])
+    first = {"positions": np.tile(a, (8, 1)), "timestamps_s": np.arange(8)/30, "joint_names": NAMES}
+    second = {"positions": np.tile(b, (8, 1)), "timestamps_s": np.arange(8)/30, "joint_names": NAMES}
+    model = SimpleNamespace(joint=lambda n: SimpleNamespace(range=np.array([-10., 10.])))
+    context = SimpleNamespace(clips={"NURSE": first, "BLOOD-DRAW": second}, model=model, policy=POLICY, library={"couplings": []})
+    selection = {"source": {"gloss": "NURSE", "retained_outer_frame": 1, "valid_frames": [3]}, "target": {"gloss": "BLOOD-DRAW", "valid_frames": [1, 4, 2]}}
+    budget = SimpleNamespace(deadline=time.monotonic()+30, candidate=lambda: None, snapshot=lambda: {})
+    captured = []
+    monkeypatch.setattr(sequence, "library_rest_pose_v1", lambda clips: np.zeros(len(NAMES)))
+    monkeypatch.setattr(routes, "cut_boundary_state_v2", lambda *a: {})
+    monkeypatch.setattr(routes, "target_finger_arrival_v1", lambda *a: None)
+    def fake_time(*args, **kwargs):
+        captured.append(kwargs["finger_strategy"])
+        return SimpleNamespace(segments=None, diagnostics={"reason_codes": ["MOCK"], "status": "FAILED_SEARCH"}, attempt_segments=[])
+    monkeypatch.setattr(routes, "time_route_v2", fake_time)
+    items = list(routes._iter_staged_exit_v1(context, selection, 1, budget, {}, STAGED))
+    assert captured == ["synchronous"] * 3
+    assert [item.diagnostic["entry_frame"] for item in items] == [4, 2, 1]
+    assert all(item.diagnostic["exit_frame"] == 3 and item.diagnostic["finger_strategy"] == "synchronous" for item in items)

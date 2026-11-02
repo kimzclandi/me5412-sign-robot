@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "kind": "hospital35_p1_3_parallel_partition_v1",
+  "created_at_utc": "2026-11-01T03:26:43+00:00",
+  "batch_manifest_sha256": "fb7c56187f6a1edded67b3c701fde6746a3c87d49eeff62af303ca19231ebf19",
+  "completed_in_run_001_before_split": [
+    "regression_001",
+    "self_001",
+    "self_002",
+    "self_003",
+    "hub_001",
+    "hub_002",
+    "hub_003",
+    "hub_004",
+    "hub_005",
+    "hub_006",
+    "hub_007",
+    "hub_008",
+    "hub_009",
+    "rest_001",
+    "rest_002",
+    "rest_003",
+    "rest_004",
+    "rest_005",
+    "rest_006",
+    "rest_007",
+    "rest_008",
+    "rest_009",
+    "rest_010",
+    "rest_011",
+    "rest_012",
+    "rest_013",
+    "rest_014",
+    "rest_015",
+    "rest_016"
+  ],
+  "rule": "open batches in manifest order, round-robin; slice 0 (with the batch run 001 stopped in) stays in run 001",
+  "workers": [
+    {
+      "run_id": "hospital35_protected_20261101_001",
+      "cpu": 0,
+      "batches": [
+        "rest_017",
+        "rest_021",
+        "rest_025",
+        "rest_029",
+        "rest_033",
+        "rest_037",
+        "rest_041",
+        "rest_045",
+        "rest_049",
+        "rest_053",
+        "rest_057",
+        "rest_061",
+        "rest_065"
+      ]
+    },
+    {
+      "run_id": "hospital35_protected_20261101_002",
+      "cpu": 1,
+      "batches": [
+        "rest_018",
+        "rest_022",
+        "rest_026",
+        "rest_030",
+        "rest_034",
+        "rest_038",
+        "rest_042",
+        "rest_046",
+        "rest_050",
+        "rest_054",
+        "rest_058",
+        "rest_062",
+        "rest_066"
+      ]
+    },
+    {
+      "run_id": "hospital35_protected_20261101_003",
+      "cpu": 2,
+      "batches": [
+        "rest_019",
+        "rest_023",
+        "rest_027",
+        "rest_031",
+        "rest_035",
+        "rest_039",
+        "rest_043",
+        "rest_047",
+        "rest_051",
+        "rest_055",
+        "rest_059",
+        "rest_063"
+      ]
+    },
+    {
+      "run_id": "hospital35_protected_20261101_004",
+      "cpu": 3,
+      "batches": [
+        "rest_020",
+        "rest_024",
+        "rest_028",
+        "rest_032",
+        "rest_036",
+        "rest_040",
+        "rest_044",
+        "rest_048",
+        "rest_052",
+        "rest_056",
+        "rest_060",
+        "rest_064"
+      ]
+    }
+  ]
+}

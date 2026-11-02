@@ -1,0 +1,11 @@
+{
+  "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+  "argv": [
+    "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+    "/home/kingderman/Documents/ME5412-github-latest/scripts/summarize_all_pairs.py",
+    "--run-id",
+    "handoff_v2_dev_20261031_001"
+  ],
+  "exit_code": 0,
+  "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_summarize_four.log"
+}

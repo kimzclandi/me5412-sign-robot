@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "kind": "hospital35_retry_budget_definitions_v1",
+  "run_id": "hospital35_retry_budget_001",
+  "pair_policy": {
+    "path": "config/transition_policy_user_protected_hospital35_retry_budget_v1.json",
+    "sha256": "bcef2e84c4d113ee69cd5241e2a7c6581998a1af522473e3517ff984a1cda774"
+  },
+  "batch_manifest": {
+    "path": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/batches/manifest.json",
+    "sha256": "93a1d3d4da2a3f2abe0bb1faf48f5a8b3c82d7c3c668823fb9f6ba65e9c34c9c"
+  },
+  "retry_batches": [
+    "retry_001",
+    "retry_002",
+    "retry_003"
+  ],
+  "clear_words": [
+    "COME",
+    "DEAF",
+    "HEADACHE",
+    "NO",
+    "NOT",
+    "NOW",
+    "SOON",
+    "STOMACH",
+    "WAIT",
+    "WHERE",
+    "YOU"
+  ],
+  "timeout_pairs": [
+    "NO__WAIT",
+    "YOU__HEADACHE",
+    "YOU__WAIT",
+    "STOMACH__COME",
+    "HEADACHE__HEADACHE",
+    "HEADACHE__COME",
+    "HEADACHE__NOW",
+    "WAIT__WAIT",
+    "WAIT__COME",
+    "WAIT__NOW",
+    "COME__WAIT",
+    "NOW__WAIT",
+    "SOON__COME",
+    "SOON__NOW",
+    "SOON__SOON"
+  ],
+  "cases": [
+    "NOW__STOMACH__COME",
+    "COME__HEADACHE__NOW",
+    "NOW__HEADACHE__COME",
+    "HEADACHE__HEADACHE__HEADACHE",
+    "COME__WAIT__NOW",
+    "NOW__WAIT__COME",
+    "WAIT__WAIT__WAIT",
+    "COME__SOON__NOW",
+    "NOW__SOON__COME",
+    "SOON__SOON__SOON"
+  ],
+  "extra_pairs_for_cases": [
+    "COME__HEADACHE",
+    "COME__SOON",
+    "NOW__HEADACHE",
+    "NOW__SOON",
+    "NOW__STOMACH"
+  ],
+  "retry_pairs": [
+    "NO__WAIT",
+    "YOU__HEADACHE",
+    "YOU__WAIT",
+    "STOMACH__COME",
+    "HEADACHE__HEADACHE",
+    "HEADACHE__COME",
+    "HEADACHE__NOW",
+    "WAIT__WAIT",
+    "WAIT__COME",
+    "WAIT__NOW",
+    "COME__HEADACHE",
+    "COME__WAIT",
+    "COME__SOON",
+    "NOW__STOMACH",
+    "NOW__HEADACHE",
+    "NOW__WAIT",
+    "NOW__SOON",
+    "SOON__COME",
+    "SOON__NOW",
+    "SOON__SOON"
+  ],
+  "source_progress": {
+    "path": "results/hospital35_protected_20261101_001/retry_budget_001/../P1-3/progress_20261101_104756.json",
+    "sha256": "f7f9018e0a4f49c4c5d18379fe234ce98bc8ffe6012acbe8064ecd69ea0a42cf"
+  },
+  "sequence_policy": {
+    "path": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/sequence_policy_dryrun.json",
+    "sha256": "c1330d7c466662a50516c8acee0cf5b1c1955ab89f752caaa8e1e158a1dd25b4"
+  },
+  "case_manifest": {
+    "path": "results/hospital35_protected_20261101_001/retry_budget_001/dryrun_20261101_1047/sequence_cases/case_manifest.json",
+    "sha256": "018e95a7caf757d64363cb16c0d35df3635317e3507c7581eb225a4408ee2260",
+    "subbatches": [
+      "s001",
+      "s002"
+    ]
+  },
+  "formal_acceptance_enabled": false
+}

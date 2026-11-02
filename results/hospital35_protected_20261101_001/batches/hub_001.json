@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "COME__HELLO",
+    "HELLO__COME",
+    "NOW__HELLO",
+    "HELLO__NOW",
+    "COME__PLEASE",
+    "PLEASE__COME",
+    "NOW__PLEASE",
+    "PLEASE__NOW",
+    "COME__THANK-YOU",
+    "THANK-YOU__COME",
+    "NOW__THANK-YOU",
+    "THANK-YOU__NOW",
+    "COME__SORRY",
+    "SORRY__COME",
+    "NOW__SORRY",
+    "SORRY__NOW"
+  ]
+}

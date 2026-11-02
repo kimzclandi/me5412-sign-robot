@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "COME__ME",
+    "ME__COME",
+    "NOW__ME",
+    "ME__NOW",
+    "COME__DEAF",
+    "DEAF__COME",
+    "NOW__DEAF",
+    "DEAF__NOW",
+    "COME__DOCTOR",
+    "DOCTOR__COME",
+    "NOW__DOCTOR",
+    "DOCTOR__NOW",
+    "COME__NURSE",
+    "NURSE__COME",
+    "NOW__NURSE",
+    "NURSE__NOW"
+  ]
+}

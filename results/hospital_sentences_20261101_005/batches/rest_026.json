@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "NURSE__BREATHE-DEEP",
+    "NURSE__TAKE",
+    "NURSE__UNDERSTAND",
+    "NURSE__WRITE",
+    "NURSE__NOT",
+    "NURSE__NOW",
+    "NURSE__SOON",
+    "NURSE__LATER",
+    "NURSE__TOMORROW",
+    "NURSE__MORNING",
+    "NURSE__NIGHT",
+    "NURSE__WHERE",
+    "INTERPRETER__HELLO",
+    "INTERPRETER__PLEASE",
+    "INTERPRETER__THANK-YOU",
+    "INTERPRETER__SORRY"
+  ]
+}

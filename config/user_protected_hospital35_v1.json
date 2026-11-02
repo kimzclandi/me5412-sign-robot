@@ -1,0 +1,709 @@
+{
+  "schema_version": 1,
+  "kind": "user_protected_intervals_v1",
+  "bundle_id": "user-protection-hospital35-20261101-v1",
+  "window_version": "hospital35-user-protection-20261101-v1",
+  "source_instruction": "User-filled sheet 保护区间填写 (A2:C36) of the ODS with SHA-256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3, imported by scripts/import_user_protections.py. It supplies the semantic fragment the user requires for each word; outward rounding remains an engineering safeguard. The algorithm chooses external cuts and windows; no human window approval is supplied. Earlier COME/NOW bundles stay unchanged for their historical runs.",
+  "records": [
+    {
+      "protection_id": "hospital35-20261101-v1-HELLO",
+      "gloss": "HELLO",
+      "motion": "motions/studio_galt_v1/HELLO.npz",
+      "motion_sha256": "d26edc80c22c222c72afc2973746199de03245b9cdae040400c1fec8587f636a",
+      "frame_count": 114,
+      "fps": 30,
+      "user_interval_text": "0.9–2.2 s (保护区间填写!B2:C2)",
+      "user_interval_s": [
+        0.9,
+        2.2
+      ],
+      "protected_core_frames": [
+        27,
+        66
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 2 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-PLEASE",
+      "gloss": "PLEASE",
+      "motion": "motions/studio_galt_v1/PLEASE.npz",
+      "motion_sha256": "644c8699d245751fca2944b3dc57fb700c789dcf42a628fcd74fa7ee8f31166f",
+      "frame_count": 109,
+      "fps": 30,
+      "user_interval_text": "0.9–2.17 s (保护区间填写!B3:C3)",
+      "user_interval_s": [
+        0.9,
+        2.17
+      ],
+      "protected_core_frames": [
+        27,
+        66
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 3 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-THANK-YOU",
+      "gloss": "THANK-YOU",
+      "motion": "motions/wlasl_video_v1/THANK-YOU.npz",
+      "motion_sha256": "040c0cdea15d58744d32563d111ab2c85cd49293dda78c3183ff4225fe40818d",
+      "frame_count": 115,
+      "fps": 30,
+      "user_interval_text": "0.57–2.9 s (保护区间填写!B4:C4)",
+      "user_interval_s": [
+        0.57,
+        2.9
+      ],
+      "protected_core_frames": [
+        17,
+        87
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 4 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-SORRY",
+      "gloss": "SORRY",
+      "motion": "motions/wlasl_video_v1/SORRY.npz",
+      "motion_sha256": "4404913c8cad98430d4a0cd7c94ef5b18adf46e06c9b86ec598c3dfba9bbff2e",
+      "frame_count": 188,
+      "fps": 30,
+      "user_interval_text": "0.7–5.57 s (保护区间填写!B5:C5)",
+      "user_interval_s": [
+        0.7,
+        5.57
+      ],
+      "protected_core_frames": [
+        21,
+        168
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 5 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-YES",
+      "gloss": "YES",
+      "motion": "motions/wlasl_video_v1/YES.npz",
+      "motion_sha256": "dd29f2430c76ef96a4530147def04625283f30ff057b588b8cbe95a080eedefe",
+      "frame_count": 115,
+      "fps": 30,
+      "user_interval_text": "0.63–2.3 s (保护区间填写!B6:C6)",
+      "user_interval_s": [
+        0.63,
+        2.3
+      ],
+      "protected_core_frames": [
+        18,
+        69
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 6 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-NO",
+      "gloss": "NO",
+      "motion": "motions/wlasl_video_v1/NO.npz",
+      "motion_sha256": "4c8af90a878fc4d0919a8d8f2bed4270b9beada6eb632b3c7c04518c714c7247",
+      "frame_count": 154,
+      "fps": 30,
+      "user_interval_text": "0.7–3.5 s (保护区间填写!B7:C7)",
+      "user_interval_s": [
+        0.7,
+        3.5
+      ],
+      "protected_core_frames": [
+        21,
+        105
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 7 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-YOU",
+      "gloss": "YOU",
+      "motion": "motions/studio_galt_v1/YOU.npz",
+      "motion_sha256": "ab42f2abccc3ad7275cb99fb518cd01627cfca5eb25664b95d2713abfb47649f",
+      "frame_count": 143,
+      "fps": 30,
+      "user_interval_text": "1.53–2.37 s (保护区间填写!B8:C8)",
+      "user_interval_s": [
+        1.53,
+        2.37
+      ],
+      "protected_core_frames": [
+        45,
+        72
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 8 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-YOUR",
+      "gloss": "YOUR",
+      "motion": "motions/wlasl_video_v1/YOUR.npz",
+      "motion_sha256": "7e0b5dbdad5ccdbcd514129851de0f38ad6cdf3b3081ea3c5d1b14a43db98e6c",
+      "frame_count": 133,
+      "fps": 30,
+      "user_interval_text": "1.1–2.43 s (保护区间填写!B9:C9)",
+      "user_interval_s": [
+        1.1,
+        2.43
+      ],
+      "protected_core_frames": [
+        33,
+        73
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 9 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-ME",
+      "gloss": "ME",
+      "motion": "motions/wlasl_video_v1/ME.npz",
+      "motion_sha256": "7470dbf5e39cf402c5bc16187646beab2f0d2ea4335b5ed61002b05b814c3d0c",
+      "frame_count": 135,
+      "fps": 30,
+      "user_interval_text": "1–2.5 s (保护区间填写!B10:C10)",
+      "user_interval_s": [
+        1.0,
+        2.5
+      ],
+      "protected_core_frames": [
+        30,
+        75
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 10 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-DEAF",
+      "gloss": "DEAF",
+      "motion": "motions/wlasl_video_v1/DEAF.npz",
+      "motion_sha256": "073f5453e484f9a63c445f8fdfabcf85679b9d04b28f972fe651841cb9b4d908",
+      "frame_count": 114,
+      "fps": 30,
+      "user_interval_text": "1.1–1.9 s (保护区间填写!B11:C11)",
+      "user_interval_s": [
+        1.1,
+        1.9
+      ],
+      "protected_core_frames": [
+        33,
+        57
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 11 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-DOCTOR",
+      "gloss": "DOCTOR",
+      "motion": "motions/wlasl_video_v1/DOCTOR.npz",
+      "motion_sha256": "639f93c6b9c6985e8a898a1a8f7a438584e94ab61f353a10823490b252364461",
+      "frame_count": 121,
+      "fps": 30,
+      "user_interval_text": "1.15–1.87 s (保护区间填写!B12:C12)",
+      "user_interval_s": [
+        1.15,
+        1.87
+      ],
+      "protected_core_frames": [
+        34,
+        57
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 12 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-NURSE",
+      "gloss": "NURSE",
+      "motion": "motions/wlasl_video_v1/NURSE.npz",
+      "motion_sha256": "f75945f059ef18a5f8888c9499e9160ada02ad9aea5a37f2850fb9a4f4dd391f",
+      "frame_count": 127,
+      "fps": 30,
+      "user_interval_text": "1.27–2.63 s (保护区间填写!B13:C13)",
+      "user_interval_s": [
+        1.27,
+        2.63
+      ],
+      "protected_core_frames": [
+        38,
+        79
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 13 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-INTERPRETER",
+      "gloss": "INTERPRETER",
+      "motion": "motions/wlasl_video_v1/INTERPRETER.npz",
+      "motion_sha256": "3a159a8bd9af71563d85fe25cf69dbf7dc8d62dcd1b76ac2fdee0e099495662c",
+      "frame_count": 102,
+      "fps": 30,
+      "user_interval_text": "1–2 s (保护区间填写!B14:C14)",
+      "user_interval_s": [
+        1.0,
+        2.0
+      ],
+      "protected_core_frames": [
+        30,
+        60
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 14 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-APPOINTMENT",
+      "gloss": "APPOINTMENT",
+      "motion": "motions/studio_galt_v1/APPOINTMENT.npz",
+      "motion_sha256": "a9ea24fd8be9e6044413a975f97bb8bd5619a54b25c3118c588605100883cdc2",
+      "frame_count": 187,
+      "fps": 30,
+      "user_interval_text": "2.3–4.4 s (保护区间填写!B15:C15)",
+      "user_interval_s": [
+        2.3,
+        4.4
+      ],
+      "protected_core_frames": [
+        69,
+        132
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 15 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-MEDICINE",
+      "gloss": "MEDICINE",
+      "motion": "motions/wlasl_video_v1/MEDICINE.npz",
+      "motion_sha256": "b8c5e0b7ade5c7a30c19d0cb8f938214956e69754087bbb42889d3f0f2f7bfa6",
+      "frame_count": 118,
+      "fps": 30,
+      "user_interval_text": "0.9–2.3 s (保护区间填写!B16:C16)",
+      "user_interval_s": [
+        0.9,
+        2.3
+      ],
+      "protected_core_frames": [
+        27,
+        69
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 16 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-STOMACH",
+      "gloss": "STOMACH",
+      "motion": "motions/wlasl_video_v1/STOMACH.npz",
+      "motion_sha256": "23bb66ab1be21b944e11f6e599a2044b3e37636c1ce0ed109d04e6e3fe6d37e0",
+      "frame_count": 112,
+      "fps": 30,
+      "user_interval_text": "1.1–2.5 s (保护区间填写!B17:C17)",
+      "user_interval_s": [
+        1.1,
+        2.5
+      ],
+      "protected_core_frames": [
+        33,
+        75
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 17 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-HEADACHE",
+      "gloss": "HEADACHE",
+      "motion": "motions/wlasl_video_v1/HEADACHE.npz",
+      "motion_sha256": "485f8cdef5773472c983a45f684096f4b55b11204cf0f30848f4dcbab6eb13ee",
+      "frame_count": 129,
+      "fps": 30,
+      "user_interval_text": "0.9–2.47 s (保护区间填写!B18:C18)",
+      "user_interval_s": [
+        0.9,
+        2.47
+      ],
+      "protected_core_frames": [
+        27,
+        75
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 18 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-HAVE",
+      "gloss": "HAVE",
+      "motion": "motions/wlasl_video_v1/HAVE.npz",
+      "motion_sha256": "0991bf7c0d0406c9c3e4049ea4b4ee1502a20a483a764b8cede54e2e1a8e4867",
+      "frame_count": 104,
+      "fps": 30,
+      "user_interval_text": "0.83–1.8 s (保护区间填写!B19:C19)",
+      "user_interval_s": [
+        0.83,
+        1.8
+      ],
+      "protected_core_frames": [
+        24,
+        54
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 19 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-NEED",
+      "gloss": "NEED",
+      "motion": "motions/wlasl_video_v1/NEED.npz",
+      "motion_sha256": "c4ab9fc0ea73c2378b17eaf197ff46a2c5dbd937e22d84b99c11b3ed6e18c173",
+      "frame_count": 142,
+      "fps": 30,
+      "user_interval_text": "1–3.1 s (保护区间填写!B20:C20)",
+      "user_interval_s": [
+        1.0,
+        3.1
+      ],
+      "protected_core_frames": [
+        30,
+        93
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 20 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-WAIT",
+      "gloss": "WAIT",
+      "motion": "motions/wlasl_video_v1/WAIT.npz",
+      "motion_sha256": "d02a3d7b07708ab4fd772ec6aa91ffdc10b5fcfaff7b3e79c703cac7c660a579",
+      "frame_count": 131,
+      "fps": 30,
+      "user_interval_text": "0.9–2.8 s (保护区间填写!B21:C21)",
+      "user_interval_s": [
+        0.9,
+        2.8
+      ],
+      "protected_core_frames": [
+        27,
+        84
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 21 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-COME",
+      "gloss": "COME",
+      "motion": "motions/studio_galt_v1/COME.npz",
+      "motion_sha256": "75d6455408ce6584043baedbd0e049cbeabcad534eda65ef561d2c7293b477a4",
+      "frame_count": 201,
+      "fps": 30,
+      "user_interval_text": "0.93–4.4 s (保护区间填写!B22:C22)",
+      "user_interval_s": [
+        0.93,
+        4.4
+      ],
+      "protected_core_frames": [
+        27,
+        132
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 22 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-HURT",
+      "gloss": "HURT",
+      "motion": "motions/wlasl_video_v1/HURT.npz",
+      "motion_sha256": "a17641061df3e08fab2a5178950c71cae01edca2791072e029590a2ae892e09d",
+      "frame_count": 116,
+      "fps": 30,
+      "user_interval_text": "0.9–1.9 s (保护区间填写!B23:C23)",
+      "user_interval_s": [
+        0.9,
+        1.9
+      ],
+      "protected_core_frames": [
+        27,
+        57
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 23 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-BREATHE-DEEP",
+      "gloss": "BREATHE-DEEP",
+      "motion": "motions/studio_galt_v1/BREATHE-DEEP.npz",
+      "motion_sha256": "b6d48bc7d01c0382ef8b3e3c449e0f8b5c8e2c046598b6eb0327c1ac41b70b16",
+      "frame_count": 139,
+      "fps": 30,
+      "user_interval_text": "1.4–2.8 s (保护区间填写!B24:C24)",
+      "user_interval_s": [
+        1.4,
+        2.8
+      ],
+      "protected_core_frames": [
+        42,
+        84
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 24 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-BLOOD-DRAW",
+      "gloss": "BLOOD-DRAW",
+      "motion": "motions/studio_galt_v1/BLOOD-DRAW.npz",
+      "motion_sha256": "3a73dd8df7e4a925bf4a8d83bf4e101c009e784f1c28f0ee1255f44bf97da964",
+      "frame_count": 216,
+      "fps": 30,
+      "user_interval_text": "1.2–5.5 s (保护区间填写!B25:C25)",
+      "user_interval_s": [
+        1.2,
+        5.5
+      ],
+      "protected_core_frames": [
+        36,
+        165
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 25 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-TAKE",
+      "gloss": "TAKE",
+      "motion": "motions/studio_galt_v1/TAKE.npz",
+      "motion_sha256": "d8d8d6f16ef1c3d388c5dd3582a912148d19d7bf90998f0afcbffea894a5167e",
+      "frame_count": 116,
+      "fps": 30,
+      "user_interval_text": "1.7–2.6 s (保护区间填写!B26:C26)",
+      "user_interval_s": [
+        1.7,
+        2.6
+      ],
+      "protected_core_frames": [
+        51,
+        78
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 26 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-UNDERSTAND",
+      "gloss": "UNDERSTAND",
+      "motion": "motions/wlasl_video_v1/UNDERSTAND.npz",
+      "motion_sha256": "e50fee8ab9342dc6005a8cfd90ecf69d9ef90dbed3d347f76b9994e9aad58e3a",
+      "frame_count": 125,
+      "fps": 30,
+      "user_interval_text": "0.9–2.6 s (保护区间填写!B27:C27)",
+      "user_interval_s": [
+        0.9,
+        2.6
+      ],
+      "protected_core_frames": [
+        27,
+        78
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 27 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-WRITE",
+      "gloss": "WRITE",
+      "motion": "motions/wlasl_video_v1/WRITE.npz",
+      "motion_sha256": "a93d1bc2c5e9cea4ec0edaf7480acc75c9eea059f772117b461127468d57c124",
+      "frame_count": 132,
+      "fps": 30,
+      "user_interval_text": "0.9–2.3 s (保护区间填写!B28:C28)",
+      "user_interval_s": [
+        0.9,
+        2.3
+      ],
+      "protected_core_frames": [
+        27,
+        69
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 28 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-NOT",
+      "gloss": "NOT",
+      "motion": "motions/wlasl_video_v1/NOT.npz",
+      "motion_sha256": "13b8b2c32a83d761114348853b458af71c4a74b9ef0d4ec08c00eb3ee8c810cf",
+      "frame_count": 111,
+      "fps": 30,
+      "user_interval_text": "0.9–2.27 s (保护区间填写!B29:C29)",
+      "user_interval_s": [
+        0.9,
+        2.27
+      ],
+      "protected_core_frames": [
+        27,
+        69
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 29 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-NOW",
+      "gloss": "NOW",
+      "motion": "motions/wlasl_video_v1/NOW.npz",
+      "motion_sha256": "2d494c13fdf1b44bb11e97004e7b212ea5c45b7b0f8d0b972bd3589ae63e15e3",
+      "frame_count": 104,
+      "fps": 30,
+      "user_interval_text": "0.9–1.7 s (保护区间填写!B30:C30)",
+      "user_interval_s": [
+        0.9,
+        1.7
+      ],
+      "protected_core_frames": [
+        27,
+        51
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 30 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-SOON",
+      "gloss": "SOON",
+      "motion": "motions/wlasl_video_v1/SOON.npz",
+      "motion_sha256": "0fe325e7186b5ddd21072d7d7f967eea7bf153f004ecf9d943d33fcd23dd6e97",
+      "frame_count": 150,
+      "fps": 30,
+      "user_interval_text": "0.9–2.9 s (保护区间填写!B31:C31)",
+      "user_interval_s": [
+        0.9,
+        2.9
+      ],
+      "protected_core_frames": [
+        27,
+        87
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 31 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-LATER",
+      "gloss": "LATER",
+      "motion": "motions/wlasl_video_v1/LATER.npz",
+      "motion_sha256": "b9722ab602e38fab95fc5b7e0c5e9a4c6eeeb9b9924675af4b77451d2deab3a8",
+      "frame_count": 82,
+      "fps": 30,
+      "user_interval_text": "0.9–1.7 s (保护区间填写!B32:C32)",
+      "user_interval_s": [
+        0.9,
+        1.7
+      ],
+      "protected_core_frames": [
+        27,
+        51
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 32 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-TOMORROW",
+      "gloss": "TOMORROW",
+      "motion": "motions/wlasl_video_v1/TOMORROW.npz",
+      "motion_sha256": "0228a0538c2007b1bb770b18207323a5c8413f999f4146e1f910559f011a934b",
+      "frame_count": 113,
+      "fps": 30,
+      "user_interval_text": "0.83–2.2 s (保护区间填写!B33:C33)",
+      "user_interval_s": [
+        0.83,
+        2.2
+      ],
+      "protected_core_frames": [
+        24,
+        66
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 33 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-MORNING",
+      "gloss": "MORNING",
+      "motion": "motions/wlasl_video_v1/MORNING.npz",
+      "motion_sha256": "88874e76d81466a7141badf0aa2a5bf98319036d76771a9c39f9b83609ad47f6",
+      "frame_count": 123,
+      "fps": 30,
+      "user_interval_text": "0.87–2.27 s (保护区间填写!B34:C34)",
+      "user_interval_s": [
+        0.87,
+        2.27
+      ],
+      "protected_core_frames": [
+        26,
+        69
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 34 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-NIGHT",
+      "gloss": "NIGHT",
+      "motion": "motions/wlasl_video_v1/NIGHT.npz",
+      "motion_sha256": "20dece3ae28795bfa9321f4922c3291efc0e979deab9f77f4c314ca9d8a8c4cd",
+      "frame_count": 103,
+      "fps": 30,
+      "user_interval_text": "1.3–2 s (保护区间填写!B35:C35)",
+      "user_interval_s": [
+        1.3,
+        2.0
+      ],
+      "protected_core_frames": [
+        39,
+        60
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 35 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "hospital35-20261101-v1-WHERE",
+      "gloss": "WHERE",
+      "motion": "motions/studio_galt_v1/WHERE.npz",
+      "motion_sha256": "187ee5ade8ecac185776511354022e32707035c3d277c71b739a710e4aa8a2e2",
+      "frame_count": 136,
+      "fps": 30,
+      "user_interval_text": "1.7–2.67 s (保护区间填写!B36:C36)",
+      "user_interval_s": [
+        1.7,
+        2.67
+      ],
+      "protected_core_frames": [
+        51,
+        81
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "user sheet row 36 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    }
+  ]
+}

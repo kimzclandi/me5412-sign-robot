@@ -1,0 +1,20 @@
+.........F.............................................................. [ 79%]
+...................                                                      [100%]
+=================================== FAILURES ===================================
+____ test_independent_analytic_extrema_and_jerk_integral_match_known_curve _____
+
+    def test_independent_analytic_extrema_and_jerk_integral_match_known_curve():
+        segment = {"start_time_s": 0.0, "end_time_s": 1.0,
+                   "coefficients": [[0, 0, 0, 10, -15, 6]] + [[0] * 6 for _ in range(52)]}
+        measured = verifier._analytic_metrics([segment])
+        assert measured["speed"][0] == pytest.approx(1.875)
+        assert measured["acceleration"][0] == pytest.approx(10 / np.sqrt(3))
+        assert measured["jerk"][0] == pytest.approx(60)
+        assert measured["jerk_integral"] == pytest.approx(720)
+>       assert measured["lower_positions"][0] == 0 and measured["upper_positions"][0] == 1
+E       assert (np.float64(0.0) == 0 and np.float64(1.000000000000001) == 1)
+
+tests/test_pair_verification_v2.py:193: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_pair_verification_v2.py::test_independent_analytic_extrema_and_jerk_integral_match_known_curve
+1 failed, 90 passed in 3.30s

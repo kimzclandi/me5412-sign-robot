@@ -1,0 +1,25 @@
+{
+  "argv": [
+    "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+    "results/user_protected_correction_20261031_001/FINAL/acceptance.py",
+    "--root",
+    "/home/kingderman/Documents/ME5412-github-latest",
+    "--output",
+    "results/user_protected_correction_20261031_001/FINAL/final_acceptance_checklist.json"
+  ],
+  "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+  "exit_code": 0,
+  "elapsed_s": 1.8561211840005853,
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "MUJOCO_GL": "egl",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "log": "/home/kingderman/Documents/ME5412-github-latest/results/user_protected_correction_20261031_001/R7/installed_acceptance.log",
+  "initial_delivery_hashes_verified": 955
+}
+{"passed": true, "checks": 62, "failed_checks": [], "goal_complete": false}
+

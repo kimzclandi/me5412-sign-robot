@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "HELLO__HELLO",
+    "HELLO__PLEASE",
+    "HELLO__THANK-YOU",
+    "HELLO__SORRY",
+    "HELLO__YES",
+    "HELLO__NO",
+    "HELLO__YOU",
+    "HELLO__YOUR",
+    "HELLO__ME",
+    "HELLO__DEAF",
+    "HELLO__DOCTOR",
+    "HELLO__NURSE",
+    "HELLO__INTERPRETER",
+    "HELLO__APPOINTMENT",
+    "HELLO__MEDICINE",
+    "HELLO__STOMACH"
+  ]
+}

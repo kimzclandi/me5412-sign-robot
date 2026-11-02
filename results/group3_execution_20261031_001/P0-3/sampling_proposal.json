@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "proposal_id": "collision-sampling-v2-proposal-20261031",
+  "approval_status": "pending",
+  "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+  "native_filtering": "unchanged delivered MuJoCo eligibility",
+  "same_hand_exclusion": "all same-side L_/R_ finger and same-side wrist combinations; pending coverage approval",
+  "static_rule": "equal moving ancestor joint id sets; report separately; reject variation of library-constant joints",
+  "min_clearance_m": 0.002,
+  "maximum_time_step_s": 0.008333333333333333,
+  "maximum_coordinate_step_rad": 0.04,
+  "minimum_dense_factors": [
+    1,
+    2,
+    4
+  ],
+  "max_sampled_poses_per_verification": 65536,
+  "max_native_collision_calls_per_verification": 327680,
+  "max_subdivision_depth": 16,
+  "wall_time_s": 30.0,
+  "continuous_collision_certified": false,
+  "budget_exhaustion": "TIMEOUT or explicit incomplete validation; never PASS_SIM",
+  "completion_rule": "all declared curves, kept word slices and boundary instants covered at requested grid and coordinate bounds; all measurements finite; hashes and approved scope match",
+  "unknown_representation": "ERROR; do not interpolate unknown data",
+  "retiming_rule": "reconstruct and revalidate the final timed curve after every retiming or shortcut"
+}

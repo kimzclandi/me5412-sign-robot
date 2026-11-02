@@ -1,0 +1,17 @@
+{
+  "task": "P1-5",
+  "final_tests_passed": 73,
+  "methods": [
+    "direct",
+    "neutral",
+    "ik_via1",
+    "ik_via2",
+    "retract_approach"
+  ],
+  "actual_formal_run_executed": false,
+  "expected_input_blocker": "MISSING_APPROVAL_BUNDLE",
+  "formal_acceptance_enabled": false,
+  "route_source_sha256": "111bf52b5fc94a6f3d97a11d71dec58b655c2016bd66634385fc2218016a8dab",
+  "timing_source_sha256": "da53371380c34a87c49fd2395eb7ebbd67fbc2e19c9e53e819835234faa9fe29",
+  "policy_sha256": "b38d228adb7cc966aa1bda366a35d858dc33927372af4105677f51f2674a5269"
+}

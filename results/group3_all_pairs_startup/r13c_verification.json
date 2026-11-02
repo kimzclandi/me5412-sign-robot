@@ -1,0 +1,156 @@
+{
+  "scope": "legacy R13c recorded endpoint overrides and sampled transition gates; not all-pairs PASS_SIM and not full-word/language/hardware acceptance",
+  "totals": {
+    "transition_count": 19,
+    "pass_count": 19,
+    "source_near_count": 0,
+    "failed_count": 0,
+    "needs_group2_fix_count": 0
+  },
+  "saved_sentence_checks": [
+    {
+      "glosses": [
+        "HELLO",
+        "YOU",
+        "APPOINTMENT",
+        "HAVE"
+      ],
+      "passed": true,
+      "checks": "saved word slices and recorded source-end/target-start override policies, endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair and per-frame sub-2 mm intervals; single near-endpoint-attached run must be non-decreasing from its own endpoint through first >=2 mm sample, with no later dip; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
+      "transition_peak_rates": {
+        "arm_rad_s": 12.882953979608013,
+        "finger_rad_s": 9.502528007022818
+      }
+    },
+    {
+      "glosses": [
+        "MEDICINE",
+        "MORNING",
+        "NIGHT",
+        "TAKE"
+      ],
+      "passed": true,
+      "checks": "saved word slices and recorded source-end/target-start override policies, endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair and per-frame sub-2 mm intervals; single near-endpoint-attached run must be non-decreasing from its own endpoint through first >=2 mm sample, with no later dip; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
+      "transition_peak_rates": {
+        "arm_rad_s": 14.498749480668236,
+        "finger_rad_s": 4.848366709203499
+      }
+    },
+    {
+      "glosses": [
+        "NOW",
+        "NURSE",
+        "BLOOD-DRAW"
+      ],
+      "passed": true,
+      "checks": "saved word slices and recorded source-end/target-start override policies, endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair and per-frame sub-2 mm intervals; single near-endpoint-attached run must be non-decreasing from its own endpoint through first >=2 mm sample, with no later dip; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
+      "transition_peak_rates": {
+        "arm_rad_s": 13.855920566455904,
+        "finger_rad_s": 5.134375624446214
+      }
+    },
+    {
+      "glosses": [
+        "PLEASE",
+        "WAIT",
+        "DOCTOR",
+        "COME",
+        "SOON"
+      ],
+      "passed": true,
+      "checks": "saved word slices and recorded source-end/target-start override policies, endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair and per-frame sub-2 mm intervals; single near-endpoint-attached run must be non-decreasing from its own endpoint through first >=2 mm sample, with no later dip; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
+      "transition_peak_rates": {
+        "arm_rad_s": 13.188154940573105,
+        "finger_rad_s": 8.07832242724831
+      }
+    },
+    {
+      "glosses": [
+        "YOU",
+        "BUY",
+        "BOOK"
+      ],
+      "passed": true,
+      "checks": "saved word slices and recorded source-end/target-start override policies, endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair and per-frame sub-2 mm intervals; single near-endpoint-attached run must be non-decreasing from its own endpoint through first >=2 mm sample, with no later dip; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
+      "transition_peak_rates": {
+        "arm_rad_s": 4.841631083005003,
+        "finger_rad_s": 4.656876843863368
+      }
+    },
+    {
+      "glosses": [
+        "YOU",
+        "HURT",
+        "WHERE"
+      ],
+      "passed": true,
+      "checks": "saved word slices and recorded source-end/target-start override policies, endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair and per-frame sub-2 mm intervals; single near-endpoint-attached run must be non-decreasing from its own endpoint through first >=2 mm sample, with no later dip; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
+      "transition_peak_rates": {
+        "arm_rad_s": 13.21452511074895,
+        "finger_rad_s": 7.9855603452241475
+      }
+    },
+    {
+      "glosses": [
+        "YOU",
+        "NEED",
+        "INTERPRETER"
+      ],
+      "passed": true,
+      "checks": "saved word slices and recorded source-end/target-start override policies, endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair and per-frame sub-2 mm intervals; single near-endpoint-attached run must be non-decreasing from its own endpoint through first >=2 mm sample, with no later dip; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
+      "transition_peak_rates": {
+        "arm_rad_s": 7.535029185465261,
+        "finger_rad_s": 4.19692502022713
+      }
+    },
+    {
+      "glosses": [
+        "YOU",
+        "UNDERSTAND"
+      ],
+      "passed": true,
+      "checks": "saved word slices and recorded source-end/target-start override policies, endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair and per-frame sub-2 mm intervals; single near-endpoint-attached run must be non-decreasing from its own endpoint through first >=2 mm sample, with no later dip; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
+      "transition_peak_rates": {
+        "arm_rad_s": 7.179712438435222,
+        "finger_rad_s": 7.324333549467599
+      }
+    },
+    {
+      "glosses": [
+        "BREATHE-DEEP"
+      ],
+      "passed": true,
+      "checks": "saved word slices and recorded source-end/target-start override policies, endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair and per-frame sub-2 mm intervals; single near-endpoint-attached run must be non-decreasing from its own endpoint through first >=2 mm sample, with no later dip; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
+      "transition_peak_rates": {
+        "arm_rad_s": 0.0,
+        "finger_rad_s": 0.0
+      }
+    },
+    {
+      "glosses": [
+        "THANK-YOU"
+      ],
+      "passed": true,
+      "checks": "saved word slices and recorded source-end/target-start override policies, endpoints, rates, per-leg durations, numeric signed moving-pair clearance/closest pair and per-frame sub-2 mm intervals; single near-endpoint-attached run must be non-decreasing from its own endpoint through first >=2 mm sample, with no later dip; normal direct/via/hub 2 mm floor, near-source relative floor, retract/approach worse-endpoint floor on whole route and original library slices; vendor structural gaps remain separate; source_near is not absolute clearance certification",
+      "transition_peak_rates": {
+        "arm_rad_s": 0.0,
+        "finger_rad_s": 0.0
+      }
+    }
+  ],
+  "all_saved_checks_passed": true,
+  "nurse_f80_approval": "pending",
+  "files_sha256": {
+    "report.json": "04133fa578668e3072af260b38c8153c28dc5f60b0c6f1d0e5ab79dffbb3326b",
+    "trajectories/planned_sentence_YOU_UNDERSTAND.npz": "8db6f314cf48cc7ec467f5af5b79110f4e24a0b0ac6cf84148e582a9d7c2d61f",
+    "trajectories/planned_sentence_YOU_HURT_WHERE.npz": "00d186fd5be6172cc43d712d1a9edfd3e148489a8561f985506e187bc802f388",
+    "trajectories/planned_sentence_MEDICINE_MORNING_NIGHT_TAKE.npz": "b810f53d238afdd2c93bdd4b9cfb21b4a51c15dcaa4fa65ca66b154d89ed6aca",
+    "trajectories/planned_sentence_THANK-YOU.npz": "040c0cdea15d58744d32563d111ab2c85cd49293dda78c3183ff4225fe40818d",
+    "trajectories/planned_sentence_HELLO_YOU_APPOINTMENT_HAVE.npz": "c6deb721841ae22bc5b5a7b9394595672788a0482efcb0495aad1c5b267f6192",
+    "trajectories/planned_sentence_YOU_BUY_BOOK.npz": "aaf3906d357a7136854935efa7a45a07dcccba6157f74c14c075d20c695ca858",
+    "trajectories/planned_sentence_PLEASE_WAIT_DOCTOR_COME_SOON.npz": "25ba2511549117fd5b6826df2afe03fd62ecd7eb619033c540102d562cb75d3e",
+    "trajectories/planned_sentence_YOU_NEED_INTERPRETER.npz": "a0ffe0d5894e924565d19ec04b14e94846f2bea3ce6ed86ad2698491807b74a3",
+    "trajectories/planned_sentence_BREATHE-DEEP.npz": "b6d48bc7d01c0382ef8b3e3c449e0f8b5c8e2c046598b6eb0327c1ac41b70b16",
+    "trajectories/planned_sentence_NOW_NURSE_BLOOD-DRAW.npz": "79f408d4b60cac851add08e1adbd04ae720cf06efbc2f3ae909e2a949e4768b0"
+  }
+}

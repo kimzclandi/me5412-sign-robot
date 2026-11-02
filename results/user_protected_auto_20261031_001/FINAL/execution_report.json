@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-31",
+  "timezone": "Asia/Shanghai",
+  "target": "/home/kingderman/Documents/ME5412-github-latest",
+  "single_agent": true,
+  "engineering_delivery_checks_passed": true,
+  "goal_complete": false,
+  "pilot_numerical_pass_count": 0,
+  "pilot_denominator": 4,
+  "formal_pass_sim_count": 0,
+  "full_library_denominator": 1225,
+  "not_run": 1221,
+  "tests": {
+    "full_passed": 784,
+    "elapsed_s": 61.04,
+    "exit_code": 0,
+    "workspace": "restored staging checkout"
+  },
+  "run_id": "user_protected_pilot_20261031_001",
+  "run_files_unchanged_on_resume": 790,
+  "stage_acceptance_checks": 40,
+  "task_reports": [
+    "TASK-15.md",
+    "TASK-16.md",
+    "TASK-17.md",
+    "TASK-18.md",
+    "TASK-19.md",
+    "TASK-20.md",
+    "TASK-21.md"
+  ],
+  "original_motion_model_or_historical_run_edits": false,
+  "source_install_verified": true,
+  "blocking_cause": "original protected-interval quality exceeds unchanged frozen limits",
+  "source_acceptance_exit_code": 0,
+  "source_acceptance_checks": 40,
+  "initial_installed_files": 977,
+  "original_motion_model_files_unchanged": 465,
+  "protected_exported_instances_bitwise_equal": 8
+}

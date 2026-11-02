@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "MEDICINE__UNDERSTAND",
+    "MEDICINE__WRITE",
+    "MEDICINE__NOT",
+    "MEDICINE__NOW",
+    "MEDICINE__SOON",
+    "MEDICINE__LATER",
+    "MEDICINE__TOMORROW",
+    "MEDICINE__MORNING",
+    "MEDICINE__NIGHT",
+    "MEDICINE__WHERE",
+    "STOMACH__HELLO",
+    "STOMACH__PLEASE",
+    "STOMACH__THANK-YOU",
+    "STOMACH__SORRY",
+    "STOMACH__YES",
+    "STOMACH__NO"
+  ]
+}

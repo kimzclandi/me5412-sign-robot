@@ -1,0 +1,30 @@
+..............................F.                                         [100%]
+=================================== FAILURES ===================================
+_ test_missing_candidate_diagnosis_reads_real_review_files_and_never_certifies_curve _
+
+run_context = (PosixPath('/tmp/pytest-of-kingderman/pytest-32/test_missing_candidate_diagnos0'), {'schema_version': 2, 'policy_id': ..."approved", "valid_until": "2026-11-02T00:00:00+00:00"}')}, input_blockers=[{'code': 'SYNTHETIC_UNAVAILABLE_REVIEW'}]))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x75a7d32f5640>
+
+    def test_missing_candidate_diagnosis_reads_real_review_files_and_never_certifies_curve(run_context, monkeypatch):
+        import sign_robot.pair_verification_v2 as verifier
+        root, policy, context = run_context
+        context.input_blockers = [{"code": "SYNTHETIC_UNAVAILABLE_REVIEW"}]
+        store = create_store(run_context, root)
+        record = store.run_pair("HELLO", "PLEASE", context, seed=5412)
+        (root / policy["endpoints"]["approval_file"]).unlink()
+        monkeypatch.setattr(verifier, "freeze_library", lambda root, policy: (context.library, context.clips))
+        result = store.verify_pair(record["pair_id"])
+        assert result["verification_state"] == "DIAGNOSIS_ONLY" and result["candidate_count"] == 0
+        evidence = runner.read_json(store.run_dir / result["diagnosis_file"])["evidence"]
+>       assert evidence["status"] == "BLOCKED_INPUT" and evidence["reason_codes"] == ["MISSING_APPROVAL_BUNDLE"]
+E       AssertionError: assert ('BLOCKED_INPUT' == 'BLOCKED_INPUT'
+E         
+E           BLOCKED_INPUT and ['INVALID_APPROVAL_INPUT'] == ['MISSING_APPROVAL_BUNDLE']
+E         
+E         At index 0 diff: 'INVALID_APPROVAL_INPUT' != 'MISSING_APPROVAL_BUNDLE'
+E         Use -v to get more diff)
+
+tests/test_pair_runner_v2.py:337: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_pair_runner_v2.py::test_missing_candidate_diagnosis_reads_real_review_files_and_never_certifies_curve
+1 failed, 31 passed in 11.33s

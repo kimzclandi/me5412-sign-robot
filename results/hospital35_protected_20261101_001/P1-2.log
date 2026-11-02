@@ -1,0 +1,45 @@
+== .venv/bin/python scripts/plan_sequences.py --sequence-policy config/sequence_policy_hospital35_v1.json --pair-run-dir results/hospital35_protected_20261101_001/pair_runs/hospital35_protected_20261101_001 --output results/hospital35_protected_20261101_001/sequences_regression_001 --case COME__COME__COME --case COME__COME__NOW --case COME__NOW__COME --case COME__NOW__NOW --case NOW__COME__COME --case NOW__COME__NOW --case NOW__NOW__COME --case NOW__NOW__NOW --case COME__COME__COME__COME__COME --case NOW__NOW__NOW__NOW__NOW --case COME__NOW__COME__NOW__COME --case NOW__COME__NOW__COME__NOW
+{"sequence_id": "COME__COME__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "COME__COME__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "COME__NOW__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "COME__NOW__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__COME__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__COME__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__NOW__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__NOW__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "COME__COME__COME__COME__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__NOW__NOW__NOW__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "COME__NOW__COME__NOW__COME", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__COME__NOW__COME__NOW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"denominator": 12, "numerical_pass_count": 12, "status_counts": {"NUMERICAL_PASS": 12}, "stop_reason": null}
+exit 0
+== .venv/bin/python scripts/verify_sequences.py --run-dir results/hospital35_protected_20261101_001/sequences_regression_001
+{"sequence_id": "COME__COME__COME", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "COME__COME__NOW", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "COME__NOW__COME", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "COME__NOW__NOW", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "NOW__COME__COME", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "NOW__COME__NOW", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "NOW__NOW__COME", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "NOW__NOW__NOW", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "COME__COME__COME__COME__COME", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "NOW__NOW__NOW__NOW__NOW", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "COME__NOW__COME__NOW__COME", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"sequence_id": "NOW__COME__NOW__COME__NOW", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"cases": 12, "rechecked": 12, "numerical_pass": 12, "retained_from_prior_output": 0, "rechecked_agree": 12, "planning_status_counts": {"NUMERICAL_PASS": 12}, "word_occurrences": 44, "protected_instances_unchanged": 44, "connector_groups": 32, "all_agree_with_planning": true, "formal_pass": 0}
+exit 0
+== .venv/bin/python scripts/render_sequences.py --run-dir results/hospital35_protected_20261101_001/sequences_regression_001 --output results/hospital35_protected_20261101_001/videos_regression_001
+{"sequence": "COME__COME__COME", "frames": 603, "protected_equal": true}
+{"sequence": "COME__COME__NOW", "frames": 506, "protected_equal": true}
+{"sequence": "COME__NOW__COME", "frames": 506, "protected_equal": true}
+{"sequence": "COME__NOW__NOW", "frames": 409, "protected_equal": true}
+{"sequence": "NOW__COME__COME", "frames": 506, "protected_equal": true}
+{"sequence": "NOW__COME__NOW", "frames": 409, "protected_equal": true}
+{"sequence": "NOW__NOW__COME", "frames": 409, "protected_equal": true}
+{"sequence": "NOW__NOW__NOW", "frames": 312, "protected_equal": true}
+{"sequence": "COME__COME__COME__COME__COME", "frames": 1005, "protected_equal": true}
+{"sequence": "NOW__NOW__NOW__NOW__NOW", "frames": 520, "protected_equal": true}
+{"sequence": "COME__NOW__COME__NOW__COME", "frames": 811, "protected_equal": true}
+{"sequence": "NOW__COME__NOW__COME__NOW", "frames": 714, "protected_equal": true}
+exit 0
+== done

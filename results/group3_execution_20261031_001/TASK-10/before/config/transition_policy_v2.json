@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "policy_id": "group3-all-pairs-development-v2",
+  "fps": 30,
+  "joint_count": 53,
+  "scope": {
+    "library": "hospital_v1",
+    "expected_glosses": [
+      "HELLO",
+      "PLEASE",
+      "THANK-YOU",
+      "SORRY",
+      "YES",
+      "NO",
+      "YOU",
+      "YOUR",
+      "ME",
+      "DEAF",
+      "DOCTOR",
+      "NURSE",
+      "INTERPRETER",
+      "APPOINTMENT",
+      "MEDICINE",
+      "STOMACH",
+      "HEADACHE",
+      "HAVE",
+      "NEED",
+      "WAIT",
+      "COME",
+      "HURT",
+      "BREATHE-DEEP",
+      "BLOOD-DRAW",
+      "TAKE",
+      "UNDERSTAND",
+      "WRITE",
+      "NOT",
+      "NOW",
+      "SOON",
+      "LATER",
+      "TOMORROW",
+      "MORNING",
+      "NIGHT",
+      "WHERE"
+    ],
+    "include_self": true
+  },
+  "contract": {
+    "path": "contracts/all_pairs_v2.json",
+    "sha256": "8ee8714ca0e67ae333cee3e19c7b88ecb42f31b85ebd15da65b46c7baf472bb9"
+  },
+  "planner": {
+    "method": "multi_candidate_v2",
+    "methods": [
+      "direct",
+      "neutral",
+      "ik_via1",
+      "ik_via2",
+      "retract_approach",
+      "rrt_connect"
+    ],
+    "seed": 5412,
+    "minimum_duration_s": 0.3,
+    "budget": {
+      "max_candidates": 128,
+      "max_collision_samples": 32768,
+      "max_nodes": 4096,
+      "max_segments": 256,
+      "max_time_attempts": 12,
+      "wall_time_s": 30.0
+    },
+    "rrt": {
+      "step_rad": 0.35,
+      "edge_resolution_rad": 0.04,
+      "goal_bias": 0.15,
+      "wall_time_s": 10.0
+    }
+  },
+  "constraints": {
+    "min_clearance_m": 0.002,
+    "position_tolerance_rad": 1e-06,
+    "joint_limit_tolerance_rad": 1e-08,
+    "coupling_tolerance_rad": 1e-08,
+    "arm_speed_rad_s": 15.0,
+    "finger_speed_rad_s": 10.0,
+    "fixed_joint_speed_rad_s": 1e-09,
+    "speed_tolerance_rad_s": 1e-08
+  },
+  "endpoints": {
+    "strategy": "approved_core_windows_v2",
+    "window_version": "hospital_v1-core-windows-v2-pending",
+    "review_status": "pending",
+    "approval_file": null,
+    "approval_bundle_sha256": null
+  },
+  "validation": {
+    "dense_factors": [
+      1,
+      2,
+      4
+    ],
+    "maximum_step_rad": 0.04,
+    "maximum_time_step_s": 0.008333333333333333,
+    "max_sampled_poses": 65536,
+    "max_native_collision_calls": 327680,
+    "max_subdivision_depth": 16,
+    "wall_time_s": 30.0,
+    "approval_status": "pending",
+    "approval_evidence": null,
+    "continuous_collision_certified": false,
+    "scope": "native_moving_non_same_hand_v2"
+  },
+  "quality": {
+    "freeze_status": "pending",
+    "limits": {
+      "velocity_jump_arm_rad_s": 1e-05,
+      "velocity_jump_finger_rad_s": 1e-05,
+      "acceleration_jump_arm_rad_s2": 0.0001,
+      "acceleration_jump_finger_rad_s2": 0.0001,
+      "peak_acceleration_rad_s2": 120.0,
+      "peak_jerk_rad_s3": 3000.0,
+      "jerk_integral_rad2_s5": 1000000.0,
+      "maximum_transition_duration_s": 6.0
+    },
+    "approval_evidence": null,
+    "boundary_method": "linear_replay_one_sided_v2",
+    "full_clip_method": "finite_difference_30hz_and_analytic_connector_v2"
+  },
+  "finger_strategies": [
+    "synchronous",
+    "early",
+    "late"
+  ],
+  "selection_rule": "numerical_pass_then_duration_method_hash_v2",
+  "formal_acceptance_enabled": false,
+  "pending_decisions": [
+    "group2_hash_bound_core_windows_and_repaired_motions",
+    "quality_caps_and_linear_replay_derivative_scope",
+    "collision_filter_coverage_and_sampling_budget",
+    "nurse_f80_exact_hash_approval",
+    "actual_language_and_hardware_reviews"
+  ]
+}

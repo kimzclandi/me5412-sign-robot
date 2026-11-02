@@ -1,0 +1,58 @@
+{
+  "engineering_integrity_passed": true,
+  "checklist": {
+    "baseline_files_preserved_except_explicit_changes": true,
+    "all_changes_match_latest_task_install_hashes": true,
+    "no_unexpected_new_files": true,
+    "original_assets_and_motions_unchanged": true,
+    "legacy_3378_files_intact": true,
+    "legacy_1225_unique_pairs_intact": true,
+    "legacy_status_counts_preserved": true,
+    "development_run_inventory_intact": true,
+    "development_run_resume_32_files_unchanged": true,
+    "development_run_identity_matches_installed_code_and_inputs": true,
+    "development_denominators_fixed": true,
+    "development_4_blocked_1221_not_run_zero_pass": true,
+    "formal_acceptance_remains_disabled": true
+  },
+  "baseline": {
+    "entries": 7052,
+    "original_asset_and_motion_files_checked": 465,
+    "missing_files": [],
+    "altered_files": [
+      "docs/README.en.md",
+      "docs/README.md",
+      "scripts/plan_all_pairs.py",
+      "scripts/summarize_all_pairs.py",
+      "scripts/verify_all_pairs.py",
+      "src/sign_robot/all_pairs.py",
+      "src/sign_robot/pair_contract.py",
+      "src/sign_robot/pair_verification.py"
+    ],
+    "unauthorized_alterations": [],
+    "type_mismatches": [],
+    "symlink_mismatches": [],
+    "new_file_count": 302,
+    "unexpected_new_files": [],
+    "installed_output_hash_mismatches": []
+  },
+  "legacy": {
+    "checked_files": 3378,
+    "bad_files": [],
+    "unique_pairs": 1225,
+    "status_counts": {
+      "FAILED_QUALITY": 513,
+      "BLOCKED_ENDPOINT": 326,
+      "FAILED_SEARCH": 386
+    }
+  },
+  "formal_acceptance": {
+    "L2_complete": false,
+    "all_1225_pass_sim": false,
+    "actual_approval_inputs_present": false,
+    "triple_42875_compatibility_complete": false,
+    "frozen_multiword_sequences_passed": false,
+    "actual_human_review_complete": false,
+    "fresh_environment_reproduction_complete": false
+  }
+}

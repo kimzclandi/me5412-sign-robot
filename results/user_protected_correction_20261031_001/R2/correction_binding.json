@@ -1,0 +1,97 @@
+{
+  "user_correction_verbatim": "我要更正一下，COME是0.93～4.40s，NOW是0.13～2.53s",
+  "previous_bundle": "config/user_protected_come_now_v1.json",
+  "previous_bundle_sha256": "b051895637fe4df5a440e5638ebc8b241e3218376fe70354b66e9d6537c6101c",
+  "new_bundle": "config/user_protected_come_now_v2.json",
+  "new_bundle_sha256": "251a69c3ed7f26780b5902bcc55a3da1ce7959dac4ff0f485bb911096832dc6c",
+  "previous_policy": "config/transition_policy_user_protected_v1.json",
+  "previous_policy_sha256": "b58d90b5c3f8213af9eafb0080074004e3ba459c31e58737c382b942c9a563d4",
+  "new_policy": "config/transition_policy_user_protected_v2.json",
+  "new_policy_sha256": "588b46aaee95d1291d7dc8196bc810015fac547fe621580576bb6a59784d9a7b",
+  "rounding": "floor(start_s * 30), ceil(end_s * 30); zero-based inclusive",
+  "records": [
+    {
+      "protection_id": "user-correction-20261031-v2-COME",
+      "gloss": "COME",
+      "motion": "motions/studio_galt_v1/COME.npz",
+      "motion_sha256": "75d6455408ce6584043baedbd0e049cbeabcad534eda65ef561d2c7293b477a4",
+      "frame_count": 201,
+      "fps": 30,
+      "user_interval_text": "0.93～4.40s",
+      "user_interval_s": [
+        0.93,
+        4.4
+      ],
+      "protected_core_frames": [
+        27,
+        132
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "latest user correction + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "user-correction-20261031-v2-NOW",
+      "gloss": "NOW",
+      "motion": "motions/wlasl_video_v1/NOW.npz",
+      "motion_sha256": "2d494c13fdf1b44bb11e97004e7b212ea5c45b7b0f8d0b972bd3589ae63e15e3",
+      "frame_count": 104,
+      "fps": 30,
+      "user_interval_text": "0.13～2.53s",
+      "user_interval_s": [
+        0.13,
+        2.53
+      ],
+      "protected_core_frames": [
+        3,
+        76
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "latest user correction + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding",
+      "prior_video_identity_available": false
+    }
+  ],
+  "previous_records": [
+    {
+      "protection_id": "user-handoff-20261031-COME",
+      "gloss": "COME",
+      "motion": "motions/studio_galt_v1/COME.npz",
+      "motion_sha256": "75d6455408ce6584043baedbd0e049cbeabcad534eda65ef561d2c7293b477a4",
+      "frame_count": 201,
+      "fps": 30,
+      "user_interval_text": "0.93～4.67 秒",
+      "user_interval_s": [
+        0.93,
+        4.67
+      ],
+      "protected_core_frames": [
+        27,
+        141
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "current user handoff + actual hospital_v1 selected motion + inclusive frame-range compatibility",
+      "prior_video_identity_available": false
+    },
+    {
+      "protection_id": "user-handoff-20261031-NOW",
+      "gloss": "NOW",
+      "motion": "motions/wlasl_video_v1/NOW.npz",
+      "motion_sha256": "2d494c13fdf1b44bb11e97004e7b212ea5c45b7b0f8d0b972bd3589ae63e15e3",
+      "frame_count": 104,
+      "fps": 30,
+      "user_interval_text": "0.13～3.37 秒",
+      "user_interval_s": [
+        0.13,
+        3.37
+      ],
+      "protected_core_frames": [
+        3,
+        102
+      ],
+      "retiming_allowed": false,
+      "binding_basis": "current user handoff + actual hospital_v1 selected motion + inclusive frame-range compatibility",
+      "prior_video_identity_available": false
+    }
+  ],
+  "human_window_approval_created": false
+}

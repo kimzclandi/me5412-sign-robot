@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/home/kingderman/Documents/ME5412-github-latest/scripts/plan_all_pairs.py", line 67, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/kingderman/Documents/ME5412-github-latest/scripts/plan_all_pairs.py", line 59, in main
+    run_dir, summary = scan(ROOT, policy, args.run_id, args.results_root,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_runner_v2.py", line 632, in run_scan_v2
+    store = V2RunStore.create(root, policy, context, results_root, run_id, resume=resume)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kingderman/Documents/ME5412-github-latest/src/sign_robot/pair_runner_v2.py", line 66, in create
+    raise RunIntegrityError("Code, policy, model, environment or inputs changed; use a new run_id")
+sign_robot.pair_runner_v2.RunIntegrityError: Code, policy, model, environment or inputs changed; use a new run_id

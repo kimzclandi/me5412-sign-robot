@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "HEADACHE__WRITE",
+    "HEADACHE__NOT",
+    "HEADACHE__NOW",
+    "HEADACHE__SOON",
+    "HEADACHE__LATER",
+    "HEADACHE__TOMORROW",
+    "HEADACHE__MORNING",
+    "HEADACHE__NIGHT",
+    "HEADACHE__WHERE",
+    "HAVE__HELLO",
+    "HAVE__PLEASE",
+    "HAVE__THANK-YOU",
+    "HAVE__SORRY",
+    "HAVE__YES",
+    "HAVE__NO",
+    "HAVE__YOU"
+  ]
+}

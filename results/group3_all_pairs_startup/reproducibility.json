@@ -1,0 +1,34 @@
+{
+  "scope": "four direct candidates, same environment and fixed deterministic work budget; no cross-environment or general-search claim",
+  "pairs": [
+    {
+      "pair_id": "HELLO__PLEASE",
+      "reference_canonical_array_hash": "d88dcf1d0f913abc8e00ba88c970e337e2dfd7e032e7be04a603f7a865720e05",
+      "repeated_canonical_array_hash": "d88dcf1d0f913abc8e00ba88c970e337e2dfd7e032e7be04a603f7a865720e05",
+      "canonical_equal": true,
+      "file_sha256_equal": true
+    },
+    {
+      "pair_id": "APPOINTMENT__BLOOD-DRAW",
+      "reference_canonical_array_hash": "84a6eac1dd2aec50f691f24ca6420682888b7231f59f26873d4213f9f0cdba88",
+      "repeated_canonical_array_hash": "84a6eac1dd2aec50f691f24ca6420682888b7231f59f26873d4213f9f0cdba88",
+      "canonical_equal": true,
+      "file_sha256_equal": true
+    },
+    {
+      "pair_id": "YOU__YOU",
+      "reference_canonical_array_hash": "e119e887bee6ccab77c291b06f5b68b9f67f7e9d27dee562414025907f1139a8",
+      "repeated_canonical_array_hash": "e119e887bee6ccab77c291b06f5b68b9f67f7e9d27dee562414025907f1139a8",
+      "canonical_equal": true,
+      "file_sha256_equal": true
+    },
+    {
+      "pair_id": "NOW__NURSE",
+      "reference_canonical_array_hash": "6479cec986684ff6f099fdb11c4048f5b06bdc67c036243a9760f5db5551188c",
+      "repeated_canonical_array_hash": "6479cec986684ff6f099fdb11c4048f5b06bdc67c036243a9760f5db5551188c",
+      "canonical_equal": true,
+      "file_sha256_equal": true
+    }
+  ],
+  "passed": true
+}

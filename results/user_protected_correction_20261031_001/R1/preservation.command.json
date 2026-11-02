@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "python3",
+    "/tmp/me5412_preserve_correction.py"
+  ],
+  "cwd": "/home/kingderman/Documents/ME5412",
+  "exit_code": 0,
+  "operation": "archive current installed repository, restore fresh stage, compare full inventories"
+}

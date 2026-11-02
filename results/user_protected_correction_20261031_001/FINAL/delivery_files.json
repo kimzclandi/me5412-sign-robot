@@ -1,0 +1,18 @@
+{
+  "implementation_and_documents": [
+    "HANDOFF.md",
+    "HANDOFF.en.md",
+    "config/user_protected_come_now_v2.json",
+    "config/transition_policy_user_protected_v2.json",
+    "tests/test_user_protected_correction.py",
+    "docs/README.md",
+    "docs/README.en.md",
+    "src/sign_robot/project_overview.py",
+    "TASK-22.md",
+    "TASK-22.en.md",
+    "STATE.md",
+    "STATE.en.md"
+  ],
+  "evidence_prefix": "results/user_protected_correction_20261031_001",
+  "target": "/home/kingderman/Documents/ME5412-github-latest"
+}

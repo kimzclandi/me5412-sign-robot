@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "NEED__HAVE",
+    "NEED__NEED",
+    "NEED__WAIT",
+    "NEED__COME",
+    "NEED__HURT",
+    "NEED__BREATHE-DEEP",
+    "NEED__BLOOD-DRAW",
+    "NEED__TAKE",
+    "NEED__UNDERSTAND",
+    "NEED__WRITE",
+    "NEED__NOT",
+    "NEED__NOW",
+    "NEED__SOON",
+    "NEED__LATER",
+    "NEED__TOMORROW",
+    "NEED__MORNING"
+  ]
+}

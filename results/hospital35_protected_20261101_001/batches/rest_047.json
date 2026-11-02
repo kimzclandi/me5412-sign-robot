@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "TAKE__HELLO",
+    "TAKE__PLEASE",
+    "TAKE__THANK-YOU",
+    "TAKE__SORRY",
+    "TAKE__YES",
+    "TAKE__NO",
+    "TAKE__YOU",
+    "TAKE__YOUR",
+    "TAKE__ME",
+    "TAKE__DEAF",
+    "TAKE__DOCTOR",
+    "TAKE__NURSE",
+    "TAKE__INTERPRETER",
+    "TAKE__APPOINTMENT",
+    "TAKE__MEDICINE",
+    "TAKE__STOMACH"
+  ]
+}

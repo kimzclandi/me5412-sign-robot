@@ -1,0 +1,169 @@
+FFF..F.....F.                                                            [100%]
+=================================== FAILURES ===================================
+___ test_all_finger_strategies_preserve_endpoints_and_couplings[synchronous] ___
+
+strategy = 'synchronous'
+
+    @pytest.mark.parametrize("strategy", ["synchronous", "early", "late"])
+    def test_all_finger_strategies_preserve_endpoints_and_couplings(strategy):
+        q, info = finger_strategy_curve_v2(START, END, NAMES, strategy, COUPLINGS, samples=11)
+        np.testing.assert_allclose(q[0], START)
+        np.testing.assert_allclose(q[-1], END)
+        assert info["version"] == 2 and info["endpoint_preserved"]
+        assert coupling_error_v2(q, NAMES, COUPLINGS) == pytest.approx(0)
+>       np.testing.assert_allclose(q[:, 0], np.linspace(START[0], END[0], 11))
+E       AssertionError: 
+E       Not equal to tolerance rtol=1e-07, atol=0
+E       
+E       Mismatched elements: 8 / 11 (72.7%)
+E       First 5 mismatches are at indices:
+E        [1]: 0.200856 (ACTUAL), 0.21000000000000002 (DESIRED)
+E        [2]: 0.205792 (ACTUAL), 0.22 (DESIRED)
+E        [3]: 0.216308 (ACTUAL), 0.23 (DESIRED)
+E        [4]: 0.23174399999999995 (ACTUAL), 0.24 (DESIRED)
+E        [6]: 0.26825599999999994 (ACTUAL), 0.26 (DESIRED)
+E       Max absolute difference among violations: 0.014208
+E       Max relative difference among violations: 0.06458182
+E        ACTUAL: array([0.2     , 0.200856, 0.205792, 0.216308, 0.231744, 0.25    ,
+E              0.268256, 0.283692, 0.294208, 0.299144, 0.3     ])
+E        DESIRED: array([0.2 , 0.21, 0.22, 0.23, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.3 ])
+
+tests/test_pair_fingers_v2.py:28: AssertionError
+______ test_all_finger_strategies_preserve_endpoints_and_couplings[early] ______
+
+strategy = 'early'
+
+    @pytest.mark.parametrize("strategy", ["synchronous", "early", "late"])
+    def test_all_finger_strategies_preserve_endpoints_and_couplings(strategy):
+        q, info = finger_strategy_curve_v2(START, END, NAMES, strategy, COUPLINGS, samples=11)
+        np.testing.assert_allclose(q[0], START)
+        np.testing.assert_allclose(q[-1], END)
+        assert info["version"] == 2 and info["endpoint_preserved"]
+        assert coupling_error_v2(q, NAMES, COUPLINGS) == pytest.approx(0)
+>       np.testing.assert_allclose(q[:, 0], np.linspace(START[0], END[0], 11))
+E       AssertionError: 
+E       Not equal to tolerance rtol=1e-07, atol=0
+E       
+E       Mismatched elements: 8 / 11 (72.7%)
+E       First 5 mismatches are at indices:
+E        [1]: 0.200856 (ACTUAL), 0.21000000000000002 (DESIRED)
+E        [2]: 0.205792 (ACTUAL), 0.22 (DESIRED)
+E        [3]: 0.216308 (ACTUAL), 0.23 (DESIRED)
+E        [4]: 0.23174399999999995 (ACTUAL), 0.24 (DESIRED)
+E        [6]: 0.2682559999999999 (ACTUAL), 0.26 (DESIRED)
+E       Max absolute difference among violations: 0.014208
+E       Max relative difference among violations: 0.06458182
+E        ACTUAL: array([0.2     , 0.200856, 0.205792, 0.216308, 0.231744, 0.25    ,
+E              0.268256, 0.283692, 0.294208, 0.299144, 0.3     ])
+E        DESIRED: array([0.2 , 0.21, 0.22, 0.23, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.3 ])
+
+tests/test_pair_fingers_v2.py:28: AssertionError
+______ test_all_finger_strategies_preserve_endpoints_and_couplings[late] _______
+
+strategy = 'late'
+
+    @pytest.mark.parametrize("strategy", ["synchronous", "early", "late"])
+    def test_all_finger_strategies_preserve_endpoints_and_couplings(strategy):
+        q, info = finger_strategy_curve_v2(START, END, NAMES, strategy, COUPLINGS, samples=11)
+        np.testing.assert_allclose(q[0], START)
+        np.testing.assert_allclose(q[-1], END)
+        assert info["version"] == 2 and info["endpoint_preserved"]
+        assert coupling_error_v2(q, NAMES, COUPLINGS) == pytest.approx(0)
+>       np.testing.assert_allclose(q[:, 0], np.linspace(START[0], END[0], 11))
+E       AssertionError: 
+E       Not equal to tolerance rtol=1e-07, atol=0
+E       
+E       Mismatched elements: 8 / 11 (72.7%)
+E       First 5 mismatches are at indices:
+E        [1]: 0.200856 (ACTUAL), 0.21000000000000002 (DESIRED)
+E        [2]: 0.205792 (ACTUAL), 0.22 (DESIRED)
+E        [3]: 0.216308 (ACTUAL), 0.23 (DESIRED)
+E        [4]: 0.23174399999999998 (ACTUAL), 0.24 (DESIRED)
+E        [6]: 0.268256 (ACTUAL), 0.26 (DESIRED)
+E       Max absolute difference among violations: 0.014208
+E       Max relative difference among violations: 0.06458182
+E        ACTUAL: array([0.2     , 0.200856, 0.205792, 0.216308, 0.231744, 0.25    ,
+E              0.268256, 0.283692, 0.294208, 0.299144, 0.3     ])
+E        DESIRED: array([0.2 , 0.21, 0.22, 0.23, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.3 ])
+
+tests/test_pair_fingers_v2.py:28: AssertionError
+_______ test_apply_strategy_preserves_nonfinger_base_path_and_endpoints ________
+
+    def test_apply_strategy_preserves_nonfinger_base_path_and_endpoints():
+        base = np.linspace(START, END, 9)
+        base[:, 1:] = START[1:]
+>       result, info = apply_finger_strategy_to_path_v2(base, START, END, NAMES, "early", COUPLINGS)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_pair_fingers_v2.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = array([[0.2   , 0.1   , 0.16  , 0.2   , 0.2   ],
+       [0.2125, 0.1   , 0.16  , 0.2   , 0.2   ],
+       [0.225 , 0.1 ...  , 0.2   , 0.2   ],
+       [0.2875, 0.1   , 0.16  , 0.2   , 0.2   ],
+       [0.3   , 0.1   , 0.16  , 0.2   , 0.2   ]])
+start = array([0.2 , 0.1 , 0.16, 0.2 , 0.2 ])
+end = array([ 0.3 ,  0.6 ,  0.96, -0.4 , -0.4 ])
+joint_names = array(['right_elbow_joint', 'R_thumb_proximal_pitch_joint',
+       'R_thumb_intermediate_joint', 'R_index_proximal_joint',
+       'R_index_intermediate_joint'], dtype='<U28')
+strategy = 'early'
+couplings = [{'parent': 'R_thumb_proximal_pitch_joint', 'child': 'R_thumb_intermediate_joint', 'multiplier': 1.6, 'offset': 0.0}, {'parent': 'R_index_proximal_joint', 'child': 'R_index_intermediate_joint', 'multiplier': 1.0, 'offset': 0.0}]
+coupling_tolerance = 1e-08
+
+    def apply_finger_strategy_to_path_v2(path, start, end, joint_names, strategy, couplings, *,
+                                         coupling_tolerance=1e-8):
+        """Sample-only helper. Actual planners use the saved-polynomial adapter."""
+        path = np.asarray(path, dtype=float)
+        start, end = _endpoints(start, end, joint_names, couplings, coupling_tolerance)
+        if path.ndim != 2 or path.shape[1] != len(joint_names) or len(path) < 2 or not np.isfinite(path).all():
+            raise ValueError("The base path must be a finite named-coordinate array")
+        if not np.allclose(path[[0, -1]], np.stack([start, end]), atol=coupling_tolerance, rtol=0):
+>           raise ValueError("Base path endpoints differ from the fixed finger endpoints")
+E           ValueError: Base path endpoints differ from the fixed finger endpoints
+
+src/sign_robot/pair_fingers.py:203: ValueError
+___ test_coupling_is_restored_from_parent_not_treated_as_independent_command ___
+
+    def test_coupling_is_restored_from_parent_not_treated_as_independent_command():
+        q, _ = finger_strategy_curve_v2(START, END, NAMES, "synchronous", COUPLINGS, samples=17)
+        q[:, 2] += np.linspace(0, 0.2, len(q))
+        assert coupling_error_v2(q, NAMES, COUPLINGS) > 0
+>       repaired, _ = apply_finger_strategy_to_path_v2(q, START, END, NAMES, "synchronous", COUPLINGS)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_pair_fingers_v2.py:84: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = array([[ 0.2       ,  0.1       ,  0.16      ,  0.2       ,  0.2       ],
+       [ 0.20022182,  0.10110912,  0.1742746...088,  1.1457254 , -0.39866905, -0.39866905],
+       [ 0.3       ,  0.6       ,  1.16      , -0.4       , -0.4       ]])
+start = array([0.2 , 0.1 , 0.16, 0.2 , 0.2 ])
+end = array([ 0.3 ,  0.6 ,  0.96, -0.4 , -0.4 ])
+joint_names = array(['right_elbow_joint', 'R_thumb_proximal_pitch_joint',
+       'R_thumb_intermediate_joint', 'R_index_proximal_joint',
+       'R_index_intermediate_joint'], dtype='<U28')
+strategy = 'synchronous'
+couplings = [{'parent': 'R_thumb_proximal_pitch_joint', 'child': 'R_thumb_intermediate_joint', 'multiplier': 1.6, 'offset': 0.0}, {'parent': 'R_index_proximal_joint', 'child': 'R_index_intermediate_joint', 'multiplier': 1.0, 'offset': 0.0}]
+coupling_tolerance = 1e-08
+
+    def apply_finger_strategy_to_path_v2(path, start, end, joint_names, strategy, couplings, *,
+                                         coupling_tolerance=1e-8):
+        """Sample-only helper. Actual planners use the saved-polynomial adapter."""
+        path = np.asarray(path, dtype=float)
+        start, end = _endpoints(start, end, joint_names, couplings, coupling_tolerance)
+        if path.ndim != 2 or path.shape[1] != len(joint_names) or len(path) < 2 or not np.isfinite(path).all():
+            raise ValueError("The base path must be a finite named-coordinate array")
+        if not np.allclose(path[[0, -1]], np.stack([start, end]), atol=coupling_tolerance, rtol=0):
+>           raise ValueError("Base path endpoints differ from the fixed finger endpoints")
+E           ValueError: Base path endpoints differ from the fixed finger endpoints
+
+src/sign_robot/pair_fingers.py:203: ValueError
+=========================== short test summary info ============================
+FAILED tests/test_pair_fingers_v2.py::test_all_finger_strategies_preserve_endpoints_and_couplings[synchronous]
+FAILED tests/test_pair_fingers_v2.py::test_all_finger_strategies_preserve_endpoints_and_couplings[early]
+FAILED tests/test_pair_fingers_v2.py::test_all_finger_strategies_preserve_endpoints_and_couplings[late]
+FAILED tests/test_pair_fingers_v2.py::test_apply_strategy_preserves_nonfinger_base_path_and_endpoints
+FAILED tests/test_pair_fingers_v2.py::test_coupling_is_restored_from_parent_not_treated_as_independent_command
+5 failed, 8 passed in 0.09s

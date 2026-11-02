@@ -1,0 +1,20 @@
+{
+  "policy_file": "config/transition_policy_user_protected_v2.json",
+  "policy_file_sha256": "588b46aaee95d1291d7dc8196bc810015fac547fe621580576bb6a59784d9a7b",
+  "baseline": "config/transition_policy_v2.json",
+  "unchanged_fields": [
+    "constraints",
+    "quality",
+    "validation",
+    "planner",
+    "fps",
+    "joint_count",
+    "finger_strategies",
+    "scope"
+  ],
+  "formal_acceptance_enabled": false,
+  "frozen_for_development_before_pilot": true,
+  "input_version_changed_without_threshold_changes": true,
+  "contract_reused": "contracts/all_pairs_user_protected_v1.json",
+  "contract_semantics_unchanged": true
+}

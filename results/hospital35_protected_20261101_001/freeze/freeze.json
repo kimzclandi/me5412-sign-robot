@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "kind": "hospital35_freeze_record_v1",
+  "frozen_at_utc": "2026-10-31T19:00:10+00:00",
+  "git": {
+    "branch": "codex/group3-all-pairs-v1",
+    "head": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+    "note": "uncommitted and untracked files are part of the working tree; the code hash covers them"
+  },
+  "pair_identity": {
+    "library_version": "hospital_v1@e4d572a97911e967056b29d49a78d2dc9feea483367b6c2cc8dfde213ceecfd8",
+    "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+    "code_commit": "2875e499d79b7264b3fe0414318b30ca8aab1f4d",
+    "code_hash": "d5e179c27f447ad88208cabd9cd0e171535437fa43d03d42b7a6c77079250468",
+    "policy_hash": "3db83d4404293510e52e57ebd2ff30e3491d947cd02e2744109931455c2f9ba3",
+    "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835",
+    "identity_hash": "c4624340015d9015ecc99231a969c1ab8b9f21aa0dc4844b4159747f59e21941"
+  },
+  "sequence_identity": {
+    "pair_identity_hash": "c4624340015d9015ecc99231a969c1ab8b9f21aa0dc4844b4159747f59e21941",
+    "sequence_policy_hash": "c1d9d66dcd1b5b102573c22cd0abb96dafd8e00cbdcc39f52f2cb97310f46bf9",
+    "sequence_code_hash": "059733e0a65efab1bac67869afb7e8e1b413f1238e7c30360fa6303d14464860",
+    "identity_hash": "a3f11715bfcd12417d1133d9a27bdb438b14494ef372497c80ad765e5389db6a"
+  },
+  "pair_code_files": {
+    "src/sign_robot/__init__.py": "6ba1594e809c3b5cadfe16560cb58479ab7b4ad2e1de42db0d7303b9ba03e104",
+    "src/sign_robot/all_pairs.py": "965aa253a93071b4ea1db7411849b3957bd89ebd7168639a5f04e3c61c2d70ff",
+    "src/sign_robot/batch_control.py": "1423ee035e5fcb163368e52af89cb8663ba0ba8671c7aae752e6a5d74b870f3d",
+    "src/sign_robot/contracts.py": "b8c4aa20d57c8462614f4ac9663e7861f5d494ea93774ba4ec252271eb0f1f89",
+    "src/sign_robot/inspection.py": "5da9a1d08e8a0b3411938c501f7d9ffc2d6fe080bb67e35af120cf27714fbfb5",
+    "src/sign_robot/language.py": "87f091ff7974f463e3f80d0de5e020687bce663729845b949eb5092b6b1cb949",
+    "src/sign_robot/learned_motion.py": "dcf304ca409f34ffff62d8d6564918f6ac8e9867bfab8a7edd49ebb86aaf9803",
+    "src/sign_robot/learning_api.py": "3c46053d6c6663a7bc148a9fa386c517acb3a77f2615cd4981738dcbcc609ec2",
+    "src/sign_robot/llm.py": "d91a4454301d1a372e3a364b4c5de83f49d46640d2288750c61aa7d89dd6aa34",
+    "src/sign_robot/motion.py": "04b6a3f34512e21bc9baa2b9840dd7914e9939de8a474a2bd2aa2fe4254f6c13",
+    "src/sign_robot/pair_contract.py": "7cbd580066379c23c7976ab158cde2e7b46cfd07bda8f8acf692b018cacb46cb",
+    "src/sign_robot/pair_fingers.py": "2f7d5fcb5092702c2aa1778ca1864067a6d6ed2da02c62d0e349e29b1055cd3b",
+    "src/sign_robot/pair_routes.py": "409e056b90ed107beac079eb19b9f3035c0dd38df717ae5d6065abbbaa43cab7",
+    "src/sign_robot/pair_runner_v2.py": "64ed0f66164de6cd03bae5b8b59953e9ff7ad68929641f43908f82606863ee93",
+    "src/sign_robot/pair_search.py": "bbd4f520fb18c2ab25dce9c5a010e92133bba56e2786552c183fdd938bb8bc4f",
+    "src/sign_robot/pair_timing.py": "0a82ab05e980a99ea75f78b821abecff66be2bd544dcd9065fdeb728837926d2",
+    "src/sign_robot/pair_verification.py": "f0bcf39ec48a7de10db19605d795a1ddee80ae2db8d86ef838053bfcacb7ac22",
+    "src/sign_robot/pair_verification_v2.py": "1f746fe86ee725975847a2af799e9bdc2aa876f347ec5802aec17b0169913c7b",
+    "src/sign_robot/pair_windows.py": "a6171726e2b9de4cabc3dd312e2eb49c1282c5cabe9bb59df1c36e42ca8139f9",
+    "src/sign_robot/pipeline.py": "86b150d61c79841a806357dd2fcda2348d72ba044e378a12be4dacb52e6aebb1",
+    "src/sign_robot/project_overview.py": "33f2f5947ebdd39b14e90dbf4be90bb94ca20591aa53aaef7c01cf70c406ce27",
+    "src/sign_robot/retarget.py": "dba210a6d8e3ba6a1c8752930422b6cf288fa73302112f7c7d970419afccc209",
+    "src/sign_robot/sequence_assembly.py": "ae66e7ee6deff54e132d28f17af7b56d7fdb0abb6eebaecbaa1a544d1751bb58",
+    "src/sign_robot/sequence_batches.py": "6bcc3cc876483a2532b17623e7c947a285696500fd122c3568b1376b45881786",
+    "src/sign_robot/sequence_contract.py": "36296d8c08732ca134edf7d58955a4f4aa56eba19d8dba6ae8d7b0e677a476ca",
+    "src/sign_robot/sequence_verification.py": "4f72fa8eac20c230d52ee90553dcd487f6e1d731a237caeb4f49634930f5f46c",
+    "src/sign_robot/server.py": "1635acc4a5c7d5b9683b6544047b7263f297b63a09730d79853f59447fe5b9f3",
+    "src/sign_robot/service.py": "1ec1a72fd1ca848b42c8cad14109060a0933385b5efbeaa69bf681b03428a335",
+    "src/sign_robot/transitions.py": "d7453d89a4bd07c2f0792e17ccd098aa3afffe83d74c6c54904318abd6b2dd79",
+    "src/sign_robot/video_skeleton.py": "f5aa2391bf9eafc4e9e4063bee5e32caeb1677bcc7c098b7f3b42fa842e410f6",
+    "scripts/plan_all_pairs.py": "516de961a1b09f21ad2aafc6ea69826948eda579944bbff1fbf3b744dda511f2",
+    "scripts/verify_all_pairs.py": "57c9959e4ec805a7587454b98421c6d3234af9474d10f0c58bbf3f4d990214dc",
+    "scripts/summarize_all_pairs.py": "b10678ea27b4d38b2f5a6cbbf269ef934c3837d7d449bc6ae2be97da4bdb33f9",
+    "scripts/freeze_all_pairs_inputs.py": "7796edf813104fa81eaa11b3d30d282b5a92639bac15a0f117c5fcba9f351b38",
+    "tests/conftest.py": "52e3f7a0acd843923826ab20ee337670ff22e07b385dfbcf3f602280b224ee9a",
+    "tests/pair_v2_fixtures.py": "b353ff1c5951d41ab7e83e7e4b0f33b29bdf2c8f855f99d35dab638da6475aca",
+    "tests/test_all_pairs_contract.py": "4a6615a96d61c66e17b85858de6838af8733fa38f79c85fa6024de03f0a60c47",
+    "tests/test_all_pairs_pipeline.py": "d66e03799942efce32b8762caf9136dd6c8f5e309139525a29202e10ec41c014",
+    "tests/test_analysis.py": "946eae4cc91f9802821b96bd9aeaa8188cf437666629b6fdc8a4483765b14a82",
+    "tests/test_asset_download.py": "7b02f2f49e22d94e3f3e6e252032c26d4de48714c3b58051597df6b228e306f5",
+    "tests/test_edge_aware_cuts_v4.py": "f0786e1aae446548cb502bdae0a746df4fe68a668c6beafe51ec204bee40617e",
+    "tests/test_evaluation.py": "dfdaa4761a9b01b30f077af04cf1f76cf61bed90c1010366127848400563bea4",
+    "tests/test_hospital35_batches.py": "99717cc8d3b4a24e3dc6cd2ecb43eed75a07ba50482ab488fed1087c58bf708d",
+    "tests/test_hospital35_freeze.py": "c0e0ede50538cba09afa04ebaa57a61901f505ef012a0b554341a4e1bf67d0f1",
+    "tests/test_hospital35_preflight.py": "c51457687cd00f88e6ed5ba86ef34c945be9eea22d3d58f6a8d1dbf054bf0fdd",
+    "tests/test_hospital35_protection_import.py": "d409825bcde788467e73e4c2878eabd5974eb74a0e446a7e60b78062fa9a6503",
+    "tests/test_inspection.py": "35f50e3b8614fc155ef2d7e9ebbdfd57b862f1833744f360d41e1ef755636711",
+    "tests/test_inspection_access.py": "3c0ad6a986a9658f6b179a0ec5524d53935cc7dd02f9403b3aab3d1178638323",
+    "tests/test_language.py": "bb113e6d9cf264c2cefe7de1bef6bca3654c234ba9f0eb45118a7ad4964c0195",
+    "tests/test_learned_motion.py": "fe8e85e200b2ed7faf33e7d10d6870aa4f6b662de641a56070efcd51f7561ea5",
+    "tests/test_learning_api.py": "695bf52c703388c20f171b8347896320356ead15960bed58dfbe0419265d2c55",
+    "tests/test_lift_off_arrival_v5.py": "8f3a22b1b233d82f693e5508591f5d527c49b313c3817cc73796e59240c93553",
+    "tests/test_motion.py": "d65d0be6d1ded945ad9521df310aafc4a3f784a289f639928066ae14a1a45e57",
+    "tests/test_pair_contract_v2.py": "986d223e520579323c34340da67cced41139509394fa162495b8c28aefe4a3c9",
+    "tests/test_pair_fingers_v2.py": "9894ea3625a190d68c43469e079c33181a52f577d0bcc31df5b01cd34ca97898",
+    "tests/test_pair_routes_v2.py": "a978d30a81a8b2c22662790bc6638e96606f21afecfa65b0144f18b1314a67bc",
+    "tests/test_pair_runner_v2.py": "93af276bc63454765c086e4b9cb29c8ebf323f8daf6d8d9f0aae9d95aa49654e",
+    "tests/test_pair_search_v2.py": "b69594eb8da167da6782ac7ef04e2fa105e2b53983994e51c8923904c036ad32",
+    "tests/test_pair_timing_v2.py": "d84dd1ac364ad31033185b9b6ac5a3832cc4f84a82704288367f5859a4b321f7",
+    "tests/test_pair_verification_v2.py": "ac89a02a313f91a2c3dedde540875b52b84a9443bd2a528c4a8c5d0b76372e55",
+    "tests/test_pair_windows_v2.py": "9cf5dc9951030cbcbe20fbec8d72258c5259f63abcb7c55d916ed490ff88c422",
+    "tests/test_pipeline.py": "eae110473e5ee1aad5ac7f1e7335a9aeeea04e2ec6629a570551956404ca64ee",
+    "tests/test_plan_transitions.py": "fd9dcafc7b88939167f78a3a2d0866cd98400df71c534dfa4811fc9c95381947",
+    "tests/test_project_overview.py": "ff81e914b1bbaab73056785efc95a1fe87df9f74670b579c54cb220ace9581ab",
+    "tests/test_retarget.py": "a03e78c27ecc07f500b3e1c98c9bbc856aecea0a0a46fa6cb8091a0897f251cd",
+    "tests/test_rrt_connect.py": "4e8d5bd2be57374d307c5d7d49008954012afd26534eefc9b9a298b293e4c6e8",
+    "tests/test_sequence_blockers.py": "91e479b4ee9315265ec95b4adaf06507a9d60f7b32b9ef1488baf75371825c2e",
+    "tests/test_sequence_combinations.py": "4becd215f017c61af564ddc8d15d4a163f045d5c9d5ba3e9c99b8d8ddfe95319",
+    "tests/test_sequence_v1.py": "9e7bb06a1bdf7e9465d44d1cbb3952e08b930d4fa84bf665e593d2888030d737",
+    "tests/test_server.py": "a8210981f00582fb08920d0a490d13ea46f95578d8bd711c6741b080a7f756f2",
+    "tests/test_service.py": "fa67f6dd4a02c531dad99549cc0c2a9b08a0d6c533efd08c66284a1388ba60eb",
+    "tests/test_transition_endpoint_gate.py": "2a537ecb2d0730cd43f557b41afc2b213fd60382adacb820ae47b7927f2766f6",
+    "tests/test_transition_render.py": "48a6cd07bfd990bb30f8bb09f9d9da31edf47cf87ad242a100816986b038c705",
+    "tests/test_transition_scope_v3.py": "04fa59c5bb2e590f43f2424d6bb65fa137d5a98436b614ca27fa3a7a81160eb1",
+    "tests/test_user_protected_correction.py": "1f727ccd3b11247d7e2e13494c28bc79a168e3c45de028850d22510ff025564c",
+    "tests/test_user_protected_cuts.py": "9be3092ba13f266119b9f8f813face2ab9551b98c0c4b6cc87cdd3dc16a1ca9c",
+    "tests/test_user_protected_render.py": "6daff41929423ebca8b74358755941401af04082129124d79adb51c2579de867",
+    "tests/test_user_protected_routes.py": "35beecbea0048aad392b96cea1bed7e53cb28be388f6e95b7ddf440de33be238",
+    "tests/test_user_protected_verification.py": "c2a827b4c59c61ab7d1457aac6019b9854cd36b0299fbf2939a5d7320e6aa2c6",
+    "tests/test_user_protected_windows.py": "13a7f5810d510da3f68354fd0a20c20c16e472915927aa532c18ee8dc503806b",
+    "scripts/screen_user_protected_cuts.py": "6af5384b8786c98fc98e14cf721c86708f37fe9b6843e8bf3e216c9c60a7746f",
+    "scripts/render_user_protected_pairs.py": "2caea8135a77bc713f24da7921e658c940056e5e4d61e0254198e3b076ae8b92",
+    "scripts/import_user_protections.py": "7280eefedd70ba216f814281a88ab051742d50919cd8991584523d3cb077a910",
+    "scripts/preflight_hospital35.py": "808713394414c8bcb0b893ae7577ee5aeb49a056de5ba210604d250323035abd",
+    "scripts/run_hospital35_batches.py": "a329c327f607bc61e60a26a3a074cff479f56dfe9ba7b0d4bbfced8665ebaff9"
+  },
+  "pair_code_file_count": 85,
+  "sequence_code_file_count": 88,
+  "environment": {
+    "python": "3.12.3",
+    "implementation": "CPython",
+    "system": "Linux",
+    "machine": "x86_64",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "mujoco": "3.15.0",
+      "Pillow": "12.3.0",
+      "imageio": "2.38.0",
+      "imageio-ffmpeg": "0.6.0"
+    },
+    "threads": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "environment_id": "599c49bedf2ffe0a5b933a1b518ec13510d906b7a14b0cd3c3a632851223d835"
+  },
+  "inputs": {
+    "ods_copy": {
+      "path": "data/user_protection/hospital35_20261101/protection_intervals.ods",
+      "sha256": "4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3"
+    },
+    "protection_bundle": {
+      "path": "config/user_protected_hospital35_v1.json",
+      "sha256": "d19fec39dcc28dd54fa3d93260dbe0bcbec81062cd190669f74681c5172e3ae0"
+    },
+    "protection_provenance": {
+      "path": "config/user_protected_hospital35_v1.provenance.json",
+      "sha256": "467a6d507786e593bbe26b4912ba5c415b2f79f80a56d520c983c36ee67b0310"
+    },
+    "pair_policy": {
+      "path": "config/transition_policy_user_protected_hospital35_v1.json",
+      "sha256": "d0bc6d9182a72bd1e13106c7732206083ae26acc377f8b60829ed431a5bc59c1"
+    },
+    "sequence_policy": {
+      "path": "config/sequence_policy_hospital35_v1.json",
+      "sha256": "a37615d852d8db7fcdbdb1fb8c589cc7c21eec33bf9783bc5daa1f27fd4420a6"
+    },
+    "hospital_mapping": {
+      "path": "motions/hospital_v1_motions.json",
+      "sha256": "cf7e3a1285794e2d39d5d51e42da12012c9f1a9478e21274fd8473d7ec2af1a2"
+    },
+    "contract": {
+      "path": "contracts/all_pairs_user_protected_v1.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f"
+    }
+  },
+  "library_version": "hospital_v1@e4d572a97911e967056b29d49a78d2dc9feea483367b6c2cc8dfde213ceecfd8",
+  "model_hash": "e6ce9a67c9f2ff8b092c5be8313b444f621b5350e435bf30b1e747691b247ecd",
+  "frozen_definitions": {
+    "batch_manifest": {
+      "path": "results/hospital35_protected_20261101_001/batches/manifest.json",
+      "sha256": "fb7c56187f6a1edded67b3c701fde6746a3c87d49eeff62af303ca19231ebf19",
+      "batches": 79
+    },
+    "case_manifest": {
+      "path": "results/hospital35_protected_20261101_001/sequence_cases/case_manifest.json",
+      "sha256": "3e453cfdb89281a2258db7b3719c8d18b9f261bab8d88d4872837d2457bbe8ab",
+      "denominator": 111,
+      "subbatches": 14,
+      "expected_identity": {
+        "pair_identity_hash": "c4624340015d9015ecc99231a969c1ab8b9f21aa0dc4844b4159747f59e21941",
+        "sequence_identity_hash": "a3f11715bfcd12417d1133d9a27bdb438b14494ef372497c80ad765e5389db6a"
+      }
+    }
+  },
+  "case_manifest_identity_matches": true,
+  "preflight_final": {
+    "path": "results/hospital35_protected_20261101_001/preflight_final/preflight.json",
+    "sha256": "8a32360f1cd43a6304a64da7b59885ee370f2bd753446c06a0ca7f0afa2f5a6f",
+    "identity_matches_freeze": true,
+    "status": "COMPLETE",
+    "label_counts": {
+      "CORE_SOURCE_DEFECT": 24,
+      "PREFLIGHT_CLEAR": 11
+    },
+    "affected_pairs_any": 1104
+  },
+  "tests": {
+    "focused": {
+      "path": "results/hospital35_protected_20261101_001/freeze/pytest_focused_final.log",
+      "sha256": "a479c09da8fa22f786eeec85e54449e817d169a57566349fa0f5a30931ef9430",
+      "command": "$ .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_user_protected_windows.py tests/test_user_protected_correction.py tests/test_pair_runner_v2.py tests/test_lift_off_arrival_v5.py tests/test_sequence_v1.py tests/test_hospital35_protection_import.py tests/test_hospital35_preflight.py tests/test_hospital35_batches.py tests/test_sequence_combinations.py tests/test_sequence_blockers.py tests/test_hospital35_freeze.py",
+      "summary": "222 passed in 51.84s",
+      "exit": "exit 0"
+    },
+    "full": {
+      "path": "results/hospital35_protected_20261101_001/freeze/pytest_full_candidate_002.log",
+      "sha256": "4335dd1db2664111df376a48e79a1c30dc616939542b0582d55c59a0d83416d9",
+      "command": "$ .venv/bin/python -m pytest -q -p no:cacheprovider tests",
+      "summary": "962 passed in 117.54s (0:01:57)",
+      "exit": "exit 0"
+    }
+  },
+  "rules_after_freeze": [
+    "no edits to src/sign_robot, tests, identity scripts, docs/README*.md or project_overview.py",
+    "config, policies, bundle and motions unchanged",
+    "a needed code change means a new version and a new run_id"
+  ],
+  "formal_acceptance_enabled": false
+}

@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "COME__YES",
+    "YES__COME",
+    "NOW__YES",
+    "YES__NOW",
+    "COME__NO",
+    "NO__COME",
+    "NOW__NO",
+    "NO__NOW",
+    "COME__YOU",
+    "YOU__COME",
+    "NOW__YOU",
+    "YOU__NOW",
+    "COME__YOUR",
+    "YOUR__COME",
+    "NOW__YOUR",
+    "YOUR__NOW"
+  ]
+}

@@ -1,0 +1,9 @@
+{"batch": "rest_018", "stop_reason": "BATCH_COMPLETE", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_018/invocation_001.json", "selected": 0, "pairs": 16}
+{"batch": "rest_022", "stop_reason": "BATCH_COMPLETE", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_022/invocation_001.json", "selected": 0, "pairs": 16}
+{"batch": "rest_026", "stop_reason": "BATCH_COMPLETE", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_026/invocation_001.json", "selected": 0, "pairs": 16}
+{"batch": "rest_030", "stop_reason": "BATCH_COMPLETE", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_030/invocation_001.json", "selected": 0, "pairs": 16}
+{"batch": "rest_042", "stop_reason": "BACKLOG_NOT_CLEARED", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_042/invocation_001.json", "selected": 0, "pairs": 16}
+{"batch": "rest_018", "stop_reason": "BACKLOG_NOT_CLEARED", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_018/invocation_002.json", "selected": 0, "pairs": 16}
+{"batch": "rest_034", "stop_reason": "BATCH_COMPLETE", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_034/invocation_001.json", "selected": 0, "pairs": 16}
+{"batch": "rest_018", "stop_reason": "BATCH_COMPLETE", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_018/invocation_003.json", "selected": 0, "pairs": 16}
+{"batch": "rest_038", "stop_reason": "STOP_REQUESTED", "log": "results/hospital35_protected_20261101_001/batch_control/pair_batches/rest_038/invocation_001.json", "selected": 0, "pairs": 16}

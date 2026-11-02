@@ -1,0 +1,43 @@
+{
+ "identity_matches_current": true,
+ "code_files": 70,
+ "input_files": 144,
+ "code_files_equal": true,
+ "input_files_equal": true,
+ "selected": {
+  "COME__NOW": {
+   "attempt_id": "attempt_00016",
+   "candidate_file": "candidates/COME__NOW/attempt_00016.json",
+   "sha256": "7e0c28d6c1a3121b0d6aa2b5c462ca02c497701fa0fd499bf51954f5546216ca",
+   "numerical_pass_candidates": 7
+  },
+  "NOW__NOW": {
+   "attempt_id": "attempt_00015",
+   "candidate_file": "candidates/NOW__NOW/attempt_00015.json",
+   "sha256": "4d17bca1fb88501b9584d569e68aeeb0974b9b9434482bc96fae99c0fe481f37",
+   "numerical_pass_candidates": 8
+  },
+  "NOW__COME": {
+   "attempt_id": "attempt_00023",
+   "candidate_file": "candidates/NOW__COME/attempt_00023.json",
+   "sha256": "bb9b56846b4e7c9f409f609baf24627c2fb742113bfb9a716a39ef9f2826a1c9",
+   "numerical_pass_candidates": 17
+  },
+  "COME__COME": {
+   "attempt_id": "attempt_00003",
+   "candidate_file": "candidates/COME__COME/attempt_00003.json",
+   "sha256": "33b5909e6a0839bd6e90cd76cf221aeeb5ff34f10124261d9cd313d879d6d1aa",
+   "numerical_pass_candidates": 13
+  }
+ },
+ "three_word_cases": [
+  "COME__COME__COME",
+  "COME__COME__NOW",
+  "COME__NOW__COME",
+  "COME__NOW__NOW",
+  "NOW__COME__COME",
+  "NOW__COME__NOW",
+  "NOW__NOW__COME",
+  "NOW__NOW__NOW"
+ ]
+}

@@ -1,0 +1,1493 @@
+{
+  "schema_version": 1,
+  "kind": "user_protection_import_provenance_v1",
+  "importer": {
+    "path": "scripts/import_user_protections.py",
+    "sha256": "7280eefedd70ba216f814281a88ab051742d50919cd8991584523d3cb077a910"
+  },
+  "ods": {
+    "path": "data/user_protection/hospital35_20261101/protection_intervals.ods",
+    "sha256": "4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3",
+    "sheet": "保护区间填写",
+    "header_cells": {
+      "A1": "词语",
+      "B1": "开始秒数",
+      "C1": "结束秒数"
+    },
+    "record_cells": "A2:C36",
+    "read": "stored office:value only; formulas, empty, non-finite and display/value mismatches rejected"
+  },
+  "hospital_mapping": {
+    "path": "motions/hospital_v1_motions.json",
+    "sha256": "cf7e3a1285794e2d39d5d51e42da12012c9f1a9478e21274fd8473d7ec2af1a2"
+  },
+  "base_policy": {
+    "path": "config/transition_policy_user_protected_v5.json",
+    "sha256": "4a08faee59d0b1dec77fb5106261a7b2f75d66147278d7646eb51061d198261f"
+  },
+  "bundle": {
+    "path": "config/user_protected_hospital35_v1.json",
+    "sha256": "d19fec39dcc28dd54fa3d93260dbe0bcbec81062cd190669f74681c5172e3ae0",
+    "bundle_id": "user-protection-hospital35-20261101-v1",
+    "window_version": "hospital35-user-protection-20261101-v1",
+    "record_count": 35
+  },
+  "policy": {
+    "path": "config/transition_policy_user_protected_hospital35_v1.json",
+    "sha256": "d0bc6d9182a72bd1e13106c7732206083ae26acc377f8b60829ed431a5bc59c1",
+    "policy_id": "group3-hospital35-user-protected-development-v1",
+    "changed_fields": [
+      "policy_id",
+      "endpoints.window_version",
+      "endpoints.protection_file",
+      "endpoints.protection_bundle_sha256"
+    ]
+  },
+  "rounding": "zero-based inclusive [floor(start*30), ceil(end*30)]; Decimal and the loader's float rule must agree",
+  "sheet_order_equals_policy_order": true,
+  "rows": [
+    {
+      "row": 2,
+      "cells": {
+        "gloss": "A2",
+        "start": "B2",
+        "end": "C2"
+      },
+      "gloss": "HELLO",
+      "start_value": "0.9",
+      "end_value": "2.2",
+      "library": "motions/studio_galt_v1",
+      "motion": "motions/studio_galt_v1/HELLO.npz",
+      "motion_sha256": "d26edc80c22c222c72afc2973746199de03245b9cdae040400c1fec8587f636a",
+      "frame_count": 114,
+      "protected_core_frames": [
+        27,
+        66
+      ],
+      "rounding_audit": {
+        "start_times_30": "27.0",
+        "end_times_30": "66.0",
+        "decimal_frames": [
+          27,
+          66
+        ],
+        "float_frames": [
+          27,
+          66
+        ],
+        "last_frame_time_s": "3.766666666666666666666666667"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        89
+      ],
+      "hospital_sign_frames_hint": [
+        33,
+        77
+      ],
+      "protected_frame_count": 40
+    },
+    {
+      "row": 3,
+      "cells": {
+        "gloss": "A3",
+        "start": "B3",
+        "end": "C3"
+      },
+      "gloss": "PLEASE",
+      "start_value": "0.9",
+      "end_value": "2.17",
+      "library": "motions/studio_galt_v1",
+      "motion": "motions/studio_galt_v1/PLEASE.npz",
+      "motion_sha256": "644c8699d245751fca2944b3dc57fb700c789dcf42a628fcd74fa7ee8f31166f",
+      "frame_count": 109,
+      "protected_core_frames": [
+        27,
+        66
+      ],
+      "rounding_audit": {
+        "start_times_30": "27.0",
+        "end_times_30": "65.10",
+        "decimal_frames": [
+          27,
+          66
+        ],
+        "float_frames": [
+          27,
+          66
+        ],
+        "last_frame_time_s": "3.6"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        84
+      ],
+      "hospital_sign_frames_hint": [
+        35,
+        76
+      ],
+      "protected_frame_count": 40
+    },
+    {
+      "row": 4,
+      "cells": {
+        "gloss": "A4",
+        "start": "B4",
+        "end": "C4"
+      },
+      "gloss": "THANK-YOU",
+      "start_value": "0.57",
+      "end_value": "2.9",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/THANK-YOU.npz",
+      "motion_sha256": "040c0cdea15d58744d32563d111ab2c85cd49293dda78c3183ff4225fe40818d",
+      "frame_count": 115,
+      "protected_core_frames": [
+        17,
+        87
+      ],
+      "rounding_audit": {
+        "start_times_30": "17.10",
+        "end_times_30": "87.0",
+        "decimal_frames": [
+          17,
+          87
+        ],
+        "float_frames": [
+          17,
+          87
+        ],
+        "last_frame_time_s": "3.8"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        90
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        80
+      ],
+      "protected_frame_count": 71
+    },
+    {
+      "row": 5,
+      "cells": {
+        "gloss": "A5",
+        "start": "B5",
+        "end": "C5"
+      },
+      "gloss": "SORRY",
+      "start_value": "0.7",
+      "end_value": "5.57",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/SORRY.npz",
+      "motion_sha256": "4404913c8cad98430d4a0cd7c94ef5b18adf46e06c9b86ec598c3dfba9bbff2e",
+      "frame_count": 188,
+      "protected_core_frames": [
+        21,
+        168
+      ],
+      "rounding_audit": {
+        "start_times_30": "21.0",
+        "end_times_30": "167.10",
+        "decimal_frames": [
+          21,
+          168
+        ],
+        "float_frames": [
+          21,
+          168
+        ],
+        "last_frame_time_s": "6.233333333333333333333333333"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        163
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        132
+      ],
+      "protected_frame_count": 148
+    },
+    {
+      "row": 6,
+      "cells": {
+        "gloss": "A6",
+        "start": "B6",
+        "end": "C6"
+      },
+      "gloss": "YES",
+      "start_value": "0.63",
+      "end_value": "2.3",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/YES.npz",
+      "motion_sha256": "dd29f2430c76ef96a4530147def04625283f30ff057b588b8cbe95a080eedefe",
+      "frame_count": 115,
+      "protected_core_frames": [
+        18,
+        69
+      ],
+      "rounding_audit": {
+        "start_times_30": "18.90",
+        "end_times_30": "69.0",
+        "decimal_frames": [
+          18,
+          69
+        ],
+        "float_frames": [
+          18,
+          69
+        ],
+        "last_frame_time_s": "3.8"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        90
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        76
+      ],
+      "protected_frame_count": 52
+    },
+    {
+      "row": 7,
+      "cells": {
+        "gloss": "A7",
+        "start": "B7",
+        "end": "C7"
+      },
+      "gloss": "NO",
+      "start_value": "0.7",
+      "end_value": "3.5",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/NO.npz",
+      "motion_sha256": "4c8af90a878fc4d0919a8d8f2bed4270b9beada6eb632b3c7c04518c714c7247",
+      "frame_count": 154,
+      "protected_core_frames": [
+        21,
+        105
+      ],
+      "rounding_audit": {
+        "start_times_30": "21.0",
+        "end_times_30": "105.0",
+        "decimal_frames": [
+          21,
+          105
+        ],
+        "float_frames": [
+          21,
+          105
+        ],
+        "last_frame_time_s": "5.1"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        129
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        118
+      ],
+      "protected_frame_count": 85
+    },
+    {
+      "row": 8,
+      "cells": {
+        "gloss": "A8",
+        "start": "B8",
+        "end": "C8"
+      },
+      "gloss": "YOU",
+      "start_value": "1.53",
+      "end_value": "2.37",
+      "library": "motions/studio_galt_v1",
+      "motion": "motions/studio_galt_v1/YOU.npz",
+      "motion_sha256": "ab42f2abccc3ad7275cb99fb518cd01627cfca5eb25664b95d2713abfb47649f",
+      "frame_count": 143,
+      "protected_core_frames": [
+        45,
+        72
+      ],
+      "rounding_audit": {
+        "start_times_30": "45.90",
+        "end_times_30": "71.10",
+        "decimal_frames": [
+          45,
+          72
+        ],
+        "float_frames": [
+          45,
+          72
+        ],
+        "last_frame_time_s": "4.733333333333333333333333333"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        118
+      ],
+      "hospital_sign_frames_hint": [
+        42,
+        98
+      ],
+      "protected_frame_count": 28
+    },
+    {
+      "row": 9,
+      "cells": {
+        "gloss": "A9",
+        "start": "B9",
+        "end": "C9"
+      },
+      "gloss": "YOUR",
+      "start_value": "1.1",
+      "end_value": "2.43",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/YOUR.npz",
+      "motion_sha256": "7e0b5dbdad5ccdbcd514129851de0f38ad6cdf3b3081ea3c5d1b14a43db98e6c",
+      "frame_count": 133,
+      "protected_core_frames": [
+        33,
+        73
+      ],
+      "rounding_audit": {
+        "start_times_30": "33.0",
+        "end_times_30": "72.90",
+        "decimal_frames": [
+          33,
+          73
+        ],
+        "float_frames": [
+          33,
+          73
+        ],
+        "last_frame_time_s": "4.4"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        108
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        91
+      ],
+      "protected_frame_count": 41
+    },
+    {
+      "row": 10,
+      "cells": {
+        "gloss": "A10",
+        "start": "B10",
+        "end": "C10"
+      },
+      "gloss": "ME",
+      "start_value": "1",
+      "end_value": "2.5",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/ME.npz",
+      "motion_sha256": "7470dbf5e39cf402c5bc16187646beab2f0d2ea4335b5ed61002b05b814c3d0c",
+      "frame_count": 135,
+      "protected_core_frames": [
+        30,
+        75
+      ],
+      "rounding_audit": {
+        "start_times_30": "30",
+        "end_times_30": "75.0",
+        "decimal_frames": [
+          30,
+          75
+        ],
+        "float_frames": [
+          30,
+          75
+        ],
+        "last_frame_time_s": "4.466666666666666666666666667"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        110
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        87
+      ],
+      "protected_frame_count": 46
+    },
+    {
+      "row": 11,
+      "cells": {
+        "gloss": "A11",
+        "start": "B11",
+        "end": "C11"
+      },
+      "gloss": "DEAF",
+      "start_value": "1.1",
+      "end_value": "1.9",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/DEAF.npz",
+      "motion_sha256": "073f5453e484f9a63c445f8fdfabcf85679b9d04b28f972fe651841cb9b4d908",
+      "frame_count": 114,
+      "protected_core_frames": [
+        33,
+        57
+      ],
+      "rounding_audit": {
+        "start_times_30": "33.0",
+        "end_times_30": "57.0",
+        "decimal_frames": [
+          33,
+          57
+        ],
+        "float_frames": [
+          33,
+          57
+        ],
+        "last_frame_time_s": "3.766666666666666666666666667"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        89
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        66
+      ],
+      "protected_frame_count": 25
+    },
+    {
+      "row": 12,
+      "cells": {
+        "gloss": "A12",
+        "start": "B12",
+        "end": "C12"
+      },
+      "gloss": "DOCTOR",
+      "start_value": "1.15",
+      "end_value": "1.87",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/DOCTOR.npz",
+      "motion_sha256": "639f93c6b9c6985e8a898a1a8f7a438584e94ab61f353a10823490b252364461",
+      "frame_count": 121,
+      "protected_core_frames": [
+        34,
+        57
+      ],
+      "rounding_audit": {
+        "start_times_30": "34.50",
+        "end_times_30": "56.10",
+        "decimal_frames": [
+          34,
+          57
+        ],
+        "float_frames": [
+          34,
+          57
+        ],
+        "last_frame_time_s": "4"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        96
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        78
+      ],
+      "protected_frame_count": 24
+    },
+    {
+      "row": 13,
+      "cells": {
+        "gloss": "A13",
+        "start": "B13",
+        "end": "C13"
+      },
+      "gloss": "NURSE",
+      "start_value": "1.27",
+      "end_value": "2.63",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/NURSE.npz",
+      "motion_sha256": "f75945f059ef18a5f8888c9499e9160ada02ad9aea5a37f2850fb9a4f4dd391f",
+      "frame_count": 127,
+      "protected_core_frames": [
+        38,
+        79
+      ],
+      "rounding_audit": {
+        "start_times_30": "38.10",
+        "end_times_30": "78.90",
+        "decimal_frames": [
+          38,
+          79
+        ],
+        "float_frames": [
+          38,
+          79
+        ],
+        "last_frame_time_s": "4.2"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        102
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        88
+      ],
+      "protected_frame_count": 42
+    },
+    {
+      "row": 14,
+      "cells": {
+        "gloss": "A14",
+        "start": "B14",
+        "end": "C14"
+      },
+      "gloss": "INTERPRETER",
+      "start_value": "1",
+      "end_value": "2",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/INTERPRETER.npz",
+      "motion_sha256": "3a159a8bd9af71563d85fe25cf69dbf7dc8d62dcd1b76ac2fdee0e099495662c",
+      "frame_count": 102,
+      "protected_core_frames": [
+        30,
+        60
+      ],
+      "rounding_audit": {
+        "start_times_30": "30",
+        "end_times_30": "60",
+        "decimal_frames": [
+          30,
+          60
+        ],
+        "float_frames": [
+          30,
+          60
+        ],
+        "last_frame_time_s": "3.366666666666666666666666667"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        77
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        64
+      ],
+      "protected_frame_count": 31
+    },
+    {
+      "row": 15,
+      "cells": {
+        "gloss": "A15",
+        "start": "B15",
+        "end": "C15"
+      },
+      "gloss": "APPOINTMENT",
+      "start_value": "2.3",
+      "end_value": "4.4",
+      "library": "motions/studio_galt_v1",
+      "motion": "motions/studio_galt_v1/APPOINTMENT.npz",
+      "motion_sha256": "a9ea24fd8be9e6044413a975f97bb8bd5619a54b25c3118c588605100883cdc2",
+      "frame_count": 187,
+      "protected_core_frames": [
+        69,
+        132
+      ],
+      "rounding_audit": {
+        "start_times_30": "69.0",
+        "end_times_30": "132.0",
+        "decimal_frames": [
+          69,
+          132
+        ],
+        "float_frames": [
+          69,
+          132
+        ],
+        "last_frame_time_s": "6.2"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        162
+      ],
+      "hospital_sign_frames_hint": [
+        55,
+        147
+      ],
+      "protected_frame_count": 64
+    },
+    {
+      "row": 16,
+      "cells": {
+        "gloss": "A16",
+        "start": "B16",
+        "end": "C16"
+      },
+      "gloss": "MEDICINE",
+      "start_value": "0.9",
+      "end_value": "2.3",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/MEDICINE.npz",
+      "motion_sha256": "b8c5e0b7ade5c7a30c19d0cb8f938214956e69754087bbb42889d3f0f2f7bfa6",
+      "frame_count": 118,
+      "protected_core_frames": [
+        27,
+        69
+      ],
+      "rounding_audit": {
+        "start_times_30": "27.0",
+        "end_times_30": "69.0",
+        "decimal_frames": [
+          27,
+          69
+        ],
+        "float_frames": [
+          27,
+          69
+        ],
+        "last_frame_time_s": "3.9"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        93
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        74
+      ],
+      "protected_frame_count": 43
+    },
+    {
+      "row": 17,
+      "cells": {
+        "gloss": "A17",
+        "start": "B17",
+        "end": "C17"
+      },
+      "gloss": "STOMACH",
+      "start_value": "1.1",
+      "end_value": "2.5",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/STOMACH.npz",
+      "motion_sha256": "23bb66ab1be21b944e11f6e599a2044b3e37636c1ce0ed109d04e6e3fe6d37e0",
+      "frame_count": 112,
+      "protected_core_frames": [
+        33,
+        75
+      ],
+      "rounding_audit": {
+        "start_times_30": "33.0",
+        "end_times_30": "75.0",
+        "decimal_frames": [
+          33,
+          75
+        ],
+        "float_frames": [
+          33,
+          75
+        ],
+        "last_frame_time_s": "3.7"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        87
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        66
+      ],
+      "protected_frame_count": 43
+    },
+    {
+      "row": 18,
+      "cells": {
+        "gloss": "A18",
+        "start": "B18",
+        "end": "C18"
+      },
+      "gloss": "HEADACHE",
+      "start_value": "0.9",
+      "end_value": "2.47",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/HEADACHE.npz",
+      "motion_sha256": "485f8cdef5773472c983a45f684096f4b55b11204cf0f30848f4dcbab6eb13ee",
+      "frame_count": 129,
+      "protected_core_frames": [
+        27,
+        75
+      ],
+      "rounding_audit": {
+        "start_times_30": "27.0",
+        "end_times_30": "74.10",
+        "decimal_frames": [
+          27,
+          75
+        ],
+        "float_frames": [
+          27,
+          75
+        ],
+        "last_frame_time_s": "4.266666666666666666666666667"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        104
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        88
+      ],
+      "protected_frame_count": 49
+    },
+    {
+      "row": 19,
+      "cells": {
+        "gloss": "A19",
+        "start": "B19",
+        "end": "C19"
+      },
+      "gloss": "HAVE",
+      "start_value": "0.83",
+      "end_value": "1.8",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/HAVE.npz",
+      "motion_sha256": "0991bf7c0d0406c9c3e4049ea4b4ee1502a20a483a764b8cede54e2e1a8e4867",
+      "frame_count": 104,
+      "protected_core_frames": [
+        24,
+        54
+      ],
+      "rounding_audit": {
+        "start_times_30": "24.90",
+        "end_times_30": "54.0",
+        "decimal_frames": [
+          24,
+          54
+        ],
+        "float_frames": [
+          24,
+          54
+        ],
+        "last_frame_time_s": "3.433333333333333333333333333"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        79
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        61
+      ],
+      "protected_frame_count": 31
+    },
+    {
+      "row": 20,
+      "cells": {
+        "gloss": "A20",
+        "start": "B20",
+        "end": "C20"
+      },
+      "gloss": "NEED",
+      "start_value": "1",
+      "end_value": "3.1",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/NEED.npz",
+      "motion_sha256": "c4ab9fc0ea73c2378b17eaf197ff46a2c5dbd937e22d84b99c11b3ed6e18c173",
+      "frame_count": 142,
+      "protected_core_frames": [
+        30,
+        93
+      ],
+      "rounding_audit": {
+        "start_times_30": "30",
+        "end_times_30": "93.0",
+        "decimal_frames": [
+          30,
+          93
+        ],
+        "float_frames": [
+          30,
+          93
+        ],
+        "last_frame_time_s": "4.7"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        117
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        102
+      ],
+      "protected_frame_count": 64
+    },
+    {
+      "row": 21,
+      "cells": {
+        "gloss": "A21",
+        "start": "B21",
+        "end": "C21"
+      },
+      "gloss": "WAIT",
+      "start_value": "0.9",
+      "end_value": "2.8",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/WAIT.npz",
+      "motion_sha256": "d02a3d7b07708ab4fd772ec6aa91ffdc10b5fcfaff7b3e79c703cac7c660a579",
+      "frame_count": 131,
+      "protected_core_frames": [
+        27,
+        84
+      ],
+      "rounding_audit": {
+        "start_times_30": "27.0",
+        "end_times_30": "84.0",
+        "decimal_frames": [
+          27,
+          84
+        ],
+        "float_frames": [
+          27,
+          84
+        ],
+        "last_frame_time_s": "4.333333333333333333333333333"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        106
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        93
+      ],
+      "protected_frame_count": 58
+    },
+    {
+      "row": 22,
+      "cells": {
+        "gloss": "A22",
+        "start": "B22",
+        "end": "C22"
+      },
+      "gloss": "COME",
+      "start_value": "0.93",
+      "end_value": "4.4",
+      "library": "motions/studio_galt_v1",
+      "motion": "motions/studio_galt_v1/COME.npz",
+      "motion_sha256": "75d6455408ce6584043baedbd0e049cbeabcad534eda65ef561d2c7293b477a4",
+      "frame_count": 201,
+      "protected_core_frames": [
+        27,
+        132
+      ],
+      "rounding_audit": {
+        "start_times_30": "27.90",
+        "end_times_30": "132.0",
+        "decimal_frames": [
+          27,
+          132
+        ],
+        "float_frames": [
+          27,
+          132
+        ],
+        "last_frame_time_s": "6.666666666666666666666666667"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        176
+      ],
+      "hospital_sign_frames_hint": [
+        66,
+        161
+      ],
+      "protected_frame_count": 106
+    },
+    {
+      "row": 23,
+      "cells": {
+        "gloss": "A23",
+        "start": "B23",
+        "end": "C23"
+      },
+      "gloss": "HURT",
+      "start_value": "0.9",
+      "end_value": "1.9",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/HURT.npz",
+      "motion_sha256": "a17641061df3e08fab2a5178950c71cae01edca2791072e029590a2ae892e09d",
+      "frame_count": 116,
+      "protected_core_frames": [
+        27,
+        57
+      ],
+      "rounding_audit": {
+        "start_times_30": "27.0",
+        "end_times_30": "57.0",
+        "decimal_frames": [
+          27,
+          57
+        ],
+        "float_frames": [
+          27,
+          57
+        ],
+        "last_frame_time_s": "3.833333333333333333333333333"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        91
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        70
+      ],
+      "protected_frame_count": 31
+    },
+    {
+      "row": 24,
+      "cells": {
+        "gloss": "A24",
+        "start": "B24",
+        "end": "C24"
+      },
+      "gloss": "BREATHE-DEEP",
+      "start_value": "1.4",
+      "end_value": "2.8",
+      "library": "motions/studio_galt_v1",
+      "motion": "motions/studio_galt_v1/BREATHE-DEEP.npz",
+      "motion_sha256": "b6d48bc7d01c0382ef8b3e3c449e0f8b5c8e2c046598b6eb0327c1ac41b70b16",
+      "frame_count": 139,
+      "protected_core_frames": [
+        42,
+        84
+      ],
+      "rounding_audit": {
+        "start_times_30": "42.0",
+        "end_times_30": "84.0",
+        "decimal_frames": [
+          42,
+          84
+        ],
+        "float_frames": [
+          42,
+          84
+        ],
+        "last_frame_time_s": "4.6"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        114
+      ],
+      "hospital_sign_frames_hint": [
+        31,
+        102
+      ],
+      "protected_frame_count": 43
+    },
+    {
+      "row": 25,
+      "cells": {
+        "gloss": "A25",
+        "start": "B25",
+        "end": "C25"
+      },
+      "gloss": "BLOOD-DRAW",
+      "start_value": "1.2",
+      "end_value": "5.5",
+      "library": "motions/studio_galt_v1",
+      "motion": "motions/studio_galt_v1/BLOOD-DRAW.npz",
+      "motion_sha256": "3a73dd8df7e4a925bf4a8d83bf4e101c009e784f1c28f0ee1255f44bf97da964",
+      "frame_count": 216,
+      "protected_core_frames": [
+        36,
+        165
+      ],
+      "rounding_audit": {
+        "start_times_30": "36.0",
+        "end_times_30": "165.0",
+        "decimal_frames": [
+          36,
+          165
+        ],
+        "float_frames": [
+          36,
+          165
+        ],
+        "last_frame_time_s": "7.166666666666666666666666667"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        191
+      ],
+      "hospital_sign_frames_hint": [
+        31,
+        180
+      ],
+      "protected_frame_count": 130
+    },
+    {
+      "row": 26,
+      "cells": {
+        "gloss": "A26",
+        "start": "B26",
+        "end": "C26"
+      },
+      "gloss": "TAKE",
+      "start_value": "1.7",
+      "end_value": "2.6",
+      "library": "motions/studio_galt_v1",
+      "motion": "motions/studio_galt_v1/TAKE.npz",
+      "motion_sha256": "d8d8d6f16ef1c3d388c5dd3582a912148d19d7bf90998f0afcbffea894a5167e",
+      "frame_count": 116,
+      "protected_core_frames": [
+        51,
+        78
+      ],
+      "rounding_audit": {
+        "start_times_30": "51.0",
+        "end_times_30": "78.0",
+        "decimal_frames": [
+          51,
+          78
+        ],
+        "float_frames": [
+          51,
+          78
+        ],
+        "last_frame_time_s": "3.833333333333333333333333333"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        91
+      ],
+      "hospital_sign_frames_hint": [
+        46,
+        84
+      ],
+      "protected_frame_count": 28
+    },
+    {
+      "row": 27,
+      "cells": {
+        "gloss": "A27",
+        "start": "B27",
+        "end": "C27"
+      },
+      "gloss": "UNDERSTAND",
+      "start_value": "0.9",
+      "end_value": "2.6",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/UNDERSTAND.npz",
+      "motion_sha256": "e50fee8ab9342dc6005a8cfd90ecf69d9ef90dbed3d347f76b9994e9aad58e3a",
+      "frame_count": 125,
+      "protected_core_frames": [
+        27,
+        78
+      ],
+      "rounding_audit": {
+        "start_times_30": "27.0",
+        "end_times_30": "78.0",
+        "decimal_frames": [
+          27,
+          78
+        ],
+        "float_frames": [
+          27,
+          78
+        ],
+        "last_frame_time_s": "4.133333333333333333333333333"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        100
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        85
+      ],
+      "protected_frame_count": 52
+    },
+    {
+      "row": 28,
+      "cells": {
+        "gloss": "A28",
+        "start": "B28",
+        "end": "C28"
+      },
+      "gloss": "WRITE",
+      "start_value": "0.9",
+      "end_value": "2.3",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/WRITE.npz",
+      "motion_sha256": "a93d1bc2c5e9cea4ec0edaf7480acc75c9eea059f772117b461127468d57c124",
+      "frame_count": 132,
+      "protected_core_frames": [
+        27,
+        69
+      ],
+      "rounding_audit": {
+        "start_times_30": "27.0",
+        "end_times_30": "69.0",
+        "decimal_frames": [
+          27,
+          69
+        ],
+        "float_frames": [
+          27,
+          69
+        ],
+        "last_frame_time_s": "4.366666666666666666666666667"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        107
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        94
+      ],
+      "protected_frame_count": 43
+    },
+    {
+      "row": 29,
+      "cells": {
+        "gloss": "A29",
+        "start": "B29",
+        "end": "C29"
+      },
+      "gloss": "NOT",
+      "start_value": "0.9",
+      "end_value": "2.27",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/NOT.npz",
+      "motion_sha256": "13b8b2c32a83d761114348853b458af71c4a74b9ef0d4ec08c00eb3ee8c810cf",
+      "frame_count": 111,
+      "protected_core_frames": [
+        27,
+        69
+      ],
+      "rounding_audit": {
+        "start_times_30": "27.0",
+        "end_times_30": "68.10",
+        "decimal_frames": [
+          27,
+          69
+        ],
+        "float_frames": [
+          27,
+          69
+        ],
+        "last_frame_time_s": "3.666666666666666666666666667"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        86
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        70
+      ],
+      "protected_frame_count": 43
+    },
+    {
+      "row": 30,
+      "cells": {
+        "gloss": "A30",
+        "start": "B30",
+        "end": "C30"
+      },
+      "gloss": "NOW",
+      "start_value": "0.9",
+      "end_value": "1.7",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/NOW.npz",
+      "motion_sha256": "2d494c13fdf1b44bb11e97004e7b212ea5c45b7b0f8d0b972bd3589ae63e15e3",
+      "frame_count": 104,
+      "protected_core_frames": [
+        27,
+        51
+      ],
+      "rounding_audit": {
+        "start_times_30": "27.0",
+        "end_times_30": "51.0",
+        "decimal_frames": [
+          27,
+          51
+        ],
+        "float_frames": [
+          27,
+          51
+        ],
+        "last_frame_time_s": "3.433333333333333333333333333"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        79
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        57
+      ],
+      "protected_frame_count": 25
+    },
+    {
+      "row": 31,
+      "cells": {
+        "gloss": "A31",
+        "start": "B31",
+        "end": "C31"
+      },
+      "gloss": "SOON",
+      "start_value": "0.9",
+      "end_value": "2.9",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/SOON.npz",
+      "motion_sha256": "0fe325e7186b5ddd21072d7d7f967eea7bf153f004ecf9d943d33fcd23dd6e97",
+      "frame_count": 150,
+      "protected_core_frames": [
+        27,
+        87
+      ],
+      "rounding_audit": {
+        "start_times_30": "27.0",
+        "end_times_30": "87.0",
+        "decimal_frames": [
+          27,
+          87
+        ],
+        "float_frames": [
+          27,
+          87
+        ],
+        "last_frame_time_s": "4.966666666666666666666666667"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        125
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        94
+      ],
+      "protected_frame_count": 61
+    },
+    {
+      "row": 32,
+      "cells": {
+        "gloss": "A32",
+        "start": "B32",
+        "end": "C32"
+      },
+      "gloss": "LATER",
+      "start_value": "0.9",
+      "end_value": "1.7",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/LATER.npz",
+      "motion_sha256": "b9722ab602e38fab95fc5b7e0c5e9a4c6eeeb9b9924675af4b77451d2deab3a8",
+      "frame_count": 82,
+      "protected_core_frames": [
+        27,
+        51
+      ],
+      "rounding_audit": {
+        "start_times_30": "27.0",
+        "end_times_30": "51.0",
+        "decimal_frames": [
+          27,
+          51
+        ],
+        "float_frames": [
+          27,
+          51
+        ],
+        "last_frame_time_s": "2.7"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        57
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        54
+      ],
+      "protected_frame_count": 25
+    },
+    {
+      "row": 33,
+      "cells": {
+        "gloss": "A33",
+        "start": "B33",
+        "end": "C33"
+      },
+      "gloss": "TOMORROW",
+      "start_value": "0.83",
+      "end_value": "2.2",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/TOMORROW.npz",
+      "motion_sha256": "0228a0538c2007b1bb770b18207323a5c8413f999f4146e1f910559f011a934b",
+      "frame_count": 113,
+      "protected_core_frames": [
+        24,
+        66
+      ],
+      "rounding_audit": {
+        "start_times_30": "24.90",
+        "end_times_30": "66.0",
+        "decimal_frames": [
+          24,
+          66
+        ],
+        "float_frames": [
+          24,
+          66
+        ],
+        "last_frame_time_s": "3.733333333333333333333333333"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        88
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        75
+      ],
+      "protected_frame_count": 43
+    },
+    {
+      "row": 34,
+      "cells": {
+        "gloss": "A34",
+        "start": "B34",
+        "end": "C34"
+      },
+      "gloss": "MORNING",
+      "start_value": "0.87",
+      "end_value": "2.27",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/MORNING.npz",
+      "motion_sha256": "88874e76d81466a7141badf0aa2a5bf98319036d76771a9c39f9b83609ad47f6",
+      "frame_count": 123,
+      "protected_core_frames": [
+        26,
+        69
+      ],
+      "rounding_audit": {
+        "start_times_30": "26.10",
+        "end_times_30": "68.10",
+        "decimal_frames": [
+          26,
+          69
+        ],
+        "float_frames": [
+          26,
+          69
+        ],
+        "last_frame_time_s": "4.066666666666666666666666667"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        98
+      ],
+      "hospital_sign_frames_hint": [
+        24,
+        79
+      ],
+      "protected_frame_count": 44
+    },
+    {
+      "row": 35,
+      "cells": {
+        "gloss": "A35",
+        "start": "B35",
+        "end": "C35"
+      },
+      "gloss": "NIGHT",
+      "start_value": "1.3",
+      "end_value": "2",
+      "library": "motions/wlasl_video_v1",
+      "motion": "motions/wlasl_video_v1/NIGHT.npz",
+      "motion_sha256": "20dece3ae28795bfa9321f4922c3291efc0e979deab9f77f4c314ca9d8a8c4cd",
+      "frame_count": 103,
+      "protected_core_frames": [
+        39,
+        60
+      ],
+      "rounding_audit": {
+        "start_times_30": "39.0",
+        "end_times_30": "60",
+        "decimal_frames": [
+          39,
+          60
+        ],
+        "float_frames": [
+          39,
+          60
+        ],
+        "last_frame_time_s": "3.4"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        78
+      ],
+      "hospital_sign_frames_hint": [
+        35,
+        64
+      ],
+      "protected_frame_count": 22
+    },
+    {
+      "row": 36,
+      "cells": {
+        "gloss": "A36",
+        "start": "B36",
+        "end": "C36"
+      },
+      "gloss": "WHERE",
+      "start_value": "1.7",
+      "end_value": "2.67",
+      "library": "motions/studio_galt_v1",
+      "motion": "motions/studio_galt_v1/WHERE.npz",
+      "motion_sha256": "187ee5ade8ecac185776511354022e32707035c3d277c71b739a710e4aa8a2e2",
+      "frame_count": 136,
+      "protected_core_frames": [
+        51,
+        81
+      ],
+      "rounding_audit": {
+        "start_times_30": "51.0",
+        "end_times_30": "80.10",
+        "decimal_frames": [
+          51,
+          81
+        ],
+        "float_frames": [
+          51,
+          81
+        ],
+        "last_frame_time_s": "4.5"
+      },
+      "hospital_core_frames_hint": [
+        24,
+        111
+      ],
+      "hospital_sign_frames_hint": [
+        40,
+        94
+      ],
+      "protected_frame_count": 31
+    }
+  ],
+  "loader_check": {
+    "function": "sign_robot.pair_windows.load_user_protections",
+    "glosses_loaded": 35,
+    "equals_policy_scope": true
+  },
+  "window_provenance": "algorithm",
+  "formal_acceptance_enabled": false,
+  "semantic_status": "user-selected fragments; not verified ASL; no human or cross-group review recorded"
+}

@@ -1,0 +1,59 @@
+{
+  "sequence_id": "MEDICINE__MORNING__NIGHT__TAKE",
+  "source_sequence": "results/hospital_sentences_20261101_004/sequences/sequences/MEDICINE__MORNING__NIGHT__TAKE/attempt_0001.json",
+  "source_sequence_sha256": "75a331ddb8504d99bc726631fcef51812774a1526fbfb53e33d654f3e44fd4ad",
+  "numerical_checks_passed": true,
+  "verification": "saved independent recheck reused (export_render_inputs.py checks its sequence hash)",
+  "formal_acceptance_enabled": false,
+  "playback_eligible": false,
+  "fps": 30,
+  "video_frames": 460,
+  "video_duration_s": 15.333333333333334,
+  "replay_duration_s": 8.166666666666666,
+  "layout": "original full clips top, sequence bottom; front left, side right; shorter row holds end",
+  "protected_instance_video_checks": [
+    {
+      "instance_id": "o0_MEDICINE",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        0,
+        42
+      ]
+    },
+    {
+      "instance_id": "o1_MORNING",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        83,
+        126
+      ]
+    },
+    {
+      "instance_id": "o2_NIGHT",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        156,
+        177
+      ]
+    },
+    {
+      "instance_id": "o3_TAKE",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        201,
+        228
+      ]
+    }
+  ],
+  "renderer": {
+    "gl_renderer": "NVIDIA GeForce RTX 5060/PCIe/SSE2",
+    "mujoco": "3.15.0",
+    "model_tree_sha256": "d4c772ade61d9b98d6a8c60feec91e854740d364e47cbfa14bc87add00ec4e33",
+    "label_font": "C:/Windows/Fonts/msyh.ttc",
+    "render_wall_time_s": 12.05
+  },
+  "files": {
+    "comparison.mp4": "24dc169f014ac6f2af2434874c46924f31f3171321b1ec21751eb4d845f5a7ed",
+    "contact_sheet.png": "d278474659ed3e111aa79d128e66dd46464240bef28d49bfd881566235ff957b"
+  }
+}

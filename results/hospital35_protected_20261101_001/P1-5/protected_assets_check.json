@@ -1,0 +1,78 @@
+{
+ "results": {
+  "baseline_files": 11546,
+  "unchanged": 11546,
+  "changed_or_missing": [],
+  "added_outside_new_run": [
+   "results/session_logs/service-34377.lock",
+   "results/session_logs/service-36995.lock",
+   "results/session_logs/service-36995.log",
+   "results/session_logs/service-47321.lock",
+   "results/session_logs/service-60313.lock",
+   "results/session_logs/service-60313.log"
+  ]
+ },
+ "motions": {
+  "baseline_files": 395,
+  "unchanged": 395,
+  "changed_or_missing": [],
+  "added_outside_new_run": []
+ },
+ "config": {
+  "baseline_files": 24,
+  "unchanged": 24,
+  "changed_or_missing": [],
+  "added_outside_new_run": [
+   "config/sequence_policy_hospital35_v1.json",
+   "config/transition_policy_user_protected_hospital35_v1.json",
+   "config/user_protected_hospital35_v1.json",
+   "config/user_protected_hospital35_v1.provenance.json"
+  ]
+ },
+ "contracts": {
+  "baseline_files": 3,
+  "unchanged": 3,
+  "changed_or_missing": [],
+  "added_outside_new_run": []
+ },
+ "assets_robot": {
+  "baseline_files": 70,
+  "unchanged": 70,
+  "changed_or_missing": [],
+  "added_outside_new_run": []
+ },
+ "edited_files_vs_backup": {
+  "STATE.md": "changed",
+  "STATE.en.md": "changed",
+  "HANDOFF.md": "changed",
+  "HANDOFF.en.md": "changed",
+  "README.md": "unchanged",
+  "README.en.md": "unchanged",
+  "docs/README.md": "changed",
+  "docs/README.en.md": "changed",
+  "src/sign_robot/project_overview.py": "changed",
+  "src/sign_robot/pair_contract.py": "changed",
+  "src/sign_robot/pair_fingers.py": "unchanged",
+  "src/sign_robot/pair_routes.py": "unchanged",
+  "src/sign_robot/pair_runner_v2.py": "changed",
+  "src/sign_robot/pair_search.py": "unchanged",
+  "src/sign_robot/pair_timing.py": "unchanged",
+  "src/sign_robot/pair_verification.py": "unchanged",
+  "src/sign_robot/pair_verification_v2.py": "unchanged",
+  "src/sign_robot/pair_windows.py": "unchanged",
+  "src/sign_robot/sequence_assembly.py": "changed",
+  "src/sign_robot/sequence_contract.py": "unchanged",
+  "src/sign_robot/sequence_verification.py": "unchanged",
+  "scripts/plan_all_pairs.py": "unchanged",
+  "scripts/verify_all_pairs.py": "unchanged",
+  "scripts/summarize_all_pairs.py": "unchanged",
+  "scripts/screen_user_protected_cuts.py": "unchanged",
+  "scripts/plan_sequences.py": "changed",
+  "scripts/verify_sequences.py": "changed",
+  "scripts/render_sequences.py": "changed",
+  "tests/test_sequence_v1.py": "unchanged",
+  "tests/test_pair_runner_v2.py": "unchanged",
+  "tests/test_user_protected_windows.py": "unchanged"
+ },
+ "original_ods_unchanged": true
+}

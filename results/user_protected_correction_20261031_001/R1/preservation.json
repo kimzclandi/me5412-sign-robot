@@ -1,0 +1,11 @@
+{
+  "source": "/home/kingderman/Documents/ME5412-github-latest",
+  "work": "/tmp/me5412_corrected_intervals_20261031_001/repository",
+  "archive": "/home/kingderman/Documents/ME5412/execution_evidence/corrected_intervals_20261031_001/baseline.tar",
+  "archive_bytes": 894515200,
+  "archive_sha256": "c7386f1b813e51fbd1df0a787f2d5f3182496095876ee41172601bfd9a098e03",
+  "entries": 8726,
+  "source_unchanged": true,
+  "restore_matches": true,
+  "symlinks_preserved_not_dereferenced": true
+}

@@ -1,0 +1,59 @@
+{
+  "sequence_id": "HELLO__YOU__APPOINTMENT__HAVE",
+  "source_sequence": "results/hospital_sentences_20261102_007/sequences/sequences/HELLO__YOU__APPOINTMENT__HAVE/attempt_0001.json",
+  "source_sequence_sha256": "ef5016dfbe91d8299d157217f2ce6799499b9c1daa6af755538b1c02bb0c5b83",
+  "numerical_checks_passed": true,
+  "verification": "saved independent recheck reused (export_render_inputs.py checks its sequence hash)",
+  "formal_acceptance_enabled": false,
+  "playback_eligible": false,
+  "fps": 30,
+  "video_frames": 548,
+  "video_duration_s": 18.266666666666666,
+  "replay_duration_s": 9.0,
+  "layout": "original full clips top, sequence bottom; front left, side right; shorter row holds end",
+  "protected_instance_video_checks": [
+    {
+      "instance_id": "o0_HELLO",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        0,
+        39
+      ]
+    },
+    {
+      "instance_id": "o1_YOU",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        56,
+        83
+      ]
+    },
+    {
+      "instance_id": "o2_APPOINTMENT",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        118,
+        181
+      ]
+    },
+    {
+      "instance_id": "o3_HAVE",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        222,
+        252
+      ]
+    }
+  ],
+  "renderer": {
+    "gl_renderer": "Intel(R) Arc(TM) B390 GPU",
+    "mujoco": "3.15.0",
+    "model_tree_sha256": "d4c772ade61d9b98d6a8c60feec91e854740d364e47cbfa14bc87add00ec4e33",
+    "label_font": "C:/Windows/Fonts/msyh.ttc",
+    "render_wall_time_s": 186.44
+  },
+  "files": {
+    "comparison.mp4": "8a94df589202f8db056f205c38113fdf59c2dbf886d88cbf7d0e467af3e56686",
+    "contact_sheet.png": "4ba1557b06433a5e192432b12c17dd96226b9b7d1710b324f7cfb801f01d6c79"
+  }
+}

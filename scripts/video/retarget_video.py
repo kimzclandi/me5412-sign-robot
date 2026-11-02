@@ -31,6 +31,9 @@ FINGER_SPEED_LIMIT = 10.0  # rad/s; video thumb/finger estimates jitter far fast
 ARM_SPEED_LIMIT = 15.0  # rad/s; stops wrist-roll flips from noisy hand orientation
 MIN_COVERAGE = 0.5  # fraction of clip frames with the signing hand detected
 MEDIAN_FRAMES = 5  # at 30 fps: removes orientation glitches shorter than ~0.1 s
+# Off: Group 3's round-8 plans are bound by hash to the unrepaired clips (bcdefc4); turn on
+# once they rebind. With it on, 29 of 32 words drop from up to 92 mm penetration to 3 mm.
+COLLISION_REPAIR = False
 METHOD = ("Monocular video retargeting: MediaPipe PoseLandmarker/HandLandmarker world landmarks (Savitzky-Golay "
           "smoothed, gaps interpolated) -> same G1 retargeting as the mocap clips (scaled shoulder-relative wrist "
           "targets, bounded 7-DoF IK per arm with clearance, finger flexion from joint positions)")
@@ -52,7 +55,7 @@ def run(gloss, video, render):
     name = f"{gloss}__{video['video_id']}"
     meta = write_clip(name, sk, source, OUT / "candidates", METHOD, LIMITATIONS + VIDEO_LIMITATIONS,
                       render=render, preview_dir=PREVIEWS, finger_speed_limit=FINGER_SPEED_LIMIT,
-                      arm_speed_limit=ARM_SPEED_LIMIT, median_frames=MEDIAN_FRAMES, collision_repair=True)
+                      arm_speed_limit=ARM_SPEED_LIMIT, median_frames=MEDIAN_FRAMES, collision_repair=COLLISION_REPAIR)
     # Coverage of the dominant (more raised) hand drives the choice of video.
     sign = meta["ik_error_sign_phase"]
     active = [s for s in ("left", "right") if sign[s]["frames"]]

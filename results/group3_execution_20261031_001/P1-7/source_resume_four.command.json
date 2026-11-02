@@ -1,0 +1,23 @@
+{
+  "cwd": "/home/kingderman/Documents/ME5412-github-latest",
+  "argv": [
+    "/home/kingderman/Documents/ME5412-github-latest/.venv/bin/python",
+    "/home/kingderman/Documents/ME5412-github-latest/scripts/plan_all_pairs.py",
+    "--include-self",
+    "--policy",
+    "/home/kingderman/Documents/ME5412-github-latest/config/transition_policy_v2.json",
+    "--run-id",
+    "handoff_v2_dev_20261031_001",
+    "--pair",
+    "HELLO__PLEASE",
+    "--pair",
+    "PLEASE__HELLO",
+    "--pair",
+    "HELLO__HELLO",
+    "--pair",
+    "NURSE__NURSE",
+    "--resume"
+  ],
+  "exit_code": 0,
+  "log": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/P1-7/source_resume_four.log"
+}

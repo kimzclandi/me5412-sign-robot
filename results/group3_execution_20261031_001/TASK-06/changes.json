@@ -1,0 +1,104 @@
+{
+  "task": "TASK-06",
+  "task_id": "P1-1",
+  "changes": [
+    {
+      "path": "src/sign_robot/pair_windows.py",
+      "before_sha256": null,
+      "after_sha256": "12d20562a29a92ce7a3833bc4994b61bb680a5b05eec4673b57bd542fe5b0d49"
+    },
+    {
+      "path": "src/sign_robot/pair_contract.py",
+      "before_sha256": "602dd7b990644fa7d001bc645f5b9a54f24d7733b50e575021a4331f3086ed2d",
+      "after_sha256": "5e9e0c5da7c6b3e354b9f556286c4bb669d633224411f8cd401cfab7d221dac7"
+    },
+    {
+      "path": "contracts/all_pairs_v2.json",
+      "before_sha256": "ec5c1c20ce4ceff76a9fc1d8bd7c391c7872f2209edbcb43f7d44c97860be96a",
+      "after_sha256": "b2e9e7877a7b5386cfd64b875cd88b2ace40b96a71fc3a1be517a811caf61de4"
+    },
+    {
+      "path": "config/transition_policy_v2.json",
+      "before_sha256": "22888f671e7399638ae67fa12979cf00068f3e8586a6be2e49acdf0f571a5feb",
+      "after_sha256": "34cf31b16c7fb3f38734c02cc2ac7a6edd8c2aa50020b1233de57dd4e8f1971f"
+    },
+    {
+      "path": "tests/pair_v2_fixtures.py",
+      "before_sha256": null,
+      "after_sha256": "b353ff1c5951d41ab7e83e7e4b0f33b29bdf2c8f855f99d35dab638da6475aca"
+    },
+    {
+      "path": "tests/test_pair_windows_v2.py",
+      "before_sha256": null,
+      "after_sha256": "9cf5dc9951030cbcbe20fbec8d72258c5259f63abcb7c55d916ed490ff88c422"
+    },
+    {
+      "path": "docs/group3-window-approval.md",
+      "before_sha256": null,
+      "after_sha256": "088fa1e8cf6098768ad2f4817e31e2bdfefbedd14d90f178b9406b8ce55bb468"
+    },
+    {
+      "path": "docs/group3-window-approval.en.md",
+      "before_sha256": null,
+      "after_sha256": "2cb08a48e1297ac0781d9a9daf4494ec71d473690bbb42f32f2b2581c56d63f9"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P1-1/approval_state.json",
+      "before_sha256": null,
+      "after_sha256": "924b8c1aec6e1ae8883d7c74170bf08607a67e3ee26ba68ed765ed3530f81868"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P1-1/pytest_windows_final.command.json",
+      "before_sha256": null,
+      "after_sha256": "02c59fe5e7414ff7c47ad9743d6fa07ff0cbeab1f243cfe99106a2c1c0940ed1"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P1-1/pytest_windows_final.log",
+      "before_sha256": null,
+      "after_sha256": "2ba62fb92db1dacce2d1517edfbd412cc57318d78976fd2c736218bf058d1ddc"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P1-1/pytest_windows_initial.command.json",
+      "before_sha256": null,
+      "after_sha256": "e2df63a2503481131ef3455ff751cea699ff7821855f635fe103f03d7964e7cc"
+    },
+    {
+      "path": "results/group3_execution_20261031_001/P1-1/pytest_windows_initial.log",
+      "before_sha256": null,
+      "after_sha256": "36fa1b0c45e167caeeee1e677e133addea61aa141db0581cf9cccb3239fe4d23"
+    },
+    {
+      "path": "TASK-06.md",
+      "before_sha256": null,
+      "after_sha256": "f3ee739b5c85c2385fa47c8cd4c8f65e47b0baeb34ccbce04342f333f3c50d47"
+    },
+    {
+      "path": "TASK-06.en.md",
+      "before_sha256": null,
+      "after_sha256": "164aa286024438faf1699d107e30712cf694452471050c9bfe057ab592177c15"
+    },
+    {
+      "path": "STATE.md",
+      "before_sha256": "6352b791d66331980e5e3dd175de8460c481d724fb01c1afe631482ae1f76aa1",
+      "after_sha256": "b4269ec4e0c6333d39f8e88ab09b5c35ba455c4fa378ffb403ea2ecc8e5bbee9"
+    },
+    {
+      "path": "STATE.en.md",
+      "before_sha256": "6cfd30e3d75f2cbe54b62984acc7216f8f18b05538dacc9a1330ff9e5f4ff754",
+      "after_sha256": "eaddb233658312d6afd3995d9cb7ea2272a5a13c6bd54211bf4bc8b0a2c153e9"
+    },
+    {
+      "path": "docs/README.md",
+      "before_sha256": "5ad193dc821ffad83844219f9739919bac08f5c7da331322761bd9d1782f7a4a",
+      "after_sha256": "d7795de0e175a1cf0b859a4e92c4877d0f80c404659c7e6ab3ae4aae4dc3c0c1"
+    },
+    {
+      "path": "docs/README.en.md",
+      "before_sha256": "5323d6de9c19881932d58c298644558ed72566492f95ccd2e2c0ef9127db2a75",
+      "after_sha256": "f4ea53500ce27bf78867a2cb68e6c8613bb6bb5994d6b8926d8961367ce16dc9"
+    }
+  ],
+  "installed": true,
+  "source": "/home/kingderman/Documents/ME5412-github-latest",
+  "backup": "/home/kingderman/Documents/ME5412-github-latest/results/group3_execution_20261031_001/TASK-06/before"
+}
