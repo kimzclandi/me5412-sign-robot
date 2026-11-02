@@ -18,6 +18,24 @@
     "hand_detection_rate_in_clip": {
       "left": 0.6582278481012658,
       "right": 0.6962025316455697
+    },
+    "manual_correction": {
+      "note": "Left arm and both handshapes hand-authored from the NURSE dictionary videos (left hand palm up, fingers curled; right N fingers horizontal on top of the left wrist); right wrist trajectory from the video.",
+      "contact": {
+        "side": "left",
+        "other": "right",
+        "point": "index_03_r",
+        "offset": [
+          -0.016,
+          0.06,
+          -0.017
+        ],
+        "lift": [
+          0.0,
+          0.0,
+          0.02
+        ]
+      }
     }
   },
   "creation_method": "Monocular video retargeting: MediaPipe PoseLandmarker/HandLandmarker world landmarks (Savitzky-Golay smoothed, gaps interpolated) -> same G1 retargeting as the mocap clips (scaled shoulder-relative wrist targets, bounded 7-DoF IK per arm with clearance, finger flexion from joint positions)",
@@ -36,25 +54,32 @@
   "finger_speed_limit_rad_s": 10.0,
   "arm_speed_limit_rad_s": 15.0,
   "median_filter_frames": 5,
+  "collision_repair": {
+    "frames_repaired": 13,
+    "penetration_before_m": 0.023949124633575774,
+    "penetration_after_m": 0.0002936804064847707,
+    "max_wrist_shift_m": 0.007536372120209436,
+    "tolerance_m": 0.001
+  },
   "ik_error": {
     "left": {
       "wrist_position_m": {
-        "mean": 0.026328161273406817,
-        "max": 0.05726168428494932
+        "mean": 0.00857588187508462,
+        "max": 0.020495858838274816
       },
       "hand_orientation_rad": {
-        "mean": 0.5286770199241577,
-        "max": 0.9694844726520891
+        "mean": 0.05600068989722751,
+        "max": 0.10191193654786837
       }
     },
     "right": {
       "wrist_position_m": {
-        "mean": 0.0018253835609666135,
-        "max": 0.010638539327441012
+        "mean": 0.009935296681511186,
+        "max": 0.02266615354270613
       },
       "hand_orientation_rad": {
-        "mean": 0.0020608203556286946,
-        "max": 0.019477221571266214
+        "mean": 0.13172830793065593,
+        "max": 0.31855487556567247
       }
     }
   },
@@ -67,17 +92,17 @@
     "right": {
       "frames": 65,
       "wrist_position_m": {
-        "mean": 0.0006901355167424158,
-        "max": 0.002544900331037176
+        "mean": 0.010536362234186837,
+        "max": 0.02266615354270613
       },
       "hand_orientation_rad": {
-        "mean": 0.0019892142081321014,
-        "max": 0.019477221571266214
+        "mean": 0.13953098075733095,
+        "max": 0.31855487556567247
       }
     }
   },
   "max_joint_limit_clip_rad": 0.0,
-  "max_joint_speed_rad_s": 15.0,
+  "max_joint_speed_rad_s": 8.748420427717988,
   "asl_reviewed": false,
   "clinical_use": false,
   "limitations": [
@@ -95,7 +120,7 @@
     {
       "candidate": "NURSE__39089",
       "dominant_hand_coverage": 0.696,
-      "sign_wrist_err_max_m": 0.0025
+      "sign_wrist_err_max_m": 0.0227
     },
     {
       "candidate": "NURSE__39088",

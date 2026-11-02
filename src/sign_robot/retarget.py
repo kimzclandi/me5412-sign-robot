@@ -122,7 +122,22 @@ class G1Retargeter:
             human_hand = hand_frame(sk.h(f"hand_{s}"), sk.h(f"middle_01_{s}"), sk.h(f"index_01_{s}"), sk.h(f"pinky_01_{s}"))
             hand_in_chest = np.einsum("tji,tjk->tik", chest, human_hand)
             out[side] = {"wrist": to_robot(sk.h(f"hand_{s}")), "elbow": to_robot(sk.h(f"lowerarm_{s}")),
-                         "site_rot": hand_in_chest @ r["site_to_hand"].T, "scale": scale}
+                         "site_rot": hand_in_chest @ r["site_to_hand"].T, "scale": scale, "to_robot": to_robot}
+        contact = getattr(sk, "contact", None)
+        if contact:
+            # Each arm is scaled about its own shoulder, which pulls apart hands that touch
+            # (NURSE: right fingers tap the left wrist). Translate the held arm so its wrist
+            # sits at `offset` (robot frame, m) from the other hand's point where they meet.
+            held, other = out[contact["side"]], out[contact["other"]]
+            point = other["to_robot"](sk.t(contact["point"]))
+            gap = np.linalg.norm(point - held["wrist"], axis=-1)
+            near = gap <= np.percentile(gap, 30)
+            shift = np.median(point[near] + np.asarray(contact["offset"]) - held["wrist"][near], axis=0)
+            held["wrist"], held["elbow"] = held["wrist"] + shift, held["elbow"] + shift
+            held["contact_shift_m"] = shift
+            lift = np.asarray(contact.get("lift", (0.0, 0.0, 0.0)))  # raise both hands together
+            for arm in (held, other):
+                arm["wrist"], arm["elbow"] = arm["wrist"] + lift, arm["elbow"] + lift
         return out
 
     def hand_joints(self, sk):

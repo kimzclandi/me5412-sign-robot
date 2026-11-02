@@ -111,8 +111,9 @@ def planned(glosses, spans):
         rise = clip["positions"]
     q = motion["positions"]
     k = int(np.abs(rise - q[0]).max(axis=1).argmin())
-    if np.abs(rise[k] - q[0]).max() > 1e-6:
-        raise ValueError(f"{folder.name}: first frame is not a frame of the {glosses[0]} clip")
+    if np.abs(rise[k] - q[0]).max() > 1e-6:  # planned on older word clips: use the baseline instead
+        print(f"{folder.name}: Group 3 plan does not match the current {glosses[0]} clip; using the baseline")
+        return None
     q = np.vstack([rise[:k], q])
     plan = json.loads((folder / "render_plan.json").read_text())
     starts = [0] + [c["replay_frames"][0] + k for c in plan["protected_instance_video_checks"][1:]] + [len(q)]
