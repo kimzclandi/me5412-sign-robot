@@ -1,0 +1,43 @@
+{
+  "sequence_id": "YOU__UNDERSTAND",
+  "source_sequence": "results/hospital_sentences_20261102_007/sequences/sequences/YOU__UNDERSTAND/attempt_0001.json",
+  "source_sequence_sha256": "0c020bfa3cada86424007acd7529a45a6c22da2aff25018c3e657dffa569a5d5",
+  "numerical_checks_passed": true,
+  "verification": "saved independent recheck reused (export_render_inputs.py checks its sequence hash)",
+  "formal_acceptance_enabled": false,
+  "playback_eligible": false,
+  "fps": 30,
+  "video_frames": 268,
+  "video_duration_s": 8.933333333333334,
+  "replay_duration_s": 3.533333333333333,
+  "layout": "original full clips top, sequence bottom; front left, side right; shorter row holds end",
+  "protected_instance_video_checks": [
+    {
+      "instance_id": "o0_YOU",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        0,
+        27
+      ]
+    },
+    {
+      "instance_id": "o1_UNDERSTAND",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        40,
+        91
+      ]
+    }
+  ],
+  "renderer": {
+    "gl_renderer": "Intel(R) Arc(TM) B390 GPU",
+    "mujoco": "3.15.0",
+    "model_tree_sha256": "d4c772ade61d9b98d6a8c60feec91e854740d364e47cbfa14bc87add00ec4e33",
+    "label_font": "C:/Windows/Fonts/msyh.ttc",
+    "render_wall_time_s": 97.43
+  },
+  "files": {
+    "comparison.mp4": "4fd210bda24799f406c68a4e6e6395b3d0cbfdf1ce357849f0bd630c1f2b3216",
+    "contact_sheet.png": "26a27e44f683eca4b913a59243bf5eaea86c7d13b017344db3f966b2388bde47"
+  }
+}

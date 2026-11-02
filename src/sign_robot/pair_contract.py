@@ -46,7 +46,19 @@ BOUNDARY_BRAKING_V1 = "stop_and_go_v1"
 # then the same smoothness keys as tie-breakers.
 SMOOTHNESS_SELECTION_V1 = "numerical_pass_then_smoothness_total_duration_v1"
 CORE_GAP_SELECTION_V1 = "numerical_pass_then_core_gap_then_smoothness_v1"
-AUTO_SELECTION_RULES = (SMOOTHNESS_SELECTION_V1, CORE_GAP_SELECTION_V1)
+# Fewest interior full stops (every joint at rest at a segment boundary inside the connector) first,
+# then the core-gap keys. Stop-and-go routes read as "move, halt, move"; a stop-free candidate wins.
+FEWEST_STOPS_SELECTION_V1 = "numerical_pass_then_fewest_stops_then_core_gap_v1"
+AUTO_SELECTION_RULES = (SMOOTHNESS_SELECTION_V1, CORE_GAP_SELECTION_V1, FEWEST_STOPS_SELECTION_V1)
+INTERIOR_STOP_SPEED_RAD_S = 0.05
+# Optional timing (planner.smooth_timing): two curves that never stop at a route knot, tried before the
+# stop-at-every-knot quintics. The minimum-jerk spline passes through every knot; the corner blend runs each
+# segment at constant velocity and blends consecutive segments with a smoothstep velocity change (the corner
+# is cut, a joint that holds still in a segment really holds still, and the next stage starts while the
+# previous one is still finishing).
+SMOOTH_TIMING_V1 = "smooth_route_timing_v1"
+MIN_JERK_SPLINE_V1 = "min_jerk_spline_v1"
+CORNER_BLEND_V1 = "corner_blend_v1"
 # Optional cut screen (endpoints.retained_edge_screen). Source frames kept strictly between a protected
 # core and its cut must not press an arm joint against a hard limit that the core itself never touches:
 # in the retargeted library that marks an IK flip (e.g. NURSE after its core: left shoulder yaw swings to
@@ -544,6 +556,12 @@ def staged_target_valid(to):
 V2_TRAJECTORY_METHODS = (*V2_METHODS, STAGED_EXIT_METHOD)
 
 
+def connector_interior_stops(polynomials):
+    """Segment boundaries inside a connector where every coordinate is (almost) at rest."""
+    return sum(float(np.max(np.abs(polynomial_boundary_v2(segment, "start")["velocity"]))) < INTERIOR_STOP_SPEED_RAD_S
+               for segment in polynomials[1:])
+
+
 def staged_exit_config(policy, gloss):
     """The staged exit for a source word, or None."""
     staged = policy["planner"].get("staged_exits")
@@ -623,7 +641,16 @@ def validate_policy_v2(policy):
     _v2_hash(policy["contract"]["sha256"], "contract hash")
     planner = policy["planner"]
     _v2_fields(planner, ("method", "methods", "seed", "minimum_duration_s", "budget", "rrt"), "planner",
-               optional=("boundary_braking", "staged_exits"))
+               optional=("boundary_braking", "staged_exits", "smooth_timing"))
+    if "smooth_timing" in planner:
+        smooth = planner["smooth_timing"]
+        _v2_fields(smooth, ("version", "growth", "minimum_total_frames"), "smooth timing")
+        if smooth["version"] != SMOOTH_TIMING_V1:
+            raise ValueError("Unknown smooth timing version")
+        _v2_number(smooth["growth"], "smooth timing growth", positive=True)
+        _v2_integer(smooth["minimum_total_frames"], "smooth timing minimum frames", minimum=2 * CONNECTOR_STENCIL_FRAMES + 1)
+        if not 1 < smooth["growth"] <= 2:
+            raise ValueError("Smooth timing must grow every attempt by a factor in (1, 2]")
     if "boundary_braking" in planner:
         braking = planner["boundary_braking"]
         _v2_fields(braking, ("version", "min_speed_rad_s", "limit_fraction", "max_frames"), "boundary braking")

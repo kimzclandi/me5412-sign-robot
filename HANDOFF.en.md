@@ -1,6 +1,24 @@
 # Handoff: 35-word protections and full-library transitions
 
-[中文](HANDOFF.md) · [Current state](STATE.en.md) · [Execution report TASK-27](TASK-27.en.md) · [Historical report TASK-26](TASK-26.en.md)
+[中文](HANDOFF.md) · [Current state](STATE.en.md) · [Latest execution report TASK-28](TASK-28.en.md) · [Execution report TASK-27](TASK-27.en.md) · [Historical report TASK-26](TASK-26.en.md)
+
+## Latest handoff (2026-11-02): nine hospital sentences
+
+> **The 2026-11-01 full-library plan and "next steps" further down this file are superseded by the user's scope decision; do not follow them.** On 2026-11-01 the user narrowed the work to nine hospital sentences, with Group 3 owning only the connectors. P1-3 stopped at 46/79 batches; P1-4, the budget retry and the faster scanner were not run; `resume.sh`, `after_p1_3.sh`, `p1_3_final.sh`, `p1_4.sh` and `retry_budget.sh` are no longer used (the code has changed, so those runs' frozen identities are no longer valid). Resuming the full-library goal later would need a new policy version and new runs.
+
+Now: round 8 passes 7/7 numerically, ends at the rest pose, and no connector halts partway. Rounds, configuration, commands, this machine's setup and open items: [TASK-28](TASK-28.en.md).
+
+Steps for whoever takes over:
+
+1. Read [TASK-28](TASK-28.en.md) and the [round-8 README](results/hospital_sentences_20261102_008/README.en.md) first.
+2. Wait for the user's feedback on the round-8 videos. They exist only on this machine: `C:\Users\23971\Documents\5412\_runtime\render-out\round8_034002\`.
+3. The user explicitly requested this GitHub update on 2026-11-02, superseding the earlier pause. Publish only the curated non-raw snapshot on top of clean public commit `86428693`; never directly push the source history containing raw-store commits. See the root README and PUBLICATION_MANIFEST.json.
+4. A new round means a new directory and new versions: copy the previous round's `make_inputs.py`, `run.sh`, `export_render_inputs.py` and `render_gpu_windows.py`, change the directory name, run IDs and policy versions; protection bundles and old policies only get new versions and are never overwritten; superseded results are kept and marked.
+5. Do not edit `src/`, `tests/` or `scripts/` while a run is going (frozen identity).
+6. When editing `docs/README*.md`, update the sha256 registered for it in `src/sign_robot/project_overview.py` as well, or `tests/test_project_overview.py` fails.
+7. After each round, update the bilingual README, STATE, HANDOFF and TASK records. Public delivery excludes raw pair stores and preserves curated summaries; raw stores remain local.
+
+---
 
 Updated: 2026-11-01 (Asia/Shanghai). This replaces the completed COME/NOW sequence-pilot handoff. The P0/P1 plan below was written before execution and is kept unchanged; the status block that follows records what was actually executed. The P0/P1 IDs belong to this stage, not to TASK-26.
 

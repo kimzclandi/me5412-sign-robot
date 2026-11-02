@@ -143,7 +143,7 @@
     "approval_file": null,
     "approval_bundle_sha256": null,
     "protection_file": "config/user_protected_hospital35_v2.json",
-    "protection_bundle_sha256": "9bee00123eb3a4fcb5956216313c2e258f5da9d46c7c24f9f0809f8661bb801e",
+    "protection_bundle_sha256": "9ad8246ec97f5efb40854969fb8ccbdb4ae0d70d952cf847dc5f993bf47e5a85",
     "generator_version": "protected_cut_search_v3",
     "retained_edge_screen": "no_proximal_limit_excursion_v1",
     "clamped_joint_stop": "clamped_joint_stop_v1"

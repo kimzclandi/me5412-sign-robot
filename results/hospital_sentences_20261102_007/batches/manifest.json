@@ -3,7 +3,7 @@
   "kind": "hospital35_pair_batches_v1",
   "policy": {
     "path": "config/transition_policy_hospital_sentences_fast_v4.json",
-    "sha256": "5edd59323da25d60bdf64e9cc8929dc337b8b6375617fef11aebde52342e3b2d"
+    "sha256": "042f07567270f779a349cf853ee4a6c51dbc9e1790be038703d4a525ae7ab91b"
   },
   "group_counts": {
     "sentences": 17,

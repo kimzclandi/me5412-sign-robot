@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "BLOOD-DRAW__UNDERSTAND",
+    "BLOOD-DRAW__WRITE",
+    "BLOOD-DRAW__NOT",
+    "BLOOD-DRAW__NOW",
+    "BLOOD-DRAW__SOON",
+    "BLOOD-DRAW__LATER",
+    "BLOOD-DRAW__TOMORROW",
+    "BLOOD-DRAW__MORNING",
+    "BLOOD-DRAW__NIGHT",
+    "BLOOD-DRAW__WHERE",
+    "TAKE__HELLO",
+    "TAKE__PLEASE",
+    "TAKE__THANK-YOU",
+    "TAKE__SORRY",
+    "TAKE__YES",
+    "TAKE__NO"
+  ]
+}

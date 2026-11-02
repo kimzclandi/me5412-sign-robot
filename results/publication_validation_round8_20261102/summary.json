@@ -1,0 +1,18 @@
+{
+  "passed": 121,
+  "failed": 0,
+  "elapsed_seconds": 25.31,
+  "source_head": "dfe4bacde93376025a7f0389d13f973685f01cc5",
+  "scope": [
+    "test_staged_exit_v1.py",
+    "test_smooth_timing_v1.py",
+    "test_pair_timing_v2.py",
+    "test_pair_contract_v2.py",
+    "test_pair_runner_v2.py",
+    "test_project_overview.py"
+  ],
+  "full_suite_rerun": false,
+  "new_planning_run": false,
+  "raw_storage_paths_tracked": 0,
+  "incoming_raw_history_imported": false
+}

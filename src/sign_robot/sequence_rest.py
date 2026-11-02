@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from sign_robot.pair_contract import json_hash
+from sign_robot.pair_contract import FEWEST_STOPS_SELECTION_V1, connector_interior_stops, json_hash
 from sign_robot.pair_routes import (
     PairWorkBudget, PlanningBudgetExceeded, _route_specs, check_timed_route_v2, valid_endpoint_choices_v2,
 )
@@ -43,13 +43,24 @@ def plan_rest_tail_v1(context, gloss, config):
         record.update(protected_core_frames=selection["protected_core_frames"], exit_frames_tried_in_order=frames,
                       rest_pose={"version": REST_POSE_V1, "position": rest.tolist()})
         floor = max(1, int(np.ceil(policy["planner"]["minimum_duration_s"] * 30 - 1e-12)))
+        smooth = policy["planner"].get("smooth_timing")
+        stops_first = policy["selection_rule"] == FEWEST_STOPS_SELECTION_V1
+
+        def fewest_frames(segment_count):
+            # Stop-and-go segments last at least the minimum duration each; a spline needs one frame
+            # per segment and its minimum total, and it is always tried first.
+            return max(smooth["minimum_total_frames"], segment_count) if smooth else floor * segment_count
+
+        def prunable():
+            # Under the stops-first rule a candidate that stops can still lose to a slower stop-free one.
+            return best is not None and (not stops_first or best["key"][0] == 0)
         target = {"positions": rest[None, :]}
         # Pass 1 tries the two straight routes at every exit frame; pass 2 the detours, where they can still win.
         # A frame whose boundary cannot be stopped fails every route up to the duration limit, so trying all
         # routes frame by frame can spend the whole sample budget before a slower, later frame is reached.
         for families in (STRAIGHT_ROUTES, None):
             for frame in frames:
-                if best is not None and frame - core_end + floor >= best["core_gap_frames"]:
+                if prunable() and frame - core_end + fewest_frames(1) >= best["core_gap_frames"]:
                     break  # every later exit keeps more source frames than the winner's whole gap
                 a = clip["positions"][frame]
                 start = cut_boundary_state_v2(clip, frame, "source", policy, bounds)
@@ -65,8 +76,8 @@ def plan_rest_tail_v1(context, gloss, config):
                     if knots is None or not np.isfinite(knots).all() or any(not p["passed"] for p in prechecks):
                         attempt.update(status="FAILED_SEARCH", reason_codes=["ROUTE_FACTORY_OR_GUIDE_FAILED"])
                         continue
-                    if best is not None and frame - core_end + floor * (len(knots) - 1) >= best["core_gap_frames"]:
-                        # Every route segment lasts at least the minimum duration, so this route cannot win.
+                    if prunable() and frame - core_end + fewest_frames(len(knots) - 1) >= best["core_gap_frames"]:
+                        # Even this route's fastest possible timing keeps more frames than the winner.
                         attempt.update(status="PRUNED_BY_CORE_GAP_BOUND", reason_codes=[])
                         continue
                     knots = np.asarray(knots, dtype=float)
@@ -86,11 +97,15 @@ def plan_rest_tail_v1(context, gloss, config):
                     metrics = timed.diagnostics["attempts"][-1]["metrics"]
                     frames_ = round((timed.segments[-1]["end_time_s"] - timed.segments[0]["start_time_s"]) * 30)
                     limits = policy["quality"]["limits"]
+                    stops = connector_interior_stops(timed.segments)
                     attempt.update(status="TIMED_CANDIDATE", connector_frames=frames_, core_gap_frames=frame - core_end + frames_,
+                                   interior_stops=stops,
                                    metrics={k: metrics[k] for k in ("peak_acceleration_rad_s2", "peak_jerk_rad_s3",
                                                                      "jerk_integral_rad2_s5", "maximum_transition_duration_s")},
-                                   variant=timed.diagnostics["attempts"][-1].get("variant"))
-                    key = (attempt["core_gap_frames"], metrics["peak_jerk_rad_s3"] / limits["peak_jerk_rad_s3"],
+                                   variant=(timed.diagnostics.get("smooth_timing", {}).get("kept")
+                                            or timed.diagnostics["attempts"][-1].get("variant")))
+                    key = (*((stops,) if stops_first else ()), attempt["core_gap_frames"],
+                           metrics["peak_jerk_rad_s3"] / limits["peak_jerk_rad_s3"],
                            metrics["peak_acceleration_rad_s2"] / limits["peak_acceleration_rad_s2"],
                            metrics["jerk_integral_rad2_s5"], policy["planner"]["methods"].index(method), json_hash(timed.segments))
                     if best is None or key < best["key"]:

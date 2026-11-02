@@ -1,18 +1,16 @@
 # ME5412 Robot Signing Research Bench
 
-> **Group 3 public delivery update (2026-11-02)**
+> **Group 3 public delivery: round 8 (2026-11-02)**
 >
-> This branch contains the implementation and results through round 6, plus round-7 development code, policies and launch scripts. The latest completed round records 7/7 multi-word sentences passing numerical checks, 17/17 connector rechecks agreeing and 24/24 protected cores unchanged. Formal acceptance remains disabled. See the [round-6 report](results/hospital_sentences_20261101_006/README.en.md).
+> Current project records: [TASK-28](TASK-28.en.md), [STATE](STATE.en.md), [HANDOFF](HANDOFF.en.md). This publication starts from clean public commit `86428693` and synchronizes non-raw content from WSL source commit `dfe4bacde`. It does not import the history of the source repository's round-7 or round-8 raw-store commits.
 >
-> Round 7 adds a staged NURSE exit and revised MORNING/NURSE protection intervals. No round-7 planning or acceptance result was present in this publication snapshot. Its input builder is `results/hospital_sentences_20261102_007/make_inputs.py`; round-6 results do not validate round 7.
+> Round 8 is complete: 7/7 multi-word sentences pass numerical checks, 17/17 connector rechecks agree and 24/24 protected cores are unchanged. Interior connector stops fell from round 7's 16 to 0. See the [round-8 report](results/hospital_sentences_20261102_008/README.en.md). The recorded full-suite result is 1014 passed; formal acceptance remains disabled and human video review is pending.
 >
-> Raw candidates, attempts, checkpoints, per-candidate verification and timing trajectories under `results/**/pair_runs/` and `results/user_protected_*/runs/` are excluded from the current public tree and remain in the local source worktree. Compact summaries, matrices and frozen configuration are preserved in each experiment's `run_summaries/`. Sequence outputs, independent rechecks, test logs and result images are retained.
+> This publication copy passed **121 focused checks** in 25.31 seconds, covering smooth timing, staged exits and the documentation index. No full-suite rerun or new planning run was performed. See the [publication validation summary](results/publication_validation_round8_20261102/summary.json).
 >
-> Original candidate paths and hashes in saved reports are unchanged. The public copy alone cannot recheck every historical candidate or resume a historical run. Use the local raw stores, or regenerate under a new run ID after restoring the required dependencies and robot assets. Example entry points: `.venv/bin/python results/hospital_sentences_20261102_007/make_inputs.py` (only when its inputs do not yet exist), then `bash results/hospital_sentences_20261102_007/run.sh` after checking its machine-specific path.
+> Raw candidates, attempts, checkpoints and timing stores under `results/**/pair_runs/` and `results/user_protected_*/runs/` remain local. Compact summaries and frozen configuration are copied to each experiment's `run_summaries/`; sequence outputs, independent rechecks, test logs and result images are retained. New videos remain excluded.
 >
-> Publication validation: seven existing regression modules and five mocked staged-exit smoke tests, **146 passed** in 32.92 seconds. The full suite and round-7 real planning were not rerun. See the [publication validation summary](results/publication_validation_20261102/summary.json).
->
-> This ordinary commit removes raw stores from the current branch tree without rewriting earlier public history. Source revisions, overlaid-file hashes and the retained-summary inventory are recorded in [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json). The remainder includes historical prototype documentation.
+> Original paths and hashes in saved reports are preserved, so this public copy cannot independently recheck every candidate or resume historical runs. Use the local raw stores, or follow TASK-28 with the required dependencies and model assets to generate a new version and run. Source revisions, metadata hashes and publication checks are in [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json). Earlier public history is unchanged. The remainder describes the early prototype.
 
 
 [中文](README.md) · **English** · [Bilingual documentation index](docs/README.md)

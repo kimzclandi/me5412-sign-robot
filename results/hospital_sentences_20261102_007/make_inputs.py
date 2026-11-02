@@ -1,11 +1,12 @@
 """Inputs for the nine hospital sentences, round 7: MORNING/NURSE protection ends + NURSE staged exit (2026-11-02).
 
 User instructions (chat, 2026-11-02): MORNING's user protection ends at frame 38 (everything after it is no longer
-protected); NURSE's ends at frame 75, and after it the right hand should first move away quickly, then the left wrist
+protected); between frames 37 and 38 the retargeted right middle/ring fingers snap shut at the 10 rad/s cap, which no
+connector can stop within the jerk-integral limit, so the user chose frame 37 instead; NURSE's ends at frame 75, and after it the right hand should first move away quickly, then the left wrist
 should straighten. This writes protection bundle v2 from v1 with only those two records changed (v1 stays for earlier
 runs), and adds planner.staged_exits: NURSE's connector leaves at its core end through stop-and-go knots (right arm
 away, left forearm up off the lap, left wrist to zero), then on to the target; MORNING's moves the right arm out first,
-because from frame 38 a straight route to NIGHT's crossed hands passes through the left forearm. Everything else is the
+because from frame 37 a straight route to NIGHT's crossed hands passes through the left forearm. Everything else is the
 round-6 policy unchanged. Writes, once:
   config/user_protected_hospital35_v2.json
   config/transition_policy_hospital_sentences_fast_v4.json
@@ -29,9 +30,9 @@ SENTENCES = ["HELLO YOU APPOINTMENT HAVE", "YOU NEED INTERPRETER", "PLEASE WAIT 
              "BREATHE-DEEP", "NOW NURSE BLOOD-DRAW", "MEDICINE MORNING NIGHT TAKE", "YOU UNDERSTAND", "THANK-YOU"]
 WINDOW_VERSION = "hospital35-user-protection-20261102-v2"
 # end time (s), conservative end frame = ceil(end time * 30)
-AMENDMENTS = {"MORNING": (1.266, 38), "NURSE": (2.5, 75)}
-AMENDMENT_NOTE = ("the user shortened two protections in chat: MORNING ends at frame 38 and NURSE at frame 75; every other "
-                  "record is unchanged from v1.")
+AMENDMENTS = {"MORNING": (1.23, 37), "NURSE": (2.5, 75)}
+AMENDMENT_NOTE = ("the user shortened two protections in chat: MORNING ends at frame 37 (asked for 38; the user chose 37 "
+                  "after the finger snap at 37-38 was found) and NURSE at frame 75; every other record is unchanged from v1.")
 # Same sixteen runs as rounds 3-6 (cpu0-15).
 WORKERS = [
     ["NURSE__BLOOD-DRAW"], ["MORNING__NIGHT"], ["PLEASE__WAIT"], ["NIGHT__TAKE"], ["WAIT__DOCTOR"],

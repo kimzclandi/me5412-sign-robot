@@ -1,18 +1,16 @@
 # ME5412 机器人手语表达实验台
 
-> **第三组公开交付更新（2026-11-02）**
+> **第三组公开交付：第八轮（2026-11-02）**
 >
-> 本分支包含截至第六轮的代码和结果，以及第七轮的开发代码、配置与运行脚本。最近完成的第六轮记录为 7/7 多词句数值通过、17/17 衔接复核一致、24/24 保护核心不变；正式验收仍关闭。见 [第六轮报告](results/hospital_sentences_20261101_006/README.md)。
+> 最新项目记录：[TASK-28](TASK-28.md)、[STATE](STATE.md)、[HANDOFF](HANDOFF.md)。本公开版本以干净提交 `86428693` 为基线，同步 WSL 源提交 `dfe4bacde` 的非原始内容；没有引入源仓库第七、八轮原始存储提交的历史。
 >
-> 第七轮增加 NURSE 分阶段离开动作，并更新 MORNING/NURSE 保护区间；本次发布快照尚无第七轮规划或验收结果。开发输入见 `results/hospital_sentences_20261102_007/make_inputs.py`，不要把第六轮结果用于证明第七轮已通过。
+> 第八轮已完成：7/7 多词句数值通过、17/17 衔接复核一致、24/24 保护核心不变；衔接内部停顿由第七轮的 16 次降到 0 次。见[第八轮报告](results/hospital_sentences_20261102_008/README.md)。1014 passed 是该轮保存的全套测试记录，正式验收仍关闭，视频仍待人工评审。
 >
-> `results/**/pair_runs/` 和 `results/user_protected_*/runs/` 中的原始候选、尝试、检查点、逐候选验证及调时轨迹不在本分支当前文件树中。本机源工作树仍保留它们。小型汇总、矩阵和冻结配置另存于各实验的 `run_summaries/`；原有序列输出、独立复核、测试日志和结果图保留。
+> 本次发布副本定向验证 **121 passed**（25.31 秒），包括新的平滑定时、分阶段退出和文档索引；未重跑全套测试或真实规划。见[发布验证摘要](results/publication_validation_round8_20261102/summary.json)。
 >
-> 保存报告中的原始候选路径和哈希保持原样；仅凭公开副本不能逐候选复核或续跑历史 run。需要原始存储或在具备依赖和机器人资产的环境中用新的 run ID 重新生成。运行入口示例：`.venv/bin/python results/hospital_sentences_20261102_007/make_inputs.py`（仅用于尚不存在的输入）；`bash results/hospital_sentences_20261102_007/run.sh`（先核对脚本中的本机路径）。
+> 原始候选、尝试、检查点和调时存储 `results/**/pair_runs/`、`results/user_protected_*/runs/` 仅保留在本机。小型汇总与冻结配置复制到各实验的 `run_summaries/`；序列输出、独立复核、测试日志和结果图保留。新视频继续不入库。
 >
-> 本次发布验证：7 组现有回归测试及 5 个分阶段离开动作的模拟烟测，共 **146 passed**（32.92 秒）。未重跑全套测试或第七轮真实规划。验证记录见 [发布验证摘要](results/publication_validation_20261102/summary.json)。
->
-> 本次通过普通新提交清理公开分支当前内容，没有改写先前公开提交历史。发布源版本、覆盖文件哈希和保留摘要清单见 [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json)。下文包含早期原型的历史说明。
+> 保存报告中的原始路径与哈希不改写，因此公开副本不能独自逐候选复核或续跑历史 run。需本地原始存储，或按 TASK-28 在具备依赖和模型资源的环境中创建新版本、新 run 重新生成。发布来源、摘要哈希和本次检查见 [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json)。之前的公开提交历史未改写。下文为早期原型说明。
 
 
 **中文** · [English](README.en.md) · [中英说明目录](docs/README.md)

@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "date": "2026-11-02",
-  "source_head": "545af576d015a1e8016bc7bcfb75b3601db01011",
-  "public_parent": "e8e025d7c8eaf3a9b4e4085f60ca65997a622eb9",
+  "source_head": "dfe4bacde93376025a7f0389d13f973685f01cc5",
+  "public_parent": "864286937ced9c8e53b07dba77aecfad296e751f",
   "excluded_raw_patterns": [
     "results/**/pair_runs/",
     "results/user_protected_*/runs/"
@@ -31,6 +31,14 @@
     "results/hospital_sentences_20261101_006/pair_runs": {
       "files": 9668,
       "bytes": 229786174
+    },
+    "results/hospital_sentences_20261102_007/pair_runs": {
+      "files": 10791,
+      "bytes": 248491371
+    },
+    "results/hospital_sentences_20261102_008/pair_runs": {
+      "files": 48190,
+      "bytes": 1396781820
     },
     "results/user_protected_auto_20261031_001/runs": {
       "files": 790,
@@ -3289,6 +3297,1350 @@
       "bytes": 1788
     },
     {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_01/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_01/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_01/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_01/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_01/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_01/matrix.csv",
+      "sha256": "137957d966713047e2223485838d62a0840099a496b22bff9f7aebac2d46f2ae",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_01/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_01/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_01/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_01/pairs.jsonl",
+      "sha256": "6a52d1112a4d9eb95e7d458162d283a2465529653f5ca6325019a40a27edc619",
+      "bytes": 183490
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_01/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_01/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_01/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_01/summary.json",
+      "sha256": "7267259da14f602d8e1d68bd542a4474915f393ebaa0c1e194f9491b6d9f5239",
+      "bytes": 1773
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_02/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_02/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_02/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_02/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_02/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_02/matrix.csv",
+      "sha256": "caf6e807ba9a524b3506eeb99f61d806b7f48f210d73472b508565117342460c",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_02/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_02/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_02/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_02/pairs.jsonl",
+      "sha256": "8516d450c032e1a62c5a1c675e48b01dc263a56ed44106c162e707367405d4cd",
+      "bytes": 191089
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_02/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_02/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_02/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_02/summary.json",
+      "sha256": "f4e3d24e607e59860a84a40ea3d430dad57a00eaec8abca53ba2daed201ec230",
+      "bytes": 1770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_03/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_03/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_03/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_03/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_03/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_03/matrix.csv",
+      "sha256": "8b82243f803ee844dd290f6d79e762e28498c6a073850efea408608ae085f0d7",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_03/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_03/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_03/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_03/pairs.jsonl",
+      "sha256": "d2d5089260fe665d005b1ba1ccaefb568f19deffe3ceec225029484f7555d784",
+      "bytes": 187421
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_03/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_03/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_03/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_03/summary.json",
+      "sha256": "69549d0db3b4f98851874ad428c6caf3d430b1214564a1a713936090964dede0",
+      "bytes": 1767
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_04/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_04/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_04/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_04/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_04/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_04/matrix.csv",
+      "sha256": "f1c533bfc85e84903b463873a5bd0bca439dd3557244986b428e0c49d7374e4b",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_04/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_04/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_04/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_04/pairs.jsonl",
+      "sha256": "30e0566f285f60b7d65a923783bafbd2443227a1a3ea83de2655588f1f8905af",
+      "bytes": 198820
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_04/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_04/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_04/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_04/summary.json",
+      "sha256": "2dca51ac1ecee4c9aa197d2d5a1d61b975571f0e305585a47e307b22a0d3f65d",
+      "bytes": 1767
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_05/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_05/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_05/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_05/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_05/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_05/matrix.csv",
+      "sha256": "03b121c179ddccded7adb4caf806463bb2272368030ff0b1dfa326b0ee5391d8",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_05/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_05/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_05/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_05/pairs.jsonl",
+      "sha256": "3d55b65d53dc7f2d64fa808eac4aa8d411b7bc8867d2825c28c84a63a1b79122",
+      "bytes": 185810
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_05/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_05/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_05/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_05/summary.json",
+      "sha256": "7d2ae9cbdb84767c1cc6716d8ada8d930b28d0b8eda11bc55beabfde172f800d",
+      "bytes": 1768
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_06/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_06/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_06/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_06/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_06/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_06/matrix.csv",
+      "sha256": "d701d5f09875656b772c5fdfe1a5e38c4d53d20017bca12d69cc9d485ec08661",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_06/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_06/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_06/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_06/pairs.jsonl",
+      "sha256": "9f2b31c9af752a3cd6f9f4824864bbd0a1c9976e3a9a5181b39d277c9149fc02",
+      "bytes": 193866
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_06/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_06/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_06/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_06/summary.json",
+      "sha256": "9cd16170555df93f756ebc3c6f9debd7f3cb87109c018115b16f41acf279557a",
+      "bytes": 1773
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_07/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_07/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_07/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_07/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_07/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_07/matrix.csv",
+      "sha256": "09ab83cf7e9856e65042131960023eff0d128e80e727ab4b9957da279b3635a3",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_07/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_07/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_07/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_07/pairs.jsonl",
+      "sha256": "83ab6885552bad97dcf733002a753fd56da4b5288e521a44476f632e0a2de14d",
+      "bytes": 180639
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_07/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_07/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_07/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_07/summary.json",
+      "sha256": "829cbb57f2ab69a0ebfaa22a8a80516006ccda975b71bb85bec255f6a95b1c56",
+      "bytes": 1765
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_08/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_08/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_08/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_08/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_08/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_08/matrix.csv",
+      "sha256": "e85934727e7be5afe3e0b634af0e8852777b772492d1f7c6492bf8bfd4cba8cc",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_08/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_08/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_08/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_08/pairs.jsonl",
+      "sha256": "6f691f3d717843083e8c19a2d1c9f20d6a986748277487c8f605005aed0a301f",
+      "bytes": 184219
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_08/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_08/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_08/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_08/summary.json",
+      "sha256": "23ad91e6353e8a63bfce1f015287088a5da432a957c96a8e7ea6c86c457fc9b5",
+      "bytes": 1772
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_09/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_09/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_09/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_09/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_09/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_09/matrix.csv",
+      "sha256": "799bbfa08b62ccd151b3ac6f3584a1b3c82f513464ae3176d1957c8b57a9ba69",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_09/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_09/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_09/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_09/pairs.jsonl",
+      "sha256": "60f4b11eeac2bbf8606a5c95eee3e1db4780ca5e4761b10747a395748fca054c",
+      "bytes": 185792
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_09/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_09/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_09/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_09/summary.json",
+      "sha256": "ef9a3e5383c027fbc87aa68697e9fc67b8132829289548430c9c5dc5d09da306",
+      "bytes": 1765
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_10/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_10/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_10/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_10/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_10/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_10/matrix.csv",
+      "sha256": "0f20bc55b95a1488259242edbd273c45810e39c090cf64b6c8ef7a19c3feae91",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_10/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_10/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_10/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_10/pairs.jsonl",
+      "sha256": "338db13b9f72924916ee4ae2d75f4129977b5df239091008818122050328f241",
+      "bytes": 195437
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_10/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_10/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_10/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_10/summary.json",
+      "sha256": "049857b741f422e7f0d0f0aeb03348a665c2d477ff03ec4ce82fd362249790d3",
+      "bytes": 1766
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_11/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_11/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_11/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_11/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_11/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_11/matrix.csv",
+      "sha256": "1551884418403921b1124bc1cb400f7376baa906717b63ceee6921632e36580b",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_11/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_11/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_11/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_11/pairs.jsonl",
+      "sha256": "ed37586b6b0090dbbf3c41dea8d59158401da59c7173c92ac90b8df0cffb6dec",
+      "bytes": 184493
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_11/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_11/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_11/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_11/summary.json",
+      "sha256": "78ce14f7651baf177f2de31a13f4e963f3fa6b4d022c4024feae55708dde8d92",
+      "bytes": 1766
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_12/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_12/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_12/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_12/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_12/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_12/matrix.csv",
+      "sha256": "5805590976a3e84e9f4501956db648817abcbbb9be07dc2618bb678b7720ab85",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_12/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_12/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_12/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_12/pairs.jsonl",
+      "sha256": "0266385b533f56c2a46243d907636dddf207173967c0661927716d3df72686cc",
+      "bytes": 230535
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_12/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_12/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_12/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_12/summary.json",
+      "sha256": "958b01737f8bf2879eb223c8d5ae84c38fc8ee8a0b60c6768bd32234ab9d97a5",
+      "bytes": 1774
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_13/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_13/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_13/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_13/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_13/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_13/matrix.csv",
+      "sha256": "6dde19df3217dcfc74fb347d84880640591acdc4b3d3ec909c7c111fbb0527b6",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_13/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_13/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_13/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_13/pairs.jsonl",
+      "sha256": "6e3e0ce16bb4455273368b00cd51d34f34519835309bc80206f5a4a905860982",
+      "bytes": 209485
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_13/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_13/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_13/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_13/summary.json",
+      "sha256": "3d4d06ff6f7bb974dd8b2af14f26ccaaa86e7c181fa86e71ae10cc7589111335",
+      "bytes": 1771
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_14/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_14/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_14/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_14/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_14/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_14/matrix.csv",
+      "sha256": "ad45ee81efcfe879873624fc4af0c9063a6f89dd81cbc2699c048f2a19c24a42",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_14/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_14/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_14/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_14/pairs.jsonl",
+      "sha256": "db64bfe35b87c6a1dd63dcd4eb761ebeddaa3fbcc06537b3a206915ec42ebaf9",
+      "bytes": 192561
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_14/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_14/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_14/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_14/summary.json",
+      "sha256": "c0db1d37082fd7797eb31b1abbea3e7f1976c78dcc73024e80f2626243009cea",
+      "bytes": 1767
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_15/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_15/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_15/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_15/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_15/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_15/matrix.csv",
+      "sha256": "3c166bfe7c2d2f47d8fe22fe39097b1b1951d96ddef3f56817576c69a8633163",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_15/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_15/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_15/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_15/pairs.jsonl",
+      "sha256": "e7b5bd8dc1ccca6b07e2f35be4eb6af07fae5f54b00f6ad9c9f5919a8f593514",
+      "bytes": 238842
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_15/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_15/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_15/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_15/summary.json",
+      "sha256": "f60fea683732e5086dabfa39599486ce290415aeb5c9b626fd105965ed8efa17",
+      "bytes": 1769
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_16/contract.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_16/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_16/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_16/library_manifest.json",
+      "sha256": "306f8e5f52a6190266a66f8832f9adf540847d560de3fdeda3931dbd005c5997",
+      "bytes": 53770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_16/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_16/matrix.csv",
+      "sha256": "958cb02fa423c9f4afa197543e4582a94d998beb414053161b1d26126effd899",
+      "bytes": 10346
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_16/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_16/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_16/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_16/pairs.jsonl",
+      "sha256": "60d8f45269bd45fa8f57b9d7b49e2446ab63b873f06a918bbd3f5491d1d5abac",
+      "bytes": 267491
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_16/policy.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_16/policy.json",
+      "sha256": "038050f6138c959ff482f85fda17e77b432ad532bb45b7059e1fce837d3a72d1",
+      "bytes": 3342
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_007/pair_runs/hospital_sentences_20261102_007_16/summary.json",
+      "public_path": "results/hospital_sentences_20261102_007/run_summaries/hospital_sentences_20261102_007_16/summary.json",
+      "sha256": "17e2c3d6c227fb236f6b2ca8453f279cc64b43a7d6eaeeadb93fc2f895915c6f",
+      "bytes": 1788
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_01/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_01/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_01/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_01/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_01/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_01/matrix.csv",
+      "sha256": "137957d966713047e2223485838d62a0840099a496b22bff9f7aebac2d46f2ae",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_01/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_01/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_01/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_01/pairs.jsonl",
+      "sha256": "9917110d494b24224b89a7a80b9c070966a8e1a4065f79219ab5d8a1274a0d5f",
+      "bytes": 170250
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_01/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_01/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_01/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_01/summary.json",
+      "sha256": "a2fb6c776b2105115826967876945011c3a0491490998b36b705ef2b010e744d",
+      "bytes": 1774
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_02/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_02/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_02/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_02/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_02/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_02/matrix.csv",
+      "sha256": "caf6e807ba9a524b3506eeb99f61d806b7f48f210d73472b508565117342460c",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_02/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_02/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_02/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_02/pairs.jsonl",
+      "sha256": "c1f6ef2b545b4151b34133f1e1a8f9b1987079b61044e79aa700121fd106cd67",
+      "bytes": 194356
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_02/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_02/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_02/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_02/summary.json",
+      "sha256": "dfac1c8b64c87f8ae2480dc135f044c6453629b336ab8872d974c957bd9b86ce",
+      "bytes": 1772
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_03/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_03/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_03/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_03/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_03/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_03/matrix.csv",
+      "sha256": "8b82243f803ee844dd290f6d79e762e28498c6a073850efea408608ae085f0d7",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_03/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_03/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_03/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_03/pairs.jsonl",
+      "sha256": "b51b1693c88be5e2b2ba6e91ec9cb08f2db3e37932c4a0ba9eb33098b5b2f254",
+      "bytes": 174899
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_03/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_03/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_03/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_03/summary.json",
+      "sha256": "859445be0f0b8935a60c987c1240f9245ac187560190ee09b7ac953b9b9cf137",
+      "bytes": 1769
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_04/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_04/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_04/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_04/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_04/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_04/matrix.csv",
+      "sha256": "f1c533bfc85e84903b463873a5bd0bca439dd3557244986b428e0c49d7374e4b",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_04/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_04/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_04/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_04/pairs.jsonl",
+      "sha256": "89fd5157519ce860f5095b4b9dc2f55fe129b8fcf44f6e7ad740285030cb4d4c",
+      "bytes": 209653
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_04/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_04/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_04/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_04/summary.json",
+      "sha256": "d35d7a662df9b6f6d278adbd4855a500511c221070bb18520860585e26812424",
+      "bytes": 1769
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_05/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_05/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_05/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_05/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_05/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_05/matrix.csv",
+      "sha256": "03b121c179ddccded7adb4caf806463bb2272368030ff0b1dfa326b0ee5391d8",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_05/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_05/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_05/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_05/pairs.jsonl",
+      "sha256": "51e4fb2aaeb6aff2e7064bf2a949a2913f3369e8820cbf9f764a9041dc499de6",
+      "bytes": 175598
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_05/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_05/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_05/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_05/summary.json",
+      "sha256": "6ee775352b5d32f224558429baedc48937b955d55d08fd7f929653207e5d14d4",
+      "bytes": 1769
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_06/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_06/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_06/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_06/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_06/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_06/matrix.csv",
+      "sha256": "d701d5f09875656b772c5fdfe1a5e38c4d53d20017bca12d69cc9d485ec08661",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_06/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_06/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_06/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_06/pairs.jsonl",
+      "sha256": "e0528b6f38d173b67bc3b638cd8a6e7f7d142ef7d4d8f46023de4e4cfd5afa42",
+      "bytes": 178586
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_06/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_06/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_06/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_06/summary.json",
+      "sha256": "82294b5e802315faa9ee78f156e1bbb6e636534d965f3f698b4f0d48ae64c547",
+      "bytes": 1774
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_07/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_07/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_07/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_07/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_07/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_07/matrix.csv",
+      "sha256": "09ab83cf7e9856e65042131960023eff0d128e80e727ab4b9957da279b3635a3",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_07/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_07/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_07/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_07/pairs.jsonl",
+      "sha256": "bc8ca69a31f881919dcc467ef588e8475d21018a90c3e346f2d114c5b20857d4",
+      "bytes": 180623
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_07/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_07/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_07/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_07/summary.json",
+      "sha256": "f59aff28d482b37ebf0b25ae2480d648c82f48c57c7ba714f21cfd5593edf9ab",
+      "bytes": 1767
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_08/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_08/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_08/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_08/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_08/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_08/matrix.csv",
+      "sha256": "e85934727e7be5afe3e0b634af0e8852777b772492d1f7c6492bf8bfd4cba8cc",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_08/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_08/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_08/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_08/pairs.jsonl",
+      "sha256": "ede5167e25e012f9c0ce824d0a91ffe82697368f172946eca232b9714105d833",
+      "bytes": 183645
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_08/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_08/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_08/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_08/summary.json",
+      "sha256": "db07ccf8baebf4210cc64550a02529452bdc35b386ed1a0ea0acd3b55a8fb9be",
+      "bytes": 1774
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_09/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_09/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_09/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_09/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_09/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_09/matrix.csv",
+      "sha256": "799bbfa08b62ccd151b3ac6f3584a1b3c82f513464ae3176d1957c8b57a9ba69",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_09/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_09/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_09/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_09/pairs.jsonl",
+      "sha256": "97855cdc1d216cc1fe396ce386a92f6bf902a7240485c5a74c6f0401b707739c",
+      "bytes": 181037
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_09/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_09/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_09/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_09/summary.json",
+      "sha256": "b0c84790a974ec4571dcbdb80d04747b0bf26a0435ab69f5b988e465ca3c0b82",
+      "bytes": 1767
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_10/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_10/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_10/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_10/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_10/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_10/matrix.csv",
+      "sha256": "0f20bc55b95a1488259242edbd273c45810e39c090cf64b6c8ef7a19c3feae91",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_10/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_10/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_10/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_10/pairs.jsonl",
+      "sha256": "0c5e1d71a4d54f146d6c76d35b8ea4ac43e67e40cfc1935207cf0dc2a0bbcd13",
+      "bytes": 213322
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_10/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_10/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_10/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_10/summary.json",
+      "sha256": "279ebd75e9e13afac52804543acacee4899ee54640ce251956c8099d2bdb71b9",
+      "bytes": 1768
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_11/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_11/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_11/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_11/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_11/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_11/matrix.csv",
+      "sha256": "1551884418403921b1124bc1cb400f7376baa906717b63ceee6921632e36580b",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_11/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_11/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_11/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_11/pairs.jsonl",
+      "sha256": "faac66746cb69a408f1544a3b0061a541a5bc97b1950cb2dc5140d6b213b2341",
+      "bytes": 178764
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_11/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_11/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_11/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_11/summary.json",
+      "sha256": "4fa12d69229b909f66b5b690a0d3794f6cfb41d9073f078c373bfec9ecce4d93",
+      "bytes": 1768
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_12/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_12/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_12/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_12/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_12/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_12/matrix.csv",
+      "sha256": "5805590976a3e84e9f4501956db648817abcbbb9be07dc2618bb678b7720ab85",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_12/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_12/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_12/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_12/pairs.jsonl",
+      "sha256": "51ad4724865500d679daa8570cd3b6d64a266753b9232e52fdc3969586ebbc66",
+      "bytes": 195502
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_12/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_12/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_12/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_12/summary.json",
+      "sha256": "79384e43929bd7fa92a08c69507a8b634358024ff318664dc54dc03a6f3f7e8f",
+      "bytes": 1775
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_13/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_13/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_13/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_13/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_13/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_13/matrix.csv",
+      "sha256": "6dde19df3217dcfc74fb347d84880640591acdc4b3d3ec909c7c111fbb0527b6",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_13/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_13/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_13/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_13/pairs.jsonl",
+      "sha256": "c47b7fef3ae4f91f19013ce4f83f2550e743bd19448555c4c7a32e53617da8a5",
+      "bytes": 209215
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_13/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_13/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_13/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_13/summary.json",
+      "sha256": "f697df967627321264829c879b4b8434522628a4c55036a9c24b90f921db4174",
+      "bytes": 1773
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_14/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_14/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_14/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_14/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_14/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_14/matrix.csv",
+      "sha256": "ad45ee81efcfe879873624fc4af0c9063a6f89dd81cbc2699c048f2a19c24a42",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_14/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_14/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_14/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_14/pairs.jsonl",
+      "sha256": "790d41ce0fee3f29465c4746010657a714bb9ca23d732c06c3a3d1cae05486b2",
+      "bytes": 199017
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_14/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_14/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_14/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_14/summary.json",
+      "sha256": "a9462d51fdd87c4d2440e98ce41200cea0697f99a6ff7880b2499323432aeded",
+      "bytes": 1769
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_15/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_15/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_15/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_15/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_15/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_15/matrix.csv",
+      "sha256": "3c166bfe7c2d2f47d8fe22fe39097b1b1951d96ddef3f56817576c69a8633163",
+      "bytes": 10339
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_15/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_15/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_15/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_15/pairs.jsonl",
+      "sha256": "c437bfb7e7240f9e794d59234e9eac3f79d0f9aacd68b2f8f7325309212bed04",
+      "bytes": 215133
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_15/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_15/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_15/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_15/summary.json",
+      "sha256": "663d898a4f01183b901b078cff6e3381aa5cce9cce3b269bef03ad2601998b47",
+      "bytes": 1770
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_16/contract.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_16/contract.json",
+      "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
+      "bytes": 11029
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_16/library_manifest.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_16/library_manifest.json",
+      "sha256": "b83417586a1d6db9b263f6728f3fcd5c55ba108a92d27b0a6dc4eb5b6ee546b5",
+      "bytes": 53870
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_16/matrix.csv",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_16/matrix.csv",
+      "sha256": "958cb02fa423c9f4afa197543e4582a94d998beb414053161b1d26126effd899",
+      "bytes": 10346
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_16/pair_universe.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_16/pair_universe.json",
+      "sha256": "b2380e8acebcfb57855bae9308b930da88bb17e9b6318edb557b910812c499a2",
+      "bytes": 114942
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_16/pairs.jsonl",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_16/pairs.jsonl",
+      "sha256": "cc89d0e010640235c2e05091969e477a71d51e4427d969eaa13440c029295f98",
+      "bytes": 242658
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_16/policy.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_16/policy.json",
+      "sha256": "50beea3bfcb803474232b20dd966dfaf7edfedbd724027049eec0898b2846999",
+      "bytes": 3436
+    },
+    {
+      "original_path": "results/hospital_sentences_20261102_008/pair_runs/hospital_sentences_20261102_008_16/summary.json",
+      "public_path": "results/hospital_sentences_20261102_008/run_summaries/hospital_sentences_20261102_008_16/summary.json",
+      "sha256": "25765f206d6599766b38130910411ca849670a4ba8be2ef57638cf02e6c49314",
+      "bytes": 1790
+    },
+    {
       "original_path": "results/user_protected_auto_20261031_001/runs/user_protected_pilot_20261031_001/contract.json",
       "public_path": "results/user_protected_auto_20261031_001/run_summaries/user_protected_pilot_20261031_001/contract.json",
       "sha256": "4c094f882206b722edfd87dfd47c16856c3933b05f160d8c179bc4160d82fb0f",
@@ -3541,444 +4893,531 @@
       "bytes": 1804
     }
   ],
-  "source_worktree_overlay": [
-    {
-      "path": "config/sequence_policy_hospital_sentences_v6.json",
-      "sha256": "05089075f72757e56a9aae710fd1e4b6b364d3f7b5634e636479fe5ae9c17700"
-    },
-    {
-      "path": "config/transition_policy_hospital_sentences_fast_v4.json",
-      "sha256": "5edd59323da25d60bdf64e9cc8929dc337b8b6375617fef11aebde52342e3b2d"
-    },
-    {
-      "path": "config/user_protected_hospital35_v2.json",
-      "sha256": "9bee00123eb3a4fcb5956216313c2e258f5da9d46c7c24f9f0809f8661bb801e"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/manifest.json",
-      "sha256": "45297d48ca66ade918a2eef3038c3b5e7f9093ba404713c13ea750544baa4733"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_001.json",
-      "sha256": "f917a7cabe397da45d0e4c60b309487aff4612458d6b6168d1305e062ad8a59c"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_002.json",
-      "sha256": "2655d8e9035322e374d779cf80a37a16a44bb2617f534d803420bea282bae552"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_003.json",
-      "sha256": "f07d064e96234148fd071ce3f30056e5c8ff64579ee75b17612a68dd43522ff9"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_004.json",
-      "sha256": "5773a9406032c942070ca6e24c562620073f684a6f5797491046939e831480be"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_005.json",
-      "sha256": "4c643ebcb17344059bfc5f6d0bdab00cfbc524aa68f208999633f51a063a4bc6"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_006.json",
-      "sha256": "607c1f4f0740ebb5631af158d952a31e8b4a6736cd688066e983aee977af62bf"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_007.json",
-      "sha256": "2fa26df1d08c4b8ff40396c2b1f50a9c50e89b8535b6205694bd9753fe033095"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_008.json",
-      "sha256": "64fa4b52e7aa5e981e99f5d86289659f2dc4e8fa004cf6954c45a30abdc5aa76"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_009.json",
-      "sha256": "ac7808e740633aad6a7fe614ba8bd9b3ccbad315501c52478da33b5d0c495c48"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_010.json",
-      "sha256": "c28d81b3d6b6103df1edc2e7228bb207952790a4a531fdb62606b47858bcdeee"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_011.json",
-      "sha256": "472d440f6cdf0bb7d7487587ce07f688af3f557ca364383ebbcbdd07e2a43a19"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_012.json",
-      "sha256": "923363275b079646450f3ce3ece08ed3b9584addd3281b9d5f3bf1e2ab9faa61"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_013.json",
-      "sha256": "249234892bf48ed51970d845894f46d75d629c8b21ed960ac200d479e1c209ba"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_014.json",
-      "sha256": "b4823a9d6c57bb71296999b20369d61a082c340b0704466f944eb3213081019d"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_015.json",
-      "sha256": "6b241cca0476cacfba0bbd4e36f5c6418f87147883dac5701d932d487b525ef2"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_016.json",
-      "sha256": "f4e4ab4b71d871ca31da62bfeb43cf32ec35a5f27b829d10bcdc9270b432ade6"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_017.json",
-      "sha256": "eb9a595d9e3296333f292fdee7b254873f1f4f8eb6ef8eb486fa668bc4f0959b"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_018.json",
-      "sha256": "6d7c945043817dcb1628d88dee86a5be394378ec93343846e68213b3666d0363"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_019.json",
-      "sha256": "6a48cfe1b7756a86e2c4b823a51b18f0573293b330c2bd167953db33e9b0b0f2"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_020.json",
-      "sha256": "0a54051b97e535ab4155b8130aee8ae76a69ff64a960e3e8539090873acaf210"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_021.json",
-      "sha256": "45617b84731baea256c9fad208e9c5c31c82a9c7e74c5712d8a5060409e93786"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_022.json",
-      "sha256": "7a229a73d963621c0272deee6efb370cfbb70173837f9e9914042f0e1739ed4a"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_023.json",
-      "sha256": "3611b7f573c5694d59ae4004caa2a2526e33061e9ff0902eccd3c1558dd9d468"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_024.json",
-      "sha256": "f6d8570756208014d2a74b4a6e0ff68614cb55c50c1591a37433e1a7c7ab832e"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_025.json",
-      "sha256": "b9e93f738f500d62012c31793f0ae0c3faa8b01ef7746dc522399876f9f3f420"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_026.json",
-      "sha256": "81a1f3c70c4b9f18d32b7828379b99c919471a8ff05aa6e08d584e5834e7d940"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_027.json",
-      "sha256": "69cd2ba8ca75c93f786948b850e4afd7cfbb1c4f961bf090923074e75ded0db0"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_028.json",
-      "sha256": "423b97226f578348fb45ce2c4702c17440d0ad03f253144beed56979a3d2ebe6"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_029.json",
-      "sha256": "83479d3a57fb0b2ce567a78ce7e107ed4b8b433ba955246927036954fe5c2001"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_030.json",
-      "sha256": "be59bebe520bae7968171fc31bad4df263d5483a6efa450c22ef134d1c2a7d82"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_031.json",
-      "sha256": "eedac917c48dc70760ef7ebcdee7041f637401cd467891286b7f29d28a67e23d"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_032.json",
-      "sha256": "44f217109efbc2ac415954c4060330c31a7cfeb5d4dc2e42d79281e9d3fc2b34"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_033.json",
-      "sha256": "67534bd9439feb3a834f00f7f430c0c928d66d342481dca87d27e458fb170b8d"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_034.json",
-      "sha256": "b8a3c53f18e548edcb026e3a0fa4f933ffbdac107a9a56f3efdbe1d3c0794437"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_035.json",
-      "sha256": "fc8ac55f01c6a19d8dec47142a8d56ca23f417fe5b51372236b3a500fc955da5"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_036.json",
-      "sha256": "08e3468424f3b6250309c68ebddf6780b222366970c6ec847c9b985e51425e0a"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_037.json",
-      "sha256": "1a98993f394801b5209aa54dce133479b8339f813eee7de8005dd85d210e54f6"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_038.json",
-      "sha256": "39c365daecebaeb500fe4b415ae27826cfd6c08d7e411519be70747e0fc5521e"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_039.json",
-      "sha256": "5af25fe5034432547fa4fe90be00c75ad97597f4193c91d77cbc00bad7ca4c76"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_040.json",
-      "sha256": "3c9de696738dcd499dfe690f276a7f4334988e2f8213c5d5ff96305843628258"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_041.json",
-      "sha256": "a5cb1e4643c6c35fe0caf49c08d2d7ad17c930fe3a2a41a62168b70edb204f18"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_042.json",
-      "sha256": "c2e02402554a872451e08c24c6f3a6f080e9bc7c83b858de55612fe6d6f9bc96"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_043.json",
-      "sha256": "945c03a8768d17136d870f9bed16180e74d66fd0315407fcb7c1e774db0edbbe"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_044.json",
-      "sha256": "78723aa351a0762fad54e5f584788c2e5cd2574d49844416021c5c0d64c72f70"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_045.json",
-      "sha256": "57e9e6bf068d20f679131620b50a38c0dce3d0acdbc3cbbef6847021c711d6bd"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_046.json",
-      "sha256": "5be181be615b3a620fec21bab8a721adde2555081fc3ebe9684a858468013706"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_047.json",
-      "sha256": "06063ba84d4706c62a34f5b3602a8771060232d768011648d56a85b6f4904d5e"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_048.json",
-      "sha256": "a8e6780c6b63c6c56b142d63a74b46e2832b70ee040e2876978a56520fe64207"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_049.json",
-      "sha256": "afdbcf8342560eca8ab7064cc3b7d5edaf2aa31638d757dce1ac1fd0fad404b1"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_050.json",
-      "sha256": "da4d15332628e11e3e1defeabf70a0094b9a7e388a0e1ba3a02ee0b4dd23ae3b"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_051.json",
-      "sha256": "5b42efc05f14d4721a0a1d4e9801f26ae60cf936ccc947c7d5c90b29edd024e8"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_052.json",
-      "sha256": "9de5f37daef6f251d6850a8d05f66488a5d9496b539de58eff28173944c5daff"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_053.json",
-      "sha256": "923ac98f96ea257a0d2bbda53d3e130373c03fe792263decd003b4ff41f18747"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_054.json",
-      "sha256": "201b19381f54a1236d31a48ff8f5b0c6f6a83b157817aeffd706262bd1695e4c"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_055.json",
-      "sha256": "27bec0206c92797744e1cad783856d0a28e55baad69ddc994901f6d64441f9ed"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_056.json",
-      "sha256": "2752b15fc97046c19afed9fe25444871066cf89c47e0a63f506a8d69b31bb39b"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_057.json",
-      "sha256": "46c21a8c5b5075c48f0cb53c2add94c6ecd104eb0cd5c8c5d1f76eddb944556d"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_058.json",
-      "sha256": "5c17b63307f10327937a48da71567650b2501143b32118b8463a29e29b7a6577"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_059.json",
-      "sha256": "1f2bf6b7746e6b643305209efbb87debf10ac92ef86ce7122a086cbf0a3b8a5d"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_060.json",
-      "sha256": "19bfbf7cbf40df88369e551e2098610fa387b4d117506b2944d22de5e77ae6e6"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_061.json",
-      "sha256": "e8860f783d58e23da2ddd8e9e3a4e99ed404c692160e03f7ab76e8c25ae9569d"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_062.json",
-      "sha256": "a7cd057ee479d00c4d2e95d0710868e62c6bb79bb0969f1fa43b8e865ef879c6"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_063.json",
-      "sha256": "45cfaa43105aaede91b4f8ed98f1025612e4bf594b0ff1c8832002ce940f32fb"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_064.json",
-      "sha256": "e7da88d051ac81ee0a861c0e2c3d8e2a616cc5b90bf5eee007c0f70aba81c37b"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_065.json",
-      "sha256": "3179e83c752e3c99523c3f11092ae060b5cc853e9f0285efb3cc58be45cda58d"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_066.json",
-      "sha256": "b828a6fdeaa2fb5269b5bec3d16e4e74c2ba581c1b585d2bd60cd1761eaef37b"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_067.json",
-      "sha256": "83adc98f2e98acb713bf4d2da5f6146d2c4775b025260f285931206227d5aece"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_068.json",
-      "sha256": "a90c6d054f244d6aaa6e7ada771cfb21bd7d982f38f74f95839d61027c6f59d9"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_069.json",
-      "sha256": "0f9762cf9d1e75ec9143925660356b30122f50d8aa21d5d5a02051a028306cb4"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_070.json",
-      "sha256": "fb182c194008f62dfd21f3aeb5dbf4faaf8a695c77796f56863fdcccaee875c4"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_071.json",
-      "sha256": "77940ec12cf3100afd11a9a17ef4d18e9ad7f06ed0576515c0fd3401ec926c86"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_072.json",
-      "sha256": "4cacbe99d8533b5e02b219cd6704d1de606b536e23969c4f82a0c88747ef60eb"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_073.json",
-      "sha256": "ebd948f30dc349458188b4d78d95262148bb1ad185b42d8bf060563b154a5330"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_074.json",
-      "sha256": "894d9d8d9600ca052677a4a78c119c35a79dd342119e9dbed9958734eaf29240"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_075.json",
-      "sha256": "67e7a30822d132a7bbca2d78c36d6b74aa4c0dc761204880279ff27c6f0f2c15"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/rest_076.json",
-      "sha256": "5844013c2525ad3e7969d2a0fced0e435fe68308bcfdc28eeef8ea0afcf5625f"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_001.json",
-      "sha256": "873065a7fce6579e4d8da7f00a22a5529ba2edefc035082ed3bec36c50984698"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_002.json",
-      "sha256": "7dd0ce9365b8cb77e22be95311603efc314186d7d7d73b5ba43c47aca2544a92"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_003.json",
-      "sha256": "c123e0805202f1ba343a6ebf68ac2937cb9237804cbe18704b0662424d098f88"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_004.json",
-      "sha256": "62ef71945e57b3fc917d684076e7ef260f13dd0801be7898c9065b0fb1a139c9"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_005.json",
-      "sha256": "f8650eb7181bda7128b69cb5e80d08d1c24f4cb2618675119d7944354e153a63"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_006.json",
-      "sha256": "d58a659befab2f2c80c101af7de29cc535676b577dc6538bf47cb092ab54e178"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_007.json",
-      "sha256": "be106ea8647c336a1ada26b574de38cd832edfde1d9ea3dda0cd92562b2bfa07"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_008.json",
-      "sha256": "5a148ac2803950e0f289ba01e5a6c45ee6477e77f46e1ad0ad197153def880e6"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_009.json",
-      "sha256": "304a20cb31a09c116f8d326ca170e9ad1820244ec203be4789c44c83f3c23fe7"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_010.json",
-      "sha256": "fbcaf8c1a18848a057ca479480b8580b2149541b49d25f81b59d42f2632b31a6"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_011.json",
-      "sha256": "eabe51809474f5a883a24aa5a55d51916c224897adee39b7a372e6a8bc703421"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_012.json",
-      "sha256": "a5a953f370dc95783bc7569be4bf55e89c12faf5de8c7d5cecd1f9c7c246952d"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_013.json",
-      "sha256": "4a9147dca01946f0434f5a06fb05702257018df42137f5e5fc23f202509906f5"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_014.json",
-      "sha256": "b01b57d50f7e725884fa76f4a673e73558f85349c00678be48c7c872d9ac1b4a"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_015.json",
-      "sha256": "5640bd56ec26c77571b15d8f407ac1708fa10834309bedb9ef2181b0bdf16bb3"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/batches/sentences_016.json",
-      "sha256": "acf388890bc0f9c87f33da0a31e4d9c8dc1da46b472a80437afb69f5c6d5a60b"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/export_render_inputs.py",
-      "sha256": "ccd8221e6384bbac8cba0405b701b88da18e2b07d0becc8aba5ee329ad1f8403"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/make_inputs.py",
-      "sha256": "a9b474144eb63d0197ced4d70bd2874ed2dc4809dcf528eacf31427bd7a7f238"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/render_gpu_windows.py",
-      "sha256": "fc963a49c17bd583eba3a249dee573aab80b2030ab4b8d6df405d6b4ce260cc2"
-    },
-    {
-      "path": "results/hospital_sentences_20261102_007/run.sh",
-      "sha256": "75d754e3ef62efc189c947e0bd643c7ff703bc15e17e1436d7c276caad7a37cb"
-    },
-    {
-      "path": "src/sign_robot/pair_contract.py",
-      "sha256": "e6cbd4327652ca179d5ea78424cf9f9698c1297dae408ede4197925ce8fa4699"
-    },
-    {
-      "path": "src/sign_robot/pair_routes.py",
-      "sha256": "8ae664b9553be4a90fe2da8d57a1e72835c24e220a88ef3bafca28b5ffe9acbb"
-    },
-    {
-      "path": "src/sign_robot/pair_runner_v2.py",
-      "sha256": "8bf43f65b0e1154a95d5481e3f9ac11b17ee9fe992c7adaaf2a92a83fe156539"
-    },
-    {
-      "path": "src/sign_robot/pair_search.py",
-      "sha256": "475596f39547326bc69a2cc2bce66ea6e877cca3edffff1e82d1deecf41319fe"
-    }
+  "copied_source_files": [
+    "HANDOFF.en.md",
+    "HANDOFF.md",
+    "STATE.en.md",
+    "STATE.md",
+    "TASK-28.en.md",
+    "TASK-28.md",
+    "config/sequence_policy_hospital_sentences_v6.json",
+    "config/sequence_policy_hospital_sentences_v7.json",
+    "config/transition_policy_hospital_sentences_fast_v4.json",
+    "config/transition_policy_hospital_sentences_fast_v5.json",
+    "config/user_protected_hospital35_v2.json",
+    "docs/README.en.md",
+    "docs/README.md",
+    "results/hospital_sentences_20261102_007/README.en.md",
+    "results/hospital_sentences_20261102_007/README.md",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_01.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_02.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_03.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_04.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_05.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_06.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_07.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_08.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_09.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_10.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_11.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_12.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_13.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_14.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_15.lock",
+    "results/hospital_sentences_20261102_007/batch_control/hospital_sentences_20261102_007_16.lock",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_001/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_002/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_003/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_004/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_005/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_006/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_007/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_008/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_009/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_010/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_011/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_012/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_013/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_014/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_015/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batch_control/pair_batches/sentences_016/invocation_001.json",
+    "results/hospital_sentences_20261102_007/batches/manifest.json",
+    "results/hospital_sentences_20261102_007/make_inputs.py",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_01.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_02.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_03.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_04.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_05.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_06.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_07.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_08.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_09.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_10.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_11.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_12.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_13.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_14.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_15.log",
+    "results/hospital_sentences_20261102_007/pairs_hospital_sentences_20261102_007_16.log",
+    "results/hospital_sentences_20261102_007/render_inputs/HELLO__YOU__APPOINTMENT__HAVE/baseline.npz",
+    "results/hospital_sentences_20261102_007/render_inputs/HELLO__YOU__APPOINTMENT__HAVE/independent_verification.json",
+    "results/hospital_sentences_20261102_007/render_inputs/HELLO__YOU__APPOINTMENT__HAVE/render_plan.json",
+    "results/hospital_sentences_20261102_007/render_inputs/HELLO__YOU__APPOINTMENT__HAVE/replay.npz",
+    "results/hospital_sentences_20261102_007/render_inputs/MEDICINE__MORNING__NIGHT__TAKE/baseline.npz",
+    "results/hospital_sentences_20261102_007/render_inputs/MEDICINE__MORNING__NIGHT__TAKE/independent_verification.json",
+    "results/hospital_sentences_20261102_007/render_inputs/MEDICINE__MORNING__NIGHT__TAKE/render_plan.json",
+    "results/hospital_sentences_20261102_007/render_inputs/MEDICINE__MORNING__NIGHT__TAKE/replay.npz",
+    "results/hospital_sentences_20261102_007/render_inputs/NOW__NURSE__BLOOD-DRAW/baseline.npz",
+    "results/hospital_sentences_20261102_007/render_inputs/NOW__NURSE__BLOOD-DRAW/independent_verification.json",
+    "results/hospital_sentences_20261102_007/render_inputs/NOW__NURSE__BLOOD-DRAW/render_plan.json",
+    "results/hospital_sentences_20261102_007/render_inputs/NOW__NURSE__BLOOD-DRAW/replay.npz",
+    "results/hospital_sentences_20261102_007/render_inputs/PLEASE__WAIT__DOCTOR__COME__SOON/baseline.npz",
+    "results/hospital_sentences_20261102_007/render_inputs/PLEASE__WAIT__DOCTOR__COME__SOON/independent_verification.json",
+    "results/hospital_sentences_20261102_007/render_inputs/PLEASE__WAIT__DOCTOR__COME__SOON/render_plan.json",
+    "results/hospital_sentences_20261102_007/render_inputs/PLEASE__WAIT__DOCTOR__COME__SOON/replay.npz",
+    "results/hospital_sentences_20261102_007/render_inputs/YOU__HURT__WHERE/baseline.npz",
+    "results/hospital_sentences_20261102_007/render_inputs/YOU__HURT__WHERE/independent_verification.json",
+    "results/hospital_sentences_20261102_007/render_inputs/YOU__HURT__WHERE/render_plan.json",
+    "results/hospital_sentences_20261102_007/render_inputs/YOU__HURT__WHERE/replay.npz",
+    "results/hospital_sentences_20261102_007/render_inputs/YOU__NEED__INTERPRETER/baseline.npz",
+    "results/hospital_sentences_20261102_007/render_inputs/YOU__NEED__INTERPRETER/independent_verification.json",
+    "results/hospital_sentences_20261102_007/render_inputs/YOU__NEED__INTERPRETER/render_plan.json",
+    "results/hospital_sentences_20261102_007/render_inputs/YOU__NEED__INTERPRETER/replay.npz",
+    "results/hospital_sentences_20261102_007/render_inputs/YOU__UNDERSTAND/baseline.npz",
+    "results/hospital_sentences_20261102_007/render_inputs/YOU__UNDERSTAND/independent_verification.json",
+    "results/hospital_sentences_20261102_007/render_inputs/YOU__UNDERSTAND/render_plan.json",
+    "results/hospital_sentences_20261102_007/render_inputs/YOU__UNDERSTAND/replay.npz",
+    "results/hospital_sentences_20261102_007/run.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_01.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_01/NURSE__BLOOD-DRAW.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_01/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_02.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_02/MORNING__NIGHT.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_02/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_03.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_03/PLEASE__WAIT.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_03/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_04.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_04/NIGHT__TAKE.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_04/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_05.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_05/WAIT__DOCTOR.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_05/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_06.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_06/MEDICINE__MORNING.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_06/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_07.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_07/YOU__HURT.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_07/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_08.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_08/YOU__APPOINTMENT.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_08/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_09.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_09/YOU__NEED.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_09/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_10.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_10/HELLO__YOU.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_10/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_11.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_11/NOW__NURSE.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_11/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_12.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_12/NEED__INTERPRETER.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_12/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_13.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_13/YOU__UNDERSTAND.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_13/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_14.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_14/HURT__WHERE.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_14/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_15.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_15/DOCTOR__COME.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_15/summary.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_16.log",
+    "results/hospital_sentences_20261102_007/selected_recheck_16/APPOINTMENT__HAVE.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_16/COME__SOON.json",
+    "results/hospital_sentences_20261102_007/selected_recheck_16/summary.json",
+    "results/hospital_sentences_20261102_007/sequences/independent_recheck/HELLO__YOU__APPOINTMENT__HAVE.json",
+    "results/hospital_sentences_20261102_007/sequences/independent_recheck/MEDICINE__MORNING__NIGHT__TAKE.json",
+    "results/hospital_sentences_20261102_007/sequences/independent_recheck/NOW__NURSE__BLOOD-DRAW.json",
+    "results/hospital_sentences_20261102_007/sequences/independent_recheck/PLEASE__WAIT__DOCTOR__COME__SOON.json",
+    "results/hospital_sentences_20261102_007/sequences/independent_recheck/YOU__HURT__WHERE.json",
+    "results/hospital_sentences_20261102_007/sequences/independent_recheck/YOU__NEED__INTERPRETER.json",
+    "results/hospital_sentences_20261102_007/sequences/independent_recheck/YOU__UNDERSTAND.json",
+    "results/hospital_sentences_20261102_007/sequences/independent_recheck/summary.json",
+    "results/hospital_sentences_20261102_007/sequences/manifest.json",
+    "results/hospital_sentences_20261102_007/sequences/rest_tails/BLOOD-DRAW.json",
+    "results/hospital_sentences_20261102_007/sequences/rest_tails/HAVE.json",
+    "results/hospital_sentences_20261102_007/sequences/rest_tails/INTERPRETER.json",
+    "results/hospital_sentences_20261102_007/sequences/rest_tails/SOON.json",
+    "results/hospital_sentences_20261102_007/sequences/rest_tails/TAKE.json",
+    "results/hospital_sentences_20261102_007/sequences/rest_tails/UNDERSTAND.json",
+    "results/hospital_sentences_20261102_007/sequences/rest_tails/WHERE.json",
+    "results/hospital_sentences_20261102_007/sequences/sequences/HELLO__YOU__APPOINTMENT__HAVE/attempt_0001.json",
+    "results/hospital_sentences_20261102_007/sequences/sequences/HELLO__YOU__APPOINTMENT__HAVE/attempt_0001.verification.json",
+    "results/hospital_sentences_20261102_007/sequences/sequences/MEDICINE__MORNING__NIGHT__TAKE/attempt_0001.json",
+    "results/hospital_sentences_20261102_007/sequences/sequences/MEDICINE__MORNING__NIGHT__TAKE/attempt_0001.verification.json",
+    "results/hospital_sentences_20261102_007/sequences/sequences/NOW__NURSE__BLOOD-DRAW/attempt_0001.json",
+    "results/hospital_sentences_20261102_007/sequences/sequences/NOW__NURSE__BLOOD-DRAW/attempt_0001.verification.json",
+    "results/hospital_sentences_20261102_007/sequences/sequences/PLEASE__WAIT__DOCTOR__COME__SOON/attempt_0001.json",
+    "results/hospital_sentences_20261102_007/sequences/sequences/PLEASE__WAIT__DOCTOR__COME__SOON/attempt_0001.verification.json",
+    "results/hospital_sentences_20261102_007/sequences/sequences/YOU__HURT__WHERE/attempt_0001.json",
+    "results/hospital_sentences_20261102_007/sequences/sequences/YOU__HURT__WHERE/attempt_0001.verification.json",
+    "results/hospital_sentences_20261102_007/sequences/sequences/YOU__NEED__INTERPRETER/attempt_0001.json",
+    "results/hospital_sentences_20261102_007/sequences/sequences/YOU__NEED__INTERPRETER/attempt_0001.verification.json",
+    "results/hospital_sentences_20261102_007/sequences/sequences/YOU__UNDERSTAND/attempt_0001.json",
+    "results/hospital_sentences_20261102_007/sequences/sequences/YOU__UNDERSTAND/attempt_0001.verification.json",
+    "results/hospital_sentences_20261102_007/sequences/summary.json",
+    "results/hospital_sentences_20261102_007/tests/pytest_full.log",
+    "results/hospital_sentences_20261102_007/verify_sequences.log",
+    "results/hospital_sentences_20261102_007/videos_gpu/HELLO__YOU__APPOINTMENT__HAVE.log",
+    "results/hospital_sentences_20261102_007/videos_gpu/HELLO__YOU__APPOINTMENT__HAVE/contact_sheet.png",
+    "results/hospital_sentences_20261102_007/videos_gpu/HELLO__YOU__APPOINTMENT__HAVE/report.json",
+    "results/hospital_sentences_20261102_007/videos_gpu/MEDICINE__MORNING__NIGHT__TAKE.log",
+    "results/hospital_sentences_20261102_007/videos_gpu/MEDICINE__MORNING__NIGHT__TAKE/contact_sheet.png",
+    "results/hospital_sentences_20261102_007/videos_gpu/MEDICINE__MORNING__NIGHT__TAKE/report.json",
+    "results/hospital_sentences_20261102_007/videos_gpu/MEDICINE__MORNING__NIGHT__TAKE/round6_vs_round7_morning_exit.png",
+    "results/hospital_sentences_20261102_007/videos_gpu/NOW__NURSE__BLOOD-DRAW.log",
+    "results/hospital_sentences_20261102_007/videos_gpu/NOW__NURSE__BLOOD-DRAW/contact_sheet.png",
+    "results/hospital_sentences_20261102_007/videos_gpu/NOW__NURSE__BLOOD-DRAW/report.json",
+    "results/hospital_sentences_20261102_007/videos_gpu/NOW__NURSE__BLOOD-DRAW/round6_vs_round7_nurse_exit.png",
+    "results/hospital_sentences_20261102_007/videos_gpu/PLEASE__WAIT__DOCTOR__COME__SOON.log",
+    "results/hospital_sentences_20261102_007/videos_gpu/PLEASE__WAIT__DOCTOR__COME__SOON/contact_sheet.png",
+    "results/hospital_sentences_20261102_007/videos_gpu/PLEASE__WAIT__DOCTOR__COME__SOON/report.json",
+    "results/hospital_sentences_20261102_007/videos_gpu/YOU__HURT__WHERE.log",
+    "results/hospital_sentences_20261102_007/videos_gpu/YOU__HURT__WHERE/contact_sheet.png",
+    "results/hospital_sentences_20261102_007/videos_gpu/YOU__HURT__WHERE/report.json",
+    "results/hospital_sentences_20261102_007/videos_gpu/YOU__NEED__INTERPRETER.log",
+    "results/hospital_sentences_20261102_007/videos_gpu/YOU__NEED__INTERPRETER/contact_sheet.png",
+    "results/hospital_sentences_20261102_007/videos_gpu/YOU__NEED__INTERPRETER/report.json",
+    "results/hospital_sentences_20261102_007/videos_gpu/YOU__UNDERSTAND.log",
+    "results/hospital_sentences_20261102_007/videos_gpu/YOU__UNDERSTAND/contact_sheet.png",
+    "results/hospital_sentences_20261102_007/videos_gpu/YOU__UNDERSTAND/report.json",
+    "results/hospital_sentences_20261102_007/videos_gpu/source_frames_morning_night_nurse.png",
+    "results/hospital_sentences_20261102_008/README.en.md",
+    "results/hospital_sentences_20261102_008/README.md",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_01.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_02.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_03.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_04.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_05.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_06.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_07.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_08.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_09.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_10.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_11.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_12.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_13.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_14.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_15.lock",
+    "results/hospital_sentences_20261102_008/batch_control/hospital_sentences_20261102_008_16.lock",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_001/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_002/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_003/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_004/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_005/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_006/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_007/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_008/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_009/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_010/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_011/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_012/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_013/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_014/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_015/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batch_control/pair_batches/sentences_016/invocation_001.json",
+    "results/hospital_sentences_20261102_008/batches/manifest.json",
+    "results/hospital_sentences_20261102_008/batches/rest_001.json",
+    "results/hospital_sentences_20261102_008/batches/rest_002.json",
+    "results/hospital_sentences_20261102_008/batches/rest_003.json",
+    "results/hospital_sentences_20261102_008/batches/rest_004.json",
+    "results/hospital_sentences_20261102_008/batches/rest_005.json",
+    "results/hospital_sentences_20261102_008/batches/rest_006.json",
+    "results/hospital_sentences_20261102_008/batches/rest_007.json",
+    "results/hospital_sentences_20261102_008/batches/rest_008.json",
+    "results/hospital_sentences_20261102_008/batches/rest_009.json",
+    "results/hospital_sentences_20261102_008/batches/rest_010.json",
+    "results/hospital_sentences_20261102_008/batches/rest_011.json",
+    "results/hospital_sentences_20261102_008/batches/rest_012.json",
+    "results/hospital_sentences_20261102_008/batches/rest_013.json",
+    "results/hospital_sentences_20261102_008/batches/rest_014.json",
+    "results/hospital_sentences_20261102_008/batches/rest_015.json",
+    "results/hospital_sentences_20261102_008/batches/rest_016.json",
+    "results/hospital_sentences_20261102_008/batches/rest_017.json",
+    "results/hospital_sentences_20261102_008/batches/rest_018.json",
+    "results/hospital_sentences_20261102_008/batches/rest_019.json",
+    "results/hospital_sentences_20261102_008/batches/rest_020.json",
+    "results/hospital_sentences_20261102_008/batches/rest_021.json",
+    "results/hospital_sentences_20261102_008/batches/rest_022.json",
+    "results/hospital_sentences_20261102_008/batches/rest_023.json",
+    "results/hospital_sentences_20261102_008/batches/rest_024.json",
+    "results/hospital_sentences_20261102_008/batches/rest_025.json",
+    "results/hospital_sentences_20261102_008/batches/rest_026.json",
+    "results/hospital_sentences_20261102_008/batches/rest_027.json",
+    "results/hospital_sentences_20261102_008/batches/rest_028.json",
+    "results/hospital_sentences_20261102_008/batches/rest_029.json",
+    "results/hospital_sentences_20261102_008/batches/rest_030.json",
+    "results/hospital_sentences_20261102_008/batches/rest_031.json",
+    "results/hospital_sentences_20261102_008/batches/rest_032.json",
+    "results/hospital_sentences_20261102_008/batches/rest_033.json",
+    "results/hospital_sentences_20261102_008/batches/rest_034.json",
+    "results/hospital_sentences_20261102_008/batches/rest_035.json",
+    "results/hospital_sentences_20261102_008/batches/rest_036.json",
+    "results/hospital_sentences_20261102_008/batches/rest_037.json",
+    "results/hospital_sentences_20261102_008/batches/rest_038.json",
+    "results/hospital_sentences_20261102_008/batches/rest_039.json",
+    "results/hospital_sentences_20261102_008/batches/rest_040.json",
+    "results/hospital_sentences_20261102_008/batches/rest_041.json",
+    "results/hospital_sentences_20261102_008/batches/rest_042.json",
+    "results/hospital_sentences_20261102_008/batches/rest_043.json",
+    "results/hospital_sentences_20261102_008/batches/rest_044.json",
+    "results/hospital_sentences_20261102_008/batches/rest_045.json",
+    "results/hospital_sentences_20261102_008/batches/rest_046.json",
+    "results/hospital_sentences_20261102_008/batches/rest_047.json",
+    "results/hospital_sentences_20261102_008/batches/rest_048.json",
+    "results/hospital_sentences_20261102_008/batches/rest_049.json",
+    "results/hospital_sentences_20261102_008/batches/rest_050.json",
+    "results/hospital_sentences_20261102_008/batches/rest_051.json",
+    "results/hospital_sentences_20261102_008/batches/rest_052.json",
+    "results/hospital_sentences_20261102_008/batches/rest_053.json",
+    "results/hospital_sentences_20261102_008/batches/rest_054.json",
+    "results/hospital_sentences_20261102_008/batches/rest_055.json",
+    "results/hospital_sentences_20261102_008/batches/rest_056.json",
+    "results/hospital_sentences_20261102_008/batches/rest_057.json",
+    "results/hospital_sentences_20261102_008/batches/rest_058.json",
+    "results/hospital_sentences_20261102_008/batches/rest_059.json",
+    "results/hospital_sentences_20261102_008/batches/rest_060.json",
+    "results/hospital_sentences_20261102_008/batches/rest_061.json",
+    "results/hospital_sentences_20261102_008/batches/rest_062.json",
+    "results/hospital_sentences_20261102_008/batches/rest_063.json",
+    "results/hospital_sentences_20261102_008/batches/rest_064.json",
+    "results/hospital_sentences_20261102_008/batches/rest_065.json",
+    "results/hospital_sentences_20261102_008/batches/rest_066.json",
+    "results/hospital_sentences_20261102_008/batches/rest_067.json",
+    "results/hospital_sentences_20261102_008/batches/rest_068.json",
+    "results/hospital_sentences_20261102_008/batches/rest_069.json",
+    "results/hospital_sentences_20261102_008/batches/rest_070.json",
+    "results/hospital_sentences_20261102_008/batches/rest_071.json",
+    "results/hospital_sentences_20261102_008/batches/rest_072.json",
+    "results/hospital_sentences_20261102_008/batches/rest_073.json",
+    "results/hospital_sentences_20261102_008/batches/rest_074.json",
+    "results/hospital_sentences_20261102_008/batches/rest_075.json",
+    "results/hospital_sentences_20261102_008/batches/rest_076.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_001.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_002.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_003.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_004.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_005.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_006.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_007.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_008.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_009.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_010.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_011.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_012.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_013.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_014.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_015.json",
+    "results/hospital_sentences_20261102_008/batches/sentences_016.json",
+    "results/hospital_sentences_20261102_008/export_render_inputs.py",
+    "results/hospital_sentences_20261102_008/make_inputs.py",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_01.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_02.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_03.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_04.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_05.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_06.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_07.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_08.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_09.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_10.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_11.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_12.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_13.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_14.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_15.log",
+    "results/hospital_sentences_20261102_008/pairs_hospital_sentences_20261102_008_16.log",
+    "results/hospital_sentences_20261102_008/render_gpu_windows.py",
+    "results/hospital_sentences_20261102_008/render_inputs/HELLO__YOU__APPOINTMENT__HAVE/baseline.npz",
+    "results/hospital_sentences_20261102_008/render_inputs/HELLO__YOU__APPOINTMENT__HAVE/independent_verification.json",
+    "results/hospital_sentences_20261102_008/render_inputs/HELLO__YOU__APPOINTMENT__HAVE/render_plan.json",
+    "results/hospital_sentences_20261102_008/render_inputs/HELLO__YOU__APPOINTMENT__HAVE/replay.npz",
+    "results/hospital_sentences_20261102_008/render_inputs/MEDICINE__MORNING__NIGHT__TAKE/baseline.npz",
+    "results/hospital_sentences_20261102_008/render_inputs/MEDICINE__MORNING__NIGHT__TAKE/independent_verification.json",
+    "results/hospital_sentences_20261102_008/render_inputs/MEDICINE__MORNING__NIGHT__TAKE/render_plan.json",
+    "results/hospital_sentences_20261102_008/render_inputs/MEDICINE__MORNING__NIGHT__TAKE/replay.npz",
+    "results/hospital_sentences_20261102_008/render_inputs/NOW__NURSE__BLOOD-DRAW/baseline.npz",
+    "results/hospital_sentences_20261102_008/render_inputs/NOW__NURSE__BLOOD-DRAW/independent_verification.json",
+    "results/hospital_sentences_20261102_008/render_inputs/NOW__NURSE__BLOOD-DRAW/render_plan.json",
+    "results/hospital_sentences_20261102_008/render_inputs/NOW__NURSE__BLOOD-DRAW/replay.npz",
+    "results/hospital_sentences_20261102_008/render_inputs/PLEASE__WAIT__DOCTOR__COME__SOON/baseline.npz",
+    "results/hospital_sentences_20261102_008/render_inputs/PLEASE__WAIT__DOCTOR__COME__SOON/independent_verification.json",
+    "results/hospital_sentences_20261102_008/render_inputs/PLEASE__WAIT__DOCTOR__COME__SOON/render_plan.json",
+    "results/hospital_sentences_20261102_008/render_inputs/PLEASE__WAIT__DOCTOR__COME__SOON/replay.npz",
+    "results/hospital_sentences_20261102_008/render_inputs/YOU__HURT__WHERE/baseline.npz",
+    "results/hospital_sentences_20261102_008/render_inputs/YOU__HURT__WHERE/independent_verification.json",
+    "results/hospital_sentences_20261102_008/render_inputs/YOU__HURT__WHERE/render_plan.json",
+    "results/hospital_sentences_20261102_008/render_inputs/YOU__HURT__WHERE/replay.npz",
+    "results/hospital_sentences_20261102_008/render_inputs/YOU__NEED__INTERPRETER/baseline.npz",
+    "results/hospital_sentences_20261102_008/render_inputs/YOU__NEED__INTERPRETER/independent_verification.json",
+    "results/hospital_sentences_20261102_008/render_inputs/YOU__NEED__INTERPRETER/render_plan.json",
+    "results/hospital_sentences_20261102_008/render_inputs/YOU__NEED__INTERPRETER/replay.npz",
+    "results/hospital_sentences_20261102_008/render_inputs/YOU__UNDERSTAND/baseline.npz",
+    "results/hospital_sentences_20261102_008/render_inputs/YOU__UNDERSTAND/independent_verification.json",
+    "results/hospital_sentences_20261102_008/render_inputs/YOU__UNDERSTAND/render_plan.json",
+    "results/hospital_sentences_20261102_008/render_inputs/YOU__UNDERSTAND/replay.npz",
+    "results/hospital_sentences_20261102_008/run.log",
+    "results/hospital_sentences_20261102_008/run.sh",
+    "results/hospital_sentences_20261102_008/selected_recheck_01.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_01/NURSE__BLOOD-DRAW.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_01/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_02.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_02/MORNING__NIGHT.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_02/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_03.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_03/PLEASE__WAIT.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_03/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_04.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_04/NIGHT__TAKE.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_04/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_05.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_05/WAIT__DOCTOR.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_05/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_06.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_06/MEDICINE__MORNING.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_06/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_07.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_07/YOU__HURT.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_07/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_08.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_08/YOU__APPOINTMENT.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_08/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_09.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_09/YOU__NEED.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_09/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_10.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_10/HELLO__YOU.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_10/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_11.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_11/NOW__NURSE.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_11/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_12.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_12/NEED__INTERPRETER.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_12/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_13.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_13/YOU__UNDERSTAND.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_13/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_14.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_14/HURT__WHERE.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_14/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_15.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_15/DOCTOR__COME.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_15/summary.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_16.log",
+    "results/hospital_sentences_20261102_008/selected_recheck_16/APPOINTMENT__HAVE.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_16/COME__SOON.json",
+    "results/hospital_sentences_20261102_008/selected_recheck_16/summary.json",
+    "results/hospital_sentences_20261102_008/sequences/independent_recheck/HELLO__YOU__APPOINTMENT__HAVE.json",
+    "results/hospital_sentences_20261102_008/sequences/independent_recheck/MEDICINE__MORNING__NIGHT__TAKE.json",
+    "results/hospital_sentences_20261102_008/sequences/independent_recheck/NOW__NURSE__BLOOD-DRAW.json",
+    "results/hospital_sentences_20261102_008/sequences/independent_recheck/PLEASE__WAIT__DOCTOR__COME__SOON.json",
+    "results/hospital_sentences_20261102_008/sequences/independent_recheck/YOU__HURT__WHERE.json",
+    "results/hospital_sentences_20261102_008/sequences/independent_recheck/YOU__NEED__INTERPRETER.json",
+    "results/hospital_sentences_20261102_008/sequences/independent_recheck/YOU__UNDERSTAND.json",
+    "results/hospital_sentences_20261102_008/sequences/independent_recheck/summary.json",
+    "results/hospital_sentences_20261102_008/sequences/manifest.json",
+    "results/hospital_sentences_20261102_008/sequences/rest_tails/BLOOD-DRAW.json",
+    "results/hospital_sentences_20261102_008/sequences/rest_tails/HAVE.json",
+    "results/hospital_sentences_20261102_008/sequences/rest_tails/INTERPRETER.json",
+    "results/hospital_sentences_20261102_008/sequences/rest_tails/SOON.json",
+    "results/hospital_sentences_20261102_008/sequences/rest_tails/TAKE.json",
+    "results/hospital_sentences_20261102_008/sequences/rest_tails/UNDERSTAND.json",
+    "results/hospital_sentences_20261102_008/sequences/rest_tails/WHERE.json",
+    "results/hospital_sentences_20261102_008/sequences/sequences/HELLO__YOU__APPOINTMENT__HAVE/attempt_0001.json",
+    "results/hospital_sentences_20261102_008/sequences/sequences/HELLO__YOU__APPOINTMENT__HAVE/attempt_0001.verification.json",
+    "results/hospital_sentences_20261102_008/sequences/sequences/MEDICINE__MORNING__NIGHT__TAKE/attempt_0001.json",
+    "results/hospital_sentences_20261102_008/sequences/sequences/MEDICINE__MORNING__NIGHT__TAKE/attempt_0001.verification.json",
+    "results/hospital_sentences_20261102_008/sequences/sequences/NOW__NURSE__BLOOD-DRAW/attempt_0001.json",
+    "results/hospital_sentences_20261102_008/sequences/sequences/NOW__NURSE__BLOOD-DRAW/attempt_0001.verification.json",
+    "results/hospital_sentences_20261102_008/sequences/sequences/PLEASE__WAIT__DOCTOR__COME__SOON/attempt_0001.json",
+    "results/hospital_sentences_20261102_008/sequences/sequences/PLEASE__WAIT__DOCTOR__COME__SOON/attempt_0001.verification.json",
+    "results/hospital_sentences_20261102_008/sequences/sequences/YOU__HURT__WHERE/attempt_0001.json",
+    "results/hospital_sentences_20261102_008/sequences/sequences/YOU__HURT__WHERE/attempt_0001.verification.json",
+    "results/hospital_sentences_20261102_008/sequences/sequences/YOU__NEED__INTERPRETER/attempt_0001.json",
+    "results/hospital_sentences_20261102_008/sequences/sequences/YOU__NEED__INTERPRETER/attempt_0001.verification.json",
+    "results/hospital_sentences_20261102_008/sequences/sequences/YOU__UNDERSTAND/attempt_0001.json",
+    "results/hospital_sentences_20261102_008/sequences/sequences/YOU__UNDERSTAND/attempt_0001.verification.json",
+    "results/hospital_sentences_20261102_008/sequences/summary.json",
+    "results/hospital_sentences_20261102_008/tests/pytest_full.log",
+    "results/hospital_sentences_20261102_008/verify_sequences.log",
+    "results/hospital_sentences_20261102_008/videos_gpu/HELLO__YOU__APPOINTMENT__HAVE.log",
+    "results/hospital_sentences_20261102_008/videos_gpu/HELLO__YOU__APPOINTMENT__HAVE/contact_sheet.png",
+    "results/hospital_sentences_20261102_008/videos_gpu/HELLO__YOU__APPOINTMENT__HAVE/report.json",
+    "results/hospital_sentences_20261102_008/videos_gpu/MEDICINE__MORNING__NIGHT__TAKE.log",
+    "results/hospital_sentences_20261102_008/videos_gpu/MEDICINE__MORNING__NIGHT__TAKE/arm_speed_round7_vs_round8.png",
+    "results/hospital_sentences_20261102_008/videos_gpu/MEDICINE__MORNING__NIGHT__TAKE/contact_sheet.png",
+    "results/hospital_sentences_20261102_008/videos_gpu/MEDICINE__MORNING__NIGHT__TAKE/report.json",
+    "results/hospital_sentences_20261102_008/videos_gpu/NOW__NURSE__BLOOD-DRAW.log",
+    "results/hospital_sentences_20261102_008/videos_gpu/NOW__NURSE__BLOOD-DRAW/arm_speed_round7_vs_round8.png",
+    "results/hospital_sentences_20261102_008/videos_gpu/NOW__NURSE__BLOOD-DRAW/contact_sheet.png",
+    "results/hospital_sentences_20261102_008/videos_gpu/NOW__NURSE__BLOOD-DRAW/report.json",
+    "results/hospital_sentences_20261102_008/videos_gpu/NOW__NURSE__BLOOD-DRAW/round7_vs_round8_nurse_exit.png",
+    "results/hospital_sentences_20261102_008/videos_gpu/PLEASE__WAIT__DOCTOR__COME__SOON.log",
+    "results/hospital_sentences_20261102_008/videos_gpu/PLEASE__WAIT__DOCTOR__COME__SOON/contact_sheet.png",
+    "results/hospital_sentences_20261102_008/videos_gpu/PLEASE__WAIT__DOCTOR__COME__SOON/report.json",
+    "results/hospital_sentences_20261102_008/videos_gpu/YOU__HURT__WHERE.log",
+    "results/hospital_sentences_20261102_008/videos_gpu/YOU__HURT__WHERE/contact_sheet.png",
+    "results/hospital_sentences_20261102_008/videos_gpu/YOU__HURT__WHERE/report.json",
+    "results/hospital_sentences_20261102_008/videos_gpu/YOU__NEED__INTERPRETER.log",
+    "results/hospital_sentences_20261102_008/videos_gpu/YOU__NEED__INTERPRETER/contact_sheet.png",
+    "results/hospital_sentences_20261102_008/videos_gpu/YOU__NEED__INTERPRETER/report.json",
+    "results/hospital_sentences_20261102_008/videos_gpu/YOU__UNDERSTAND.log",
+    "results/hospital_sentences_20261102_008/videos_gpu/YOU__UNDERSTAND/contact_sheet.png",
+    "results/hospital_sentences_20261102_008/videos_gpu/YOU__UNDERSTAND/report.json",
+    "src/sign_robot/pair_contract.py",
+    "src/sign_robot/pair_runner_v2.py",
+    "src/sign_robot/pair_timing.py",
+    "src/sign_robot/project_overview.py",
+    "src/sign_robot/sequence_rest.py",
+    "tests/test_smooth_timing_v1.py",
+    "tests/test_staged_exit_v1.py"
   ],
-  "latest_completed_experiment": "hospital_sentences_20261101_006",
-  "round7_results": "not present at snapshot",
+  "deleted_source_files": [],
+  "publication_adjustments": [
+    ".gitignore",
+    "README.md",
+    "README.en.md",
+    "STATE.md",
+    "STATE.en.md",
+    "HANDOFF.md",
+    "HANDOFF.en.md",
+    "TASK-28.md",
+    "TASK-28.en.md"
+  ],
+  "latest_completed_experiment": "hospital_sentences_20261102_008",
+  "source_worktree_overlay": [],
   "history_rewritten": false,
   "raw_source_worktree_preserved": true,
-  "source_overlay_refresh": "2026-11-02: staged exit now visits all valid target entries in descending frame order",
+  "incoming_source_commits_imported": false,
   "publication_validation": {
-    "passed": 146,
+    "passed": 121,
     "failed": 0,
-    "elapsed_seconds": 32.92,
-    "scope": "seven existing regression modules plus five mocked staged-exit smoke tests",
-    "full_suite_rerun": false,
-    "round7_full_planning_run": false,
-    "raw_storage_paths_tracked": 0,
-    "source_raw_files_deleted": false,
-    "pair_routes_sha256": "8ae664b9553be4a90fe2da8d57a1e72835c24e220a88ef3bafca28b5ffe9acbb",
-    "logs": [
-      "results/publication_validation_20261102/focused_regression.log",
-      "results/publication_validation_20261102/focused_regression.xml"
+    "elapsed_seconds": 25.31,
+    "source_head": "dfe4bacde93376025a7f0389d13f973685f01cc5",
+    "scope": [
+      "test_staged_exit_v1.py",
+      "test_smooth_timing_v1.py",
+      "test_pair_timing_v2.py",
+      "test_pair_contract_v2.py",
+      "test_pair_runner_v2.py",
+      "test_project_overview.py"
     ],
-    "smoke_harness": "results/publication_validation_20261102/smoke_harness.py.txt",
-    "smoke_harness_note": "Archival copy; the import-root assertion names this publication workspace. Mocked checks do not establish real geometry acceptance."
+    "full_suite_rerun": false,
+    "new_planning_run": false,
+    "raw_storage_paths_tracked": 0,
+    "incoming_raw_history_imported": false,
+    "log": "results/publication_validation_round8_20261102/focused.log"
   }
 }

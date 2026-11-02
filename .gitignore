@@ -37,7 +37,7 @@ results/you_hurt_where_baseline_vs_planned*.mp4
 # All-pairs candidate trajectories and per-pair raw evidence remain local.
 results/all_pairs/
 
-# Raw pair-run stores stay local for every experiment, including the nine-sentence runs.
+# Raw pair-run stores stay local for every round; only curated metadata is published.
 results/**/pair_runs/
 
 # New videos stay local (user decision 2026-11-01); videos committed before then remain tracked.
@@ -48,8 +48,6 @@ results/**/pair_runs/
 *.avi
 *.m4v
 
-# Historical raw candidate stores; curated metadata is published under run_summaries/.
+# Historical raw stores and publication scratch remain local.
 results/user_protected_*/runs/
-
-# Local validation scratch output is not part of the public delivery.
 _scratch/

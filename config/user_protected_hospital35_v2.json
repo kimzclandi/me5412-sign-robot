@@ -3,7 +3,7 @@
   "kind": "user_protected_intervals_v1",
   "bundle_id": "user-protection-hospital35-20261102-v2",
   "window_version": "hospital35-user-protection-20261102-v2",
-  "source_instruction": "User-filled sheet 保护区间填写 (A2:C36) of the ODS with SHA-256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3, imported by scripts/import_user_protections.py. It supplies the semantic fragment the user requires for each word; outward rounding remains an engineering safeguard. The algorithm chooses external cuts and windows; no human window approval is supplied. Earlier COME/NOW bundles stay unchanged for their historical runs. v2 (2026-11-02): the user shortened two protections in chat: MORNING ends at frame 38 and NURSE at frame 75; every other record is unchanged from v1.",
+  "source_instruction": "User-filled sheet 保护区间填写 (A2:C36) of the ODS with SHA-256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3, imported by scripts/import_user_protections.py. It supplies the semantic fragment the user requires for each word; outward rounding remains an engineering safeguard. The algorithm chooses external cuts and windows; no human window approval is supplied. Earlier COME/NOW bundles stay unchanged for their historical runs. v2 (2026-11-02): the user shortened two protections in chat: MORNING ends at frame 37 (asked for 38; the user chose 37 after the finger snap at 37-38 was found) and NURSE at frame 75; every other record is unchanged from v1.",
   "records": [
     {
       "protection_id": "hospital35-20261101-v1-HELLO",
@@ -652,14 +652,14 @@
       "motion_sha256": "88874e76d81466a7141badf0aa2a5bf98319036d76771a9c39f9b83609ad47f6",
       "frame_count": 123,
       "fps": 30,
-      "user_interval_text": "0.87–1.266 s (user chat 2026-11-02: end at frame 38; was 0.87–2.27 s (保护区间填写!B34:C34))",
+      "user_interval_text": "0.87–1.23 s (user chat 2026-11-02: end at frame 37; was 0.87–2.27 s (保护区间填写!B34:C34))",
       "user_interval_s": [
         0.87,
-        1.266
+        1.23
       ],
       "protected_core_frames": [
         26,
-        38
+        37
       ],
       "retiming_allowed": false,
       "binding_basis": "user sheet row 34 of ODS sha256 4fe5b3bb3f7d12cf4cd4418b8431325dec48fbed3c29a2a1e29447cdf89667e3 + unchanged actual hospital_v1 selected motion SHA-256 + inclusive outward rounding; end amended by the user in chat on 2026-11-02",
