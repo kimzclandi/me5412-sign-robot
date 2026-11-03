@@ -1,0 +1,13 @@
+== start 2026-11-02T14:21:13+08:00
+worker 0 hospital_sentences_20261102_009_01 cpu0 pid 1034
+worker 1 hospital_sentences_20261102_009_02 cpu1 pid 1040
+worker 0 exit 0 2026-11-02T14:58:43+08:00
+worker 1 exit 0 2026-11-02T14:59:11+08:00
+recheck 02 exit 0
+recheck 01 exit 0
+{"rest_tail": "WHERE", "status": "TIMED_CANDIDATE", "attempts": 52, "selected": {"exit_frame": 81, "method": "direct", "connector_frames": 9, "core_gap_frames": 9}, "wall_time_s": 112.0}
+{"sequence_id": "YOU__HURT__WHERE", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"denominator": 1, "numerical_pass_count": 1, "status_counts": {"NUMERICAL_PASS": 1}, "stop_reason": null}
+plan_sequences exit 0
+verify_sequences exit 0
+== end 2026-11-02T15:03:26+08:00

@@ -7,7 +7,7 @@
   ],
   "question": true,
   "gloss_source": "offline_cache",
-  "stitching": "Group 3 round 8 planned transitions (results/hospital_sentences_20261102_008), first word's rise prepended",
+  "stitching": "Group 3 round 10 planned transitions (results/hospital_sentences_20261102_010), first word's rise prepended",
   "stitching_label": "Group 3 planned transitions",
   "transition_s": 0.5,
   "frames": 142,

@@ -8,33 +8,33 @@
   ],
   "question": false,
   "gloss_source": "offline_cache",
-  "stitching": "Group 3 round 8 planned transitions (results/hospital_sentences_20261102_008), first word's rise prepended",
+  "stitching": "Group 3 round 10 planned transitions (results/hospital_sentences_20261102_010), first word's rise prepended",
   "stitching_label": "Group 3 planned transitions",
   "transition_s": 0.5,
-  "frames": 298,
-  "duration_s": 9.9,
+  "frames": 281,
+  "duration_s": 9.333,
   "words": [
     {
       "gloss": "NOW",
       "frames": [
         0,
-        64
+        60
       ],
       "library": "motions/wlasl_video_v1"
     },
     {
       "gloss": "NURSE",
       "frames": [
-        65,
-        144
+        61,
+        127
       ],
       "library": "motions/wlasl_video_v1"
     },
     {
       "gloss": "BLOOD-DRAW",
       "frames": [
-        145,
-        297
+        128,
+        280
       ],
       "library": "motions/studio_galt_v1"
     }

@@ -4,6 +4,7 @@ from copy import deepcopy
 import numpy as np
 import pytest
 
+from clips_v2 import on_clips_v2
 from sign_robot.motion import ROOT
 from sign_robot.pair_contract import (CONNECTOR_ONLY_METHOD_V4, CONNECTOR_STENCIL_FRAMES, load_policy,
     save_pair_trajectory, validate_policy_v2)
@@ -46,7 +47,7 @@ def test_masks_keep_whole_stencils_inside_the_connector():
 def hello_you():
     # HELLO's own source slice comes within 1.1 mm of a collision (a group-2 source finding).
     from sign_robot.pair_routes import build_pair_context_v2, iter_deterministic_attempts_v2
-    policy = _load(V4_POLICY)
+    policy = on_clips_v2(_load(V4_POLICY))
     context = build_pair_context_v2(ROOT, policy)
     attempt = next(a for a in iter_deterministic_attempts_v2(context, 'HELLO', 'YOU', seed=5412) if a.timing_trajectories)
     return policy, attempt.trajectory or attempt.timing_trajectories[0]

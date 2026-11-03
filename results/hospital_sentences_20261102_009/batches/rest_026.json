@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "NURSE__HEADACHE",
+    "NURSE__HAVE",
+    "NURSE__NEED",
+    "NURSE__WAIT",
+    "NURSE__COME",
+    "NURSE__HURT",
+    "NURSE__BREATHE-DEEP",
+    "NURSE__BLOOD-DRAW",
+    "NURSE__TAKE",
+    "NURSE__UNDERSTAND",
+    "NURSE__WRITE",
+    "NURSE__NOT",
+    "NURSE__NOW",
+    "NURSE__SOON",
+    "NURSE__LATER",
+    "NURSE__TOMORROW"
+  ]
+}

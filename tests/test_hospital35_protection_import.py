@@ -8,6 +8,7 @@ import zipfile
 import numpy as np
 import pytest
 
+from clips_v2 import on_clips_v2
 from sign_robot.motion import ROOT
 from sign_robot.pair_contract import file_hash, freeze_library, json_hash, load_policy, read_json
 from sign_robot.pair_windows import WindowApprovalError, load_user_protections
@@ -22,6 +23,9 @@ BUNDLE = "config/user_protected_hospital35_v1.json"
 POLICY = "config/transition_policy_user_protected_hospital35_v1.json"
 PROVENANCE = "config/user_protected_hospital35_v1.provenance.json"
 V5 = "config/transition_policy_user_protected_v5.json"
+# Bundle v4 binds the same 35 words to Group 2's clips-v2 motions (TASK-29); v1 stays the hospital_v1 record.
+REBOUND = "config/user_protected_hospital35_v4.json"
+V1_SHA = "d19fec39dcc28dd54fa3d93260dbe0bcbec81062cd190669f74681c5172e3ae0"
 OFFICE = "urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 TABLE = "urn:oasis:names:tc:opendocument:xmlns:table:1.0"
 TEXT = "urn:oasis:names:tc:opendocument:xmlns:text:1.0"
@@ -66,10 +70,21 @@ def write_ods(path, rows, *, sheet="保护区间填写", header=("词语", "开�
     return path
 
 
-def test_real_sheet_rebuilds_installed_bundle_policy_and_provenance_bytes():
+def test_real_sheet_rebuilds_v1_except_the_clips_v2_motion_binding():
     outputs = build()
-    for relative, payload in outputs.items():
-        assert (ROOT / relative).read_bytes() == payload, relative
+    assert sorted(outputs) == sorted([BUNDLE, POLICY, PROVENANCE])
+    old = {relative: read_json(ROOT / relative) for relative in outputs}
+    new = {relative: json.loads(payload) for relative, payload in outputs.items()}
+    current = {r["gloss"]: r["motion_sha256"] for r in read_json(ROOT / REBOUND)["records"]}
+    replaced = {r["gloss"] for r in old[BUNDLE]["records"] if r["motion_sha256"] != current[r["gloss"]]}
+    assert len(replaced) == 24 and "NURSE" in replaced and "COME" not in replaced
+    assert new[BUNDLE]["records"] == [{**r, "motion_sha256": current[r["gloss"]]} for r in old[BUNDLE]["records"]]
+    assert {**new[BUNDLE], "records": old[BUNDLE]["records"]} == old[BUNDLE]
+    assert new[PROVENANCE]["rows"] == [{**r, "motion_sha256": current[r["gloss"]]} for r in old[PROVENANCE]["rows"]]
+    assert new[PROVENANCE]["bundle"]["sha256"] == new[POLICY]["endpoints"]["protection_bundle_sha256"] != V1_SHA
+    assert {**new[PROVENANCE], "rows": old[PROVENANCE]["rows"], "bundle": old[PROVENANCE]["bundle"],
+            "policy": old[PROVENANCE]["policy"]} == old[PROVENANCE]
+    assert {**new[POLICY], "endpoints": {**new[POLICY]["endpoints"], "protection_bundle_sha256": V1_SHA}} == old[POLICY]
     bundle = read_json(ROOT / BUNDLE)
     records = {r["gloss"]: r for r in bundle["records"]}
     assert len(bundle["records"]) == 35 and len(records) == 35
@@ -94,6 +109,11 @@ def test_new_policy_changes_only_protection_binding_and_loads_exactly_35_words()
     assert new["formal_acceptance_enabled"] is False and new["quality"] == old["quality"]
     library, _ = freeze_library(ROOT, new)
     assert not library["input_errors"] and not any(w["input_errors"] for w in library["words"])
+    with pytest.raises(WindowApprovalError) as caught:
+        load_user_protections(ROOT, new, library)
+    assert caught.value.code == "STALE_USER_PROTECTION_MOTION"
+    new = on_clips_v2(new)
+    library, _ = freeze_library(ROOT, new)
     protections = load_user_protections(ROOT, new, library)
     assert sorted(protections) == sorted(new["scope"]["expected_glosses"]) and len(protections) == 35
     assert protections["NOW"].protected_core_frames == (27, 51)
@@ -254,7 +274,8 @@ def test_cli_never_overwrites_and_check_matches(capsys):
     with pytest.raises(SystemExit):
         importer.main(args)
     capsys.readouterr()
-    assert importer.main([*args, "--check"]) == 0
+    # On clips-v2 the sheet no longer rebuilds the installed v1 files; the check reports them and changes nothing.
+    assert importer.main([*args, "--check"]) == 1
     result = json.loads(capsys.readouterr().out)
-    assert result["status"] == "MATCH" and result["installed_check"]["glosses_loaded"] == 35
-    assert result["installed_check"]["NOW"] == [27, 51] and not result["installed_check"]["input_errors"]
+    assert result["status"] == "DIFFERS" and sorted(result["differences"]) == sorted([BUNDLE, POLICY, PROVENANCE])
+    assert file_hash(ROOT / BUNDLE) == V1_SHA

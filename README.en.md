@@ -11,25 +11,29 @@
 | Group 1 English → gloss | `group1_text_to_gloss/`, Gemini API plus validation against the 35-gloss vocabulary; 20-sentence self-test all correct (original 9/9, paraphrases 6/6, out-of-vocabulary 5/5 rejected); offline results saved for the 9 dialogue lines |
 | Group 2 gloss → motion | 35/35 glosses have trajectories: 9 from Studio Galt mocap, 26 from public ASL dictionary videos + MediaPipe (graded "approximate") |
 | End to end | `scripts/demo/hospital_demo.py`: sentence → gloss → motion → video; videos of the 9 lines, the 4 acts (demo slides) and the full dialogue in `results/demo/`, using Group 3's transitions by default |
-| Group 3 transitions and playback | Round 8 merged: planned transitions for the 7 multi-word lines (minimum-jerk curves, collision-avoiding routes, RRT detours, no stops inside transitions); comparison with the baseline in `results/stitch_compare/group3_round8/` (mean duration 10.5 → 7.9 s, max penetration 39 → 13.8 mm) |
+| Group 3 transitions and playback | Round 10 merged (on Group 2's clips-v2 clips): planned transitions for the 7 multi-word lines (minimum-jerk curves, collision-avoiding routes, RRT detours, no stops inside transitions); comparison with the same-clip baseline in `results/stitch_compare/group3_round10/` (mean duration 10.5 → 7.6 s, max penetration 18.3 → 3.7 mm) |
 
 Robot motions are candidate signs, **not reviewed by ASL users**; Group 1's test is an in-group self-test, not an independent test.
 
-## Group 3 delivery record (round 8)
+## Group 3 delivery record (round 10)
 
-The note below was submitted by Group 3 with their delivery and is kept as written. The root-level `TASK-*`, `STATE`, `HANDOFF`, `PLAN`, `PUBLICATION_MANIFEST.json`, `library_manifest.json`, `word_audit.json` and `migration/` are Group 3's working records; some are read by Group 3's code, so do not move them.
+The note below was submitted by Group 3 with their round-10 delivery and is kept as written (the round-8 note is in [TASK-28](TASK-28.en.md)). The root-level `TASK-*`, `STATE`, `HANDOFF`, `PLAN`, `PUBLICATION_MANIFEST.json`, `library_manifest.json`, `word_audit.json` and `migration/` are Group 3's working records; some are read by Group 3's code, so do not move them.
 
-> **Group 3 public delivery: round 8 (2026-11-02)**
+> **Group 3 public delivery: round 10 / clips-v2 (2026-11-03)**
 >
-> Current project records: [TASK-28](TASK-28.en.md), [STATE](STATE.en.md), [HANDOFF](HANDOFF.en.md). This publication starts from clean public commit `86428693` and synchronizes non-raw content from WSL source commit `dfe4bacde`. It does not import the history of the source repository's round-7 or round-8 raw-store commits.
+> This publication synchronizes non-raw content from private repository `Kingderman/ME5412-Project`, branch `group3/clips-v2`, fixed commit `ec89a7f`, on public round-9 parent `83dffbfc`. It includes clips-v2 motions, protection bundle v5, `fast_v7` / sequence `v9`, adapted code and tests, and round-10 results. See [TASK-29](TASK-29.en.md), [STATE](STATE.en.md) and [HANDOFF](HANDOFF.en.md).
 >
-> Round 8 is complete: 7/7 multi-word sentences pass numerical checks, 17/17 connector rechecks agree and 24/24 protected cores are unchanged. Interior connector stops fell from round 7's 16 to 0. See the [round-8 report](results/hospital_sentences_20261102_008/README.en.md). The recorded full-suite result is 1014 passed; formal acceptance remains disabled and human video review is pending.
+> Round 10 records 7/7 multi-word sentences passing numerical checks, 17/17 connector rechecks agreeing, 24/24 protected cores unchanged and 0 interior stops. NURSE uses the new motion and its old staged exit is removed. See the [round-10 report](results/hospital_sentences_20261102_010/README.en.md). Protections are rebound to clips-v2: NURSE [23,79], INTERPRETER [19,40], HURT [37,57] and MORNING [26,37].
 >
-> This publication copy passed **121 focused checks** in 25.31 seconds, covering smooth timing, staged exits and the documentation index. No full-suite rerun or new planning run was performed. See the [publication validation summary](results/publication_validation_round8_20261102/summary.json).
+> Rounds 8 and 9 remain historical old-clip evidence and cannot be applied to the new motions. Round 10 ran under identity `00124363`; test fixes `a1eb6e53` were committed separately during the run. The saved 1021-pass, 1-skip result is from the fixed tests, not a change to the historical run identity. This publication does not solve new trajectories.
 >
-> Raw candidates, attempts, checkpoints and timing stores under `results/**/pair_runs/` and `results/user_protected_*/runs/` remain local. Compact summaries and frozen configuration are copied to each experiment's `run_summaries/`; sequence outputs, independent rechecks, test logs and result images are retained. New videos remain excluded.
+> This curated public snapshot passed **146 focused tests** (140.82 seconds). All 35 motion hashes and both configuration bindings match; all 819 historical curated metadata hashes remain unchanged. No new trajectories or historical full-suite rerun. See the [publication validation summary](results/publication_validation_round10_20261103/summary.json).
 >
-> Original paths and hashes in saved reports are preserved, so this public copy cannot independently recheck every candidate or resume historical runs. Use the local raw stores, or follow TASK-28 with the required dependencies and model assets to generate a new version and run. Source revisions, metadata hashes and publication checks are in [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json). Earlier public history is unchanged.
+> Raw candidates/attempts/checkpoints/timing stores, virtual environments, model weights, private configuration and new videos remain excluded. Previously committed videos are not updated and are historical previews, not clips-v2 or round-10 evidence. Current result images and saved replay NPZs are included. Round-10 replays are under `results/hospital_sentences_20261102_010/videos_<CASE>/<CASE>/replay.npz`; use a local MuJoCo playback reader and follow the round README for rendering.
+>
+> The private snapshot's `scripts/demo/hospital_demo.py` still defaults to round-8 render_inputs and falls back to baseline when clips differ; it is not the round-10 replay entry point. Follow the round-10 README for input, run and rendering commands. Formal acceptance is disabled and human video review is pending. Source-motion findings and added-connector numerical checks remain separate. Provenance and checks are in [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json).
+
+Integration note (Group 2, 2026-11-03): after the merge, `scripts/demo/hospital_demo.py` reads round 10's `videos_<sentence>/<sentence>/replay.npz`; the statement above that it still reads round 8 applies only to Group 3's private snapshot. The videos in `results/demo/` were regenerated with the round-10 transitions, and the word videos in `results/video_previews/` match clips-v2; they are not old previews.
 
 ## Earlier work: three-class web prototype
 

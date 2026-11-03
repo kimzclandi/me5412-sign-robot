@@ -2,7 +2,7 @@
 
 [中文](group2-clips-v2.md) · **English** · [Group 2 handoff](group2-handoff.en.md) · [Hospital demo](hospital-demo.en.md)
 
-Branch `group2/clips-v2`. Group 3 chose to put both changes below into the final version, so the video word clips are regenerated and Group 3 needs to rebind its protection records and re-run planning on them. **`master` stays unchanged until Group 3 has re-run and the result is checked.**
+Branch `group2/clips-v2`. Group 3 chose to put both changes below into the final version, so the video word clips are regenerated and Group 3 needs to rebind its protection records and re-run planning on them. **Merged: Group 3 completed round 10 on these clips on 2026-11-03 (`results/hospital_sentences_20261102_010/`), and the demo now uses the round-10 transitions; see the [hospital demo](hospital-demo.en.md).**
 
 ## What changed
 

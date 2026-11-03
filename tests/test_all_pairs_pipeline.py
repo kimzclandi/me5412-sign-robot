@@ -80,6 +80,13 @@ def test_legacy_endpoints_are_audited_but_not_inherited(context):
     assert record["exit_frame"] == 88 and record["entry_frame"] == 24
     nurse = context.audit["words"]["NURSE"]
     assert {r["frame"] for r in nurse["research_endpoints"]} == {80, 81}
+    # The proposals were recorded on the hospital_v1 clip; clips-v2 replaced NURSE, so they are stale.
+    assert all(r["recheck_status"] == "STALE_INPUT_HASH" and not r["selected_for_scan"] for r in nurse["research_endpoints"])
+    current = next(w for w in context.library["words"] if w["gloss"] == "NURSE")["motion_sha256"]
+    for proposal in context.policy["endpoints"]["legacy_research_endpoints"]:
+        if proposal["gloss"] == "NURSE":
+            proposal["motion_sha256"] = current
+    nurse = pairs.audit_words(context)["words"]["NURSE"]
     assert all(not r["selected_for_scan"] for r in nurse["research_endpoints"])
     f80 = next(r for r in nurse["research_endpoints"] if r["frame"] == 80)
     assert f80["trim_ratio"] == 8 / 79 and f80["approval_status"] == "pending"

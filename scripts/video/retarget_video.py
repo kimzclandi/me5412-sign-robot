@@ -34,7 +34,7 @@ ARM_SPEED_LIMIT = 15.0  # rad/s; stops wrist-roll flips from noisy hand orientat
 MIN_COVERAGE = 0.5  # fraction of clip frames with the signing hand detected
 MEDIAN_FRAMES = 5  # at 30 fps: removes orientation glitches shorter than ~0.1 s
 # On from clips v2 (2026-11-02): 29 of 32 words dropped from up to 92 mm penetration to 3 mm.
-# Group 3's round-8 plans were bound by hash to the unrepaired clips (bcdefc4) and must rebind.
+# Group 3 rebound its protections to these clips for round 10.
 COLLISION_REPAIR = True
 METHOD = ("Monocular video retargeting: MediaPipe PoseLandmarker/HandLandmarker world landmarks (Savitzky-Golay "
           "smoothed, gaps interpolated) -> same G1 retargeting as the mocap clips (scaled shoulder-relative wrist "

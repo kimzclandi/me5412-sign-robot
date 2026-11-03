@@ -5,9 +5,10 @@ import json
 import numpy as np
 import pytest
 
+from clips_v2 import on_clips_v2
 from sign_robot.motion import ROOT, load_model
 from sign_robot.pair_contract import (
-    CLAMPED_JOINT_STOP_V1, RETAINED_EDGE_SCREEN_V1, RETAINED_EDGE_SCREEN_V2, clamped_stop_joints, load_policy,
+    CLAMPED_JOINT_STOP_V1, RETAINED_EDGE_SCREEN_V1, RETAINED_EDGE_SCREEN_V2, clamped_stop_joints, file_hash, load_policy,
     new_arm_limit_frames, retained_edge_flags,
     read_motion, retained_edge_contacts, validate_policy_v2,
 )
@@ -15,6 +16,9 @@ from sign_robot.pair_routes import PairWorkBudget, build_pair_context_v2, valid_
 from sign_robot.pair_timing import boundary_state_v2, cut_boundary_state_v2
 
 OLD, NEW = 'transition_policy_hospital_sentences_fast_v1.json', 'transition_policy_hospital_sentences_fast_v2.json'
+# The hospital_v1 NURSE clip that clips-v2 replaced: its wrist-roll and shoulder-yaw flip after the core is the case
+# these screens were built for, so the screen tests keep it as a fixture.
+OLD_NURSE = ROOT/'tests/data/NURSE_hospital_v1.npz'
 
 
 def _load(name):
@@ -23,8 +27,8 @@ def _load(name):
 
 @pytest.fixture(scope='module')
 def nurse():
-    library = {w['gloss']: w for w in json.loads((ROOT/'motions/hospital_v1_motions.json').read_text())['glosses']}
-    clip = read_motion(ROOT/library['NURSE']['motion'])
+    assert file_hash(OLD_NURSE) == 'f75945f059ef18a5f8888c9499e9160ada02ad9aea5a37f2850fb9a4f4dd391f'
+    clip = read_motion(OLD_NURSE)
     model = load_model(ROOT)
     bounds = np.array([model.joint(str(n)).range for n in clip['joint_names']])
     return clip, bounds, [str(n) for n in clip['joint_names']]
@@ -78,15 +82,19 @@ def test_cut_state_rests_only_the_clamped_wrist(nurse):
     assert rested['position'] == plain['position']
 
 
-def test_nurse_exit_window_keeps_only_the_frame_before_the_flip():
+def test_nurse_exit_window_stops_before_the_new_arm_limit_contact():
     exits = {}
     for name in (OLD, NEW):
-        policy = _load(name)
+        policy = on_clips_v2(_load(name))
         context = build_pair_context_v2(ROOT, policy)
         exits[name] = valid_endpoint_choices_v2(context, 'NURSE', 'BLOOD-DRAW', PairWorkBudget(policy))['source']['valid_frames']
-    # Round 4 could also cut at 80, but no connector carried the wrist roll's slope into its stop; it kept 98.
-    assert {80, 98} <= set(exits[OLD])
-    assert exits[NEW] == [80]
+    clip = context.clips['NURSE']
+    bounds = np.array([context.model.joint(str(n)).range for n in clip['joint_names']])
+    # clips-v2 NURSE (core 23-79 in bundle v5) first reaches a new arm limit at 90-94; 80-85 fail the clearance gate
+    # (right thumb on the left wrist). The v1 rules also offer cuts that keep 90-94; the screen stops at 90.
+    assert np.flatnonzero(new_arm_limit_frames(clip, (23, 79), bounds)).tolist() == [90, 91, 92, 93, 94]
+    assert {91, 103} <= set(exits[OLD])
+    assert sorted(exits[NEW]) == [79, 86, 87, 88, 89, 90]
 
 
 V3 = 'transition_policy_hospital_sentences_fast_v3.json'

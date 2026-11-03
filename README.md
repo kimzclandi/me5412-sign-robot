@@ -11,25 +11,29 @@
 | 第一组 英文 → gloss | `group1_text_to_gloss/`，Gemini API 加 35 词表校验；20 句自测全对（原句 9/9、换说法 6/6、词库外 5/5 拒绝）；9 句对话另存离线结果 |
 | 第二组 gloss → 动作 | 35/35 个 gloss 有轨迹：9 个来自 Studio Galt 动作捕捉，26 个来自公开 ASL 词典视频 + MediaPipe（评为“近似”） |
 | 端到端 | `scripts/demo/hospital_demo.py`：句子 → gloss → 动作 → 视频；9 句视频、4 幕视频（PPT Demo 页）与完整对话在 `results/demo/`，默认使用第三组的衔接 |
-| 第三组 衔接与播放 | 第 8 轮已合并：7 个多词句的规划衔接（最小加加速度曲线、避碰路径、RRT 绕行，衔接内部不停顿）；与基线对比见 `results/stitch_compare/group3_round8/`（平均时长 10.5 → 7.9 s，最大穿模 39 → 13.8 mm） |
+| 第三组 衔接与播放 | 第 10 轮已合并（基于第二组 clips-v2 片段）：7 个多词句的规划衔接（最小加加速度曲线、避碰路径、RRT 绕行，衔接内部不停顿）；与同片段基线对比见 `results/stitch_compare/group3_round10/`（平均时长 10.5 → 7.6 s，最大穿模 18.3 → 3.7 mm） |
 
 机器人动作是候选手语动作，**未经 ASL 使用者评审**；第一组测试为组内自测，不是独立测试。
 
-## 第三组交付记录（第 8 轮）
+## 第三组交付记录（第 10 轮）
 
-以下为第三组随交付提交的说明，原样保留。根目录的 `TASK-*`、`STATE`、`HANDOFF`、`PLAN`、`PUBLICATION_MANIFEST.json`、`library_manifest.json`、`word_audit.json` 和 `migration/` 是第三组的工作记录，其中部分文件由第三组代码读取，请勿移动。
+以下为第三组随第 10 轮交付提交的说明，原样保留（第 8 轮说明见 [TASK-28](TASK-28.md)）。根目录的 `TASK-*`、`STATE`、`HANDOFF`、`PLAN`、`PUBLICATION_MANIFEST.json`、`library_manifest.json`、`word_audit.json` 和 `migration/` 是第三组的工作记录，其中部分文件由第三组代码读取，请勿移动。
 
-> **第三组公开交付：第八轮（2026-11-02）**
+> **第三组公开交付：Round 10 / clips-v2（2026-11-03）**
 >
-> 最新项目记录：[TASK-28](TASK-28.md)、[STATE](STATE.md)、[HANDOFF](HANDOFF.md)。本公开版本以干净提交 `86428693` 为基线，同步 WSL 源提交 `dfe4bacde` 的非原始内容；没有引入源仓库第七、八轮原始存储提交的历史。
+> 本次从私人仓库 `Kingderman/ME5412-Project` 的 `group3/clips-v2` 固定提交 `ec89a7f` 同步非原始内容，以公开第九轮提交 `83dffbfc` 为父提交。包括新版动作片段、保护表 v5、`fast_v7` / 序列 `v9`、适配代码与测试及第十轮结果。项目记录见 [TASK-29](TASK-29.md)、[STATE](STATE.md)、[HANDOFF](HANDOFF.md)。
 >
-> 第八轮已完成：7/7 多词句数值通过、17/17 衔接复核一致、24/24 保护核心不变；衔接内部停顿由第七轮的 16 次降到 0 次。见[第八轮报告](results/hospital_sentences_20261102_008/README.md)。1014 passed 是该轮保存的全套测试记录，正式验收仍关闭，视频仍待人工评审。
+> 第十轮：7/7 多词句数值通过，17/17 衔接复核一致，24/24 保护核心不变，衔接中途停顿为0；NURSE 已换为新动作，取消旧 NURSE 分阶段出口。见[第十轮报告](results/hospital_sentences_20261102_010/README.md)。保护表重新绑定 clips-v2：NURSE [23,79]、INTERPRETER [19,40]，HURT [37,57]、MORNING [26,37]。
 >
-> 本次发布副本定向验证 **121 passed**（25.31 秒），包括新的平滑定时、分阶段退出和文档索引；未重跑全套测试或真实规划。见[发布验证摘要](results/publication_validation_round8_20261102/summary.json)。
+> 第八、九轮的旧片段结果保留作历史，不能直接套用于新版动作。Round 10 实际运行身份为 `00124363`；测试修复 `a1eb6e53` 在运行期间另行提交，保存的1021 passed、1 skipped是修复后测试结果，不能据此改变历史 run 的冻结身份。本次只同步已有结果，不重新求解。
 >
-> 原始候选、尝试、检查点和调时存储 `results/**/pair_runs/`、`results/user_protected_*/runs/` 仅保留在本机。小型汇总与冻结配置复制到各实验的 `run_summaries/`；序列输出、独立复核、测试日志和结果图保留。新视频继续不入库。
+> 本次公开发布副本定向验证 **146 passed**（140.82 秒），35/35 动作哈希及两级配置绑定一致；历史整理摘要 819 份哈希保持不变。未重新求解轨迹或重跑历史全套测试。见[发布验证摘要](results/publication_validation_round10_20261103/summary.json)。
 >
-> 保存报告中的原始路径与哈希不改写，因此公开副本不能独自逐候选复核或续跑历史 run。需本地原始存储，或按 TASK-28 在具备依赖和模型资源的环境中创建新版本、新 run 重新生成。发布来源、摘要哈希和本次检查见 [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json)。之前的公开提交历史未改写。
+> 原始候选/尝试/检查点/调时存储、虚拟环境、模型权重、私密配置和新视频继续不上传。旧已提交视频不更新，它们仅是历史预览，不代表 clips-v2 或 Round 10；本轮使用新的结果图及保存回放 NPZ。第十轮完整动作在 `results/hospital_sentences_20261102_010/videos_<句子>/<句子>/replay.npz`，可由本地 MuJoCo 回放工具读取；渲染方式以该轮 README 为准。
+>
+> 私仓自带的 `scripts/demo/hospital_demo.py` 仍默认读取第八轮 render_inputs，片段不匹配时会回退基线；它不是本次第十轮回放入口。第十轮的输入、运行与渲染入口以该轮 README 为准。正式验收仍关闭，视频尚待人工评审；源动作发现与新增衔接的数值检查分开记录。来源及检查见 [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json)。
+
+整合说明（第二组，2026-11-03）：合并后 `scripts/demo/hospital_demo.py` 已改为读取第 10 轮的 `videos_<句子>/<句子>/replay.npz`，上文关于它仍读第 8 轮的说明只适用于第三组的私仓副本；`results/demo/` 的视频已用第 10 轮衔接重新生成；`results/video_previews/` 的单词视频与 clips-v2 一致，不是旧版预览。
 
 ## 前期工作：三类网页原型
 

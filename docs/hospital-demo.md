@@ -56,14 +56,16 @@ Windows 把 `.venv/bin/python` 换成 `.venv\Scripts\python`。完整原型（�
 
 - `results/demo/<名称>.npz`：整句轨迹，与仓库动作同一格式（`timestamps_s`、`joint_names`、`positions`，弧度，30 fps）。
 - `results/demo/<名称>.json`：原句、gloss、来源、每个词的帧范围和来源库（动作捕捉或视频）。
-- `results/demo/<名称>.mp4`、`results/demo/hospital_dialogue.mp4`（9 句连播，约 91 秒）：已入库，可直接放进 PPT 或在断网、电脑出问题时作为备份播放。
-- 第 13–16 页的 4 幕视频（只有机器人，带英文原句和逐词 gloss 字幕）：`act1_registration.mp4`（第 1–2 句，约 23 秒）、`act2_consultation.mp4`（第 3–5 句，约 33 秒）、`act3_treatment.mp4`（第 6–7 句，约 22 秒）、`act4_discharge.mp4`（第 8–9 句，约 13 秒）。PPT 讲稿提到的右侧真人词典视频属于各网站，不入库，需要时在本地另行拼接并注明来源。
+- `results/demo/<名称>.mp4`、`results/demo/hospital_dialogue.mp4`（9 句连播，约 71 秒）：已入库，可直接放进 PPT 或在断网、电脑出问题时作为备份播放。
+- 第 13–16 页的 4 幕视频（只有机器人，带英文原句和逐词 gloss 字幕）：`act1_registration.mp4`（第 1–2 句，约 17 秒）、`act2_consultation.mp4`（第 3–5 句，约 26 秒）、`act3_treatment.mp4`（第 6–7 句，约 18 秒）、`act4_discharge.mp4`（第 8–9 句，约 11 秒）。PPT 讲稿提到的右侧真人词典视频属于各网站，不入库，需要时在本地另行拼接并注明来源。
 
 ## 5. 与第三组的衔接
 
-**2026-11-02 起默认使用第三组第 8 轮的规划衔接**（`results/hospital_sentences_20261102_008/render_inputs/<句子>/replay.npz`，7 个多词句）：前面接上第一个词自身从中立姿势抬起的一段（与片段逐帧相同，无跳变），s5、s9 单词句仍用单个片段。`--transitions baseline` 生成基线，输出到 `results/demo/baseline/`，也是对比脚本的参照。第 11 页对比结果见 `results/stitch_compare/group3_round8/`：7 句平均时长 10.5 → 7.9 s，回落次数 3.1 → 2.0，最大穿模 39 → 13.8 mm（s1 79 → 19 mm，s6 NURSE→BLOOD-DRAW 70 → 3 mm），RMS jerk 1750 → 1470；s7（33 mm）、s8（11 mm）与基线相同，穿模来自单词本身；s6、s7 的回落次数比基线多。
+**2026-11-03 起默认使用第三组第 10 轮的规划衔接**（`results/hospital_sentences_20261102_010/videos_<句子>/<句子>/replay.npz`，7 个多词句，基于第二组 clips-v2 片段，见[第二组片段 v2](group2-clips-v2.md)）：前面接上第一个词自身从中立姿势抬起的一段（与片段逐帧相同，无跳变），s5、s9 单词句仍用单个片段。如果某句的规划与当前片段对不上，脚本会提示并改用基线。`--transitions baseline` 生成基线，输出到 `results/demo/baseline/`，也是对比脚本的参照。
 
-第三组的规划基于 2026-10-30 的单词片段（提交 `bcdefc4`），其“保护核心”按哈希绑定当时的片段。为保持一致，视频词片段保留这个版本：2026-11-01 做过的视频词碰撞修复（最大穿模 92 → 3 mm）已于 2026-11-02 回退，代码保留在 `G1Retargeter.repair_collisions`，由 `scripts/video/retarget_video.py` 的 `COLLISION_REPAIR` 开关控制（当前关闭）。第三组在新片段上重新绑定、重跑后可以再打开。
+对比结果见 `results/stitch_compare/group3_round10/`（基线与第 10 轮用同一批 clips-v2 片段）。7 个多词句平均：时长 10.5 → 7.6 s，回落次数 3.1 → 2.0，最大穿模 18.3 → 3.7 mm，RMS jerk 1720 → 1450。s2、s3、s4、s8 穿模为 0，s7 20.5 → 2.9 mm；s1（19.4 mm）、s6（3.3 mm）与基线相同，穿模来自单词本身；s7 的回落次数比基线多（2 → 4）。
+
+历史记录：第 8 轮（旧片段 `bcdefc4`）的对比保留在 `results/stitch_compare/group3_round8/`（最大穿模 39 → 13.8 mm），不能套用到 clips-v2。clips-v2 打开了视频词碰撞修复（`scripts/video/retarget_video.py` 的 `COLLISION_REPAIR`），并人工修正了 NURSE；第三组已把保护记录重新绑定到这些片段。
 
 拼接现在是最简单的基线：每个词裁到 `sign_frames`，词间固定 0.5 秒平滑过渡，词与词之间手臂会短暂下沉。第三组完成衔接方法后，替换 `hospital_demo.py` 里的 `stitch(...)` 调用即可，其余流程不变；基线保留作为“直接回放对照”。
 

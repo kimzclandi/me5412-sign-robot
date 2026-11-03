@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "THANK-YOU__WRITE",
+    "THANK-YOU__NOT",
+    "THANK-YOU__NOW",
+    "THANK-YOU__SOON",
+    "THANK-YOU__LATER",
+    "THANK-YOU__TOMORROW",
+    "THANK-YOU__MORNING",
+    "THANK-YOU__NIGHT",
+    "THANK-YOU__WHERE",
+    "SORRY__HELLO",
+    "SORRY__PLEASE",
+    "SORRY__THANK-YOU",
+    "SORRY__SORRY",
+    "SORRY__YES",
+    "SORRY__NO",
+    "SORRY__YOU"
+  ]
+}

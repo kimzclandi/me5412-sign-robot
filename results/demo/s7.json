@@ -9,11 +9,11 @@
   ],
   "question": false,
   "gloss_source": "offline_cache",
-  "stitching": "Group 3 round 8 planned transitions (results/hospital_sentences_20261102_008), first word's rise prepended",
+  "stitching": "Group 3 round 10 planned transitions (results/hospital_sentences_20261102_010), first word's rise prepended",
   "stitching_label": "Group 3 planned transitions",
   "transition_s": 0.5,
-  "frames": 191,
-  "duration_s": 6.333,
+  "frames": 194,
+  "duration_s": 6.433,
   "words": [
     {
       "gloss": "MEDICINE",
@@ -27,23 +27,23 @@
       "gloss": "MORNING",
       "frames": [
         98,
-        121
+        124
       ],
       "library": "motions/wlasl_video_v1"
     },
     {
       "gloss": "NIGHT",
       "frames": [
-        122,
-        152
+        125,
+        155
       ],
       "library": "motions/wlasl_video_v1"
     },
     {
       "gloss": "TAKE",
       "frames": [
-        153,
-        190
+        156,
+        193
       ],
       "library": "motions/studio_galt_v1"
     }

@@ -7,6 +7,7 @@ import importlib.util
 import numpy as np
 import pytest
 
+from clips_v2 import on_clips_v2
 from sign_robot.motion import ROOT
 from sign_robot.pair_contract import load_policy
 from sign_robot.pair_routes import build_pair_context_v2
@@ -20,7 +21,7 @@ POLICY = ROOT / "config/transition_policy_user_protected_hospital35_v1.json"
 
 @pytest.fixture(scope="module")
 def context():
-    result = build_pair_context_v2(ROOT, load_policy(POLICY, supported_versions=(2,)))
+    result = build_pair_context_v2(ROOT, on_clips_v2(load_policy(POLICY, supported_versions=(2,))))
     assert not result.input_blockers and len(result.approvals) == 35
     return result
 

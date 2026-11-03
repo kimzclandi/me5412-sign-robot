@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "HAVE__LATER",
+    "HAVE__TOMORROW",
+    "HAVE__MORNING",
+    "HAVE__NIGHT",
+    "HAVE__WHERE",
+    "NEED__HELLO",
+    "NEED__PLEASE",
+    "NEED__THANK-YOU",
+    "NEED__SORRY",
+    "NEED__YES",
+    "NEED__NO",
+    "NEED__YOU",
+    "NEED__YOUR",
+    "NEED__ME",
+    "NEED__DEAF",
+    "NEED__DOCTOR"
+  ]
+}

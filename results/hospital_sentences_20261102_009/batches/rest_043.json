@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "WAIT__ME",
+    "WAIT__DEAF",
+    "WAIT__DOCTOR",
+    "WAIT__NURSE",
+    "WAIT__INTERPRETER",
+    "WAIT__APPOINTMENT",
+    "WAIT__MEDICINE",
+    "WAIT__STOMACH",
+    "WAIT__HEADACHE",
+    "WAIT__HAVE",
+    "WAIT__NEED",
+    "WAIT__WAIT",
+    "WAIT__COME",
+    "WAIT__HURT",
+    "WAIT__BREATHE-DEEP",
+    "WAIT__BLOOD-DRAW"
+  ]
+}

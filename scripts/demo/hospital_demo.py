@@ -11,7 +11,7 @@ the demo needs no network or API key. --live runs group1_text_to_gloss in a
 subprocess (its package also is named sign_robot) with demo_only, so every gloss
 it accepts has a motion; if the API fails, a cached line is used and labelled as
 such, otherwise nothing is played. Words are joined by Group 3's planned
-transitions (round 8, results/hospital_sentences_20261102_008) when the sentence
+transitions (round 10 on the clips-v2 word clips, results/hospital_sentences_20261102_010) when the sentence
 was planned, with the first word's own rise from neutral in front; otherwise, and
 with --transitions baseline, by scripts/mocap/stitch_baseline.py.
 Output: results/demo/<name>.npz, .json and (with --render) .mp4 with captions;
@@ -35,7 +35,7 @@ from stitch_baseline import HOSPITAL, stitch
 GROUP1 = ROOT / "group1_text_to_gloss"
 CACHE = GROUP1 / "data/offline/hospital_dialogue_gloss.json"
 OUT = ROOT / "results/demo"
-PLANNED = ROOT / "results/hospital_sentences_20261102_008/render_inputs"  # Group 3, round 8
+PLANNED = ROOT / "results/hospital_sentences_20261102_010"  # Group 3, round 10 (clips-v2)
 FPS = 30
 LABELS = {"group3": "Group 3 planned transitions", "baseline": "baseline stitching"}
 # The four acts of the demo slides (13-16): one patient's visit from registration to discharge.
@@ -100,7 +100,8 @@ def planned(glosses, spans):
 
     Planned sentences start at the first word's protected core; that frame is taken from the
     word clip itself, so the clip's own frames up to it join without a jump."""
-    folder = PLANNED / "__".join(glosses)
+    sequence = "__".join(glosses)
+    folder = PLANNED / f"videos_{sequence}" / sequence
     if not (folder / "replay.npz").exists():
         return None
     with np.load(folder / "replay.npz") as f:
@@ -115,7 +116,7 @@ def planned(glosses, spans):
         print(f"{folder.name}: Group 3 plan does not match the current {glosses[0]} clip; using the baseline")
         return None
     q = np.vstack([rise[:k], q])
-    plan = json.loads((folder / "render_plan.json").read_text())
+    plan = json.loads((folder / "report.json").read_text())
     starts = [0] + [c["replay_frames"][0] + k for c in plan["protected_instance_video_checks"][1:]] + [len(q)]
     spans += [(g, a, b - 1) for g, a, b in zip(glosses, starts, starts[1:])]
     return {"timestamps_s": np.arange(len(q)) / FPS, "joint_names": motion["joint_names"], "positions": q}
@@ -133,7 +134,7 @@ def build(line, transition_s, transitions="group3"):
     out.mkdir(parents=True, exist_ok=True)
     name = name_for(line)
     np.savez_compressed(out / f"{name}.npz", **motion)
-    stitching = {"group3": "Group 3 round 8 planned transitions (results/hospital_sentences_20261102_008), first word's rise prepended",
+    stitching = {"group3": "Group 3 round 10 planned transitions (results/hospital_sentences_20261102_010), first word's rise prepended",
                  "baseline": "baseline: sign_frames cut + fixed smoothstep blend (scripts/mocap/stitch_baseline.py)"}[method]
     meta = dict(line, stitching=stitching, stitching_label=LABELS[method],
                 transition_s=transition_s, frames=len(motion["timestamps_s"]),

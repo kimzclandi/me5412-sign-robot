@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "HURT__NEED",
+    "HURT__WAIT",
+    "HURT__COME",
+    "HURT__HURT",
+    "HURT__BREATHE-DEEP",
+    "HURT__BLOOD-DRAW",
+    "HURT__TAKE",
+    "HURT__UNDERSTAND",
+    "HURT__WRITE",
+    "HURT__NOT",
+    "HURT__NOW",
+    "HURT__SOON",
+    "HURT__LATER",
+    "HURT__TOMORROW",
+    "HURT__MORNING",
+    "HURT__NIGHT"
+  ]
+}
