@@ -94,12 +94,14 @@ def rate_limit(values, max_step):
 
 
 def write_clip(word, sk, source, out_dir, method, limitations, render=False, preview_dir=None,
-               finger_speed_limit=None, arm_speed_limit=None, median_frames=None):
+               finger_speed_limit=None, arm_speed_limit=None, median_frames=None, collision_repair=False):
     """Retarget a cropped skeleton, add neutral transitions and write <out_dir>/<word>.npz/.json.
 
     The optional filters are for video estimates: `median_frames` median-filters every
     joint (removes few-frame orientation flips), then `finger_speed_limit` and
-    `arm_speed_limit` (rad/s) rate-limit the finger drivers and the arm joints."""
+    `arm_speed_limit` (rad/s) rate-limit the finger drivers and the arm joints.
+    `collision_repair` then re-solves the arms on frames (including the neutral
+    transitions) where the filtered pose penetrates the body or the other hand."""
     model = load_model()
     info = json.loads((ROOT / "assets/robot/model_info.json").read_text())
     rt = G1Retargeter(model, info["couplings"])
@@ -132,6 +134,9 @@ def write_clip(word, sk, source, out_dir, method, limitations, render=False, pre
     lower, upper = model.jnt_range.T
     clipped = float(np.max(np.maximum(lower - q, q - upper)))
     q = np.clip(q, lower, upper)
+    repair = None
+    if collision_repair:
+        q, repair = rt.repair_collisions(q, (arm_speed_limit or 25.0) / FPS)
     speed = np.abs(np.diff(q, axis=0)) * FPS
     motion = {"timestamps_s": times, "joint_names": np.asarray(rt.names), "positions": q}
     validate_motion(motion)
@@ -157,6 +162,7 @@ def write_clip(word, sk, source, out_dir, method, limitations, render=False, pre
         "core_frames": core_frames, "transition_s": TRANSITION_S, "arm_scale": scales,
         "finger_speed_limit_rad_s": finger_speed_limit, "arm_speed_limit_rad_s": arm_speed_limit,
         "median_filter_frames": median_frames,
+        **({"collision_repair": repair} if collision_repair else {}),
         "ik_error": {side: {"wrist_position_m": summary(errors[side]["wrist_m"]), "hand_orientation_rad": summary(errors[side]["rot_rad"])} for side in SIDES},
         "ik_error_sign_phase": sign_error,
         "max_joint_limit_clip_rad": max(clipped, 0.0), "max_joint_speed_rad_s": float(speed.max()),

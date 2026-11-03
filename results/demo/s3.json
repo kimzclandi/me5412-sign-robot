@@ -1,0 +1,61 @@
+{
+  "id": "s3",
+  "sentence": "Please wait, the doctor will come soon.",
+  "glosses": [
+    "PLEASE",
+    "WAIT",
+    "DOCTOR",
+    "COME",
+    "SOON"
+  ],
+  "question": false,
+  "gloss_source": "offline_cache",
+  "stitching": "Group 3 round 8 planned transitions (results/hospital_sentences_20261102_008), first word's rise prepended",
+  "stitching_label": "Group 3 planned transitions",
+  "transition_s": 0.5,
+  "frames": 393,
+  "duration_s": 13.067,
+  "words": [
+    {
+      "gloss": "PLEASE",
+      "frames": [
+        0,
+        87
+      ],
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "WAIT",
+      "frames": [
+        88,
+        176
+      ],
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "DOCTOR",
+      "frames": [
+        177,
+        209
+      ],
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "COME",
+      "frames": [
+        210,
+        323
+      ],
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "SOON",
+      "frames": [
+        324,
+        392
+      ],
+      "library": "motions/wlasl_video_v1"
+    }
+  ],
+  "note": "Candidate robot signing, not reviewed by ASL users; video-derived words are approximate."
+}

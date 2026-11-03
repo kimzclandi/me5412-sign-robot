@@ -1,0 +1,3560 @@
+{
+ "min_clearance_mm_threshold": 2.0,
+ "speed_caps_rad_s": {
+  "arm": 15.0,
+  "finger": 10.0
+ },
+ "clips": {
+  "clips_v2": {
+   "path": "/home/kingderman/Documents/ME5412-group3-clips-v2/motions/wlasl_video_v1/NURSE.npz",
+   "frames": 127,
+   "per_frame": [
+    {
+     "frame": 0,
+     "time_s": 0.0,
+     "clearance_mm": 7.81,
+     "closest": [
+      "left_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.018,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 1,
+     "time_s": 0.0333,
+     "clearance_mm": 8.23,
+     "closest": [
+      "left_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.053,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 2,
+     "time_s": 0.0667,
+     "clearance_mm": 9.07,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.085,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 3,
+     "time_s": 0.1,
+     "clearance_mm": 8.93,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.114,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 4,
+     "time_s": 0.1333,
+     "clearance_mm": 8.7,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.139,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 5,
+     "time_s": 0.1667,
+     "clearance_mm": 8.45,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.161,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 6,
+     "time_s": 0.2,
+     "clearance_mm": 8.07,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.18,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 7,
+     "time_s": 0.2333,
+     "clearance_mm": 7.76,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.196,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 8,
+     "time_s": 0.2667,
+     "clearance_mm": 7.53,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.209,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 9,
+     "time_s": 0.3,
+     "clearance_mm": 7.3,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.218,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 10,
+     "time_s": 0.3333,
+     "clearance_mm": 7.23,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.224,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 11,
+     "time_s": 0.3667,
+     "clearance_mm": 7.35,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.228,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 12,
+     "time_s": 0.4,
+     "clearance_mm": 7.51,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.228,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 13,
+     "time_s": 0.4333,
+     "clearance_mm": 7.69,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.228,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 14,
+     "time_s": 0.4667,
+     "clearance_mm": 7.9,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.224,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 15,
+     "time_s": 0.5,
+     "clearance_mm": 8.14,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.218,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 16,
+     "time_s": 0.5333,
+     "clearance_mm": 8.38,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.209,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 17,
+     "time_s": 0.5667,
+     "clearance_mm": 8.63,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.196,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 18,
+     "time_s": 0.6,
+     "clearance_mm": 8.86,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.18,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 19,
+     "time_s": 0.6333,
+     "clearance_mm": 9.08,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.161,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 20,
+     "time_s": 0.6667,
+     "clearance_mm": 9.28,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.139,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 21,
+     "time_s": 0.7,
+     "clearance_mm": 9.42,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.114,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 22,
+     "time_s": 0.7333,
+     "clearance_mm": 7.54,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.085,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 23,
+     "time_s": 0.7667,
+     "clearance_mm": 5.9,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.053,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 24,
+     "time_s": 0.8,
+     "clearance_mm": 5.35,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.409,
+     "fastest_joint": "left_wrist_pitch_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 25,
+     "time_s": 0.8333,
+     "clearance_mm": -0.02,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.409,
+     "fastest_joint": "left_wrist_pitch_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 26,
+     "time_s": 0.8667,
+     "clearance_mm": -0.09,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.335,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 27,
+     "time_s": 0.9,
+     "clearance_mm": -0.11,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.14,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 28,
+     "time_s": 0.9333,
+     "clearance_mm": -0.11,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.059,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 29,
+     "time_s": 0.9667,
+     "clearance_mm": -0.09,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.145,
+     "fastest_joint": "right_elbow_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 30,
+     "time_s": 1.0,
+     "clearance_mm": -0.1,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.228,
+     "fastest_joint": "right_elbow_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 31,
+     "time_s": 1.0333,
+     "clearance_mm": -0.19,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.228,
+     "fastest_joint": "right_elbow_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 32,
+     "time_s": 1.0667,
+     "clearance_mm": -0.09,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.572,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 33,
+     "time_s": 1.1,
+     "clearance_mm": -0.29,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.572,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 34,
+     "time_s": 1.1333,
+     "clearance_mm": 6.12,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.228,
+     "fastest_joint": "right_wrist_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 35,
+     "time_s": 1.1667,
+     "clearance_mm": 4.6,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.164,
+     "fastest_joint": "right_wrist_pitch_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 36,
+     "time_s": 1.2,
+     "clearance_mm": 3.34,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.141,
+     "fastest_joint": "right_wrist_pitch_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 37,
+     "time_s": 1.2333,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.09,
+     "fastest_joint": "right_shoulder_pitch_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 38,
+     "time_s": 1.2667,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.05,
+     "fastest_joint": "right_wrist_pitch_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 39,
+     "time_s": 1.3,
+     "clearance_mm": 6.26,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.071,
+     "fastest_joint": "right_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 40,
+     "time_s": 1.3333,
+     "clearance_mm": -0.02,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.083,
+     "fastest_joint": "right_wrist_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 41,
+     "time_s": 1.3667,
+     "clearance_mm": 1.64,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.083,
+     "fastest_joint": "right_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 42,
+     "time_s": 1.4,
+     "clearance_mm": 0.7,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.035,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 43,
+     "time_s": 1.4333,
+     "clearance_mm": 0.52,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.043,
+     "fastest_joint": "right_wrist_pitch_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 44,
+     "time_s": 1.4667,
+     "clearance_mm": 2.15,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.099,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 45,
+     "time_s": 1.5,
+     "clearance_mm": 2.3,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.099,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 46,
+     "time_s": 1.5333,
+     "clearance_mm": 5.15,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.087,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 47,
+     "time_s": 1.5667,
+     "clearance_mm": 3.37,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.018,
+     "fastest_joint": "right_elbow_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 48,
+     "time_s": 1.6,
+     "clearance_mm": 3.82,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.035,
+     "fastest_joint": "right_shoulder_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 49,
+     "time_s": 1.6333,
+     "clearance_mm": 2.34,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.046,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 50,
+     "time_s": 1.6667,
+     "clearance_mm": 0.99,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.051,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 51,
+     "time_s": 1.7,
+     "clearance_mm": 1.42,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.051,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 52,
+     "time_s": 1.7333,
+     "clearance_mm": 2.05,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.042,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 53,
+     "time_s": 1.7667,
+     "clearance_mm": 2.17,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.037,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 54,
+     "time_s": 1.8,
+     "clearance_mm": 1.43,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.035,
+     "fastest_joint": "right_elbow_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 55,
+     "time_s": 1.8333,
+     "clearance_mm": 1.67,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.035,
+     "fastest_joint": "right_elbow_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 56,
+     "time_s": 1.8667,
+     "clearance_mm": 2.32,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.042,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 57,
+     "time_s": 1.9,
+     "clearance_mm": 2.48,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.043,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 58,
+     "time_s": 1.9333,
+     "clearance_mm": 2.56,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.059,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 59,
+     "time_s": 1.9667,
+     "clearance_mm": 2.72,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.059,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 60,
+     "time_s": 2.0,
+     "clearance_mm": 2.81,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.047,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 61,
+     "time_s": 2.0333,
+     "clearance_mm": 2.49,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.04,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 62,
+     "time_s": 2.0667,
+     "clearance_mm": 3.04,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.029,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_roll_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 63,
+     "time_s": 2.1,
+     "clearance_mm": 2.73,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.023,
+     "fastest_joint": "right_wrist_pitch_joint",
+     "arm_at_limit": [
+      "left_wrist_roll_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 64,
+     "time_s": 2.1333,
+     "clearance_mm": 2.89,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.023,
+     "fastest_joint": "right_wrist_pitch_joint",
+     "arm_at_limit": [
+      "left_wrist_roll_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 65,
+     "time_s": 2.1667,
+     "clearance_mm": 2.87,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.022,
+     "fastest_joint": "right_wrist_pitch_joint",
+     "arm_at_limit": [
+      "left_wrist_roll_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 66,
+     "time_s": 2.2,
+     "clearance_mm": 2.56,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.021,
+     "fastest_joint": "right_elbow_joint",
+     "arm_at_limit": [
+      "left_wrist_roll_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 67,
+     "time_s": 2.2333,
+     "clearance_mm": 2.46,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.025,
+     "fastest_joint": "right_elbow_joint",
+     "arm_at_limit": [
+      "left_wrist_roll_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 68,
+     "time_s": 2.2667,
+     "clearance_mm": 3.76,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.025,
+     "fastest_joint": "right_elbow_joint",
+     "arm_at_limit": [
+      "left_wrist_roll_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 69,
+     "time_s": 2.3,
+     "clearance_mm": 2.66,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.075,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 70,
+     "time_s": 2.3333,
+     "clearance_mm": 2.01,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.091,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 71,
+     "time_s": 2.3667,
+     "clearance_mm": 2.59,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.091,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 72,
+     "time_s": 2.4,
+     "clearance_mm": 2.67,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.047,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 73,
+     "time_s": 2.4333,
+     "clearance_mm": 2.58,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.01,
+     "fastest_joint": "right_wrist_pitch_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 74,
+     "time_s": 2.4667,
+     "clearance_mm": 3.35,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.017,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 75,
+     "time_s": 2.5,
+     "clearance_mm": 2.5,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.086,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 76,
+     "time_s": 2.5333,
+     "clearance_mm": 1.79,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.117,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 77,
+     "time_s": 2.5667,
+     "clearance_mm": 3.12,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.117,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 78,
+     "time_s": 2.6,
+     "clearance_mm": 1.94,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.095,
+     "fastest_joint": "right_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 79,
+     "time_s": 2.6333,
+     "clearance_mm": 4.24,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.306,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 80,
+     "time_s": 2.6667,
+     "clearance_mm": 0.35,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.372,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 81,
+     "time_s": 2.7,
+     "clearance_mm": -0.24,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.372,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 82,
+     "time_s": 2.7333,
+     "clearance_mm": -0.01,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.474,
+     "fastest_joint": "right_wrist_pitch_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 83,
+     "time_s": 2.7667,
+     "clearance_mm": -0.02,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.478,
+     "fastest_joint": "right_wrist_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 84,
+     "time_s": 2.8,
+     "clearance_mm": -0.27,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.583,
+     "fastest_joint": "right_wrist_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 85,
+     "time_s": 2.8333,
+     "clearance_mm": -0.19,
+     "closest": [
+      "R_thumb_distal",
+      "left_wrist_yaw_link"
+     ],
+     "speed_ratio": 0.583,
+     "fastest_joint": "right_wrist_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 86,
+     "time_s": 2.8667,
+     "clearance_mm": 2.22,
+     "closest": [
+      "R_thumb_intermediate",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.439,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 87,
+     "time_s": 2.9,
+     "clearance_mm": 9.5,
+     "closest": [
+      "left_elbow_link",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.354,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 88,
+     "time_s": 2.9333,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.354,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 89,
+     "time_s": 2.9667,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.275,
+     "fastest_joint": "right_shoulder_pitch_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 90,
+     "time_s": 3.0,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.199,
+     "fastest_joint": "right_shoulder_yaw_joint",
+     "arm_at_limit": [
+      "right_wrist_roll_joint"
+     ]
+    },
+    {
+     "frame": 91,
+     "time_s": 3.0333,
+     "clearance_mm": 9.5,
+     "closest": [
+      "left_elbow_link",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.244,
+     "fastest_joint": "right_elbow_joint",
+     "arm_at_limit": [
+      "right_wrist_roll_joint"
+     ]
+    },
+    {
+     "frame": 92,
+     "time_s": 3.0667,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.32,
+     "fastest_joint": "right_elbow_joint",
+     "arm_at_limit": [
+      "right_wrist_roll_joint"
+     ]
+    },
+    {
+     "frame": 93,
+     "time_s": 3.1,
+     "clearance_mm": 9.38,
+     "closest": [
+      "R_thumb_proximal",
+      "fixed_mount"
+     ],
+     "speed_ratio": 0.32,
+     "fastest_joint": "right_elbow_joint",
+     "arm_at_limit": [
+      "right_wrist_roll_joint"
+     ]
+    },
+    {
+     "frame": 94,
+     "time_s": 3.1333,
+     "clearance_mm": 7.04,
+     "closest": [
+      "R_thumb_proximal",
+      "fixed_mount"
+     ],
+     "speed_ratio": 0.244,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": [
+      "right_wrist_roll_joint"
+     ]
+    },
+    {
+     "frame": 95,
+     "time_s": 3.1667,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.244,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 96,
+     "time_s": 3.2,
+     "clearance_mm": 9.5,
+     "closest": [
+      "left_elbow_link",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.157,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 97,
+     "time_s": 3.2333,
+     "clearance_mm": 9.5,
+     "closest": [
+      "left_elbow_link",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.124,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 98,
+     "time_s": 3.2667,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.124,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 99,
+     "time_s": 3.3,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.145,
+     "fastest_joint": "right_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 100,
+     "time_s": 3.3333,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.145,
+     "fastest_joint": "right_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 101,
+     "time_s": 3.3667,
+     "clearance_mm": 9.36,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.109,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 102,
+     "time_s": 3.4,
+     "clearance_mm": 8.98,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.067,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 103,
+     "time_s": 3.4333,
+     "clearance_mm": 8.88,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.053,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 104,
+     "time_s": 3.4667,
+     "clearance_mm": 8.59,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.085,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 105,
+     "time_s": 3.5,
+     "clearance_mm": 8.15,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.114,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 106,
+     "time_s": 3.5333,
+     "clearance_mm": 7.61,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.139,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 107,
+     "time_s": 3.5667,
+     "clearance_mm": 7.05,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.161,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 108,
+     "time_s": 3.6,
+     "clearance_mm": 6.51,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.18,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 109,
+     "time_s": 3.6333,
+     "clearance_mm": 6.11,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.196,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 110,
+     "time_s": 3.6667,
+     "clearance_mm": 5.76,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.209,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 111,
+     "time_s": 3.7,
+     "clearance_mm": 5.38,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.218,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 112,
+     "time_s": 3.7333,
+     "clearance_mm": 5.22,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.224,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 113,
+     "time_s": 3.7667,
+     "clearance_mm": 5.29,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.228,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 114,
+     "time_s": 3.8,
+     "clearance_mm": 5.64,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.228,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 115,
+     "time_s": 3.8333,
+     "clearance_mm": 6.2,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.228,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 116,
+     "time_s": 3.8667,
+     "clearance_mm": 6.75,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.224,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 117,
+     "time_s": 3.9,
+     "clearance_mm": 7.16,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.218,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 118,
+     "time_s": 3.9333,
+     "clearance_mm": 7.21,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.209,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 119,
+     "time_s": 3.9667,
+     "clearance_mm": 7.38,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.196,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 120,
+     "time_s": 4.0,
+     "clearance_mm": 7.69,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.18,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 121,
+     "time_s": 4.0333,
+     "clearance_mm": 8.07,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.161,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 122,
+     "time_s": 4.0667,
+     "clearance_mm": 8.47,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.139,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 123,
+     "time_s": 4.1,
+     "clearance_mm": 8.83,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.114,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 124,
+     "time_s": 4.1333,
+     "clearance_mm": 9.08,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.085,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 125,
+     "time_s": 4.1667,
+     "clearance_mm": 8.38,
+     "closest": [
+      "left_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.053,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 126,
+     "time_s": 4.2,
+     "clearance_mm": 7.81,
+     "closest": [
+      "left_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.018,
+     "fastest_joint": "R_ring_proximal_joint",
+     "arm_at_limit": []
+    }
+   ],
+   "frames_below_clearance": [
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    40,
+    41,
+    42,
+    43,
+    50,
+    51,
+    54,
+    55,
+    76,
+    78,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85
+   ],
+   "frames_at_speed_cap": [],
+   "worst_clearance": {
+    "frame": 33,
+    "time_s": 1.1,
+    "clearance_mm": -0.29,
+    "closest": [
+     "R_thumb_distal",
+     "left_wrist_pitch_link"
+    ],
+    "speed_ratio": 0.572,
+    "fastest_joint": "left_wrist_yaw_joint",
+    "arm_at_limit": []
+   },
+   "contact_runs": [
+    {
+     "frames": [
+      25,
+      33
+     ],
+     "min_clearance_mm": -0.29,
+     "bodies": [
+      "R_thumb_distal / left_wrist_pitch_link"
+     ]
+    },
+    {
+     "frames": [
+      40,
+      43
+     ],
+     "min_clearance_mm": -0.02,
+     "bodies": [
+      "R_thumb_intermediate / left_wrist_pitch_link"
+     ]
+    },
+    {
+     "frames": [
+      50,
+      51
+     ],
+     "min_clearance_mm": 0.99,
+     "bodies": [
+      "R_thumb_intermediate / left_wrist_pitch_link"
+     ]
+    },
+    {
+     "frames": [
+      54,
+      55
+     ],
+     "min_clearance_mm": 1.43,
+     "bodies": [
+      "R_thumb_intermediate / left_wrist_pitch_link"
+     ]
+    },
+    {
+     "frames": [
+      76,
+      76
+     ],
+     "min_clearance_mm": 1.79,
+     "bodies": [
+      "R_thumb_intermediate / left_wrist_pitch_link"
+     ]
+    },
+    {
+     "frames": [
+      78,
+      78
+     ],
+     "min_clearance_mm": 1.94,
+     "bodies": [
+      "R_thumb_intermediate / left_wrist_pitch_link"
+     ]
+    },
+    {
+     "frames": [
+      80,
+      85
+     ],
+     "min_clearance_mm": -0.27,
+     "bodies": [
+      "R_thumb_distal / left_wrist_pitch_link",
+      "R_thumb_distal / left_wrist_yaw_link",
+      "R_thumb_intermediate / left_wrist_pitch_link"
+     ]
+    }
+   ]
+  },
+  "old": {
+   "path": "/mnt/c/Users/23971/AppData/Local/Temp/claude/C--Users-23971-Documents-5412/76a53951-2677-457f-aee9-a27ba399c535/scratchpad/nurse_v2/NURSE_old.npz",
+   "frames": 127,
+   "per_frame": [
+    {
+     "frame": 0,
+     "time_s": 0.0,
+     "clearance_mm": 7.81,
+     "closest": [
+      "left_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.017,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 1,
+     "time_s": 0.0333,
+     "clearance_mm": 8.0,
+     "closest": [
+      "left_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.05,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 2,
+     "time_s": 0.0667,
+     "clearance_mm": 8.55,
+     "closest": [
+      "left_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.079,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 3,
+     "time_s": 0.1,
+     "clearance_mm": 8.91,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.106,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 4,
+     "time_s": 0.1333,
+     "clearance_mm": 8.66,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.13,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 5,
+     "time_s": 0.1667,
+     "clearance_mm": 8.31,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.151,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 6,
+     "time_s": 0.2,
+     "clearance_mm": 7.93,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.168,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 7,
+     "time_s": 0.2333,
+     "clearance_mm": 7.52,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.183,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 8,
+     "time_s": 0.2667,
+     "clearance_mm": 7.13,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.195,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 9,
+     "time_s": 0.3,
+     "clearance_mm": 6.85,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.204,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 10,
+     "time_s": 0.3333,
+     "clearance_mm": 6.66,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.21,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 11,
+     "time_s": 0.3667,
+     "clearance_mm": 6.54,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.213,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 12,
+     "time_s": 0.4,
+     "clearance_mm": 6.5,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.213,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 13,
+     "time_s": 0.4333,
+     "clearance_mm": 6.56,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.213,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 14,
+     "time_s": 0.4667,
+     "clearance_mm": 6.76,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.21,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 15,
+     "time_s": 0.5,
+     "clearance_mm": 7.12,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.204,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 16,
+     "time_s": 0.5333,
+     "clearance_mm": 7.54,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.195,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 17,
+     "time_s": 0.5667,
+     "clearance_mm": 8.01,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.183,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 18,
+     "time_s": 0.6,
+     "clearance_mm": 8.55,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.168,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 19,
+     "time_s": 0.6333,
+     "clearance_mm": 8.86,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.151,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 20,
+     "time_s": 0.6667,
+     "clearance_mm": 9.01,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.13,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 21,
+     "time_s": 0.7,
+     "clearance_mm": 9.15,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.106,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 22,
+     "time_s": 0.7333,
+     "clearance_mm": 9.26,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.079,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 23,
+     "time_s": 0.7667,
+     "clearance_mm": 9.34,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.05,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 24,
+     "time_s": 0.8,
+     "clearance_mm": 9.37,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.069,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 25,
+     "time_s": 0.8333,
+     "clearance_mm": 9.5,
+     "closest": [
+      "left_elbow_link",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.169,
+     "fastest_joint": "left_wrist_pitch_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 26,
+     "time_s": 0.8667,
+     "clearance_mm": 9.5,
+     "closest": [
+      "left_elbow_link",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.452,
+     "fastest_joint": "left_wrist_pitch_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 27,
+     "time_s": 0.9,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.772,
+     "fastest_joint": "left_wrist_pitch_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 28,
+     "time_s": 0.9333,
+     "clearance_mm": 9.5,
+     "closest": [
+      "left_elbow_link",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.772,
+     "fastest_joint": "left_wrist_pitch_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 29,
+     "time_s": 0.9667,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 30,
+     "time_s": 1.0,
+     "clearance_mm": 1.53,
+     "closest": [
+      "L_thumb_intermediate",
+      "left_hip_roll_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 31,
+     "time_s": 1.0333,
+     "clearance_mm": 9.5,
+     "closest": [
+      "left_elbow_link",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 32,
+     "time_s": 1.0667,
+     "clearance_mm": -11.26,
+     "closest": [
+      "L_thumb_distal",
+      "left_hip_roll_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 33,
+     "time_s": 1.1,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.98,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 34,
+     "time_s": 1.1333,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "left_wrist_pitch_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 35,
+     "time_s": 1.1667,
+     "clearance_mm": 5.84,
+     "closest": [
+      "left_hip_pitch_link",
+      "left_wrist_yaw_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 36,
+     "time_s": 1.2,
+     "clearance_mm": 0.52,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 37,
+     "time_s": 1.2333,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 38,
+     "time_s": 1.2667,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "left_wrist_pitch_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 39,
+     "time_s": 1.3,
+     "clearance_mm": 8.74,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "left_wrist_pitch_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 40,
+     "time_s": 1.3333,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.804,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 41,
+     "time_s": 1.3667,
+     "clearance_mm": 9.0,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.314,
+     "fastest_joint": "L_ring_proximal_joint",
+     "arm_at_limit": [
+      "left_wrist_yaw_joint"
+     ]
+    },
+    {
+     "frame": 42,
+     "time_s": 1.4,
+     "clearance_mm": 9.2,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.141,
+     "fastest_joint": "L_middle_proximal_joint",
+     "arm_at_limit": [
+      "left_wrist_yaw_joint"
+     ]
+    },
+    {
+     "frame": 43,
+     "time_s": 1.4333,
+     "clearance_mm": 8.76,
+     "closest": [
+      "L_index_proximal",
+      "left_hip_roll_link"
+     ],
+     "speed_ratio": 0.139,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_yaw_joint"
+     ]
+    },
+    {
+     "frame": 44,
+     "time_s": 1.4667,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.139,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_yaw_joint"
+     ]
+    },
+    {
+     "frame": 45,
+     "time_s": 1.5,
+     "clearance_mm": 9.5,
+     "closest": [
+      "left_elbow_link",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.104,
+     "fastest_joint": "L_thumb_distal_joint",
+     "arm_at_limit": [
+      "left_wrist_yaw_joint"
+     ]
+    },
+    {
+     "frame": 46,
+     "time_s": 1.5333,
+     "clearance_mm": 6.47,
+     "closest": [
+      "L_index_proximal",
+      "left_hip_roll_link"
+     ],
+     "speed_ratio": 0.086,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint",
+      "left_wrist_yaw_joint"
+     ]
+    },
+    {
+     "frame": 47,
+     "time_s": 1.5667,
+     "clearance_mm": 8.23,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.087,
+     "fastest_joint": "right_wrist_pitch_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint",
+      "left_wrist_yaw_joint"
+     ]
+    },
+    {
+     "frame": 48,
+     "time_s": 1.6,
+     "clearance_mm": 8.65,
+     "closest": [
+      "L_index_proximal",
+      "left_hip_roll_link"
+     ],
+     "speed_ratio": 0.101,
+     "fastest_joint": "right_wrist_pitch_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint",
+      "left_wrist_yaw_joint"
+     ]
+    },
+    {
+     "frame": 49,
+     "time_s": 1.6333,
+     "clearance_mm": 8.6,
+     "closest": [
+      "L_index_proximal",
+      "left_hip_roll_link"
+     ],
+     "speed_ratio": 0.169,
+     "fastest_joint": "L_thumb_distal_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint",
+      "left_wrist_yaw_joint"
+     ]
+    },
+    {
+     "frame": 50,
+     "time_s": 1.6667,
+     "clearance_mm": 8.91,
+     "closest": [
+      "L_index_proximal",
+      "left_hip_roll_link"
+     ],
+     "speed_ratio": 0.169,
+     "fastest_joint": "L_thumb_distal_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint",
+      "left_wrist_yaw_joint"
+     ]
+    },
+    {
+     "frame": 51,
+     "time_s": 1.7,
+     "clearance_mm": 9.18,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.126,
+     "fastest_joint": "L_thumb_distal_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint",
+      "left_wrist_yaw_joint"
+     ]
+    },
+    {
+     "frame": 52,
+     "time_s": 1.7333,
+     "clearance_mm": 9.25,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.093,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint",
+      "left_wrist_yaw_joint"
+     ]
+    },
+    {
+     "frame": 53,
+     "time_s": 1.7667,
+     "clearance_mm": 9.27,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.07,
+     "fastest_joint": "L_index_proximal_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint",
+      "left_wrist_yaw_joint"
+     ]
+    },
+    {
+     "frame": 54,
+     "time_s": 1.8,
+     "clearance_mm": 9.38,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.246,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint",
+      "left_wrist_yaw_joint"
+     ]
+    },
+    {
+     "frame": 55,
+     "time_s": 1.8333,
+     "clearance_mm": 9.5,
+     "closest": [
+      "left_elbow_link",
+      "left_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.246,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 56,
+     "time_s": 1.8667,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.048,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 57,
+     "time_s": 1.9,
+     "clearance_mm": 9.44,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.065,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 58,
+     "time_s": 1.9333,
+     "clearance_mm": 9.32,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.065,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 59,
+     "time_s": 1.9667,
+     "clearance_mm": 8.9,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.113,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 60,
+     "time_s": 2.0,
+     "clearance_mm": 9.37,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.113,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 61,
+     "time_s": 2.0333,
+     "clearance_mm": 8.99,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.099,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 62,
+     "time_s": 2.0667,
+     "clearance_mm": 8.8,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.071,
+     "fastest_joint": "L_thumb_distal_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 63,
+     "time_s": 2.1,
+     "clearance_mm": 9.02,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.071,
+     "fastest_joint": "L_thumb_distal_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 64,
+     "time_s": 2.1333,
+     "clearance_mm": 8.82,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.055,
+     "fastest_joint": "L_thumb_distal_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 65,
+     "time_s": 2.1667,
+     "clearance_mm": 8.73,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.042,
+     "fastest_joint": "L_ring_proximal_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 66,
+     "time_s": 2.2,
+     "clearance_mm": 9.03,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.065,
+     "fastest_joint": "R_index_proximal_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 67,
+     "time_s": 2.2333,
+     "clearance_mm": 8.62,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.159,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 68,
+     "time_s": 2.2667,
+     "clearance_mm": 8.97,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.159,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 69,
+     "time_s": 2.3,
+     "clearance_mm": 9.41,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.141,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 70,
+     "time_s": 2.3333,
+     "clearance_mm": 9.37,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.074,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 71,
+     "time_s": 2.3667,
+     "clearance_mm": 9.13,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.083,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 72,
+     "time_s": 2.4,
+     "clearance_mm": 8.79,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.085,
+     "fastest_joint": "R_thumb_distal_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 73,
+     "time_s": 2.4333,
+     "clearance_mm": 8.82,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.085,
+     "fastest_joint": "R_thumb_distal_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 74,
+     "time_s": 2.4667,
+     "clearance_mm": 8.8,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.161,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 75,
+     "time_s": 2.5,
+     "clearance_mm": 8.13,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.161,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 76,
+     "time_s": 2.5333,
+     "clearance_mm": 8.61,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.421,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 77,
+     "time_s": 2.5667,
+     "clearance_mm": 3.72,
+     "closest": [
+      "L_thumb_distal",
+      "fixed_mount"
+     ],
+     "speed_ratio": 0.546,
+     "fastest_joint": "left_wrist_roll_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 78,
+     "time_s": 2.6,
+     "clearance_mm": -39.17,
+     "closest": [
+      "L_index_intermediate",
+      "left_hip_pitch_link"
+     ],
+     "speed_ratio": 0.81,
+     "fastest_joint": "left_wrist_pitch_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 79,
+     "time_s": 2.6333,
+     "clearance_mm": -10.29,
+     "closest": [
+      "L_index_proximal",
+      "left_hip_roll_link"
+     ],
+     "speed_ratio": 0.81,
+     "fastest_joint": "left_wrist_pitch_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 80,
+     "time_s": 2.6667,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_roll_joint"
+     ]
+    },
+    {
+     "frame": 81,
+     "time_s": 2.7,
+     "clearance_mm": -28.43,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "left_shoulder_pitch_joint",
+     "arm_at_limit": [
+      "left_wrist_roll_joint"
+     ]
+    },
+    {
+     "frame": 82,
+     "time_s": 2.7333,
+     "clearance_mm": -31.97,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "left_shoulder_pitch_joint",
+     "arm_at_limit": [
+      "left_wrist_roll_joint"
+     ]
+    },
+    {
+     "frame": 83,
+     "time_s": 2.7667,
+     "clearance_mm": -40.7,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 84,
+     "time_s": 2.8,
+     "clearance_mm": -3.17,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 1.0,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": [
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 85,
+     "time_s": 2.8333,
+     "clearance_mm": 8.85,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.938,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 86,
+     "time_s": 2.8667,
+     "clearance_mm": 8.05,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.938,
+     "fastest_joint": "R_pinky_proximal_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 87,
+     "time_s": 2.9,
+     "clearance_mm": 8.81,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.862,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 88,
+     "time_s": 2.9333,
+     "clearance_mm": 9.03,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.862,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 89,
+     "time_s": 2.9667,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.438,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 90,
+     "time_s": 3.0,
+     "clearance_mm": 8.79,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.2,
+     "fastest_joint": "right_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 91,
+     "time_s": 3.0333,
+     "clearance_mm": 8.75,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.281,
+     "fastest_joint": "right_elbow_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 92,
+     "time_s": 3.0667,
+     "clearance_mm": 9.19,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.616,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 93,
+     "time_s": 3.1,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.631,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 94,
+     "time_s": 3.1333,
+     "clearance_mm": 9.5,
+     "closest": [
+      "right_elbow_link",
+      "right_wrist_pitch_link"
+     ],
+     "speed_ratio": 0.631,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 95,
+     "time_s": 3.1667,
+     "clearance_mm": 8.67,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.886,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 96,
+     "time_s": 3.2,
+     "clearance_mm": 8.17,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.886,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 97,
+     "time_s": 3.2333,
+     "clearance_mm": 8.4,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.14,
+     "fastest_joint": "left_wrist_yaw_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 98,
+     "time_s": 3.2667,
+     "clearance_mm": 8.47,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.029,
+     "fastest_joint": "right_shoulder_pitch_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 99,
+     "time_s": 3.3,
+     "clearance_mm": 8.45,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.015,
+     "fastest_joint": "right_wrist_pitch_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 100,
+     "time_s": 3.3333,
+     "clearance_mm": 8.61,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.009,
+     "fastest_joint": "right_wrist_roll_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 101,
+     "time_s": 3.3667,
+     "clearance_mm": 8.38,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.017,
+     "fastest_joint": "left_shoulder_pitch_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 102,
+     "time_s": 3.4,
+     "clearance_mm": 8.05,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.027,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": [
+      "left_shoulder_yaw_joint",
+      "left_wrist_pitch_joint"
+     ]
+    },
+    {
+     "frame": 103,
+     "time_s": 3.4333,
+     "clearance_mm": 6.4,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.077,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 104,
+     "time_s": 3.4667,
+     "clearance_mm": 1.6,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.122,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 105,
+     "time_s": 3.5,
+     "clearance_mm": -6.14,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.163,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 106,
+     "time_s": 3.5333,
+     "clearance_mm": -15.44,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.199,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 107,
+     "time_s": 3.5667,
+     "clearance_mm": -23.26,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.231,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 108,
+     "time_s": 3.6,
+     "clearance_mm": -30.85,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.258,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 109,
+     "time_s": 3.6333,
+     "clearance_mm": -45.44,
+     "closest": [
+      "left_wrist_pitch_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.281,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 110,
+     "time_s": 3.6667,
+     "clearance_mm": -65.09,
+     "closest": [
+      "left_wrist_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.299,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 111,
+     "time_s": 3.7,
+     "clearance_mm": -75.0,
+     "closest": [
+      "left_wrist_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.313,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 112,
+     "time_s": 3.7333,
+     "clearance_mm": -91.7,
+     "closest": [
+      "left_wrist_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.322,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 113,
+     "time_s": 3.7667,
+     "clearance_mm": -81.49,
+     "closest": [
+      "left_wrist_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.326,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 114,
+     "time_s": 3.8,
+     "clearance_mm": -47.84,
+     "closest": [
+      "left_wrist_yaw_link",
+      "right_shoulder_yaw_link"
+     ],
+     "speed_ratio": 0.326,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 115,
+     "time_s": 3.8333,
+     "clearance_mm": -42.8,
+     "closest": [
+      "left_wrist_yaw_link",
+      "right_shoulder_yaw_link"
+     ],
+     "speed_ratio": 0.326,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 116,
+     "time_s": 3.8667,
+     "clearance_mm": -35.58,
+     "closest": [
+      "L_thumb_intermediate",
+      "right_shoulder_yaw_link"
+     ],
+     "speed_ratio": 0.322,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 117,
+     "time_s": 3.9,
+     "clearance_mm": 1.36,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.313,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 118,
+     "time_s": 3.9333,
+     "clearance_mm": 2.99,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.299,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 119,
+     "time_s": 3.9667,
+     "clearance_mm": 4.64,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.281,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 120,
+     "time_s": 4.0,
+     "clearance_mm": 5.45,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.258,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 121,
+     "time_s": 4.0333,
+     "clearance_mm": 6.26,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.231,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 122,
+     "time_s": 4.0667,
+     "clearance_mm": 7.17,
+     "closest": [
+      "right_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.199,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 123,
+     "time_s": 4.1,
+     "clearance_mm": 7.36,
+     "closest": [
+      "left_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.163,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 124,
+     "time_s": 4.1333,
+     "clearance_mm": 7.54,
+     "closest": [
+      "left_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.122,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 125,
+     "time_s": 4.1667,
+     "clearance_mm": 7.76,
+     "closest": [
+      "left_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.077,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    },
+    {
+     "frame": 126,
+     "time_s": 4.2,
+     "clearance_mm": 7.81,
+     "closest": [
+      "left_shoulder_yaw_link",
+      "torso_link"
+     ],
+     "speed_ratio": 0.027,
+     "fastest_joint": "left_shoulder_yaw_joint",
+     "arm_at_limit": []
+    }
+   ],
+   "frames_below_clearance": [
+    30,
+    32,
+    36,
+    78,
+    79,
+    81,
+    82,
+    83,
+    84,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117
+   ],
+   "frames_at_speed_cap": [
+    29,
+    30,
+    31,
+    32,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    80,
+    81,
+    82,
+    83,
+    84
+   ],
+   "worst_clearance": {
+    "frame": 112,
+    "time_s": 3.7333,
+    "clearance_mm": -91.7,
+    "closest": [
+     "left_wrist_yaw_link",
+     "torso_link"
+    ],
+    "speed_ratio": 0.322,
+    "fastest_joint": "left_shoulder_yaw_joint",
+    "arm_at_limit": []
+   },
+   "contact_runs": [
+    {
+     "frames": [
+      30,
+      30
+     ],
+     "min_clearance_mm": 1.53,
+     "bodies": [
+      "L_thumb_intermediate / left_hip_roll_link"
+     ]
+    },
+    {
+     "frames": [
+      32,
+      32
+     ],
+     "min_clearance_mm": -11.26,
+     "bodies": [
+      "L_thumb_distal / left_hip_roll_link"
+     ]
+    },
+    {
+     "frames": [
+      36,
+      36
+     ],
+     "min_clearance_mm": 0.52,
+     "bodies": [
+      "left_wrist_pitch_link / torso_link"
+     ]
+    },
+    {
+     "frames": [
+      78,
+      79
+     ],
+     "min_clearance_mm": -39.17,
+     "bodies": [
+      "L_index_intermediate / left_hip_pitch_link",
+      "L_index_proximal / left_hip_roll_link"
+     ]
+    },
+    {
+     "frames": [
+      81,
+      84
+     ],
+     "min_clearance_mm": -40.7,
+     "bodies": [
+      "left_wrist_pitch_link / torso_link"
+     ]
+    },
+    {
+     "frames": [
+      104,
+      117
+     ],
+     "min_clearance_mm": -91.7,
+     "bodies": [
+      "L_thumb_intermediate / right_shoulder_yaw_link",
+      "left_wrist_pitch_link / torso_link",
+      "left_wrist_yaw_link / right_shoulder_yaw_link",
+      "left_wrist_yaw_link / torso_link",
+      "right_shoulder_yaw_link / torso_link"
+     ]
+    }
+   ]
+  }
+ }
+}

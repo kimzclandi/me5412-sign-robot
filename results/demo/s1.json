@@ -1,0 +1,52 @@
+{
+  "id": "s1",
+  "sentence": "Hello, do you have an appointment?",
+  "glosses": [
+    "HELLO",
+    "YOU",
+    "APPOINTMENT",
+    "HAVE"
+  ],
+  "question": true,
+  "gloss_source": "offline_cache",
+  "stitching": "Group 3 round 8 planned transitions (results/hospital_sentences_20261102_008), first word's rise prepended",
+  "stitching_label": "Group 3 planned transitions",
+  "transition_s": 0.5,
+  "frames": 262,
+  "duration_s": 8.7,
+  "words": [
+    {
+      "gloss": "HELLO",
+      "frames": [
+        0,
+        75
+      ],
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "YOU",
+      "frames": [
+        76,
+        131
+      ],
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "APPOINTMENT",
+      "frames": [
+        132,
+        217
+      ],
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "HAVE",
+      "frames": [
+        218,
+        261
+      ],
+      "library": "motions/wlasl_video_v1"
+    }
+  ],
+  "note": "Candidate robot signing, not reviewed by ASL users; video-derived words are approximate."
+}

@@ -1,10 +1,24 @@
 # Current project state
 
-[中文](STATE.md) · [Next execution handoff](HANDOFF.en.md) · [Latest execution report TASK-28](TASK-28.en.md) · [Previous stage TASK-27](TASK-27.en.md)
+[中文](STATE.md) · [Next execution handoff](HANDOFF.en.md) · [Latest execution report TASK-29](TASK-29.en.md) · [Nine-sentence rounds TASK-28](TASK-28.en.md) · [TASK-27](TASK-27.en.md)
 
-Updated: 2026-11-02 (Asia/Shanghai), after round 9 of the nine hospital sentences. Scope: Group 3 word transitions and sequence replay. The "Latest" section is the current state; section 0 is the state after the 2026-11-01 35-word full-library stage, and sections 1–5 the state before that stage. Both are kept as history with their original headings; where they conflict with "Latest", "Latest" applies.
+Updated: 2026-11-02 (Asia/Shanghai), after round 10, the first solve on Group 2's new clips (`group2/clips-v2`). Scope: Group 3 word transitions and sequence replay. The "Latest" section is the current state; after it comes the state of rounds 8 and 9 on the old clips, then sections 0–5, the history as of 2026-11-01, with their original headings; where they conflict, "Latest" applies.
 
-## Latest (2026-11-02): nine hospital sentences, round 8 passes 7/7 numerically, round 9 redoes YOU HURT WHERE
+## Latest (2026-11-02): new clips clips-v2, round 10 passes 7/7 numerically
+
+**Group 2 published new word clips (`group2/clips-v2`, `85bc230`): NURSE is a new motion and 23 other video-derived words were collision-repaired, all with unchanged frame counts. Work moved to branch `group3/clips-v2`. After watching renders the user re-set NURSE (f23–f79) and INTERPRETER (f19–f40) and kept HAVE and every other interval, giving protection bundle v5. In round 10, at the user's request, the nine sentences were solved on the new clips with 12 runs, NURSE's staged exit dropped and the failing tests not fixed first: all seven multi-word sentences are NUMERICAL_PASS.** Details: [round 10](results/hospital_sentences_20261102_010/README.en.md), [TASK-29](TASK-29.en.md).
+
+| Layer | Current fact | Boundary |
+|---|---|---|
+| Clips | `group2/clips-v2` (`85bc230`): 24 of 35 words changed (NURSE a new motion, 23 collision-repaired) | The 9 mocap words, WAIT and NOW are unchanged |
+| Protection | `config/user_protected_hospital35_v5.json`: NURSE [23,79], INTERPRETER [19,40], HURT [37,57], MORNING [26,37], the rest as in v3; all bound to the new clip hashes, loads 35/35 with the planner's loader | v1–v4 kept |
+| Trajectories | [Round 10](results/hospital_sentences_20261102_010/README.en.md): pair policy `fast_v7` (round 8's `fast_v5` + bundle v5, NURSE's staged exit removed, 1800 s search), sequence policy `v9`. 17/17 connectors and 7/7 sentences agree on fresh rechecks; 24/24 protected cores bitwise unchanged; 0 interior stops; 263 frames between cores (round 8: 310); NURSE→BLOOD-DRAW is a direct 10-frame connector | Videos not watched by a person; MEDICINE→MORNING's clearance is exactly 2.0 mm |
+| Tests | At `00124363`: 988 passed, 16 failed, 18 errors (old clip hashes, old NURSE frames, raw stores no longer tracked, and similar). Fixed in `a1eb6e53` (pushed 18:48, after round 10 had started): 1021 passed, 1 skipped | Round 10 ran on `00124363` with the old tests (user's choice); the tests are part of the code hash, so round 10 can only be rechecked at `00124363`; a run on the fixed tests needs a new round |
+| Git | Private source `group3/clips-v2` at `ec89a7f`; curated round-10 update to public `group3/trajectory-planning` on `83dffbfc` | User requested this publication on 2026-11-03; raw stores and new videos remain local |
+
+---
+
+## Old clips (before 2026-11-02): nine hospital sentences, round 8 passes 7/7 numerically, round 9 redoes YOU HURT WHERE
 
 **On 2026-11-01 the user narrowed the scope to nine hospital sentences, with Group 3 owning only the connectors; the 1,225-pair full-library scan stopped (P1-3 at 46/79 batches), and P1-4, the budget retry and the faster scanner were not run. In round 8 all seven multi-word sentences are NUMERICAL_PASS, end at the rest pose, and no connector halts partway. In round 9, at the user's request, HURT starts at frame 37 and YOU HURT WHERE was redone on its own, also NUMERICAL_PASS (120 → 109 frames).** Rounds, configuration, commands and open items: [TASK-28](TASK-28.en.md).
 
@@ -14,10 +28,10 @@ Updated: 2026-11-02 (Asia/Shanghai), after round 9 of the nine hospital sentence
 | Result | [Round 8](results/hospital_sentences_20261102_008/README.en.md): 17/17 connectors and 7/7 sentences agree on fresh rechecks; 24/24 protected cores bitwise unchanged; 0 interior stops; 310 frames between cores across the 17 connectors (round 2: 1,717). [Round 9](results/hospital_sentences_20261102_009/README.en.md): YOU HURT WHERE's 2/2 connectors and 1/1 sentence agree on fresh rechecks, YOU→HURT enters HURT at frame 37, sentence 120 → 109 frames | Videos not watched by a person |
 | Configuration | Pairs `config/transition_policy_hospital_sentences_fast_v5.json`, sequences `config/sequence_policy_hospital_sentences_v7.json`, protection `config/user_protected_hospital35_v2.json` (NURSE [38,75], MORNING [26,37]); YOU HURT WHERE uses `fast_v6`, sequence `v8` and protection `v3` (HURT [37,57]) | Acceleration-type limits widened with the user's permission to 200 rad/s², 5000 rad/s³ and 5e6 rad²/s⁵; speed caps unchanged |
 | Code and tests | Code `1d07d2d`; round 9 `dfe4bac` (same planning code, no code changes); full suite 1014 passed | — |
-| Git | Public branch `group3/trajectory-planning`: round-9 non-raw snapshot from `e3901080d`, based on public round-8 commit `bdff5bcb` | User explicitly requested this push on 2026-11-03; raw stores remain local |
+| Git | Team repository `group3/trajectory-planning`: curated round-8 snapshot published on cleanup commit `86428693`; round 9 lived on the local source branch and was then brought to `group3/clips-v2` | Raw stores remain local |
 | Formal | PASS_SIM 0; `formal_acceptance_enabled=false` | A numerical pass is not formal, semantic or hardware acceptance |
 
-**To confirm:** someone watches the round-8 and round-9 videos; sentences still begin directly on the first protected core; HURT's new protected core still has fast source motion at frames 39–41 and 47–49 (unchanged by rule). Section 0's decision on the 24 source-blocked words is still open but does not block the current scope.
+**To confirm:** someone watches the round-8 and round-9 videos; sentences still begin directly on the first protected core; HURT's protected core still has fast source motion at frames 39–41 and 47–49 (unchanged by rule). Section 0's decision on the 24 source-blocked words is still open but does not block the current scope.
 
 ---
 

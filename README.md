@@ -1,33 +1,61 @@
 # ME5412 机器人手语表达实验台
 
-> **第三组公开交付：第九轮单句更新（2026-11-03）**
+> **第三组公开交付：Round 10 / clips-v2（2026-11-03）**
 >
-> 当前项目记录：[TASK-28](TASK-28.md)、[STATE](STATE.md)、[HANDOFF](HANDOFF.md)。本次以公开第八轮提交 `bdff5bcb` 为基线，同步 WSL 源 `e3901080d` 的第九轮非原始内容；没有引入原始存储提交历史。
+> 本次从私人仓库 `Kingderman/ME5412-Project` 的 `group3/clips-v2` 固定提交 `ec89a7f` 同步非原始内容，以公开第九轮提交 `83dffbfc` 为父提交。包括新版动作片段、保护表 v5、`fast_v7` / 序列 `v9`、适配代码与测试及第十轮结果。项目记录见 [TASK-29](TASK-29.md)、[STATE](STATE.md)、[HANDOFF](HANDOFF.md)。
 >
-> 第九轮只更新 YOU HURT WHERE：HURT 保护区间改为 [37,57]，正好从第37帧进入；2/2 衔接、1/1 句子独立复核一致，3/3 核心不变，整句从120帧变为109帧（3.97→3.60秒）。其余六句保留第八轮结果。见[第九轮报告](results/hospital_sentences_20261102_009/README.md)。规划算法未改；配置为 `fast_v6`、序列 `v8`、保护表 `v3`。
+> 第十轮：7/7 多词句数值通过，17/17 衔接复核一致，24/24 保护核心不变，衔接中途停顿为0；NURSE 已换为新动作，取消旧 NURSE 分阶段出口。见[第十轮报告](results/hospital_sentences_20261102_010/README.md)。保护表重新绑定 clips-v2：NURSE [23,79]、INTERPRETER [19,40]，HURT [37,57]、MORNING [26,37]。
 >
-> 原始候选、尝试、检查点和调时存储 `results/**/pair_runs/`、`results/user_protected_*/runs/` 继续只留本地；新视频不入库。小型汇总及冻结配置另存 `run_summaries/`，序列输出、独立复核、日志和图保留。原始引用路径和哈希不改写，公开副本不能单独续跑或逐候选复核历史 run。
+> 第八、九轮的旧片段结果保留作历史，不能直接套用于新版动作。Round 10 实际运行身份为 `00124363`；测试修复 `a1eb6e53` 在运行期间另行提交，保存的1021 passed、1 skipped是修复后测试结果，不能据此改变历史 run 的冻结身份。本次只同步已有结果，不重新求解。
 >
-> 本次公开副本验证：16项文档索引测试通过，两级配置哈希一致，已有1/1句子、2组衔接、3/3核心保持记录核对通过。见[发布验证摘要](results/publication_validation_round9_20261103/summary.json)。
+> 本次公开发布副本定向验证 **146 passed**（140.82 秒），35/35 动作哈希及两级配置绑定一致；历史整理摘要 819 份哈希保持不变。未重新求解轨迹或重跑历史全套测试。见[发布验证摘要](results/publication_validation_round10_20261103/summary.json)。
 >
-> 第九轮1014项全套测试通过是已保存的历史记录，本次不重跑规划或全量测试。正式验收仍关闭，保护核心中的源动作问题另行记录，视频尚待人工评审。发布清单见 [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json)。此前公开历史未改写。下文为早期原型说明。
+> 原始候选/尝试/检查点/调时存储、虚拟环境、模型权重、私密配置和新视频继续不上传。旧已提交视频不更新，它们仅是历史预览，不代表 clips-v2 或 Round 10；本轮使用新的结果图及保存回放 NPZ。第十轮完整动作在 `results/hospital_sentences_20261102_010/videos_<句子>/<句子>/replay.npz`，可由本地 MuJoCo 回放工具读取；渲染方式以该轮 README 为准。
+>
+> 私仓自带的 `scripts/demo/hospital_demo.py` 仍默认读取第八轮 render_inputs，片段不匹配时会回退基线；它不是本次第十轮回放入口。第十轮的输入、运行与渲染入口以该轮 README 为准。正式验收仍关闭，视频尚待人工评审；源动作发现与新增衔接的数值检查分开记录。来源及检查见 [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json)。
 
 
 **中文** · [English](README.en.md) · [中英说明目录](docs/README.md)
 
-> **下一阶段：十个固定语意 → 条件学习动作。** 语意端复用免费本地 MiniLM，动作端训练 ID 条件轨迹模型，六人分为文字意图理解、示范到机器人、学习型动作三组，每组两人，每人承担实现与测试；UI、报告、PPT 和集成由全组共同完成。目标限定医疗沟通中的固定表达。各组先在任务分支并行推进，稳定后合并，最终只选择一种主要展示方式；在线站点重建暂缓。十类为开发目标，当前实现仍为下文记录的三类原型。
+> **当前演示：医院场景的英文 → ASL 机器人手语。** 一位聋人患者就诊、现场没有手语翻译：护士或医生输入英文，第一组用在线 LLM 加词表校验转成 ASL gloss，第二组为每个 gloss 提供 Unitree G1 + Inspire 手的关节轨迹，第三组负责衔接与播放。范围是 1 个场景、35 个 gloss、9 句脚本对话。
 >
-> 从这里开始：[六人分工与实施指南](docs/ten-intent-learning-guide.md) · [GitHub 分支、PR 与合并步骤](docs/github-collaboration.md) · [当前代码依赖图](docs/code-dependencies.md)。各自在任务分支迭代，PR 检查后合入 `master`，最后冻结交付。
+> 从这里开始：[医院端到端演示](docs/hospital-demo.md)（一条命令从句子到机器人视频，默认离线、不需要 API key）· [第一组 文字→gloss](group1_text_to_gloss/README.md) · [第二组交接](docs/group2-handoff.md) · [汇报要点](docs/presentation-notes.md) · [GitHub 协作](docs/github-collaboration.md)。
 
+| 部分 | 状态 |
+|---|---|
+| 第一组 英文 → gloss | `group1_text_to_gloss/`，Gemini API 加 35 词表校验；20 句自测全对（原句 9/9、换说法 6/6、词库外 5/5 拒绝）；9 句对话另存离线结果 |
+| 第二组 gloss → 动作 | 35/35 个 gloss 有轨迹：9 个来自 Studio Galt 动作捕捉，26 个来自公开 ASL 词典视频 + MediaPipe（评为“近似”） |
+| 端到端 | `scripts/demo/hospital_demo.py`：句子 → gloss → 动作 → 视频；9 句视频、4 幕视频（PPT Demo 页）与完整对话在 `results/demo/`，默认使用第三组的衔接 |
+| 第三组 衔接与播放 | 第 8 轮已合并：7 个多词句的规划衔接（最小加加速度曲线、避碰路径、RRT 绕行，衔接内部不停顿）；与基线对比见 `results/stitch_compare/group3_round8/`（平均时长 10.5 → 7.9 s，最大穿模 39 → 13.8 mm） |
 
-这是六人课程项目的可运行研究原型。默认演示将英文或短语按钮映射到有限动作；新增“学习模型”实验入口从文字向量与连续相位生成关节轨迹。已完成一次小型 RBF 岭回归训练，使用 3 条自编轨迹、367 个训练帧及 365 个同轨迹验证帧。项目仍仅覆盖 HELLO、THANK_YOU、PLEASE_WAIT；所有动作的 ASL 可理解性尚未经过真实使用者评审，PLEASE_WAIT 还存在词例到完整礼貌请求的表达缺口。
+机器人动作是候选手语动作，**未经 ASL 使用者评审**；第一组测试为组内自测，不是独立测试。
 
-代码仓库按小组协作需要设置为 **GitHub 私有仓库**；网页展示版另行公开分享。按 [现行六人分工指南](docs/ten-intent-learning-guide.md) 分配任务；[六人接手说明](docs/six-person-handoff.md) 仅保留首版历史背景。
+## 第三组交付记录（第 8 轮）
+
+以下为第三组随交付提交的说明，原样保留。根目录的 `TASK-*`、`STATE`、`HANDOFF`、`PLAN`、`PUBLICATION_MANIFEST.json`、`library_manifest.json`、`word_audit.json` 和 `migration/` 是第三组的工作记录，其中部分文件由第三组代码读取，请勿移动。
+
+> **第三组公开交付：第八轮（2026-11-02）**
+>
+> 最新项目记录：[TASK-28](TASK-28.md)、[STATE](STATE.md)、[HANDOFF](HANDOFF.md)。本公开版本以干净提交 `86428693` 为基线，同步 WSL 源提交 `dfe4bacde` 的非原始内容；没有引入源仓库第七、八轮原始存储提交的历史。
+>
+> 第八轮已完成：7/7 多词句数值通过、17/17 衔接复核一致、24/24 保护核心不变；衔接内部停顿由第七轮的 16 次降到 0 次。见[第八轮报告](results/hospital_sentences_20261102_008/README.md)。1014 passed 是该轮保存的全套测试记录，正式验收仍关闭，视频仍待人工评审。
+>
+> 本次发布副本定向验证 **121 passed**（25.31 秒），包括新的平滑定时、分阶段退出和文档索引；未重跑全套测试或真实规划。见[发布验证摘要](results/publication_validation_round8_20261102/summary.json)。
+>
+> 原始候选、尝试、检查点和调时存储 `results/**/pair_runs/`、`results/user_protected_*/runs/` 仅保留在本机。小型汇总与冻结配置复制到各实验的 `run_summaries/`；序列输出、独立复核、测试日志和结果图保留。新视频继续不入库。
+>
+> 保存报告中的原始路径与哈希不改写，因此公开副本不能独自逐候选复核或续跑历史 run。需本地原始存储，或按 TASK-28 在具备依赖和模型资源的环境中创建新版本、新 run 重新生成。发布来源、摘要哈希和本次检查见 [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json)。之前的公开提交历史未改写。
+
+## 前期工作：三类网页原型
+
+以下内容是项目前期的可运行研究原型，保留作为对照与历史记录。默认演示将英文或短语按钮映射到有限动作；“学习模型”实验入口从文字向量与连续相位生成关节轨迹。已完成一次小型 RBF 岭回归训练，使用 3 条自编轨迹、367 个训练帧及 365 个同轨迹验证帧。该原型仅覆盖 HELLO、THANK_YOU、PLEASE_WAIT；所有动作的 ASL 可理解性尚未经过真实使用者评审，PLEASE_WAIT 还存在词例到完整礼貌请求的表达缺口。十类学习动作的计划见 [十类语意指南](docs/ten-intent-learning-guide.md)，[六人接手说明](docs/six-person-handoff.md) 仅保留首版历史背景。
+
+代码仓库现为 **GitHub 公开仓库**，组员以协作者身份提交 PR；网页展示版另行分享。
 
 ## 给组员的入口
 
 - **已有在线项目**：[原在线展示版](https://me5412-robot-signing-lab.kimzc0103.chatgpt.site)。本轮更新仓库的双语说明与网页源码，未同步线上站点；实时模型推理保留在本地。
-- **代码与实验**：获得仓库访问权限后，使用 `git clone https://github.com/kimzclandi/me5412-sign-robot.git`。私有仓库链接不会自动授予同学权限，需要仓库所有者另行邀请。
+- **代码与实验**：使用 `git clone https://github.com/kimzclandi/me5412-sign-robot.git`。仓库公开可读；提交代码需要仓库所有者邀请为协作者，`master` 受保护，须通过 PR 合并。
 - **完整实验台**：按下方“环境和资源复现”准备 Python 环境，再启动本地服务。
 - **网站源码**：[website/README.md](website/README.md) 包含已经发布的静态展示版及独立预览命令；GitHub 推送不会自动重新发布网站。
 
@@ -193,4 +221,4 @@ SIGN_ROBOT_LLM_CONFIG=config/llm_experimental.json .venv/bin/python scripts/eval
 
 语义模型来自 [Sentence Transformers MiniLM](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)，固定提交和哈希见 `config/embedding_download_manifest.json`。
 
-当前是课程研究原型。公开发布前需要另行检查第三方模型、代码、媒体的许可及课程要求；未替团队申请数据或联系评审。已有网站保留原有访问状态，本轮未重新发布。代码仓库保持私有；后续改为公开代码需单独确认。
+当前是课程研究原型。公开发布前需要另行检查第三方模型、代码、媒体的许可及课程要求；未替团队申请数据或联系评审。已有网站保留原有访问状态，本轮未重新发布。代码仓库已由所有者于 2026-10 改为公开；第三方视频、模型权重和 API key 仍不入库。

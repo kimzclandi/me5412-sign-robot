@@ -2,7 +2,9 @@
 
 **中文** · [English](group2-handoff.en.md) · [方法细节](mocap-retargeting.md)
 
-状态（2026-10-27）：第一组医院词表的 35 个词全部有 G1 机器人关节轨迹（见第〇节）；最初的 27 个词也已全部转换。代码、数据、视频和测试都在 PR [#5](https://github.com/kimzclandi/me5412-sign-robot/pull/5)（分支 `group2/fbx-retarget-you`），尚未合并到 `master`。
+状态（2026-10-27）：第一组医院词表的 35 个词全部有 G1 机器人关节轨迹（见第〇节）；最初的 27 个词也已全部转换。代码、数据、视频和测试都在 PR [#5](https://github.com/kimzclandi/me5412-sign-robot/pull/5)（分支 `group2/fbx-retarget-you`），已合并到 `master`。
+
+**现场演示看 [hospital-demo.md](hospital-demo.md)**：一条命令从英文句子到机器人动作，默认离线，不需要 API key。
 
 ## 〇、2026-10-27 更新：第一组的 35 词医院词表
 
@@ -103,7 +105,7 @@ MUJOCO_GL=egl PYTHONPATH=scripts/mocap .venv/bin/python scripts/mocap/retarget_t
 ### 关键数字
 
 - 医院词表：35/35 个词有动作（9 个动作捕捉，26 个视频提取，后者全部为“近似”）；9 句脚本对话都能拼出整句。
-- 动作捕捉词库 33 个词：可用 16，近似 17，做不好 0；可用的词打手语阶段手腕误差全部 < 2 cm；穿模 ≤ 19 mm（APPOINTMENT 的手指—手腕重叠，其余 ≤ 16 mm，只统计上游模型自带的碰撞体）。
+- 动作捕捉词库 33 个词：可用 16，近似 17，做不好 0；可用的词打手语阶段手腕误差全部 < 2 cm；穿模 ≤ 19 mm（APPOINTMENT 的手指—手腕重叠，其余 ≤ 16 mm，只统计上游模型自带的碰撞体）。视频词和整句的穿模此前没有统计：2026-11-01 用 `scripts/demo/compare_stitching.py` 测得 9 句基线中打手语阶段最大 41 mm（视频词），回到中立姿势和词间过渡最大 79 mm（未做碰撞检查）。
 - 视频词库 32 个词：全部转换成功；关节速度 ≤ 15 rad/s。
 - 全仓测试 291 项通过；唯一失败项 `test_project_overview` 在 `master` 上同样失败（文档改动后未更新网站白名单哈希），与第二组无关。
 

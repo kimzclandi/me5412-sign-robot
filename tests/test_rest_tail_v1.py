@@ -6,7 +6,8 @@ from types import SimpleNamespace
 import numpy as np
 import pytest
 
-from sign_robot import pair_runner_v2
+from clips_v2 import load_sequence_policy_on_clips_v2
+from sign_robot import pair_runner_v2, sequence_verification
 from sign_robot.motion import ROOT
 from sign_robot.pair_contract import (
     CORE_GAP_SELECTION_V1, SMOOTHNESS_SELECTION_V1, file_hash, freeze_library, json_hash, load_policy, read_motion,
@@ -102,7 +103,10 @@ def test_rest_tail_config_is_versioned_and_needs_connector_scope(tmp_path):
 @pytest.fixture(scope='module')
 def kit(tmp_path_factory):
     folder = tmp_path_factory.mktemp('tail')
-    policy, pair_policy = load_sequence_policy(ROOT, POLICY)
+    # The verifier reloads the sequence policy; on clips-v2 its pair policy is rebound to bundle v5 as here.
+    patch = pytest.MonkeyPatch()
+    patch.setattr(sequence_verification, 'load_sequence_policy', load_sequence_policy_on_clips_v2)
+    policy, pair_policy = load_sequence_policy_on_clips_v2(ROOT, POLICY)
     context = build_pair_context_v2(ROOT, pair_policy)
     library, clips = freeze_library(ROOT, pair_policy)
     identity = run_identity(library, pair_policy)
@@ -119,8 +123,9 @@ def kit(tmp_path_factory):
     sequence = assemble_sequence('HURT__WHERE', [edge], policy=policy, sequence_identity=implementation, rest_tail=tail)
     saved = folder/'sequence.json'
     save_sequence(saved, sequence, policy)
-    return {'folder': folder, 'policy': policy, 'record': record, 'edge': edge, 'tail': tail, 'clips': clips,
-            'sequence': sequence, 'saved': saved, 'implementation': implementation}
+    yield {'folder': folder, 'policy': policy, 'record': record, 'edge': edge, 'tail': tail, 'clips': clips,
+           'sequence': sequence, 'saved': saved, 'implementation': implementation}
+    patch.undo()
 
 
 def test_planned_tail_starts_after_the_core_and_ends_at_rest(kit):

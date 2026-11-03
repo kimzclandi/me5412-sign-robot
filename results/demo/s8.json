@@ -1,0 +1,34 @@
+{
+  "id": "s8",
+  "sentence": "Do you understand?",
+  "glosses": [
+    "YOU",
+    "UNDERSTAND"
+  ],
+  "question": true,
+  "gloss_source": "offline_cache",
+  "stitching": "Group 3 round 8 planned transitions (results/hospital_sentences_20261102_008), first word's rise prepended",
+  "stitching_label": "Group 3 planned transitions",
+  "transition_s": 0.5,
+  "frames": 142,
+  "duration_s": 4.7,
+  "words": [
+    {
+      "gloss": "YOU",
+      "frames": [
+        0,
+        80
+      ],
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "UNDERSTAND",
+      "frames": [
+        81,
+        141
+      ],
+      "library": "motions/wlasl_video_v1"
+    }
+  ],
+  "note": "Candidate robot signing, not reviewed by ASL users; video-derived words are approximate."
+}

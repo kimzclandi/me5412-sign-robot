@@ -1,22 +1,29 @@
 # 35 词保护输入与全库衔接执行交接
 
-[English](HANDOFF.en.md) · [当前状态](STATE.md) · [最新执行报告 TASK-28](TASK-28.md) · [执行报告 TASK-27](TASK-27.md) · [历史报告 TASK-26](TASK-26.md)
+> **公开更新（2026-11-03）：** 第十轮已在私仓 `ec89a7f` 中提交，本次按用户要求以公开 `83dffbfc` 为基线发布整理后的非原始快照。下文“尚未提交”“团队仓库没有改动”是此前状态；新视频和原始存储仍留本地。见根 README。
 
-## 最新交接（2026-11-02）：九个医院句子
+[English](HANDOFF.en.md) · [当前状态](STATE.md) · [最新执行报告 TASK-29](TASK-29.md) · [九句话各轮 TASK-28](TASK-28.md) · [TASK-27](TASK-27.md)
 
-> **本文件下方 2026-11-01 的 35 词全库计划与"下一步"已被用户的范围决定取代，不要照做。** 2026-11-01 用户改为只做九个医院句子，第三组只负责衔接。P1-3 停在 46/79 批；P1-4、预算重试和更快的扫描器没有运行；`resume.sh`、`after_p1_3.sh`、`p1_3_final.sh`、`p1_4.sh`、`retry_budget.sh` 不再使用（代码已变，那些 run 的冻结身份也已失效）。若以后恢复全库目标，需要新政策版本和新 run。
+## 最新交接（2026-11-02）：新片段 clips-v2 上的第十轮已完成，7/7 NUMERICAL_PASS
 
-当前：第八轮 7/7 数值通过，结尾回到初始姿态，衔接中途不停顿；第九轮按用户要求让 HURT 从第 37 帧开始，单独重做了 YOU HURT WHERE（1/1 数值通过）。各轮、配置、命令、本机环境与待办见 [TASK-28](TASK-28.md)。
+> **本文件下方 2026-11-01 的 35 词全库计划与"下一步"已被用户的范围决定取代，不要照做。** 范围仍是九个医院句子、第三组只负责衔接（见 [TASK-28](TASK-28.md)）。
 
-接手步骤：
+当前：第二组发布了新片段（`group2/clips-v2`，`85bc230`），工作在分支 `group3/clips-v2` 上，用保护表 v5（NURSE f23–f79、INTERPRETER f19–f40，其余沿用）。**用户 2026-11-02 说了开始：[第十轮](results/hospital_sentences_20261102_010/README.md)在新片段上求解了九个句子，七个多词句子全部 NUMERICAL_PASS**（17/17 个衔接、7/7 个句子全新复核一致，24/24 个保护核心不变，中途停顿 0 次）。运行按此前列出的步骤进行，并有用户的三处改动：用 cpu0–11 上的 12 个 run 而不是 16 个；NURSE 的分阶段出口删掉而不是重新设计；没有先修失败的测试。新片段的复核与决定见 [TASK-29](TASK-29.md) 与 [`results/clips_v2_review_20261102/`](results/clips_v2_review_20261102/README.md)。
 
-1. 先读 [TASK-28](TASK-28.md)、[第八轮 README](results/hospital_sentences_20261102_008/README.md) 和[第九轮 README](results/hospital_sentences_20261102_009/README.md)。
-2. 等用户对第八、九轮视频的反馈。视频只在本机：`C:\Users\23971\Documents\5412\_runtime\render-out\round8_034002\` 和 `C:\Users\23971\Documents\5412\_runtime\render-out\round9_150418\`。
-3. 用户已于2026-11-03明确要求推送第九轮。以公开第八轮提交 `bdff5bcb` 为基线发布非原始更新，不直接推送包含原始存储的源历史；见 README 与 PUBLICATION_MANIFEST.json。
-4. 新一轮用新目录、新版本：复制上一轮的 `make_inputs.py`、`run.sh`、`export_render_inputs.py`、`render_gpu_windows.py`，改目录名、run_id 和策略版本；保护表与旧策略只新增版本，不覆盖；被取代的结果保留并标注。
-5. run 运行期间不要修改 `src/`、`tests/`、`scripts/`（冻结身份）。
-6. 修改 `docs/README*.md` 时，同步更新 `src/sign_robot/project_overview.py` 中登记的 sha256，否则 `tests/test_project_overview.py` 失败。
-7. 每轮结束后更新双语 README、STATE、HANDOFF 与 TASK 记录；公开交付排除原始词对存储，保留整理后的摘要，原始证据留本地。
+第十轮如何满足此前的要求：
+
+- 输入：词对策略 `config/transition_policy_hospital_sentences_fast_v7.json`（= `fast_v5` + 保护表 v5，从 `staged_exits` 删掉 NURSE，搜索 1800 s / RRT 600 s）和序列策略 `config/sequence_policy_hospital_sentences_v9.json`（v7 的七个用例），由 [`make_inputs.py`](results/hospital_sentences_20261102_010/make_inputs.py) 写出；用 [`run.sh`](results/hospital_sentences_20261102_010/run.sh) 运行。
+- NURSE 的出场：删掉分阶段出口后，NURSE→BLOOD-DRAW 从 f79 直接衔接 10 帧即通过（最小间隙 4.2 mm）。MORNING→NIGHT 仍用 MORNING 的分阶段出口（核心间 16 帧，第八轮 13 帧）。
+- 端点问题：NEED→INTERPRETER 在 f14 进入（要求 f16 或更早）；HAVE 的收尾段从 f57 出发，即接触段之后的第一帧。
+
+接手的下一步：
+
+1. **请人观看第十轮视频**（`results/hospital_sentences_20261102_010/videos_*/`，不入库；或用 `play_sentence.py` 播放 `replay.npz`）。目前还没有人看过。
+2. **测试**：第十轮在 `00124363` 上运行，当时全套测试有 16 failed、18 errors。提交 `a1eb6e53`（18:48 推送，第十轮运行期间）按新片段修好了测试（1021 passed、1 skipped；见 [TASK-29](TASK-29.md)）。测试文件计入代码哈希，所以第十轮只能在 `00124363` 上复核；要得到身份里包含修好测试的运行，需要新的一轮（第十一轮，相同输入，在 `a1eb6e53` 或之后的提交上）。
+3. **环境**（不变）：`assets/robot/vendor/`（62 个网格文件）不入库，要复制或按 [`assets/robot/README.md`](assets/robot/README.md) 获取。Python 依赖见 `requirements-lock.txt`（Python 3.12）。
+   `models/all-MiniLM-L6-v2/`（第一组的句向量权重，88 MB）同样不入库，缺了它第一组的两个测试文件会失败。
+4. run 运行期间不要修改 `src/`、`tests/`、`scripts/`（冻结身份）。修改 `docs/README*.md` 时同步更新 `src/sign_robot/project_overview.py` 中登记的 sha256，否则 `tests/test_project_overview.py` 失败。
+5. 提交与推送：只在用户明确要求时进行。第十轮的输入、记录和文档尚未提交；原始词对存储（`pair_runs`）和视频只留本地（`.gitignore`）。团队仓库没有改动。
 
 ---
 

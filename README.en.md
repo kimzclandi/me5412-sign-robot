@@ -1,32 +1,61 @@
 # ME5412 Robot Signing Research Bench
 
-> **Group 3 public delivery: round-9 single-sentence update (2026-11-03)**
+> **Group 3 public delivery: round 10 / clips-v2 (2026-11-03)**
 >
-> Current records: [TASK-28](TASK-28.en.md), [STATE](STATE.en.md), [HANDOFF](HANDOFF.en.md). This update starts from public round-8 commit `bdff5bcb` and publishes non-raw round-9 content from WSL source `e3901080d`, without importing raw-store commit history.
+> This publication synchronizes non-raw content from private repository `Kingderman/ME5412-Project`, branch `group3/clips-v2`, fixed commit `ec89a7f`, on public round-9 parent `83dffbfc`. It includes clips-v2 motions, protection bundle v5, `fast_v7` / sequence `v9`, adapted code and tests, and round-10 results. See [TASK-29](TASK-29.en.md), [STATE](STATE.en.md) and [HANDOFF](HANDOFF.en.md).
 >
-> Round 9 updates YOU HURT WHERE only: HURT's protection is [37,57] and entry is exactly frame 37; 2/2 connectors and 1/1 sentence agree on independent recheck, 3/3 protected cores are unchanged, and the sentence shrinks from 120 to 109 frames (3.97 to 3.60 seconds). The other six sentences retain their round-8 results. See the [round-9 report](results/hospital_sentences_20261102_009/README.en.md). The planning algorithm is unchanged; policies are `fast_v6`, sequence `v8`, protection `v3`.
+> Round 10 records 7/7 multi-word sentences passing numerical checks, 17/17 connector rechecks agreeing, 24/24 protected cores unchanged and 0 interior stops. NURSE uses the new motion and its old staged exit is removed. See the [round-10 report](results/hospital_sentences_20261102_010/README.en.md). Protections are rebound to clips-v2: NURSE [23,79], INTERPRETER [19,40], HURT [37,57] and MORNING [26,37].
 >
-> Raw candidates, attempts, checkpoints and timing stores under `results/**/pair_runs/` and `results/user_protected_*/runs/` remain local; new videos are excluded. Compact summaries and frozen configuration are retained in `run_summaries/`, alongside sequence outputs, independent rechecks, logs and figures. Original references and hashes are preserved; the public copy alone cannot resume or recheck every historical candidate.
+> Rounds 8 and 9 remain historical old-clip evidence and cannot be applied to the new motions. Round 10 ran under identity `00124363`; test fixes `a1eb6e53` were committed separately during the run. The saved 1021-pass, 1-skip result is from the fixed tests, not a change to the historical run identity. This publication does not solve new trajectories.
 >
-> Publication validation: 16 documentation-index tests passed, both configuration hash bindings match, and the saved 1/1 sequence, 2 connector groups and 3/3 unchanged cores were checked. See the [publication validation summary](results/publication_validation_round9_20261103/summary.json).
+> This curated public snapshot passed **146 focused tests** (140.82 seconds). All 35 motion hashes and both configuration bindings match; all 819 historical curated metadata hashes remain unchanged. No new trajectories or historical full-suite rerun. See the [publication validation summary](results/publication_validation_round10_20261103/summary.json).
 >
-> Round 9's 1014-pass full-suite result is an existing saved record; this publication does not rerun planning or the full suite. Formal acceptance remains disabled, protected-source findings are reported separately, and human video review is pending. See [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json). Earlier public history is unchanged. The remainder describes the early prototype.
+> Raw candidates/attempts/checkpoints/timing stores, virtual environments, model weights, private configuration and new videos remain excluded. Previously committed videos are not updated and are historical previews, not clips-v2 or round-10 evidence. Current result images and saved replay NPZs are included. Round-10 replays are under `results/hospital_sentences_20261102_010/videos_<CASE>/<CASE>/replay.npz`; use a local MuJoCo playback reader and follow the round README for rendering.
+>
+> The private snapshot's `scripts/demo/hospital_demo.py` still defaults to round-8 render_inputs and falls back to baseline when clips differ; it is not the round-10 replay entry point. Follow the round-10 README for input, run and rendering commands. Formal acceptance is disabled and human video review is pending. Source-motion findings and added-connector numerical checks remain separate. Provenance and checks are in [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json).
 
 
 [中文](README.md) · **English** · [Bilingual documentation index](docs/README.md)
 
-> **Next stage: ten fixed intents → learned conditional motions.** Reuse free local MiniLM for intent selection and train an ID-conditioned trajectory model. Six people work in pairs on text intent understanding, demonstrations-to-robot, and learned motion. Everyone implements and tests; UI, report, slides, and integration are shared. The target is fixed healthcare expressions. Develop in parallel on task branches, merge stable versions, and select one primary presentation format at the end. Online site rebuilding is deferred. Ten classes are a development target; the current implementation still contains the three-class prototype documented below.
+> **Current demo: English → ASL robot signing in a hospital scenario.** A deaf patient visits a hospital with no interpreter present: a nurse or doctor types English, Group 1 turns it into ASL glosses with an online LLM plus vocabulary validation, Group 2 provides a Unitree G1 + Inspire hand joint trajectory for each gloss, and Group 3 handles transitions and playback. Scope: one scenario, 35 glosses, 9 scripted dialogue lines.
 >
-> Start with the [six-person implementation guide](docs/ten-intent-learning-guide.en.md), [GitHub branches and PRs](docs/github-collaboration.en.md), and [code dependencies](docs/code-dependencies.en.md). Develop on task branches, check PRs before merging into `master`, and freeze the final delivery.
+> Start here: [hospital end-to-end demo](docs/hospital-demo.en.md) (one command from sentence to robot video, offline by default, no API key) · [Group 1 text to gloss](group1_text_to_gloss/README.en.md) · [Group 2 handoff](docs/group2-handoff.en.md) · [talking points](docs/presentation-notes.en.md) · [GitHub workflow](docs/github-collaboration.en.md).
 
-This runnable six-person course prototype maps English text or phrase buttons to a limited motion library. A separate learning experiment generates joint trajectories from text embeddings and continuous phase. One small RBF ridge-regression fit used three authored trajectories, 367 training frames, and 365 validation frames from the same trajectories. Only HELLO, THANK_YOU, and PLEASE_WAIT are currently covered. Real ASL users have not reviewed comprehensibility, and PLEASE_WAIT still has a gap between a WAIT lexical example and a complete polite request.
+| Part | Status |
+|---|---|
+| Group 1 English → gloss | `group1_text_to_gloss/`, Gemini API plus validation against the 35-gloss vocabulary; 20-sentence self-test all correct (original 9/9, paraphrases 6/6, out-of-vocabulary 5/5 rejected); offline results saved for the 9 dialogue lines |
+| Group 2 gloss → motion | 35/35 glosses have trajectories: 9 from Studio Galt mocap, 26 from public ASL dictionary videos + MediaPipe (graded "approximate") |
+| End to end | `scripts/demo/hospital_demo.py`: sentence → gloss → motion → video; videos of the 9 lines, the 4 acts (demo slides) and the full dialogue in `results/demo/`, using Group 3's transitions by default |
+| Group 3 transitions and playback | Round 8 merged: planned transitions for the 7 multi-word lines (minimum-jerk curves, collision-avoiding routes, RRT detours, no stops inside transitions); comparison with the baseline in `results/stitch_compare/group3_round8/` (mean duration 10.5 → 7.9 s, max penetration 39 → 13.8 mm) |
 
-The code repository is **private on GitHub** for team collaboration; the demonstration website is shared separately. Read the [implementation roadmap](docs/实施路线.en.md), then the [historical handoff cards](docs/six-person-handoff.en.md).
+Robot motions are candidate signs, **not reviewed by ASL users**; Group 1's test is an in-group self-test, not an independent test.
+
+## Group 3 delivery record (round 8)
+
+The note below was submitted by Group 3 with their delivery and is kept as written. The root-level `TASK-*`, `STATE`, `HANDOFF`, `PLAN`, `PUBLICATION_MANIFEST.json`, `library_manifest.json`, `word_audit.json` and `migration/` are Group 3's working records; some are read by Group 3's code, so do not move them.
+
+> **Group 3 public delivery: round 8 (2026-11-02)**
+>
+> Current project records: [TASK-28](TASK-28.en.md), [STATE](STATE.en.md), [HANDOFF](HANDOFF.en.md). This publication starts from clean public commit `86428693` and synchronizes non-raw content from WSL source commit `dfe4bacde`. It does not import the history of the source repository's round-7 or round-8 raw-store commits.
+>
+> Round 8 is complete: 7/7 multi-word sentences pass numerical checks, 17/17 connector rechecks agree and 24/24 protected cores are unchanged. Interior connector stops fell from round 7's 16 to 0. See the [round-8 report](results/hospital_sentences_20261102_008/README.en.md). The recorded full-suite result is 1014 passed; formal acceptance remains disabled and human video review is pending.
+>
+> This publication copy passed **121 focused checks** in 25.31 seconds, covering smooth timing, staged exits and the documentation index. No full-suite rerun or new planning run was performed. See the [publication validation summary](results/publication_validation_round8_20261102/summary.json).
+>
+> Raw candidates, attempts, checkpoints and timing stores under `results/**/pair_runs/` and `results/user_protected_*/runs/` remain local. Compact summaries and frozen configuration are copied to each experiment's `run_summaries/`; sequence outputs, independent rechecks, test logs and result images are retained. New videos remain excluded.
+>
+> Original paths and hashes in saved reports are preserved, so this public copy cannot independently recheck every candidate or resume historical runs. Use the local raw stores, or follow TASK-28 with the required dependencies and model assets to generate a new version and run. Source revisions, metadata hashes and publication checks are in [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json). Earlier public history is unchanged.
+
+## Earlier work: three-class web prototype
+
+The following is the project's earlier runnable research prototype, kept for comparison and as a record. It maps English text or phrase buttons to a limited motion library; a separate learning experiment generates joint trajectories from text embeddings and continuous phase. One small RBF ridge-regression fit used three authored trajectories, 367 training frames, and 365 validation frames from the same trajectories. The prototype covers only HELLO, THANK_YOU, and PLEASE_WAIT. Real ASL users have not reviewed comprehensibility, and PLEASE_WAIT still has a gap between a WAIT lexical example and a complete polite request. The ten-intent plan is in the [ten-intent guide](docs/ten-intent-learning-guide.en.md); the [historical handoff cards](docs/six-person-handoff.en.md) are kept as background.
+
+The code repository is now **public on GitHub**; teammates contribute as collaborators through PRs. The demonstration website is shared separately.
 
 ## Entry points for teammates
 
 - [Existing online demonstration](https://me5412-robot-signing-lab.kimzc0103.chatgpt.site): this update covers bilingual repository documentation and web source; the online site has not been republished. Live inference runs locally.
-- Code and experiments: once granted access, run `git clone https://github.com/kimzclandi/me5412-sign-robot.git`. Sharing a private repository URL does not grant access; the owner must invite collaborators.
+- Code and experiments: run `git clone https://github.com/kimzclandi/me5412-sign-robot.git`. The repository is publicly readable; pushing requires a collaborator invitation from the owner, and `master` is protected, so changes go through PRs.
 - Full bench: prepare the Python environment below, then start the local service.
 - [Website source](website/README.en.md): the static demonstration and standalone preview command. GitHub pushes do not automatically publish the website.
 
@@ -192,4 +221,4 @@ Signing references: [ASL University / Lifeprint](https://www.lifeprint.com/), wi
 
 Semantic model: [Sentence Transformers MiniLM](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2), fixed commit/hashes in `config/embedding_download_manifest.json`.
 
-This is a course research prototype. Further public releases require checking third-party model/code/media licenses and course rules. No data applications or reviewer contacts were made. The existing website retains its access state and has not been republished in this update. The code remains private; publishing it requires separate authorization.
+This is a course research prototype. Further public releases require checking third-party model/code/media licenses and course rules. No data applications or reviewer contacts were made. The existing website retains its access state and has not been republished in this update. The owner made the code repository public in October 2026; third-party videos, model weights and API keys are still not committed.

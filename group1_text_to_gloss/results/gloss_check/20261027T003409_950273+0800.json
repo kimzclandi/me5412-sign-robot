@@ -1,0 +1,397 @@
+{
+  "schema_version": 2,
+  "simulated": false,
+  "mode": "live",
+  "model": "gemini-3.1-flash-lite",
+  "test_time": "2026-10-27T00:34:09.950273+08:00",
+  "source_csv": "D:\\me5412_project\\data\\gloss_eval\\gloss_test.csv",
+  "test_data_sha256": "79af546c45ff24afa8164a9cf70140c54f2e7e611b7f03922f9f653f558c2309",
+  "selected_ids": [
+    "o2",
+    "o3"
+  ],
+  "resumed_from": null,
+  "settings": {
+    "max_requests": 6,
+    "delay_seconds": 5.0,
+    "max_retries": 2,
+    "backoff_base_seconds": 2.0,
+    "jitter_seconds": 1.0
+  },
+  "api_requests_this_run": 2,
+  "stop_reason": null,
+  "summary": {
+    "by_category": {
+      "脚本原句": {
+        "total": 9,
+        "completed": 0,
+        "correct": 0,
+        "api_failed": 0,
+        "not_run": 9
+      },
+      "换说法": {
+        "total": 6,
+        "completed": 0,
+        "correct": 0,
+        "api_failed": 0,
+        "not_run": 6
+      },
+      "词库外": {
+        "total": 5,
+        "completed": 2,
+        "correct": 2,
+        "api_failed": 0,
+        "not_run": 3
+      }
+    },
+    "total_cases": 20,
+    "completed_cases": 2,
+    "correct_conversions": 2,
+    "incorrect_conversions": 0,
+    "api_failures": 0,
+    "api_total_requests": 2,
+    "retry_count": 0,
+    "validation_detail_counts": {},
+    "average_response_ms": 7548.6615,
+    "slowest_response_ms": 8841.591,
+    "not_run_cases": 18,
+    "effective_accuracy": 1.0,
+    "end_to_end_success_rate": 0.1,
+    "question_correct": 2,
+    "conversion_failures": [],
+    "api_failure_details": []
+  },
+  "tests": [
+    {
+      "id": "s1",
+      "type": "脚本原句",
+      "sentence": "Hello, do you have an appointment?",
+      "expected": "HELLO YOU APPOINTMENT HAVE",
+      "expected_question": true,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "s2",
+      "type": "脚本原句",
+      "sentence": "Do you need an interpreter?",
+      "expected": "YOU NEED INTERPRETER",
+      "expected_question": true,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "s3",
+      "type": "脚本原句",
+      "sentence": "Please wait, the doctor will come soon.",
+      "expected": "PLEASE WAIT DOCTOR COME SOON",
+      "expected_question": false,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "s4",
+      "type": "脚本原句",
+      "sentence": "Where does it hurt?",
+      "expected": "YOU HURT WHERE",
+      "expected_question": true,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "s5",
+      "type": "脚本原句",
+      "sentence": "Take a deep breath.",
+      "expected": "BREATHE-DEEP",
+      "expected_question": false,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "s6",
+      "type": "脚本原句",
+      "sentence": "The nurse will draw your blood now.",
+      "expected": "NOW NURSE BLOOD-DRAW",
+      "expected_question": false,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "s7",
+      "type": "脚本原句",
+      "sentence": "Take this medicine in the morning and at night.",
+      "expected": "MEDICINE MORNING NIGHT TAKE",
+      "expected_question": false,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "s8",
+      "type": "脚本原句",
+      "sentence": "Do you understand?",
+      "expected": "YOU UNDERSTAND",
+      "expected_question": true,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "s9",
+      "type": "脚本原句",
+      "sentence": "Thank you.",
+      "expected": "THANK-YOU",
+      "expected_question": false,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "p1",
+      "type": "换说法",
+      "sentence": "Where is the pain?",
+      "expected": "YOU HURT WHERE|HURT WHERE",
+      "expected_question": true,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "p2",
+      "type": "换说法",
+      "sentence": "Hi, have you booked an appointment?",
+      "expected": "HELLO YOU APPOINTMENT HAVE",
+      "expected_question": true,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "p3",
+      "type": "换说法",
+      "sentence": "The doctor will be here shortly, please wait.",
+      "expected": "DOCTOR COME SOON PLEASE WAIT|PLEASE WAIT DOCTOR COME SOON",
+      "expected_question": false,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "p4",
+      "type": "换说法",
+      "sentence": "Is an interpreter needed?",
+      "expected": "YOU NEED INTERPRETER|INTERPRETER NEED",
+      "expected_question": true,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "p5",
+      "type": "换说法",
+      "sentence": "Take your pills every morning and every night.",
+      "expected": "MEDICINE MORNING NIGHT TAKE|MORNING NIGHT MEDICINE TAKE",
+      "expected_question": false,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "p6",
+      "type": "换说法",
+      "sentence": "Sorry, I don't understand. Can you write it down?",
+      "expected": "SORRY ME UNDERSTAND NOT PLEASE WRITE|SORRY ME UNDERSTAND NOT YOU WRITE",
+      "expected_question": true,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "o1",
+      "type": "词库外",
+      "sentence": "Do you need an X-ray?",
+      "expected": "unsupported",
+      "expected_question": true,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "o2",
+      "type": "词库外",
+      "sentence": "Please show me your insurance card.",
+      "expected": "unsupported",
+      "expected_question": false,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "unsupported",
+      "latency_ms": 8841.591,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "unsupported",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 8841.591
+        }
+      ],
+      "model_result": {
+        "status": "unsupported",
+        "glosses": [],
+        "question": false,
+        "dropped": [
+          "show",
+          "me"
+        ],
+        "unknown": [
+          "insurance card"
+        ],
+        "latency_ms": 8841.591
+      }
+    },
+    {
+      "id": "o3",
+      "type": "词库外",
+      "sentence": "Your appointment is at 3:30 pm.",
+      "expected": "unsupported",
+      "expected_question": false,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "unsupported",
+      "latency_ms": 6255.732,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "unsupported",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 6255.732
+        }
+      ],
+      "model_result": {
+        "status": "unsupported",
+        "glosses": [],
+        "question": false,
+        "dropped": [
+          "your",
+          "is",
+          "at"
+        ],
+        "unknown": [
+          "3:30 pm"
+        ],
+        "latency_ms": 6255.732
+      }
+    },
+    {
+      "id": "o4",
+      "type": "词库外",
+      "sentence": "Are you allergic to penicillin?",
+      "expected": "unsupported",
+      "expected_question": true,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    },
+    {
+      "id": "o5",
+      "type": "词库外",
+      "sentence": "Please fill in this form.",
+      "expected": "unsupported",
+      "expected_question": false,
+      "execution": "not_run",
+      "not_run_reason": "not_selected",
+      "verdict": "NOT_RUN",
+      "question_correct": null,
+      "latency_ms": null,
+      "attempts": [],
+      "model_result": null
+    }
+  ]
+}

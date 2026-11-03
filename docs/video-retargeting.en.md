@@ -46,7 +46,7 @@ Requires `pip install mediapipe` and two official models in `models/mediapipe/` 
 - All 32 words converted; all 35 hospital words now have motion (9 from mocap, 26 from video).
 - Video words are graded at most "approximate", never "usable": one camera cannot give reliable depth, and finger detail is coarser than mocap.
 - Compared with mocap (YOU, COME, …): direction and position agree, with more jitter; at the start and end the hands rest in front of the waist instead of hanging.
-- Error numbers are large (over 10 cm for some words), mostly from the resting hands in front of the waist that the robot hip blocks, plus estimation jitter. Grades rely mainly on the comparison images.
+- Sign-phase wrist error (after the 2026-10-30 fix): median 6 mm over the 26 hospital video words, 15 within 1 cm; MORNING, NIGHT, HEADACHE, WRITE, YES and ME are at 4–11 cm, mainly where hands are near the head or the arms cross, limited by the robot's joint limits and collision avoidance. Grades rely mainly on the comparison images.
 - Spot-checked: THANK-YOU (hand moves forward from the chin), NO, SORRY, YES, WAIT, ME, NIGHT, MEDICINE (circling in the palm in front of the chest), HEADACHE (both hands at forehead height, which on the short-necked robot looks above the head).
 
 ## Limitations

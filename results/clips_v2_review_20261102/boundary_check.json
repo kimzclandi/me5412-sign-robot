@@ -1,0 +1,807 @@
+[
+ {
+  "gloss": "HAVE",
+  "in_sentences": true,
+  "core": [
+   24,
+   54
+  ],
+  "frames": 104,
+  "start": {
+   "frame": 24,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.2,
+   "clearance_new_mm": 9.2
+  },
+  "end": {
+   "frame": 54,
+   "max_dq_rad": 0.0899,
+   "joint": "left_wrist_yaw_joint",
+   "max_disp_mm": 21.4,
+   "body": "L_ring_intermediate",
+   "clearance_old_mm": -15.8,
+   "clearance_new_mm": -0.2
+  },
+  "core_max_disp_mm": 31.9,
+  "core_max_disp_frame": 43,
+  "core_frames_over_10mm": 14,
+  "frames_over_10mm": [
+   41,
+   91
+  ],
+  "frames_over_10mm_count": 26
+ },
+ {
+  "gloss": "INTERPRETER",
+  "in_sentences": true,
+  "core": [
+   30,
+   60
+  ],
+  "frames": 102,
+  "start": {
+   "frame": 30,
+   "max_dq_rad": 0.0305,
+   "joint": "right_wrist_yaw_joint",
+   "max_disp_mm": 10.2,
+   "body": "R_index_intermediate",
+   "clearance_old_mm": -12.9,
+   "clearance_new_mm": -0.1
+  },
+  "end": {
+   "frame": 60,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.5,
+   "clearance_new_mm": 9.5
+  },
+  "core_max_disp_mm": 12.5,
+  "core_max_disp_frame": 34,
+  "core_frames_over_10mm": 2,
+  "frames_over_10mm": [
+   19,
+   34
+  ],
+  "frames_over_10mm_count": 8
+ },
+ {
+  "gloss": "THANK-YOU",
+  "in_sentences": true,
+  "core": [
+   17,
+   87
+  ],
+  "frames": 115,
+  "start": {
+   "frame": 17,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 6.3,
+   "clearance_new_mm": 6.3
+  },
+  "end": {
+   "frame": 87,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.5,
+   "clearance_new_mm": 9.5
+  },
+  "core_max_disp_mm": 51.5,
+  "core_max_disp_frame": 28,
+  "core_frames_over_10mm": 5,
+  "frames_over_10mm": [
+   27,
+   107
+  ],
+  "frames_over_10mm_count": 22
+ },
+ {
+  "gloss": "DOCTOR",
+  "in_sentences": true,
+  "core": [
+   34,
+   57
+  ],
+  "frames": 121,
+  "start": {
+   "frame": 34,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.5,
+   "clearance_new_mm": 9.5
+  },
+  "end": {
+   "frame": 57,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 8.3,
+   "clearance_new_mm": 8.3
+  },
+  "core_max_disp_mm": 19.0,
+  "core_max_disp_frame": 43,
+  "core_frames_over_10mm": 1,
+  "frames_over_10mm": [
+   43,
+   108
+  ],
+  "frames_over_10mm_count": 3
+ },
+ {
+  "gloss": "MEDICINE",
+  "in_sentences": true,
+  "core": [
+   27,
+   69
+  ],
+  "frames": 118,
+  "start": {
+   "frame": 27,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 3.6,
+   "clearance_new_mm": 3.6
+  },
+  "end": {
+   "frame": 69,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.5,
+   "clearance_new_mm": 9.5
+  },
+  "core_max_disp_mm": 23.9,
+  "core_max_disp_frame": 32,
+  "core_frames_over_10mm": 1,
+  "frames_over_10mm": [
+   14,
+   32
+  ],
+  "frames_over_10mm_count": 9
+ },
+ {
+  "gloss": "NEED",
+  "in_sentences": true,
+  "core": [
+   30,
+   93
+  ],
+  "frames": 142,
+  "start": {
+   "frame": 30,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.1,
+   "clearance_new_mm": 9.1
+  },
+  "end": {
+   "frame": 93,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 8.7,
+   "clearance_new_mm": 8.7
+  },
+  "core_max_disp_mm": 0.0,
+  "core_max_disp_frame": 30,
+  "core_frames_over_10mm": 0,
+  "frames_over_10mm": [
+   104,
+   132
+  ],
+  "frames_over_10mm_count": 8
+ },
+ {
+  "gloss": "HURT",
+  "in_sentences": true,
+  "core": [
+   37,
+   57
+  ],
+  "frames": 116,
+  "start": {
+   "frame": 37,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.5,
+   "clearance_new_mm": 9.5
+  },
+  "end": {
+   "frame": 57,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.4,
+   "clearance_new_mm": 9.4
+  },
+  "core_max_disp_mm": 0.0,
+  "core_max_disp_frame": 37,
+  "core_frames_over_10mm": 0,
+  "frames_over_10mm": [
+   33,
+   100
+  ],
+  "frames_over_10mm_count": 19
+ },
+ {
+  "gloss": "UNDERSTAND",
+  "in_sentences": true,
+  "core": [
+   27,
+   78
+  ],
+  "frames": 125,
+  "start": {
+   "frame": 27,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.0,
+   "clearance_new_mm": 9.0
+  },
+  "end": {
+   "frame": 78,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 7.7,
+   "clearance_new_mm": 7.7
+  },
+  "core_max_disp_mm": 28.5,
+  "core_max_disp_frame": 28,
+  "core_frames_over_10mm": 1,
+  "frames_over_10mm": [
+   28,
+   84
+  ],
+  "frames_over_10mm_count": 2
+ },
+ {
+  "gloss": "SOON",
+  "in_sentences": true,
+  "core": [
+   27,
+   87
+  ],
+  "frames": 150,
+  "start": {
+   "frame": 27,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.0,
+   "clearance_new_mm": 9.0
+  },
+  "end": {
+   "frame": 87,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 5.2,
+   "clearance_new_mm": 5.2
+  },
+  "core_max_disp_mm": 0.0,
+  "core_max_disp_frame": 27,
+  "core_frames_over_10mm": 0,
+  "frames_over_10mm": [
+   100,
+   134
+  ],
+  "frames_over_10mm_count": 6
+ },
+ {
+  "gloss": "MORNING",
+  "in_sentences": true,
+  "core": [
+   26,
+   37
+  ],
+  "frames": 123,
+  "start": {
+   "frame": 26,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.5,
+   "clearance_new_mm": 9.5
+  },
+  "end": {
+   "frame": 37,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.5,
+   "clearance_new_mm": 9.5
+  },
+  "core_max_disp_mm": 0.0,
+  "core_max_disp_frame": 26,
+  "core_frames_over_10mm": 0,
+  "frames_over_10mm": [
+   42,
+   106
+  ],
+  "frames_over_10mm_count": 39
+ },
+ {
+  "gloss": "NIGHT",
+  "in_sentences": true,
+  "core": [
+   39,
+   60
+  ],
+  "frames": 103,
+  "start": {
+   "frame": 39,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 5.5,
+   "clearance_new_mm": 5.5
+  },
+  "end": {
+   "frame": 60,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 4.6,
+   "clearance_new_mm": 4.6
+  },
+  "core_max_disp_mm": 32.9,
+  "core_max_disp_frame": 42,
+  "core_frames_over_10mm": 6,
+  "frames_over_10mm": [
+   8,
+   94
+  ],
+  "frames_over_10mm_count": 37
+ },
+ {
+  "gloss": "TOMORROW",
+  "in_sentences": false,
+  "core": [
+   24,
+   66
+  ],
+  "frames": 113,
+  "start": {
+   "frame": 24,
+   "max_dq_rad": 0.0757,
+   "joint": "left_wrist_roll_joint",
+   "max_disp_mm": 65.8,
+   "body": "L_index_intermediate",
+   "clearance_old_mm": -30.9,
+   "clearance_new_mm": 8.9
+  },
+  "end": {
+   "frame": 66,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.3,
+   "clearance_new_mm": 9.3
+  },
+  "core_max_disp_mm": 65.8,
+  "core_max_disp_frame": 24,
+  "core_frames_over_10mm": 1,
+  "frames_over_10mm": [
+   15,
+   72
+  ],
+  "frames_over_10mm_count": 12
+ },
+ {
+  "gloss": "YES",
+  "in_sentences": false,
+  "core": [
+   18,
+   69
+  ],
+  "frames": 115,
+  "start": {
+   "frame": 18,
+   "max_dq_rad": 0.1522,
+   "joint": "left_shoulder_yaw_joint",
+   "max_disp_mm": 64.3,
+   "body": "L_index_intermediate",
+   "clearance_old_mm": -32.3,
+   "clearance_new_mm": 9.2
+  },
+  "end": {
+   "frame": 69,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.0,
+   "clearance_new_mm": 9.0
+  },
+  "core_max_disp_mm": 113.6,
+  "core_max_disp_frame": 24,
+  "core_frames_over_10mm": 10,
+  "frames_over_10mm": [
+   16,
+   106
+  ],
+  "frames_over_10mm_count": 32
+ },
+ {
+  "gloss": "WRITE",
+  "in_sentences": false,
+  "core": [
+   27,
+   69
+  ],
+  "frames": 132,
+  "start": {
+   "frame": 27,
+   "max_dq_rad": 0.0149,
+   "joint": "left_shoulder_yaw_joint",
+   "max_disp_mm": 2.5,
+   "body": "left_elbow_link",
+   "clearance_old_mm": -3.4,
+   "clearance_new_mm": -0.0
+  },
+  "end": {
+   "frame": 69,
+   "max_dq_rad": 0.0609,
+   "joint": "left_wrist_pitch_joint",
+   "max_disp_mm": 9.0,
+   "body": "L_pinky_intermediate",
+   "clearance_old_mm": -9.6,
+   "clearance_new_mm": -0.1
+  },
+  "core_max_disp_mm": 75.8,
+  "core_max_disp_frame": 32,
+  "core_frames_over_10mm": 5,
+  "frames_over_10mm": [
+   14,
+   107
+  ],
+  "frames_over_10mm_count": 32
+ },
+ {
+  "gloss": "SORRY",
+  "in_sentences": false,
+  "core": [
+   21,
+   168
+  ],
+  "frames": 188,
+  "start": {
+   "frame": 21,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.1,
+   "clearance_new_mm": 9.1
+  },
+  "end": {
+   "frame": 168,
+   "max_dq_rad": 0.0371,
+   "joint": "right_shoulder_yaw_joint",
+   "max_disp_mm": 7.2,
+   "body": "L_index_intermediate",
+   "clearance_old_mm": -7.3,
+   "clearance_new_mm": -0.0
+  },
+  "core_max_disp_mm": 33.0,
+  "core_max_disp_frame": 130,
+  "core_frames_over_10mm": 5,
+  "frames_over_10mm": [
+   34,
+   175
+  ],
+  "frames_over_10mm_count": 6
+ },
+ {
+  "gloss": "NO",
+  "in_sentences": false,
+  "core": [
+   21,
+   105
+  ],
+  "frames": 154,
+  "start": {
+   "frame": 21,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.5,
+   "clearance_new_mm": 9.5
+  },
+  "end": {
+   "frame": 105,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 8.3,
+   "clearance_new_mm": 8.3
+  },
+  "core_max_disp_mm": 0.0,
+  "core_max_disp_frame": 21,
+  "core_frames_over_10mm": 0,
+  "frames_over_10mm": [
+   136,
+   144
+  ],
+  "frames_over_10mm_count": 7
+ },
+ {
+  "gloss": "YOUR",
+  "in_sentences": false,
+  "core": [
+   33,
+   73
+  ],
+  "frames": 133,
+  "start": {
+   "frame": 33,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 8.6,
+   "clearance_new_mm": 8.6
+  },
+  "end": {
+   "frame": 73,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 8.0,
+   "clearance_new_mm": 8.0
+  },
+  "core_max_disp_mm": 78.5,
+  "core_max_disp_frame": 36,
+  "core_frames_over_10mm": 2,
+  "frames_over_10mm": [
+   36,
+   93
+  ],
+  "frames_over_10mm_count": 5
+ },
+ {
+  "gloss": "ME",
+  "in_sentences": false,
+  "core": [
+   30,
+   75
+  ],
+  "frames": 135,
+  "start": {
+   "frame": 30,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 8.4,
+   "clearance_new_mm": 8.4
+  },
+  "end": {
+   "frame": 75,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 4.4,
+   "clearance_new_mm": 4.4
+  },
+  "core_max_disp_mm": 12.7,
+  "core_max_disp_frame": 71,
+  "core_frames_over_10mm": 1,
+  "frames_over_10mm": [
+   71,
+   80
+  ],
+  "frames_over_10mm_count": 2
+ },
+ {
+  "gloss": "DEAF",
+  "in_sentences": false,
+  "core": [
+   33,
+   57
+  ],
+  "frames": 114,
+  "start": {
+   "frame": 33,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 7.0,
+   "clearance_new_mm": 7.0
+  },
+  "end": {
+   "frame": 57,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 7.1,
+   "clearance_new_mm": 7.1
+  },
+  "core_max_disp_mm": 0.0,
+  "core_max_disp_frame": 33,
+  "core_frames_over_10mm": 0,
+  "frames_over_10mm": [
+   27,
+   27
+  ],
+  "frames_over_10mm_count": 1
+ },
+ {
+  "gloss": "STOMACH",
+  "in_sentences": false,
+  "core": [
+   33,
+   75
+  ],
+  "frames": 112,
+  "start": {
+   "frame": 33,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 8.0,
+   "clearance_new_mm": 8.0
+  },
+  "end": {
+   "frame": 75,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 7.6,
+   "clearance_new_mm": 7.6
+  },
+  "core_max_disp_mm": 0.0,
+  "core_max_disp_frame": 33,
+  "core_frames_over_10mm": 0,
+  "frames_over_10mm": [
+   18,
+   103
+  ],
+  "frames_over_10mm_count": 21
+ },
+ {
+  "gloss": "HEADACHE",
+  "in_sentences": false,
+  "core": [
+   27,
+   75
+  ],
+  "frames": 129,
+  "start": {
+   "frame": 27,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 9.5,
+   "clearance_new_mm": 9.5
+  },
+  "end": {
+   "frame": 75,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 5.2,
+   "clearance_new_mm": 5.2
+  },
+  "core_max_disp_mm": 0.0,
+  "core_max_disp_frame": 27,
+  "core_frames_over_10mm": 0,
+  "frames_over_10mm": [
+   79,
+   118
+  ],
+  "frames_over_10mm_count": 10
+ },
+ {
+  "gloss": "NOT",
+  "in_sentences": false,
+  "core": [
+   27,
+   69
+  ],
+  "frames": 111,
+  "start": {
+   "frame": 27,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 8.4,
+   "clearance_new_mm": 8.4
+  },
+  "end": {
+   "frame": 69,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 7.9,
+   "clearance_new_mm": 7.9
+  },
+  "core_max_disp_mm": 0.0,
+  "core_max_disp_frame": 27,
+  "core_frames_over_10mm": 0,
+  "frames_over_10mm": [
+   17,
+   101
+  ],
+  "frames_over_10mm_count": 23
+ },
+ {
+  "gloss": "LATER",
+  "in_sentences": false,
+  "core": [
+   27,
+   51
+  ],
+  "frames": 82,
+  "start": {
+   "frame": 27,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 7.2,
+   "clearance_new_mm": 7.2
+  },
+  "end": {
+   "frame": 51,
+   "max_dq_rad": 0.0,
+   "joint": "left_hip_pitch_joint",
+   "max_disp_mm": 0.0,
+   "body": "fixed_mount",
+   "clearance_old_mm": 7.1,
+   "clearance_new_mm": 7.1
+  },
+  "core_max_disp_mm": 19.9,
+  "core_max_disp_frame": 33,
+  "core_frames_over_10mm": 1,
+  "frames_over_10mm": [
+   33,
+   70
+  ],
+  "frames_over_10mm_count": 13
+ }
+]

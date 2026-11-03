@@ -1,6 +1,8 @@
 # TASK-28: Nine hospital sentences (connectors only), rounds 1–9
 
-> **Public-delivery update, 2026-11-03:** this round-9 publication supersedes the earlier push pause. The source experiment history remains local; see the current Git section and root README.
+> **Public-delivery update, 2026-11-02:** the user has now explicitly requested the GitHub update. This curated round-8 snapshot is based on public commit `86428693` and excludes raw run stores. References below to the earlier push pause or remote tip are historical and superseded by this publication; see the root README.
+
+> **Next (2026-11-02):** Group 2 updated the word clips (`group2/clips-v2`); work continues on branch `group3/clips-v2`, see [TASK-29](TASK-29.en.md).
 
 [中文](TASK-28.md) · [Current state](STATE.en.md) · [Handoff](HANDOFF.en.md) · [Previous stage TASK-27](TASK-27.en.md)
 
@@ -108,23 +110,23 @@ C:\Users\23971\Documents\5412\_runtime\render-venv\Scripts\python.exe \\wsl.loca
 
 ## Git and pushing
 
-- The source development branch and public branch are both named `group3/trajectory-planning`, but their histories differ. Source `e3901080d` contains local raw-store commits and must not be pushed directly into the cleaned public branch.
-- The public repository is `kimzclandi/me5412-sign-robot`, verified at round-8 commit `bdff5bcb`. The user requested the round-9 push on 2026-11-03, so this publication appends a curated non-raw snapshot to that baseline.
-- The publication copy is `C:\Users\23971\Documents\5412\_publish\group3-trajectory-planning-20261102`. Raw pair_runs and historical runs remain excluded; compact summaries are preserved in run_summaries. The source worktree and raw files are unchanged; see PUBLICATION_MANIFEST.json.
-- Round 9 updates configuration and results for YOU HURT WHERE only; the other six sentences retain round 8. No history rewriting, master changes, PR merging or Releases are included.
+- The local source branch `group3/trajectory-planning` holds raw-store commits and round 9; it is never pushed directly into a cleaned public branch.
+- Team repository `kimzclandi/me5412-sign-robot`: a curated round-8 snapshot was published on cleanup commit `86428693` (publication copy `C:\Users\23971\Documents\5412\_publish\group3-trajectory-planning-20261102`; raw candidates, attempts, checkpoints and timing stores excluded, see `PUBLICATION_MANIFEST.json`); Group 2 merged it and built `group2/clips-v2` on top.
+- Work from 2026-11-02 continues on branch `group3/clips-v2` (made from `group2/clips-v2` at `85bc230`): round 9's results, without raw stores, were brought over from the source branch, and the new-clip review and protection bundles v4/v5 are here. The user asked for everything the next solving step needs to be uploaded to `Kingderman/ME5412-Project`; see [TASK-29](TASK-29.en.md).
+- Commits are authored as `Kingderman` (this repository's local config), and each commit message ends with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
 
 ## Rules kept in this stage
 
 - Protection data and old policies only get new versions and are never overwritten: protection bundles v1, v2 and v3 coexist, as do pair policies `connector_only_v1`, `braking_v1`, `fast_v1` … `fast_v6` and sequence policies v1 … v8.
 - Evidence is never deleted or edited. The superseded rounds 3 and 5 are kept and marked as such in their READMEs.
-- Public delivery excludes raw pair stores in every round, preserves curated metadata and keeps raw evidence and new videos local.
+- Public delivery excludes raw pair stores for every round; no per-round `.gitignore` exceptions are carried over. Local raw evidence is preserved, curated metadata is published, and new videos remain local.
 - Documentation is bilingual ([AGENTS.en.md](AGENTS.en.md)).
 - No merges, PRs, visibility changes, releases or paid APIs; push only when the user explicitly asks.
 
 ## To do and to decide
 
 1. **Watch the round-8 and round-9 videos**, especially the fastest connectors (9–10 frames, about 0.3 s), NURSE's staged exit and round 9's entry into HURT, to confirm they look natural. Nobody has watched them yet.
-2. **Publication follow-up**: round 9 is being published at the user's request; future updates must preserve the public exclusion rules and use the latest public tip.
+2. **Publication**: future public updates keep excluding raw pair stores and start from the latest public tip. Work on the new clips (clips-v2) is in [TASK-29](TASK-29.en.md).
 3. **Sentence start**: sentences still begin directly on the first word's protected core, with no lead-in from the rest pose (the end already returns to rest). The user has not raised this; not addressed.
 4. **Margins**: MEDICINE MORNING NIGHT TAKE's minimum clearance is exactly the 2.0 mm threshold; the largest connector jerk integral, 4.89e6, is close to the 5e6 limit.
 5. **Fast motion inside HURT's protection**: in the new core [37,57] the left wrist pitch and left shoulder yaw still swing back and forth at 11–14 rad/s at frames 39–41 and 47–49, and the right thumb reaches the finger speed cap at frame 49. This is source motion inside the user's protection and stays unchanged; if it also looks unnatural, the protection would need to shrink further, or Group 2 would need to revise the source motion.

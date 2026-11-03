@@ -1,11 +1,17 @@
 # 中英说明目录 / Bilingual documentation index
 
-当前开发目标：十个固定语意 → ID 条件学习动作；目前实现仍是三类原型。先读最新六人指南及 GitHub 协作。
-Current target: ten fixed intents → ID-conditioned learned motions. The implementation remains the three-class prototype. Start with the current team guide and GitHub workflow.
+当前演示：医院场景，35 个 gloss、9 句脚本对话，英文句子 → 第一组 gloss → 第二组 G1 动作 → 拼接播放；先读医院演示说明。十类学习动作指南和三类网页原型作为前期工作保留。
+Current demo: hospital scenario, 35 glosses and 9 scripted dialogue lines, English sentence → Group 1 gloss → Group 2 G1 motion → stitched playback; start with the hospital demo guide. The ten-intent guide and the three-class web prototype remain as earlier work.
 
 | 内容 / Document | 中文 | English |
 |---|---|---|
 | 仓库入口 / Repository entry | [中文](../README.md) | [English](../README.en.md) |
+| 医院端到端演示 / Hospital end-to-end demo | [中文](hospital-demo.md) | [English](hospital-demo.en.md) |
+| 汇报要点（第 6–11 页）/ Talking points (slides 6–11) | [中文](presentation-notes.md) | [English](presentation-notes.en.md) |
+| 第一组 文字→gloss / Group 1 text to gloss | [中文](../group1_text_to_gloss/README.md) | [English](../group1_text_to_gloss/README.en.md) |
+| 第二组交接 / Group 2 handoff | [中文](group2-handoff.md) | [English](group2-handoff.en.md) |
+| 动作捕捉重定向 / Mocap retargeting | [中文](mocap-retargeting.md) | [English](mocap-retargeting.en.md) |
+| 视频动作提取 / Video retargeting | [中文](video-retargeting.md) | [English](video-retargeting.en.md) |
 | 最新六人实施指南 / Current team guide | [中文](ten-intent-learning-guide.md) | [English](ten-intent-learning-guide.en.md) |
 | GitHub 分支协作 / GitHub workflow | [中文](github-collaboration.md) | [English](github-collaboration.en.md) |
 | 代码依赖 / Dependencies | [中文](code-dependencies.md) | [English](code-dependencies.en.md) |
@@ -27,6 +33,7 @@ Current target: ten fixed intents → ID-conditioned learned motions. The implem
 | COME/NOW 多词序列试点 / COME/NOW multi-word sequence pilot | [中文](../TASK-26.md) | [English](../TASK-26.en.md) |
 | 35 词保护导入与全库衔接执行 / 35-word protection import and library-wide transition run | [中文](../TASK-27.md) | [English](../TASK-27.en.md) |
 | 九个医院句子（仅衔接）各轮记录 / Nine hospital sentences (connectors only), all rounds | [中文](../TASK-28.md) | [English](../TASK-28.en.md) |
+| clips-v2 新片段复核与保护表 v5 / clips-v2 clip review and protection bundle v5 | [中文](../TASK-29.md) | [English](../TASK-29.en.md) |
 | P0-1 基线保全 / Baseline preservation | [中文](../TASK-01.md) | [English](../TASK-01.en.md) |
 | P0-2 逐词问题清单 / Per-word issue list | [中文](group3-all-pairs-word-issues.md) | [English](group3-all-pairs-word-issues.en.md) |
 | FINAL 最终验收与执行报告 / Final verification and execution report | [中文](../TASK-14.md) | [English](../TASK-14.en.md) |

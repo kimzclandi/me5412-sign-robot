@@ -1,70 +1,16 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "date": "2026-11-03",
-  "source_head": "e3901080d80e1280a043d2a452d2dada77438f80",
-  "public_parent": "bdff5bcb8c06c3c4173c844979fa5359bf8edb02",
+  "source_repository": "Kingderman/ME5412-Project",
+  "source_branch": "group3/clips-v2",
+  "source_head": "ec89a7f2355c0bbf095dde2e263b860b72741b65",
+  "public_parent": "83dffbfcf6ccc03e006afe71fc69bf1dec7532b2",
+  "latest_completed_experiment": "hospital_sentences_20261102_010",
+  "latest_full_seven_sentence_experiment": "hospital_sentences_20261102_010",
   "excluded_raw_patterns": [
     "results/**/pair_runs/",
     "results/user_protected_*/runs/"
   ],
-  "excluded_raw_totals": {
-    "results/hospital_sentences_20261101_001/pair_runs": {
-      "files": 10200,
-      "bytes": 203217659
-    },
-    "results/hospital_sentences_20261101_002/pair_runs": {
-      "files": 12869,
-      "bytes": 312537883
-    },
-    "results/hospital_sentences_20261101_003/pair_runs": {
-      "files": 10300,
-      "bytes": 246102991
-    },
-    "results/hospital_sentences_20261101_004/pair_runs": {
-      "files": 9997,
-      "bytes": 236272366
-    },
-    "results/hospital_sentences_20261101_005/pair_runs": {
-      "files": 9655,
-      "bytes": 226621642
-    },
-    "results/hospital_sentences_20261101_006/pair_runs": {
-      "files": 9668,
-      "bytes": 229786174
-    },
-    "results/hospital_sentences_20261102_007/pair_runs": {
-      "files": 10791,
-      "bytes": 248491371
-    },
-    "results/hospital_sentences_20261102_008/pair_runs": {
-      "files": 48190,
-      "bytes": 1396781820
-    },
-    "results/user_protected_auto_20261031_001/runs": {
-      "files": 790,
-      "bytes": 11582675
-    },
-    "results/user_protected_correction_20261031_001/runs": {
-      "files": 784,
-      "bytes": 11786557
-    },
-    "results/user_protected_edge_aware_cuts_20261031_001/runs": {
-      "files": 537,
-      "bytes": 8078190
-    },
-    "results/user_protected_lift_off_arrival_20261031_001/runs": {
-      "files": 1215,
-      "bytes": 20072324
-    },
-    "results/user_protected_transition_scope_20261031_001/runs": {
-      "files": 758,
-      "bytes": 11373542
-    },
-    "results/hospital_sentences_20261102_009/pair_runs": {
-      "files": 12612,
-      "bytes": 374282557
-    }
-  },
   "preserved_run_metadata": [
     {
       "original_path": "results/hospital_sentences_20261101_001/pair_runs/hospital_sentences_20261101_001/contract.json",
@@ -4981,159 +4927,3952 @@
       "bytes": 1770
     }
   ],
-  "copied_source_files": [
-    "HANDOFF.en.md",
-    "HANDOFF.md",
-    "STATE.en.md",
-    "STATE.md",
-    "TASK-28.en.md",
-    "TASK-28.md",
-    "config/sequence_policy_hospital_sentences_v8.json",
-    "config/transition_policy_hospital_sentences_fast_v6.json",
-    "config/user_protected_hospital35_v3.json",
-    "docs/README.en.md",
-    "docs/README.md",
-    "results/hospital_sentences_20261102_009/README.en.md",
-    "results/hospital_sentences_20261102_009/README.md",
-    "results/hospital_sentences_20261102_009/batch_control/hospital_sentences_20261102_009_01.lock",
-    "results/hospital_sentences_20261102_009/batch_control/hospital_sentences_20261102_009_02.lock",
-    "results/hospital_sentences_20261102_009/batch_control/pair_batches/sentences_001/invocation_001.json",
-    "results/hospital_sentences_20261102_009/batch_control/pair_batches/sentences_002/invocation_001.json",
-    "results/hospital_sentences_20261102_009/batches/manifest.json",
-    "results/hospital_sentences_20261102_009/batches/rest_001.json",
-    "results/hospital_sentences_20261102_009/batches/rest_002.json",
-    "results/hospital_sentences_20261102_009/batches/rest_003.json",
-    "results/hospital_sentences_20261102_009/batches/rest_004.json",
-    "results/hospital_sentences_20261102_009/batches/rest_005.json",
-    "results/hospital_sentences_20261102_009/batches/rest_006.json",
-    "results/hospital_sentences_20261102_009/batches/rest_007.json",
-    "results/hospital_sentences_20261102_009/batches/rest_008.json",
-    "results/hospital_sentences_20261102_009/batches/rest_009.json",
-    "results/hospital_sentences_20261102_009/batches/rest_010.json",
-    "results/hospital_sentences_20261102_009/batches/rest_011.json",
-    "results/hospital_sentences_20261102_009/batches/rest_012.json",
-    "results/hospital_sentences_20261102_009/batches/rest_013.json",
-    "results/hospital_sentences_20261102_009/batches/rest_014.json",
-    "results/hospital_sentences_20261102_009/batches/rest_015.json",
-    "results/hospital_sentences_20261102_009/batches/rest_016.json",
-    "results/hospital_sentences_20261102_009/batches/rest_017.json",
-    "results/hospital_sentences_20261102_009/batches/rest_018.json",
-    "results/hospital_sentences_20261102_009/batches/rest_019.json",
-    "results/hospital_sentences_20261102_009/batches/rest_020.json",
-    "results/hospital_sentences_20261102_009/batches/rest_021.json",
-    "results/hospital_sentences_20261102_009/batches/rest_022.json",
-    "results/hospital_sentences_20261102_009/batches/rest_023.json",
-    "results/hospital_sentences_20261102_009/batches/rest_024.json",
-    "results/hospital_sentences_20261102_009/batches/rest_025.json",
-    "results/hospital_sentences_20261102_009/batches/rest_026.json",
-    "results/hospital_sentences_20261102_009/batches/rest_027.json",
-    "results/hospital_sentences_20261102_009/batches/rest_028.json",
-    "results/hospital_sentences_20261102_009/batches/rest_029.json",
-    "results/hospital_sentences_20261102_009/batches/rest_030.json",
-    "results/hospital_sentences_20261102_009/batches/rest_031.json",
-    "results/hospital_sentences_20261102_009/batches/rest_032.json",
-    "results/hospital_sentences_20261102_009/batches/rest_033.json",
-    "results/hospital_sentences_20261102_009/batches/rest_034.json",
-    "results/hospital_sentences_20261102_009/batches/rest_035.json",
-    "results/hospital_sentences_20261102_009/batches/rest_036.json",
-    "results/hospital_sentences_20261102_009/batches/rest_037.json",
-    "results/hospital_sentences_20261102_009/batches/rest_038.json",
-    "results/hospital_sentences_20261102_009/batches/rest_039.json",
-    "results/hospital_sentences_20261102_009/batches/rest_040.json",
-    "results/hospital_sentences_20261102_009/batches/rest_041.json",
-    "results/hospital_sentences_20261102_009/batches/rest_042.json",
-    "results/hospital_sentences_20261102_009/batches/rest_043.json",
-    "results/hospital_sentences_20261102_009/batches/rest_044.json",
-    "results/hospital_sentences_20261102_009/batches/rest_045.json",
-    "results/hospital_sentences_20261102_009/batches/rest_046.json",
-    "results/hospital_sentences_20261102_009/batches/rest_047.json",
-    "results/hospital_sentences_20261102_009/batches/rest_048.json",
-    "results/hospital_sentences_20261102_009/batches/rest_049.json",
-    "results/hospital_sentences_20261102_009/batches/rest_050.json",
-    "results/hospital_sentences_20261102_009/batches/rest_051.json",
-    "results/hospital_sentences_20261102_009/batches/rest_052.json",
-    "results/hospital_sentences_20261102_009/batches/rest_053.json",
-    "results/hospital_sentences_20261102_009/batches/rest_054.json",
-    "results/hospital_sentences_20261102_009/batches/rest_055.json",
-    "results/hospital_sentences_20261102_009/batches/rest_056.json",
-    "results/hospital_sentences_20261102_009/batches/rest_057.json",
-    "results/hospital_sentences_20261102_009/batches/rest_058.json",
-    "results/hospital_sentences_20261102_009/batches/rest_059.json",
-    "results/hospital_sentences_20261102_009/batches/rest_060.json",
-    "results/hospital_sentences_20261102_009/batches/rest_061.json",
-    "results/hospital_sentences_20261102_009/batches/rest_062.json",
-    "results/hospital_sentences_20261102_009/batches/rest_063.json",
-    "results/hospital_sentences_20261102_009/batches/rest_064.json",
-    "results/hospital_sentences_20261102_009/batches/rest_065.json",
-    "results/hospital_sentences_20261102_009/batches/rest_066.json",
-    "results/hospital_sentences_20261102_009/batches/rest_067.json",
-    "results/hospital_sentences_20261102_009/batches/rest_068.json",
-    "results/hospital_sentences_20261102_009/batches/rest_069.json",
-    "results/hospital_sentences_20261102_009/batches/rest_070.json",
-    "results/hospital_sentences_20261102_009/batches/rest_071.json",
-    "results/hospital_sentences_20261102_009/batches/rest_072.json",
-    "results/hospital_sentences_20261102_009/batches/rest_073.json",
-    "results/hospital_sentences_20261102_009/batches/rest_074.json",
-    "results/hospital_sentences_20261102_009/batches/rest_075.json",
-    "results/hospital_sentences_20261102_009/batches/rest_076.json",
-    "results/hospital_sentences_20261102_009/batches/rest_077.json",
-    "results/hospital_sentences_20261102_009/batches/sentences_001.json",
-    "results/hospital_sentences_20261102_009/batches/sentences_002.json",
-    "results/hospital_sentences_20261102_009/compare_round8_vs_round9.py",
-    "results/hospital_sentences_20261102_009/export_render_inputs.py",
-    "results/hospital_sentences_20261102_009/make_inputs.py",
-    "results/hospital_sentences_20261102_009/pairs_hospital_sentences_20261102_009_01.log",
-    "results/hospital_sentences_20261102_009/pairs_hospital_sentences_20261102_009_02.log",
-    "results/hospital_sentences_20261102_009/render_gpu_windows.py",
-    "results/hospital_sentences_20261102_009/render_inputs/YOU__HURT__WHERE/baseline.npz",
-    "results/hospital_sentences_20261102_009/render_inputs/YOU__HURT__WHERE/independent_verification.json",
-    "results/hospital_sentences_20261102_009/render_inputs/YOU__HURT__WHERE/render_plan.json",
-    "results/hospital_sentences_20261102_009/render_inputs/YOU__HURT__WHERE/replay.npz",
-    "results/hospital_sentences_20261102_009/run.log",
-    "results/hospital_sentences_20261102_009/run.sh",
-    "results/hospital_sentences_20261102_009/selected_recheck_01.log",
-    "results/hospital_sentences_20261102_009/selected_recheck_01/YOU__HURT.json",
-    "results/hospital_sentences_20261102_009/selected_recheck_01/summary.json",
-    "results/hospital_sentences_20261102_009/selected_recheck_02.log",
-    "results/hospital_sentences_20261102_009/selected_recheck_02/HURT__WHERE.json",
-    "results/hospital_sentences_20261102_009/selected_recheck_02/summary.json",
-    "results/hospital_sentences_20261102_009/sequences/independent_recheck/YOU__HURT__WHERE.json",
-    "results/hospital_sentences_20261102_009/sequences/independent_recheck/summary.json",
-    "results/hospital_sentences_20261102_009/sequences/manifest.json",
-    "results/hospital_sentences_20261102_009/sequences/rest_tails/WHERE.json",
-    "results/hospital_sentences_20261102_009/sequences/sequences/YOU__HURT__WHERE/attempt_0001.json",
-    "results/hospital_sentences_20261102_009/sequences/sequences/YOU__HURT__WHERE/attempt_0001.verification.json",
-    "results/hospital_sentences_20261102_009/sequences/summary.json",
-    "results/hospital_sentences_20261102_009/tests/pytest_full.log",
-    "results/hospital_sentences_20261102_009/verify_sequences.log",
-    "results/hospital_sentences_20261102_009/videos_gpu/YOU__HURT__WHERE.log",
-    "results/hospital_sentences_20261102_009/videos_gpu/YOU__HURT__WHERE/arm_speed_round8_vs_round9.png",
-    "results/hospital_sentences_20261102_009/videos_gpu/YOU__HURT__WHERE/contact_sheet.png",
-    "results/hospital_sentences_20261102_009/videos_gpu/YOU__HURT__WHERE/report.json",
-    "results/hospital_sentences_20261102_009/videos_gpu/YOU__HURT__WHERE/round8_vs_round9_hurt_entry.png",
-    "src/sign_robot/project_overview.py"
+  "source_snapshot_files": [
+    {
+      "path": "HANDOFF.en.md",
+      "oid": "753fc72d1cfc2991d93dda4d73c212719f4c5103",
+      "mode": "100644"
+    },
+    {
+      "path": "HANDOFF.md",
+      "oid": "2a029bc1e04eae48658327dc3593056d12470d1c",
+      "mode": "100644"
+    },
+    {
+      "path": "README.en.md",
+      "oid": "ad02fb5ff28c3aaa97602c96dec80e2de5b7c9c3",
+      "mode": "100644"
+    },
+    {
+      "path": "README.md",
+      "oid": "1cf49e42b55d75fd175c9874b3991738dbf827af",
+      "mode": "100644"
+    },
+    {
+      "path": "STATE.en.md",
+      "oid": "935012f37f6b792dc4313a8a35e85da28a0051c6",
+      "mode": "100644"
+    },
+    {
+      "path": "STATE.md",
+      "oid": "ca544f75068002d7fc790df9fd42c32ab5b755a1",
+      "mode": "100644"
+    },
+    {
+      "path": "TASK-28.en.md",
+      "oid": "714cd15e4ce7b739afed2cbfe134879f5449eba5",
+      "mode": "100644"
+    },
+    {
+      "path": "TASK-28.md",
+      "oid": "cec9bbe87c9efcfc965880845f35989875695dbf",
+      "mode": "100644"
+    },
+    {
+      "path": "TASK-29.en.md",
+      "oid": "02acd4d08d07b7d37af25b820547a5cfb1ef5949",
+      "mode": "100644"
+    },
+    {
+      "path": "TASK-29.md",
+      "oid": "dee4798ee01bcfb90826f4e74454606203f2b863",
+      "mode": "100644"
+    },
+    {
+      "path": "config/sequence_policy_hospital_sentences_v9.json",
+      "oid": "aeeba498524c0c55d8bf021046ef7d8f08d64a78",
+      "mode": "100644"
+    },
+    {
+      "path": "config/transition_policy_hospital_sentences_fast_v7.json",
+      "oid": "5263574ceb26ac83d69998a1b2da4e440755bcdf",
+      "mode": "100644"
+    },
+    {
+      "path": "config/user_protected_hospital35_v4.json",
+      "oid": "fdef81d4f192ead0f5341e565cc2b52f21bf3dc2",
+      "mode": "100644"
+    },
+    {
+      "path": "config/user_protected_hospital35_v5.json",
+      "oid": "35f309e352eead16b1307a577e24263fe472a6bc",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/README.en.md",
+      "oid": "688703cabce0cb4955676758e83f9865f60e6e59",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/README.md",
+      "oid": "2fc95303ea247f3c284df6988c44e76fb7ee22e3",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/group2-clips-v2.en.md",
+      "oid": "214d06786467aeb1bf4a0aa06ea17412769a6e39",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/group2-clips-v2.md",
+      "oid": "b576edd50844fed318772fbdaefe951c668af7a0",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/group2-handoff.en.md",
+      "oid": "4796359d6bcafa5d789894c8457560e7d92d9488",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/group2-handoff.md",
+      "oid": "abfbcaeca079e2f77317daf15dc6f7ea9affdda5",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hospital-demo.en.md",
+      "oid": "7ec822193b3de90a6cf626f1f33ada40f24049b3",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hospital-demo.md",
+      "oid": "e212a73a2cb45636990fa3073db8f19288cbc6c1",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/presentation-notes.en.md",
+      "oid": "bb489999c96b174a78c9d07907747cecdddfac0e",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/presentation-notes.md",
+      "oid": "857f7e0587422cccb452ffe1229a48241f84fcfb",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/video-retargeting.en.md",
+      "oid": "fa8038e31cfd27d86dd31dceb24e13bcadef12eb",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/video-retargeting.md",
+      "oid": "80eeb26442f3cf804562abef2e36570c398dcd9f",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/.env.example",
+      "oid": "237238c130ffe349ea558ad9ee36c55c2f277bc5",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/.gitignore",
+      "oid": "527a2c8d18e33a3b6f7375f1cd29c4263f320ad7",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/README.en.md",
+      "oid": "28f5dad68fbf9258afbb34477f55747ba57ef003",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/README.md",
+      "oid": "7464bf74623d3a7458f9517650b15963341466e0",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/data/gloss_eval/gloss_test.csv",
+      "oid": "3ed23b973b057e631248f64a21d199089180b2af",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/data/offline/hospital_dialogue_gloss.json",
+      "oid": "68678ef902b7534c50522cc1110934066e81b6e3",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/data/vocab/hospital_v1.json",
+      "oid": "4c858b8ea3c936353bee9cc929e3d997da3a07dc",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/docs/integration.en.md",
+      "oid": "26be558457120b4359849921d2704825768e8c64",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/docs/integration.md",
+      "oid": "40b82f595b081825797f124e8f874e8aa51f0515",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/docs/usage.en.md",
+      "oid": "5ed45b193456e953cc9d0b267fea20239b5f0174",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/docs/usage.md",
+      "oid": "7898dac64442790e7d04a5fbe77900eb880a3d68",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/docs/实施指南：英文句子转 ASL 词序（最小版）.en.md",
+      "oid": "e440f484bdd88c12ec3e6f247644b6fac0010af0",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/docs/实施指南：英文句子转 ASL 词序（最小版）.md",
+      "oid": "0d9ac348da5334a39eeaf3b99080a7131ca9a752",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/requirements.txt",
+      "oid": "6889ff3169546dc601ad617d0e42caf7f17fcea0",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/results/gloss_check/20261026T230258_764558+0800.json",
+      "oid": "6ea041c65da3c2749f693b461dc0fc9adf1799ee",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/results/gloss_check/20261026T230300_816328+0800.json",
+      "oid": "f1520a8a85973881eb20af36cec50a638a6d05ab",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/results/gloss_check/20261026T230955_245741+0800.json",
+      "oid": "33776a1861e2d62bf041a05feb29c7d6360246c5",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/results/gloss_check/20261026T232538_407577+0800.json",
+      "oid": "725669f7d0a3838939c10447aaaa9b7cbe4dae16",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/results/gloss_check/20261026T233959_012922+0800.json",
+      "oid": "7e4119657c029bc17658c914770f2119a9627f5b",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/results/gloss_check/20261026T235755_802767+0800.json",
+      "oid": "ef9e08ab4df45fc6bca798f5fa03d4648afabcc1",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/results/gloss_check/20261027T000304_930372+0800.json",
+      "oid": "8ffa0635a1b607272e891deb3f39bb75b299f80d",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/results/gloss_check/20261027T000907_186725+0800.json",
+      "oid": "67aeed1b80c47f747bd81a9e93d54933bf75664f",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/results/gloss_check/20261027T003409_950273+0800.json",
+      "oid": "899d1ba7e0e5554474763dbf09560150048ffcd4",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/results/gloss_check/20261027T011010_868001+0800.json",
+      "oid": "2a1202477bc02b0a784e04ecd67fe7859bdd6332",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/results/gloss_check/20261027T011211_866109+0800.json",
+      "oid": "de7a681b10cf223f103fd3d950fdb8dd20e49a83",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/results/gloss_check/20261031T031050_015912+0800.json",
+      "oid": "dab9100f85138a0f93583af5ebdcf3376aab23d3",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/scripts/check_gloss.py",
+      "oid": "e028169b439fd8f41d6bd25a2ebb4c46d63dd780",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/scripts/translate.py",
+      "oid": "bb6f5240ac3dadbd5c17f18cb22f3c7cd290621a",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/src/sign_robot/__init__.py",
+      "oid": "735a9aefe798d604a61b23198b7e8b2afd5bbf63",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/src/sign_robot/gloss.py",
+      "oid": "5363092ec4dd4ad89e918d9a37085a3f2e299af6",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/src/sign_robot/llm.py",
+      "oid": "689f02b088cb828ced9141e61654c56395f66bcb",
+      "mode": "100644"
+    },
+    {
+      "path": "group1_text_to_gloss/tests/test_offline.py",
+      "oid": "94e374e0e6eae4ed5ba5a71b0be4007c04819ea3",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/COME.json",
+      "oid": "8482048b99e091872f922f405f537c02c5af944e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/COME.npz",
+      "oid": "b89bb5bea888b60af2da014ea5a1e5297ac21818",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/DEAF.json",
+      "oid": "0dd7c619ce1329ad426c905c7aeda428fb881e52",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/DEAF.npz",
+      "oid": "d8f02a0942aacc640ccd2eec245ce22c17f65b2c",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/DOCTOR.json",
+      "oid": "4be4f4a59e39879993e3e83b2a100369974e0c2a",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/DOCTOR.npz",
+      "oid": "34014e17793b159b081e5cf3f80bca0cf4a59b6e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/HAVE.json",
+      "oid": "385d35eac829d4882ff0efdbb71204bf269f800a",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/HAVE.npz",
+      "oid": "39797f09911178b368819babe1620928ec0d8bed",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/HEADACHE.json",
+      "oid": "927c020b6dea601c2e8467f06a21ea26ac5cbe38",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/HEADACHE.npz",
+      "oid": "3af9c6924388c2a4b10f46128e91714bc488505b",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/HELLO.json",
+      "oid": "b9ed2d90b806b12c6aa6cf309a49204f57c59d19",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/HELLO.npz",
+      "oid": "e2b994fd7632387086c3a92782de9d2d2ac4c3f3",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/HURT.json",
+      "oid": "ede9870ee419b9a73592b9f73e20aa49e3f8b239",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/HURT.npz",
+      "oid": "9e096cd846688f39cf9caba3d8bd79c280fbbe8b",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/INTERPRETER.json",
+      "oid": "58440f4c8d732f4106d1a25606aaf320ec6906d4",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/INTERPRETER.npz",
+      "oid": "1236f3a866cc917c20d0f3742ddaed53da1cb2cc",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/LATER.json",
+      "oid": "9254cc9bce60ccb50ca7b547cb5be81c7372010a",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/LATER.npz",
+      "oid": "593799563f2cd2757a846a1d7d791f3dbd4b8cea",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/ME.json",
+      "oid": "08a3c6f65762a8e2d8c34b3bcad13a2f68f7417a",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/ME.npz",
+      "oid": "db831775d2884c9af873e8631f9a9781324a2911",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/MEDICINE.json",
+      "oid": "fa12bb9b22ad2f6ec605d4d1f7c4563eafc3bc9d",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/MEDICINE.npz",
+      "oid": "9b01d898a71254303850779d6ee859663abb4f58",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/MORNING.json",
+      "oid": "592c51f967d3123835759ade2129b6b6d64b230a",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/MORNING.npz",
+      "oid": "f1dfcb4f122f133443651b1badc169b45912ed85",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/NEED.json",
+      "oid": "3052f3c8df7606a719e4a245b0fbecd0706ae0bc",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/NEED.npz",
+      "oid": "e8922c77a4fef5a7f97b6ffadb381c878e31c21e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/NIGHT.json",
+      "oid": "9b8f86a360460076601c9e38058eb41829b5027c",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/NIGHT.npz",
+      "oid": "7eccfc81e98e37b90eb571bb4f3f94faca1f8956",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/NO.json",
+      "oid": "baff4b384244245b28f12732bf44cda299900ab3",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/NO.npz",
+      "oid": "efb249b3002383b15c15f93bdaecdec155710e29",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/NOT.json",
+      "oid": "a844e30e65de3271982d9201f80f5cc07a87d300",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/NOT.npz",
+      "oid": "87c55588a8f0794e6902d887d1ba9afbb73ed897",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/NOW.json",
+      "oid": "da211bff23418109efe4a8dd0ef436ac1b344b44",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/NURSE.json",
+      "oid": "097b591aa958a2bac24c4112d4834bb9d348898b",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/NURSE.npz",
+      "oid": "980f7795a0c4ff8b0f069798d45370f57c67ce3a",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/PLEASE.json",
+      "oid": "c9cd8ea0a668903e243755c396de86f4d87d0a8c",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/PLEASE.npz",
+      "oid": "05898afadf8efeec36dd3ad90f3c425118d78cbd",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/SOON.json",
+      "oid": "032336bb17a7e19c697c660bb1715b95e84069c8",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/SOON.npz",
+      "oid": "311085d2ba4a3b6f96e5f42d414bfd82426ce648",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/SORRY.json",
+      "oid": "b6ef230a05e556649ad5ad9d5b0232d00da2113b",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/SORRY.npz",
+      "oid": "c458d35ae7f0c4bb07202b5e2ced233a774c3a87",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/STOMACH.json",
+      "oid": "93c63fe08579af95df9cedf29ec6605b41121a97",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/STOMACH.npz",
+      "oid": "a8ed516241d53e83b6e767182f949ce1f746ea19",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/TAKE.json",
+      "oid": "d938c84906f789a94880cf3f0103240829db2299",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/TAKE.npz",
+      "oid": "47209be6ddb6b6b8955f332a665321a387baff4d",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/THANK-YOU.json",
+      "oid": "0443aa668bc12441110dca584f563ce3f6fc1aab",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/THANK-YOU.npz",
+      "oid": "0608b779485a0c177707dec3f5ac355d20ccdefc",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/TOMORROW.json",
+      "oid": "963e3b442226f40cb0e1870def2b9d83037014bf",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/TOMORROW.npz",
+      "oid": "308514826f30bf5d67ba7288980e1190023d4aff",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/UNDERSTAND.json",
+      "oid": "37c7f8a395f9e6a4094bff8a51fe283ebf86440e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/UNDERSTAND.npz",
+      "oid": "8a324c644a056f62a1e6debf3bb7351976f920a0",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/WAIT.json",
+      "oid": "ee40a29327707c7bf9be6203829b9345e145cc34",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/WHERE.json",
+      "oid": "9aab3d781130a2b10f7831548cd44a7a4d0eded1",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/WHERE.npz",
+      "oid": "73bbd08df994308c2455abdf815c32e1b9309aea",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/WRITE.json",
+      "oid": "d3aafa81fcd85f6723d012f87e774c3185674c31",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/WRITE.npz",
+      "oid": "0d925ed8d42648b931f873b7d60f7ca125804e97",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/YES.json",
+      "oid": "618b46af0baa71e2dc1ea288fb9e85b705d180a0",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/YES.npz",
+      "oid": "c393ae3c4dab65e45d67c5eb6eaac478d4aa402f",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/YOU.json",
+      "oid": "08c07b71841606ca8d4f0f4889f36df469eef0f9",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/YOU.npz",
+      "oid": "852fca0b01a0232bd0559d86525692724b09588e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/YOUR.json",
+      "oid": "4d00e43ba28e9e41b5fd849ce927e4939e0f3bdf",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/YOUR.npz",
+      "oid": "25f60e02cc1774dbec0d41d40c3eaee9d4b50eab",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/COME__11876.json",
+      "oid": "430f56a4c2dab61ddace363af9820cbb2a53642e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/COME__11876.npz",
+      "oid": "5117d8afb7a56bb0b1e1e4ced53bbbe33ca36bdc",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/COME__11877.json",
+      "oid": "285aa354a5d30482dc9eea34283e3c5c75260d55",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/COME__11877.npz",
+      "oid": "b89bb5bea888b60af2da014ea5a1e5297ac21818",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/COME__11878.json",
+      "oid": "70a5e4f7a8ae4065b4be28377dea9fa252b2ab57",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/COME__11878.npz",
+      "oid": "1471b9c8b6cb76a894de4b1a28fcb0e11a996743",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/COME__69275.json",
+      "oid": "03d40a6b66468dee8d2650ce7967fa7000db9605",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/COME__69275.npz",
+      "oid": "112f85d6ac78b9880813c0d36eaa42c3e61c9294",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DEAF__14882.json",
+      "oid": "8d468bad176c001e7abf96310ce5cc6940dbbce6",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DEAF__14882.npz",
+      "oid": "92fa683a55f3db25e49b86aa98b5a6d2935a1ca0",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DEAF__14883.json",
+      "oid": "da26a5c05454d2f32bfd388995fb3c0f44d66988",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DEAF__14883.npz",
+      "oid": "17dc9e0f50c02fa9dff4a256d55567c972e36977",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DEAF__14887.json",
+      "oid": "9bf9bfb6c483812dcfaee04220701de43b708f97",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DEAF__14887.npz",
+      "oid": "1df48e7a0246d4d7c16ffc799b463cd157a43706",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DEAF__14888.json",
+      "oid": "534361a8bda7fd9e1f1f7b0102fd3fe2ebb7bba5",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DEAF__14888.npz",
+      "oid": "d8f02a0942aacc640ccd2eec245ce22c17f65b2c",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DOCTOR__17013.json",
+      "oid": "b84aecc7f98308ecd9ebce3620370a395e210f06",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DOCTOR__17013.npz",
+      "oid": "10a35aae9c0a48a659ed256993ffc661fb9c5524",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DOCTOR__17014.json",
+      "oid": "1279e152aa71fdb19259670f84fa56a67bb229d2",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DOCTOR__17014.npz",
+      "oid": "c1141c61d057951a9a06f5fd66b92b65823b7539",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DOCTOR__17015.json",
+      "oid": "189eb5d4273e615c20798260fbfb887719218681",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DOCTOR__17015.npz",
+      "oid": "34014e17793b159b081e5cf3f80bca0cf4a59b6e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DOCTOR__17017.json",
+      "oid": "5b86a27288c5469e4b0df9cee7a3683ff9a86701",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/DOCTOR__17017.npz",
+      "oid": "c0b6b764174eee46eaf44b32ceafaa18d9ed1ef5",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HAVE__26766.json",
+      "oid": "b21b5eaa441d631d8f2af88446d9d8569c22f7eb",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HAVE__26766.npz",
+      "oid": "c89714c96ec60703b4307c06f03dd280d4f1db60",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HAVE__26767.json",
+      "oid": "8b39384943e49c270b9ed8b5401544c845155b9f",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HAVE__26767.npz",
+      "oid": "a83155e774954d1c620a6e65ffa77697c0fd36d7",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HAVE__26768.json",
+      "oid": "f8dce93c19e9fa01c63a13b04f8f2b9414927556",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HAVE__26768.npz",
+      "oid": "b6d2ce8b10ac6d2e2d30b7588a2d1f4a9f3068e9",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HAVE__69360.json",
+      "oid": "f5b3392b4bc005212ed9f8f0d635208c622bca49",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HAVE__69360.npz",
+      "oid": "39797f09911178b368819babe1620928ec0d8bed",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HEADACHE__26833.json",
+      "oid": "3dbca2eea42b60cce152a4681931167f88d1738b",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HEADACHE__26833.npz",
+      "oid": "ffc48f650a1de23624fe27979c945d3f4faadbc1",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HEADACHE__26834.json",
+      "oid": "42ba9f2719fb33a474370dfc12e5c7fe1ee71d97",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HEADACHE__26835.json",
+      "oid": "c462ae95bdd1e1489cc1a590082ade174a029dee",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HEADACHE__26835.npz",
+      "oid": "a6604f960726151fdb46ba9112ea3aabce47cec0",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HEADACHE__26837.json",
+      "oid": "050e746c2778bd89a662025ad8daaccb60e3f206",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HEADACHE__26837.npz",
+      "oid": "3af9c6924388c2a4b10f46128e91714bc488505b",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HELLO__27172.json",
+      "oid": "3713a5cc48ae8c7977c84de3a1fe2ee15d3dc6f3",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HELLO__27172.npz",
+      "oid": "f23044ca3c60d7716f87cafdc3f32065a472b85b",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HELLO__27173.json",
+      "oid": "360d972a76843df5b5b3bb96790ce2a70d26dcd1",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HELLO__27173.npz",
+      "oid": "e2b994fd7632387086c3a92782de9d2d2ac4c3f3",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HURT__28440.json",
+      "oid": "ab25a173cc9b3d9dcd88078a9f114116f8799e7e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HURT__28440.npz",
+      "oid": "36ee7e81a77d20f3667923bb5a9cfe488e4cf4ae",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HURT__28441.json",
+      "oid": "9ae93bcd8170538b77d51cf239cdd6730e3f9431",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/HURT__28441.npz",
+      "oid": "9e096cd846688f39cf9caba3d8bd79c280fbbe8b",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/INTERPRETER__30257.json",
+      "oid": "d32e00143f12b1112f7849d4f92142499bf1c01c",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/INTERPRETER__30257.npz",
+      "oid": "1236f3a866cc917c20d0f3742ddaed53da1cb2cc",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/INTERPRETER__30258.json",
+      "oid": "e766b79a6313a4cd507e226335c4645255e3b6a1",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/LATER__32320.json",
+      "oid": "38611be193c35ffc18364f91e630335202324253",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/LATER__32320.npz",
+      "oid": "be6026e4dee6279ef65c90770faac847e0f0b135",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/LATER__32321.json",
+      "oid": "2d89e9fb48d78e4f3704de5ff1b9cd46e4d03630",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/LATER__32321.npz",
+      "oid": "593799563f2cd2757a846a1d7d791f3dbd4b8cea",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/LATER__32322.json",
+      "oid": "77fb0dea471301f16b117568c7e2ce80f97d29da",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/LATER__32322.npz",
+      "oid": "efdc85886d88b3f144054f212046e7eeb8ea4588",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/LATER__32326.json",
+      "oid": "bafa27d5f9d54784f76008cdf8b1ebe4fdbb227e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/LATER__32326.npz",
+      "oid": "6317cf3427deb56cb3d2cbb7e1f212eb36fd8c33",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MEDICINE__35452.json",
+      "oid": "ab25fe7dbe2b169fd836702e21d7ecbbf9601553",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MEDICINE__35452.npz",
+      "oid": "d92003fe7a82209a4b2030c6be4742fbd6fdc1db",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MEDICINE__35453.json",
+      "oid": "a1226d4dd441d724367dfa2d3b2fa93563b29fe1",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MEDICINE__35453.npz",
+      "oid": "a8fae652b06b3700a8a783cd4faeb186252dd0f8",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MEDICINE__35455.json",
+      "oid": "5ed0b0b94c32858c080119285cd8761d03f39300",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MEDICINE__35455.npz",
+      "oid": "e118f1c589b42b964c1de45cafc6a63231448071",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MEDICINE__35456.json",
+      "oid": "762be47118ce37a32cba72efbdeb598d793e6fcf",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MEDICINE__35456.npz",
+      "oid": "9b01d898a71254303850779d6ee859663abb4f58",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/ME__35544.json",
+      "oid": "1ae260d36c9b19333eca05e8d176e8491c6f2bfa",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/ME__35544.npz",
+      "oid": "8726e65ca558fafa27c60fb9bc71903de9418234",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/ME__35545.json",
+      "oid": "3fcd842cd5ea669ea0bfe190b0d404ec3085119b",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/ME__35545.npz",
+      "oid": "f1d7b1f0fbe43659fe556eb0c7104c5b7722aa83",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/ME__35546.json",
+      "oid": "ea3ec6c937b0831c35b10b3692c045e207569dc8",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/ME__35546.npz",
+      "oid": "db831775d2884c9af873e8631f9a9781324a2911",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MORNING__36857.json",
+      "oid": "d3ee1c8e3070ee8de4881f41e1e34d3cdc2099c7",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MORNING__36857.npz",
+      "oid": "09c051c1acaa53ccc4de5219c670bc88a0fe2a54",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MORNING__36858.json",
+      "oid": "0ac4e06688bf78945462bd64e71f85f5aa63d927",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MORNING__36858.npz",
+      "oid": "f1dfcb4f122f133443651b1badc169b45912ed85",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MORNING__36859.json",
+      "oid": "1d0fc68c665ea8cf561a33e83259134eefe5fce2",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MORNING__36859.npz",
+      "oid": "822daac3d96f4c0e034d2db026b9f3883059aad0",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MORNING__36860.json",
+      "oid": "28ff497ca011eab1f10dcf585326ec78a44402bc",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/MORNING__36860.npz",
+      "oid": "085eabd090caec58df3bddc871e99919a02d7c39",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NEED__37881.json",
+      "oid": "2acc36c4bee0d1ef31e0d4d7aff905b1fa09732a",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NEED__37881.npz",
+      "oid": "a51aaf20f89f09614576cc5fa5638c29c5e7d111",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NEED__37882.json",
+      "oid": "74056a29e561e9e407e4940aacd4dd411ae878fe",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NEED__37882.npz",
+      "oid": "7f43e307d3dd80f9ee966ae1154fbce92e96b261",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NEED__37883.json",
+      "oid": "a50cfdccd11bfae8396a50c41bb1fc04c4f3fcd2",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NEED__37883.npz",
+      "oid": "f850107b0125f232160d5d3845ed5c13e2300363",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NEED__37884.json",
+      "oid": "e7391cc2c0acaf83b725226475a5042c5937c961",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NEED__37884.npz",
+      "oid": "e8922c77a4fef5a7f97b6ffadb381c878e31c21e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NIGHT__38336.json",
+      "oid": "210039fbf4e48631f45030b627aede63a21b3eec",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NIGHT__38336.npz",
+      "oid": "0c25fee11fa8878c38dc660dfd379557517ee44d",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NIGHT__38337.json",
+      "oid": "cdc78a6f4ab3ac1b283124caf643032142218ca0",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NIGHT__38337.npz",
+      "oid": "7eccfc81e98e37b90eb571bb4f3f94faca1f8956",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NIGHT__38338.json",
+      "oid": "7b9adca5f53b00bbfb3fb640cb34d02ea5602d70",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NIGHT__38338.npz",
+      "oid": "3dfdabda49f690829ab3ff8e49ae8f32274e7dfb",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NOT__38857.json",
+      "oid": "7c5b86d451219f9f4a58bf640635e2a5c275214c",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NOT__38857.npz",
+      "oid": "0aa130753edc6928890e6aaeef6b005c7b1c2054",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NOT__38858.json",
+      "oid": "1701b32fca4202107400016eddce06ffc36666eb",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NOT__38858.npz",
+      "oid": "87c55588a8f0794e6902d887d1ba9afbb73ed897",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NOT__38859.json",
+      "oid": "4da0d3e8a1cbf15b181c8d1c024b5962e3f39108",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NOT__38859.npz",
+      "oid": "f53c86b9a281c77d0b7b51221d8ac1c8e58a12f3",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NOT__38861.json",
+      "oid": "0078039d152ed10b0101c72da4475e335fa2aeb4",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NOT__38861.npz",
+      "oid": "c81f8f128bc85014e300fb6c589549dd8d78f399",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NOW__38990.json",
+      "oid": "cce7d7b90d5e3a015e45aaf374874cbbce950448",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NOW__38990.npz",
+      "oid": "4b9b6b492bdbd723915019722a50db46097261fc",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NOW__38991.json",
+      "oid": "1c6d3673b6ce114b466b5e19d5d1c66fe643c1c0",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NOW__38994.json",
+      "oid": "22b73a4330ab624be56a225493ff2e144b972792",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NOW__38995.json",
+      "oid": "ba9e048b4c8c1ecab7388185455e704cc1c2b907",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NOW__38995.npz",
+      "oid": "4d7eadbe79f37dbb1eea2553094f05bad83e29bc",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NO__38524.json",
+      "oid": "d1de6981eaabcac01d7adcc3801d43a7851583b6",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NO__38524.npz",
+      "oid": "228584376f35e162129a3150e6884aa7b45d0514",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NO__38525.json",
+      "oid": "43c2b029b5a63fc9712bb14f8918073d5fa8cf28",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NO__38525.npz",
+      "oid": "81ede0032c70f9d3eb78c0558bbff88714447e0f",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NO__38529.json",
+      "oid": "d3109cb34fe197d50818e1c4071f624d266fedc5",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NO__38529.npz",
+      "oid": "efb249b3002383b15c15f93bdaecdec155710e29",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NO__38530.json",
+      "oid": "9e619d0ee15f518da38977e07bcd9f348a701553",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NO__38530.npz",
+      "oid": "31d0f5dd0c8493c06d8fd6065e1dcae07714bfc0",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NURSE__39088.json",
+      "oid": "a3dc01d5a7f0cea95d1e40206c3defb33472442c",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NURSE__39088.npz",
+      "oid": "3f1eb7e616bf7b18723813e0c1e8bcf38b91e9fb",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NURSE__39089.json",
+      "oid": "9562b7fff6f8d87e2acf0f6af7b954a709d75991",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NURSE__39089.npz",
+      "oid": "980f7795a0c4ff8b0f069798d45370f57c67ce3a",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NURSE__39090.json",
+      "oid": "dc47189df84cd5e3eff7532ecafb5b14a8f25aca",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NURSE__39090.npz",
+      "oid": "600069933b46b95961db65e40aa29d2062bc19a3",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NURSE__39091.json",
+      "oid": "0cbe70f1f04fb8532113a4b5f83e6a202ae6ec6e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/NURSE__39091.npz",
+      "oid": "574dfa4e8f86597d5695553b9dd134834cd7024a",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/PLEASE__43217.json",
+      "oid": "7f515f1f728811c0f14d492977b9992950e86d39",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/PLEASE__43217.npz",
+      "oid": "05898afadf8efeec36dd3ad90f3c425118d78cbd",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/PLEASE__43218.json",
+      "oid": "a821b09d00647979dde54e15a66f56b3d6096858",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/PLEASE__43218.npz",
+      "oid": "96c1a32ef0650feaa1e7913e8a0d6465b7758cfe",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/PLEASE__43219.json",
+      "oid": "106d5f3c9fac1fa231e8197e92b2f6a8e3adf456",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/PLEASE__43219.npz",
+      "oid": "c7f1f7b814394815614737d073fa07a998e47e92",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/PLEASE__43220.json",
+      "oid": "773bdc99380b76306a2110309b6037d61f0aaf0e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/PLEASE__43220.npz",
+      "oid": "1aa9c27a3ff96db0e340babd33c052cd86d0f6d7",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/SOON__53292.json",
+      "oid": "fd657b3aff6c561bdc1033b288d71c281df725f3",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/SOON__53292.npz",
+      "oid": "311085d2ba4a3b6f96e5f42d414bfd82426ce648",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/SOON__53293.json",
+      "oid": "23f8b1a967201e114f4f3f417ba9b69df62e3945",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/SOON__53293.npz",
+      "oid": "ae2e75ed2892b5d876450dab550a8cc35ad5b247",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/SOON__53295.json",
+      "oid": "4c314b0eb33ec7fffc2a6346dc6209dac3ab2dcb",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/SOON__53295.npz",
+      "oid": "7a191490c8ad88e090f3b2b34ecad2a9affb7d0b",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/SOON__53296.json",
+      "oid": "3d31e7380c7cb8dd067098bc115eb4545bd2667d",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/SOON__53296.npz",
+      "oid": "82434b796cdeccb2ee6a3fd1b89ea1a54c40e66e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/SORRY__53365.json",
+      "oid": "30ca6ecd16686af466be8e41da1c4ad4162f7145",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/SORRY__53365.npz",
+      "oid": "c458d35ae7f0c4bb07202b5e2ced233a774c3a87",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/SORRY__53366.json",
+      "oid": "c23a899bb8205360abefaefa03b61d42e6c8dc88",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/SORRY__53366.npz",
+      "oid": "f18de93d3e8c665fb3ac572712a10fb79226e278",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/SORRY__53367.json",
+      "oid": "b2613a3cde29fe50e59fe1287f7eca2d00e2aced",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/SORRY__53367.npz",
+      "oid": "d8038dc5f88dae572e60402cd4b37aa2e26edd98",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/STOMACH__54878.json",
+      "oid": "baa057afd7ceead57949f6d72b74fe86fe765c67",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/STOMACH__54878.npz",
+      "oid": "7376bde7ee5883cab2da08dfd0478a7e1fe13aaf",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/STOMACH__54879.json",
+      "oid": "a08a66d95e66a3905791630ea2bdd9007464f39f",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/STOMACH__54879.npz",
+      "oid": "464ca5ebea0a7fbea7e87907de9d04c6ca307ba6",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/STOMACH__54880.json",
+      "oid": "6b5980c3bda46132eb95951e44338571c54b785e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/STOMACH__54880.npz",
+      "oid": "a8ed516241d53e83b6e767182f949ce1f746ea19",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TAKE__56692.json",
+      "oid": "fd9b8b1a69f59370d1fac50f7da6e0293bb4af51",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TAKE__56693.json",
+      "oid": "73d02cdc48a9ebc71b544370f555f0ce180d5492",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TAKE__56693.npz",
+      "oid": "674620bb60627edb11c6fe36c1992560c4b8671c",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TAKE__56694.json",
+      "oid": "43fd212fe142ca70246ecf37c2ef55909f5cd52d",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TAKE__56694.npz",
+      "oid": "8c94aadd56462adbce5f86dcb14b96f11a259fcb",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TAKE__69500.json",
+      "oid": "56db01d75c06ff7372fc02336d329cd23f2701fa",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TAKE__69500.npz",
+      "oid": "47209be6ddb6b6b8955f332a665321a387baff4d",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/THANK-YOU__57655.json",
+      "oid": "6a797e60a76fb85b497bfe4037df722fe89c2352",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/THANK-YOU__57655.npz",
+      "oid": "24b7211e7d12885d66d54273c1a72e9d00ffd7f1",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/THANK-YOU__57656.json",
+      "oid": "5a00468949b214ed747d0cc9704b31a57f6e65ba",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/THANK-YOU__57656.npz",
+      "oid": "0608b779485a0c177707dec3f5ac355d20ccdefc",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/THANK-YOU__57657.json",
+      "oid": "7111723c12392c67c500e80d4086b12aec959833",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/THANK-YOU__57657.npz",
+      "oid": "5eb1cb954f5ca302f025f370881d8eacd8fb6e36",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/THANK-YOU__69502.json",
+      "oid": "39f273132d690bcc74fff35ad417b457c2b9da9e",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/THANK-YOU__69502.npz",
+      "oid": "a29300d920ec0757ae31740300a50147d1cacbb9",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TOMORROW__58805.json",
+      "oid": "b4849bb00999bf53914faf19f4025b382f44ccca",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TOMORROW__58805.npz",
+      "oid": "53027210b01f653099c696f9337b10f1ae76759c",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TOMORROW__58806.json",
+      "oid": "466f0500716f6bdc4721290a6ba5a5b1fa7583a4",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TOMORROW__58806.npz",
+      "oid": "4c49f2bf5c9097dad316fad309e243625da971de",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TOMORROW__58807.json",
+      "oid": "76fb12f94f80650d1748f3dc55b90b4746d41bbd",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TOMORROW__58807.npz",
+      "oid": "179d3bbe8ee224424c858d203b9482aff5762aa7",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TOMORROW__58808.json",
+      "oid": "913903835c4338fc79baf6cb6e9d082620166f26",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/TOMORROW__58808.npz",
+      "oid": "308514826f30bf5d67ba7288980e1190023d4aff",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/UNDERSTAND__60545.json",
+      "oid": "0db71f4f6ee7e8543fb1035decd10b0d0850ae10",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/UNDERSTAND__60545.npz",
+      "oid": "8586369dc8c96ae531940c3058b0468cdff47bda",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/UNDERSTAND__60546.json",
+      "oid": "bf19b0ba36caec775a8d76bfae9905c0d204b0be",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/UNDERSTAND__60546.npz",
+      "oid": "f632baa42f8e2d1c1bd5e681c73693bfacb6cce9",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/UNDERSTAND__60547.json",
+      "oid": "db21af8997cfb816d4177d7ca79416371017c738",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/UNDERSTAND__60548.json",
+      "oid": "54aabb77836104302c2145546de070d12f2859b5",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/UNDERSTAND__60548.npz",
+      "oid": "8a324c644a056f62a1e6debf3bb7351976f920a0",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WAIT__62097.json",
+      "oid": "006dbad79b4b77eeae2fa5f686f94436b8cb8d3f",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WAIT__62097.npz",
+      "oid": "abdf88b135881ad0d491b8f564d05aa17ae8e1a2",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WAIT__62098.json",
+      "oid": "095fdfabf3861b910777bbc793ca4dd78719c7c5",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WAIT__62098.npz",
+      "oid": "f48a9db4d218581cf169255e496a771df31592de",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WAIT__62100.json",
+      "oid": "b7795e81f409c653833b1186e3ee160e01f8d460",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WAIT__62100.npz",
+      "oid": "27503ff1a439077510d2a5574e6009f219968add",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WAIT__62103.json",
+      "oid": "5ecc7f21b37e45f4158e42d9cfeea7e62b2a6330",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WHERE__63081.json",
+      "oid": "d67f0d902a159c7dd6083c1263125f8d540e5413",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WHERE__63081.npz",
+      "oid": "473d942e4fba9a5710746de5964c5a4cd3754c7b",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WHERE__63082.json",
+      "oid": "b4af722c14408ab0f278124c6d06b167a5fbd127",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WHERE__63082.npz",
+      "oid": "b7910c0904ff1442ce629bfa69d066c00399e458",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WHERE__63083.json",
+      "oid": "045082b18549321cb077fbace248f9f65e5f20e2",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WHERE__63083.npz",
+      "oid": "213c159017694673a378339805d158d2f3cc85e6",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WHERE__63084.json",
+      "oid": "6f90bb294b104f3c53a36bd1a20555d9f6a850bf",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WHERE__63084.npz",
+      "oid": "73bbd08df994308c2455abdf815c32e1b9309aea",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WRITE__64056.json",
+      "oid": "85e63d93225467abb9e7b81b965d7853c7b20bf2",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WRITE__64056.npz",
+      "oid": "e6959acc2ab65ec1000b01ecfb36dec4804ebb2d",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WRITE__64057.json",
+      "oid": "86dabcdec8fb79ef28bec419828c053bb64af20f",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WRITE__64057.npz",
+      "oid": "5fa0134344cc15176fdaf516c5d63b8e533b798f",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WRITE__64058.json",
+      "oid": "4c5b7f27a78362ccc554d73a246ce798a0977838",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WRITE__64058.npz",
+      "oid": "cab807eac20aa9f5366841dd5d9104408456d8fb",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WRITE__64060.json",
+      "oid": "07ec5a2185508b4bfe6976e0827758e0ad70e5c3",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/WRITE__64060.npz",
+      "oid": "0d925ed8d42648b931f873b7d60f7ca125804e97",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YES__64280.json",
+      "oid": "00ab56594a3161aa593ee25c488852a2f63eff00",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YES__64280.npz",
+      "oid": "799e3c38e006b5b3244ef008c1fe7a733210f24b",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YES__64281.json",
+      "oid": "e0707e62d9584ebd27c0ce4e589ae4604db558c8",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YES__64281.npz",
+      "oid": "5344a4c94c7ebb294d9109306cbb6c7f8a4c6752",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YES__64287.json",
+      "oid": "8321bed8781f6e08e802bd01f4785f728effe2c8",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YES__64287.npz",
+      "oid": "c393ae3c4dab65e45d67c5eb6eaac478d4aa402f",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YES__64288.json",
+      "oid": "7a05468d915e29b7603001c34f2abacfa7e7d703",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YES__64288.npz",
+      "oid": "ad1fef279ec2a8424f5e2b07a3999e9673aa287d",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOUR__64427.json",
+      "oid": "3251bafcf035c06ec495158b08b26c74f381e123",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOUR__64427.npz",
+      "oid": "aac2a696dc34a991f93afe4c1a0a34be2c43c123",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOUR__64428.json",
+      "oid": "82b59bb2dc48a28005a3e833379819abe5f2a8b0",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOUR__64428.npz",
+      "oid": "6c75d5d13a0c19c538899163cc8545ac1b730239",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOUR__64429.json",
+      "oid": "c83c2c773642099b88d8949ea764dcaa55870b8b",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOUR__64429.npz",
+      "oid": "bc0166e1fc28b7568a1fce0a08f8e47dcfe89186",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOUR__64430.json",
+      "oid": "4eeb6df43092b0bc3acf276c1572694a467cae55",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOUR__64430.npz",
+      "oid": "25f60e02cc1774dbec0d41d40c3eaee9d4b50eab",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOU__64379.json",
+      "oid": "bdc626eafb4efc09af0f115fd417eecb5fcc9ef9",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOU__64379.npz",
+      "oid": "31e5faf6c15ce784ceaf9ffd488c1cff9a0df2b7",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOU__64380.json",
+      "oid": "5ad43d4e10c244d636f7f4f07a61be07676db5cb",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOU__64380.npz",
+      "oid": "510a7891ed7ce8bb1bf7fccc521e3a4810fa4f38",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOU__64382.json",
+      "oid": "405b46bb483f57cff60ece005ea9d77c6d3ff638",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOU__64382.npz",
+      "oid": "cda1d5fe4b4e2df4ad7281a3e79ab449c7944f71",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOU__64383.json",
+      "oid": "1164c4026f66bf5a1325b9a8642888d720990644",
+      "mode": "100644"
+    },
+    {
+      "path": "motions/wlasl_video_v1/candidates/YOU__64383.npz",
+      "oid": "852fca0b01a0232bd0559d86525692724b09588e",
+      "mode": "100644"
+    },
+    {
+      "path": "requirements-demo.txt",
+      "oid": "a1a93cf2d47dabce7b0280baec75ff0ddc954b66",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/HAVE_check.json",
+      "oid": "3ec3d8b4e8bd393257e38d7a0343a6354238698f",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/HAVE_clips_v2_frames.png",
+      "oid": "19da3668e3e0ad83390f37c681842941e441a9eb",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/INTERPRETER_check.json",
+      "oid": "46ce7a89ef578c0237e1ecf6bd6b8d867477b174",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/INTERPRETER_clips_v2_frames.png",
+      "oid": "110bcb88251a8cd01392db21bfcafbc5257f6f9a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/NURSE_clips_v2_frames.png",
+      "oid": "0c8dac21b44b96996f624180ee90cded5818ca6e",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/NURSE_clips_v2_timeline.png",
+      "oid": "0b86a865ef436a51a43bcb679b16d6ebe8041e24",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/README.en.md",
+      "oid": "0d56140512e6450eb1ef24fd15994bde78a691c4",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/README.md",
+      "oid": "5ea4b8edb4d8a9947c9c3caeb534057e698cfe28",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/boundary_check.json",
+      "oid": "29677a657823e312efb90edf5ce64d2748e26e42",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/boundary_check.py",
+      "oid": "58e872095767aaacafc61a51733d1764da137b73",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/boundary_detail.json",
+      "oid": "492d93bc49d530385e52852658d50e5de8402a2a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/boundary_detail.py",
+      "oid": "14c8804f33d969e8d3518ca4e79146fa0ede0f46",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/clips_v2_diff.py",
+      "oid": "0a16f2cd1cbcb7d9d3340a53ad0130729c94bbbb",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/make_protection_v4.py",
+      "oid": "6be80a589507b60c3259ff0d478fdf4aa947044a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/make_protection_v5.py",
+      "oid": "dd64a034a48eda561e1e9eb80d548a357d0b8f98",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/nurse_check.json",
+      "oid": "4fdc471524caefc22846e464e5f12e36ea845ed9",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/nurse_check.py",
+      "oid": "89a9791a685d25746d740f7fa28149bf6ff102ed",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/other_words_old_vs_new.png",
+      "oid": "47adda67723a5202215dcc0e29c45f6d3c0c5b3e",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/rebinding.json",
+      "oid": "5361141e1608cc0cc0f6d3f917504fd4ff958e3f",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/render_boundary_compare.py",
+      "oid": "c1093c81afa19cf98ac9f828beb9c30ad3980abc",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/render_nurse_review.py",
+      "oid": "d5bd38904ce4d239f6820c4155d7af558f45b3ce",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/render_word_review.py",
+      "oid": "80fd96ce653c92f7f71254dcd34d3f587e6a3791",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/word_check.py",
+      "oid": "7d7b0bc4aed8a5b72c85273f2505d053018fe1e4",
+      "mode": "100644"
+    },
+    {
+      "path": "results/clips_v2_review_20261102/words_in_sentences_old_vs_new.png",
+      "oid": "063dc9c900f1f20693f12d0e23fcfd03a4001cfc",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s1.json",
+      "oid": "423bb4987e8b47e9d27d1dbda75b6bb56d0c423e",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s1.npz",
+      "oid": "71a51ec8a1f58e563db2bcba757825be47c2f30e",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s2.json",
+      "oid": "34a27190747f3a13c711bdbd86b8c37e100366a0",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s2.npz",
+      "oid": "0f564954b227487b1536c26416801d0cf76870ee",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s3.json",
+      "oid": "a5ab7a3f6c24114bb8334e3e45cbf0691cab5bee",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s3.npz",
+      "oid": "5d501717964a6196f2a91ead7acaef154a144b1a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s4.json",
+      "oid": "0ae195344ba8d897e874b3bdefc39cd854407bca",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s4.npz",
+      "oid": "501ae0c1cefd69db28c807510aa2755cafdd158c",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s5.json",
+      "oid": "bc74e5e0669c0f1f359dc0e819c8638a6bc0ecb5",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s5.npz",
+      "oid": "18c8b5f5a9fe857d9f8cea520ddaccc9d77ace10",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s6.json",
+      "oid": "5d976e018c6a8ddf20eb31251218c7b727200fad",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s6.npz",
+      "oid": "90eb1c56e935c2b8d8f0128bb707b845004f3c49",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s7.json",
+      "oid": "4cd81b044ffce0636b86653004ef85560aca1a1e",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s7.npz",
+      "oid": "066da25bf9424d99b144a143bbd0260e86ead6ee",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s8.json",
+      "oid": "a51d2cad71977c115f305c19126759d9a3a47449",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s8.npz",
+      "oid": "ae607771debe5c81e54a7deb06c612e5c546b1ce",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s9.json",
+      "oid": "9baed8b8ce31cb73d6ef60e4d0bb5f036e5b9b81",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/baseline/s9.npz",
+      "oid": "e574a09e97d5a83d1e637ff7770d5681dbcfd5dc",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s1.json",
+      "oid": "cdfae7be1410c0e35934b6a57d342ab360e2a0de",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s1.npz",
+      "oid": "1696f0f2340d4405bd2cc40226a9c843e9374b30",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s2.json",
+      "oid": "acb6fa512090bef02daab3c65214cdd72650536b",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s2.npz",
+      "oid": "c5be15db2402932bfd5cefb664a228ee91204fac",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s3.json",
+      "oid": "b2509f640c7b68703ca000b08d3c70c8056af768",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s3.npz",
+      "oid": "0517a89c03ee80741e5f58aded3ca3169202b847",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s4.json",
+      "oid": "42b078e0593c4e23ff0b60297155a03e30944f20",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s4.npz",
+      "oid": "1476cc55d76aea2b325941b231016e60360bd7d3",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s5.json",
+      "oid": "bc74e5e0669c0f1f359dc0e819c8638a6bc0ecb5",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s5.npz",
+      "oid": "18c8b5f5a9fe857d9f8cea520ddaccc9d77ace10",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s6.json",
+      "oid": "cf4e1549bfa2827808d74c82c2f47887e7a4c883",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s6.npz",
+      "oid": "0924069d9bf934023f39a53470b119801404a7fe",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s7.json",
+      "oid": "89cad9a27a27d4bf72c956b19d2b1ac3e47d8480",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s7.npz",
+      "oid": "6a33eba3f59cc7f6340b975c14819b230781a42b",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s8.json",
+      "oid": "99d3fbd4f219eef289b83b5ada414d366ebca05b",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s8.npz",
+      "oid": "cd499cb814c40b9393f034c168f5eb443d94816d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s9.json",
+      "oid": "9baed8b8ce31cb73d6ef60e4d0bb5f036e5b9b81",
+      "mode": "100644"
+    },
+    {
+      "path": "results/demo/s9.npz",
+      "oid": "e574a09e97d5a83d1e637ff7770d5681dbcfd5dc",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/README.en.md",
+      "oid": "a9daa89b9e018a6f3ac8d2f943c3608e35666c88",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/README.md",
+      "oid": "d59d44e23e2584495f392fcc7896cb439dc7a5f7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/hospital_sentences_20261102_010_01.lock",
+      "oid": "3d394ee4b1265f4111e3a1338ee7babfa07d5652",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/hospital_sentences_20261102_010_02.lock",
+      "oid": "5ab3159d383993101eaef34105f26da657f6aae5",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/hospital_sentences_20261102_010_03.lock",
+      "oid": "5fc75e652f1c4976d587a4f44b3d9e1bce64bfe3",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/hospital_sentences_20261102_010_04.lock",
+      "oid": "4ea1a3e88a49beb978568914b9a0eebd95d18acb",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/hospital_sentences_20261102_010_05.lock",
+      "oid": "1925d72ae744287ceb65c76b9dfacc5542fa8526",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/hospital_sentences_20261102_010_06.lock",
+      "oid": "7ed1cd3108c7f3493bbf89ce997369839e505147",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/hospital_sentences_20261102_010_07.lock",
+      "oid": "4e48c14b7ddec888c493e94716558e04c001cbb8",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/hospital_sentences_20261102_010_08.lock",
+      "oid": "fba663f949e5dd8d15342d89e1faef75d92f335d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/hospital_sentences_20261102_010_09.lock",
+      "oid": "cfa638dc369134070622e43d28d3d43110a1b626",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/hospital_sentences_20261102_010_10.lock",
+      "oid": "b75cbee2903fc6d29adcb0b5d3a437002e22f056",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/hospital_sentences_20261102_010_11.lock",
+      "oid": "7c8ef0110ed8255672c00e53004f9c50f395249d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/hospital_sentences_20261102_010_12.lock",
+      "oid": "93008f0ce706a50efe8d547fea580a91cfe34f42",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/pair_batches/sentences_001/invocation_001.json",
+      "oid": "e42b6b358207b026d1f2fa4f31874f1b541f7e0f",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/pair_batches/sentences_002/invocation_001.json",
+      "oid": "be9ec6592fce6c4130b3cf2cbbb2e22b6022bdb9",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/pair_batches/sentences_003/invocation_001.json",
+      "oid": "1e8e94b36e28bcafad3765cbf379b65e4ca7da4d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/pair_batches/sentences_004/invocation_001.json",
+      "oid": "2913a7dc46f99287799b119baf7ac0c3d900ac90",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/pair_batches/sentences_005/invocation_001.json",
+      "oid": "7b4f025d21073330c59bdd9b37565abeab8d96f7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/pair_batches/sentences_006/invocation_001.json",
+      "oid": "4b5b8620d16fe19279e79bd4871ab9337f15db33",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/pair_batches/sentences_007/invocation_001.json",
+      "oid": "8368aef846eb952c93d1c1fb05cc223ffe0331cd",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/pair_batches/sentences_008/invocation_001.json",
+      "oid": "37d6ab7f627a33b98fee9911b8accd060cdd4fd2",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/pair_batches/sentences_009/invocation_001.json",
+      "oid": "d74b92861d9f9c25d7d2a0441598997bf07f1dd6",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/pair_batches/sentences_010/invocation_001.json",
+      "oid": "81917bda90266f7d7335660144b2403b9cb725b2",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/pair_batches/sentences_011/invocation_001.json",
+      "oid": "47a43774d89173bc5d6e10b125eee8fc4c739135",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batch_control/pair_batches/sentences_012/invocation_001.json",
+      "oid": "34791f0c7d7670df14d8d6a85472b0e2d25b82f6",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/manifest.json",
+      "oid": "e8d71096bee5d1ff13e0b5ecccda22eb7a5ad59b",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_001.json",
+      "oid": "d55d5f28a0b57ca54ed214cb43b53ceb5773a5a3",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_002.json",
+      "oid": "b4be3762d4f77d98cb52811991a7032a3b40ad1c",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_003.json",
+      "oid": "24c2519dd66a0adc664ad2477e1f26ca327d77df",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_004.json",
+      "oid": "1d2e1abd6bb3f59359cf6461ab11bea1c3a30335",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_005.json",
+      "oid": "99bbfd66808e15ab3567b93ad66f1e6e935b5289",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_006.json",
+      "oid": "69a833dbe6bb037d48db34f35b17bce81587caab",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_007.json",
+      "oid": "3e92733569bac47ef71e389c99142c5da348f567",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_008.json",
+      "oid": "3de246c8f6255bfc8e245a5e3c50925c729992ae",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_009.json",
+      "oid": "914d9d3a0ed07c22a9d765a0e361ff1dd930f50d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_010.json",
+      "oid": "4b5f43954ed52aba824579da6ff0ce5cbb8f2e94",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_011.json",
+      "oid": "b59c893d665969b94a77660ac499ff1e2cd35599",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_012.json",
+      "oid": "4865b704172d5fcc8ef6ba3eae000be7baa5e67d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_013.json",
+      "oid": "bcd88b22de62cad6b2bea7ebdc60684b2950e654",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_014.json",
+      "oid": "918f16e84179f638827a85a9e9086a0aaf5927f4",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_015.json",
+      "oid": "4c8e31eaa2fb1959b9b2a8c8bacab049c66eac5a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_016.json",
+      "oid": "61a56662c3ae0f0c439dcf1df26a65b706ae8e9e",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_017.json",
+      "oid": "28d8c13b395a3ce7849959dd8b58caca9d32ecb8",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_018.json",
+      "oid": "04be70c99271fa69d05ea2df7f505dff933f16da",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_019.json",
+      "oid": "1d09593d724b5bce6f3576487ccffb70204b7d1a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_020.json",
+      "oid": "9a34a2c90dc5b503f11f08bf074bbd6db8ed39d4",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_021.json",
+      "oid": "e89c92a7e90720fc61211a2e32a933c70ebb7d70",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_022.json",
+      "oid": "0695f83b956b97481d46f01fddfc121ebd5a9f01",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_023.json",
+      "oid": "91bb9234a1794bc1ebe937d38a25d15c73d81fa6",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_024.json",
+      "oid": "0ffa85a7e41d4771c92e16eac57716a8ccf682be",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_025.json",
+      "oid": "3af53478e7731dc996ddc1eabc03e7316d246e0c",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_026.json",
+      "oid": "997f41eda61d7662cead65fad170a16f62e54208",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_027.json",
+      "oid": "a53eafe0ccea7006865a9425183c8bdbd6a6d35d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_028.json",
+      "oid": "4686213c02fcfc77b35c510af302b0641f9f10b9",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_029.json",
+      "oid": "1b7c6b5edf1fb182ed078fd7bf8915c04c318b3b",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_030.json",
+      "oid": "481ed1d62784739b86e16d4d0c1aaed6a5dbe6d7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_031.json",
+      "oid": "fbb35fb5521bfe4f4053736e6c2e09d7f8715570",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_032.json",
+      "oid": "9ba90d3ef469ffda3be4c9941fcf81d5a7fe7a11",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_033.json",
+      "oid": "f6d5347382516abc78525df9ef7e0f649a4c8d8c",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_034.json",
+      "oid": "e9fd136a30acbad16ca7e01107127245aedfe4eb",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_035.json",
+      "oid": "7b7404cd022069d47d18ec1d0827ea69e4b41c68",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_036.json",
+      "oid": "03abc066040d1f90bcadd13f24d762ffe465ed7d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_037.json",
+      "oid": "761803b1579e84624a43a6a5d8141e947fc7c986",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_038.json",
+      "oid": "d5c50d66807bdcf03d518bfc3f1cac29654bcc49",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_039.json",
+      "oid": "910750b8b2f2ac9c0f58b07cf697075d9ac78c7e",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_040.json",
+      "oid": "72b0f251a22077f96ab3a1b1c2e6fe1fdd28dafc",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_041.json",
+      "oid": "09f130974e295a62a71fe5f5165bc273dc3aa9f0",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_042.json",
+      "oid": "dc6ccc6656a3f9854758754d59dbe828457a89d8",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_043.json",
+      "oid": "33dde5cea543726b81f2f778ee2bd42f4fbd52c0",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_044.json",
+      "oid": "0af169371cf6a29f6713de7e146468a19256a4b0",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_045.json",
+      "oid": "c9f3cff48f50cb9668ec0d8699381edd0f6a6397",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_046.json",
+      "oid": "c2f9748c8e4e0e24c4bea6085cf800a96d6103ba",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_047.json",
+      "oid": "9c14e0464b6f49454488bfc57b6f504904c49721",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_048.json",
+      "oid": "638e80f00a078a25fb7d9a84d818f11187c95d95",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_049.json",
+      "oid": "62cfc0fd044908a0e3db02355cb180076c915daf",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_050.json",
+      "oid": "9972c11bf504ed5be2679d94ccbcfdd743c37ef0",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_051.json",
+      "oid": "c868c2ad1eac968f6721036df54653db5c3422c7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_052.json",
+      "oid": "ca44fc9e7515b79da00a448d325934d69a127e76",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_053.json",
+      "oid": "ec55996298f92f8acea9aa31f1ac6b304b03501a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_054.json",
+      "oid": "0c693998998966f6475d6b533dcff2fc2caf6b8d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_055.json",
+      "oid": "23af214aadcd2888112ee86ec95db8c5b1bead90",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_056.json",
+      "oid": "58006dac7f79037e42b080ea1396b459c17a0e79",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_057.json",
+      "oid": "d904eff5327928a6955f8f0f1678b746449e8fcb",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_058.json",
+      "oid": "785ced6538082c487fb233632bedfba5cd11dd35",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_059.json",
+      "oid": "071cdbc582f1dc4cc5abd89caabc4eee852f19f8",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_060.json",
+      "oid": "a5af5b5513cf865ad6c57ddbb28ea97ae8ac45f6",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_061.json",
+      "oid": "294d3213123127c90a60114a1c2fe97a1fe8501d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_062.json",
+      "oid": "e10519da1e5617dfc2d3705c9f5761a72184c9cb",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_063.json",
+      "oid": "95eb8370d459be400d342c8107379ff0864a6a31",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_064.json",
+      "oid": "26d0d9397c62ffdc7aff5e2b4abb17963893eaf0",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_065.json",
+      "oid": "c305baefb487eeb59a842237d5d7f634f42b267f",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_066.json",
+      "oid": "5c4f708e1dd3b749e54555d0a38f629184d1d141",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_067.json",
+      "oid": "4803010e43a5bbbd9d094bf6cb623f9eb1d2a0f5",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_068.json",
+      "oid": "fa83e469c8cf4b7bfcc4d8445eebe90064c909b3",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_069.json",
+      "oid": "516b5741bc5f972225946ae3c174589d953aaf3c",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_070.json",
+      "oid": "411b0d7420d4111ab0eea6dd2ac4c080ae947c79",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_071.json",
+      "oid": "dc2d3ca036d6738aff6d7b16a5500ffa8bb5b8a6",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_072.json",
+      "oid": "063cbe749c440ce762ee0ea91aafa1cc6f08203b",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_073.json",
+      "oid": "aa33857c0b3c05ab6926b488f9a869473e15f4c9",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_074.json",
+      "oid": "e72c5c95dbcf2b7d65d64c472a69746ee1abf9eb",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_075.json",
+      "oid": "470f5904548128b8a7ae5b2fbd00b85684d2dcf8",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/rest_076.json",
+      "oid": "f4a65bc60bf0c17aa404d0a8d5ea23219986efb3",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/sentences_001.json",
+      "oid": "d1d8ff64503e4489dffb9bb629f2c5da8da567ba",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/sentences_002.json",
+      "oid": "acdac443683e135b2aa118fdfaa7b66e3100f8bf",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/sentences_003.json",
+      "oid": "7b302dc43ed5f8f539fcbf2b26b10260fec5591c",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/sentences_004.json",
+      "oid": "56ad8e25be99d5050e6b79f77d71028eea4b7ca0",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/sentences_005.json",
+      "oid": "b8410cb71f7ef8237d1d47e7b0b137acf4bce011",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/sentences_006.json",
+      "oid": "10e1c13bbeacf9037e850c12e4e10ef3e760d7cb",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/sentences_007.json",
+      "oid": "6fdbae3386d35bc8a2b43da6cb6ae2fe28531fcc",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/sentences_008.json",
+      "oid": "39db2c07efa18f2d1ad103a2e618e7b6e26596ee",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/sentences_009.json",
+      "oid": "fe3fe5b3b98a3435f38ad9591cebc0f047bfe761",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/sentences_010.json",
+      "oid": "1d51c4a076fbbe4860f212a0cb56f991fd0464bb",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/sentences_011.json",
+      "oid": "6313bc98912227db04298e3feae720a0ddf128f1",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/batches/sentences_012.json",
+      "oid": "1fb2343009cf773d5963f5dbefaa77c3e5a7a217",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/make_inputs.py",
+      "oid": "c5c88dbfc5cda0a9ae2792aa672216a3e7f1f943",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/pairs_hospital_sentences_20261102_010_01.log",
+      "oid": "aaa01e4508ad88c7c98c59113b47ef4a5b4ba751",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/pairs_hospital_sentences_20261102_010_02.log",
+      "oid": "3ffc3efc017c078c7558df82519bf02a7dd10bdc",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/pairs_hospital_sentences_20261102_010_03.log",
+      "oid": "fe95a101933cf1f68e22e607f5f026b0d95b18b5",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/pairs_hospital_sentences_20261102_010_04.log",
+      "oid": "900679d765bff8a16aebf0cebd3d5749b51fa9e4",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/pairs_hospital_sentences_20261102_010_05.log",
+      "oid": "5fb8de12b2198c21159d569cb0a413beae774f14",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/pairs_hospital_sentences_20261102_010_06.log",
+      "oid": "70ae57fa4ad7576be25ed62d724255e01d28561d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/pairs_hospital_sentences_20261102_010_07.log",
+      "oid": "9fc5d704eaffad2c75db117b0ea35b51dd9a1cd5",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/pairs_hospital_sentences_20261102_010_08.log",
+      "oid": "a2d8916f5f8607aa46a0ab7b27de385714f0bde9",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/pairs_hospital_sentences_20261102_010_09.log",
+      "oid": "ca7c7768476f202d538b60d4afba4d2d3fe04e0a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/pairs_hospital_sentences_20261102_010_10.log",
+      "oid": "6a1531b0cb00fd2e3ea8dcbd895b1f6d792a5a67",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/pairs_hospital_sentences_20261102_010_11.log",
+      "oid": "bd785a492cf537931e067207b766acd9b670a3ab",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/pairs_hospital_sentences_20261102_010_12.log",
+      "oid": "058eeb0f692e08f5d634520fdb0dec31fa5256f3",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/render.log",
+      "oid": "6419880252a82ca8fce279a84e7a1c998fa25033",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/run.log",
+      "oid": "62a278a19c223351ae33a6cfcc3157e9cdb64521",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/run.sh",
+      "oid": "ecc7d977372399129a1c69dc5a325e70530037fb",
+      "mode": "100755"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_01.log",
+      "oid": "e922d6a7ba307737ebbe248a95e84bc94648790a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_01/NURSE__BLOOD-DRAW.json",
+      "oid": "cf20d60324c98cd4439f05645f104791f7201b75",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_01/summary.json",
+      "oid": "858338b26e0be98f460bb47a0d3ec94cba211ed5",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_02.log",
+      "oid": "f2cdf2123ed9df3bed322fc76b06de14d8196975",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_02/NOW__NURSE.json",
+      "oid": "56bfd0f2fae044b0857ebe0868531e4192519d7c",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_02/summary.json",
+      "oid": "3b3bf2619cc34bc108ff60b940c9c8d8c28d1193",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_03.log",
+      "oid": "980bb5ef5b308c613c0be2b50f03951eb4ced72e",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_03/NEED__INTERPRETER.json",
+      "oid": "fb4742857d701b9987714cf38310890064daa9c2",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_03/summary.json",
+      "oid": "67aec8afc2cd73be80a4f5a6843f09a0e2b01899",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_04.log",
+      "oid": "66b554a92e2f5fcfb36ed978243e1b613dc730ee",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_04/YOU__HURT.json",
+      "oid": "887e697597d671452e71f1097282dbb7f295d062",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_04/summary.json",
+      "oid": "b0e9f9ed3d80b1bd87c911c3bb039f706f23e95f",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_05.log",
+      "oid": "44a7917b40101fda69fa1d6ecd0dbb65b55dda7f",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_05/HURT__WHERE.json",
+      "oid": "45fd7dfbbca4e607fd2d3fc5428aa261e953df75",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_05/summary.json",
+      "oid": "cbfdcae09968b0aa8d5877fc709fac6a2cb4f42d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_06.log",
+      "oid": "be5639ff5498e1644fd2ba41f2873330bafd3cb7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_06/MEDICINE__MORNING.json",
+      "oid": "1d2786a4fc51598f0fcd6fe77af5c0934cdf8ff6",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_06/summary.json",
+      "oid": "8455e425753ac49c6f4d3dd95975ef3d34ebd052",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_07.log",
+      "oid": "66ca7d38540e44ce3bb8cb8212cd512867540582",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_07/PLEASE__WAIT.json",
+      "oid": "33ac5a3dcd7b2054332377a1a98a7c180949bcc1",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_07/summary.json",
+      "oid": "ae3abd5d797cf72ab014157f0c2e3885d65460c7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_08.log",
+      "oid": "e9175c7b3507748d0ec76b2b83d7fda81bef05c0",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_08/WAIT__DOCTOR.json",
+      "oid": "b3b99a6c08ff34936e837b27d5b28e75ce725dea",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_08/YOU__UNDERSTAND.json",
+      "oid": "ed44eddefc31cf04736434ca9c0ed53b77cdbb91",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_08/summary.json",
+      "oid": "7e7cb0b63d976da2f9b0924bc83af9cca2c4384b",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_09.log",
+      "oid": "2b116a61ed422ca0fe02a9d6a47b248674a519ed",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_09/HELLO__YOU.json",
+      "oid": "478cdb2716e967a20e53a1b7c7fd462026868852",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_09/MORNING__NIGHT.json",
+      "oid": "ac1dbbe8b5516d9bc1beb124eb4eafd5f67ca832",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_09/summary.json",
+      "oid": "c8cebaa05cd21f0cac0c0b366b3cdf37e33e039e",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_10.log",
+      "oid": "d05faa35da66f0404b0d6680e87a641e1a8e8cb1",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_10/NIGHT__TAKE.json",
+      "oid": "31f8ef31288464b85bdea41e7235b44cbaf1b89a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_10/YOU__NEED.json",
+      "oid": "fbbca10f29224ad78c15f0c87ca119a66ff7a6a1",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_10/summary.json",
+      "oid": "5b281d8f2bccc7aa91b39796d4db1ac33f544057",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_11.log",
+      "oid": "aab7ce7a2807cfa19db04afae696a04c27cc21d1",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_11/APPOINTMENT__HAVE.json",
+      "oid": "10241f63c1dbfa8325bd7e41dceb55a439f85fa1",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_11/DOCTOR__COME.json",
+      "oid": "785e52efe1d9491cb7cfb2d6cf9fd247f00c6e3e",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_11/summary.json",
+      "oid": "2e617d5b9c8f76babe86933717105139e8a17f0d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_12.log",
+      "oid": "64c7f429d9ca0d76044eae43a32cb9e3a8258dc2",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_12/COME__SOON.json",
+      "oid": "154d825121738d63f456cf0a6e5e06e6625fc50d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_12/YOU__APPOINTMENT.json",
+      "oid": "afc6ffab17d48ea01a12f0151d585bb828903223",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/selected_recheck_12/summary.json",
+      "oid": "151a15f5519c990bc97c08e52f6fa8fe5281846c",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/independent_recheck/HELLO__YOU__APPOINTMENT__HAVE.json",
+      "oid": "8b12081c82cbf58aad76add45e5f3a1e17fbe300",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/independent_recheck/MEDICINE__MORNING__NIGHT__TAKE.json",
+      "oid": "b6b4660dde4027046eafe8b553507d8eb4f0920e",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/independent_recheck/NOW__NURSE__BLOOD-DRAW.json",
+      "oid": "7027a7fce482cd10f9e454311c8eef146e790295",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/independent_recheck/PLEASE__WAIT__DOCTOR__COME__SOON.json",
+      "oid": "c92407c195380cce656379ee51a2645bac5cd2aa",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/independent_recheck/YOU__HURT__WHERE.json",
+      "oid": "ffa7912a072f17da94a9ff9c6930f1d9318776a7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/independent_recheck/YOU__NEED__INTERPRETER.json",
+      "oid": "e14eff99750f9b915d3055af3a57080df6e47ccc",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/independent_recheck/YOU__UNDERSTAND.json",
+      "oid": "e256aecada783a233309a5a2377a130f20bc18ce",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/independent_recheck/summary.json",
+      "oid": "72721bd5a7149a66f11ed090b0b6d2a328c487e0",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/manifest.json",
+      "oid": "0a071d84e0cfd332783511271c6fcb0f3df4a959",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/rest_tails/BLOOD-DRAW.json",
+      "oid": "a55aeafb18561955f6b5e56acbe9748f1cded69c",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/rest_tails/HAVE.json",
+      "oid": "932a2f0f1968177071e69d1f0b72c88cca8c1407",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/rest_tails/INTERPRETER.json",
+      "oid": "7d834850c58870a0784e25190456b955fc4a7c94",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/rest_tails/SOON.json",
+      "oid": "082ed80d4cf4d040314570236cbb6165bd64aa8b",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/rest_tails/TAKE.json",
+      "oid": "3236f24c07f8600c29e0f55c6a2178e40c31c6cd",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/rest_tails/UNDERSTAND.json",
+      "oid": "bc34fb93970c306c22a70b694301773447f48068",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/rest_tails/WHERE.json",
+      "oid": "b989a8ef3bb9148db86bf7dc6bfe24243d8589b1",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/sequences/HELLO__YOU__APPOINTMENT__HAVE/attempt_0001.json",
+      "oid": "84d289296d2d9de9b146f2630d8410f5b21c861e",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/sequences/HELLO__YOU__APPOINTMENT__HAVE/attempt_0001.verification.json",
+      "oid": "78226f8e4d75f4225289d420303c0b0cb80e7b97",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/sequences/MEDICINE__MORNING__NIGHT__TAKE/attempt_0001.json",
+      "oid": "070a6aba41b348586f32cc7ac1f8933c2758c186",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/sequences/MEDICINE__MORNING__NIGHT__TAKE/attempt_0001.verification.json",
+      "oid": "ed3c3e9abe0ded2ffdb58713e7ff65a1f8bedf94",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/sequences/NOW__NURSE__BLOOD-DRAW/attempt_0001.json",
+      "oid": "680a28053539beac9771df31ec10f3998fac06b4",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/sequences/NOW__NURSE__BLOOD-DRAW/attempt_0001.verification.json",
+      "oid": "15f17fea2b876e7a6640ef3ab4eb275f9eedfa33",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/sequences/PLEASE__WAIT__DOCTOR__COME__SOON/attempt_0001.json",
+      "oid": "a022b8f0a07f99dbd394e21cb493cf441e7a140f",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/sequences/PLEASE__WAIT__DOCTOR__COME__SOON/attempt_0001.verification.json",
+      "oid": "b612557074944a983028072ff6ccdf71dec6d9f1",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/sequences/YOU__HURT__WHERE/attempt_0001.json",
+      "oid": "f4cfd21bde590082004f1cff64d1f74393be31ef",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/sequences/YOU__HURT__WHERE/attempt_0001.verification.json",
+      "oid": "eb93b870fc8f49615dde58983b45a20ac917df8a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/sequences/YOU__NEED__INTERPRETER/attempt_0001.json",
+      "oid": "86ee0e60b3dfecac5690179235fb18eaa12315a9",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/sequences/YOU__NEED__INTERPRETER/attempt_0001.verification.json",
+      "oid": "b772183326e82df24522101372afaa0260a1c4d9",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/sequences/YOU__UNDERSTAND/attempt_0001.json",
+      "oid": "8265b251d2845b1dafc24d78c0733f9689da7ea5",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/sequences/YOU__UNDERSTAND/attempt_0001.verification.json",
+      "oid": "2f8bb317ee7bb3bb2ab142a5f2a2946dbdbaa29b",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/sequences/summary.json",
+      "oid": "1da32caa0a892f7952bca9626766c3b9df7c3885",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/summarize.py",
+      "oid": "e978c4106c7bfb033e7ad12d89a922c1c506c2ce",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/summary.json",
+      "oid": "b8c8b9e54b31c1dcfdeaf35c3a53fb5f3c6f1363",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/verify_sequences.log",
+      "oid": "247cb2f995e24458d55ceb2d1344355a2564abf7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_HELLO__YOU__APPOINTMENT__HAVE/HELLO__YOU__APPOINTMENT__HAVE/baseline.npz",
+      "oid": "98468b3126a85f020395d51a6cb59cc8f531109b",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_HELLO__YOU__APPOINTMENT__HAVE/HELLO__YOU__APPOINTMENT__HAVE/contact_sheet.png",
+      "oid": "26cf6d0cbb3c3339dbe816303eace05e9235639d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_HELLO__YOU__APPOINTMENT__HAVE/HELLO__YOU__APPOINTMENT__HAVE/independent_verification.json",
+      "oid": "ca57af442f5d9ba7bc64212c5469ee9f92b83c3a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_HELLO__YOU__APPOINTMENT__HAVE/HELLO__YOU__APPOINTMENT__HAVE/replay.npz",
+      "oid": "08e851c642bf0161166e85d32a90825a17334da4",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_HELLO__YOU__APPOINTMENT__HAVE/HELLO__YOU__APPOINTMENT__HAVE/report.json",
+      "oid": "168f044bd91f565ef3ca71b3ddd03f22bf4cf9c0",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_HELLO__YOU__APPOINTMENT__HAVE/summary.json",
+      "oid": "a7911d1b9f96f67d44735c2b963506edb14b45cb",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_MEDICINE__MORNING__NIGHT__TAKE/MEDICINE__MORNING__NIGHT__TAKE/baseline.npz",
+      "oid": "bdbb7b2b634e45aa5c69224317b328532cbcd2b7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_MEDICINE__MORNING__NIGHT__TAKE/MEDICINE__MORNING__NIGHT__TAKE/contact_sheet.png",
+      "oid": "d0cddfe093de83112d1259c33dbcacacd9086edc",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_MEDICINE__MORNING__NIGHT__TAKE/MEDICINE__MORNING__NIGHT__TAKE/independent_verification.json",
+      "oid": "93172b36e98ead7f79a67862587eb2061788bd41",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_MEDICINE__MORNING__NIGHT__TAKE/MEDICINE__MORNING__NIGHT__TAKE/replay.npz",
+      "oid": "3f3298e0d6288254d78d66117fcdca0750fd7fc9",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_MEDICINE__MORNING__NIGHT__TAKE/MEDICINE__MORNING__NIGHT__TAKE/report.json",
+      "oid": "fdc828781c6a730f5ed240e704edc279fc254595",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_MEDICINE__MORNING__NIGHT__TAKE/summary.json",
+      "oid": "8066831ab197af74b18d87797699979a5f404422",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_NOW__NURSE__BLOOD-DRAW/NOW__NURSE__BLOOD-DRAW/baseline.npz",
+      "oid": "12bb0ee3778c66ce1da566020856146fc42c587d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_NOW__NURSE__BLOOD-DRAW/NOW__NURSE__BLOOD-DRAW/contact_sheet.png",
+      "oid": "60e92068c64c8796a0f3d7ebdb60f4b233638499",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_NOW__NURSE__BLOOD-DRAW/NOW__NURSE__BLOOD-DRAW/independent_verification.json",
+      "oid": "b9603b84f8dae9408c593657f37ab02b684c883c",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_NOW__NURSE__BLOOD-DRAW/NOW__NURSE__BLOOD-DRAW/replay.npz",
+      "oid": "acbbccead9fed13b1e47f7617aee6aa20105713d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_NOW__NURSE__BLOOD-DRAW/NOW__NURSE__BLOOD-DRAW/report.json",
+      "oid": "89d77916b4a714e441eab45ce98662cc03e264d5",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_NOW__NURSE__BLOOD-DRAW/summary.json",
+      "oid": "870bbff2fe2067dc0b11cbe8655bbe95a44db0f1",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_PLEASE__WAIT__DOCTOR__COME__SOON/PLEASE__WAIT__DOCTOR__COME__SOON/baseline.npz",
+      "oid": "9a3f40c9aacfd2c7a2cd5e7c4ece7efd88740f96",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_PLEASE__WAIT__DOCTOR__COME__SOON/PLEASE__WAIT__DOCTOR__COME__SOON/contact_sheet.png",
+      "oid": "321c9f852fff67dbb045c442636f68295d0124ac",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_PLEASE__WAIT__DOCTOR__COME__SOON/PLEASE__WAIT__DOCTOR__COME__SOON/independent_verification.json",
+      "oid": "85d6272a40c77a33da8538386266f07b02df20ba",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_PLEASE__WAIT__DOCTOR__COME__SOON/PLEASE__WAIT__DOCTOR__COME__SOON/replay.npz",
+      "oid": "14e5afa949cd597ef47c12dc7c418b5bfc3bfde7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_PLEASE__WAIT__DOCTOR__COME__SOON/PLEASE__WAIT__DOCTOR__COME__SOON/report.json",
+      "oid": "9d7c2f7475991f6c9d961b907c5b70ddeeb7b394",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_PLEASE__WAIT__DOCTOR__COME__SOON/summary.json",
+      "oid": "ed2d75fb4ff3016be4352c136a08f8f55c54e52f",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__HURT__WHERE/YOU__HURT__WHERE/baseline.npz",
+      "oid": "8c4bf29875a29a04a3ad8b00ec7a023eedcbcda1",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__HURT__WHERE/YOU__HURT__WHERE/contact_sheet.png",
+      "oid": "d5febdaf95786e9c25f2d9ced714012289aa6ca3",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__HURT__WHERE/YOU__HURT__WHERE/independent_verification.json",
+      "oid": "b36ebfb5979bb1be9355644e6d792d479a36298a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__HURT__WHERE/YOU__HURT__WHERE/replay.npz",
+      "oid": "d043c4fae8471a65b2f81d3ea436b8a4e8bef36a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__HURT__WHERE/YOU__HURT__WHERE/report.json",
+      "oid": "f70e53126c229bb0b086a7b7d26b9e6874191a2f",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__HURT__WHERE/summary.json",
+      "oid": "5a7a4c8e0858551f0603d771d0b770493a41da74",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__NEED__INTERPRETER/YOU__NEED__INTERPRETER/baseline.npz",
+      "oid": "908252dbc473b451a5b9ef526d7cd6266b24fbb6",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__NEED__INTERPRETER/YOU__NEED__INTERPRETER/contact_sheet.png",
+      "oid": "39e43e7218c2c2d4123ae02cc10d10365e94f52c",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__NEED__INTERPRETER/YOU__NEED__INTERPRETER/independent_verification.json",
+      "oid": "70732ea27f0b8ef54b1a1522908e72ee5e517449",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__NEED__INTERPRETER/YOU__NEED__INTERPRETER/replay.npz",
+      "oid": "0aaed848a0be261628a9f3da554bab5bd87c93a5",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__NEED__INTERPRETER/YOU__NEED__INTERPRETER/report.json",
+      "oid": "85ee77018bbb9d0ecf32389e364456d9fa9244ce",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__NEED__INTERPRETER/summary.json",
+      "oid": "82702a14b907295e5c00c8201e654e24b1fe275b",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__UNDERSTAND/YOU__UNDERSTAND/baseline.npz",
+      "oid": "83381d3e144c2c66fab16728723cd7b0725fa226",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__UNDERSTAND/YOU__UNDERSTAND/contact_sheet.png",
+      "oid": "f2f94930a168095b7583b9b8ba2c460a8c24d4d1",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__UNDERSTAND/YOU__UNDERSTAND/independent_verification.json",
+      "oid": "876ccaaaf6fdcdfb619b812a79411d8d9b456e42",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__UNDERSTAND/YOU__UNDERSTAND/replay.npz",
+      "oid": "404223dcf27148126d37c694c17311f6e8141747",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__UNDERSTAND/YOU__UNDERSTAND/report.json",
+      "oid": "29c6d1fb262359203519814c949267cbb45d9849",
+      "mode": "100644"
+    },
+    {
+      "path": "results/hospital_sentences_20261102_010/videos_YOU__UNDERSTAND/summary.json",
+      "oid": "ecb737ce0c79d7cc4cb014e680a3fed3d23236f2",
+      "mode": "100644"
+    },
+    {
+      "path": "results/stitch_compare/group3_round8/s1.png",
+      "oid": "b3b65075ec985dc8a02d9c93bb9be080a20d38e7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/stitch_compare/group3_round8/s2.png",
+      "oid": "c8bf9e7641a6f4db51295560e0400e115437f381",
+      "mode": "100644"
+    },
+    {
+      "path": "results/stitch_compare/group3_round8/s3.png",
+      "oid": "00bd73f612a132dc69912ffb5259c40a19363ff5",
+      "mode": "100644"
+    },
+    {
+      "path": "results/stitch_compare/group3_round8/s4.png",
+      "oid": "bad39e63b6a121b2dbf031792708861808d5f327",
+      "mode": "100644"
+    },
+    {
+      "path": "results/stitch_compare/group3_round8/s6.png",
+      "oid": "713f617d89097acbceadd7a6d8c0b0e89233007a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/stitch_compare/group3_round8/s7.png",
+      "oid": "b8d2b34693d8ad4780c5e53c9017108e0a17a0f9",
+      "mode": "100644"
+    },
+    {
+      "path": "results/stitch_compare/group3_round8/s8.png",
+      "oid": "6dcc108c82ea81ccb90b1bf434c570a19bdf8b6c",
+      "mode": "100644"
+    },
+    {
+      "path": "results/stitch_compare/group3_round8/summary.json",
+      "oid": "e22d678aeaadd79a71adbf04bbe63191bbdfe2d7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/stitch_compare/group3_round8/summary.md",
+      "oid": "64ec1c1fb14a6803921ba0a696975db595f221bd",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/COME__11877_sheet.png",
+      "oid": "6b2795f3ec9d46ffcf40b264e99ff37e6b6f1953",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/DEAF__14888_sheet.png",
+      "oid": "127f06512634063951560ec4d18e28bf12ba605a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/DOCTOR__17015_sheet.png",
+      "oid": "e118a37efa3da5e6966b93080b302ed083ad5ce2",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/HAVE__69360_sheet.png",
+      "oid": "0b9e8a11df3381dd62e76cab1e8dd7726e37f816",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/HEADACHE__26837_sheet.png",
+      "oid": "b571aca7bc3caf3c899fde4a237b5d7ced30c032",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/HELLO__27173_sheet.png",
+      "oid": "d51aa97419693b44f0f58c8ab962a7a58917728d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/HURT__28441_sheet.png",
+      "oid": "075025c818f8dd783fd45e97b2b2e6e2b2b095a1",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/INTERPRETER__30257_sheet.png",
+      "oid": "99dfab47d5a8c2effa18c15e8417836f0a0ad0a7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/LATER__32321_sheet.png",
+      "oid": "7ea59ab718f21da515700b5602a3327590330c6e",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/MEDICINE__35456_sheet.png",
+      "oid": "0c257e2d79e32e03a4271f44aef2e4230bf933a1",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/ME__35546_sheet.png",
+      "oid": "7bc36f315b523751c93299bcc4364d24cb143eeb",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/MORNING__36858_sheet.png",
+      "oid": "214cbb5bffb6af968dd8ab831ef2ad6c5d353fdd",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/NEED__37884_sheet.png",
+      "oid": "636426e95d0ec925c1df42d531d6bebcf89752d3",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/NIGHT__38337_sheet.png",
+      "oid": "e63ec14910afaed6c089d121d888cf07bc78d049",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/NOT__38858_sheet.png",
+      "oid": "7884f5cc2e671dd5027f6f5ad408fc219d58057d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/NOW__38994_sheet.png",
+      "oid": "06a667eb85cf389ba0be00d09a3161506d6c9dd3",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/NO__38529_sheet.png",
+      "oid": "b70815aec4c6f404e646b69ff661ac76c8e58059",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/NURSE__39089_sheet.png",
+      "oid": "c35c6ed45f4f5aed56458d6c4141f3dac117ebf3",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/PLEASE__43217_sheet.png",
+      "oid": "c096eb780d13be2ff82b3a43e6ed3e73a0638ff7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/SOON__53292_sheet.png",
+      "oid": "7447a6afb9920d1627aef245704704999cc67dcd",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/SORRY__53365_sheet.png",
+      "oid": "a8cce4bdce62eff23a3c2bc070714f321ac16e5d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/STOMACH__54880_sheet.png",
+      "oid": "7e8156fab6adb4413413f86d321403331c1f6346",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/TAKE__69500_sheet.png",
+      "oid": "219816f03936259fc540e2e06c6c9eb4361d6c24",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/THANK-YOU__57656_sheet.png",
+      "oid": "24ade88866174cb38f08a56b9537d0eba09ff7e7",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/TOMORROW__58808_sheet.png",
+      "oid": "943defdb466788e3d0ffa9851feff66d0539ff6e",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/UNDERSTAND__60548_sheet.png",
+      "oid": "577f0608880718f1486a9044e48ce352591bd215",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/WAIT__62103_sheet.png",
+      "oid": "83e66d9bfc8755d0c17884e5445fd7b9ef668279",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/WHERE__63084_sheet.png",
+      "oid": "d69ac3503800fc92e8935bdad6ad0b1871ce8c3d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/WRITE__64060_sheet.png",
+      "oid": "a3da73a621eb3c46032342167b6da983ba348c0b",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/YES__64287_sheet.png",
+      "oid": "4dac5367aa3855c9537042d9faab01d7afd1f93d",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/YOUR__64430_sheet.png",
+      "oid": "57b5bc1ba5c64e6e87a4aa43ea356124c8563529",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/YOU__64383_sheet.png",
+      "oid": "e12c99f6d4dc0d701f72df4caba2fedd0d81ff9a",
+      "mode": "100644"
+    },
+    {
+      "path": "results/video_previews/overview.png",
+      "oid": "9da88f803fef11c4ba1e5faf289d3d3567898429",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/demo/compare_stitching.py",
+      "oid": "c2d2cc62e0afd720ab264c5857866873d0d2e91e",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/demo/hospital_demo.py",
+      "oid": "98f6e524f755709a1204d05e479295e784231775",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/mocap/retarget_to_g1.py",
+      "oid": "f604142e2a015526e48cc47e32cd701a57cb3be8",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/mocap/stitch_baseline.py",
+      "oid": "55cec35c67454848d9853b556cedc91c1712a705",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/video/manual_corrections.py",
+      "oid": "bc4ebc3a38a0d005cc705c37e8c649892e2cbc15",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/video/retarget_video.py",
+      "oid": "a70b14b421a73192423a1e30088bd73c5425d894",
+      "mode": "100644"
+    },
+    {
+      "path": "src/sign_robot/project_overview.py",
+      "oid": "4eb4351379b7ce3a06cca54f96f5e89411255340",
+      "mode": "100644"
+    },
+    {
+      "path": "src/sign_robot/retarget.py",
+      "oid": "7f7e33160a9de0a0a75387b24fd12468f99c68ed",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/clips_v2.py",
+      "oid": "661fc73611792d89c9b647e510928e287aa91e6d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/data/NURSE_hospital_v1.npz",
+      "oid": "7ead36e659ad251a33f6049c8fc03c8b40e0466f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_all_pairs_pipeline.py",
+      "oid": "32867ccd8c766d4189833ce4daede257e2c668aa",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_compare_stitching.py",
+      "oid": "3d2c8107f527f23179aa50bbacad8efeea37c485",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_connector_only_v4.py",
+      "oid": "93e37b2e77a0509c46f0b1671abc6a97c8c05a04",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_hospital35_freeze.py",
+      "oid": "8fa2bcc2d151399ead0cb73dccffedd29238fd10",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_hospital35_preflight.py",
+      "oid": "853cfac3b10f003bde79f8318cca2c256c7dff8e",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_hospital35_protection_import.py",
+      "oid": "3cb30805238375edd1d1006c7924378748873c58",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_hospital_demo.py",
+      "oid": "2d53df5ff5409d27ae8deaed9eac16d75e75be6d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_rest_tail_v1.py",
+      "oid": "b39ec1b84195145840354edb105367ed412abe47",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_retained_edge_screen_v1.py",
+      "oid": "a38fce90241ffceca97335b05d9379460651adbf",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_retarget.py",
+      "oid": "7ce8a0d1bbd105a4a736ecdc779fae6a31db1faa",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_staged_exit_v1.py",
+      "oid": "e7751b25a8899f1f23af795d4ecb8b455029340d",
+      "mode": "100644"
+    }
   ],
-  "latest_completed_experiment": "hospital_sentences_20261102_009",
-  "latest_full_seven_sentence_experiment": "hospital_sentences_20261102_008",
-  "round9_scope": "YOU HURT WHERE only; other six sentences retain round 8",
-  "history_rewritten": false,
-  "incoming_source_commits_imported": false,
+  "omitted_video_updates": [
+    {
+      "path": "results/demo/act1_registration.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "468e00b6937961520f9b057625ac46f4c5b0c78d"
+    },
+    {
+      "path": "results/demo/act2_consultation.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "7c59c762e22ad49e35d312195c6dce34a9c9eb64"
+    },
+    {
+      "path": "results/demo/act3_treatment.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "a080ec81502b05debba3eefc999437f37d49ac0c"
+    },
+    {
+      "path": "results/demo/act4_discharge.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "45e54cd9d37864efc37f70b428dd39274f5efebe"
+    },
+    {
+      "path": "results/demo/hospital_dialogue.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "c75bfae972af07d72fd6c4a0016f3da03a4936b2"
+    },
+    {
+      "path": "results/demo/s1.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "a3317b4406e6214d07870e5308ff4c8cbe18f77a"
+    },
+    {
+      "path": "results/demo/s2.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "1d015ca4e459f7f4ab2bddbd0b92fec1339ac39f"
+    },
+    {
+      "path": "results/demo/s3.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "20fa32697076f3807d62bc8d7ef289eb71b33938"
+    },
+    {
+      "path": "results/demo/s4.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "d9ea78cb7c8d6770ec77f95e7eeb1e6c240a6ce2"
+    },
+    {
+      "path": "results/demo/s5.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "abc1c34210b0f4f79803e84d090452919dc5e058"
+    },
+    {
+      "path": "results/demo/s6.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "f93e3ac5faed38da53a3a8cbe3d927630fd39e26"
+    },
+    {
+      "path": "results/demo/s7.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "4aef5426f935cc6fe0e09f1d7b65e0f62356231a"
+    },
+    {
+      "path": "results/demo/s8.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "8d1ea5c600d4680c7f62b78fb23e842114eb0e8d"
+    },
+    {
+      "path": "results/demo/s9.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "4b9a86f1e938e8da599c8b9cef69fa822bfb2345"
+    },
+    {
+      "path": "results/video_previews/COME__11877.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "f7655dee1f655c82ef6ae4628f251a5f35f6b427"
+    },
+    {
+      "path": "results/video_previews/DEAF__14888.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "3b1fa447acda5277043ca1b4a750c1978459bae0"
+    },
+    {
+      "path": "results/video_previews/DOCTOR__17015.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "558359952bcd7d0ea92b049d1b5831bbb3f9ab6e"
+    },
+    {
+      "path": "results/video_previews/HAVE__69360.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "0f3780cb725b845d29dc96b2d9f9c65a4a9a9484"
+    },
+    {
+      "path": "results/video_previews/HEADACHE__26837.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "9f8b81ee8ee5496b51fc71dd23fd4d6ccf42c045"
+    },
+    {
+      "path": "results/video_previews/HELLO__27173.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "5c41529d6a4c736d8c68f610f53cb3158cb37c89"
+    },
+    {
+      "path": "results/video_previews/HURT__28441.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "1df4269aa41ee13656f65a03d3f8eb5c5158b94d"
+    },
+    {
+      "path": "results/video_previews/INTERPRETER__30257.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "2b9b527a3de9ea3d820ab0dfc7724a26a81a976f"
+    },
+    {
+      "path": "results/video_previews/LATER__32321.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "b92f45f03bdcebf2f28d2b8e15976edfb521abca"
+    },
+    {
+      "path": "results/video_previews/MEDICINE__35456.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "c4eafc050b6401ed04d642b76d1359a7444fc844"
+    },
+    {
+      "path": "results/video_previews/ME__35546.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "7cd177c94723605b4069a6e8468f1809c31edbe6"
+    },
+    {
+      "path": "results/video_previews/MORNING__36858.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "7e6889501da9079b87813b80e217181637f3834b"
+    },
+    {
+      "path": "results/video_previews/NEED__37884.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "12524fedfafa02ae94fbfbf40790efed4161eaad"
+    },
+    {
+      "path": "results/video_previews/NIGHT__38337.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "0d83485326a46b9bd0ad9b19b5b61b3aa4c090bc"
+    },
+    {
+      "path": "results/video_previews/NOT__38858.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "95ff03a3e2cebd26528852a3cfedbe1eb4a49bf0"
+    },
+    {
+      "path": "results/video_previews/NOW__38994.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "da571fd0d183703d94adc739b108fcf7f4b28caf"
+    },
+    {
+      "path": "results/video_previews/NO__38529.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "446fb405dbaef8c13ba88d521e7764ad64a65044"
+    },
+    {
+      "path": "results/video_previews/NURSE__39089.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "9fb4a29fa72db872465f46354383abb9aef4cb88"
+    },
+    {
+      "path": "results/video_previews/PLEASE__43217.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "9b68605b71b6274e436c848ace289ef63f493631"
+    },
+    {
+      "path": "results/video_previews/SOON__53292.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "7a660cfe0874c39bb85d82b8bf24cf1ea3d6c4be"
+    },
+    {
+      "path": "results/video_previews/SORRY__53365.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "981baf3bed440cf96bfce79d3a4d8a6990c31b23"
+    },
+    {
+      "path": "results/video_previews/STOMACH__54880.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "08d3b4456a11bad6e747fe475a095d78d3d10b22"
+    },
+    {
+      "path": "results/video_previews/TAKE__69500.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "f48360b26405c394aa5b2f3d8f5f2af840106f99"
+    },
+    {
+      "path": "results/video_previews/THANK-YOU__57656.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "3ae049eb3fef09f567d9d716e26b86bf905569fd"
+    },
+    {
+      "path": "results/video_previews/TOMORROW__58808.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "8a108dc8cae8830a5d434c27ccb713b3ec85b260"
+    },
+    {
+      "path": "results/video_previews/UNDERSTAND__60548.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "8abb544c654a699fee8358979d091f3ae74d9b61"
+    },
+    {
+      "path": "results/video_previews/WAIT__62103.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "776d740d370cc175644a18c860af8f62f64f8809"
+    },
+    {
+      "path": "results/video_previews/WHERE__63084.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "801dce6fa3cc869edf2e1199a6a8a885bdbae027"
+    },
+    {
+      "path": "results/video_previews/WRITE__64060.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "2281b0945ca605305fe79ca9fb569f2fa99ceb28"
+    },
+    {
+      "path": "results/video_previews/YES__64287.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "834c1f9b15a5188478df0ada6ecfa33ed4a37518"
+    },
+    {
+      "path": "results/video_previews/YOUR__64430.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "39b9e50d53279ffc8adbfa86fc42f63dc2b62643"
+    },
+    {
+      "path": "results/video_previews/YOU__64383.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "oid": "8b6e4233210e021d4621d8fd166196be535e6870"
+    }
+  ],
+  "historical_video_policy": "Existing public videos retained unchanged and labeled historical; no new video blobs published",
   "raw_source_worktree_preserved": true,
+  "incoming_source_history_imported": false,
+  "history_rewritten": false,
+  "run_identity_note": "Round 10 used 00124363; the private snapshot also includes later test fixes a1eb6e53. No new planning run is performed.",
+  "demo_entry_note": "Private hospital_demo.py still defaults to round 8; use the round-10 replay files and README for current results.",
+  "publication_adjustments": [
+    ".gitignore",
+    "group1_text_to_gloss/.gitignore (trailing blank line only)",
+    "README.md",
+    "README.en.md",
+    "STATE.md",
+    "STATE.en.md",
+    "HANDOFF.md",
+    "HANDOFF.en.md",
+    "TASK-29.md",
+    "TASK-29.en.md",
+    "results/video_previews/README.md",
+    "results/video_previews/README.en.md"
+  ],
   "publication_validation": {
+    "summary": "results/publication_validation_round10_20261103/summary.json",
     "date": "2026-11-03",
-    "source_head": "e3901080d80e1280a043d2a452d2dada77438f80",
-    "tests_passed": 16,
-    "tests_failed": 0,
-    "elapsed_seconds": 7.22,
-    "scope": "test_project_overview.py; round-9 policy bindings and saved result checks",
-    "full_suite_rerun": false,
+    "source_commit": "ec89a7f2355c0bbf095dde2e263b860b72741b65",
+    "public_parent": "83dffbfcf6ccc03e006afe71fc69bf1dec7532b2",
+    "scope": "Focused tests of the curated public snapshot; no new planning or historical full-suite rerun",
+    "tests": {
+      "passed": 146,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 140.819
+    },
+    "test_files": [
+      "tests/test_retarget.py",
+      "tests/test_staged_exit_v1.py",
+      "tests/test_rest_tail_v1.py",
+      "tests/test_connector_only_v4.py",
+      "tests/test_hospital35_protection_import.py",
+      "tests/test_project_overview.py"
+    ],
+    "bindings": {
+      "motions": 35,
+      "all_motion_hashes_match": true,
+      "motion_mismatches": [],
+      "policy_binding": true,
+      "sequence_binding": true
+    },
+    "saved_round10_summary_checks": {
+      "numerical_pass_sentences": 7,
+      "sentences": 7,
+      "agreeing_connector_rechecks": 17,
+      "connectors": 17,
+      "unchanged_protected_cores": 24,
+      "protected_cores": 24,
+      "interior_stops": 0
+    },
+    "historical_curated_metadata_sha256_matches": 819,
     "new_planning_run": false,
-    "policy_bindings_match": true,
-    "saved_sequence_numerical_pass": 1,
-    "saved_connector_groups": 2,
-    "saved_protected_core_instances_unchanged": 3,
-    "raw_storage_paths_tracked": 0,
-    "incoming_source_history_imported": false,
-    "log": "results/publication_validation_round9_20261103/focused.log"
+    "historical_identity_changed": false,
+    "formal_acceptance_enabled": false,
+    "human_video_review_performed": false
   }
 }

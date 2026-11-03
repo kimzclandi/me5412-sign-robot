@@ -1,0 +1,43 @@
+{
+  "id": "s4",
+  "sentence": "Where does it hurt?",
+  "glosses": [
+    "YOU",
+    "HURT",
+    "WHERE"
+  ],
+  "question": true,
+  "gloss_source": "offline_cache",
+  "stitching": "Group 3 round 8 planned transitions (results/hospital_sentences_20261102_008), first word's rise prepended",
+  "stitching_label": "Group 3 planned transitions",
+  "transition_s": 0.5,
+  "frames": 165,
+  "duration_s": 5.467,
+  "words": [
+    {
+      "gloss": "YOU",
+      "frames": [
+        0,
+        83
+      ],
+      "library": "motions/studio_galt_v1"
+    },
+    {
+      "gloss": "HURT",
+      "frames": [
+        84,
+        124
+      ],
+      "library": "motions/wlasl_video_v1"
+    },
+    {
+      "gloss": "WHERE",
+      "frames": [
+        125,
+        164
+      ],
+      "library": "motions/studio_galt_v1"
+    }
+  ],
+  "note": "Candidate robot signing, not reviewed by ASL users; video-derived words are approximate."
+}

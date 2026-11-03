@@ -2,7 +2,9 @@
 
 [中文](group2-handoff.md) · **English** · [Method details](mocap-retargeting.en.md)
 
-Status (2026-10-27): all 35 glosses of Group 1's hospital vocabulary have G1 joint trajectories (see section 0); the original 27 words are also converted. Code, data, videos and tests are in PR [#5](https://github.com/kimzclandi/me5412-sign-robot/pull/5) (branch `group2/fbx-retarget-you`), not yet merged into `master`.
+Status (2026-10-27): all 35 glosses of Group 1's hospital vocabulary have G1 joint trajectories (see section 0); the original 27 words are also converted. Code, data, videos and tests are in PR [#5](https://github.com/kimzclandi/me5412-sign-robot/pull/5) (branch `group2/fbx-retarget-you`), merged into `master`.
+
+**For the live demo see [hospital-demo.en.md](hospital-demo.en.md)**: one command from an English sentence to robot motion, offline by default, no API key needed.
 
 ## 0. Update 2026-10-27: Group 1's 35-word hospital vocabulary
 
@@ -103,7 +105,7 @@ MUJOCO_GL=egl PYTHONPATH=scripts/mocap .venv/bin/python scripts/mocap/retarget_t
 ### Key numbers
 
 - Hospital vocabulary: 35/35 glosses have motion (9 mocap, 26 video-derived, the latter all "approximate"); all 9 scripted dialogue lines can be stitched.
-- Mocap library, 33 words: 16 usable, 17 approximate, 0 poor; sign-phase wrist error below 2 cm for every usable word; penetration at most 19 mm (APPOINTMENT finger–wrist overlap; all others at most 16 mm; upstream collision geoms only).
+- Mocap library, 33 words: 16 usable, 17 approximate, 0 poor; sign-phase wrist error below 2 cm for every usable word; penetration at most 19 mm (APPOINTMENT finger–wrist overlap; all others at most 16 mm; upstream collision geoms only). Video words and whole sentences had not been measured: on 2026-11-01 `scripts/demo/compare_stitching.py` found up to 41 mm during signing (video words) and up to 79 mm in the motion to and from neutral and between words (not collision-checked) across the 9 baseline lines.
 - Video library, 32 words: all converted; joint speed at most 15 rad/s.
 - 291 repository tests pass; the only failure, `test_project_overview`, also fails on `master` (doc edits without updated website allow-list hashes) and is unrelated to Group 2.
 

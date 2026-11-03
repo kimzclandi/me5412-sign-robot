@@ -1,0 +1,967 @@
+{
+  "schema_version": 2,
+  "simulated": false,
+  "mode": "live",
+  "model": "gemini-3.1-flash-lite",
+  "test_time": "2026-10-27T01:12:11.866109+08:00",
+  "source_csv": "D:\\me5412_project\\data\\gloss_eval\\gloss_test.csv",
+  "test_data_sha256": "79af546c45ff24afa8164a9cf70140c54f2e7e611b7f03922f9f653f558c2309",
+  "selected_ids": [
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "s5",
+    "s6",
+    "s7",
+    "s8",
+    "s9",
+    "p1",
+    "p2",
+    "p3",
+    "p4",
+    "p5",
+    "p6",
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ],
+  "resumed_from": null,
+  "settings": {
+    "max_requests": 60,
+    "delay_seconds": 5.0,
+    "max_retries": 2,
+    "backoff_base_seconds": 2.0,
+    "jitter_seconds": 1.0
+  },
+  "api_requests_this_run": 26,
+  "stop_reason": null,
+  "summary": {
+    "by_category": {
+      "脚本原句": {
+        "total": 9,
+        "completed": 9,
+        "correct": 9,
+        "api_failed": 0,
+        "not_run": 0
+      },
+      "换说法": {
+        "total": 6,
+        "completed": 6,
+        "correct": 6,
+        "api_failed": 0,
+        "not_run": 0
+      },
+      "词库外": {
+        "total": 5,
+        "completed": 5,
+        "correct": 5,
+        "api_failed": 0,
+        "not_run": 0
+      }
+    },
+    "total_cases": 20,
+    "completed_cases": 20,
+    "correct_conversions": 20,
+    "incorrect_conversions": 0,
+    "api_failures": 0,
+    "api_total_requests": 26,
+    "retry_count": 6,
+    "validation_detail_counts": {},
+    "average_response_ms": 6639.552461538462,
+    "slowest_response_ms": 45692.184,
+    "not_run_cases": 0,
+    "effective_accuracy": 1.0,
+    "end_to_end_success_rate": 1.0,
+    "question_correct": 20,
+    "conversion_failures": [],
+    "api_failure_details": []
+  },
+  "tests": [
+    {
+      "id": "s1",
+      "type": "脚本原句",
+      "sentence": "Hello, do you have an appointment?",
+      "expected": "HELLO YOU APPOINTMENT HAVE",
+      "expected_question": true,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "HELLO YOU APPOINTMENT HAVE",
+      "latency_ms": 3496.017,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 3496.017
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "HELLO",
+          "YOU",
+          "APPOINTMENT",
+          "HAVE"
+        ],
+        "question": true,
+        "dropped": [
+          "do",
+          "an"
+        ],
+        "unknown": [],
+        "latency_ms": 3496.017
+      }
+    },
+    {
+      "id": "s2",
+      "type": "脚本原句",
+      "sentence": "Do you need an interpreter?",
+      "expected": "YOU NEED INTERPRETER",
+      "expected_question": true,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "YOU NEED INTERPRETER",
+      "latency_ms": 1869.172,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "error",
+          "reason": "llm_unavailable",
+          "validation_detail": null,
+          "error_category": "server_error",
+          "http_status": 503,
+          "retry_after_seconds": null,
+          "latency_ms": 21424.727
+        },
+        {
+          "attempt": 2,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 1869.172
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "YOU",
+          "NEED",
+          "INTERPRETER"
+        ],
+        "question": true,
+        "dropped": [
+          "do",
+          "an"
+        ],
+        "unknown": [],
+        "latency_ms": 1869.172
+      }
+    },
+    {
+      "id": "s3",
+      "type": "脚本原句",
+      "sentence": "Please wait, the doctor will come soon.",
+      "expected": "PLEASE WAIT DOCTOR COME SOON",
+      "expected_question": false,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "PLEASE WAIT DOCTOR COME SOON",
+      "latency_ms": 2491.05,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 2491.05
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "PLEASE",
+          "WAIT",
+          "DOCTOR",
+          "COME",
+          "SOON"
+        ],
+        "question": false,
+        "dropped": [
+          "the",
+          "will"
+        ],
+        "unknown": [],
+        "latency_ms": 2491.05
+      }
+    },
+    {
+      "id": "s4",
+      "type": "脚本原句",
+      "sentence": "Where does it hurt?",
+      "expected": "YOU HURT WHERE",
+      "expected_question": true,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "YOU HURT WHERE",
+      "latency_ms": 3056.025,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "error",
+          "reason": "llm_unavailable",
+          "validation_detail": null,
+          "error_category": "server_error",
+          "http_status": 503,
+          "retry_after_seconds": null,
+          "latency_ms": 23862.091
+        },
+        {
+          "attempt": 2,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 3056.025
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "YOU",
+          "HURT",
+          "WHERE"
+        ],
+        "question": true,
+        "dropped": [
+          "does",
+          "it"
+        ],
+        "unknown": [],
+        "latency_ms": 3056.025
+      }
+    },
+    {
+      "id": "s5",
+      "type": "脚本原句",
+      "sentence": "Take a deep breath.",
+      "expected": "BREATHE-DEEP",
+      "expected_question": false,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "BREATHE-DEEP",
+      "latency_ms": 1872.149,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "error",
+          "reason": "llm_unavailable",
+          "validation_detail": null,
+          "error_category": "server_error",
+          "http_status": 503,
+          "retry_after_seconds": null,
+          "latency_ms": 2217.29
+        },
+        {
+          "attempt": 2,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 1872.149
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "BREATHE-DEEP"
+        ],
+        "question": false,
+        "dropped": [
+          "take",
+          "a"
+        ],
+        "unknown": [],
+        "latency_ms": 1872.149
+      }
+    },
+    {
+      "id": "s6",
+      "type": "脚本原句",
+      "sentence": "The nurse will draw your blood now.",
+      "expected": "NOW NURSE BLOOD-DRAW",
+      "expected_question": false,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "NOW NURSE BLOOD-DRAW",
+      "latency_ms": 5703.352,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 5703.352
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "NOW",
+          "NURSE",
+          "BLOOD-DRAW"
+        ],
+        "question": false,
+        "dropped": [
+          "the",
+          "will",
+          "your"
+        ],
+        "unknown": [],
+        "latency_ms": 5703.352
+      }
+    },
+    {
+      "id": "s7",
+      "type": "脚本原句",
+      "sentence": "Take this medicine in the morning and at night.",
+      "expected": "MEDICINE MORNING NIGHT TAKE",
+      "expected_question": false,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "MEDICINE MORNING NIGHT TAKE",
+      "latency_ms": 2792.303,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 2792.303
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "MEDICINE",
+          "MORNING",
+          "NIGHT",
+          "TAKE"
+        ],
+        "question": false,
+        "dropped": [
+          "this",
+          "in",
+          "the",
+          "and",
+          "at"
+        ],
+        "unknown": [],
+        "latency_ms": 2792.303
+      }
+    },
+    {
+      "id": "s8",
+      "type": "脚本原句",
+      "sentence": "Do you understand?",
+      "expected": "YOU UNDERSTAND",
+      "expected_question": true,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "YOU UNDERSTAND",
+      "latency_ms": 2425.632,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 2425.632
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "YOU",
+          "UNDERSTAND"
+        ],
+        "question": true,
+        "dropped": [
+          "do"
+        ],
+        "unknown": [],
+        "latency_ms": 2425.632
+      }
+    },
+    {
+      "id": "s9",
+      "type": "脚本原句",
+      "sentence": "Thank you.",
+      "expected": "THANK-YOU",
+      "expected_question": false,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "THANK-YOU",
+      "latency_ms": 2439.533,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "error",
+          "reason": "llm_unavailable",
+          "validation_detail": null,
+          "error_category": "timeout",
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 45692.184
+        },
+        {
+          "attempt": 2,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 2439.533
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "THANK-YOU"
+        ],
+        "question": false,
+        "dropped": [],
+        "unknown": [],
+        "latency_ms": 2439.533
+      }
+    },
+    {
+      "id": "p1",
+      "type": "换说法",
+      "sentence": "Where is the pain?",
+      "expected": "YOU HURT WHERE|HURT WHERE",
+      "expected_question": true,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "HURT WHERE",
+      "latency_ms": 2115.314,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 2115.314
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "HURT",
+          "WHERE"
+        ],
+        "question": true,
+        "dropped": [
+          "is",
+          "the",
+          "pain"
+        ],
+        "unknown": [],
+        "latency_ms": 2115.314
+      }
+    },
+    {
+      "id": "p2",
+      "type": "换说法",
+      "sentence": "Hi, have you booked an appointment?",
+      "expected": "HELLO YOU APPOINTMENT HAVE",
+      "expected_question": true,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "HELLO YOU APPOINTMENT HAVE",
+      "latency_ms": 2242.73,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 2242.73
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "HELLO",
+          "YOU",
+          "APPOINTMENT",
+          "HAVE"
+        ],
+        "question": true,
+        "dropped": [
+          "booked",
+          "an"
+        ],
+        "unknown": [],
+        "latency_ms": 2242.73
+      }
+    },
+    {
+      "id": "p3",
+      "type": "换说法",
+      "sentence": "The doctor will be here shortly, please wait.",
+      "expected": "DOCTOR COME SOON PLEASE WAIT|PLEASE WAIT DOCTOR COME SOON",
+      "expected_question": false,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "DOCTOR COME SOON PLEASE WAIT",
+      "latency_ms": 4634.045,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "error",
+          "reason": "llm_unavailable",
+          "validation_detail": null,
+          "error_category": "server_error",
+          "http_status": 503,
+          "retry_after_seconds": null,
+          "latency_ms": 2613.756
+        },
+        {
+          "attempt": 2,
+          "status": "error",
+          "reason": "llm_unavailable",
+          "validation_detail": null,
+          "error_category": "server_error",
+          "http_status": 503,
+          "retry_after_seconds": null,
+          "latency_ms": 13475.407
+        },
+        {
+          "attempt": 3,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 4634.045
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "DOCTOR",
+          "COME",
+          "SOON",
+          "PLEASE",
+          "WAIT"
+        ],
+        "question": false,
+        "dropped": [
+          "the",
+          "will",
+          "be",
+          "here"
+        ],
+        "unknown": [],
+        "latency_ms": 4634.045
+      }
+    },
+    {
+      "id": "p4",
+      "type": "换说法",
+      "sentence": "Is an interpreter needed?",
+      "expected": "YOU NEED INTERPRETER|INTERPRETER NEED",
+      "expected_question": true,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "INTERPRETER NEED",
+      "latency_ms": 2101.07,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 2101.07
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "INTERPRETER",
+          "NEED"
+        ],
+        "question": true,
+        "dropped": [
+          "is",
+          "an"
+        ],
+        "unknown": [],
+        "latency_ms": 2101.07
+      }
+    },
+    {
+      "id": "p5",
+      "type": "换说法",
+      "sentence": "Take your pills every morning and every night.",
+      "expected": "MEDICINE MORNING NIGHT TAKE|MORNING NIGHT MEDICINE TAKE",
+      "expected_question": false,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "MEDICINE MORNING NIGHT TAKE",
+      "latency_ms": 1979.612,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 1979.612
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "MEDICINE",
+          "MORNING",
+          "NIGHT",
+          "TAKE"
+        ],
+        "question": false,
+        "dropped": [
+          "your",
+          "pills",
+          "every",
+          "and",
+          "every"
+        ],
+        "unknown": [],
+        "latency_ms": 1979.612
+      }
+    },
+    {
+      "id": "p6",
+      "type": "换说法",
+      "sentence": "Sorry, I don't understand. Can you write it down?",
+      "expected": "SORRY ME UNDERSTAND NOT PLEASE WRITE|SORRY ME UNDERSTAND NOT YOU WRITE",
+      "expected_question": true,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "SORRY ME UNDERSTAND NOT YOU WRITE",
+      "latency_ms": 2726.828,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 2726.828
+        }
+      ],
+      "model_result": {
+        "status": "ok",
+        "glosses": [
+          "SORRY",
+          "ME",
+          "UNDERSTAND",
+          "NOT",
+          "YOU",
+          "WRITE"
+        ],
+        "question": true,
+        "dropped": [
+          "can",
+          "it",
+          "down"
+        ],
+        "unknown": [],
+        "latency_ms": 2726.828
+      }
+    },
+    {
+      "id": "o1",
+      "type": "词库外",
+      "sentence": "Do you need an X-ray?",
+      "expected": "unsupported",
+      "expected_question": true,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "unsupported",
+      "latency_ms": 3524.124,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "unsupported",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 3524.124
+        }
+      ],
+      "model_result": {
+        "status": "unsupported",
+        "glosses": [],
+        "question": true,
+        "dropped": [
+          "Do",
+          "an"
+        ],
+        "unknown": [
+          "X-ray"
+        ],
+        "latency_ms": 3524.124
+      }
+    },
+    {
+      "id": "o2",
+      "type": "词库外",
+      "sentence": "Please show me your insurance card.",
+      "expected": "unsupported",
+      "expected_question": false,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "unsupported",
+      "latency_ms": 3382.765,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "unsupported",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 3382.765
+        }
+      ],
+      "model_result": {
+        "status": "unsupported",
+        "glosses": [],
+        "question": false,
+        "dropped": [
+          "show",
+          "me"
+        ],
+        "unknown": [
+          "insurance card"
+        ],
+        "latency_ms": 3382.765
+      }
+    },
+    {
+      "id": "o3",
+      "type": "词库外",
+      "sentence": "Your appointment is at 3:30 pm.",
+      "expected": "unsupported",
+      "expected_question": false,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "unsupported",
+      "latency_ms": 4794.661,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "unsupported",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 4794.661
+        }
+      ],
+      "model_result": {
+        "status": "unsupported",
+        "glosses": [],
+        "question": false,
+        "dropped": [
+          "your",
+          "is",
+          "at"
+        ],
+        "unknown": [
+          "3:30 pm"
+        ],
+        "latency_ms": 4794.661
+      }
+    },
+    {
+      "id": "o4",
+      "type": "词库外",
+      "sentence": "Are you allergic to penicillin?",
+      "expected": "unsupported",
+      "expected_question": true,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "unsupported",
+      "latency_ms": 6826.933,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "unsupported",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 6826.933
+        }
+      ],
+      "model_result": {
+        "status": "unsupported",
+        "glosses": [],
+        "question": true,
+        "dropped": [
+          "are",
+          "you"
+        ],
+        "unknown": [
+          "allergic",
+          "penicillin"
+        ],
+        "latency_ms": 6826.933
+      }
+    },
+    {
+      "id": "o5",
+      "type": "词库外",
+      "sentence": "Please fill in this form.",
+      "expected": "unsupported",
+      "expected_question": false,
+      "execution": "completed",
+      "verdict": "PASS",
+      "question_correct": true,
+      "actual": "unsupported",
+      "latency_ms": 2869.594,
+      "reason": null,
+      "validation_detail": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "unsupported",
+          "reason": null,
+          "validation_detail": null,
+          "error_category": null,
+          "http_status": null,
+          "retry_after_seconds": null,
+          "latency_ms": 2869.594
+        }
+      ],
+      "model_result": {
+        "status": "unsupported",
+        "glosses": [],
+        "question": false,
+        "dropped": [
+          "this"
+        ],
+        "unknown": [
+          "fill in",
+          "form"
+        ],
+        "latency_ms": 2869.594
+      }
+    }
+  ]
+}
