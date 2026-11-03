@@ -2,22 +2,22 @@
 
 [English](STATE.en.md) · [下一步交接](HANDOFF.md) · [最新执行报告 TASK-28](TASK-28.md) · [上一阶段 TASK-27](TASK-27.md)
 
-更新：2026-11-02（Asia/Shanghai），九个医院句子第八轮之后。范围：第三组词间衔接与多词回放。"最新"一节为当前状态；第 0 节是 2026-11-01 35 词全库阶段执行后的状态，第 1–5 节是该阶段执行前的状态，都保留作历史，标题保持原样；与"最新"一节冲突时以"最新"一节为准。
+更新：2026-11-02（Asia/Shanghai），九个医院句子第九轮之后。范围：第三组词间衔接与多词回放。"最新"一节为当前状态；第 0 节是 2026-11-01 35 词全库阶段执行后的状态，第 1–5 节是该阶段执行前的状态，都保留作历史，标题保持原样；与"最新"一节冲突时以"最新"一节为准。
 
-## 最新（2026-11-02）：九个医院句子，第八轮 7/7 数值通过
+## 最新（2026-11-02）：九个医院句子，第八轮 7/7 数值通过，第九轮重做 YOU HURT WHERE
 
-**2026-11-01 用户把范围改为九个医院句子，第三组只负责衔接；全库 1,225 对扫描停止（P1-3 停在 46/79 批），P1-4、预算重试和更快的扫描器没有运行。第八轮七个多词句子全部 NUMERICAL_PASS，结尾回到初始姿态，衔接中途不再停顿。** 各轮记录、配置、命令与待办见 [TASK-28](TASK-28.md)。
+**2026-11-01 用户把范围改为九个医院句子，第三组只负责衔接；全库 1,225 对扫描停止（P1-3 停在 46/79 批），P1-4、预算重试和更快的扫描器没有运行。第八轮七个多词句子全部 NUMERICAL_PASS，结尾回到初始姿态，衔接中途不再停顿。第九轮按用户要求让 HURT 从第 37 帧开始，单独重做 YOU HURT WHERE，同样 NUMERICAL_PASS（120 → 109 帧）。** 各轮记录、配置、命令与待办见 [TASK-28](TASK-28.md)。
 
 | 层级 | 当前事实 | 边界 |
 |---|---|---|
 | 范围 | 七个多词句子、17 个词对：HELLO YOU APPOINTMENT HAVE、YOU NEED INTERPRETER、PLEASE WAIT DOCTOR COME SOON、YOU HURT WHERE、NOW NURSE BLOOD-DRAW、MEDICINE MORNING NIGHT TAKE、YOU UNDERSTAND；单词 BREATHE-DEEP、THANK-YOU 直接播放源动作 | 只负责衔接（复核范围 v4）；源动作缺陷记录给第二组，不判失败 |
-| 结果 | [第八轮](results/hospital_sentences_20261102_008/README.md)：17/17 衔接、7/7 句子全新复核一致；24/24 保护核心逐位不变；衔接内部停顿 0；17 个衔接两核心间共 310 帧（第二轮 1,717） | 视频未经人工观看 |
-| 配置 | 词对 `config/transition_policy_hospital_sentences_fast_v5.json`，序列 `config/sequence_policy_hospital_sentences_v7.json`，保护表 `config/user_protected_hospital35_v2.json`（NURSE [38,75]、MORNING [26,37]） | 加速度类门槛按用户允许放宽到 200 rad/s²、5000 rad/s³、5e6 rad²/s⁵；速度上限不变 |
-| 代码与测试 | 代码 `1d07d2d`；全套测试 1014 passed | 本文件更新时没有重跑 |
-| Git | 公开分支 `group3/trajectory-planning`：以干净公开提交 `86428693` 为基线，同步源 `dfe4bacde 的第八轮非原始快照 | 按用户 2026-11-02 的明确要求更新；原始存储只保留本地 |
+| 结果 | [第八轮](results/hospital_sentences_20261102_008/README.md)：17/17 衔接、7/7 句子全新复核一致；24/24 保护核心逐位不变；衔接内部停顿 0；17 个衔接两核心间共 310 帧（第二轮 1,717）。[第九轮](results/hospital_sentences_20261102_009/README.md)：YOU HURT WHERE 2/2 衔接、1/1 句子全新复核一致，YOU→HURT 在 HURT 第 37 帧进入，整句 120 → 109 帧 | 视频未经人工观看 |
+| 配置 | 词对 `config/transition_policy_hospital_sentences_fast_v5.json`，序列 `config/sequence_policy_hospital_sentences_v7.json`，保护表 `config/user_protected_hospital35_v2.json`（NURSE [38,75]、MORNING [26,37]）；YOU HURT WHERE 为 `fast_v6`、序列 `v8`、保护表 `v3`（HURT [37,57]） | 加速度类门槛按用户允许放宽到 200 rad/s²、5000 rad/s³、5e6 rad²/s⁵；速度上限不变 |
+| 代码与测试 | 代码 `1d07d2d`；第九轮 `dfe4bac`（规划代码相同，没有改代码）；全套测试 1014 passed | — |
+| Git | 公开分支 `group3/trajectory-planning`：以第八轮公开提交 `bdff5bcb` 为基线，同步源 `e3901080d` 的第九轮非原始快照 | 用户已于2026-11-03明确要求推送；原始存储只留本地 |
 | 正式 | PASS_SIM 0；`formal_acceptance_enabled=false` | 数值通过不等于正式、语义或实机验收 |
 
-**待确认：** 人工观看第八轮视频；句子开头仍从第一个保护核心直接开始。第 0 节中 24 个源动作受阻词的决定仍未作出，但不阻塞当前范围。
+**待确认：** 人工观看第八、九轮视频；句子开头仍从第一个保护核心直接开始；HURT 新保护区间内第 39–41、47–49 帧仍有源动作的快速摆动（按规则不改）。第 0 节中 24 个源动作受阻词的决定仍未作出，但不阻塞当前范围。
 
 ---
 

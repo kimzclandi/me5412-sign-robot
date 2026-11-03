@@ -1,12 +1,12 @@
-# TASK-28：九个医院句子（仅衔接段），第 1–8 轮
+# TASK-28：九个医院句子（仅衔接段），第 1–9 轮
 
-> **公开交付更新（2026-11-02）：** 用户现已明确要求更新 GitHub。本次以公开提交 `86428693` 为基线同步第八轮非原始快照，排除原始运行存储。下文“先不推”及旧远端位置是当时的历史记录，已由本次发布替代；见根目录 README。
+> **公开交付更新（2026-11-03）：** 本次按用户要求推送第九轮，替代此前暂停；源实验提交历史仍留本地。以当前 Git 节和根 README 为准。
 
 [English](TASK-28.en.md) · [当前状态](STATE.md) · [交接](HANDOFF.md) · [上一阶段 TASK-27](TASK-27.md)
 
-状态：**第八轮完成，等待人工观看视频。** 执行时间 2026-11-01 13:54 至 2026-11-02 03:48（Asia/Shanghai）。本文件是这一阶段的总记录，在第八轮提交之后根据各轮 README、提交记录和本机文件整理，没有重新运行；每轮的细节与数字以各轮目录中的 README 为准。
+状态：**第九轮（只重做 YOU HURT WHERE）完成，等待人工观看视频。** 执行时间 2026-11-01 13:54 至 2026-11-02 15:03（Asia/Shanghai）。本文件是这一阶段的总记录：第 1–8 轮在第八轮提交之后根据各轮 README、提交记录和本机文件整理，没有重新运行；第九轮在完成后补入。每轮的细节与数字以各轮目录中的 README 为准。
 
-**2026-11-01 用户把范围从全库 1,225 个词对缩小到九个医院句子，并规定第三组只负责两个词之间的衔接。经过八轮，七个多词句子全部数值通过（NUMERICAL_PASS），每句结尾回到双手垂下的初始姿态，衔接中途不再停顿；17 个衔接两核心间的总帧数从第二轮的 1,717 降到 310。另外两个"句子"是单词，直接播放源动作。24/24 个保护核心逐位不变，全套测试 1014 passed。第二轮之后的提交只在本地，没有推送。**
+**2026-11-01 用户把范围从全库 1,225 个词对缩小到九个医院句子，并规定第三组只负责两个词之间的衔接。经过八轮，七个多词句子全部数值通过（NUMERICAL_PASS），每句结尾回到双手垂下的初始姿态，衔接中途不再停顿；17 个衔接两核心间的总帧数从第二轮的 1,717 降到 310。另外两个"句子"是单词，直接播放源动作。24/24 个保护核心逐位不变，全套测试 1014 passed。第九轮按用户要求把 HURT 的保护起点从第 27 帧改到第 37 帧，单独重做 YOU HURT WHERE：不再播放 HURT 第 29–34 帧的左臂翻转，整句 120 → 109 帧。第二轮之后的提交只在本地，没有推送。**
 
 仅为开发证据：正式 PASS_SIM 为 0，`formal_acceptance_enabled=false`，不是已验证的 ASL；视频未经人工观看，未上实机。
 
@@ -37,6 +37,7 @@
 | 11-02，第六轮后 | 上传到团队仓库的 group3 分支 | 准备了发布副本，推送中途停止，远端没有变化；随后用户决定"先不推" |
 | 11-02，第六轮后 | MORNING 的保护截到第 38 帧；NURSE 的保护截到第 75 帧，之后右手先快速移开，再把左腕回正 | 第七轮。从 MORNING 第 38 帧出发接不出衔接（第 37→38 帧手指突然合拢），用户改选第 37 帧 |
 | 11-02，第七轮后 | 衔接一顿一顿、仍比手势慢；如果是加速度类硬限制卡住，可以适当放宽 | 第八轮 |
+| 11-02，第八轮后 | HURT 从第 37 帧开始；对 YOU HURT WHERE 单独再优化 | 第九轮：保护表 v3，只重做这一句 |
 
 ## 各轮
 
@@ -50,12 +51,14 @@
 | 6 | [`…_006`](results/hospital_sentences_20261101_006/README.md) | 11-01 22:55–23:32 | 同上 | 筛选 v2 只标记肩、肘的近端翻转（`368fc4b`） | `fast_v3` / `v5` | 7/7；NURSE 在第 80 帧离开，不再播放翻转 |
 | 7 | [`…_007`](results/hospital_sentences_20261102_007/README.md) | 11-02 01:17–01:51 | 缩短 MORNING/NURSE 保护，NURSE 分步退出 | 保护表 v2、分阶段出口（`129891a`） | `fast_v4` / `v6` | 7/7；NURSE：右臂离开 → 左前臂抬起 → 左腕回正 → BLOOD-DRAW |
 | 8 | [`…_008`](results/hospital_sentences_20261102_008/README.md) | 11-02 02:50–03:39 | 衔接一顿一顿、偏慢 | 不停顿的平滑定时、按停顿次数选优、门槛放宽（`1d07d2d`） | `fast_v5` / `v7` | 7/7；衔接内部停顿 16 → 0；两核心间 563 → 310 帧 |
+| 9 | [`…_009`](results/hospital_sentences_20261102_009/README.md) | 11-02 14:21–15:03 | HURT 从第 37 帧开始，只重做 YOU HURT WHERE | 保护表 v3；只有两个词对，每对搜索 720 → 1800 s（无代码改动，`dfe4bac`） | `fast_v6` / `v8` | 1/1；YOU→HURT 在 HURT 第 37 帧进入，11 帧；整句 120 → 109 帧 |
 
 策略文件全名为 `config/transition_policy_hospital_sentences_<名称>.json` 和 `config/sequence_policy_hospital_sentences_<版本>.json`。每轮的结果和原始词对存储分两次提交（例如第八轮 `fc9c7f9` 与 `70a61fa`）。第一轮的 run 用的是未提交的工作树（`2875e49`），代码随后在 `5c536fb` 提交。
 
-## 当前交付：第八轮
+## 当前交付：第八轮，其中 YOU HURT WHERE 为第九轮
 
-- 代码 `1d07d2d`；结果 `fc9c7f9`，原始词对存储 `70a61fa`。
+- **YOU HURT WHERE 以第九轮为准**（[README](results/hospital_sentences_20261102_009/README.md)）：保护表 `config/user_protected_hospital35_v3.json`（相对 v2 只改 HURT，[27,57] → [37,57]），词对策略 `config/transition_policy_hospital_sentences_fast_v6.json`（`fast_v5` 换用保护表 v3，每对搜索 1800 s），序列策略 `config/sequence_policy_hospital_sentences_v8.json`。YOU→HURT 在 HURT 第 37 帧进入（`ik_via1`，11 帧），HURT→WHERE 与第八轮相同；整句 109 帧（3.6 s），最小间隙 7.81 mm，整句手臂速度峰值 28.2 → 22.6 rad/s。
+- 其余六句以第八轮为准，以下各条均指第八轮：代码 `1d07d2d`；结果 `fc9c7f9`，原始词对存储 `70a61fa`。
 - 词对策略 `config/transition_policy_hospital_sentences_fast_v5.json`；序列策略 `config/sequence_policy_hospital_sentences_v7.json`；保护表 `config/user_protected_hospital35_v2.json`（相对 v1 只改了 NURSE [38,75] 和 MORNING [26,37]，v1 保留给之前的 run）。
 - 17/17 个选中衔接、7/7 个句子全新复核一致；24/24 个保护核心逐位不变；每句都回到初始姿态，收尾段 8–12 帧。
 - 衔接共 254 帧（第七轮 446），内部停顿 0（第七轮 16）；15 个衔接用最小加加速度样条，2 个用拐角平滑过渡（NURSE→BLOOD-DRAW、WAIT→DOCTOR）。
@@ -67,7 +70,7 @@
 | HELLO YOU APPOINTMENT HAVE | 417 帧（13.9 s） | 235 帧（7.8 s） |
 | YOU NEED INTERPRETER | 316 帧（10.5 s） | 168 帧（5.6 s） |
 | PLEASE WAIT DOCTOR COME SOON | 765 帧（25.5 s） | 366 帧（12.2 s） |
-| YOU HURT WHERE | 291 帧（9.7 s） | 120 帧（4.0 s） |
+| YOU HURT WHERE | 291 帧（9.7 s） | 120 帧（4.0 s）；第九轮 109 帧（3.6 s） |
 | NOW NURSE BLOOD-DRAW | 405 帧（13.5 s） | 271 帧（9.0 s） |
 | MEDICINE MORNING NIGHT TAKE | 387 帧（12.9 s） | 164 帧（5.5 s） |
 | YOU UNDERSTAND | 198 帧（6.6 s） | 97 帧（3.2 s） |
@@ -76,8 +79,8 @@
 
 ### 视频与图
 
-- 视频不入库，只在本机：`C:\Users\23971\Documents\5412\_runtime\render-out\round8_034002\<句子>\comparison.mp4`，共 7 个。画面上方为原始片段，下方为句子；左侧正面，右侧侧面。较早几轮的视频在同一目录下的 `round2_163226`、`round4_211920`、`round6_233300`、`round7_015209`。
-- 入库：`results/hospital_sentences_20261102_008/videos_gpu/<句子>/` 中的 `report.json` 和 `contact_sheet.png`；手臂速度对比图 `arm_speed_round7_vs_round8.png`（MEDICINE MORNING NIGHT TAKE、NOW NURSE BLOOD-DRAW 两句）；NURSE 出口逐帧对比 `NOW__NURSE__BLOOD-DRAW/round7_vs_round8_nurse_exit.png`。
+- 视频不入库，只在本机：`C:\Users\23971\Documents\5412\_runtime\render-out\round8_034002\<句子>\comparison.mp4`，共 7 个。画面上方为原始片段，下方为句子；左侧正面，右侧侧面。较早几轮的视频在同一目录下的 `round2_163226`、`round4_211920`、`round6_233300`、`round7_015209`；第九轮的 YOU HURT WHERE 在 `round9_150418\YOU__HURT__WHERE\comparison.mp4`。
+- 入库：`results/hospital_sentences_20261102_008/videos_gpu/<句子>/` 中的 `report.json` 和 `contact_sheet.png`；手臂速度对比图 `arm_speed_round7_vs_round8.png`（MEDICINE MORNING NIGHT TAKE、NOW NURSE BLOOD-DRAW 两句）；NURSE 出口逐帧对比 `NOW__NURSE__BLOOD-DRAW/round7_vs_round8_nurse_exit.png`。第九轮：`results/hospital_sentences_20261102_009/videos_gpu/YOU__HURT__WHERE/` 中的进入 HURT 逐帧对比 `round8_vs_round9_hurt_entry.png` 和手臂速度对比 `arm_speed_round8_vs_round9.png`。
 
 ## 复现
 
@@ -105,27 +108,28 @@ C:\Users\23971\Documents\5412\_runtime\render-venv\Scripts\python.exe \\wsl.loca
 
 ## Git 与推送
 
-- 本地开发分支与公开分支都名为 `group3/trajectory-planning`，但提交链不同。源仓库当前为 `dfe4bacde`，包含本地原始运行存储提交；不得直接把该提交链推入已清理的公开分支。
-- 公开仓库为 `kimzclandi/me5412-sign-robot`。本次核实其基线为已成功推送的清理提交 `86428693`，并按用户 2026-11-02 的新要求在其上同步第八轮非原始快照。
-- 发布副本为 `C:\Users\23971\Documents\5412\_publish\group3-trajectory-planning-20261102`。代码、配置、根目录记录、序列结果和独立复核来自源版本；原始候选、尝试、检查点及调时存储被排除，小型元数据另存 `run_summaries/`。清单见 `PUBLICATION_MANIFEST.json`。
-- 源工作树及本地原始证据保持不动。此前公开历史未改写；本次没有引入第七、八轮原始存储提交，也未修改 master、仓库可见性或发布 Release。
+- 源开发分支与公开分支都名为 `group3/trajectory-planning`，但提交链不同。源版本为 `e3901080d`，包含本地原始存储提交，不能直接推到清理后的公开分支。
+- 公开仓库为 `kimzclandi/me5412-sign-robot`，本次核实其第八轮提交为 `bdff5bcb`；用户于2026-11-03要求把第九轮推上去，因此在此基线上追加非原始快照。
+- 发布副本为 `C:\Users\23971\Documents\5412\_publish\group3-trajectory-planning-20261102`；原始 pair_runs 与历史 runs 继续排除，小型摘要保存到 run_summaries。源工作树和原始文件保持不动，详细清单见 PUBLICATION_MANIFEST.json。
+- 第九轮只替换 YOU HURT WHERE 的配置和结果，其余六句仍使用第八轮。没有改写公开历史、修改 master、合并 PR 或发 Release。
 
 ## 本阶段沿用的规则
 
-- 保护数据和旧策略只新增版本，不覆盖：保护表 v1、v2 并存；词对策略 `connector_only_v1`、`braking_v1`、`fast_v1` … `fast_v5` 并存；序列策略 v1 … v7 并存。
+- 保护数据和旧策略只新增版本，不覆盖：保护表 v1、v2、v3 并存；词对策略 `connector_only_v1`、`braking_v1`、`fast_v1` … `fast_v6` 并存；序列策略 v1 … v8 并存。
 - 证据不删、不改。被取代的第三、五轮保留，并在各自的 README 中标注。
-- 公开交付对所有轮次排除原始词对存储，不携带 `.gitignore` 的逐轮例外；本地原始证据保留，公开整理后的元数据，新视频仍不入库。
+- 公开交付对所有轮次排除原始词对存储，保留整理后的元数据；原始证据和新视频留本地。
 - 说明文档中英双语（[AGENTS.md](AGENTS.md)）。
 - 不合并、不开 PR、不改仓库可见性、不发 Release、不用付费 API；只在用户明确要求时推送。
 
 ## 待办与需要决定
 
-1. **人工观看第八轮视频**，尤其是最快的几段衔接（9–10 帧，约 0.3 s）和 NURSE 的分步退出，确认动作自然。目前还没有人看过。
-2. **发布后续**：本次按用户要求同步第八轮非原始快照；以后更新须继续保留公开清理规则，并以当时最新公开提交为基线。
+1. **人工观看第八、九轮的视频**，尤其是最快的几段衔接（9–10 帧，约 0.3 s）、NURSE 的分步退出和第九轮进入 HURT 的方式，确认动作自然。目前还没有人看过。
+2. **发布后续**：本次按用户要求发布第九轮；以后更新须保留公开排除规则，并以当时最新公开提交为基线。
 3. **句子开头**：句子仍从第一个词的保护核心直接开始，没有从初始姿态进入的引入段（结尾已经回到初始姿态）。用户没有提出，尚未处理。
 4. **余量**：MEDICINE MORNING NIGHT TAKE 的最小间隙正好等于 2.0 mm 门槛；最大的衔接加加速度积分 4.89e6 接近门槛 5e6。
-5. **hospital35 的 24 个源动作受阻词**（[TASK-27](TASK-27.md)）：全库目标已停止，这个决定仍未作出；在九句话范围内，这类问题只记录、不判失败。
-6. 正式验收、跨组评审、实机测试：都还没有做。
+5. **HURT 保护区间内的快速段**：新区间 [37,57] 内，左腕 pitch 与左肩 yaw 仍在第 39–41、47–49 帧以 11–14 rad/s 来回摆动，右手拇指在第 49 帧到达手指速度上限。这是用户保护内的源动作，按规则不改；如果也不自然，需要再缩短保护区间，或请第二组修订源动作。
+6. **hospital35 的 24 个源动作受阻词**（[TASK-27](TASK-27.md)）：全库目标已停止，这个决定仍未作出；在九句话范围内，这类问题只记录、不判失败。
+7. 正式验收、跨组评审、实机测试：都还没有做。
 
 ## 未验证限制
 

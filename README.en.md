@@ -1,16 +1,16 @@
 # ME5412 Robot Signing Research Bench
 
-> **Group 3 public delivery: round 8 (2026-11-02)**
+> **Group 3 public delivery: round-9 single-sentence update (2026-11-03)**
 >
-> Current project records: [TASK-28](TASK-28.en.md), [STATE](STATE.en.md), [HANDOFF](HANDOFF.en.md). This publication starts from clean public commit `86428693` and synchronizes non-raw content from WSL source commit `dfe4bacde`. It does not import the history of the source repository's round-7 or round-8 raw-store commits.
+> Current records: [TASK-28](TASK-28.en.md), [STATE](STATE.en.md), [HANDOFF](HANDOFF.en.md). This update starts from public round-8 commit `bdff5bcb` and publishes non-raw round-9 content from WSL source `e3901080d`, without importing raw-store commit history.
 >
-> Round 8 is complete: 7/7 multi-word sentences pass numerical checks, 17/17 connector rechecks agree and 24/24 protected cores are unchanged. Interior connector stops fell from round 7's 16 to 0. See the [round-8 report](results/hospital_sentences_20261102_008/README.en.md). The recorded full-suite result is 1014 passed; formal acceptance remains disabled and human video review is pending.
+> Round 9 updates YOU HURT WHERE only: HURT's protection is [37,57] and entry is exactly frame 37; 2/2 connectors and 1/1 sentence agree on independent recheck, 3/3 protected cores are unchanged, and the sentence shrinks from 120 to 109 frames (3.97 to 3.60 seconds). The other six sentences retain their round-8 results. See the [round-9 report](results/hospital_sentences_20261102_009/README.en.md). The planning algorithm is unchanged; policies are `fast_v6`, sequence `v8`, protection `v3`.
 >
-> This publication copy passed **121 focused checks** in 25.31 seconds, covering smooth timing, staged exits and the documentation index. No full-suite rerun or new planning run was performed. See the [publication validation summary](results/publication_validation_round8_20261102/summary.json).
+> Raw candidates, attempts, checkpoints and timing stores under `results/**/pair_runs/` and `results/user_protected_*/runs/` remain local; new videos are excluded. Compact summaries and frozen configuration are retained in `run_summaries/`, alongside sequence outputs, independent rechecks, logs and figures. Original references and hashes are preserved; the public copy alone cannot resume or recheck every historical candidate.
 >
-> Raw candidates, attempts, checkpoints and timing stores under `results/**/pair_runs/` and `results/user_protected_*/runs/` remain local. Compact summaries and frozen configuration are copied to each experiment's `run_summaries/`; sequence outputs, independent rechecks, test logs and result images are retained. New videos remain excluded.
+> Publication validation: 16 documentation-index tests passed, both configuration hash bindings match, and the saved 1/1 sequence, 2 connector groups and 3/3 unchanged cores were checked. See the [publication validation summary](results/publication_validation_round9_20261103/summary.json).
 >
-> Original paths and hashes in saved reports are preserved, so this public copy cannot independently recheck every candidate or resume historical runs. Use the local raw stores, or follow TASK-28 with the required dependencies and model assets to generate a new version and run. Source revisions, metadata hashes and publication checks are in [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json). Earlier public history is unchanged. The remainder describes the early prototype.
+> Round 9's 1014-pass full-suite result is an existing saved record; this publication does not rerun planning or the full suite. Formal acceptance remains disabled, protected-source findings are reported separately, and human video review is pending. See [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json). Earlier public history is unchanged. The remainder describes the early prototype.
 
 
 [中文](README.md) · **English** · [Bilingual documentation index](docs/README.md)

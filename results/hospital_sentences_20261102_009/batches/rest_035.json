@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "STOMACH__COME",
+    "STOMACH__HURT",
+    "STOMACH__BREATHE-DEEP",
+    "STOMACH__BLOOD-DRAW",
+    "STOMACH__TAKE",
+    "STOMACH__UNDERSTAND",
+    "STOMACH__WRITE",
+    "STOMACH__NOT",
+    "STOMACH__NOW",
+    "STOMACH__SOON",
+    "STOMACH__LATER",
+    "STOMACH__TOMORROW",
+    "STOMACH__MORNING",
+    "STOMACH__NIGHT",
+    "STOMACH__WHERE",
+    "HEADACHE__HELLO"
+  ]
+}

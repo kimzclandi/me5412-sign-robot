@@ -6,17 +6,17 @@
 
 > **本文件下方 2026-11-01 的 35 词全库计划与"下一步"已被用户的范围决定取代，不要照做。** 2026-11-01 用户改为只做九个医院句子，第三组只负责衔接。P1-3 停在 46/79 批；P1-4、预算重试和更快的扫描器没有运行；`resume.sh`、`after_p1_3.sh`、`p1_3_final.sh`、`p1_4.sh`、`retry_budget.sh` 不再使用（代码已变，那些 run 的冻结身份也已失效）。若以后恢复全库目标，需要新政策版本和新 run。
 
-当前：第八轮 7/7 数值通过，结尾回到初始姿态，衔接中途不停顿。各轮、配置、命令、本机环境与待办见 [TASK-28](TASK-28.md)。
+当前：第八轮 7/7 数值通过，结尾回到初始姿态，衔接中途不停顿；第九轮按用户要求让 HURT 从第 37 帧开始，单独重做了 YOU HURT WHERE（1/1 数值通过）。各轮、配置、命令、本机环境与待办见 [TASK-28](TASK-28.md)。
 
 接手步骤：
 
-1. 先读 [TASK-28](TASK-28.md) 和[第八轮 README](results/hospital_sentences_20261102_008/README.md)。
-2. 等用户对第八轮视频的反馈。视频只在本机：`C:\Users\23971\Documents\5412\_runtime\render-out\round8_034002\`。
-3. 用户已于 2026-11-02 明确要求本次更新 GitHub，替代此前暂停。以干净公开提交 `86428693` 为基线发布非原始快照，不直接推送包含原始存储提交的源历史。见根目录 README 与 PUBLICATION_MANIFEST.json。
+1. 先读 [TASK-28](TASK-28.md)、[第八轮 README](results/hospital_sentences_20261102_008/README.md) 和[第九轮 README](results/hospital_sentences_20261102_009/README.md)。
+2. 等用户对第八、九轮视频的反馈。视频只在本机：`C:\Users\23971\Documents\5412\_runtime\render-out\round8_034002\` 和 `C:\Users\23971\Documents\5412\_runtime\render-out\round9_150418\`。
+3. 用户已于2026-11-03明确要求推送第九轮。以公开第八轮提交 `bdff5bcb` 为基线发布非原始更新，不直接推送包含原始存储的源历史；见 README 与 PUBLICATION_MANIFEST.json。
 4. 新一轮用新目录、新版本：复制上一轮的 `make_inputs.py`、`run.sh`、`export_render_inputs.py`、`render_gpu_windows.py`，改目录名、run_id 和策略版本；保护表与旧策略只新增版本，不覆盖；被取代的结果保留并标注。
 5. run 运行期间不要修改 `src/`、`tests/`、`scripts/`（冻结身份）。
 6. 修改 `docs/README*.md` 时，同步更新 `src/sign_robot/project_overview.py` 中登记的 sha256，否则 `tests/test_project_overview.py` 失败。
-7. 每轮结束后更新双语 README、STATE、HANDOFF 与 TASK 记录。公开交付排除原始词对存储、保留整理后的摘要；原始存储只留本地。
+7. 每轮结束后更新双语 README、STATE、HANDOFF 与 TASK 记录；公开交付排除原始词对存储，保留整理后的摘要，原始证据留本地。
 
 ---
 

@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "WAIT__TAKE",
+    "WAIT__UNDERSTAND",
+    "WAIT__WRITE",
+    "WAIT__NOT",
+    "WAIT__NOW",
+    "WAIT__SOON",
+    "WAIT__LATER",
+    "WAIT__TOMORROW",
+    "WAIT__MORNING",
+    "WAIT__NIGHT",
+    "WAIT__WHERE",
+    "COME__HELLO",
+    "COME__PLEASE",
+    "COME__THANK-YOU",
+    "COME__SORRY",
+    "COME__YES"
+  ]
+}

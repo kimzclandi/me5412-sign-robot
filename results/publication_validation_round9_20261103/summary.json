@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-03",
+  "source_head": "e3901080d80e1280a043d2a452d2dada77438f80",
+  "tests_passed": 16,
+  "tests_failed": 0,
+  "elapsed_seconds": 7.22,
+  "scope": "test_project_overview.py; round-9 policy bindings and saved result checks",
+  "full_suite_rerun": false,
+  "new_planning_run": false,
+  "policy_bindings_match": true,
+  "saved_sequence_numerical_pass": 1,
+  "saved_connector_groups": 2,
+  "saved_protected_core_instances_unchanged": 3,
+  "raw_storage_paths_tracked": 0,
+  "incoming_source_history_imported": false
+}

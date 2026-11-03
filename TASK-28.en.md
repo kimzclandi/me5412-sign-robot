@@ -1,12 +1,12 @@
-# TASK-28: Nine hospital sentences (connectors only), rounds 1–8
+# TASK-28: Nine hospital sentences (connectors only), rounds 1–9
 
-> **Public-delivery update, 2026-11-02:** the user has now explicitly requested the GitHub update. This curated round-8 snapshot is based on public commit `86428693` and excludes raw run stores. References below to the earlier push pause or remote tip are historical and superseded by this publication; see the root README.
+> **Public-delivery update, 2026-11-03:** this round-9 publication supersedes the earlier push pause. The source experiment history remains local; see the current Git section and root README.
 
 [中文](TASK-28.md) · [Current state](STATE.en.md) · [Handoff](HANDOFF.en.md) · [Previous stage TASK-27](TASK-27.en.md)
 
-Status: **round 8 is done and waiting for someone to watch the videos.** Executed 2026-11-01 13:54 to 2026-11-02 03:48 (Asia/Shanghai). This file is the record of the whole stage. It was compiled after round 8 was committed, from the round READMEs, the commit history and local files; nothing was rerun. The README in each round directory is authoritative for that round's details and numbers.
+Status: **round 9 (YOU HURT WHERE only) is done and waiting for someone to watch the videos.** Executed 2026-11-01 13:54 to 2026-11-02 15:03 (Asia/Shanghai). This file is the record of the whole stage: rounds 1–8 were compiled after round 8 was committed, from the round READMEs, the commit history and local files, without rerunning anything; round 9 was added once it finished. The README in each round directory is authoritative for that round's details and numbers.
 
-**On 2026-11-01 the user narrowed the scope from all 1,225 word pairs to nine hospital sentences, and limited Group 3 to the connectors between two words. After eight rounds, all seven multi-word sentences pass numerically (NUMERICAL_PASS), every sentence ends at the hands-down rest pose, and no connector halts partway; the frames between protected cores across the 17 connectors fell from 1,717 in round 2 to 310. The other two "sentences" are single words that play the source motion. 24/24 protected cores are bitwise unchanged and the full test suite has 1014 passed. Commits after round 2 are local only and have not been pushed.**
+**On 2026-11-01 the user narrowed the scope from all 1,225 word pairs to nine hospital sentences, and limited Group 3 to the connectors between two words. After eight rounds, all seven multi-word sentences pass numerically (NUMERICAL_PASS), every sentence ends at the hands-down rest pose, and no connector halts partway; the frames between protected cores across the 17 connectors fell from 1,717 in round 2 to 310. The other two "sentences" are single words that play the source motion. 24/24 protected cores are bitwise unchanged and the full test suite has 1014 passed. In round 9, at the user's request, HURT's protection starts at frame 37 instead of 27 and YOU HURT WHERE was redone on its own: HURT's left-arm flip at frames 29–34 no longer plays, and the sentence went from 120 to 109 frames. Commits after round 2 are local only and have not been pushed.**
 
 Development evidence only: formal PASS_SIM is 0, `formal_acceptance_enabled=false`, not verified ASL; the videos have not been watched by a person and nothing ran on hardware.
 
@@ -37,6 +37,7 @@ Development evidence only: formal PASS_SIM is 0, `formal_acceptance_enabled=fals
 | 11-02, after round 6 | Upload to the team repository's group3 branch | A publication copy was prepared; the push was stopped partway and the remote did not change; the user then decided "don't push yet" |
 | 11-02, after round 6 | End MORNING's protection at frame 38; end NURSE's protection at frame 75, then move the right hand away quickly and straighten the left wrist | Round 7. No connector could leave MORNING at frame 38 (the fingers snap shut between frames 37 and 38), so the user chose frame 37 |
 | 11-02, after round 7 | The connectors move in jerks and are still slower than the signs; acceleration-type hard limits may be widened if they are what binds | Round 8 |
+| 11-02, after round 8 | HURT starts at frame 37; optimise YOU HURT WHERE on its own | Round 9: protection bundle v3, only this sentence redone |
 
 ## Rounds
 
@@ -50,12 +51,14 @@ Development evidence only: formal PASS_SIM is 0, `formal_acceptance_enabled=fals
 | 6 | [`…_006`](results/hospital_sentences_20261101_006/README.en.md) | 11-01 22:55–23:32 | Same | Screen v2 flags only proximal (shoulder/elbow) flips (`368fc4b`) | `fast_v3` / `v5` | 7/7; NURSE leaves at frame 80 and the flip no longer plays |
 | 7 | [`…_007`](results/hospital_sentences_20261102_007/README.en.md) | 11-02 01:17–01:51 | Shorter MORNING/NURSE protection, NURSE exits in steps | Protection bundle v2, staged exits (`129891a`) | `fast_v4` / `v6` | 7/7; NURSE: right arm away → left forearm up → left wrist straight → BLOOD-DRAW |
 | 8 | [`…_008`](results/hospital_sentences_20261102_008/README.en.md) | 11-02 02:50–03:39 | Connectors halt partway and are slow | Stop-free smooth timing, selection by fewest stops, widened limits (`1d07d2d`) | `fast_v5` / `v7` | 7/7; interior stops 16 → 0; frames between cores 563 → 310 |
+| 9 | [`…_009`](results/hospital_sentences_20261102_009/README.en.md) | 11-02 14:21–15:03 | HURT starts at frame 37, YOU HURT WHERE only | Protection bundle v3; only two pairs, so each searches 720 → 1800 s (no code changes, `dfe4bac`) | `fast_v6` / `v8` | 1/1; YOU→HURT enters HURT at frame 37 in 11 frames; sentence 120 → 109 frames |
 
 Full policy names are `config/transition_policy_hospital_sentences_<name>.json` and `config/sequence_policy_hospital_sentences_<version>.json`. Each round's results and raw pair stores are two separate commits (round 8: `fc9c7f9` and `70a61fa`). Round 1's runs used an uncommitted working tree (`2875e49`); that code was committed afterwards in `5c536fb`.
 
-## Current delivery: round 8
+## Current delivery: round 8, with YOU HURT WHERE from round 9
 
-- Code `1d07d2d`; results `fc9c7f9`, raw pair stores `70a61fa`.
+- **YOU HURT WHERE is round 9's** ([README](results/hospital_sentences_20261102_009/README.en.md)): protection bundle `config/user_protected_hospital35_v3.json` (only HURT differs from v2, [27,57] → [37,57]), pair policy `config/transition_policy_hospital_sentences_fast_v6.json` (`fast_v5` with bundle v3 and a 1800 s search per pair), sequence policy `config/sequence_policy_hospital_sentences_v8.json`. YOU→HURT enters HURT at frame 37 (`ik_via1`, 11 frames) and HURT→WHERE is round 8's; the sentence is 109 frames (3.6 s), minimum clearance 7.81 mm, peak arm speed 28.2 → 22.6 rad/s.
+- The other six sentences are round 8's, and the points below refer to round 8: code `1d07d2d`; results `fc9c7f9`, raw pair stores `70a61fa`.
 - Pair policy `config/transition_policy_hospital_sentences_fast_v5.json`; sequence policy `config/sequence_policy_hospital_sentences_v7.json`; protection bundle `config/user_protected_hospital35_v2.json` (only NURSE [38,75] and MORNING [26,37] differ from v1, which stays for the earlier runs).
 - 17/17 selected connectors and 7/7 sentences agree on fresh rechecks; 24/24 protected cores are bitwise unchanged; every sentence ends at rest, with rest tails of 8–12 frames.
 - Connectors total 254 frames (round 7: 446) with 0 interior stops (round 7: 16); 15 use the minimum-jerk spline and 2 the corner blend (NURSE→BLOOD-DRAW, WAIT→DOCTOR).
@@ -67,7 +70,7 @@ Full policy names are `config/transition_policy_hospital_sentences_<name>.json` 
 | HELLO YOU APPOINTMENT HAVE | 417 fr (13.9 s) | 235 fr (7.8 s) |
 | YOU NEED INTERPRETER | 316 fr (10.5 s) | 168 fr (5.6 s) |
 | PLEASE WAIT DOCTOR COME SOON | 765 fr (25.5 s) | 366 fr (12.2 s) |
-| YOU HURT WHERE | 291 fr (9.7 s) | 120 fr (4.0 s) |
+| YOU HURT WHERE | 291 fr (9.7 s) | 120 fr (4.0 s); round 9: 109 fr (3.6 s) |
 | NOW NURSE BLOOD-DRAW | 405 fr (13.5 s) | 271 fr (9.0 s) |
 | MEDICINE MORNING NIGHT TAKE | 387 fr (12.9 s) | 164 fr (5.5 s) |
 | YOU UNDERSTAND | 198 fr (6.6 s) | 97 fr (3.2 s) |
@@ -76,8 +79,8 @@ Round 2 had no rest tails; the round-8 frame counts include the return to rest.
 
 ### Videos and charts
 
-- Videos are not committed and exist only on this machine: `C:\Users\23971\Documents\5412\_runtime\render-out\round8_034002\<sentence>\comparison.mp4`, seven in all. The original clips are on top and the sentence below; front view on the left, side view on the right. Earlier rounds' videos are in `round2_163226`, `round4_211920`, `round6_233300` and `round7_015209` in the same folder.
-- Committed: `report.json` and `contact_sheet.png` in `results/hospital_sentences_20261102_008/videos_gpu/<sentence>/`; arm-speed comparisons `arm_speed_round7_vs_round8.png` (for MEDICINE MORNING NIGHT TAKE and NOW NURSE BLOOD-DRAW); the NURSE exit frame by frame in `NOW__NURSE__BLOOD-DRAW/round7_vs_round8_nurse_exit.png`.
+- Videos are not committed and exist only on this machine: `C:\Users\23971\Documents\5412\_runtime\render-out\round8_034002\<sentence>\comparison.mp4`, seven in all. The original clips are on top and the sentence below; front view on the left, side view on the right. Earlier rounds' videos are in `round2_163226`, `round4_211920`, `round6_233300` and `round7_015209` in the same folder; round 9's YOU HURT WHERE is `round9_150418\YOU__HURT__WHERE\comparison.mp4`.
+- Committed: `report.json` and `contact_sheet.png` in `results/hospital_sentences_20261102_008/videos_gpu/<sentence>/`; arm-speed comparisons `arm_speed_round7_vs_round8.png` (for MEDICINE MORNING NIGHT TAKE and NOW NURSE BLOOD-DRAW); the NURSE exit frame by frame in `NOW__NURSE__BLOOD-DRAW/round7_vs_round8_nurse_exit.png`. Round 9: the entry into HURT frame by frame, `round8_vs_round9_hurt_entry.png`, and the arm-speed comparison `arm_speed_round8_vs_round9.png`, both in `results/hospital_sentences_20261102_009/videos_gpu/YOU__HURT__WHERE/`.
 
 ## Reproduction
 
@@ -105,27 +108,28 @@ C:\Users\23971\Documents\5412\_runtime\render-venv\Scripts\python.exe \\wsl.loca
 
 ## Git and pushing
 
-- The local development branch and public branch are both named `group3/trajectory-planning`, but their histories differ. The source repository is at `dfe4bacde` and contains local raw-store commits; do not directly push that history into the cleaned public branch.
-- The public repository is `kimzclandi/me5412-sign-robot`. Its verified baseline is the successfully pushed cleanup commit `86428693`. This update follows the user's new request on 2026-11-02 and adds a curated, non-raw round-8 snapshot on that baseline.
-- The publication copy is `C:\Users\23971\Documents\5412\_publish\group3-trajectory-planning-20261102`. Code, policies, root records, sequence results and independent rechecks come from the source revision. Raw candidates, attempts, checkpoints and timing stores are excluded; compact metadata is retained under `run_summaries/`. See `PUBLICATION_MANIFEST.json`.
-- The source worktree and local raw evidence are preserved. Earlier public history is not rewritten; round-7 and round-8 raw-store commits are not imported. No change to master, visibility or Releases is included.
+- The source development branch and public branch are both named `group3/trajectory-planning`, but their histories differ. Source `e3901080d` contains local raw-store commits and must not be pushed directly into the cleaned public branch.
+- The public repository is `kimzclandi/me5412-sign-robot`, verified at round-8 commit `bdff5bcb`. The user requested the round-9 push on 2026-11-03, so this publication appends a curated non-raw snapshot to that baseline.
+- The publication copy is `C:\Users\23971\Documents\5412\_publish\group3-trajectory-planning-20261102`. Raw pair_runs and historical runs remain excluded; compact summaries are preserved in run_summaries. The source worktree and raw files are unchanged; see PUBLICATION_MANIFEST.json.
+- Round 9 updates configuration and results for YOU HURT WHERE only; the other six sentences retain round 8. No history rewriting, master changes, PR merging or Releases are included.
 
 ## Rules kept in this stage
 
-- Protection data and old policies only get new versions and are never overwritten: protection bundles v1 and v2 coexist, as do pair policies `connector_only_v1`, `braking_v1`, `fast_v1` … `fast_v5` and sequence policies v1 … v7.
+- Protection data and old policies only get new versions and are never overwritten: protection bundles v1, v2 and v3 coexist, as do pair policies `connector_only_v1`, `braking_v1`, `fast_v1` … `fast_v6` and sequence policies v1 … v8.
 - Evidence is never deleted or edited. The superseded rounds 3 and 5 are kept and marked as such in their READMEs.
-- Public delivery excludes raw pair stores for every round; no per-round `.gitignore` exceptions are carried over. Local raw evidence is preserved, curated metadata is published, and new videos remain local.
+- Public delivery excludes raw pair stores in every round, preserves curated metadata and keeps raw evidence and new videos local.
 - Documentation is bilingual ([AGENTS.en.md](AGENTS.en.md)).
 - No merges, PRs, visibility changes, releases or paid APIs; push only when the user explicitly asks.
 
 ## To do and to decide
 
-1. **Watch the round-8 videos**, especially the fastest connectors (9–10 frames, about 0.3 s) and NURSE's staged exit, to confirm they look natural. Nobody has watched them yet.
-2. **Publication follow-up**: this update synchronizes the non-raw round-8 snapshot at the user's request. Future updates must preserve the public cleanup rules and start from the latest public tip.
+1. **Watch the round-8 and round-9 videos**, especially the fastest connectors (9–10 frames, about 0.3 s), NURSE's staged exit and round 9's entry into HURT, to confirm they look natural. Nobody has watched them yet.
+2. **Publication follow-up**: round 9 is being published at the user's request; future updates must preserve the public exclusion rules and use the latest public tip.
 3. **Sentence start**: sentences still begin directly on the first word's protected core, with no lead-in from the rest pose (the end already returns to rest). The user has not raised this; not addressed.
 4. **Margins**: MEDICINE MORNING NIGHT TAKE's minimum clearance is exactly the 2.0 mm threshold; the largest connector jerk integral, 4.89e6, is close to the 5e6 limit.
-5. **hospital35's 24 source-blocked words** ([TASK-27](TASK-27.en.md)): the full-library goal has stopped and that decision is still open; within the nine-sentence scope such problems are recorded, not counted as failures.
-6. Formal acceptance, cross-group review and hardware tests: none done yet.
+5. **Fast motion inside HURT's protection**: in the new core [37,57] the left wrist pitch and left shoulder yaw still swing back and forth at 11–14 rad/s at frames 39–41 and 47–49, and the right thumb reaches the finger speed cap at frame 49. This is source motion inside the user's protection and stays unchanged; if it also looks unnatural, the protection would need to shrink further, or Group 2 would need to revise the source motion.
+6. **hospital35's 24 source-blocked words** ([TASK-27](TASK-27.en.md)): the full-library goal has stopped and that decision is still open; within the nine-sentence scope such problems are recorded, not counted as failures.
+7. Formal acceptance, cross-group review and hardware tests: none done yet.
 
 ## Unverified limits
 

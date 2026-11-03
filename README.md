@@ -1,16 +1,16 @@
 # ME5412 机器人手语表达实验台
 
-> **第三组公开交付：第八轮（2026-11-02）**
+> **第三组公开交付：第九轮单句更新（2026-11-03）**
 >
-> 最新项目记录：[TASK-28](TASK-28.md)、[STATE](STATE.md)、[HANDOFF](HANDOFF.md)。本公开版本以干净提交 `86428693` 为基线，同步 WSL 源提交 `dfe4bacde` 的非原始内容；没有引入源仓库第七、八轮原始存储提交的历史。
+> 当前项目记录：[TASK-28](TASK-28.md)、[STATE](STATE.md)、[HANDOFF](HANDOFF.md)。本次以公开第八轮提交 `bdff5bcb` 为基线，同步 WSL 源 `e3901080d` 的第九轮非原始内容；没有引入原始存储提交历史。
 >
-> 第八轮已完成：7/7 多词句数值通过、17/17 衔接复核一致、24/24 保护核心不变；衔接内部停顿由第七轮的 16 次降到 0 次。见[第八轮报告](results/hospital_sentences_20261102_008/README.md)。1014 passed 是该轮保存的全套测试记录，正式验收仍关闭，视频仍待人工评审。
+> 第九轮只更新 YOU HURT WHERE：HURT 保护区间改为 [37,57]，正好从第37帧进入；2/2 衔接、1/1 句子独立复核一致，3/3 核心不变，整句从120帧变为109帧（3.97→3.60秒）。其余六句保留第八轮结果。见[第九轮报告](results/hospital_sentences_20261102_009/README.md)。规划算法未改；配置为 `fast_v6`、序列 `v8`、保护表 `v3`。
 >
-> 本次发布副本定向验证 **121 passed**（25.31 秒），包括新的平滑定时、分阶段退出和文档索引；未重跑全套测试或真实规划。见[发布验证摘要](results/publication_validation_round8_20261102/summary.json)。
+> 原始候选、尝试、检查点和调时存储 `results/**/pair_runs/`、`results/user_protected_*/runs/` 继续只留本地；新视频不入库。小型汇总及冻结配置另存 `run_summaries/`，序列输出、独立复核、日志和图保留。原始引用路径和哈希不改写，公开副本不能单独续跑或逐候选复核历史 run。
 >
-> 原始候选、尝试、检查点和调时存储 `results/**/pair_runs/`、`results/user_protected_*/runs/` 仅保留在本机。小型汇总与冻结配置复制到各实验的 `run_summaries/`；序列输出、独立复核、测试日志和结果图保留。新视频继续不入库。
+> 本次公开副本验证：16项文档索引测试通过，两级配置哈希一致，已有1/1句子、2组衔接、3/3核心保持记录核对通过。见[发布验证摘要](results/publication_validation_round9_20261103/summary.json)。
 >
-> 保存报告中的原始路径与哈希不改写，因此公开副本不能独自逐候选复核或续跑历史 run。需本地原始存储，或按 TASK-28 在具备依赖和模型资源的环境中创建新版本、新 run 重新生成。发布来源、摘要哈希和本次检查见 [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json)。之前的公开提交历史未改写。下文为早期原型说明。
+> 第九轮1014项全套测试通过是已保存的历史记录，本次不重跑规划或全量测试。正式验收仍关闭，保护核心中的源动作问题另行记录，视频尚待人工评审。发布清单见 [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json)。此前公开历史未改写。下文为早期原型说明。
 
 
 **中文** · [English](README.en.md) · [中英说明目录](docs/README.md)

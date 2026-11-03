@@ -1,0 +1,51 @@
+{
+  "sequence_id": "YOU__HURT__WHERE",
+  "source_sequence": "results/hospital_sentences_20261102_009/sequences/sequences/YOU__HURT__WHERE/attempt_0001.json",
+  "source_sequence_sha256": "353c3a28242d3680e8c82cd611681008ce205c5e9eb76a4b0775ffc42119243a",
+  "numerical_checks_passed": true,
+  "verification": "saved independent recheck reused (export_render_inputs.py checks its sequence hash)",
+  "formal_acceptance_enabled": false,
+  "playback_eligible": false,
+  "fps": 30,
+  "video_frames": 395,
+  "video_duration_s": 13.166666666666666,
+  "replay_duration_s": 3.6,
+  "layout": "original full clips top, sequence bottom; front left, side right; shorter row holds end",
+  "protected_instance_video_checks": [
+    {
+      "instance_id": "o0_YOU",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        0,
+        27
+      ]
+    },
+    {
+      "instance_id": "o1_HURT",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        38,
+        58
+      ]
+    },
+    {
+      "instance_id": "o2_WHERE",
+      "poses_bitwise_equal": true,
+      "replay_frames": [
+        69,
+        99
+      ]
+    }
+  ],
+  "renderer": {
+    "gl_renderer": "Intel(R) Arc(TM) B390 GPU",
+    "mujoco": "3.15.0",
+    "model_tree_sha256": "d4c772ade61d9b98d6a8c60feec91e854740d364e47cbfa14bc87add00ec4e33",
+    "label_font": "C:/Windows/Fonts/msyh.ttc",
+    "render_wall_time_s": 127.27
+  },
+  "files": {
+    "comparison.mp4": "0e0ba3cb12a549c8a88585f106e9001d43aff44853cebd0789b2601a2f459f64",
+    "contact_sheet.png": "f3bdfb498115a4ad9f924414d3b6eb4a61ef979bca854454bdd896e111762fe6"
+  }
+}

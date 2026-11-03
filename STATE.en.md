@@ -2,22 +2,22 @@
 
 [中文](STATE.md) · [Next execution handoff](HANDOFF.en.md) · [Latest execution report TASK-28](TASK-28.en.md) · [Previous stage TASK-27](TASK-27.en.md)
 
-Updated: 2026-11-02 (Asia/Shanghai), after round 8 of the nine hospital sentences. Scope: Group 3 word transitions and sequence replay. The "Latest" section is the current state; section 0 is the state after the 2026-11-01 35-word full-library stage, and sections 1–5 the state before that stage. Both are kept as history with their original headings; where they conflict with "Latest", "Latest" applies.
+Updated: 2026-11-02 (Asia/Shanghai), after round 9 of the nine hospital sentences. Scope: Group 3 word transitions and sequence replay. The "Latest" section is the current state; section 0 is the state after the 2026-11-01 35-word full-library stage, and sections 1–5 the state before that stage. Both are kept as history with their original headings; where they conflict with "Latest", "Latest" applies.
 
-## Latest (2026-11-02): nine hospital sentences, round 8 passes 7/7 numerically
+## Latest (2026-11-02): nine hospital sentences, round 8 passes 7/7 numerically, round 9 redoes YOU HURT WHERE
 
-**On 2026-11-01 the user narrowed the scope to nine hospital sentences, with Group 3 owning only the connectors; the 1,225-pair full-library scan stopped (P1-3 at 46/79 batches), and P1-4, the budget retry and the faster scanner were not run. In round 8 all seven multi-word sentences are NUMERICAL_PASS, end at the rest pose, and no connector halts partway.** Rounds, configuration, commands and open items: [TASK-28](TASK-28.en.md).
+**On 2026-11-01 the user narrowed the scope to nine hospital sentences, with Group 3 owning only the connectors; the 1,225-pair full-library scan stopped (P1-3 at 46/79 batches), and P1-4, the budget retry and the faster scanner were not run. In round 8 all seven multi-word sentences are NUMERICAL_PASS, end at the rest pose, and no connector halts partway. In round 9, at the user's request, HURT starts at frame 37 and YOU HURT WHERE was redone on its own, also NUMERICAL_PASS (120 → 109 frames).** Rounds, configuration, commands and open items: [TASK-28](TASK-28.en.md).
 
 | Layer | Current fact | Boundary |
 |---|---|---|
 | Scope | Seven multi-word sentences with 17 word pairs: HELLO YOU APPOINTMENT HAVE, YOU NEED INTERPRETER, PLEASE WAIT DOCTOR COME SOON, YOU HURT WHERE, NOW NURSE BLOOD-DRAW, MEDICINE MORNING NIGHT TAKE, YOU UNDERSTAND; the single words BREATHE-DEEP and THANK-YOU play their source motions | Connectors only (review scope v4); source-motion defects are recorded for Group 2, not counted as failures |
-| Result | [Round 8](results/hospital_sentences_20261102_008/README.en.md): 17/17 connectors and 7/7 sentences agree on fresh rechecks; 24/24 protected cores bitwise unchanged; 0 interior stops; 310 frames between cores across the 17 connectors (round 2: 1,717) | Videos not watched by a person |
-| Configuration | Pairs `config/transition_policy_hospital_sentences_fast_v5.json`, sequences `config/sequence_policy_hospital_sentences_v7.json`, protection `config/user_protected_hospital35_v2.json` (NURSE [38,75], MORNING [26,37]) | Acceleration-type limits widened with the user's permission to 200 rad/s², 5000 rad/s³ and 5e6 rad²/s⁵; speed caps unchanged |
-| Code and tests | Code `1d07d2d`; full suite 1014 passed | Not rerun for this update |
-| Git | Public branch `group3/trajectory-planning`: non-raw round-8 snapshot from source `dfe4bacde`, based on clean public commit `86428693` | Updated at the user's explicit request on 2026-11-02; raw stores remain local |
+| Result | [Round 8](results/hospital_sentences_20261102_008/README.en.md): 17/17 connectors and 7/7 sentences agree on fresh rechecks; 24/24 protected cores bitwise unchanged; 0 interior stops; 310 frames between cores across the 17 connectors (round 2: 1,717). [Round 9](results/hospital_sentences_20261102_009/README.en.md): YOU HURT WHERE's 2/2 connectors and 1/1 sentence agree on fresh rechecks, YOU→HURT enters HURT at frame 37, sentence 120 → 109 frames | Videos not watched by a person |
+| Configuration | Pairs `config/transition_policy_hospital_sentences_fast_v5.json`, sequences `config/sequence_policy_hospital_sentences_v7.json`, protection `config/user_protected_hospital35_v2.json` (NURSE [38,75], MORNING [26,37]); YOU HURT WHERE uses `fast_v6`, sequence `v8` and protection `v3` (HURT [37,57]) | Acceleration-type limits widened with the user's permission to 200 rad/s², 5000 rad/s³ and 5e6 rad²/s⁵; speed caps unchanged |
+| Code and tests | Code `1d07d2d`; round 9 `dfe4bac` (same planning code, no code changes); full suite 1014 passed | — |
+| Git | Public branch `group3/trajectory-planning`: round-9 non-raw snapshot from `e3901080d`, based on public round-8 commit `bdff5bcb` | User explicitly requested this push on 2026-11-03; raw stores remain local |
 | Formal | PASS_SIM 0; `formal_acceptance_enabled=false` | A numerical pass is not formal, semantic or hardware acceptance |
 
-**To confirm:** someone watches the round-8 videos; sentences still begin directly on the first protected core. Section 0's decision on the 24 source-blocked words is still open but does not block the current scope.
+**To confirm:** someone watches the round-8 and round-9 videos; sentences still begin directly on the first protected core; HURT's new protected core still has fast source motion at frames 39–41 and 47–49 (unchanged by rule). Section 0's decision on the 24 source-blocked words is still open but does not block the current scope.
 
 ---
 

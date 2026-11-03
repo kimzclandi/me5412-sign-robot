@@ -1,0 +1,2 @@
+{"sequence_id": "YOU__HURT__WHERE", "planning_status": "NUMERICAL_PASS", "recheck": "DONE", "agrees_with_planning": true}
+{"cases": 1, "rechecked": 1, "numerical_pass": 1, "retained_from_prior_output": 0, "rechecked_agree": 1, "planning_status_counts": {"NUMERICAL_PASS": 1}, "word_occurrences": 3, "protected_instances_unchanged": 3, "connector_groups": 2, "all_agree_with_planning": true, "formal_pass": 0}
