@@ -1,22 +1,29 @@
 # Handoff: 35-word protections and full-library transitions
 
-[中文](HANDOFF.md) · [Current state](STATE.en.md) · [Latest execution report TASK-28](TASK-28.en.md) · [Execution report TASK-27](TASK-27.en.md) · [Historical report TASK-26](TASK-26.en.md)
+> **Public update, 2026-11-03:** round 10 was committed in private source `ec89a7f` and is now being published as a curated snapshot on public parent `83dffbfc`. References below to uncommitted results or an unchanged team repository describe the earlier state. New videos and raw stores stay local. See the root README.
 
-## Latest handoff (2026-11-02): nine hospital sentences
+[中文](HANDOFF.md) · [Current state](STATE.en.md) · [Latest execution report TASK-29](TASK-29.en.md) · [Nine-sentence rounds TASK-28](TASK-28.en.md) · [TASK-27](TASK-27.en.md)
 
-> **The 2026-11-01 full-library plan and "next steps" further down this file are superseded by the user's scope decision; do not follow them.** On 2026-11-01 the user narrowed the work to nine hospital sentences, with Group 3 owning only the connectors. P1-3 stopped at 46/79 batches; P1-4, the budget retry and the faster scanner were not run; `resume.sh`, `after_p1_3.sh`, `p1_3_final.sh`, `p1_4.sh` and `retry_budget.sh` are no longer used (the code has changed, so those runs' frozen identities are no longer valid). Resuming the full-library goal later would need a new policy version and new runs.
+## Latest handoff (2026-11-02): round 10 on the new clips clips-v2 is done, 7/7 NUMERICAL_PASS
 
-Now: round 8 passes 7/7 numerically, ends at the rest pose, and no connector halts partway. Rounds, configuration, commands, this machine's setup and open items: [TASK-28](TASK-28.en.md).
+> **The 2026-11-01 full-library plan and "next steps" further down this file are superseded by the user's scope decision; do not follow them.** The scope is still the nine hospital sentences, with Group 3 owning only the connectors (see [TASK-28](TASK-28.en.md)).
 
-Steps for whoever takes over:
+Now: Group 2 published new clips (`group2/clips-v2`, `85bc230`), and work is on branch `group3/clips-v2` with protection bundle v5 (NURSE f23–f79, INTERPRETER f19–f40, everything else unchanged). **On 2026-11-02 the user said start: [round 10](results/hospital_sentences_20261102_010/README.en.md) solved the nine sentences on the new clips, and all seven multi-word sentences are NUMERICAL_PASS** (17/17 connectors and 7/7 sentences agree on fresh rechecks, 24/24 protected cores unchanged, 0 interior stops). The run followed the steps that were listed here, with the user's three changes: 12 runs on cpu0–11 instead of 16, NURSE's staged exit dropped rather than redesigned, and the failing tests not fixed first. The new-clip review and decisions are in [TASK-29](TASK-29.en.md) and [`results/clips_v2_review_20261102/`](results/clips_v2_review_20261102/README.en.md).
 
-1. Read [TASK-28](TASK-28.en.md) and the [round-8 README](results/hospital_sentences_20261102_008/README.en.md) first.
-2. Wait for the user's feedback on the round-8 videos. They exist only on this machine: `C:\Users\23971\Documents\5412\_runtime\render-out\round8_034002\`.
-3. The user explicitly requested this GitHub update on 2026-11-02, superseding the earlier pause. Publish only the curated non-raw snapshot on top of clean public commit `86428693`; never directly push the source history containing raw-store commits. See the root README and PUBLICATION_MANIFEST.json.
-4. A new round means a new directory and new versions: copy the previous round's `make_inputs.py`, `run.sh`, `export_render_inputs.py` and `render_gpu_windows.py`, change the directory name, run IDs and policy versions; protection bundles and old policies only get new versions and are never overwritten; superseded results are kept and marked.
-5. Do not edit `src/`, `tests/` or `scripts/` while a run is going (frozen identity).
-6. When editing `docs/README*.md`, update the sha256 registered for it in `src/sign_robot/project_overview.py` as well, or `tests/test_project_overview.py` fails.
-7. After each round, update the bilingual README, STATE, HANDOFF and TASK records. Public delivery excludes raw pair stores and preserves curated summaries; raw stores remain local.
+How round 10 met the earlier requirements:
+
+- Inputs: pair policy `config/transition_policy_hospital_sentences_fast_v7.json` (= `fast_v5` + bundle v5, NURSE removed from `staged_exits`, search 1800 s / RRT 600 s) and sequence policy `config/sequence_policy_hospital_sentences_v9.json` (v7's seven cases), written by [`make_inputs.py`](results/hospital_sentences_20261102_010/make_inputs.py); run with [`run.sh`](results/hospital_sentences_20261102_010/run.sh).
+- NURSE's exit: with the staged exit removed, NURSE→BLOOD-DRAW passed as a direct 10-frame connector from f79 (minimum clearance 4.2 mm). MORNING→NIGHT still uses MORNING's staged exit (16 frames between cores, round 8: 13).
+- Endpoint issues: NEED→INTERPRETER enters at f14 (f16 or earlier was required); HAVE's rest tail leaves at f57, the first frame after the contact span.
+
+Next steps for whoever takes over:
+
+1. **Someone watches the round-10 videos** (`results/hospital_sentences_20261102_010/videos_*/`, not committed; or `play_sentence.py` on the `replay.npz` files). Nobody has watched them yet.
+2. **Tests**: round 10 ran on `00124363`, where the suite had 16 failed and 18 errors. Commit `a1eb6e53` (pushed 18:48, while round 10 was running) fixes the suite for the new clips (1021 passed, 1 skipped; see [TASK-29](TASK-29.en.md)). Tests are part of the code hash, so round 10 can only be rechecked at `00124363`; a run whose identity includes the fixed tests needs a new round (round 11, same inputs, on `a1eb6e53` or later).
+3. **Environment** (unchanged): `assets/robot/vendor/` (62 mesh files) is not tracked; copy it or fetch it as described in [`assets/robot/README.en.md`](assets/robot/README.en.md). Python dependencies: `requirements-lock.txt` (Python 3.12).
+   `models/all-MiniLM-L6-v2/` (Group 1's sentence-embedding weights, 88 MB) is not tracked either; without it Group 1's two test files fail.
+4. Do not edit `src/`, `tests/` or `scripts/` while a run is going (frozen identity). When editing `docs/README*.md`, update its sha256 in `src/sign_robot/project_overview.py`, or `tests/test_project_overview.py` fails.
+5. Committing and pushing: only when the user explicitly asks. Round 10's inputs, records and documents are not committed yet; raw pair stores (`pair_runs`) and videos stay local (`.gitignore`). The team repository is unchanged.
 
 ---
 

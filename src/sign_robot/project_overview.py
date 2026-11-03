@@ -290,7 +290,7 @@ FILES = {'report-pdf': {'path': 'deliverables/course-report-v4/ME5412_Text_to_Ro
                 'category': '说明',
                 'mime': 'text/markdown; charset=utf-8',
                 'disposition': 'attachment',
-                'sha256': 'c270f759940a5dead500c9da53ab290870a5504b9e70a1a5b72775feb0ccbc60',
+                'sha256': '743616628a984e4f099ff56dc5004071cc7a7cc871a65c4452d96ab9c30c910d',
                 'language': 'zh-CN'},
  'speaker-notes-en': {'path': 'deliverables/course-report-v4/speaker-notes.en.txt',
                       'sha256': '05f569b68c7d63bd5a879a7bad21a4341dc2ff5720812207cd68413a0a0ce13a',
@@ -419,7 +419,7 @@ FILES = {'report-pdf': {'path': 'deliverables/course-report-v4/ME5412_Text_to_Ro
                    'category': '说明',
                    'mime': 'text/markdown; charset=utf-8',
                    'disposition': 'attachment',
-                   'sha256': '15976c7359319cf00db35154caff931d5b42076b2c73a975b6935362477dac61',
+                   'sha256': '01bf0e300497c3561064792c9aeb4e3fa55586bb43a09ee7ad1e3856346a1a92',
                    'language': 'en'}}
 
 

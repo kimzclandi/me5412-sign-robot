@@ -32,7 +32,8 @@ Current demo: hospital scenario, 35 glosses and 9 scripted dialogue lines, Engli
 | v5 抬起式到达与四对重跑 / v5 lift-off arrival and four-pair rerun | [中文](../TASK-25.md) | [English](../TASK-25.en.md) |
 | COME/NOW 多词序列试点 / COME/NOW multi-word sequence pilot | [中文](../TASK-26.md) | [English](../TASK-26.en.md) |
 | 35 词保护导入与全库衔接执行 / 35-word protection import and library-wide transition run | [中文](../TASK-27.md) | [English](../TASK-27.en.md) |
-| 九个医院句子（仅衔接）第 1–8 轮 / Nine hospital sentences (connectors only), rounds 1–8 | [中文](../TASK-28.md) | [English](../TASK-28.en.md) |
+| 九个医院句子（仅衔接）各轮记录 / Nine hospital sentences (connectors only), all rounds | [中文](../TASK-28.md) | [English](../TASK-28.en.md) |
+| clips-v2 新片段复核与保护表 v5 / clips-v2 clip review and protection bundle v5 | [中文](../TASK-29.md) | [English](../TASK-29.en.md) |
 | P0-1 基线保全 / Baseline preservation | [中文](../TASK-01.md) | [English](../TASK-01.en.md) |
 | P0-2 逐词问题清单 / Per-word issue list | [中文](group3-all-pairs-word-issues.md) | [English](group3-all-pairs-word-issues.en.md) |
 | FINAL 最终验收与执行报告 / Final verification and execution report | [中文](../TASK-14.md) | [English](../TASK-14.en.md) |

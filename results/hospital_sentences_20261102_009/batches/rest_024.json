@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "DOCTOR__WAIT",
+    "DOCTOR__COME",
+    "DOCTOR__HURT",
+    "DOCTOR__BREATHE-DEEP",
+    "DOCTOR__BLOOD-DRAW",
+    "DOCTOR__TAKE",
+    "DOCTOR__UNDERSTAND",
+    "DOCTOR__WRITE",
+    "DOCTOR__NOT",
+    "DOCTOR__NOW",
+    "DOCTOR__SOON",
+    "DOCTOR__LATER",
+    "DOCTOR__TOMORROW",
+    "DOCTOR__MORNING",
+    "DOCTOR__NIGHT",
+    "DOCTOR__WHERE"
+  ]
+}

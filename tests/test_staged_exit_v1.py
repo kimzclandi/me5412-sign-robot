@@ -5,6 +5,7 @@ import json
 import numpy as np
 import pytest
 
+from clips_v2 import on_clips_v2
 from sign_robot.motion import ROOT
 from sign_robot.pair_contract import STAGED_EXIT_METHOD, load_policy, staged_group_mask, validate_policy_v2
 from sign_robot.pair_routes import PairWorkBudget, build_pair_context_v2, staged_exit_knots, valid_endpoint_choices_v2
@@ -20,7 +21,7 @@ def _load(name):
 
 @pytest.fixture(scope='module')
 def context():
-    return build_pair_context_v2(ROOT, _load(NEW))
+    return build_pair_context_v2(ROOT, on_clips_v2(_load(NEW)))
 
 
 def test_protection_v2_changes_only_morning_and_nurse_ends():
@@ -55,7 +56,8 @@ def test_staged_exit_config_is_validated(change):
 
 
 def test_staged_words_exit_exactly_at_the_new_core_end(context):
-    for source, target, end in (('NURSE', 'BLOOD-DRAW', 75), ('MORNING', 'NIGHT', 37)):
+    # bundle v5 on clips-v2: NURSE's core ends at 79 (75 in v2 on the hospital_v1 clip), MORNING's still at 37
+    for source, target, end in (('NURSE', 'BLOOD-DRAW', 79), ('MORNING', 'NIGHT', 37)):
         selection = valid_endpoint_choices_v2(context, source, target, PairWorkBudget(context.policy))
         assert selection['source']['protected_core_frames'][1] == end
         assert selection['source']['valid_frames'] == [end] and selection['source']['staged_exit'] is True
@@ -64,7 +66,7 @@ def test_staged_words_exit_exactly_at_the_new_core_end(context):
 def test_nurse_stages_move_one_group_at_a_time(context):
     clip, target = context.clips['NURSE'], context.clips['BLOOD-DRAW']
     names = clip['joint_names']
-    a, b = clip['positions'][75], target['positions'][34]
+    a, b = clip['positions'][79], target['positions'][34]
     staged = {'stages': [{'group': 'right_arm', 'to': ['ik:out+up:2']},
                          {'group': 'left_upper_arm', 'to': ['ik:out+forward:3']},
                          {'group': 'left_wrist', 'to': ['zero']}]}

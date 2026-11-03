@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-03",
+  "source_commit": "ec89a7f2355c0bbf095dde2e263b860b72741b65",
+  "public_parent": "83dffbfcf6ccc03e006afe71fc69bf1dec7532b2",
+  "scope": "Focused tests of the curated public snapshot; no new planning or historical full-suite rerun",
+  "tests": {
+    "passed": 146,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 140.819
+  },
+  "test_files": [
+    "tests/test_retarget.py",
+    "tests/test_staged_exit_v1.py",
+    "tests/test_rest_tail_v1.py",
+    "tests/test_connector_only_v4.py",
+    "tests/test_hospital35_protection_import.py",
+    "tests/test_project_overview.py"
+  ],
+  "bindings": {
+    "motions": 35,
+    "all_motion_hashes_match": true,
+    "motion_mismatches": [],
+    "policy_binding": true,
+    "sequence_binding": true
+  },
+  "saved_round10_summary_checks": {
+    "numerical_pass_sentences": 7,
+    "sentences": 7,
+    "agreeing_connector_rechecks": 17,
+    "connectors": 17,
+    "unchanged_protected_cores": 24,
+    "protected_cores": 24,
+    "interior_stops": 0
+  },
+  "historical_curated_metadata_sha256_matches": 819,
+  "new_planning_run": false,
+  "historical_identity_changed": false,
+  "formal_acceptance_enabled": false,
+  "human_video_review_performed": false
+}

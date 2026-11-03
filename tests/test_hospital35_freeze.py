@@ -62,7 +62,10 @@ def test_code_identity_covers_new_entry_points_and_detects_their_change(monkeypa
 
 
 def test_old_come_now_runs_keep_their_own_frozen_identity_records():
-    manifest = read_json(ROOT / "results/sequence_pilot_20261031_001/pair_runs/sequence_pilot_pairs_20261031_001/manifest.json")
+    path = ROOT / "results/sequence_pilot_20261031_001/pair_runs/sequence_pilot_pairs_20261031_001/manifest.json"
+    if not path.exists():
+        pytest.skip("raw pair stores are not published on this branch (.gitignore)")
+    manifest = read_json(path)
     assert manifest["identity"]["code_hash"] == "4080b98e73a121c866115882483ef5b7631532d9add4bed4ff5dfbe214ad9cef"
     policy = load_policy(ROOT / PAIR_POLICY, supported_versions=(2,))
     library, _ = freeze_library(ROOT, policy)

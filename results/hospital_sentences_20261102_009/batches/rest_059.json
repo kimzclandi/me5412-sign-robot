@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "WRITE__COME",
+    "WRITE__HURT",
+    "WRITE__BREATHE-DEEP",
+    "WRITE__BLOOD-DRAW",
+    "WRITE__TAKE",
+    "WRITE__UNDERSTAND",
+    "WRITE__WRITE",
+    "WRITE__NOT",
+    "WRITE__NOW",
+    "WRITE__SOON",
+    "WRITE__LATER",
+    "WRITE__TOMORROW",
+    "WRITE__MORNING",
+    "WRITE__NIGHT",
+    "WRITE__WHERE",
+    "NOT__HELLO"
+  ]
+}

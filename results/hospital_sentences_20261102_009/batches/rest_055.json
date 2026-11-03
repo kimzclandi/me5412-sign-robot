@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "TAKE__WRITE",
+    "TAKE__NOT",
+    "TAKE__NOW",
+    "TAKE__SOON",
+    "TAKE__LATER",
+    "TAKE__TOMORROW",
+    "TAKE__MORNING",
+    "TAKE__NIGHT",
+    "TAKE__WHERE",
+    "UNDERSTAND__HELLO",
+    "UNDERSTAND__PLEASE",
+    "UNDERSTAND__THANK-YOU",
+    "UNDERSTAND__SORRY",
+    "UNDERSTAND__YES",
+    "UNDERSTAND__NO",
+    "UNDERSTAND__YOU"
+  ]
+}

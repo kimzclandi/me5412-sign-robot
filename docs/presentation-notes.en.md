@@ -60,7 +60,7 @@ For the "Text to Gloss (slides 6–7)" and "Gloss to Motion (slides 8–11)" par
 - Problem 1, jitter: video estimates of thumb and wrist orientation flip suddenly (HURT's thumb briefly at 37.7 rad/s) → 5-frame median filter, fingers limited to 10 rad/s, arms to 15 rad/s
 - Problem 2, unequal arm lengths: an arm angled towards the camera looks shorter, by up to 1.9x, which magnifies one side's motion → both arms share one scale
 - Problem 3, wrong video choice: choosing by detection rate once picked a MEDICINE video with 22 cm error → now the lowest-error video among those with ≥ 50% detection
-- Result: MEDICINE error 192 mm → 6 mm; median error of the 26 video words 6 mm, 15 of them within 1 cm
+- Result: MEDICINE error 192 mm → 6 mm; median error of the 26 video words 7 mm, 14 of them within 1 cm (clips-v2; 6 mm and 15 before the collision repair)
 - All 26 video words are graded "approximate", never "usable"
 
 **Script**: this slide tells the "find the problem, locate the cause, fix, verify" story. Group 3 noticed MEDICINE looked odd; we traced it to arm scaling and video choice, and the fix improved every video word.
@@ -74,9 +74,10 @@ For the "Text to Gloss (slides 6–7)" and "Gloss to Motion (slides 8–11)" par
 **Points**
 - Each word cut to the span where the hand is raised (`sign_frames`), fixed 0.5 s smooth blend between words
 - One command goes from English sentence → gloss → motion → video: `scripts/demo/hospital_demo.py`
-- The 9 dialogue lines take 3.8–16 s each, about 91 s back to back (`results/demo/hospital_dialogue.mp4`)
+- The 9 dialogue lines take 3.8–16 s each, about 71 s back to back with Group 3's transitions (`results/demo/hospital_dialogue.mp4`)
 - Known issue: the arms dip briefly between words, which is exactly what Group 3's transition method should improve and be compared against
-- Group 3 round 8 comparison (`results/stitch_compare/group3_round8/`, 7 multi-word lines, same word clips): mean duration 10.5 → 7.9 s, dips to rest 3.1 → 2.0, max penetration 39 → 13.8 mm (NURSE→BLOOD-DRAW 70 → 3 mm), RMS jerk 1750 → 1470; s6 and s7 dip more often than the baseline. The demo videos now use Group 3's transitions.
+- Group 3 round 10 comparison (`results/stitch_compare/group3_round10/`, 7 multi-word lines, same clips-v2 clips): mean duration 10.5 → 7.6 s, dips to rest 3.1 → 2.0, max penetration 18.3 → 3.7 mm, RMS jerk 1720 → 1450; s7 dips more often than the baseline. The demo videos now use round 10. Round 8 (old clips, 39 → 13.8 mm) is kept as history.
+- clips-v2 video words: after the collision repair, max penetration within a word 91.7 → 2.9 mm; NURSE hand-corrected to the left hand held and the right hand tapping from the side. Video-word wrist error median 7 mm, 14 of 26 within 1 cm (NURSE deliberately leaves the video position to keep the hands in contact).
 
 ## Limitations for every slide
 

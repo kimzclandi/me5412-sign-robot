@@ -1,0 +1,20 @@
+{
+  "pair_ids": [
+    "WRITE__YES",
+    "WRITE__NO",
+    "WRITE__YOU",
+    "WRITE__YOUR",
+    "WRITE__ME",
+    "WRITE__DEAF",
+    "WRITE__DOCTOR",
+    "WRITE__NURSE",
+    "WRITE__INTERPRETER",
+    "WRITE__APPOINTMENT",
+    "WRITE__MEDICINE",
+    "WRITE__STOMACH",
+    "WRITE__HEADACHE",
+    "WRITE__HAVE",
+    "WRITE__NEED",
+    "WRITE__WAIT"
+  ]
+}

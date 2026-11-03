@@ -1,0 +1,70 @@
+== start 2026-11-02T18:31:21+08:00
+worker 0 hospital_sentences_20261102_010_01 cpu0 pid 79344
+worker 1 hospital_sentences_20261102_010_02 cpu1 pid 79350
+worker 2 hospital_sentences_20261102_010_03 cpu2 pid 79356
+worker 3 hospital_sentences_20261102_010_04 cpu3 pid 79362
+worker 4 hospital_sentences_20261102_010_05 cpu4 pid 79368
+worker 5 hospital_sentences_20261102_010_06 cpu5 pid 79374
+worker 6 hospital_sentences_20261102_010_07 cpu6 pid 79380
+worker 7 hospital_sentences_20261102_010_08 cpu7 pid 79386
+worker 8 hospital_sentences_20261102_010_09 cpu8 pid 79392
+worker 9 hospital_sentences_20261102_010_10 cpu9 pid 79398
+worker 10 hospital_sentences_20261102_010_11 cpu10 pid 79404
+worker 11 hospital_sentences_20261102_010_12 cpu11 pid 79410
+worker 0 exit 0 2026-11-02T19:20:12+08:00
+worker 1 exit 0 2026-11-02T19:21:56+08:00
+worker 2 exit 0 2026-11-02T19:23:43+08:00
+worker 3 exit 0 2026-11-02T19:23:43+08:00
+worker 4 exit 0 2026-11-02T19:23:43+08:00
+worker 5 exit 0 2026-11-02T19:23:43+08:00
+worker 6 exit 0 2026-11-02T19:23:43+08:00
+worker 7 exit 0 2026-11-02T19:52:51+08:00
+worker 8 exit 0 2026-11-02T19:52:51+08:00
+worker 9 exit 0 2026-11-02T19:54:25+08:00
+worker 10 exit 0 2026-11-02T19:58:25+08:00
+worker 11 exit 0 2026-11-02T19:58:27+08:00
+recheck 05 exit 0
+recheck 06 exit 0
+recheck 02 exit 0
+recheck 03 exit 0
+recheck 07 exit 0
+recheck 04 exit 0
+recheck 01 exit 0
+recheck 09 exit 0
+recheck 08 exit 0
+recheck 10 exit 0
+recheck 11 exit 0
+recheck 12 exit 0
+{"rest_tail": "BLOOD-DRAW", "status": "TIMED_CANDIDATE", "attempts": 82, "selected": {"exit_frame": 178, "method": "ik_via1", "connector_frames": 10, "core_gap_frames": 23}, "wall_time_s": 217.6}
+{"rest_tail": "HAVE", "status": "TIMED_CANDIDATE", "attempts": 43, "selected": {"exit_frame": 57, "method": "direct", "connector_frames": 10, "core_gap_frames": 13}, "wall_time_s": 499.5}
+{"rest_tail": "INTERPRETER", "status": "TIMED_CANDIDATE", "attempts": 26, "selected": {"exit_frame": 40, "method": "direct", "connector_frames": 8, "core_gap_frames": 8}, "wall_time_s": 126.8}
+{"rest_tail": "SOON", "status": "TIMED_CANDIDATE", "attempts": 26, "selected": {"exit_frame": 87, "method": "direct", "connector_frames": 8, "core_gap_frames": 8}, "wall_time_s": 382.0}
+{"rest_tail": "TAKE", "status": "TIMED_CANDIDATE", "attempts": 78, "selected": {"exit_frame": 78, "method": "direct", "connector_frames": 10, "core_gap_frames": 10}, "wall_time_s": 190.1}
+{"rest_tail": "UNDERSTAND", "status": "TIMED_CANDIDATE", "attempts": 52, "selected": {"exit_frame": 78, "method": "direct", "connector_frames": 9, "core_gap_frames": 9}, "wall_time_s": 152.5}
+{"rest_tail": "WHERE", "status": "TIMED_CANDIDATE", "attempts": 52, "selected": {"exit_frame": 81, "method": "direct", "connector_frames": 9, "core_gap_frames": 9}, "wall_time_s": 89.9}
+{"sequence_id": "HELLO__YOU__APPOINTMENT__HAVE", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "YOU__NEED__INTERPRETER", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "PLEASE__WAIT__DOCTOR__COME__SOON", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "YOU__HURT__WHERE", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "NOW__NURSE__BLOOD-DRAW", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "MEDICINE__MORNING__NIGHT__TAKE", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"sequence_id": "YOU__UNDERSTAND", "status": "NUMERICAL_PASS", "selected_attempt": "attempt_0001", "attempts": 1}
+{"denominator": 7, "numerical_pass_count": 7, "status_counts": {"NUMERICAL_PASS": 7}, "stop_reason": null}
+plan_sequences exit 0 2026-11-02T20:16:44+08:00
+verify_sequences exit 0
+render 0 exit 0
+render 1 exit 0
+render 2 exit 0
+render 3 exit 0
+render 4 exit 0
+render 5 exit 0
+render 6 exit 0
+status {'NUMERICAL_PASS': 7}
+  HELLO__YOU__APPOINTMENT__HAVE NUMERICAL_PASS
+  YOU__NEED__INTERPRETER NUMERICAL_PASS
+  PLEASE__WAIT__DOCTOR__COME__SOON NUMERICAL_PASS
+  YOU__HURT__WHERE NUMERICAL_PASS
+  NOW__NURSE__BLOOD-DRAW NUMERICAL_PASS
+  MEDICINE__MORNING__NIGHT__TAKE NUMERICAL_PASS
+  YOU__UNDERSTAND NUMERICAL_PASS
+== end 2026-11-02T20:17:54+08:00

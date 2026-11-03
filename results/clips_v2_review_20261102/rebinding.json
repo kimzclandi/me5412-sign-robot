@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "bundle": "config/user_protected_hospital35_v4.json",
+  "bundle_sha256": "b4cd0dbd479e51ebf929fe7067feb50611625b1b58ff3dc4d06d4221251309db",
+  "source_bundle": "config/user_protected_hospital35_v3.json",
+  "clips": "group2/clips-v2 85bc230",
+  "loaded_records": 35,
+  "rebound_records": [
+    {
+      "gloss": "THANK-YOU",
+      "motion": "motions/wlasl_video_v1/THANK-YOU.npz",
+      "old_sha256": "040c0cdea15d58744d32563d111ab2c85cd49293dda78c3183ff4225fe40818d",
+      "new_sha256": "09d8295e70a48d675c7f5ed9805b93b95d4f3db95bdae4d2eb1c25116e520ae1",
+      "interval_frames": [
+        17,
+        87
+      ]
+    },
+    {
+      "gloss": "SORRY",
+      "motion": "motions/wlasl_video_v1/SORRY.npz",
+      "old_sha256": "4404913c8cad98430d4a0cd7c94ef5b18adf46e06c9b86ec598c3dfba9bbff2e",
+      "new_sha256": "b3c3893cbab5c84b48b93882fde5ae1e8d75f3d8c6810e37b8a2892a40332caa",
+      "interval_frames": [
+        21,
+        168
+      ]
+    },
+    {
+      "gloss": "YES",
+      "motion": "motions/wlasl_video_v1/YES.npz",
+      "old_sha256": "dd29f2430c76ef96a4530147def04625283f30ff057b588b8cbe95a080eedefe",
+      "new_sha256": "e0ff56fbb911c04ef833d07314f9d3d7c2edd2be767175a2cf157101ca20df84",
+      "interval_frames": [
+        18,
+        69
+      ]
+    },
+    {
+      "gloss": "NO",
+      "motion": "motions/wlasl_video_v1/NO.npz",
+      "old_sha256": "4c8af90a878fc4d0919a8d8f2bed4270b9beada6eb632b3c7c04518c714c7247",
+      "new_sha256": "6e4b2a0e3e2ac7d4f201636ddd267cd55b52f045cdcf13d009de3e8e84df3f5e",
+      "interval_frames": [
+        21,
+        105
+      ]
+    },
+    {
+      "gloss": "YOUR",
+      "motion": "motions/wlasl_video_v1/YOUR.npz",
+      "old_sha256": "7e0b5dbdad5ccdbcd514129851de0f38ad6cdf3b3081ea3c5d1b14a43db98e6c",
+      "new_sha256": "92deb7259cc7fbda1004db285904ea5bcdcc6a3b60c2a9665a48aa8eca47f55f",
+      "interval_frames": [
+        33,
+        73
+      ]
+    },
+    {
+      "gloss": "ME",
+      "motion": "motions/wlasl_video_v1/ME.npz",
+      "old_sha256": "7470dbf5e39cf402c5bc16187646beab2f0d2ea4335b5ed61002b05b814c3d0c",
+      "new_sha256": "51dc56733a905e8ccd24b6802096bb8f087965c9b20ecfd33972120123a9afa8",
+      "interval_frames": [
+        30,
+        75
+      ]
+    },
+    {
+      "gloss": "DEAF",
+      "motion": "motions/wlasl_video_v1/DEAF.npz",
+      "old_sha256": "073f5453e484f9a63c445f8fdfabcf85679b9d04b28f972fe651841cb9b4d908",
+      "new_sha256": "d03abe86acac61b22ec9f0b40dfa510fc93f220be0a78518b656644cce4905a9",
+      "interval_frames": [
+        33,
+        57
+      ]
+    },
+    {
+      "gloss": "DOCTOR",
+      "motion": "motions/wlasl_video_v1/DOCTOR.npz",
+      "old_sha256": "639f93c6b9c6985e8a898a1a8f7a438584e94ab61f353a10823490b252364461",
+      "new_sha256": "285cad1a3fc57da9207124cbd42bceb601290254a7edefe1cbc51c93aae76e59",
+      "interval_frames": [
+        34,
+        57
+      ]
+    },
+    {
+      "gloss": "NURSE",
+      "motion": "motions/wlasl_video_v1/NURSE.npz",
+      "old_sha256": "f75945f059ef18a5f8888c9499e9160ada02ad9aea5a37f2850fb9a4f4dd391f",
+      "new_sha256": "e06a52bad3509f7c81304acabfba69bd5933df80bc98cc26cde2612f9a72617f",
+      "interval_frames": [
+        23,
+        79
+      ]
+    },
+    {
+      "gloss": "INTERPRETER",
+      "motion": "motions/wlasl_video_v1/INTERPRETER.npz",
+      "old_sha256": "3a159a8bd9af71563d85fe25cf69dbf7dc8d62dcd1b76ac2fdee0e099495662c",
+      "new_sha256": "28b47641d859af3310ee6927ac4e1ba2cadcbe441a949516175ac1dd223bbff0",
+      "interval_frames": [
+        30,
+        60
+      ]
+    },
+    {
+      "gloss": "MEDICINE",
+      "motion": "motions/wlasl_video_v1/MEDICINE.npz",
+      "old_sha256": "b8c5e0b7ade5c7a30c19d0cb8f938214956e69754087bbb42889d3f0f2f7bfa6",
+      "new_sha256": "af1b9b3a1193d1b382524ab156cb359c04da382d9c0af8fb54ee0c6c84aef3fd",
+      "interval_frames": [
+        27,
+        69
+      ]
+    },
+    {
+      "gloss": "STOMACH",
+      "motion": "motions/wlasl_video_v1/STOMACH.npz",
+      "old_sha256": "23bb66ab1be21b944e11f6e599a2044b3e37636c1ce0ed109d04e6e3fe6d37e0",
+      "new_sha256": "dcabb55275b077eea205b030fd31d470837b3e4aa3b860fa516959072586ac2d",
+      "interval_frames": [
+        33,
+        75
+      ]
+    },
+    {
+      "gloss": "HEADACHE",
+      "motion": "motions/wlasl_video_v1/HEADACHE.npz",
+      "old_sha256": "485f8cdef5773472c983a45f684096f4b55b11204cf0f30848f4dcbab6eb13ee",
+      "new_sha256": "8a9263ace636ee15cd247cbebe282b90e5df8334aeef5e22c9fdcb064c42e739",
+      "interval_frames": [
+        27,
+        75
+      ]
+    },
+    {
+      "gloss": "HAVE",
+      "motion": "motions/wlasl_video_v1/HAVE.npz",
+      "old_sha256": "0991bf7c0d0406c9c3e4049ea4b4ee1502a20a483a764b8cede54e2e1a8e4867",
+      "new_sha256": "ad4110ec387bd70ed8afa36ed124221bbc75b6ae554a09b3abf096e1b44bbb71",
+      "interval_frames": [
+        24,
+        54
+      ]
+    },
+    {
+      "gloss": "NEED",
+      "motion": "motions/wlasl_video_v1/NEED.npz",
+      "old_sha256": "c4ab9fc0ea73c2378b17eaf197ff46a2c5dbd937e22d84b99c11b3ed6e18c173",
+      "new_sha256": "a118fe4dc96a0506e4fb4a4e873feee53de29f4991a613bb8b82288bbf3cf035",
+      "interval_frames": [
+        30,
+        93
+      ]
+    },
+    {
+      "gloss": "HURT",
+      "motion": "motions/wlasl_video_v1/HURT.npz",
+      "old_sha256": "a17641061df3e08fab2a5178950c71cae01edca2791072e029590a2ae892e09d",
+      "new_sha256": "ea696f24ec37548e9ab2f2846b8ccdd9f8c64d9394435ca74d354694a64f5bbd",
+      "interval_frames": [
+        37,
+        57
+      ]
+    },
+    {
+      "gloss": "UNDERSTAND",
+      "motion": "motions/wlasl_video_v1/UNDERSTAND.npz",
+      "old_sha256": "e50fee8ab9342dc6005a8cfd90ecf69d9ef90dbed3d347f76b9994e9aad58e3a",
+      "new_sha256": "d41eea30720c5150acaf93dd48b3d0f30f9e32f21e77a78e712d62e2a917ec6c",
+      "interval_frames": [
+        27,
+        78
+      ]
+    },
+    {
+      "gloss": "WRITE",
+      "motion": "motions/wlasl_video_v1/WRITE.npz",
+      "old_sha256": "a93d1bc2c5e9cea4ec0edaf7480acc75c9eea059f772117b461127468d57c124",
+      "new_sha256": "c854122677a374c247ac7aa194582d245eb074e2aebb4c34c39f7ab06de7a77e",
+      "interval_frames": [
+        27,
+        69
+      ]
+    },
+    {
+      "gloss": "NOT",
+      "motion": "motions/wlasl_video_v1/NOT.npz",
+      "old_sha256": "13b8b2c32a83d761114348853b458af71c4a74b9ef0d4ec08c00eb3ee8c810cf",
+      "new_sha256": "592363fe1fc141f951feb5ed74b02e7fe999ae11c0f3ae6f785ede55e7818edf",
+      "interval_frames": [
+        27,
+        69
+      ]
+    },
+    {
+      "gloss": "SOON",
+      "motion": "motions/wlasl_video_v1/SOON.npz",
+      "old_sha256": "0fe325e7186b5ddd21072d7d7f967eea7bf153f004ecf9d943d33fcd23dd6e97",
+      "new_sha256": "25441134285443096859fb9d43006255a9357458f58b703236f20a7f0805fad1",
+      "interval_frames": [
+        27,
+        87
+      ]
+    },
+    {
+      "gloss": "LATER",
+      "motion": "motions/wlasl_video_v1/LATER.npz",
+      "old_sha256": "b9722ab602e38fab95fc5b7e0c5e9a4c6eeeb9b9924675af4b77451d2deab3a8",
+      "new_sha256": "3d5c3fd500578a5f7710d90e08b94ec08b029646ae34a382ae51ed677c43ffa5",
+      "interval_frames": [
+        27,
+        51
+      ]
+    },
+    {
+      "gloss": "TOMORROW",
+      "motion": "motions/wlasl_video_v1/TOMORROW.npz",
+      "old_sha256": "0228a0538c2007b1bb770b18207323a5c8413f999f4146e1f910559f011a934b",
+      "new_sha256": "9a203ead3dc0cf3c9521ffc6a5031c1d53904d62bab07668b47f181bfb379445",
+      "interval_frames": [
+        24,
+        66
+      ]
+    },
+    {
+      "gloss": "MORNING",
+      "motion": "motions/wlasl_video_v1/MORNING.npz",
+      "old_sha256": "88874e76d81466a7141badf0aa2a5bf98319036d76771a9c39f9b83609ad47f6",
+      "new_sha256": "19c42f008e083fdc6ad6d400b0257de28433a19f93f14ecee8c4b2eb23a226d1",
+      "interval_frames": [
+        26,
+        37
+      ]
+    },
+    {
+      "gloss": "NIGHT",
+      "motion": "motions/wlasl_video_v1/NIGHT.npz",
+      "old_sha256": "20dece3ae28795bfa9321f4922c3291efc0e979deab9f77f4c314ca9d8a8c4cd",
+      "new_sha256": "f717e35c1179f8308b6bf2cf57832d6e5a192b22a8ae9fb2c104b40221a24a43",
+      "interval_frames": [
+        39,
+        60
+      ]
+    }
+  ]
+}
